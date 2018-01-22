@@ -194,7 +194,7 @@
         },
         {
           "name": "Campaigns",
-          "lookmlID": "campaign_performance_overview"
+          "lookmlID": "google_adwords::campaign_performance_overview"
         },
         {
           "name": "Creative",
