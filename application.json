@@ -190,11 +190,11 @@
       "dashboards": [
         {
           "name": "Campaigns",
-          "lookmlID": "google_adwords::campaign_performance_overview"
+          "lookmlID": "google_adwords::campaign_performance"
         },
         {
           "name": "Creative",
-          "lookmlID": "google_adwords::ad_performance_overview"
+          "lookmlID": "google_adwords::ad_performance"
         }
       ],
       "enabled": true,
