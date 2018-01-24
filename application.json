@@ -2,7 +2,7 @@
   "name": "Google Adwords",
   "accentColor": "#FF1493",
   "home": {
-    "lookmlID": "google_adwords::account_performance"
+    "lookmlID": "google_adwords::adwords_overview"
   },
   "pillars": [
     {
