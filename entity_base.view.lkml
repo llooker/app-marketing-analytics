@@ -44,7 +44,6 @@ view: base {
   extension: required
 
   dimension: _data_day_of_quarter {
-    hidden: yes
     group_label: "Data Date"
     label: "Day of Quarter"
     type: number
