@@ -63,7 +63,7 @@ view: account_quarter_stats {
   extends: [stats, base_quarter_stats]
 
   derived_table: {
-    persist_for: "24 hours"
+    datagroup_trigger: etl_datagroup
     explore_source: master_stats {
       column: _data_quarter {}
       column: external_customer_id {}
@@ -118,7 +118,7 @@ view: campaign_quarter_stats {
   extends: [stats, base_quarter_stats]
 
   derived_table: {
-    persist_for: "24 hours"
+    datagroup_trigger: etl_datagroup
     explore_source: master_stats {
       column: _data_quarter {}
       column: campaign_id {}
@@ -175,6 +175,7 @@ view: campaign_quarter_stats {
 
 view: campaign_budget_stats {
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: master_stats {
       column: campaign_id {}
       column: budget_id { field: campaign.budget_id }

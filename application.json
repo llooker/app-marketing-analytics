@@ -1,5 +1,5 @@
 {
-  "name": "Google Adwords",
+  "name": "Marketing Analytics",
   "accentColor": "#FF1493",
   "home": {
     "lookmlID": "google_adwords::adwords_overview"
@@ -194,7 +194,7 @@
         }
       ],
       "enabled": true,
-      "permalink": "TE4KXQEAJW",
+      "permalink": "search",
       "icon": "search",
       "description": "These reports dive into your Adwords to find ways to increase the ROI of your marketing spend. Use Opportunities to find quick wins, refine your targets using the Performance trend reports, or discover which audiences are falling off your funnel."
     },
@@ -210,6 +210,7 @@
       "name": "Display",
       "sections": [],
       "dashboards": [],
+      "enabled": false,
       "permalink": "display",
       "icon": "display"
     }

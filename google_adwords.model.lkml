@@ -9,9 +9,13 @@ include: "*.explore"
 # include all the dashboards
 include: "*.dashboard"
 
+datagroup: etl_datagroup {
+  sql_trigger: SELECT max(etl_job_id) FROM adwords_v201609.HourlyAccountStats_6747157124 ;;
+  max_cache_age: "24 hours"
+}
 
 explore: master_stats {
-  persist_for: "24 hours"
+  persist_with: etl_datagroup
   label: "Ad Stats"
   view_label: "Ad Stats"
 
@@ -167,7 +171,7 @@ explore: ad {
 
 explore: account_quarter_stats {
   hidden: yes
-  persist_for: "24 hours"
+  persist_with: etl_datagroup
   label: "Account Quarter Stats"
   view_label: "Account Quarter Stats"
 
@@ -188,7 +192,7 @@ explore: account_quarter_stats {
 
 explore: campaign_quarter_stats {
   hidden: yes
-  persist_for: "24 hours"
+  persist_with: etl_datagroup
   label: "Campaign Quarter Stats"
   view_label: "Campaign Quarter Stats"
 
@@ -215,7 +219,7 @@ explore: campaign_quarter_stats {
 
 explore: campaign_budget_stats {
   hidden: yes
-  persist_for: "24 hours"
+  persist_with: etl_datagroup
   label: "Campaign Budget Stats"
   view_label: "Campaign Budget Stats"
 
