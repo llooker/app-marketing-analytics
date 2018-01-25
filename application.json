@@ -210,6 +210,7 @@
       "name": "Display",
       "sections": [],
       "dashboards": [],
+      "enabled": false,
       "permalink": "display",
       "icon": "display"
     }
