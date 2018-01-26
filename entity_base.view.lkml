@@ -355,9 +355,9 @@ view: ad {
       , COALESCE(CONCAT(${description2}, "\n"),"")
       ) ;;
     link: {
-      url: "https://adwords.google.com"
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
-      label: "Change Bid"
+      label: "Pause on Adwords"
     }
   }
 
