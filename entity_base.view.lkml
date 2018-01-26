@@ -359,6 +359,12 @@ view: ad {
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
       label: "Pause on Adwords"
     }
+    link: {
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+      icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
+      label: "Change Bid"
+    }
+    required_fields: [campaign.campaign_name, ad_group.ad_group_name]
   }
 
   dimension: display_headline {
@@ -426,6 +432,11 @@ view: ad_group {
       label: "Pause on Adwords"
       icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+    }
+    link: {
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+      icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
+      label: "Change Bid"
     }
     required_fields: [campaign.campaign_name]
   }
@@ -881,6 +892,11 @@ view: campaign {
       label: "Pause on Adwords"
       icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}"
+    }
+    link: {
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}"
+      icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
+      label: "Change Bid"
     }
   }
 
