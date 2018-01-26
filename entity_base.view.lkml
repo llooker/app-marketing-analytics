@@ -417,6 +417,16 @@ view: ad_group {
       url: "/dashboards/google_adwords::ad_performance?Ad%20Group%20Name={{ value | encode_uri }}&Campaign%20Name={{ campaign.campaign_name._value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
+    link: {
+      label: "View on Adwords"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+    }
+    link: {
+      label: "Pause on Adwords"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+    }
     required_fields: [campaign.campaign_name]
   }
 
@@ -861,6 +871,16 @@ view: campaign {
       label: "Campaign Dashboard"
       url: "/dashboards/google_adwords::campaign_performance?Campaign%20Name={{ value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
+    }
+    link: {
+      label: "View on Adwords"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+      url: "https://adwords.google.com/aw/adgroups?campaignId={{ campaign_id._value }}"
+    }
+    link: {
+      label: "Pause on Adwords"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}"
     }
   }
 
