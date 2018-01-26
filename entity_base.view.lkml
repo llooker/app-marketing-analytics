@@ -357,7 +357,7 @@ view: ad {
     link: {
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
-      label: "Pause on Adwords"
+      label: "Pause Ad"
     }
     link: {
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
@@ -429,7 +429,7 @@ view: ad_group {
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
     }
     link: {
-      label: "Pause on Adwords"
+      label: "Pause Ad Group"
       icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
     }
@@ -889,14 +889,14 @@ view: campaign {
       url: "https://adwords.google.com/aw/adgroups?campaignId={{ campaign_id._value }}"
     }
     link: {
-      label: "Pause on Adwords"
+      label: "Pause Campaign"
       icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}"
     }
     link: {
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}"
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
-      label: "Change Bid"
+      label: "Change Budget"
     }
   }
 
