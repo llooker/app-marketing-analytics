@@ -355,10 +355,16 @@ view: ad {
       , COALESCE(CONCAT(${description2}, "\n"),"")
       ) ;;
     link: {
-      url: "https://adwords.google.com"
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+      icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
+      label: "Pause Ad"
+    }
+    link: {
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
       label: "Change Bid"
     }
+    required_fields: [campaign.campaign_name, ad_group.ad_group_name]
   }
 
   dimension: display_headline {
@@ -416,6 +422,21 @@ view: ad_group {
       label: "Ad Group Dashboard"
       url: "/dashboards/google_adwords::ad_performance?Ad%20Group%20Name={{ value | encode_uri }}&Campaign%20Name={{ campaign.campaign_name._value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
+    }
+    link: {
+      label: "View on Adwords"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+    }
+    link: {
+      label: "Pause Ad Group"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+    }
+    link: {
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
+      icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
+      label: "Change Bid"
     }
     required_fields: [campaign.campaign_name]
   }
@@ -861,6 +882,21 @@ view: campaign {
       label: "Campaign Dashboard"
       url: "/dashboards/google_adwords::campaign_performance?Campaign%20Name={{ value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
+    }
+    link: {
+      label: "View on Adwords"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+      url: "https://adwords.google.com/aw/adgroups?campaignId={{ campaign_id._value }}"
+    }
+    link: {
+      label: "Pause Campaign"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}"
+    }
+    link: {
+      url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}"
+      icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
+      label: "Change Budget"
     }
   }
 
