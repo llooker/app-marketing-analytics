@@ -237,4 +237,4 @@ explore: campaign_budget_stats {
   }
 }
 
-explore: kpis {}
+explore: kpis_period_over_period {}

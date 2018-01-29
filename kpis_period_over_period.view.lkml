@@ -1,4 +1,4 @@
- view: kpis {
+ view: kpis_period_over_period {
    derived_table: {
      datagroup_trigger: etl_datagroup
      sql:
