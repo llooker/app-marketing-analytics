@@ -184,216 +184,252 @@
     type: number
     sql: ${TABLE}.this_quarter_total_cost ;;
     group_label: "This Quarter"
+    hidden: yes
    }
 
   dimension: this_quarter_conversions {
     type: number
     sql: ${TABLE}.this_quarter_conversions ;;
     group_label: "This Quarter"
+    hidden: yes
   }
 
   dimension: this_quarter_avg_conversion_rate {
     type: number
     sql: ${TABLE}.this_quarter_avg_conversion_rate ;;
     group_label: "This Quarter"
+    hidden: yes
   }
 
   dimension: this_quarter_avg_cost_per_conversion {
     type: number
     sql: ${TABLE}.this_quarter_avg_cost_per_conversion ;;
     group_label: "This Quarter"
+    hidden: yes
   }
 
   dimension: this_quarter_avg_interaction_rate {
     type: number
     sql: ${TABLE}.this_quarter_avg_interaction_rate ;;
     group_label: "This Quarter"
+    hidden: yes
   }
 
   dimension: this_quarter_avg_cost_per_impression {
     type: number
     sql: ${TABLE}.this_quarter_avg_cost_per_impression ;;
     group_label: "This Quarter"
+    hidden: yes
   }
 
   dimension: last_quarter_total_cost {
     type: number
     sql: ${TABLE}.last_quarter_total_cost ;;
     group_label: "Last Quarter"
+    hidden: yes
   }
 
   dimension: last_quarter_avg_conversion_rate {
     type: number
     sql: ${TABLE}.last_quarter_avg_conversion_rate ;;
     group_label: "Last Quarter"
+    hidden: yes
   }
 
   dimension: last_quarter_conversions {
     type: number
     sql: ${TABLE}.last_quarter_conversions ;;
     group_label: "Last Quarter"
+    hidden: yes
   }
 
   dimension: last_quarter_avg_cost_per_conversion {
     type: number
     sql: ${TABLE}.last_quarter_avg_cost_per_conversion ;;
     group_label: "Last Quarter"
+    hidden: yes
   }
 
   dimension: last_quarter_avg_interaction_rate {
     type: number
     sql: ${TABLE}.last_quarter_avg_interaction_rate ;;
     group_label: "Last Quarter"
+    hidden: yes
   }
 
   dimension: last_quarter_avg_cost_per_impression {
     type: number
     sql: ${TABLE}.last_quarter_avg_cost_per_impression ;;
     group_label: "This Quarter"
+    hidden: yes
   }
 
   dimension: this_month_total_cost {
     type: number
     sql: ${TABLE}.this_month_total_cost ;;
     group_label: "This Month"
+    hidden: yes
   }
 
   dimension: this_month_conversions {
     type: number
     sql: ${TABLE}.this_month_conversions ;;
     group_label: "This Month"
+    hidden: yes
   }
 
   dimension: this_month_avg_conversion_rate {
     type: number
     sql: ${TABLE}.this_month_avg_conversion_rate ;;
     group_label: "This Month"
+    hidden: yes
   }
 
   dimension: this_month_avg_cost_per_conversion {
     type: number
     sql: ${TABLE}.this_month_avg_cost_per_conversion ;;
     group_label: "This Month"
+    hidden: yes
   }
 
   dimension: this_month_avg_interaction_rate {
     type: number
     sql: ${TABLE}.this_month_avg_interaction_rate ;;
     group_label: "This Month"
+    hidden: yes
   }
 
   dimension: this_month_avg_cost_per_impression {
     type: number
     sql: ${TABLE}.this_month_avg_cost_per_impression ;;
     group_label: "This Month"
+    hidden: yes
   }
 
   dimension: last_month_total_cost {
     type: number
     sql: ${TABLE}.last_month_total_cost ;;
     group_label: "Last Month"
+    hidden: yes
   }
 
   dimension: last_month_avg_conversion_rate {
     type: number
     sql: ${TABLE}.last_month_avg_conversion_rate ;;
     group_label: "Last Month"
+    hidden: yes
   }
 
   dimension: last_month_conversions {
     type: number
     sql: ${TABLE}.last_month_conversions ;;
     group_label: "Last Month"
+    hidden: yes
   }
 
   dimension: last_month_avg_cost_per_conversion {
     type: number
     sql: ${TABLE}.last_month_avg_cost_per_conversion ;;
     group_label: "Last Month"
+    hidden: yes
   }
 
   dimension: last_month_avg_interaction_rate {
     type: number
     sql: ${TABLE}.last_month_avg_interaction_rate ;;
     group_label: "Last Month"
+    hidden: yes
   }
 
   dimension: last_month_avg_cost_per_impression {
     type: number
     sql: ${TABLE}.last_month_avg_cost_per_impression ;;
     group_label: "Last Month"
+    hidden: yes
   }
 
   dimension: this_week_total_cost {
     type: number
     sql: ${TABLE}.this_week_total_cost ;;
     group_label: "This Week"
+    hidden: yes
   }
 
   dimension: this_week_conversions {
     type: number
     sql: ${TABLE}.this_week_conversions ;;
     group_label: "This Week"
+    hidden: yes
   }
 
   dimension: this_week_avg_conversion_rate {
     type: number
     sql: ${TABLE}.this_week_avg_conversion_rate ;;
     group_label: "This Week"
+    hidden: yes
   }
 
   dimension: this_week_avg_cost_per_conversion {
     type: number
     sql: ${TABLE}.this_week_avg_cost_per_conversion ;;
     group_label: "This Week"
+    hidden: yes
   }
 
   dimension: this_week_avg_interaction_rate {
     type: number
     sql: ${TABLE}.this_week_avg_interaction_rate ;;
     group_label: "This Week"
+    hidden: yes
   }
 
   dimension: this_week_avg_cost_per_impression {
     type: number
     sql: ${TABLE}.this_week_avg_cost_per_impression ;;
     group_label: "This Week"
+    hidden: yes
   }
 
   dimension: last_week_total_cost {
     type: number
     sql: ${TABLE}.last_week_total_cost ;;
     group_label: "Last Week"
+    hidden: yes
   }
 
   dimension: last_week_avg_conversion_rate {
     type: number
     sql: ${TABLE}.last_week_avg_conversion_rate ;;
     group_label: "Last Week"
+    hidden: yes
   }
 
   dimension: last_week_conversions {
     type: number
     sql: ${TABLE}.last_week_conversions ;;
     group_label: "Last Week"
+    hidden: yes
   }
 
   dimension: last_week_avg_cost_per_conversion {
     type: number
     sql: ${TABLE}.last_week_avg_cost_per_conversion ;;
     group_label: "Last Week"
+    hidden: yes
   }
 
   dimension: last_week_avg_interaction_rate {
     type: number
     sql: ${TABLE}.last_week_avg_interaction_rate ;;
     group_label: "Last Week"
+    hidden: yes
   }
 
   dimension: last_week_avg_cost_per_impression {
     type: number
     sql: ${TABLE}.last_week_avg_cost_per_impression ;;
     group_label: "Last Week"
+    hidden: yes
   }
 
   parameter: timeframe_filter {
