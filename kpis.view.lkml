@@ -1,5 +1,6 @@
  view: kpis {
    derived_table: {
+     datagroup_trigger: etl_datagroup
      sql:
     with this_quarter_metrics as (
       SELECT
