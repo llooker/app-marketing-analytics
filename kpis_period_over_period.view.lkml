@@ -9,7 +9,7 @@
         COALESCE(SUM(master_stats.Conversions ), 0) AS master_stats_total_conversions,
         (COALESCE(SUM(master_stats.Conversions ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Clicks ), 0)),0)  AS master_stats_average_conversion_rate,
         (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Conversions ), 0)),0)  AS master_stats_average_cost_per_conversion,
-        (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_cost_per_impression,
+        (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Interactions ), 0)),0)  AS master_stats_average_cost_per_impression,
         (COALESCE(SUM(master_stats.Interactions ), 0))*1.0/nullif((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_interaction_rate
       FROM
       adwords_v201609.AccountBasicStats_6747157124  AS master_stats
@@ -27,7 +27,7 @@
           COALESCE(SUM(master_stats.Conversions ), 0) AS master_stats_total_conversions,
           (COALESCE(SUM(master_stats.Conversions ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Clicks ), 0)),0)  AS master_stats_average_conversion_rate,
           (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Conversions ), 0)),0)  AS master_stats_average_cost_per_conversion,
-          (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_cost_per_impression,
+          (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Interactions ), 0)),0)  AS master_stats_average_cost_per_impression,
           (COALESCE(SUM(master_stats.Interactions ), 0))*1.0/nullif((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_interaction_rate
         FROM   adwords_v201609.AccountBasicStats_6747157124  AS master_stats
         WHERE
@@ -52,7 +52,7 @@
           COALESCE(SUM(master_stats.Conversions ), 0) AS master_stats_total_conversions,
           (COALESCE(SUM(master_stats.Conversions ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Clicks ), 0)),0)  AS master_stats_average_conversion_rate,
           (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Conversions ), 0)),0)  AS master_stats_average_cost_per_conversion,
-          (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_cost_per_impression,
+          (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Interactions ), 0)),0)  AS master_stats_average_cost_per_impression,
           (COALESCE(SUM(master_stats.Interactions ), 0))*1.0/nullif((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_interaction_rate
         FROM  adwords_v201609.AccountBasicStats_6747157124    AS master_stats
         WHERE
@@ -68,7 +68,7 @@
           COALESCE(SUM(master_stats.Conversions ), 0) AS master_stats_total_conversions,
           (COALESCE(SUM(master_stats.Conversions ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Clicks ), 0)),0)  AS master_stats_average_conversion_rate,
           (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Conversions ), 0)),0)  AS master_stats_average_cost_per_conversion,
-          (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_cost_per_impression,
+          (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Interactions ), 0)),0)  AS master_stats_average_cost_per_impression,
           (COALESCE(SUM(master_stats.Interactions ), 0))*1.0/nullif((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_interaction_rate
         FROM   adwords_v201609.AccountBasicStats_6747157124    AS master_stats
         WHERE
@@ -89,7 +89,7 @@
             COALESCE(SUM(master_stats.Conversions ), 0) AS master_stats_total_conversions,
             (COALESCE(SUM(master_stats.Conversions ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Clicks ), 0)),0)  AS master_stats_average_conversion_rate,
             (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Conversions ), 0)),0)  AS master_stats_average_cost_per_conversion,
-            (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_cost_per_impression,
+            (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Interactions ), 0)),0)  AS master_stats_average_cost_per_impression,
             (COALESCE(SUM(master_stats.Interactions ), 0))*1.0/nullif((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_interaction_rate
           FROM adwords_v201609.AccountBasicStats_6747157124    AS master_stats
 
@@ -111,7 +111,7 @@
             COALESCE(SUM(master_stats.Conversions ), 0) AS master_stats_total_conversions,
             (COALESCE(SUM(master_stats.Conversions ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Clicks ), 0)),0)  AS master_stats_average_conversion_rate,
             (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Conversions ), 0)),0)  AS master_stats_average_cost_per_conversion,
-            (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_cost_per_impression,
+            (COALESCE(SUM((master_stats.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(master_stats.Interactions ), 0)),0)  AS master_stats_average_cost_per_impression,
             (COALESCE(SUM(master_stats.Interactions ), 0))*1.0/nullif((COALESCE(SUM(master_stats.Impressions ), 0)),0)  AS master_stats_average_interaction_rate
           FROM   adwords_v201609.AccountBasicStats_6747157124   AS master_stats
 
@@ -133,42 +133,42 @@
           this_quarter_metrics.master_stats_average_conversion_rate as this_quarter_avg_conversion_rate,
           this_quarter_metrics.master_stats_average_cost_per_conversion as this_quarter_avg_cost_per_conversion,
           this_quarter_metrics.master_stats_average_interaction_rate as this_quarter_avg_interaction_rate,
-          this_quarter_metrics.master_stats_average_cost_per_impression as this_quarter_avg_cost_per_impression,
+          this_quarter_metrics.master_stats_average_cost_per_impression as this_quarter_avg_cost_per_interaction,
 
           last_quarter_metrics.master_stats_total_cost_usd as last_quarter_total_cost,
           last_quarter_metrics.master_stats_total_conversions as last_quarter_conversions,
           last_quarter_metrics.master_stats_average_conversion_rate as last_quarter_avg_conversion_rate,
           last_quarter_metrics.master_stats_average_cost_per_conversion as last_quarter_avg_cost_per_conversion,
           last_quarter_metrics.master_stats_average_interaction_rate as last_quarter_avg_interaction_rate,
-          last_quarter_metrics.master_stats_average_cost_per_impression as last_quarter_avg_cost_per_impression,
+          last_quarter_metrics.master_stats_average_cost_per_impression as last_quarter_avg_cost_per_interaction,
 
           this_month_metrics.master_stats_total_cost_usd as this_month_total_cost,
           this_month_metrics.master_stats_total_conversions as this_month_conversions,
           this_month_metrics.master_stats_average_conversion_rate as this_month_avg_conversion_rate,
           this_month_metrics.master_stats_average_cost_per_conversion as this_month_avg_cost_per_conversion,
           this_month_metrics.master_stats_average_interaction_rate as this_month_avg_interaction_rate,
-          this_month_metrics.master_stats_average_cost_per_impression as this_month_avg_cost_per_impression,
+          this_month_metrics.master_stats_average_cost_per_impression as this_month_avg_cost_per_interaction,
 
           last_month_metrics.master_stats_total_cost_usd as last_month_total_cost,
           last_month_metrics.master_stats_total_conversions as last_month_conversions,
           last_month_metrics.master_stats_average_conversion_rate as last_month_avg_conversion_rate,
           last_month_metrics.master_stats_average_cost_per_conversion as last_month_avg_cost_per_conversion,
           last_month_metrics.master_stats_average_interaction_rate as last_month_avg_interaction_rate,
-          last_month_metrics.master_stats_average_cost_per_impression as last_month_avg_cost_per_impression,
+          last_month_metrics.master_stats_average_cost_per_impression as last_month_avg_cost_per_interaction,
 
           this_week_metrics.master_stats_total_cost_usd as this_week_total_cost,
           this_week_metrics.master_stats_total_conversions as this_week_conversions,
           this_week_metrics.master_stats_average_conversion_rate as this_week_avg_conversion_rate,
           this_week_metrics.master_stats_average_cost_per_conversion as this_week_avg_cost_per_conversion,
           this_week_metrics.master_stats_average_interaction_rate as this_week_avg_interaction_rate,
-          this_week_metrics.master_stats_average_cost_per_impression as this_week_avg_cost_per_impression,
+          this_week_metrics.master_stats_average_cost_per_impression as this_week_avg_cost_per_interaction,
 
           last_week_metrics.master_stats_total_cost_usd as last_week_total_cost,
           last_week_metrics.master_stats_total_conversions as last_week_conversions,
           last_week_metrics.master_stats_average_conversion_rate as last_week_avg_conversion_rate,
           last_week_metrics.master_stats_average_cost_per_conversion as last_week_avg_cost_per_conversion,
           last_week_metrics.master_stats_average_interaction_rate as last_week_avg_interaction_rate,
-          last_week_metrics.master_stats_average_cost_per_impression as last_week_avg_cost_per_impression
+          last_week_metrics.master_stats_average_cost_per_impression as last_week_avg_cost_per_interaction
 
         FROM this_quarter_metrics
         LEFT JOIN last_quarter_metrics ON this_quarter_metrics.external_customer_id = last_quarter_metrics.external_customer_id
@@ -215,9 +215,9 @@
     hidden: yes
   }
 
-  dimension: this_quarter_avg_cost_per_impression {
+  dimension: this_quarter_avg_cost_per_interaction {
     type: number
-    sql: ${TABLE}.this_quarter_avg_cost_per_impression ;;
+    sql: ${TABLE}.this_quarter_avg_cost_per_interaction ;;
     group_label: "This Quarter"
     hidden: yes
   }
@@ -257,9 +257,9 @@
     hidden: yes
   }
 
-  dimension: last_quarter_avg_cost_per_impression {
+  dimension: last_quarter_avg_cost_per_interaction {
     type: number
-    sql: ${TABLE}.last_quarter_avg_cost_per_impression ;;
+    sql: ${TABLE}.last_quarter_avg_cost_per_interaction ;;
     group_label: "This Quarter"
     hidden: yes
   }
@@ -299,9 +299,9 @@
     hidden: yes
   }
 
-  dimension: this_month_avg_cost_per_impression {
+  dimension: this_month_avg_cost_per_interaction {
     type: number
-    sql: ${TABLE}.this_month_avg_cost_per_impression ;;
+    sql: ${TABLE}.this_month_avg_cost_per_interaction ;;
     group_label: "This Month"
     hidden: yes
   }
@@ -341,9 +341,9 @@
     hidden: yes
   }
 
-  dimension: last_month_avg_cost_per_impression {
+  dimension: last_month_avg_cost_per_interaction {
     type: number
-    sql: ${TABLE}.last_month_avg_cost_per_impression ;;
+    sql: ${TABLE}.last_month_avg_cost_per_interaction ;;
     group_label: "Last Month"
     hidden: yes
   }
@@ -383,9 +383,9 @@
     hidden: yes
   }
 
-  dimension: this_week_avg_cost_per_impression {
+  dimension: this_week_avg_cost_per_interaction {
     type: number
-    sql: ${TABLE}.this_week_avg_cost_per_impression ;;
+    sql: ${TABLE}.this_week_avg_cost_per_interaction ;;
     group_label: "This Week"
     hidden: yes
   }
@@ -425,9 +425,9 @@
     hidden: yes
   }
 
-  dimension: last_week_avg_cost_per_impression {
+  dimension: last_week_avg_cost_per_interaction {
     type: number
-    sql: ${TABLE}.last_week_avg_cost_per_impression ;;
+    sql: ${TABLE}.last_week_avg_cost_per_interaction ;;
     group_label: "Last Week"
     hidden: yes
   }
@@ -550,23 +550,23 @@
     value_format_name: percent_2
   }
 
-  measure: avg_cost_per_ipmression {
+  measure: avg_cost_per_interaction {
     type: average
     sql: CASE
-          WHEN {% parameter timeframe_filter %} = 'Quarter' THEN ${this_quarter_avg_cost_per_impression}
-          WHEN {% parameter timeframe_filter %} = 'Month' THEN ${this_month_avg_cost_per_impression}
-          WHEN {% parameter timeframe_filter %} = 'Week' THEN ${this_week_avg_cost_per_impression}
+          WHEN {% parameter timeframe_filter %} = 'Quarter' THEN ${this_quarter_avg_cost_per_interaction}
+          WHEN {% parameter timeframe_filter %} = 'Month' THEN ${this_month_avg_cost_per_interaction}
+          WHEN {% parameter timeframe_filter %} = 'Week' THEN ${this_week_avg_cost_per_interaction}
           ELSE NULL
           END ;;
     value_format_name: usd
   }
 
-  measure: avg_cost_per_impression_last_period {
+  measure: avg_cost_per_interaction_last_period {
     type: average
     sql: CASE
-          WHEN {% parameter timeframe_filter %} = 'Quarter' THEN ${last_quarter_avg_cost_per_impression}
-          WHEN {% parameter timeframe_filter %} = 'Month' THEN ${last_month_avg_cost_per_impression}
-          WHEN {% parameter timeframe_filter %} = 'Week' THEN ${last_week_avg_cost_per_impression}
+          WHEN {% parameter timeframe_filter %} = 'Quarter' THEN ${last_quarter_avg_cost_per_interaction}
+          WHEN {% parameter timeframe_filter %} = 'Month' THEN ${last_month_avg_cost_per_interaction}
+          WHEN {% parameter timeframe_filter %} = 'Week' THEN ${last_week_avg_cost_per_interaction}
           ELSE NULL
           END ;;
     value_format_name: usd
