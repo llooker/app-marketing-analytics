@@ -217,6 +217,39 @@ explore: campaign_quarter_stats {
   }
 }
 
+explore: ad_group_quarter_stats {
+  hidden: yes
+  persist_with: etl_datagroup
+  label: "Ad Group Quarter Stats"
+  view_label: "Ad Group Quarter Stats"
+
+  join: last_ad_group_quarter_stats {
+    from: ad_group_quarter_stats
+    view_label: "Last Quarter Ad Group Stats"
+    sql_on: ${ad_group_quarter_stats.ad_group_id} = ${last_ad_group_quarter_stats.ad_group_id} AND
+      ${ad_group_quarter_stats._data_last_quarter} = ${last_ad_group_quarter_stats._data_quarter} ;;
+    relationship: one_to_one
+  }
+  join: ad_group {
+    view_label: "Ad Group"
+    sql_on: ${ad_group_quarter_stats.ad_group_id} = ${ad_group.ad_group_id}  AND
+      ${ad_group_quarter_stats._data_raw} = ${ad_group._data_raw} ;;
+    relationship: many_to_one
+  }
+  join: campaign {
+    view_label: "Campaigns"
+    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_group_quarter_stats._data_raw} = ${campaign._data_raw};;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_group_quarter_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_group_quarter_stats._data_raw} = ${customer._data_raw} ;;
+    relationship: many_to_one
+  }
+}
+
 explore: campaign_budget_stats {
   hidden: yes
   persist_with: etl_datagroup
