@@ -236,5 +236,3 @@ explore: campaign_budget_stats {
     relationship: many_to_one
   }
 }
-
-explore: kpis_period_over_period {}
