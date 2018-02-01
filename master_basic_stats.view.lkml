@@ -88,6 +88,11 @@ view: stats {
     type: number
     sql: ${total_cost_usd}*1.0 / NULLIF(${total_interactions},0) ;;
     value_format_name: usd
+    link: {
+      label: "By Keyword"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_cost_per_interaction&f[master_stats._data_date]=this quarter"
+      icon_url: "http://www.looker.com/favicon.ico"
+    }
   }
 
   measure: average_cost_per_impression {
