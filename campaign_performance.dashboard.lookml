@@ -1043,7 +1043,7 @@
       valueFormat:
       series:
       - id: master_stats.average_interaction_rate
-        name: Interation Rate
+        name: Interaction Rate
         axisId: master_stats.average_interaction_rate
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 1031

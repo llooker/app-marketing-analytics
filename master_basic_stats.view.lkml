@@ -58,7 +58,7 @@ view: stats {
   }
 
   measure: average_interaction_rate {
-    label: "Interation Rate"
+    label: "Interaction Rate"
     description: "Percent of people that interact with an ad."
     type: number
     sql: ${total_interactions}*1.0/nullif(${total_impressions},0) ;;
