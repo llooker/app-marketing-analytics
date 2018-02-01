@@ -8,12 +8,12 @@
     {
       "dashboards": [
         {
-          "name": "Campaigns",
-          "lookmlID": "google_adwords::campaign_performance"
+          "lookmlID": "google_adwords::campaign_performance",
+          "name": "Campaigns"
         },
         {
-          "name": "Creative",
-          "lookmlID": "google_adwords::ad_performance"
+          "lookmlID": "google_adwords::ad_performance",
+          "name": "Creative"
         }
       ],
       "description": "These reports dive into your Adwords to find ways to increase the ROI of your marketing spend. Use Opportunities to find quick wins, refine your targets using the Performance trend reports, or discover which audiences are falling off your funnel.",
@@ -254,19 +254,12 @@
       ]
     },
     {
+      "dashboards": [],
       "description": "",
       "enabled": false,
       "icon": "social",
       "name": "Social",
       "permalink": "social",
-      "sections": []
-    },
-    {
-      "description": "",
-      "enabled": false,
-      "icon": "display",
-      "name": "Display",
-      "permalink": "display",
       "sections": []
     }
   ]
