@@ -6,6 +6,16 @@
   "name": "Marketing Analytics",
   "pillars": [
     {
+      "dashboards": [
+        {
+          "name": "Campaigns",
+          "lookmlID": "google_adwords::campaign_performance"
+        },
+        {
+          "name": "Creative",
+          "lookmlID": "google_adwords::ad_performance"
+        }
+      ],
       "description": "These reports dive into your Adwords to find ways to increase the ROI of your marketing spend. Use Opportunities to find quick wins, refine your targets using the Performance trend reports, or discover which audiences are falling off your funnel.",
       "enabled": true,
       "icon": "search",
