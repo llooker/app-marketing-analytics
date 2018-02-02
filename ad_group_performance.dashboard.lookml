@@ -608,7 +608,7 @@
     type: looker_column
     fields:
     - ad_group_quarter_stats.total_impressions
-    - ad_group_quarter_stats.total_clicks
+    - ad_group_quarter_stats.total_interactions
     - ad_group_quarter_stats.total_conversions
     filters:
       ad_group_quarter_stats._data_quarter: 1 quarters
