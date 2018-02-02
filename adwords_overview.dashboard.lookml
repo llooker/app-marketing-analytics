@@ -749,7 +749,7 @@
     type: looker_column
     fields:
     - account_quarter_stats.total_impressions
-    - account_quarter_stats.total_clicks
+    - account_quarter_stats.total_interactions
     - account_quarter_stats.total_conversions
     filters:
       account_quarter_stats._data_quarter: 1 quarters
@@ -807,19 +807,19 @@
         name: Impressions
         axisId: account_quarter_stats.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 962
+        __LINE_NUM: 806
       - id: account_quarter_stats.total_clicks
         name: Clicks
         axisId: account_quarter_stats.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 965
+        __LINE_NUM: 811
       - id: account_quarter_stats.total_conversions
         name: Conversions
         axisId: account_quarter_stats.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 968
+        __LINE_NUM: 816
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 950
+      __LINE_NUM: 794
     show_dropoff: true
     row: 12
     col: 16
