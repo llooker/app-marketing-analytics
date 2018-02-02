@@ -53,3 +53,16 @@ Great! Blocks were designed for continuous improvement through the help of the e
 
 
 ![image](https://cloud.githubusercontent.com/assets/9888083/26472690/18f621d0-415c-11e7-85fc-e77334847757.png)
+
+# Using as an App with the App Host
+To use as an app, you first need to add the relevant entry to the Helltool manifest:
+```
+  {
+    "id": "app_editor",
+    "label": "App Editor",
+    "js_url": "https://localhost:1235/bundle.js"
+  }
+```
+You will then need to run the dev server using `yarn start`.
+
+Finally, you need to have a connected project with the specific name: `app_marketing_analytics`.
