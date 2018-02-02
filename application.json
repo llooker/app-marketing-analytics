@@ -261,6 +261,15 @@
       "name": "Social",
       "permalink": "social",
       "sections": []
+    },
+    {
+      "dashboards": [],
+      "description": "",
+      "enabled": false,
+      "icon": "display",
+      "name": "Display",
+      "permalink": "display",
+      "sections": []
     }
   ]
 }
