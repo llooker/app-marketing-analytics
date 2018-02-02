@@ -335,10 +335,10 @@
       - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 657
+        __LINE_NUM: 335
         axisId: master_stats.average_cost_per_conversion
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 645
+      __LINE_NUM: 323
     - label:
       maxValue:
       minValue:
@@ -355,9 +355,9 @@
         name: Conversions
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 676
+        __LINE_NUM: 354
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 664
+      __LINE_NUM: 342
     - label: ''
       maxValue:
       minValue:
@@ -374,9 +374,9 @@
         name: Impressions
         axisId: master_stats.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 691
+        __LINE_NUM: 373
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 679
+      __LINE_NUM: 361
     - label: ''
       maxValue:
       minValue:
@@ -393,9 +393,9 @@
         name: Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 706
+        __LINE_NUM: 392
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 694
+      __LINE_NUM: 380
     - label: ''
       maxValue:
       minValue:
@@ -412,9 +412,9 @@
         name: Clicks
         axisId: master_stats.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 721
+        __LINE_NUM: 411
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 709
+      __LINE_NUM: 399
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -427,7 +427,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 728
+      __LINE_NUM: 422
     colors:
     - "#a9c574"
     - "#c5c5c5"
@@ -534,10 +534,10 @@
       - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1050
+        __LINE_NUM: 534
         axisId: master_stats.average_cost_per_conversion
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1038
+      __LINE_NUM: 522
     - label:
       maxValue:
       minValue:
@@ -554,9 +554,9 @@
         name: Conversions
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1069
+        __LINE_NUM: 553
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1057
+      __LINE_NUM: 541
     - label: ''
       maxValue:
       minValue:
@@ -573,9 +573,9 @@
         name: Conversion Rate
         axisId: master_stats.average_conversion_rate
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1084
+        __LINE_NUM: 572
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1072
+      __LINE_NUM: 560
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -588,7 +588,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1091
+      __LINE_NUM: 583
     colors:
     - 'palette: Looker Classic'
     series_colors: {}
@@ -681,10 +681,10 @@
       - id: master_stats.average_cost_per_interaction
         name: Cost per Interaction
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 450
+        __LINE_NUM: 681
         axisId: master_stats.average_cost_per_interaction
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 438
+      __LINE_NUM: 669
     - label:
       maxValue:
       minValue:
@@ -701,9 +701,9 @@
         name: Interaction Rate
         axisId: master_stats.average_interaction_rate
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 469
+        __LINE_NUM: 700
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 457
+      __LINE_NUM: 688
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -716,7 +716,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 476
+      __LINE_NUM: 711
     colors:
     - "#a9c574"
     - "#929292"
@@ -857,7 +857,7 @@
     show_single_value_title: true
     show_comparison: true
     comparison_type: change
-    comparison_reverse_colors: false
+    comparison_reverse_colors: true
     show_comparison_label: false
     stacking: ''
     show_value_labels: false
