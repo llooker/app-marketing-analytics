@@ -1,4 +1,4 @@
-- dashboard: overview
+- dashboard: adwords_overview
   title: Overview
   layout: newspaper
   elements:
