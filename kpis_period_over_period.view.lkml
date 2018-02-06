@@ -8,6 +8,7 @@ view: kpis_this_period {
       column: total_impressions_this_period {field: master_stats.total_impressions}
       column: total_interactions_this_period {field: master_stats.total_interactions}
       column: total_cost_usd_this_period {field: master_stats.total_cost_usd}
+      column: total_cost_any_currency_this_period {field: master_stats.total_cost}
       bind_filters: {
         to_field: master_stats._data_date
         from_field: kpis_this_period.this_timeframe
@@ -68,6 +69,12 @@ view: kpis_this_period {
     sql: ${TABLE}.total_cost_usd_this_period;;
   }
 
+  dimension: total_cost_any_currency_this_period {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_cost_any_currency_this_period;;
+  }
+
   measure: conversions_this_period {
     type: sum
     sql: ${total_conversions_this_period} ;;
@@ -78,6 +85,12 @@ view: kpis_this_period {
     type: sum
     sql: ${total_cost_usd_this_period} ;;
     value_format_name: usd_0
+  }
+
+  measure: cost_any_currency_this_period {
+    type: sum
+    sql: ${total_cost_any_currency_this_period} ;;
+    value_format_name: decimal_0
   }
 
   measure: clicks_this_period {
@@ -132,6 +145,7 @@ view: kpis_last_period {
       column: total_impressions_last_period {field: master_stats.total_impressions}
       column: total_interactions_last_period {field: master_stats.total_interactions}
       column: total_cost_usd_last_period {field: master_stats.total_cost_usd}
+      column: total_cost_any_currency_last_period {field: master_stats.total_cost}
       bind_filters: {
         to_field: master_stats.parameter
         from_field: kpis_last_period.last_timeframe
@@ -200,6 +214,12 @@ view: kpis_last_period {
     sql: ${TABLE}.total_cost_usd_last_period;;
   }
 
+  dimension: total_cost_any_currency_last_period {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_cost_any_currency_last_period;;
+  }
+
   measure: conversions_last_period {
     type: sum
     sql: ${total_conversions_last_period} ;;
@@ -210,6 +230,13 @@ view: kpis_last_period {
     type: sum
     sql: ${total_cost_usd_last_period} ;;
     value_format_name: usd_0
+  }
+
+
+  measure: cost_any_currency_last_period {
+    type: sum
+    sql: ${total_cost_any_currency_last_period} ;;
+    value_format_name: decimal_0
   }
 
   measure: clicks_last_period {
