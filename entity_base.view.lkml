@@ -422,6 +422,11 @@ view: ad {
       , COALESCE(CONCAT(${headline_part1}, "\n"),"")) ;;
   }
 
+  dimension: campaign_ad_group_ad_combination {
+    type: string
+    sql: CONCAT(${campaign.campaign_name}, "_", ${ad_group.ad_group_name}, "_", ${ad.creative}) ;;
+  }
+
   measure: count {
     type: count_distinct
     sql: ${ad_group_id} ;;
@@ -1153,6 +1158,11 @@ view: keyword {
       label: "Google Search"
       url: "https://www.google.com/search?q={{ value | encode_uri}}"
     }
+  }
+
+  dimension: campaign_ad_group_keyword_combination {
+    type: string
+    sql: CONCAT(${campaign.campaign_name}, "_", ${ad_group.ad_group_name}, "_", ${keyword.criteria}) ;;
   }
 
   dimension: criteria_destination_url {
