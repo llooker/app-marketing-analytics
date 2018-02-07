@@ -60,10 +60,44 @@ view: base {
     sql: DATE_DIFF(CURRENT_DATE(), DATE_TRUNC(CURRENT_DATE(), QUARTER), DAY) ;;
   }
 
+  dimension: current_day_of_month {
+    hidden: yes
+    type:  number
+    sql: EXTRACT(DAY FROM TIMESTAMP(CURRENT_DATE())) ;;
+  }
+
+  dimension: current_day_of_week {
+    hidden: yes
+    type:  number
+    sql: EXTRACT(DAYOFWEEK FROM TIMESTAMP(CURRENT_DATE()))  ;;
+  }
+
   dimension: less_than_current_day_of_quarter {
     type: yesno
     sql: ${_data_day_of_quarter} < ${current_day_of_quarter} ;;
   }
+
+
+  dimension: less_than_current_day_of_month {
+    type: yesno
+    sql: ${_data_day_of_month} < ${current_day_of_month} ;;
+  }
+
+  dimension: less_than_current_day_of_week {
+    type: yesno
+    sql: ${_data_day_of_week_index} < ${current_day_of_week} ;;
+  }
+
+  dimension: less_than_current_day_of_period {
+    type: yesno
+    sql: CASE WHEN {% parameter parameter %} = "1 week ago" THEN ${less_than_current_day_of_week}
+        WHEN {% parameter parameter %} = "1 quarter ago" THEN ${less_than_current_day_of_quarter}
+        WHEN {% parameter parameter %} = "1 month ago" THEN ${less_than_current_day_of_month}
+        ELSE NULL
+        END;;
+  }
+
+  parameter: parameter {}
 
   dimension: _data_next_quarter {
     hidden: yes
@@ -154,7 +188,6 @@ view: base {
     }
   }
 }
-
 
 view: ad {
   extends: [entity_base]

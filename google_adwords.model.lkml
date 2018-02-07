@@ -269,3 +269,11 @@ explore: campaign_budget_stats {
     relationship: many_to_one
   }
 }
+
+explore: kpis_this_period {
+  label: "Kpis Period Over Period"
+  join: kpis_last_period {
+    sql_on: ${kpis_this_period.external_customer_id_this_period} = ${kpis_last_period.external_customer_id_last_period} ;;
+    relationship: one_to_one
+  }
+}
