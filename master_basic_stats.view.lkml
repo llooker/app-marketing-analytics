@@ -301,8 +301,8 @@ view: master_stats {
   }
 
   dimension: week_of_year {
-    type: string
-    sql: CAST(FORMAT_TIMESTAMP('%V', TIMESTAMP(${TABLE}.Date) ) AS INT64);;
+    type: number
+    sql: CAST(FORMAT_TIMESTAMP('%V', TIMESTAMP(${TABLE}.Date) ) AS INT64) ;;
   }
 
   dimension: device {
