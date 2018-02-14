@@ -79,12 +79,20 @@ view: kpis_this_period {
     type: sum
     sql: ${total_conversions_this_period} ;;
     value_format_name: decimal_0
+    link: {
+      label: "By Campaign"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_conversions&f[master_stats._data_date]=this quarter"
+    }
   }
 
   measure: total_cost_this_period {
     type: sum
     sql: ${total_cost_usd_this_period} ;;
     value_format_name: usd_0
+    link: {
+      label: "By Campaign"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_cost_usd&f[master_stats._data_date]=this quarter"
+    }
   }
 
   measure: cost_any_currency_this_period {
@@ -115,24 +123,40 @@ view: kpis_this_period {
     type: number
     sql: ${conversions_this_period} / NULLIF(${clicks_this_period},0) ;;
     value_format_name: percent_2
+    link: {
+      label: "By Campaign"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_conversion_rate&f[master_stats._data_date]=this quarter"
+    }
   }
 
   measure: avg_interaction_rate_this_period {
     type: number
     sql: ${interactions_this_period} / NULLIF(${impressions_this_period},0) ;;
     value_format_name: percent_2
+    link: {
+      label: "By Keyword"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats._data_date]=this quarter"
+    }
   }
 
   measure: cost_per_interaction_this_period {
     type: number
     sql: ${total_cost_this_period} / NULLIF(${interactions_this_period},0) ;;
     value_format_name: usd
+    link: {
+      label: "By Keyword"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats._data_date]=this quarter"
+    }
   }
 
   measure: cost_per_conversion_this_period {
     type: number
     sql: ${total_cost_this_period} / NULLIF(${conversions_this_period},0) ;;
     value_format_name: usd
+    link: {
+      label: "By Campaign"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_cost_per_conversion&f[master_stats._data_date]=this quarter"
+    }
   }
 }
 
