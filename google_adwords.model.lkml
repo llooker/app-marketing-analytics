@@ -10,7 +10,7 @@ include: "*.explore"
 include: "*.dashboard"
 
 datagroup: etl_datagroup {
-  sql_trigger: SELECT max(etl_job_id) FROM adwords_v201609.HourlyAccountStats_6747157124 ;;
+  sql_trigger: SELECT MAX(CONCAT(CAST(_DATA_DATE as STRING), format(" %02d", HourOfDay))) FROM adwords_v201609.HourlyAccountStats_6747157124 ;;
   max_cache_age: "24 hours"
 }
 
