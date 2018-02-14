@@ -179,6 +179,7 @@ view: master_stats {
 
   dimension: _data {
     sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
+    drill_fields: []
   }
 
   dimension: _latest {
