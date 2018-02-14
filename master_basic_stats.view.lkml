@@ -360,10 +360,7 @@ view: master_stats {
   measure: total_interactions {
   }
   measure: total_conversions {
-    link: {
-      label: "By Date & Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_conversions, master_stats._data_date&f[master_stats._data_week]={{master_stats._data_week._value}}"
-    }
+    drill_fields: [master_stats._data_date, campaign.campaign_name, master_stats.total_conversions]
   }
   measure: total_cost_usd {
   }
@@ -376,9 +373,6 @@ view: master_stats {
   measure: average_cost_per_click {
   }
   measure: average_cost_per_conversion {
-    link: {
-      label: "By Date & Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_cost_per_conversion, master_stats._data_date&f[master_stats._data_week]={{master_stats._data_week._value}}"
-    }
+    drill_fields: [master_stats._data_date, campaign.campaign_name, master_stats.total_conversions]
   }
 }
