@@ -33,7 +33,7 @@
             {
               "description": "Increase spend on high value targets and minimize spend on low performance targets. Find hidden ROI by analyzing trends you can take advantage of.",
               "name": "Performance",
-              "permalink": "",
+              "permalink": "performance",
               "reports": [
                 {
                   "description": "This report will highlight your ad performance over time. Optimize your advertising by understanding and driving these trends.",
@@ -130,7 +130,7 @@
             {
               "description": "",
               "name": "Funnel",
-              "permalink": "",
+              "permalink": "funnel",
               "reports": [
                 {
                   "description": "Track how targets are moving from impression to click to conversion. Segment by device, network, or audience to find where you need to optimize.",
@@ -172,7 +172,7 @@
             {
               "description": "",
               "name": "Opportunities",
-              "permalink": "",
+              "permalink": "opportunities",
               "reports": [
                 {
                   "description": "Quickly find the ads that need to be paused or have their bid lowered.",
