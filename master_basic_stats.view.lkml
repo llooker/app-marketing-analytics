@@ -363,6 +363,14 @@ view: master_stats {
     drill_fields: [master_stats._data_date, campaign.campaign_name, master_stats.total_conversions]
   }
   measure: total_cost_usd {
+    drill_fields: [master_stats._data_date, campaign.campaign_name, master_stats.total_cost_usd]
+  }
+  measure: cumulative_spend {
+    type: running_total
+    sql: ${total_cost_usd} ;;
+    drill_fields: [master_stats._data_date, campaign.campaign_name, master_stats.total_cost_usd]
+    value_format_name: usd_0
+    direction: "column"
   }
   measure: average_interaction_rate {
   }
