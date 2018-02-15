@@ -722,12 +722,10 @@
     explore: master_stats
     type: looker_area
     fields:
-    - master_stats.total_cost_usd
     - master_stats._data_day_of_quarter
     - master_stats._data_quarter
+    - master_stats.cumulative_spend
     pivots:
-    - master_stats._data_quarter
-    fill_fields:
     - master_stats._data_quarter
     filters:
       master_stats._data_quarter: 2 quarters
@@ -737,14 +735,6 @@
     - master_stats._data_day_of_quarter
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - table_calculation: spend
-      label: Spend
-      expression: if(is_null(${master_stats.total_cost_usd}), null, running_total(${master_stats.total_cost_usd}))
-      value_format:
-      value_format_name: usd_0
-      _kind_hint: measure
-      _type_hint: number
     stacking: ''
     show_value_labels: false
     label_density: 1
@@ -804,10 +794,10 @@
       - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 657
+        __LINE_NUM: 804
         axisId: master_stats.average_cost_per_conversion
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 645
+      __LINE_NUM: 792
     - label:
       maxValue:
       minValue:
@@ -824,9 +814,9 @@
         name: Conversions
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 676
+        __LINE_NUM: 823
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 664
+      __LINE_NUM: 811
     - label: ''
       maxValue:
       minValue:
@@ -843,9 +833,9 @@
         name: Impressions
         axisId: master_stats.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 691
+        __LINE_NUM: 842
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 679
+      __LINE_NUM: 830
     - label: ''
       maxValue:
       minValue:
@@ -862,9 +852,9 @@
         name: Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 706
+        __LINE_NUM: 861
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 694
+      __LINE_NUM: 849
     - label: ''
       maxValue:
       minValue:
@@ -881,9 +871,9 @@
         name: Clicks
         axisId: master_stats.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 721
+        __LINE_NUM: 880
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 709
+      __LINE_NUM: 868
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -896,7 +886,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 728
+      __LINE_NUM: 891
     colors:
     - "#a9c574"
     - "#c5c5c5"
@@ -916,8 +906,7 @@
     series_labels:
       master_stats.total_cost_usd: Spend
       master_stats.total_clicks: Interactions
-    hidden_fields:
-    - master_stats.total_cost_usd
+    hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     row: 2
