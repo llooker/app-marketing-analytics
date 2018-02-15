@@ -373,6 +373,10 @@ view: master_stats {
     direction: "column"
   }
   measure: average_interaction_rate {
+    link: {
+      label: "By Keyword"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats._data_date]=this quarter"
+    }
   }
   measure: average_click_rate {
   }
