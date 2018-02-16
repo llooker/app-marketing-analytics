@@ -1,5 +1,5 @@
 - dashboard: adwords_overview
-  title: Overview
+  title: This Quarter vs Last Quarter
   layout: newspaper
   elements:
   - title: Spend
