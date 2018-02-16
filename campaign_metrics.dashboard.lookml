@@ -1,5 +1,5 @@
-- dashboard: adwords_overview
-  title: This Quarter vs Last Quarter
+- dashboard: campaign_metrics
+  title: Campaign Metrics
   layout: newspaper
   elements:
   - title: Spend
@@ -56,10 +56,13 @@
     listen:
       This Timeframe: kpis_this_period.this_timeframe
       Last Timeframe: kpis_last_period.last_timeframe
+    note_state: collapsed
+    note_display: below
+    note_text: ''
     row: 0
     col: 0
-    width: 10
-    height: 2
+    width: 4
+    height: 4
   - title: Conversions
     name: Conversions
     model: google_adwords
@@ -115,67 +118,9 @@
       This Timeframe: kpis_this_period.this_timeframe
       Last Timeframe: kpis_last_period.last_timeframe
     row: 0
-    col: 10
+    col: 4
     width: 4
-    height: 2
-  - title: Cost Per Conversion
-    name: Cost Per Conversion
-    model: google_adwords
-    explore: kpis_this_period
-    type: single_value
-    fields:
-    - kpis_last_period.cost_per_conversion_last_period
-    - kpis_this_period.cost_per_conversion_this_period
-    limit: 500
-    dynamic_fields:
-    - table_calculation: change
-      label: Change
-      expression: "(${kpis_this_period.cost_per_conversion_this_period} - ${kpis_last_period.cost_per_conversion_last_period})/${kpis_last_period.cost_per_conversion_last_period}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - kpis_last_period.cost_per_conversion_last_period
-    single_value_title: Per Conversion
-    listen:
-      This Timeframe: kpis_this_period.this_timeframe
-      Last Timeframe: kpis_last_period.last_timeframe
-    row: 0
-    col: 14
-    width: 5
-    height: 2
+    height: 4
   - title: Conversion Rate
     name: Conversion Rate
     model: google_adwords
@@ -231,312 +176,41 @@
       This Timeframe: kpis_this_period.this_timeframe
       Last Timeframe: kpis_last_period.last_timeframe
     row: 0
-    col: 19
-    width: 5
-    height: 2
-  - title: Conversion Trends
-    name: Conversion Trends
+    col: 12
+    width: 4
+    height: 4
+  - title: Cost Per Click
+    name: Cost Per Click
     model: google_adwords
-    explore: master_stats
-    type: looker_area
+    explore: kpis_this_period
+    type: single_value
     fields:
-    - master_stats._data_week
-    - master_stats.total_conversions
-    - master_stats.average_cost_per_conversion
-    - master_stats.average_conversion_rate
-    sorts:
-    - master_stats._data_week desc
+    - kpis_this_period.cost_per_click_this_period
+    - kpis_last_period.cost_per_click_last_period
     limit: 500
-    column_limit: 50
+    dynamic_fields:
+    - table_calculation: change
+      label: Change
+      expression: "(${kpis_this_period.cost_per_click_this_period} - ${kpis_last_period.cost_per_click_last_period})/${kpis_last_period.cost_per_click_last_period}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: false
     stacking: ''
     show_value_labels: false
     label_density: 25
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: time
-    y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    label: Average Cost per Conversion
-    ordering: none
-    show_null_labels: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    series_types:
-      master_stats.average_cost_per_conversion: line
-      master_stats.total_impressions: line
-      master_stats.total_clicks: line
-      master_stats.average_conversion_rate: line
-    show_dropoff: true
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.average_cost_per_conversion
-        name: Cost per Conversion
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1050
-        axisId: master_stats.average_cost_per_conversion
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1038
-    - label:
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.total_conversions
-        name: Conversions
-        axisId: master_stats.total_conversions
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1069
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1057
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.average_conversion_rate
-        name: Conversion Rate
-        axisId: master_stats.average_conversion_rate
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1084
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1072
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1091
-    colors:
-    - 'palette: Looker Classic'
-    series_colors: {}
-    hidden_series:
-    - master_stats.average_conversion_rate
-    series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
-    hidden_fields: []
-    row: 2
-    col: 10
-    width: 14
-    height: 9
-  - title: Interaction Trend
-    name: Interaction Trend
-    model: google_adwords
-    explore: master_stats
-    type: looker_area
-    fields:
-    - master_stats._data_week
-    - master_stats.average_cost_per_interaction
-    - master_stats.average_interaction_rate
-    sorts:
-    - master_stats._data_week desc
-    limit: 500
-    column_limit: 50
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: time
-    y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    label: Average Cost per Conversion
-    ordering: none
-    show_null_labels: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    series_types:
-      master_stats.average_cost_per_conversion: line
-      master_stats.total_impressions: line
-      master_stats.total_clicks: line
-      master_stats.average_cost_per_interaction: line
-      master_stats.average_interaction_rate: line
-    show_dropoff: true
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.average_cost_per_interaction
-        name: Cost per Interaction
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 450
-        axisId: master_stats.average_cost_per_interaction
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 438
-    - label:
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.average_interaction_rate
-        name: Interation Rate
-        axisId: master_stats.average_interaction_rate
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 469
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 457
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 476
-    colors:
-    - "#a9c574"
-    - "#929292"
-    - "#62bad4"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
-    series_colors: {}
-    hidden_series:
-    - master_stats.average_cost_per_conversion
-    series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
-    hidden_fields: []
-    y_axis_reversed: false
-    row: 11
-    col: 5
-    width: 11
-    height: 6
-  - title: Funnel
-    name: Funnel
-    model: google_adwords
-    explore: account_quarter_stats
-    type: looker_column
-    fields:
-    - account_quarter_stats.total_impressions
-    - account_quarter_stats.total_interactions
-    - account_quarter_stats.total_conversions
-    filters:
-      account_quarter_stats._data_quarter: 1 quarters
-    limit: 500
-    column_limit: 50
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
+    show_view_names: true
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -552,67 +226,29 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    hidden_fields: []
-    label: Conversion Rate QTD
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
     series_types: {}
-    single_value_title: Conversion Rate
-    comparison_label: ''
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: log
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: account_quarter_stats.total_impressions
-        name: Impressions
-        axisId: account_quarter_stats.total_impressions
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 962
-      - id: account_quarter_stats.total_clicks
-        name: Clicks
-        axisId: account_quarter_stats.total_clicks
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 965
-      - id: account_quarter_stats.total_conversions
-        name: Conversions
-        axisId: account_quarter_stats.total_conversions
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 968
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 950
-    show_dropoff: true
-    row: 11
+    hidden_fields: []
+    single_value_title: ''
+    listen:
+      This Timeframe: kpis_this_period.this_timeframe
+      Last Timeframe: kpis_last_period.last_timeframe
+    row: 0
     col: 16
-    width: 8
-    height: 6
-  - title: Interaction Rate
-    name: Interaction Rate
+    width: 4
+    height: 4
+  - title: Cost Per Conversion
+    name: Cost Per Conversion
     model: google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
-    - kpis_this_period.avg_interaction_rate_this_period
-    - kpis_last_period.avg_interaction_rate_last_period
+    - kpis_last_period.cost_per_conversion_last_period
+    - kpis_this_period.cost_per_conversion_this_period
     limit: 500
     dynamic_fields:
     - table_calculation: change
       label: Change
-      expression: "(${kpis_this_period.avg_interaction_rate_this_period} - ${kpis_last_period.avg_interaction_rate_last_period})/${kpis_last_period.avg_interaction_rate_last_period}"
+      expression: "(${kpis_this_period.cost_per_conversion_this_period} - ${kpis_last_period.cost_per_conversion_last_period})/${kpis_last_period.cost_per_conversion_last_period}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -649,28 +285,28 @@
     totals_color: "#808080"
     series_types: {}
     hidden_fields:
-    - kpis_last_period.avg_interaction_rate_last_period
-    single_value_title: ''
+    - kpis_last_period.cost_per_conversion_last_period
+    single_value_title: Per Conversion
     listen:
       This Timeframe: kpis_this_period.this_timeframe
       Last Timeframe: kpis_last_period.last_timeframe
-    row: 14
-    col: 0
-    width: 5
-    height: 3
-  - title: Per Interaction
-    name: Per Interaction
+    row: 0
+    col: 8
+    width: 4
+    height: 4
+  - title: Click Through Rate
+    name: Click Through Rate
     model: google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
-    - kpis_this_period.cost_per_interaction_this_period
-    - kpis_last_period.cost_per_interaction_last_period
+    - kpis_last_period.avg_click_rate_last_period
+    - kpis_this_period.avg_click_rate_this_period
     limit: 500
     dynamic_fields:
     - table_calculation: change
       label: Change
-      expression: "(${kpis_this_period.cost_per_interaction_this_period} - ${kpis_last_period.cost_per_interaction_last_period})/${kpis_last_period.cost_per_interaction_last_period}"
+      expression: "(${kpis_this_period.avg_click_rate_this_period} - ${kpis_last_period.avg_click_rate_last_period})/${kpis_last_period.avg_click_rate_last_period}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -706,16 +342,15 @@
     show_silhouette: false
     totals_color: "#808080"
     series_types: {}
-    hidden_fields:
-    - kpis_last_period.cost_per_interaction_last_period
+    hidden_fields: []
     single_value_title: ''
     listen:
       This Timeframe: kpis_this_period.this_timeframe
       Last Timeframe: kpis_last_period.last_timeframe
-    row: 11
-    col: 0
-    width: 5
-    height: 3
+    row: 0
+    col: 20
+    width: 4
+    height: 4
   - title: Spend To Date
     name: Spend To Date
     model: google_adwords
@@ -794,10 +429,10 @@
       - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 804
+        __LINE_NUM: 794
         axisId: master_stats.average_cost_per_conversion
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 792
+      __LINE_NUM: 782
     - label:
       maxValue:
       minValue:
@@ -814,9 +449,9 @@
         name: Conversions
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 823
+        __LINE_NUM: 813
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 811
+      __LINE_NUM: 801
     - label: ''
       maxValue:
       minValue:
@@ -833,9 +468,9 @@
         name: Impressions
         axisId: master_stats.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 842
+        __LINE_NUM: 832
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 830
+      __LINE_NUM: 820
     - label: ''
       maxValue:
       minValue:
@@ -852,9 +487,9 @@
         name: Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 861
+        __LINE_NUM: 851
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 849
+      __LINE_NUM: 839
     - label: ''
       maxValue:
       minValue:
@@ -871,9 +506,9 @@
         name: Clicks
         axisId: master_stats.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 880
+        __LINE_NUM: 870
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 868
+      __LINE_NUM: 858
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -886,7 +521,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 891
+      __LINE_NUM: 881
     colors:
     - "#a9c574"
     - "#c5c5c5"
@@ -909,39 +544,498 @@
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
-    row: 2
+    row: 4
     col: 0
-    width: 10
-    height: 9
-  - title: Campaigns
-    name: Campaigns
+    width: 24
+    height: 11
+  - title: Spend by Network
+    name: Spend by Network
     model: google_adwords
     explore: master_stats
-    type: table
+    type: looker_bar
     fields:
-    - campaign.campaign_name
+    - master_stats.ad_network_type
     - master_stats.total_cost_usd
-    - master_stats.total_conversions
-    - master_stats.average_cost_per_conversion
-    - master_stats.average_conversion_rate
-    - master_stats.average_cost_per_interaction
-    - master_stats.average_interaction_rate
-    - master_stats.average_cost_per_click
+    fill_fields:
+    - master_stats.ad_network_type
+    filters:
+      master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
-    - master_stats.total_conversions desc
-    limit: 10
-    column_limit: 50
-    label: Campaign Details
-    query_timezone: America/Los_Angeles
-    show_view_names: false
+    - master_stats.total_cost_usd desc
+    - master_stats.ad_network_type
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Network
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+    row: 15
+    col: 0
+    width: 8
+    height: 6
+  - title: Spend by Bid Strategy
+    name: Spend by Bid Strategy
+    model: google_adwords
+    explore: master_stats
+    type: looker_bar
+    fields:
+    - master_stats.total_cost_usd
+    - keyword.bidding_strategy_type
+    filters:
+      master_stats._data_date: 1 quarters ago for 1 quarters
+    sorts:
+    - master_stats.total_cost_usd desc
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Bid Strategy
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+    colors:
+    - "#929292"
+    - "#a9c574"
+    - "#62bad4"
+    - "#9fdee0"
+    - "#1f3e5a"
+    - "#90c8ae"
+    - "#92818d"
+    - "#c5c6a6"
+    - "#82c2ca"
+    - "#cee0a0"
+    - "#928fb4"
+    - "#9fc190"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+    row: 15
+    col: 16
+    width: 8
+    height: 6
+  - title: Spend by Hour of Day
+    name: Spend by Hour of Day
+    model: google_adwords
+    explore: master_stats
+    type: looker_column
+    fields:
+    - master_stats.total_cost_usd
+    - master_stats.hour_of_day
+    filters:
+      master_stats._data_date: 1 quarters ago for 1 quarters
+    sorts:
+    - master_stats.hour_of_day
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
     show_row_numbers: true
     truncate_column_names: false
     hide_totals: false
     hide_row_totals: false
-    table_theme: white
-    limit_displayed_rows: false
+    table_theme: editable
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    series_types: {}
+    label_color: []
+    x_axis_label: Hour Of Day
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+    colors:
+    - "#a9c574"
+    - "#62bad4"
+    - "#929292"
+    - "#9fdee0"
+    - "#1f3e5a"
+    - "#90c8ae"
+    - "#92818d"
+    - "#c5c6a6"
+    - "#82c2ca"
+    - "#cee0a0"
+    - "#928fb4"
+    - "#9fc190"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+    row: 28
+    col: 14
+    width: 10
+    height: 7
+  - title: Spend by Device
+    name: Spend by Device
+    model: google_adwords
+    explore: master_stats
+    type: looker_bar
+    fields:
+    - master_stats.total_cost_usd
+    - master_stats.device_type
+    fill_fields:
+    - master_stats.device_type
+    filters:
+      master_stats._data_date: 1 quarters ago for 1 quarters
+    sorts:
+    - master_stats.total_cost_usd desc
+    limit: 500
     stacking: ''
-    show_value_labels: false
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Device
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+    colors:
+    - "#a9c574"
+    - "#62bad4"
+    - "#929292"
+    - "#9fdee0"
+    - "#1f3e5a"
+    - "#90c8ae"
+    - "#92818d"
+    - "#c5c6a6"
+    - "#82c2ca"
+    - "#cee0a0"
+    - "#928fb4"
+    - "#9fc190"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+    row: 15
+    col: 8
+    width: 8
+    height: 6
+  - title: Spend by Day of Week
+    name: Spend by Day of Week
+    model: google_adwords
+    explore: master_stats
+    type: looker_bar
+    fields:
+    - master_stats._data_day_of_week
+    - master_stats.total_cost_usd
+    fill_fields:
+    - master_stats._data_day_of_week
+    filters:
+      master_stats._data_date: 1 quarters ago for 1 quarters
+    sorts:
+    - master_stats._data_day_of_week
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    series_types: {}
+    label_color: []
+    x_axis_label: ''
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+    colors:
+    - 'palette: Looker Classic'
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+    row: 21
+    col: 14
+    width: 10
+    height: 7
+  - title: Spend by Day of Week and Hour of Day
+    name: Spend by Day of Week and Hour of Day
+    model: google_adwords
+    explore: master_stats
+    type: table
+    fields:
+    - master_stats.total_cost_usd
+    - master_stats.hour_of_day
+    - master_stats._data_day_of_week
+    pivots:
+    - master_stats._data_day_of_week
+    fill_fields:
+    - master_stats._data_day_of_week
+    filters:
+      master_stats._data_date: 1 quarters ago for 1 quarters
+    sorts:
+    - master_stats._data_day_of_week 0
+    - master_stats.hour_of_day
+    limit: 500
+    show_view_names: true
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    stacking: ''
+    show_value_labels: true
     label_density: 25
     legend_position: center
     x_axis_gridlines: false
@@ -961,17 +1055,46 @@
     show_silhouette: false
     totals_color: "#808080"
     series_types: {}
-    enable_conditional_formatting: false
-    conditional_formatting_ignored_fields: []
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    hidden_fields:
-    series_labels:
-      master_stats.total_cost_usd: Spend
-    row: 17
+    label_color: []
+    x_axis_label: Network
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+    row: 21
     col: 0
-    width: 24
-    height: 7
+    width: 14
+    height: 14
   filters:
   - name: This Timeframe
     title: This Timeframe
@@ -990,6 +1113,26 @@
     model: google_adwords
     explore: kpis_this_period
     field: kpis_last_period.last_timeframe
+    listens_to_filters: []
+    allow_multiple_values: true
+    required: false
+  - name: Campaign
+    title: Campaign
+    type: field_filter
+    default_value: ''
+    model: google_adwords
+    explore: master_stats
+    field: campaign.campaign_name
+    listens_to_filters: []
+    allow_multiple_values: true
+    required: false
+  - name: Ad Group
+    title: Ad Group
+    type: field_filter
+    default_value: ''
+    model: google_adwords
+    explore: master_stats
+    field: ad_group.ad_group_name
     listens_to_filters: []
     allow_multiple_values: true
     required: false

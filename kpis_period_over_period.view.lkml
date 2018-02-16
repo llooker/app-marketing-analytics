@@ -139,6 +139,16 @@ view: kpis_this_period {
     }
   }
 
+  measure: avg_click_rate_this_period {
+    type: number
+    sql: ${clicks_this_period} / NULLIF(${impressions_this_period},0) ;;
+    value_format_name: percent_2
+    link: {
+      label: "By Keyword"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_click_rate&f[master_stats._data_date]=this quarter"
+    }
+  }
+
   measure: cost_per_interaction_this_period {
     type: number
     sql: ${total_cost_this_period} / NULLIF(${interactions_this_period},0) ;;
@@ -146,6 +156,16 @@ view: kpis_this_period {
     link: {
       label: "By Keyword"
       url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats._data_date]=this quarter"
+    }
+  }
+
+  measure: cost_per_click_this_period {
+    type: number
+    sql: ${total_cost_this_period} / NULLIF(${clicks_this_period},0) ;;
+    value_format_name: usd
+    link: {
+      label: "By Keyword"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_click_rate&f[master_stats._data_date]=this quarter"
     }
   }
 
@@ -293,9 +313,21 @@ view: kpis_last_period {
     value_format_name: percent_2
   }
 
+  measure: avg_click_rate_last_period {
+    type: number
+    sql: ${clicks_last_period} / NULLIF(${impressions_last_period},0) ;;
+    value_format_name: percent_2
+  }
+
   measure: cost_per_interaction_last_period {
     type: number
     sql: ${total_cost_last_period} / NULLIF(${interactions_last_period},0) ;;
+    value_format_name: usd
+  }
+
+  measure: cost_per_click_last_period {
+    type: number
+    sql: ${total_cost_last_period} / NULLIF(${clicks_last_period},0) ;;
     value_format_name: usd
   }
 
