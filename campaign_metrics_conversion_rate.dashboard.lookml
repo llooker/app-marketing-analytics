@@ -1,5 +1,5 @@
-- dashboard: campaign_metrics
-  title: Campaign Metrics
+- dashboard: campaign_metrics_conversion_rate
+  title: Campaign Metrics Conversions Rate
   layout: newspaper
   elements:
   - title: Spend
@@ -342,7 +342,8 @@
     show_silhouette: false
     totals_color: "#808080"
     series_types: {}
-    hidden_fields: []
+    hidden_fields:
+    - kpis_last_period.avg_click_rate_last_period
     single_value_title: ''
     listen:
       This Timeframe: kpis_this_period.this_timeframe
@@ -351,15 +352,15 @@
     col: 20
     width: 4
     height: 4
-  - title: Spend To Date
-    name: Spend To Date
+  - title: Conversion Rate To Date
+    name: Conversion Rate To Date
     model: google_adwords
     explore: master_stats
     type: looker_area
     fields:
     - master_stats._data_day_of_quarter
     - master_stats._data_quarter
-    - master_stats.cumulative_spend
+    - master_stats.average_conversion_rate
     pivots:
     - master_stats._data_quarter
     filters:
@@ -426,11 +427,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: master_stats.average_conversion_rate
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 794
-        axisId: master_stats.average_cost_per_conversion
+        axisId: master_stats.average_conversion_rate
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
       __LINE_NUM: 782
     - label:
@@ -483,9 +484,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: master_stats.total_conversions
         name: Cost
-        axisId: master_stats.total_cost_usd
+        axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 851
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -537,9 +538,9 @@
     - "#9fc190"
     series_colors: {}
     hidden_series:
-    - master_stats.average_cost_per_conversion
+    - master_stats.average_conversion_rate
     series_labels:
-      master_stats.total_cost_usd: Spend
+      master_stats.total_conversions: Spend
       master_stats.total_clicks: Interactions
     hidden_fields: []
     column_group_spacing_ratio: 0
@@ -548,20 +549,20 @@
     col: 0
     width: 24
     height: 11
-  - title: Spend by Network
-    name: Spend by Network
+  - title: Conversion Rate by Network
+    name: Conversion Rate by Network
     model: google_adwords
     explore: master_stats
     type: looker_bar
     fields:
     - master_stats.ad_network_type
-    - master_stats.total_cost_usd
+    - master_stats.total_conversions
     fill_fields:
     - master_stats.ad_network_type
     filters:
       master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
-    - master_stats.total_cost_usd desc
+    - master_stats.total_conversions desc
     - master_stats.ad_network_type
     limit: 500
     stacking: ''
@@ -602,9 +603,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: master_stats.total_conversions
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: master_stats.total_conversions
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
@@ -612,18 +613,18 @@
     col: 0
     width: 8
     height: 6
-  - title: Spend by Bid Strategy
-    name: Spend by Bid Strategy
+  - title: Conversion Rate by Bid Strategy
+    name: Conversion Rate by Bid Strategy
     model: google_adwords
     explore: master_stats
     type: looker_bar
     fields:
-    - master_stats.total_cost_usd
+    - master_stats.total_conversions
     - keyword.bidding_strategy_type
     filters:
       master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
-    - master_stats.total_cost_usd desc
+    - master_stats.total_conversions desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -663,9 +664,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: master_stats.total_conversions
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: master_stats.total_conversions
     colors:
     - "#929292"
     - "#a9c574"
@@ -687,13 +688,13 @@
     col: 16
     width: 8
     height: 6
-  - title: Spend by Hour of Day
-    name: Spend by Hour of Day
+  - title: Conversion Rate by Hour of Day
+    name: Conversion Rate Hour of Day
     model: google_adwords
     explore: master_stats
     type: looker_column
     fields:
-    - master_stats.total_cost_usd
+    - master_stats.total_conversions
     - master_stats.hour_of_day
     filters:
       master_stats._data_date: 1 quarters ago for 1 quarters
@@ -764,9 +765,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: master_stats.total_conversions
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: master_stats.total_conversions
     conditional_formatting:
     - type: high to low
       value:
@@ -803,20 +804,20 @@
     col: 14
     width: 10
     height: 7
-  - title: Spend by Device
-    name: Spend by Device
+  - title: Conversion Rate by Device
+    name: Conversion Rate by Device
     model: google_adwords
     explore: master_stats
     type: looker_bar
     fields:
-    - master_stats.total_cost_usd
+    - master_stats.total_conversions
     - master_stats.device_type
     fill_fields:
     - master_stats.device_type
     filters:
       master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
-    - master_stats.total_cost_usd desc
+    - master_stats.total_conversions desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -856,9 +857,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: master_stats.total_conversions
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: master_stats.total_conversions
     colors:
     - "#a9c574"
     - "#62bad4"
@@ -880,14 +881,14 @@
     col: 8
     width: 8
     height: 6
-  - title: Spend by Day of Week
-    name: Spend by Day of Week
+  - title: Conversion Rate by Day of Week
+    name: Conversion Rate by Day of Week
     model: google_adwords
     explore: master_stats
     type: looker_bar
     fields:
     - master_stats._data_day_of_week
-    - master_stats.total_cost_usd
+    - master_stats.total_conversions
     fill_fields:
     - master_stats._data_day_of_week
     filters:
@@ -959,9 +960,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: master_stats.total_conversions
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: master_stats.total_conversions
     conditional_formatting:
     - type: high to low
       value:
@@ -987,13 +988,13 @@
     col: 14
     width: 10
     height: 7
-  - title: Spend by Day of Week and Hour of Day
-    name: Spend by Day of Week and Hour of Day
+  - title: Conversion Rate by Day of Week and Hour of Day
+    name: Conversion Rate by Day of Week and Hour of Day
     model: google_adwords
     explore: master_stats
     type: table
     fields:
-    - master_stats.total_cost_usd
+    - master_stats.total_conversions
     - master_stats.hour_of_day
     - master_stats._data_day_of_week
     pivots:
@@ -1070,9 +1071,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: master_stats.total_conversions
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: master_stats.total_conversions
     conditional_formatting:
     - type: high to low
       value:
