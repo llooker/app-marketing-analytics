@@ -992,26 +992,22 @@
     model: google_adwords
     explore: master_stats
     type: table
-    fields:
-    - master_stats.total_cost_usd
-    - master_stats.hour_of_day
-    - master_stats._data_day_of_week
-    pivots:
-    - master_stats._data_day_of_week
-    fill_fields:
-    - master_stats._data_day_of_week
+    fields: [master_stats.total_cost_usd, master_stats.hour_of_day, master_stats._data_day_of_week]
+    pivots: [master_stats._data_day_of_week]
+    fill_fields: [master_stats._data_day_of_week]
     filters:
       master_stats._data_date: 1 quarters ago for 1 quarters
-    sorts:
-    - master_stats._data_day_of_week 0
-    - master_stats.hour_of_day
+      campaign.campaign_name: ''
+      ad_group.ad_group_name: ''
+    sorts: [master_stats._data_day_of_week 0, master_stats.hour_of_day]
     limit: 500
-    show_view_names: true
-    show_row_numbers: true
+    column_limit: 50
+    show_view_names: false
+    show_row_numbers: false
     truncate_column_names: false
     hide_totals: false
     hide_row_totals: false
-    table_theme: editable
+    table_theme: white
     limit_displayed_rows: false
     enable_conditional_formatting: true
     conditional_formatting_include_totals: false
@@ -1020,9 +1016,7 @@
     leftAxisLabel: ''
     rightAxisLabelVisible: false
     rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
+    barColors: [red, blue]
     smoothedBars: false
     orientation: automatic
     labelPosition: left
@@ -1057,40 +1051,20 @@
     series_types: {}
     label_color: []
     x_axis_label: Network
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.total_cost_usd
-        name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
-    conditional_formatting:
-    - type: high to low
-      value:
-      background_color:
-      font_color:
-      palette:
-        name: Red to Yellow to Green
-        colors:
-        - "#F36254"
-        - "#FCF758"
-        - "#4FBC89"
-      bold: false
-      italic: false
-      strikethrough: false
-      fields:
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
+    y_axes: [{label: '', maxValue: !!null '', minValue: !!null '', orientation: bottom,
+        showLabels: false, showValues: false, tickDensity: default, tickDensityCustom: 5,
+        type: linear, unpinAxis: false, valueFormat: !!null '', series: [{id: master_stats.total_cost_usd,
+            name: Ad Stats Cost, axisId: master_stats.total_cost_usd, __FILE: app_marketing_analytics/campaign_metrics.dashboard.lookml,
+            __LINE_NUM: 1073}], __FILE: app_marketing_analytics/campaign_metrics.dashboard.lookml,
+        __LINE_NUM: 1061}]
+    conditional_formatting: [{type: high to low, value: !!null '', background_color: !!null '',
+        font_color: !!null '', palette: {name: Red to Yellow to Green, colors: ["#F36254",
+            "#FCF758", "#4FBC89"], __FILE: app_marketing_analytics/campaign_metrics.dashboard.lookml,
+          __LINE_NUM: 1082}, bold: false, italic: false, strikethrough: false, fields: [
+          master_stats.total_cost_usd], __FILE: app_marketing_analytics/campaign_metrics.dashboard.lookml,
+        __LINE_NUM: 1077}]
+    series_labels:
+      master_stats._data_day_of_week: Day of Week
     row: 21
     col: 0
     width: 14
