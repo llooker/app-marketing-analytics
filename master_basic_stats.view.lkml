@@ -372,6 +372,14 @@ view: master_stats {
     value_format_name: usd_0
     direction: "column"
   }
+
+  measure: cumulative_conversions {
+    type: running_total
+    sql: ${total_conversions} ;;
+    drill_fields: [master_stats._data_date, campaign.campaign_name, master_stats.total_cost_usd]
+    value_format_name: decimal_0
+    direction: "column"
+  }
   measure: average_interaction_rate {
     link: {
       label: "By Keyword"

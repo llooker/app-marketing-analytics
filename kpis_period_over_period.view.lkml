@@ -2,6 +2,8 @@
 view: kpis_this_period {
   derived_table: {
     explore_source: master_stats {
+      column: campaign_name { field: campaign.campaign_name }
+      column: ad_group_name { field: ad_group.ad_group_name }
       column: total_clicks_this_period {field: master_stats.total_clicks }
       column: external_customer_id_this_period {field: master_stats.external_customer_id}
       column: total_conversions_this_period {field: master_stats.total_conversions}
@@ -30,6 +32,16 @@ view: kpis_this_period {
       value: "this month"
       label: "Month"
     }
+  }
+
+  dimension:  campaign_name {
+    type: string
+    sql: ${TABLE}.campaign_name ;;
+  }
+
+  dimension:  ad_group_name {
+    type: string
+    sql: ${TABLE}.ad_group_name ;;
   }
 
   dimension:  external_customer_id_this_period {
@@ -183,6 +195,8 @@ view: kpis_this_period {
 view: kpis_last_period {
   derived_table: {
     explore_source: master_stats {
+      column: campaign_name { field: campaign.campaign_name }
+      column: ad_group_name { field: ad_group.ad_group_name }
       column: total_clicks_last_period {field: master_stats.total_clicks }
       column: external_customer_id_last_period {field: master_stats.external_customer_id}
       column: total_conversions_last_period {field: master_stats.total_conversions}
@@ -219,6 +233,17 @@ view: kpis_last_period {
         value: "1 month ago"
         label: "Month"
       }
+  }
+
+
+  dimension:  campaign_name {
+    type: string
+    sql: ${TABLE}.campaign_name ;;
+  }
+
+  dimension:  ad_group_name {
+    type: string
+    sql: ${TABLE}.ad_group_name ;;
   }
 
   dimension:  external_customer_id_last_period {
