@@ -39,16 +39,20 @@ view: kpis_this_period {
     sql: ${TABLE}.campaign_name ;;
   }
 
+  dimension:  id {
+    type: string
+    sql: COALESCE(${TABLE}.campaign_name, ${TABLE}.ad_group_name, ${TABLE}.external_customer_id_this_period) ;;
+    primary_key: yes
+  }
+
   dimension:  ad_group_name {
     type: string
     sql: ${TABLE}.ad_group_name ;;
   }
 
   dimension:  external_customer_id_this_period {
-    type: number
+    type: string
     sql: ${TABLE}.external_customer_id_this_period ;;
-    hidden: yes
-    primary_key: yes
   }
 
   dimension: total_clicks_this_period {
@@ -246,11 +250,15 @@ view: kpis_last_period {
     sql: ${TABLE}.ad_group_name ;;
   }
 
-  dimension:  external_customer_id_last_period {
-    type: number
-    sql: ${TABLE}.external_customer_id_last_period ;;
-    hidden: yes
+  dimension:  id {
+    type: string
+    sql: COALESCE(${TABLE}.campaign_name, ${TABLE}.ad_group_name, ${TABLE}.external_customer_id_last_period) ;;
     primary_key: yes
+  }
+
+  dimension:  external_customer_id_last_period {
+    type: string
+    sql: ${TABLE}.external_customer_id_last_period ;;
   }
 
   dimension: total_clicks_last_period {
