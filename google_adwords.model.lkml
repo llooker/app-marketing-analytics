@@ -273,7 +273,9 @@ explore: campaign_budget_stats {
 explore: kpis_this_period {
   label: "Kpis Period Over Period"
   join: kpis_last_period {
-    sql_on: ${kpis_this_period.external_customer_id_this_period} = ${kpis_last_period.external_customer_id_last_period} ;;
+    sql_on: ${kpis_this_period.external_customer_id_this_period} = ${kpis_last_period.external_customer_id_last_period} AND
+    ${kpis_this_period.campaign_name} = ${kpis_last_period.campaign_name} AND
+    ${kpis_this_period.ad_group_name} = ${kpis_last_period.ad_group_name};;
     relationship: one_to_one
   }
 }
