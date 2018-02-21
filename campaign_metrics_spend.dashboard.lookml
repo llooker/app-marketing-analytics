@@ -442,10 +442,10 @@
       - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 430
+        __LINE_NUM: 442
         axisId: master_stats.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 418
+      __LINE_NUM: 430
     - label:
       maxValue:
       minValue:
@@ -462,9 +462,9 @@
         name: Conversions
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 449
+        __LINE_NUM: 461
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 437
+      __LINE_NUM: 449
     - label: ''
       maxValue:
       minValue:
@@ -481,9 +481,9 @@
         name: Impressions
         axisId: master_stats.total_impressions
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 468
+        __LINE_NUM: 480
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 456
+      __LINE_NUM: 468
     - label: ''
       maxValue:
       minValue:
@@ -500,9 +500,9 @@
         name: Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 487
+        __LINE_NUM: 499
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 475
+      __LINE_NUM: 487
     - label: ''
       maxValue:
       minValue:
@@ -519,9 +519,9 @@
         name: Clicks
         axisId: master_stats.total_clicks
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 506
+        __LINE_NUM: 518
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 494
+      __LINE_NUM: 506
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -534,7 +534,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 517
+      __LINE_NUM: 529
     colors:
     - "#a9c574"
     - "#c5c5c5"
@@ -622,9 +622,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 606
+        __LINE_NUM: 621
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 594
+      __LINE_NUM: 609
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
@@ -687,9 +687,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 667
+        __LINE_NUM: 686
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 655
+      __LINE_NUM: 674
     colors:
     - "#929292"
     - "#a9c574"
@@ -792,9 +792,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 768
+        __LINE_NUM: 791
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 756
+      __LINE_NUM: 779
     conditional_formatting:
     - type: high to low
       value:
@@ -807,13 +807,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 777
+        __LINE_NUM: 804
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 772
+      __LINE_NUM: 799
     colors:
     - "#a9c574"
     - "#62bad4"
@@ -835,122 +835,6 @@
     col: 14
     width: 10
     height: 7
-  - title: Spend by Day of Week and Hour of Day
-    name: Spend by Day of Week and Hour of Day
-    model: google_adwords
-    explore: master_stats
-    type: table
-    fields:
-    - master_stats.total_cost_usd
-    - master_stats.hour_of_day
-    - master_stats._data_day_of_week
-    pivots:
-    - master_stats._data_day_of_week
-    fill_fields:
-    - master_stats._data_day_of_week
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
-    sorts:
-    - master_stats._data_day_of_week 0
-    - master_stats.hour_of_day
-    limit: 500
-    show_view_names: true
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    limit_displayed_rows: false
-    enable_conditional_formatting: true
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    groupBars: true
-    labelSize: 10pt
-    showLegend: true
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    label_color: []
-    x_axis_label: Network
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.total_cost_usd
-        name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1074
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1062
-    conditional_formatting:
-    - type: high to low
-      value:
-      background_color:
-      font_color:
-      palette:
-        name: Red to Yellow to Green
-        colors:
-        - "#F36254"
-        - "#FCF758"
-        - "#4FBC89"
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1083
-      bold: false
-      italic: false
-      strikethrough: false
-      fields:
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1078
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-    row: 21
-    col: 0
-    width: 14
-    height: 14
   - title: Spend by Device
     name: Spend by Device
     model: google_adwords
@@ -1008,9 +892,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 860
+        __LINE_NUM: 1007
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 848
+      __LINE_NUM: 995
     colors:
     - "#a9c574"
     - "#62bad4"
@@ -1115,9 +999,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 963
+        __LINE_NUM: 1114
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 951
+      __LINE_NUM: 1102
     conditional_formatting:
     - type: high to low
       value:
@@ -1130,13 +1014,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 972
+        __LINE_NUM: 1127
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 967
+      __LINE_NUM: 1122
     colors:
     - 'palette: Looker Classic'
     series_colors: {}
@@ -1147,6 +1031,127 @@
     col: 14
     width: 10
     height: 7
+  - title: Spend by Day of Week and Hour of Day
+    name: Spend by Day of Week and Hour of Day
+    model: google_adwords
+    explore: master_stats
+    type: table
+    fields:
+    - master_stats.total_cost_usd
+    - master_stats.hour_of_day
+    - master_stats._data_day_of_week
+    pivots:
+    - master_stats._data_day_of_week
+    fill_fields:
+    - master_stats._data_day_of_week
+    filters:
+      master_stats._data_date: 1 quarters ago for 1 quarters
+    sorts:
+    - master_stats._data_day_of_week 0
+    - master_stats.hour_of_day
+    limit: 500
+    show_view_names: true
+    show_row_numbers: false
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Network
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 921
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 909
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 934
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+      - master_stats.total_cost_usd
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 929
+    series_labels:
+      master_stats.hour_of_day: Hour of Day
+      master_stats.total_cost_usd: Spend
+      master_stats._data_day_of_week: Day of Week
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+    row: 21
+    col: 0
+    width: 14
+    height: 14
   filters:
   - name: This Timeframe
     title: This Timeframe
