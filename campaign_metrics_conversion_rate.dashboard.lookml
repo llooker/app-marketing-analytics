@@ -125,66 +125,6 @@
     col: 4
     width: 4
     height: 4
-  - title: Cost Per Conversion
-    name: Cost Per Conversion
-    model: google_adwords
-    explore: kpis_this_period
-    type: single_value
-    fields:
-    - kpis_last_period.cost_per_conversion_last_period
-    - kpis_this_period.cost_per_conversion_this_period
-    limit: 500
-    dynamic_fields:
-    - table_calculation: change
-      label: Change
-      expression: "(${kpis_this_period.cost_per_conversion_this_period} - ${kpis_last_period.cost_per_conversion_last_period})/${kpis_last_period.cost_per_conversion_last_period}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - kpis_last_period.cost_per_conversion_last_period
-    single_value_title: Per Conversion
-    listen:
-      This Timeframe: kpis_this_period.this_timeframe
-      Last Timeframe: kpis_last_period.last_timeframe
-      Campaign: kpis_last_period.campaign_name
-      Ad Group: kpis_last_period.ad_group_name
-    row: 0
-    col: 8
-    width: 4
-    height: 4
   - title: Conversion Rate
     name: Conversion Rate
     model: google_adwords
@@ -243,66 +183,6 @@
       Ad Group: kpis_last_period.ad_group_name
     row: 0
     col: 12
-    width: 4
-    height: 4
-  - title: Click Through Rate
-    name: Click Through Rate
-    model: google_adwords
-    explore: kpis_this_period
-    type: single_value
-    fields:
-    - kpis_last_period.avg_click_rate_last_period
-    - kpis_this_period.avg_click_rate_this_period
-    limit: 500
-    dynamic_fields:
-    - table_calculation: change
-      label: Change
-      expression: "(${kpis_this_period.avg_click_rate_this_period} - ${kpis_last_period.avg_click_rate_last_period})/${kpis_last_period.avg_click_rate_last_period}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - kpis_last_period.avg_click_rate_last_period
-    single_value_title: ''
-    listen:
-      This Timeframe: kpis_this_period.this_timeframe
-      Last Timeframe: kpis_last_period.last_timeframe
-      Campaign: kpis_last_period.campaign_name
-      Ad Group: kpis_last_period.ad_group_name
-    row: 0
-    col: 20
     width: 4
     height: 4
   - title: Cost Per Click
@@ -365,6 +245,248 @@
     col: 16
     width: 4
     height: 4
+  - title: Cost Per Conversion
+    name: Cost Per Conversion
+    model: google_adwords
+    explore: kpis_this_period
+    type: single_value
+    fields:
+    - kpis_last_period.cost_per_conversion_last_period
+    - kpis_this_period.cost_per_conversion_this_period
+    limit: 500
+    dynamic_fields:
+    - table_calculation: change
+      label: Change
+      expression: "(${kpis_this_period.cost_per_conversion_this_period} - ${kpis_last_period.cost_per_conversion_last_period})/${kpis_last_period.cost_per_conversion_last_period}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields:
+    - kpis_last_period.cost_per_conversion_last_period
+    single_value_title: Per Conversion
+    listen:
+      This Timeframe: kpis_this_period.this_timeframe
+      Last Timeframe: kpis_last_period.last_timeframe
+      Campaign: kpis_last_period.campaign_name
+      Ad Group: kpis_last_period.ad_group_name
+    row: 0
+    col: 8
+    width: 4
+    height: 4
+  - title: Click Through Rate
+    name: Click Through Rate
+    model: google_adwords
+    explore: kpis_this_period
+    type: single_value
+    fields:
+    - kpis_last_period.avg_click_rate_last_period
+    - kpis_this_period.avg_click_rate_this_period
+    limit: 500
+    dynamic_fields:
+    - table_calculation: change
+      label: Change
+      expression: "(${kpis_this_period.avg_click_rate_this_period} - ${kpis_last_period.avg_click_rate_last_period})/${kpis_last_period.avg_click_rate_last_period}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields:
+    - kpis_last_period.avg_click_rate_last_period
+    single_value_title: ''
+    listen:
+      This Timeframe: kpis_this_period.this_timeframe
+      Last Timeframe: kpis_last_period.last_timeframe
+      Campaign: kpis_last_period.campaign_name
+      Ad Group: kpis_last_period.ad_group_name
+    row: 0
+    col: 20
+    width: 4
+    height: 4
+  - title: Conversion Rate vs Cost Per Conversion
+    name: Conversion Rate vs Cost Per Conversion
+    model: google_adwords
+    explore: master_stats
+    type: looker_line
+    fields:
+    - master_stats._data_week
+    - master_stats.average_cost_per_conversion
+    - master_stats.average_conversion_rate
+    sorts:
+    - master_stats._data_week desc
+    limit: 500
+    column_limit: 50
+    stacking: ''
+    show_value_labels: false
+    label_density: 1
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: false
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    ordering: none
+    show_null_labels: false
+    label: Average Cost per Conversion
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    series_types: {}
+    show_dropoff: false
+    y_axes:
+    - label:
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.average_cost_per_conversion
+        name: Cost per Conversion
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 1021
+        axisId: master_stats.average_cost_per_conversion
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 1009
+    - label:
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.average_conversion_rate
+        name: Conversion Rate
+        axisId: master_stats.average_conversion_rate
+    discontinuous_nulls: false
+    focus_on_hover: false
+    reference_lines: []
+    trend_lines:
+    - color: "#000000"
+      label_position: right
+      period: 7
+      regression_type: linear
+      series_index: 1
+      show_label: false
+      label_type: string
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 1047
+    colors:
+    - 'palette: Looker Classic'
+    series_colors: {}
+    hidden_series: []
+    series_labels:
+      master_stats.total_conversions: Spend
+      master_stats.total_clicks: Interactions
+    hidden_fields: []
+    column_group_spacing_ratio: 0
+    column_spacing_ratio: 0
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: master_stats._data_date
+    row: 4
+    col: 0
+    width: 24
+    height: 11
   - title: Conversion Rate by Network
     name: Conversion Rate by Network
     model: google_adwords
@@ -375,8 +497,6 @@
     - master_stats.average_conversion_rate
     fill_fields:
     - master_stats.ad_network_type
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
     - master_stats.ad_network_type
     limit: 500
@@ -422,12 +542,13 @@
         name: Ad Stats Cost
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 362
+        __LINE_NUM: 421
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 350
+      __LINE_NUM: 409
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
+      Time Range: master_stats._data_date
     row: 15
     col: 0
     width: 8
@@ -442,8 +563,8 @@
     - master_stats.average_conversion_rate
     fill_fields:
     - master_stats.device_type
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
+    sorts:
+    - master_stats.average_conversion_rate desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -487,9 +608,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 629
+        __LINE_NUM: 486
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 617
+      __LINE_NUM: 474
     colors:
     - "#a9c574"
     - "#62bad4"
@@ -507,6 +628,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
+      Time Range: master_stats._data_date
     row: 15
     col: 8
     width: 8
@@ -519,8 +641,8 @@
     fields:
     - keyword.bidding_strategy_type
     - master_stats.average_conversion_rate
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
+    sorts:
+    - master_stats.average_conversion_rate desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -564,9 +686,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 708
+        __LINE_NUM: 563
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 696
+      __LINE_NUM: 551
     colors:
     - "#929292"
     - "#a9c574"
@@ -584,249 +706,11 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
+      Time Range: master_stats._data_date
     row: 15
     col: 16
     width: 8
     height: 6
-  - title: Conversion Rate by Day of Week
-    name: Conversion Rate by Day of Week
-    model: google_adwords
-    explore: master_stats
-    type: looker_bar
-    fields:
-    - master_stats._data_day_of_week
-    - master_stats.average_conversion_rate
-    fill_fields:
-    - master_stats._data_day_of_week
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
-    sorts:
-    - master_stats._data_day_of_week
-    limit: 500
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    enable_conditional_formatting: true
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    groupBars: true
-    labelSize: 10pt
-    showLegend: true
-    series_types: {}
-    label_color: []
-    x_axis_label: ''
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.total_conversions
-        name: Ad Stats Cost
-        axisId: master_stats.total_conversions
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 815
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 803
-    conditional_formatting:
-    - type: high to low
-      value:
-      background_color:
-      font_color:
-      palette:
-        name: Red to Yellow to Green
-        colors:
-        - "#F36254"
-        - "#FCF758"
-        - "#4FBC89"
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 828
-      bold: false
-      italic: false
-      strikethrough: false
-      fields:
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 823
-    colors:
-    - 'palette: Looker Classic'
-    series_colors: {}
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-    row: 21
-    col: 14
-    width: 10
-    height: 7
-  - title: Conversion Rate by Hour of Day
-    name: Conversion Rate by Hour of Day
-    model: google_adwords
-    explore: master_stats
-    type: looker_column
-    fields:
-    - master_stats.hour_of_day
-    - master_stats.average_conversion_rate
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
-    sorts:
-    - master_stats.hour_of_day
-    limit: 500
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    enable_conditional_formatting: true
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    groupBars: true
-    labelSize: 10pt
-    showLegend: true
-    series_types: {}
-    label_color: []
-    x_axis_label: Hour Of Day
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.total_conversions
-        name: Ad Stats Cost
-        axisId: master_stats.total_conversions
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 1044
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 1032
-    conditional_formatting:
-    - type: high to low
-      value:
-      background_color:
-      font_color:
-      palette:
-        name: Red to Yellow to Green
-        colors:
-        - "#F36254"
-        - "#FCF758"
-        - "#4FBC89"
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 1057
-      bold: false
-      italic: false
-      strikethrough: false
-      fields:
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 1052
-    colors:
-    - "#a9c574"
-    - "#62bad4"
-    - "#929292"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
-    series_colors: {}
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-    row: 28
-    col: 14
-    width: 10
-    height: 7
   - title: Conversion Rate by Day of Week and Hour of Day
     name: Conversion Rate by Day of Week and Hour of Day
     model: google_adwords
@@ -840,8 +724,6 @@
     - master_stats._data_day_of_week
     fill_fields:
     - master_stats._data_day_of_week
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
     - master_stats._data_day_of_week 0
     - master_stats.hour_of_day
@@ -914,9 +796,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 934
+        __LINE_NUM: 913
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 922
+      __LINE_NUM: 901
     conditional_formatting:
     - type: high to low
       value:
@@ -929,14 +811,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 947
+        __LINE_NUM: 926
       bold: false
       italic: false
       strikethrough: false
       fields:
       - master_stats.average_conversion_rate
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 942
+      __LINE_NUM: 921
     series_labels:
       master_stats.hour_of_day: Hour of Day
       master_stats.total_conversions: Conversions
@@ -944,31 +826,31 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
+      Time Range: master_stats._data_date
     row: 21
     col: 0
     width: 14
     height: 14
-  - title: Conversion Rate vs Cost Per Conversion
-    name: Conversion Rate vs Cost Per Conversion
+  - title: Conversion Rate by Day of Week
+    name: Conversion Rate by Day of Week
     model: google_adwords
     explore: master_stats
-    type: looker_line
+    type: looker_bar
     fields:
+    - master_stats._data_day_of_week
     - master_stats.average_conversion_rate
-    - master_stats.average_cost_per_conversion
-    - master_stats._data_week
-    filters:
-      master_stats._data_quarter: 2 quarters
-      master_stats._data_date: 2 quarters
+    fill_fields:
+    - master_stats._data_day_of_week
+    sorts:
+    - master_stats._data_day_of_week
     limit: 500
-    column_limit: 50
     stacking: ''
-    show_value_labels: false
-    label_density: 1
+    show_value_labels: true
+    label_density: 25
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: false
+    show_view_names: true
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -979,15 +861,19 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
+    ordering: none
+    show_null_labels: false
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
-    label: Average Cost per Conversion
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
     leftAxisLabelVisible: false
     leftAxisLabel: ''
     rightAxisLabelVisible: false
@@ -1003,73 +889,185 @@
     valuePosition: right
     labelColorEnabled: false
     labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
     series_types: {}
-    show_dropoff: false
+    label_color: []
+    x_axis_label: ''
     y_axes:
     - label: ''
       maxValue:
       minValue:
-      orientation: left
+      orientation: bottom
       showLabels: false
       showValues: false
       tickDensity: default
-      tickDensityCustom:
+      tickDensityCustom: 5
       type: linear
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
-        name: Cost per Conversion
+      - id: master_stats.total_conversions
+        name: Ad Stats Cost
+        axisId: master_stats.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 451
-        axisId: master_stats.average_cost_per_conversion
+        __LINE_NUM: 670
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 439
-    - label:
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.average_conversion_rate
-        name: Conversion Rate
-        axisId: master_stats.average_conversion_rate
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
+      __LINE_NUM: 658
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 683
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 538
+      __LINE_NUM: 678
     colors:
     - 'palette: Looker Classic'
     series_colors: {}
-    hidden_series: []
-    series_labels:
-      master_stats.total_conversions: Spend
-      master_stats.total_clicks: Interactions
-    hidden_fields: []
-    column_group_spacing_ratio: 0
-    column_spacing_ratio: 0
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-    row: 4
-    col: 0
-    width: 24
-    height: 11
+      Time Range: master_stats._data_date
+    row: 21
+    col: 14
+    width: 10
+    height: 7
+  - title: Conversion Rate by Hour of Day
+    name: Conversion Rate by Hour of Day
+    model: google_adwords
+    explore: master_stats
+    type: looker_column
+    fields:
+    - master_stats.hour_of_day
+    - master_stats.average_conversion_rate
+    sorts:
+    - master_stats.hour_of_day
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    series_types: {}
+    label_color: []
+    x_axis_label: Hour Of Day
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_conversions
+        name: Ad Stats Cost
+        axisId: master_stats.total_conversions
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 783
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 771
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 796
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 791
+    colors:
+    - "#a9c574"
+    - "#62bad4"
+    - "#929292"
+    - "#9fdee0"
+    - "#1f3e5a"
+    - "#90c8ae"
+    - "#92818d"
+    - "#c5c6a6"
+    - "#82c2ca"
+    - "#cee0a0"
+    - "#928fb4"
+    - "#9fc190"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: master_stats._data_date
+    row: 28
+    col: 14
+    width: 10
+    height: 7
   filters:
   - name: This Timeframe
     title: This Timeframe
@@ -1108,6 +1106,16 @@
     model: google_adwords
     explore: master_stats
     field: ad_group.ad_group_name
+    listens_to_filters: []
+    allow_multiple_values: true
+    required: false
+  - name: Time Range
+    title: Time Range
+    type: field_filter
+    default_value: 1 quarters
+    model: google_adwords
+    explore: master_stats
+    field: master_stats._data_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

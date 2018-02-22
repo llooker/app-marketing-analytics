@@ -125,19 +125,19 @@
     col: 4
     width: 4
     height: 4
-  - title: Cost Per Click
-    name: Cost Per Click
+  - title: Click Through Rate
+    name: Click Through Rate
     model: google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
-    - kpis_this_period.cost_per_click_this_period
-    - kpis_last_period.cost_per_click_last_period
+    - kpis_last_period.avg_click_rate_last_period
+    - kpis_this_period.avg_click_rate_this_period
     limit: 500
     dynamic_fields:
     - table_calculation: change
       label: Change
-      expression: "(${kpis_this_period.cost_per_click_this_period} - ${kpis_last_period.cost_per_click_last_period})/${kpis_last_period.cost_per_click_last_period}"
+      expression: "(${kpis_this_period.avg_click_rate_this_period} - ${kpis_last_period.avg_click_rate_last_period})/${kpis_last_period.avg_click_rate_last_period}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -173,7 +173,8 @@
     show_silhouette: false
     totals_color: "#808080"
     series_types: {}
-    hidden_fields: []
+    hidden_fields:
+    - kpis_last_period.avg_click_rate_last_period
     single_value_title: ''
     listen:
       This Timeframe: kpis_this_period.this_timeframe
@@ -181,7 +182,7 @@
       Campaign: kpis_last_period.campaign_name
       Ad Group: kpis_last_period.ad_group_name
     row: 0
-    col: 16
+    col: 20
     width: 4
     height: 4
   - title: Cost Per Conversion
@@ -244,6 +245,65 @@
     col: 8
     width: 4
     height: 4
+  - title: Cost Per Click
+    name: Cost Per Click
+    model: google_adwords
+    explore: kpis_this_period
+    type: single_value
+    fields:
+    - kpis_this_period.cost_per_click_this_period
+    - kpis_last_period.cost_per_click_last_period
+    limit: 500
+    dynamic_fields:
+    - table_calculation: change
+      label: Change
+      expression: "(${kpis_this_period.cost_per_click_this_period} - ${kpis_last_period.cost_per_click_last_period})/${kpis_last_period.cost_per_click_last_period}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields: []
+    single_value_title: ''
+    listen:
+      This Timeframe: kpis_this_period.this_timeframe
+      Last Timeframe: kpis_last_period.last_timeframe
+      Campaign: kpis_last_period.campaign_name
+      Ad Group: kpis_last_period.ad_group_name
+    row: 0
+    col: 16
+    width: 4
+    height: 4
   - title: Conversion Rate
     name: Conversion Rate
     model: google_adwords
@@ -302,66 +362,6 @@
       Ad Group: kpis_last_period.ad_group_name
     row: 0
     col: 12
-    width: 4
-    height: 4
-  - title: Click Through Rate
-    name: Click Through Rate
-    model: google_adwords
-    explore: kpis_this_period
-    type: single_value
-    fields:
-    - kpis_last_period.avg_click_rate_last_period
-    - kpis_this_period.avg_click_rate_this_period
-    limit: 500
-    dynamic_fields:
-    - table_calculation: change
-      label: Change
-      expression: "(${kpis_this_period.avg_click_rate_this_period} - ${kpis_last_period.avg_click_rate_last_period})/${kpis_last_period.avg_click_rate_last_period}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - kpis_last_period.avg_click_rate_last_period
-    single_value_title: ''
-    listen:
-      This Timeframe: kpis_this_period.this_timeframe
-      Last Timeframe: kpis_last_period.last_timeframe
-      Campaign: kpis_last_period.campaign_name
-      Ad Group: kpis_last_period.ad_group_name
-    row: 0
-    col: 20
     width: 4
     height: 4
   - title: Spend To Date
@@ -574,8 +574,6 @@
     - master_stats.total_cost_usd
     fill_fields:
     - master_stats.ad_network_type
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
     - master_stats.total_cost_usd desc
     - master_stats.ad_network_type
@@ -628,8 +626,89 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
+      Time Frame: master_stats._data_date
     row: 15
     col: 0
+    width: 8
+    height: 6
+  - title: Spend by Device
+    name: Spend by Device
+    model: google_adwords
+    explore: master_stats
+    type: looker_bar
+    fields:
+    - master_stats.total_cost_usd
+    - master_stats.device_type
+    fill_fields:
+    - master_stats.device_type
+    sorts:
+    - master_stats.total_cost_usd desc
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Device
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 891
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 879
+    colors:
+    - "#a9c574"
+    - "#62bad4"
+    - "#929292"
+    - "#9fdee0"
+    - "#1f3e5a"
+    - "#90c8ae"
+    - "#92818d"
+    - "#c5c6a6"
+    - "#82c2ca"
+    - "#cee0a0"
+    - "#928fb4"
+    - "#9fc190"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Frame: master_stats._data_date
+    row: 15
+    col: 8
     width: 8
     height: 6
   - title: Spend by Bid Strategy
@@ -640,8 +719,6 @@
     fields:
     - master_stats.total_cost_usd
     - keyword.bidding_strategy_type
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
     - master_stats.total_cost_usd desc
     limit: 500
@@ -707,10 +784,125 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
+      Time Frame: master_stats._data_date
     row: 15
     col: 16
     width: 8
     height: 6
+  - title: Spend by Day of Week
+    name: Spend by Day of Week
+    model: google_adwords
+    explore: master_stats
+    type: looker_bar
+    fields:
+    - master_stats._data_day_of_week
+    - master_stats.total_cost_usd
+    fill_fields:
+    - master_stats._data_day_of_week
+    sorts:
+    - master_stats._data_day_of_week
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    series_types: {}
+    label_color: []
+    x_axis_label: ''
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: master_stats.total_cost_usd
+        name: Ad Stats Cost
+        axisId: master_stats.total_cost_usd
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 998
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 986
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 1011
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 1006
+    colors:
+    - 'palette: Looker Classic'
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Frame: master_stats._data_date
+    row: 21
+    col: 14
+    width: 10
+    height: 7
   - title: Spend by Hour of Day
     name: Spend by Hour of Day
     model: google_adwords
@@ -719,8 +911,6 @@
     fields:
     - master_stats.total_cost_usd
     - master_stats.hour_of_day
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
     - master_stats.hour_of_day
     limit: 500
@@ -831,203 +1021,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
+      Time Frame: master_stats._data_date
     row: 28
-    col: 14
-    width: 10
-    height: 7
-  - title: Spend by Device
-    name: Spend by Device
-    model: google_adwords
-    explore: master_stats
-    type: looker_bar
-    fields:
-    - master_stats.total_cost_usd
-    - master_stats.device_type
-    fill_fields:
-    - master_stats.device_type
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
-    sorts:
-    - master_stats.total_cost_usd desc
-    limit: 500
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    label_color: []
-    x_axis_label: Device
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.total_cost_usd
-        name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1007
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 995
-    colors:
-    - "#a9c574"
-    - "#62bad4"
-    - "#929292"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
-    series_colors: {}
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-    row: 15
-    col: 8
-    width: 8
-    height: 6
-  - title: Spend by Day of Week
-    name: Spend by Day of Week
-    model: google_adwords
-    explore: master_stats
-    type: looker_bar
-    fields:
-    - master_stats._data_day_of_week
-    - master_stats.total_cost_usd
-    fill_fields:
-    - master_stats._data_day_of_week
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
-    sorts:
-    - master_stats._data_day_of_week
-    limit: 500
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    enable_conditional_formatting: true
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    groupBars: true
-    labelSize: 10pt
-    showLegend: true
-    series_types: {}
-    label_color: []
-    x_axis_label: ''
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: master_stats.total_cost_usd
-        name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1114
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1102
-    conditional_formatting:
-    - type: high to low
-      value:
-      background_color:
-      font_color:
-      palette:
-        name: Red to Yellow to Green
-        colors:
-        - "#F36254"
-        - "#FCF758"
-        - "#4FBC89"
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1127
-      bold: false
-      italic: false
-      strikethrough: false
-      fields:
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1122
-    colors:
-    - 'palette: Looker Classic'
-    series_colors: {}
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-    row: 21
     col: 14
     width: 10
     height: 7
@@ -1044,8 +1039,6 @@
     - master_stats._data_day_of_week
     fill_fields:
     - master_stats._data_day_of_week
-    filters:
-      master_stats._data_date: 1 quarters ago for 1 quarters
     sorts:
     - master_stats._data_day_of_week 0
     - master_stats.hour_of_day
@@ -1118,9 +1111,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 921
+        __LINE_NUM: 1117
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 909
+      __LINE_NUM: 1105
     conditional_formatting:
     - type: high to low
       value:
@@ -1133,14 +1126,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 934
+        __LINE_NUM: 1130
       bold: false
       italic: false
       strikethrough: false
       fields:
       - master_stats.total_cost_usd
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 929
+      __LINE_NUM: 1125
     series_labels:
       master_stats.hour_of_day: Hour of Day
       master_stats.total_cost_usd: Spend
@@ -1148,6 +1141,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
+      Time Frame: master_stats._data_date
     row: 21
     col: 0
     width: 14
@@ -1190,6 +1184,16 @@
     model: google_adwords
     explore: master_stats
     field: ad_group.ad_group_name
+    listens_to_filters: []
+    allow_multiple_values: true
+    required: false
+  - name: Time Frame
+    title: Time Frame
+    type: field_filter
+    default_value: 1 quarters
+    model: google_adwords
+    explore: master_stats
+    field: master_stats._data_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false
