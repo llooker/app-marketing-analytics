@@ -12,7 +12,7 @@
       "name": "Search Ads",
       "pages": [
         {
-          "lookmlID": "google_adwords::campaign_metrics",
+          "lookmlID": "google_adwords::campaign_metrics_spend",
           "name": "Campaigns",
           "permalink": "campaigns",
           "type": "dashboard"
