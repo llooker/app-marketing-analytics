@@ -620,9 +620,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 621
+        __LINE_NUM: 619
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 609
+      __LINE_NUM: 607
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
@@ -686,9 +686,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 891
+        __LINE_NUM: 685
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 879
+      __LINE_NUM: 673
     colors:
     - "#a9c574"
     - "#62bad4"
@@ -764,9 +764,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 686
+        __LINE_NUM: 763
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 674
+      __LINE_NUM: 751
     colors:
     - "#929292"
     - "#a9c574"
@@ -870,9 +870,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 998
+        __LINE_NUM: 869
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 986
+      __LINE_NUM: 857
     conditional_formatting:
     - type: high to low
       value:
@@ -885,13 +885,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1011
+        __LINE_NUM: 882
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1006
+      __LINE_NUM: 877
     colors:
     - 'palette: Looker Classic'
     series_colors: {}
@@ -982,9 +982,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 791
+        __LINE_NUM: 981
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 779
+      __LINE_NUM: 969
     conditional_formatting:
     - type: high to low
       value:
@@ -997,13 +997,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 804
+        __LINE_NUM: 994
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 799
+      __LINE_NUM: 989
     colors:
     - "#a9c574"
     - "#62bad4"
@@ -1111,9 +1111,9 @@
         name: Ad Stats Cost
         axisId: master_stats.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1117
+        __LINE_NUM: 1110
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1105
+      __LINE_NUM: 1098
     conditional_formatting:
     - type: high to low
       value:
@@ -1126,14 +1126,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1130
+        __LINE_NUM: 1123
       bold: false
       italic: false
       strikethrough: false
       fields:
       - master_stats.total_cost_usd
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1125
+      __LINE_NUM: 1118
     series_labels:
       master_stats.hour_of_day: Hour of Day
       master_stats.total_cost_usd: Spend
@@ -1146,6 +1146,180 @@
     col: 0
     width: 14
     height: 14
+  - title: Top Ads
+    name: Top Ads
+    model: google_adwords
+    explore: master_stats
+    type: table
+    fields:
+    - ad.creative
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - master_stats.total_cost_usd
+    filters:
+      master_stats._data_date: 1 quarters
+    sorts:
+    - master_stats.total_cost_usd desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: true
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_fields:
+    - campaign.campaign_name
+    - ad_group.ad_group_name
+    row: 35
+    col: 0
+    width: 8
+    height: 7
+  - title: Top Landing Pages
+    name: Top Landing Pages
+    model: google_adwords
+    explore: master_stats
+    type: table
+    fields:
+    - ad.creative_final_urls
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - master_stats.total_cost_usd
+    filters:
+      master_stats._data_date: 1 quarters
+    sorts:
+    - master_stats.total_cost_usd desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: true
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    row: 35
+    col: 12
+    width: 12
+    height: 7
+  - title: Top Keywords
+    name: Top Keywords
+    model: google_adwords
+    explore: master_stats
+    type: table
+    fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - master_stats.total_cost_usd
+    - keyword.criteria
+    filters:
+      master_stats._data_date: 1 quarters
+    sorts:
+    - master_stats.total_cost_usd desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: true
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    row: 35
+    col: 8
+    width: 4
+    height: 7
   filters:
   - name: This Timeframe
     title: This Timeframe

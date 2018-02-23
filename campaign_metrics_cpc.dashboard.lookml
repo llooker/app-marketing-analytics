@@ -891,10 +891,10 @@
       - id: master_stats.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 1015
+        __LINE_NUM: 891
         axisId: master_stats.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 1003
+      __LINE_NUM: 879
     - label:
       maxValue:
       minValue:
@@ -911,9 +911,9 @@
         name: Cost per Click
         axisId: master_stats.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 1034
+        __LINE_NUM: 910
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 1022
+      __LINE_NUM: 898
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -926,7 +926,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 1041
+      __LINE_NUM: 921
     colors:
     - "#929292"
     - "#9fdee0"
@@ -1032,9 +1032,9 @@
         name: Ad Stats Cost
         axisId: master_stats.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 899
+        __LINE_NUM: 1031
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 887
+      __LINE_NUM: 1019
     conditional_formatting:
     - type: high to low
       value:
@@ -1047,13 +1047,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 912
+        __LINE_NUM: 1044
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 907
+      __LINE_NUM: 1039
     colors:
     - "#a9c574"
     - "#62bad4"
@@ -1074,6 +1074,189 @@
     row: 28
     col: 14
     width: 10
+    height: 7
+  - title: Top Keywords
+    name: Top Keywords
+    model: google_adwords
+    explore: master_stats
+    type: table
+    fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - master_stats.total_cost_usd
+    - keyword.criteria
+    - master_stats.average_cost_per_click
+    filters:
+      master_stats._data_date: 1 quarters
+      master_stats.conversions: ">0"
+    sorts:
+    - master_stats.average_cost_per_click
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: true
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_fields:
+    - master_stats.total_cost_usd
+    - campaign.campaign_name
+    - ad_group.ad_group_name
+    row: 35
+    col: 8
+    width: 6
+    height: 7
+  - title: Top Landing Pages
+    name: Top Landing Pages
+    model: google_adwords
+    explore: master_stats
+    type: table
+    fields:
+    - ad.creative_final_urls
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - master_stats.average_cost_per_click
+    - master_stats.total_cost_usd
+    filters:
+      master_stats._data_date: 1 quarters
+      master_stats.clicks: ">0"
+    sorts:
+    - master_stats.average_cost_per_click
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: true
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_fields:
+    - master_stats.total_cost_usd
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    row: 35
+    col: 14
+    width: 10
+    height: 7
+  - title: Top Ads
+    name: Top Ads
+    model: google_adwords
+    explore: master_stats
+    type: table
+    fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - master_stats.total_cost_usd
+    - master_stats.average_cost_per_click
+    - ad.creative
+    filters:
+      master_stats._data_date: 1 quarters
+      master_stats.clicks: ">0"
+    sorts:
+    - master_stats.average_cost_per_click
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: true
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_fields:
+    - master_stats.total_cost_usd
+    - campaign.campaign_name
+    - ad_group.ad_group_name
+    row: 35
+    col: 0
+    width: 8
     height: 7
   filters:
   - name: This Timeframe
