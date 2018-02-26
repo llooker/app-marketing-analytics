@@ -99,6 +99,10 @@ view: kpis_this_period {
       label: "By Campaign"
       url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_conversions&f[master_stats._data_date]=this quarter"
     }
+    link: {
+      label: "Conversions Dashboard"
+      url: "/dashboards/google_adwords::campaign_metrics_conversions"
+    }
   }
 
   measure: total_cost_this_period {
@@ -108,6 +112,10 @@ view: kpis_this_period {
     link: {
       label: "By Campaign"
       url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_cost_usd&f[master_stats._data_date]=this quarter"
+    }
+    link: {
+      label: "Spend Dashboard"
+      url: "/dashboards/google_adwords::campaign_metrics_spend"
     }
   }
 
@@ -143,6 +151,10 @@ view: kpis_this_period {
       label: "By Campaign"
       url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_conversion_rate&f[master_stats._data_date]=this quarter"
     }
+    link: {
+      label: "Conversion Rate Dashboard"
+      url: "/dashboards/google_adwords::campaign_metrics_conversion_rate"
+    }
   }
 
   measure: avg_interaction_rate_this_period {
@@ -162,6 +174,10 @@ view: kpis_this_period {
     link: {
       label: "By Keyword"
       url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_click_rate&f[master_stats._data_date]=this quarter"
+    }
+    link: {
+      label: "Click Rate Dashboard"
+      url: "/dashboards/google_adwords::campaign_metrics_click_through_rate"
     }
   }
 
@@ -183,6 +199,10 @@ view: kpis_this_period {
       label: "By Keyword"
       url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_click_rate&f[master_stats._data_date]=this quarter"
     }
+    link: {
+      label: "Cost Per Click Dashboard"
+      url: "/dashboards/google_adwords::campaign_metrics_cost_per_click"
+    }
   }
 
   measure: cost_per_conversion_this_period {
@@ -192,6 +212,10 @@ view: kpis_this_period {
     link: {
       label: "By Campaign"
       url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_cost_per_conversion&f[master_stats._data_date]=this quarter"
+    }
+    link: {
+      label: "Cost Per Conversion Dashboard"
+      url: "/dashboards/google_adwords::campaign_metrics_cost_per_conversion"
     }
   }
 }
