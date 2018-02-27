@@ -101,7 +101,7 @@ view: kpis_this_period {
     }
     link: {
       label: "Conversions Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_conversions"
+      url: "/dashboards/google_adwords::campaign_metrics_conversions?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -115,7 +115,7 @@ view: kpis_this_period {
     }
     link: {
       label: "Spend Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_spend"
+      url: "/dashboards/google_adwords::campaign_metrics_spend?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -153,7 +153,7 @@ view: kpis_this_period {
     }
     link: {
       label: "Conversion Rate Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_conversion_rate"
+      url: "/dashboards/google_adwords::campaign_metrics_conversion_rate?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -177,7 +177,7 @@ view: kpis_this_period {
     }
     link: {
       label: "Click Rate Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_click_through_rate"
+      url: "/dashboards/google_adwords::campaign_metrics_click_through_rate?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -201,7 +201,7 @@ view: kpis_this_period {
     }
     link: {
       label: "Cost Per Click Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_cost_per_click"
+      url: "/dashboards/google_adwords::campaign_metrics_cost_per_click?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -215,7 +215,7 @@ view: kpis_this_period {
     }
     link: {
       label: "Cost Per Conversion Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_cost_per_conversion"
+      url: "/dashboards/google_adwords::campaign_metrics_cost_per_conversion?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 }
