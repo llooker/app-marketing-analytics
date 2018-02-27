@@ -20,7 +20,7 @@
         },
         {
           "artwork": "",
-          "description": "See what has recently changed recently and what the impact of those changes have been. Are you consistently making changes to drive your marketing toward your goals?",
+          "description": "See what has changed recently and what the impact of those changes has been. Is your team consistently making changes to optimize your marketing spend? Find out.",
           "descriptionSecondary": "",
           "name": "Activity",
           "permalink": "activity",
@@ -66,6 +66,19 @@
               "name": "Under Performing",
               "permalink": "under-performing",
               "reports": [
+                {
+                  "description": "Quickly find Ad Groups that need to be paused or have their keywords or creative adjusted.",
+                  "name": "Ad Groups",
+                  "permalink": "underperforming-ad-groups",
+                  "variations": [
+                    {
+                      "description": "We're working on it.",
+                      "exploreParams": "",
+                      "name": "Coming Soon",
+                      "permalink": "coming-soon"
+                    }
+                  ]
+                },
                 {
                   "description": "Quickly find the ads that need to be paused, have their bid lowered.",
                   "name": "Ads",
@@ -115,19 +128,6 @@
                       "permalink": "worst-kw-by-spend"
                     }
                   ]
-                },
-                {
-                  "description": "Quickly find Ad Groups that need to be paused or have their keywords or creative adjusted.",
-                  "name": "Ad Groups",
-                  "permalink": "underperforming-ad-groups",
-                  "variations": [
-                    {
-                      "description": "We're working on it.",
-                      "exploreParams": "",
-                      "name": "Coming Soon",
-                      "permalink": "coming-soon"
-                    }
-                  ]
                 }
               ]
             },
@@ -161,11 +161,30 @@
                       "permalink": "ad-alerts-coming-soon"
                     }
                   ]
+                },
+                {
+                  "description": "Ads and Keywords that are not producing any conversions.",
+                  "name": "Dead Ads & Keywords",
+                  "permalink": "dead-ads-keywords",
+                  "variations": [
+                    {
+                      "description": "Ads that have been active for over a month but have not produced any conversions.",
+                      "exploreParams": "",
+                      "name": "Dead Ads",
+                      "permalink": "dead-ads"
+                    },
+                    {
+                      "description": "Keywords that have been active for over a month but have not produced any conversions.",
+                      "exploreParams": "",
+                      "name": "Dead Keywords",
+                      "permalink": "dead-keywords"
+                    }
+                  ]
                 }
               ]
             },
             {
-              "description": "Ad Groups, Keywords, and Ads that have had big performance changes recently. Use these to spot positive and negative trends and act on them.",
+              "description": "See Ad Groups, Keywords, and Ads that have had big performance changes recently. Use these to spot positive and negative trends and act on them.",
               "name": "Big Movers",
               "permalink": "performance-changes",
               "reports": [
