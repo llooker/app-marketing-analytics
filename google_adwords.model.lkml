@@ -55,6 +55,24 @@ explore: master_stats {
       ${master_stats._data_raw} = ${customer._data_raw} ;;
     relationship: many_to_one
   }
+  join: account_avg_cpa {
+    view_label: "Account Average CPA"
+    sql_on: ${master_stats.external_customer_id} = ${account_avg_cpa.external_customer_id} ;;
+    relationship: one_to_one
+  }
+  join: campaign_avg_cpa {
+    view_label: "Campaign Average CPA"
+    sql_on: ${master_stats.external_customer_id} = ${campaign_avg_cpa.external_customer_id} AND
+      ${master_stats.campaign_id} = ${campaign_avg_cpa.campaign_id};;
+    relationship: one_to_one
+  }
+  join: ad_group_avg_cpa {
+    view_label: "Ad Group Average CPA"
+    sql_on: ${master_stats.external_customer_id} = ${ad_group_avg_cpa.external_customer_id} AND
+      ${master_stats.campaign_id} = ${ad_group_avg_cpa.campaign_id} AND
+      ${master_stats.ad_group_id} = ${ad_group_avg_cpa.ad_group_id};;
+    relationship: one_to_one
+  }
 }
 
 
