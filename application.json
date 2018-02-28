@@ -109,33 +109,6 @@
                       "permalink": "worst-kw-by-conversion-rate"
                     }
                   ]
-                },
-                {
-                  "description": "Quickly find Ad Groups that need to be paused or have their keywords or creative adjusted.",
-                  "name": "Under Performing Ad Groups",
-                  "permalink": "underperforming-ad-groups",
-                  "variations": [
-                    {
-                      "description": "We're working on it.",
-                      "exploreParams": "",
-                      "name": "Coming Soon",
-                      "permalink": "coming-soon"
-                    }
-                  ]
-                },
-                {
-                  "description": "Quickly find Ad Groups that need to be paused or have their keywords or creative adjusted.",
-                  "name": "Ad Groups",
-                  "permalink": "underperforming-ad-groups",
-                  "singleValueName": "ad_groups",
-                  "variations": [
-                    {
-                      "description": "We're working on it.",
-                      "exploreParams": "",
-                      "name": "Coming Soon",
-                      "permalink": "coming-soon"
-                    }
-                  ]
                 }
               ]
             },
