@@ -1,5 +1,6 @@
 {
   "accentColor": "#FF1493",
+  "availableExplores": ["google_adwords/master_stats"],
   "home": {
     "lookmlID": "google_adwords::adwords_overview"
   },
