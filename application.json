@@ -1,6 +1,8 @@
 {
   "accentColor": "#FF1493",
-  "availableExplores": ["google_adwords/master_stats"],
+  "availableExplores": [
+    "google_adwords/master_stats"
+  ],
   "home": {
     "lookmlID": "google_adwords::adwords_overview"
   },
@@ -34,6 +36,7 @@
                   "description": "We're working on it.",
                   "name": "Coming Soon",
                   "permalink": "campaing-change-coming-soon",
+                  "singleValueName": "",
                   "variations": []
                 }
               ]
@@ -47,6 +50,7 @@
                   "description": "We're working on it.",
                   "name": "Coming Soon",
                   "permalink": "keyword-ad-change-coming-soon",
+                  "singleValueName": "",
                   "variations": []
                 }
               ]
@@ -70,6 +74,7 @@
                   "description": "Quickly find the ads that need to be paused, have their bid lowered.",
                   "name": "Under Performing Ads",
                   "permalink": "underperforming-ads",
+                  "singleValueName": "ads",
                   "variations": [
                     {
                       "description": "",
@@ -89,6 +94,7 @@
                   "description": "Quickly find the keywords that need to be paused or have their bid lowered.",
                   "name": "Under Performing Keywords",
                   "permalink": "underperforming-keywords",
+                  "singleValueName": "keywords",
                   "variations": [
                     {
                       "description": "",
@@ -116,6 +122,20 @@
                       "permalink": "coming-soon"
                     }
                   ]
+                },
+                {
+                  "description": "Quickly find Ad Groups that need to be paused or have their keywords or creative adjusted.",
+                  "name": "Ad Groups",
+                  "permalink": "underperforming-ad-groups",
+                  "singleValueName": "ad_groups",
+                  "variations": [
+                    {
+                      "description": "We're working on it.",
+                      "exploreParams": "",
+                      "name": "Coming Soon",
+                      "permalink": "coming-soon"
+                    }
+                  ]
                 }
               ]
             },
@@ -128,6 +148,7 @@
                   "description": "Pause or lower the bid of these keywords. They are performing much lower than your other keywords.",
                   "name": "Keyword Alerts",
                   "permalink": "keyword-alerts",
+                  "singleValueName": "",
                   "variations": [
                     {
                       "description": "No Description",
@@ -141,6 +162,7 @@
                   "description": "Pause or lower the bid of these ads. They are performing much lower than your other ads.",
                   "name": "Ad Alerts",
                   "permalink": "ad-alerts",
+                  "singleValueName": "",
                   "variations": [
                     {
                       "description": "We're working on it",
@@ -180,6 +202,7 @@
                   "description": "Ad Groups that have had recent big performance changes.",
                   "name": "Ad Groups",
                   "permalink": "ad-group-movers",
+                  "singleValueName": "",
                   "variations": [
                     {
                       "description": "We're working on it!",
@@ -193,6 +216,7 @@
                   "description": "Ads that have had recent big performance changes.",
                   "name": "Ads",
                   "permalink": "ad-movers",
+                  "singleValueName": "",
                   "variations": [
                     {
                       "description": "We're working on it!",
@@ -206,6 +230,7 @@
                   "description": "Keywords that have had recent big performance changes.",
                   "name": "Keywords",
                   "permalink": "keyword-movers",
+                  "singleValueName": "",
                   "variations": [
                     {
                       "description": "We're working on it!",
@@ -239,5 +264,10 @@
       "pages": [],
       "permalink": "display"
     }
-  ]
+  ],
+  "singleValues": {
+    "model": "google_adwords",
+    "params": "&fields=report_single_values.name,report_single_values.nowValue,report_single_values.pastValue",
+    "view": "report_single_values"
+  }
 }

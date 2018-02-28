@@ -279,3 +279,7 @@ explore: kpis_this_period {
     relationship: one_to_one
   }
 }
+
+explore: report_single_values {
+  label: "Report Single Values"
+}
