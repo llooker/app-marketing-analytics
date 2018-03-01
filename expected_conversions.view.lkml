@@ -283,6 +283,15 @@ view: ad_group_avg_cpa {
     value_format_name: decimal_2
   }
 
+    measure: expected_conversions_for_keyword {
+      label: "Expected Conversions"
+      view_label: "Keyword"
+      description: "Cost divided by average CPA of the Ad Group"
+      type: number
+      sql: ${master_stats.total_cost_usd} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
+      value_format_name: decimal_2
+    }
+
     measure: cpa_compared_to_average_for_ad_group_keyword {
       description: "CPA compared to Average CPA of the ad group"
       label: "% of Ad Group CPA"
