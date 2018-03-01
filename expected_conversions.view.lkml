@@ -165,7 +165,7 @@ view: campaign_avg_cpa {
     description: "CPA compared to Average CPA of the campaign"
     view_label: "Ad Groups"
     type: number
-    sql: (${master_stats.average_cost_per_conversion} - ${average_cpa_of_campaign}) / NULLIF(${average_cpa_of_campaign},0);;
+    sql: ${master_stats.average_cost_per_conversion} / NULLIF(${average_cpa_of_campaign},0);;
     value_format_name: percent_0
   }
 
@@ -174,7 +174,7 @@ view: campaign_avg_cpa {
     label: "% of Campaign CTR"
     view_label: "Ad Groups"
     type: number
-    sql: (${master_stats.average_click_rate} - ${average_ctr_of_campaign}) / NULLIF(${average_ctr_of_campaign},0);;
+    sql: ${master_stats.average_click_rate} / NULLIF(${average_ctr_of_campaign},0);;
     value_format_name: percent_0
   }
 
@@ -251,10 +251,9 @@ view: ad_group_avg_cpa {
     description: "Average CTR of the ad group"
     label: "Average Click Through Rate of the Ad Group"
     view_label: "Ads"
-    hidden: yes
     type: number
     sql: ${total_clicks} / NULLIF(${total_impressions},0);;
-    value_format_name: usd
+    value_format_name: percent_2
   }
 
   measure: cpa_compared_to_average_for_ad_group {
@@ -262,7 +261,7 @@ view: ad_group_avg_cpa {
     label: "% of Ad Group CPA"
     view_label: "Ads"
     type: number
-    sql: (${master_stats.average_cost_per_conversion} - ${average_cpa_of_ad_group}) / NULLIF(${average_cpa_of_ad_group},0);;
+    sql: ${master_stats.average_cost_per_conversion} / NULLIF(${average_cpa_of_ad_group},0);;
     value_format_name: percent_0
   }
 
@@ -271,7 +270,7 @@ view: ad_group_avg_cpa {
     label: "% of Ad Group CTR"
     view_label: "Ads"
     type: number
-    sql: (${master_stats.average_click_rate} - ${average_ctr_of_ad_group}) / NULLIF(${average_ctr_of_ad_group},0);;
+    sql: ${master_stats.average_click_rate} / NULLIF(${average_ctr_of_ad_group},0);;
     value_format_name: percent_0
   }
 
@@ -289,7 +288,7 @@ view: ad_group_avg_cpa {
       label: "% of Ad Group CPA"
       view_label: "Keyword"
       type: number
-      sql: (${master_stats.average_cost_per_conversion} - ${average_cpa_of_ad_group}) / NULLIF(${average_cpa_of_ad_group},0);;
+      sql: ${master_stats.average_cost_per_conversion} / NULLIF(${average_cpa_of_ad_group},0);;
       value_format_name: percent_0
     }
 
@@ -298,7 +297,7 @@ view: ad_group_avg_cpa {
       label: "% of Ad Group Conversion Rate"
       view_label: "Keyword"
       type: number
-      sql: (${master_stats.average_conversion_rate} - ${average_conversion_rate}) / NULLIF(${average_conversion_rate},0);;
+      sql: ${master_stats.average_conversion_rate} / NULLIF(${average_conversion_rate},0);;
       value_format_name: percent_0
     }
 }
