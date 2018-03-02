@@ -281,7 +281,7 @@
   ],
   "singleValuesSourceView": {
     "model": "google_adwords",
-    "params": "&fields=report_single_values.key,report_single_values.nowValue,report_single_values.pastValue",
+    "params": "&fields=report_single_values.key,report_single_values.currentValue,report_single_values.previousValue",
     "view": "report_single_values"
   }
 }
