@@ -90,6 +90,7 @@ view: account_avg_cpa {
     label: "Average CPA of the account"
     description: "Average CPA of the whole account for all time"
     view_label: "Ad Stats"
+    hidden: yes
     type: number
     sql: ${total_cost_usd} / NULLIF(${total_conversions},0);;
     value_format_name: usd
