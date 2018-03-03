@@ -1,13 +1,37 @@
 connection: "bigquery-connectors-adwords"
 
 # include all the views
-include: "*.view"
-
-# include all the explores
-include: "*.explore"
+include: "account_quarter_stats.view"
+include: "ad.view"
+include: "ad_criterion_base.view"
+include: "ad_group.view"
+include: "ad_group_quarter_stats.view"
+include: "audience.view"
+include: "base.view"
+include: "base_quarter_stats.view"
+include: "campaign.view"
+include: "campaign_budget_stats.view"
+include: "campaign_quarter_stats.view"
+include: "customer.view"
+include: "dated_table.view"
+include: "expected_conversions.view"
+include: "keyword.view"
+include: "kpis_last_period.view"
+include: "kpis_this_period.view"
+include: "master_stats.view"
+include: "report_single_values.view"
+include: "stats.view"
 
 # include all the dashboards
-include: "*.dashboard"
+include: "ad_group_performance.dashboard"
+include: "adwords_overview.dashboard"
+include: "campaign_metrics_conversion_rate.dashboard"
+include: "campaign_metrics_conversions.dashboard"
+include: "campaign_metrics_cpa.dashboard"
+include: "campaign_metrics_cpc.dashboard"
+include: "campaign_metrics_ctr.dashboard"
+include: "campaign_metrics_spend.dashboard"
+include: "choose_campaign.dashboard"
 
 datagroup: etl_datagroup {
   sql_trigger: SELECT MAX(CONCAT(CAST(_DATA_DATE as STRING), format(" %02d", HourOfDay))) FROM adwords_v201609.HourlyAccountStats_6747157124 ;;

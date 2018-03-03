@@ -1,4 +1,4 @@
-include: "master_basic_stats.view.lkml"
+include: "master_stats.view"
 
 view: base_expected_conversions {
 

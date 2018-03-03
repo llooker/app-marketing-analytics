@@ -282,10 +282,17 @@
     },
     {
       "description": "",
-      "enabled": false,
+      "enabled": true,
       "icon": "social",
       "name": "Social",
-      "pages": [],
+      "pages": [
+        {
+          "lookmlID": "facebook_ads::social_overview",
+          "name": "Facebook",
+          "permalink": "social-overview",
+          "type": "dashboard"
+        }
+      ],
       "permalink": "social"
     },
     {
