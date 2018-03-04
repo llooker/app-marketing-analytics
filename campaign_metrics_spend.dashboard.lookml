@@ -370,17 +370,17 @@
     explore: master_stats
     type: looker_area
     fields:
-    - master_stats._data_day_of_quarter
-    - master_stats._data_quarter
+    - master_stats.date_day_of_quarter
+    - master_stats.date_quarter
     - master_stats.cumulative_spend
     pivots:
-    - master_stats._data_quarter
+    - master_stats.date_quarter
     filters:
-      master_stats._data_quarter: 2 quarters
-      master_stats._data_date: 2 quarters
+      master_stats.date_quarter: 2 quarters
+      master_stats.date_date: 2 quarters
     sorts:
-    - master_stats._data_quarter desc
-    - master_stats._data_day_of_quarter
+    - master_stats.date_quarter desc
+    - master_stats.date_day_of_quarter
     limit: 500
     column_limit: 50
     stacking: ''
@@ -626,7 +626,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats._data_date
+      Time Frame: master_stats.date_date
     row: 15
     col: 0
     width: 8
@@ -706,7 +706,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats._data_date
+      Time Frame: master_stats.date_date
     row: 15
     col: 8
     width: 8
@@ -784,7 +784,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats._data_date
+      Time Frame: master_stats.date_date
     row: 15
     col: 16
     width: 8
@@ -797,13 +797,13 @@
     fields:
     - master_stats.total_cost_usd
     - master_stats.hour_of_day
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     pivots:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     fill_fields:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     sorts:
-    - master_stats._data_day_of_week 0
+    - master_stats.date_day_of_week 0
     - master_stats.hour_of_day
     limit: 500
     show_view_names: true
@@ -900,11 +900,11 @@
     series_labels:
       master_stats.hour_of_day: Hour of Day
       master_stats.total_cost_usd: Spend
-      master_stats._data_day_of_week: Day of Week
+      master_stats.date_day_of_week: Day of Week
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats._data_date
+      Time Frame: master_stats.date_date
     row: 21
     col: 0
     width: 10
@@ -920,7 +920,7 @@
     - campaign.campaign_name
     - master_stats.total_cost_usd
     filters:
-      master_stats._data_date: 1 quarters
+      master_stats.date_date: 1 quarters
     sorts:
     - master_stats.total_cost_usd desc
     limit: 500
@@ -978,7 +978,7 @@
     - campaign.campaign_name
     - master_stats.total_cost_usd
     filters:
-      master_stats._data_date: 1 quarters
+      master_stats.date_date: 1 quarters
     sorts:
     - master_stats.total_cost_usd desc
     limit: 500
@@ -1036,7 +1036,7 @@
     - master_stats.total_cost_usd
     - keyword.criteria
     filters:
-      master_stats._data_date: 1 quarters
+      master_stats.date_date: 1 quarters
     sorts:
     - master_stats.total_cost_usd desc
     limit: 500
@@ -1091,17 +1091,17 @@
     fields:
     - campaign_budget_stats.percent_used_budget_tier
     - campaign_budget_stats.total_cost_usd
-    - campaign_budget_stats._data_week
+    - campaign_budget_stats.date_week
     pivots:
     - campaign_budget_stats.percent_used_budget_tier
     fill_fields:
-    - campaign_budget_stats._data_week
+    - campaign_budget_stats.date_week
     filters:
       campaign.campaign_name: ''
-      campaign_budget_stats._data_date: 2 quarters
+      campaign_budget_stats.date_date: 2 quarters
     sorts:
     - campaign_budget_stats.percent_used_budget_tier
-    - campaign_budget_stats._data_week desc
+    - campaign_budget_stats.date_week desc
     limit: 500
     column_limit: 50
     label: Campaign Budget Utilization
@@ -1317,7 +1317,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats._data_date
+      Time Frame: master_stats.date_date
     row: 21
     col: 10
     width: 6
@@ -1328,12 +1328,12 @@
     explore: master_stats
     type: looker_column
     fields:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     - master_stats.total_cost_usd
     fill_fields:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     sorts:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -1431,7 +1431,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats._data_date
+      Time Frame: master_stats.date_date
     row: 21
     col: 16
     width: 8
@@ -1483,7 +1483,7 @@
     default_value: 1 quarters
     model: google_adwords
     explore: master_stats
-    field: master_stats._data_date
+    field: master_stats.date_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

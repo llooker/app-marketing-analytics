@@ -74,8 +74,8 @@ view: account_avg_cpa {
       column: impressions { field: master_stats.total_impressions }
       column: interactions { field: master_stats.total_interactions }
     bind_filters: {
-      to_field: master_stats._data_date
-      from_field: master_stats._data_date
+      to_field: master_stats.date_date
+      from_field: master_stats.date_date
     }
   }
   }
@@ -120,8 +120,8 @@ view: campaign_avg_cpa {
       column: impressions { field: master_stats.total_impressions }
       column: interactions { field: master_stats.total_interactions }
       bind_filters: {
-        to_field: master_stats._data_date
-        from_field: master_stats._data_date
+        to_field: master_stats.date_date
+        from_field: master_stats.date_date
       }
     }
   }
@@ -204,8 +204,8 @@ view: ad_group_avg_cpa {
       column: impressions { field: master_stats.total_impressions }
       column: interactions { field: master_stats.total_interactions }
     bind_filters: {
-      to_field: master_stats._data_date
-      from_field: master_stats._data_date
+      to_field: master_stats.date_date
+      from_field: master_stats.date_date
     }
   }}
 

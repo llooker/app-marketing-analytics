@@ -371,11 +371,11 @@
     explore: master_stats
     type: looker_line
     fields:
-    - master_stats._data_week
+    - master_stats.date_week
     - master_stats.average_cost_per_conversion
     - master_stats.average_conversion_rate
     sorts:
-    - master_stats._data_week desc
+    - master_stats.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -486,7 +486,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats._data_date
+      Time Range: master_stats.date_date
     row: 4
     col: 0
     width: 24
@@ -552,7 +552,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats._data_date
+      Time Range: master_stats.date_date
     row: 15
     col: 0
     width: 8
@@ -632,7 +632,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats._data_date
+      Time Range: master_stats.date_date
     row: 15
     col: 8
     width: 8
@@ -710,7 +710,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats._data_date
+      Time Range: master_stats.date_date
     row: 15
     col: 16
     width: 8
@@ -722,14 +722,14 @@
     type: table
     fields:
     - master_stats.hour_of_day
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     - master_stats.average_conversion_rate
     pivots:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     fill_fields:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     sorts:
-    - master_stats._data_day_of_week 0
+    - master_stats.date_day_of_week 0
     - master_stats.hour_of_day
     limit: 500
     show_view_names: true
@@ -826,11 +826,11 @@
     series_labels:
       master_stats.hour_of_day: Hour of Day
       master_stats.total_conversions: Conversions
-      master_stats._data_day_of_week: Day of Week
+      master_stats.date_day_of_week: Day of Week
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats._data_date
+      Time Range: master_stats.date_date
     row: 21
     col: 0
     width: 14
@@ -841,12 +841,12 @@
     explore: master_stats
     type: looker_bar
     fields:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     - master_stats.average_conversion_rate
     fill_fields:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     sorts:
-    - master_stats._data_day_of_week
+    - master_stats.date_day_of_week
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -944,7 +944,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats._data_date
+      Time Range: master_stats.date_date
     row: 21
     col: 14
     width: 10
@@ -1067,7 +1067,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats._data_date
+      Time Range: master_stats.date_date
     row: 28
     col: 14
     width: 10
@@ -1084,7 +1084,7 @@
     - ad.creative
     - master_stats.average_conversion_rate
     filters:
-      master_stats._data_date: 1 quarters
+      master_stats.date_date: 1 quarters
     sorts:
     - master_stats.average_conversion_rate desc
     limit: 500
@@ -1144,7 +1144,7 @@
     - keyword.criteria
     - master_stats.average_conversion_rate
     filters:
-      master_stats._data_date: 1 quarters
+      master_stats.date_date: 1 quarters
       master_stats.conversions: ">0"
     sorts:
     - master_stats.average_conversion_rate desc
@@ -1205,7 +1205,7 @@
     - master_stats.total_cost_usd
     - master_stats.average_conversion_rate
     filters:
-      master_stats._data_date: 1 quarters
+      master_stats.date_date: 1 quarters
       master_stats.clicks: ">0"
     sorts:
     - master_stats.average_conversion_rate desc
@@ -1301,7 +1301,7 @@
     default_value: 1 quarters
     model: google_adwords
     explore: master_stats
-    field: master_stats._data_date
+    field: master_stats.date_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

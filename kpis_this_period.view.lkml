@@ -11,7 +11,7 @@ view: kpis_this_period {
       column: total_cost_usd_this_period {field: master_stats.total_cost_usd}
       column: total_cost_any_currency_this_period {field: master_stats.total_cost}
       bind_filters: {
-        to_field: master_stats._data_date
+        to_field: master_stats.date_date
         from_field: kpis_this_period.this_timeframe
       }
     }
@@ -96,7 +96,7 @@ view: kpis_this_period {
     value_format_name: decimal_0
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_conversions&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_conversions&f[master_stats.date_date]=this quarter"
     }
     link: {
       label: "Conversions Dashboard"
@@ -110,7 +110,7 @@ view: kpis_this_period {
     value_format_name: usd_0
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_cost_usd&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_cost_usd&f[master_stats.date_date]=this quarter"
     }
     link: {
       label: "Spend Dashboard"
@@ -148,7 +148,7 @@ view: kpis_this_period {
     value_format_name: percent_2
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_conversion_rate&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_conversion_rate&f[master_stats.date_date]=this quarter"
     }
     link: {
       label: "Conversion Rate Dashboard"
@@ -162,7 +162,7 @@ view: kpis_this_period {
     value_format_name: percent_2
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats.date_date]=this quarter"
     }
   }
 
@@ -172,7 +172,7 @@ view: kpis_this_period {
     value_format_name: percent_2
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_click_rate&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_click_rate&f[master_stats.date_date]=this quarter"
     }
     link: {
       label: "Click Rate Dashboard"
@@ -186,7 +186,7 @@ view: kpis_this_period {
     value_format_name: usd
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats.date_date]=this quarter"
     }
   }
 
@@ -196,7 +196,7 @@ view: kpis_this_period {
     value_format_name: usd
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_click_rate&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_click_rate&f[master_stats.date_date]=this quarter"
     }
     link: {
       label: "Cost Per Click Dashboard"
@@ -210,7 +210,7 @@ view: kpis_this_period {
     value_format_name: usd
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_cost_per_conversion&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_cost_per_conversion&f[master_stats.date_date]=this quarter"
     }
     link: {
       label: "Cost Per Conversion Dashboard"

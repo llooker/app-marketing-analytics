@@ -1,12 +1,12 @@
 include: "stats.view.lkml"
 
-view: ad_group_quarter_stats {
+view: ad_group_month_stats {
   extends: [stats]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: ad_group_date_stats {
-      column: date_quarter {}
+      column: date_month{}
       column: external_customer_id {}
       column: campaign_id {}
       column: ad_group_id {}
@@ -20,12 +20,12 @@ view: ad_group_quarter_stats {
       column: interactions { field: ad_group_date_stats.total_interactions }
     }
   }
-  dimension: date_quarter {
+  dimension: date_month {
     type: date
   }
-  dimension: date_last_quarter {
+  dimension: date_last_month {
     type: date
-    sql: DATE_ADD(${date_quarter}), INTERVAL -1 QUARTER) ;;
+    sql: DATE_ADD(${date_month}), INTERVAL -1 MONTH) ;;
   }
   dimension: external_customer_id {
     type: number

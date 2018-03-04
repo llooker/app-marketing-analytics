@@ -1,28 +1,9 @@
 view: base_quarter_stats {
-  dimension_group: _data {
+  dimension_group: date {
     type: time
     timeframes: ["quarter", "raw"]
     convert_tz: no
     sql: CAST(CONCAT(${TABLE}._data_quarter, '-01') AS TIMESTAMP) ;;
-  }
-  dimension: clicks {
-    type: number
-  }
-  dimension: conversions {
-    type: number
-  }
-  dimension: cost {
-    type: number
-  }
-  dimension: impressions {
-    type: number
-  }
-  dimension: interactions {
-    type: number
-  }
-  dimension: _data_last_quarter {
-    type: date_quarter
-    sql: DATE_ADD(CAST(CONCAT(${_data_quarter}, '-01') AS DATE), INTERVAL -1 QUARTER) ;;
   }
   measure: total_impressions {
     drill_fields: [total_impressions]
@@ -55,14 +36,3 @@ view: base_quarter_stats {
     drill_fields: [average_cost_per_conversion]
   }
 }
-
-
-
-
-
-
-
-
-
-
-

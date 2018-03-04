@@ -59,7 +59,7 @@
       master_stats.total_cost_usd: Spend
     listen:
       Campaign: campaign.campaign_name
-      Date: master_stats._data_date
+      Date: master_stats.date_date
     row: 0
     col: 0
     width: 24
@@ -161,7 +161,7 @@
     x_axis_label: Campaigns
     listen:
       Campaign: campaign.campaign_name
-      Date: master_stats._data_date
+      Date: master_stats.date_date
     row: 7
     col: 0
     width: 12
@@ -266,7 +266,7 @@
     x_axis_label: Campaigns
     listen:
       Campaign: campaign.campaign_name
-      Date: master_stats._data_date
+      Date: master_stats.date_date
     row: 7
     col: 12
     width: 12
@@ -288,7 +288,7 @@
     default_value: 1 quarters
     model: google_adwords
     explore: master_stats
-    field: campaign._data_date
+    field: campaign.date_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

@@ -240,12 +240,12 @@
     explore: master_stats
     type: looker_area
     fields:
-    - master_stats._data_week
+    - master_stats.date_week
     - master_stats.total_conversions
     - master_stats.average_cost_per_conversion
     - master_stats.average_conversion_rate
     sorts:
-    - master_stats._data_week desc
+    - master_stats.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -385,17 +385,17 @@
     explore: master_stats
     type: looker_area
     fields:
-    - master_stats._data_day_of_quarter
-    - master_stats._data_quarter
+    - master_stats.date_day_of_quarter
+    - master_stats.date_quarter
     - master_stats.cumulative_spend
     pivots:
-    - master_stats._data_quarter
+    - master_stats.date_quarter
     filters:
-      master_stats._data_quarter: 2 quarters
-      master_stats._data_date: 2 quarters
+      master_stats.date_quarter: 2 quarters
+      master_stats.date_date: 2 quarters
     sorts:
-    - master_stats._data_quarter desc
-    - master_stats._data_day_of_quarter
+    - master_stats.date_quarter desc
+    - master_stats.date_day_of_quarter
     limit: 500
     column_limit: 50
     stacking: ''
@@ -759,7 +759,7 @@
     - account_quarter_stats.total_clicks
     - account_quarter_stats.total_conversions
     filters:
-      account_quarter_stats._data_quarter: 1 quarters
+      account_quarter_stats.date_quarter: 1 quarters
     limit: 500
     column_limit: 50
     stacking: ''
@@ -838,11 +838,11 @@
     explore: master_stats
     type: looker_line
     fields:
-    - master_stats._data_week
+    - master_stats.date_week
     - master_stats.average_cost_per_click
     - master_stats.average_click_rate
     sorts:
-    - master_stats._data_week desc
+    - master_stats.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''

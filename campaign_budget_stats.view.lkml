@@ -4,7 +4,7 @@ view: campaign_budget_stats {
     explore_source: master_stats {
       column: campaign_id {}
       column: budget_id { field: campaign.budget_id }
-      column: _data { field: master_stats._data_raw}
+      column: date { field: master_stats.date_raw}
       column: external_customer_id {}
       column: amount { field: campaign.total_amount }
       column: cost { field: master_stats.total_cost }
@@ -16,7 +16,7 @@ view: campaign_budget_stats {
   dimension: external_customer_id {
     type: number
   }
-  dimension_group: _data {
+  dimension_group: date {
     type: time
     timeframes: [
       raw,
@@ -82,7 +82,7 @@ view: campaign_budget_stats {
   measure: count_constrained_budget_days {
     type: count_distinct
     description: "Days with daily spend within 20% of campaign budget"
-    sql:  CONCAT(CAST(${_data_raw} as STRING), CAST(${budget_id} as STRING))  ;;
+    sql:  CONCAT(CAST(${date_raw} as STRING), CAST(${budget_id} as STRING))  ;;
     filters: {
       field: constrained_budget
       value: "yes"

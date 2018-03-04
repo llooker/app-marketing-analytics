@@ -11,11 +11,11 @@ view: kpis_last_period {
       column: total_cost_usd_last_period {field: master_stats.total_cost_usd}
       column: total_cost_any_currency_last_period {field: master_stats.total_cost}
       bind_filters: {
-        to_field: master_stats.parameter
+        to_field: master_stats.period
         from_field: kpis_last_period.last_timeframe
       }
       bind_filters: {
-        to_field: master_stats._data_date
+        to_field: master_stats.date_date
         from_field: kpis_last_period.last_timeframe
       }
       filters: {

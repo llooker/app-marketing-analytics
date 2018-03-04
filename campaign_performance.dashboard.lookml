@@ -9,12 +9,12 @@
     type: single_value
     fields:
     - campaign_quarter_stats.total_cost_usd
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     - last_campaign_quarter_stats.total_cost_usd
     fill_fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     sorts:
-    - campaign_quarter_stats._data_quarter desc
+    - campaign_quarter_stats.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -71,13 +71,13 @@
     explore: campaign_quarter_stats
     type: single_value
     fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     - campaign_quarter_stats.total_conversions
     - last_campaign_quarter_stats.total_conversions
     fill_fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     sorts:
-    - campaign_quarter_stats._data_quarter desc
+    - campaign_quarter_stats.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -136,13 +136,13 @@
     explore: campaign_quarter_stats
     type: single_value
     fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     - campaign_quarter_stats.average_cost_per_conversion
     - last_campaign_quarter_stats.average_cost_per_conversion
     fill_fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     sorts:
-    - campaign_quarter_stats._data_quarter desc
+    - campaign_quarter_stats.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -199,13 +199,13 @@
     explore: campaign_quarter_stats
     type: single_value
     fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     - campaign_quarter_stats.average_conversion_rate
     - last_campaign_quarter_stats.average_conversion_rate
     fill_fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     sorts:
-    - campaign_quarter_stats._data_quarter desc
+    - campaign_quarter_stats.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -263,17 +263,17 @@
     type: looker_area
     fields:
     - master_stats.total_cost_usd
-    - master_stats._data_day_of_quarter
-    - master_stats._data_quarter
+    - master_stats.date_day_of_quarter
+    - master_stats.date_quarter
     pivots:
-    - master_stats._data_quarter
+    - master_stats.date_quarter
     fill_fields:
-    - master_stats._data_quarter
+    - master_stats.date_quarter
     filters:
-      master_stats._data_quarter: 2 quarters
+      master_stats.date_quarter: 2 quarters
     sorts:
-    - master_stats._data_quarter desc
-    - master_stats._data_day_of_quarter
+    - master_stats.date_quarter desc
+    - master_stats.date_day_of_quarter
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -471,13 +471,13 @@
     explore: campaign_quarter_stats
     type: single_value
     fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     - campaign_quarter_stats.average_interaction_rate
     - last_campaign_quarter_stats.average_interaction_rate
     fill_fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     sorts:
-    - campaign_quarter_stats._data_quarter desc
+    - campaign_quarter_stats.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -535,13 +535,13 @@
     explore: campaign_quarter_stats
     type: single_value
     fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     - last_campaign_quarter_stats.average_cost_per_interaction
     - campaign_quarter_stats.average_cost_per_interaction
     fill_fields:
-    - campaign_quarter_stats._data_quarter
+    - campaign_quarter_stats.date_quarter
     sorts:
-    - campaign_quarter_stats._data_quarter desc
+    - campaign_quarter_stats.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -604,7 +604,7 @@
     - campaign_quarter_stats.total_interactions
     - campaign_quarter_stats.total_conversions
     filters:
-      campaign_quarter_stats._data_quarter: 1 quarters
+      campaign_quarter_stats.date_quarter: 1 quarters
     limit: 500
     column_limit: 50
     stacking: ''
@@ -687,17 +687,17 @@
     fields:
     - campaign_budget_stats.percent_used_budget_tier
     - campaign_budget_stats.total_cost_usd
-    - campaign_budget_stats._data_week
+    - campaign_budget_stats.date_week
     pivots:
     - campaign_budget_stats.percent_used_budget_tier
     fill_fields:
-    - campaign_budget_stats._data_week
+    - campaign_budget_stats.date_week
     filters:
       campaign.campaign_name: ''
-      campaign_budget_stats._data_date: 2 quarters
+      campaign_budget_stats.date_date: 2 quarters
     sorts:
     - campaign_budget_stats.percent_used_budget_tier
-    - campaign_budget_stats._data_week desc
+    - campaign_budget_stats.date_week desc
     limit: 500
     column_limit: 50
     label: Campaign Budget Utilization
@@ -804,14 +804,14 @@
     explore: master_stats
     type: looker_area
     fields:
-    - master_stats._data_week
+    - master_stats.date_week
     - master_stats.total_conversions
     - master_stats.average_cost_per_conversion
     - master_stats.average_conversion_rate
     filters:
-      master_stats._data_date: 5 quarters
+      master_stats.date_date: 5 quarters
     sorts:
-    - master_stats._data_week desc
+    - master_stats.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -953,13 +953,13 @@
     explore: master_stats
     type: looker_area
     fields:
-    - master_stats._data_week
+    - master_stats.date_week
     - master_stats.average_cost_per_interaction
     - master_stats.average_interaction_rate
     filters:
-      master_stats._data_date: 5 quarters
+      master_stats.date_date: 5 quarters
     sorts:
-    - master_stats._data_week desc
+    - master_stats.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -1105,7 +1105,7 @@
     - master_stats.average_cost_per_click
     - master_stats.average_cost_per_conversion
     filters:
-      ad_group._data_date: 1 quarters
+      ad_group.date_date: 1 quarters
     sorts:
     - master_stats.total_impressions desc
     limit: 500

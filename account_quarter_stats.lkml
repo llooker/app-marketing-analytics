@@ -7,7 +7,7 @@ view: account_quarter_stats {
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: master_stats {
-      column: _data_quarter {}
+      column: date_quarter {}
       column: external_customer_id {}
       column: cost { field: master_stats.total_cost }
       column: clicks { field: master_stats.total_clicks }
@@ -36,7 +36,7 @@ view: account_quarter_stats {
     drill_fields: [customer.detail*, total_conversions]
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_conversions&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_conversions&f[master_stats.date_date]=this quarter"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
@@ -44,7 +44,7 @@ view: account_quarter_stats {
     drill_fields: [customer.detail*, total_cost_usd]
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_cost_usd&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.total_cost_usd&f[master_stats.date_date]=this quarter"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
@@ -52,7 +52,7 @@ view: account_quarter_stats {
     drill_fields: [customer.detail*, average_interaction_rate]
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_interaction_rate&f[master_stats.date_date]=this quarter"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
@@ -63,7 +63,7 @@ view: account_quarter_stats {
     drill_fields: [customer.detail*, average_conversion_rate]
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_conversion_rate&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_conversion_rate&f[master_stats.date_date]=this quarter"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
@@ -74,7 +74,7 @@ view: account_quarter_stats {
     drill_fields: [customer.detail*, average_cost_per_conversion]
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_cost_per_conversion&f[master_stats._data_date]=this quarter"
+      url: "/explore/google_adwords/master_stats?fields=campaign.campaign_name,master_stats.average_cost_per_conversion&f[master_stats.date_date]=this quarter"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }

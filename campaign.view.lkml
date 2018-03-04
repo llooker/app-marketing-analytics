@@ -4,12 +4,9 @@ view: campaign {
   extends: [dated_table]
   sql_table_name: adwords_v201609.Campaign_6747157124 ;;
 
-  dimension: _data {
+  dimension: _date {
+    type: date
     sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
-  dimension: _latest {
-    sql: TIMESTAMP(${TABLE}._LATEST_DATE) ;;
   }
 
   dimension: advertising_channel_sub_type {

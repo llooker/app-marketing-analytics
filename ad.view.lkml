@@ -4,12 +4,9 @@ view: ad {
   extends: [dated_table]
   sql_table_name: adwords_v201609.Ad_6747157124 ;;
 
-  dimension: _data {
+  dimension: _date {
+    type: date
     sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
-  dimension: _latest {
-    sql: TIMESTAMP(${TABLE}._LATEST_DATE) ;;
   }
 
   dimension: ad_group_ad_disapproval_reasons {
