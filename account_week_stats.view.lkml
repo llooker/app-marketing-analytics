@@ -42,10 +42,12 @@ view: account_week_stats {
   }
   dimension: date_week {
     type: date
+    allow_fill: no
   }
   dimension: date_last_week {
     type: date
     sql: DATE_ADD(${date_week}, INTERVAL -1 WEEK) ;;
+    allow_fill: no
   }
   dimension: less_than_current_day_of_week {
     type: yesno

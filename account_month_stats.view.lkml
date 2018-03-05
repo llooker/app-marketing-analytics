@@ -41,10 +41,12 @@ view: account_month_stats {
   }
   dimension: date_month {
     type: date
+    allow_fill: no
   }
   dimension: date_last_month {
     type: date
     sql: DATE_ADD(${date_month}, INTERVAL -1 MONTH) ;;
+    allow_fill: no
   }
   dimension: less_than_current_day_of_month {
     type: yesno

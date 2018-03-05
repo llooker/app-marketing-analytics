@@ -42,10 +42,12 @@ view: account_quarter_stats {
   }
   dimension: date_quarter {
     type: date
+    allow_fill: no
   }
   dimension: date_last_quarter {
     type: date
     sql: DATE_ADD(${date_quarter}, INTERVAL -1 QUARTER) ;;
+    allow_fill: no
   }
   dimension: less_than_current_day_of_quarter {
     type: yesno
