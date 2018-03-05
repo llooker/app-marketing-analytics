@@ -28,6 +28,7 @@ include: "keyword.view"
 include: "kpis_last_period.view"
 include: "kpis_this_period.view"
 include: "master_stats.view"
+include: "period_stats.view"
 include: "report_single_values.view"
 include: "stats.view"
 
