@@ -108,8 +108,6 @@ explore: master_stats {
   }
 }
 
-
-
 ## Entity tables are daily snapshots
 explore: customer {
   hidden: yes
@@ -217,34 +215,6 @@ explore: ad {
     sql_on: ${customer.external_customer_id} = ${customer.external_customer_id} AND
       ${customer.date_raw} = ${customer.date_raw} ;;
     relationship:  many_to_one
-  }
-}
-
-explore: account_date_stats {
-  hidden: yes
-  persist_with: etl_datagroup
-  label: "Account Date Stats"
-  view_label: "Account Date Stats"
-}
-
-explore: account_quarter_stats {
-  hidden: yes
-  persist_with: etl_datagroup
-  label: "Account Quarter Stats"
-  view_label: "Account Quarter Stats"
-
-  join: last_account_quarter_stats {
-    from: account_quarter_stats
-    view_label: "Last Quarter Account Stats"
-    sql_on: ${account_quarter_stats.external_customer_id} = ${last_account_quarter_stats.external_customer_id} AND
-      ${account_quarter_stats.date_last_quarter} = ${last_account_quarter_stats.date_quarter} ;;
-    relationship: one_to_one
-  }
-  join:  customer {
-    view_label: "Customer"
-    sql_on: ${account_quarter_stats.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
-    relationship: many_to_one
   }
 }
 

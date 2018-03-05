@@ -19,8 +19,15 @@ view: dated_table {
     sql: ${_date} ;;
   }
 
+  dimension: date_quarter_date {
+    group_label: "Date"
+    label: "Quarter Date"
+    type: date
+    sql: DATE_TRUNC(${date_date}, QUARTER) ;;
+  }
+
   dimension: date_day_of_quarter {
-    group_label: "Data Date"
+    group_label: "Date"
     label: "Day of Quarter"
     type: number
     sql: DATE_DIFF(
@@ -65,11 +72,10 @@ view: dated_table {
 
   dimension: less_than_current_day_of_period {
     type: yesno
-    sql: CASE WHEN {% parameter period %} = "week" THEN ${less_than_current_day_of_week}
-        WHEN {% parameter period %} = "quarter" THEN ${less_than_current_day_of_quarter}
-        WHEN {% parameter period %} = "month" THEN ${less_than_current_day_of_month}
-        ELSE NULL
-        END;;
+    sql: {% if period._parameter_value == "week" %}${less_than_current_day_of_week}
+      {% elsif period._parameter_value == "month" %}${less_than_current_day_of_month}
+      {% elsif period._parameter_value == "quarter" %}${less_than_current_day_of_quarter}
+      {% endif %};;
   }
 
   parameter: period {}

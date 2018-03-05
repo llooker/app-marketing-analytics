@@ -1,4 +1,26 @@
-include: "stats.view.lkml"
+include: "customer.view"
+include: "stats.view"
+
+explore: account_month_stats {
+  hidden: yes
+  persist_with: etl_datagroup
+  label: "Account Month Stats"
+  view_label: "Account Month Stats"
+
+  join: last_account_month_stats {
+    from: account_month_stats
+    view_label: "Last Month Account Stats"
+    sql_on: ${account_month_stats.external_customer_id} = ${last_account_month_stats.external_customer_id} AND
+      ${account_month_stats.date_last_month} = ${last_account_month_stats.date_month} ;;
+    relationship: one_to_one
+  }
+  join:  customer {
+    view_label: "Customer"
+    sql_on: ${account_month_stats.external_customer_id} = ${customer.external_customer_id} AND
+      ${customer.latest} = "Yes" ;;
+    relationship: many_to_one
+  }
+}
 
 view: account_month_stats {
   extends: [stats]
@@ -9,10 +31,9 @@ view: account_month_stats {
       column: date_month {}
       column: external_customer_id {}
       column: less_than_current_day_of_month {}
-      column: average_position { field: account_date_stats.weighted_average_position }
       column: clicks { field: account_date_stats.total_clicks }
       column: conversions { field: account_date_stats.total_conversions }
-      column: conversion_value { field: account_date_stats.total_conversion_value }
+      column: conversionvalue { field: account_date_stats.total_conversion_value }
       column: cost { field: account_date_stats.total_cost }
       column: impressions { field: account_date_stats.total_impressions }
       column: interactions { field: account_date_stats.total_interactions }
@@ -23,7 +44,10 @@ view: account_month_stats {
   }
   dimension: date_last_month {
     type: date
-    sql: DATE_ADD(${date_month}), INTERVAL -1 MONTH) ;;
+    sql: DATE_ADD(${date_month}, INTERVAL -1 MONTH) ;;
+  }
+  dimension: less_than_current_day_of_month {
+    type: yesno
   }
   dimension: external_customer_id {
     type: number
