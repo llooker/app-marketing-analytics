@@ -28,7 +28,7 @@ view: account_month_stats {
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: account_date_stats {
-      column: date_month {}
+      column: date_month { field: account_date_stats.date_month_date }
       column: external_customer_id {}
       column: less_than_current_day_of_month {}
       column: clicks { field: account_date_stats.total_clicks }

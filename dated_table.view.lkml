@@ -19,6 +19,13 @@ view: dated_table {
     sql: ${_date} ;;
   }
 
+  dimension: date_month_date {
+    group_label: "Date"
+    label: "Month Date"
+    type: date
+    sql: DATE_TRUNC(${date_date}, MONTH) ;;
+  }
+
   dimension: date_quarter_date {
     group_label: "Date"
     label: "Quarter Date"
