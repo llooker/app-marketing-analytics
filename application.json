@@ -80,6 +80,26 @@
               "reports": [
                 {
                   "description": "Quickly find the ads that need to be paused, have their bid lowered.",
+                  "filters": [
+                    {
+                      "field": "master_stats._data_date",
+                      "name": "Time Period",
+                      "type": "Timeperiod"
+                    },
+                    {
+                      "autoSuggest": true,
+                      "field": "campaign.campaign_name",
+                      "name": "Campaign",
+                      "type": "Select"
+                    },
+                    {
+                      "autoSuggest": true,
+                      "facetedBy": [ "campaign.campaign_name" ],
+                      "field": "ad_group.ad_group_name",
+                      "name": "Ad Group",
+                      "type": "Select"
+                    }
+                  ],
                   "name": "Under Performing Ads",
                   "permalink": "underperforming-ads",
                   "singleValue": {
