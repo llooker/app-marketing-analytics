@@ -2,41 +2,49 @@ view: stats {
   extension: required
 
   dimension: clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.Clicks ;;
   }
 
   dimension: conversions {
+    hidden: yes
     type: number
     sql: ${TABLE}.Conversions ;;
   }
 
   dimension: conversion_value {
+    hidden: yes
     type: number
     sql: ${TABLE}.ConversionValue ;;
   }
 
   dimension: cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.Cost ;;
   }
 
   dimension: impressions {
+    hidden: yes
     type: number
     sql: ${TABLE}.Impressions ;;
   }
 
   dimension: interactions {
+    hidden: yes
     type: number
     sql: ${TABLE}.Interactions ;;
   }
 
   dimension: average_position {
+    hidden: yes
     type: number
     sql: ${TABLE}.AveragePosition ;;
   }
 
   dimension: cost_usd {
+    hidden: yes
     type: number
     sql: (${cost} / 1000000) ;;
   }
