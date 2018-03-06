@@ -19,7 +19,7 @@ view: account_date_stats {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    partition_keys: [_date]
+    partition_keys: ["_date"]
     explore_source: master_stats {
       column: _date { field: master_stats.date_date }
       column: external_customer_id {}
@@ -32,7 +32,8 @@ view: account_date_stats {
     }
   }
   dimension: _date {
-    type: date
+    hidden: yes
+    sql: TIMESTAMP(${TABLE}._date) ;;
   }
   dimension: external_customer_id {
     type: number

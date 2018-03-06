@@ -33,7 +33,7 @@ view: master_stats {
   {% endif %} ;;
 
   dimension: _date {
-    type: date
+    hidden: yes
     sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
   }
 

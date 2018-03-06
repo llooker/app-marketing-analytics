@@ -2,6 +2,7 @@ view: dated_table {
   extension: required
 
   dimension_group: date {
+    group_label: "Date"
     type: time
     timeframes: [
       raw,
@@ -88,16 +89,19 @@ view: dated_table {
   parameter: period {}
 
   dimension: date_last_week {
+    group_label: "Date"
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL -1 WEEK) ;;
   }
 
   dimension: date_last_month {
+    group_label: "Date"
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL -1 MONTH) ;;
   }
 
   dimension: date_last_quarter {
+    group_label: "Date"
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL -1 QUARTER) ;;
   }
