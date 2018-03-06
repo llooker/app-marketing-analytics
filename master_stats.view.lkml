@@ -38,101 +38,121 @@ view: master_stats {
   }
 
   dimension: hour_of_day {
+    hidden: yes
     type: number
     sql: ${TABLE}.HourOfDay ;;
   }
 
   dimension: audience_criterion_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.CriterionId ;;
   }
 
   dimension: active_view_impressions {
+    hidden: yes
     type: number
     sql: ${TABLE}.ActiveViewImpressions ;;
   }
 
   dimension: active_view_measurability {
+    hidden: yes
     type: number
     sql: ${TABLE}.ActiveViewMeasurability ;;
   }
 
   dimension: active_view_measurable_cost {
+    hidden: yes
     type: number
     sql: ${TABLE}.ActiveViewMeasurableCost ;;
   }
 
   dimension: active_view_measurable_impressions {
+    hidden: yes
     type: number
     sql: ${TABLE}.ActiveViewMeasurableImpressions ;;
   }
 
   dimension: active_view_viewability {
+    hidden: yes
     type: number
     sql: ${TABLE}.ActiveViewViewability ;;
   }
 
   dimension: ad_group_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.AdGroupId ;;
   }
 
   dimension: ad_network_type1 {
+    hidden: yes
     type: string
     sql: ${TABLE}.AdNetworkType1 ;;
   }
 
   dimension: ad_network_type2 {
+    hidden: yes
     type: string
     sql: ${TABLE}.AdNetworkType2 ;;
   }
 
   dimension: base_ad_group_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.BaseAdGroupId ;;
   }
 
   dimension: base_campaign_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.BaseCampaignId ;;
   }
 
   dimension: campaign_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.CampaignId ;;
   }
 
   dimension: creative_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.CreativeId ;;
   }
 
   dimension: criterion_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.CriterionId ;;
   }
 
   dimension: device {
+    hidden: yes
     type: string
     sql: ${TABLE}.Device ;;
   }
 
   dimension: external_customer_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.ExternalCustomerId ;;
   }
 
   dimension: interaction_types {
+    hidden: yes
     type: string
     sql: ${TABLE}.InteractionTypes ;;
   }
 
   dimension: slot {
+    hidden: yes
     type: string
     sql: ${TABLE}.Slot ;;
   }
 
   dimension: view_through_conversions {
+    hidden: yes
     type: number
     sql: ${TABLE}.ViewThroughConversions ;;
   }
