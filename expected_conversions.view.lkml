@@ -1,6 +1,6 @@
-include: "master_stats.view"
+include: "ad_impressions.view"
 
-view: base_expected_conversions {
+view: expected_conversions_base {
 
   dimension: clicks {
     type: number
@@ -62,20 +62,20 @@ view: base_expected_conversions {
   }
 }
 view: account_avg_cpa {
-  extends: [base_expected_conversions]
+  extends: [expected_conversions_base]
 
   derived_table: {
-    explore_source: master_stats {
+    explore_source: ad_impressions {
       column: external_customer_id {}
-      column: cost { field: master_stats.total_cost }
-      column: cost_usd { field: master_stats.total_cost_usd }
-      column: clicks { field: master_stats.total_clicks }
-      column: conversions { field: master_stats.total_conversions }
-      column: impressions { field: master_stats.total_impressions }
-      column: interactions { field: master_stats.total_interactions }
+      column: cost { field: ad_impressions.total_cost }
+      column: cost_usd { field: ad_impressions.total_cost_usd }
+      column: clicks { field: ad_impressions.total_clicks }
+      column: conversions { field: ad_impressions.total_conversions }
+      column: impressions { field: ad_impressions.total_impressions }
+      column: interactions { field: ad_impressions.total_interactions }
     bind_filters: {
-      to_field: master_stats.date_date
-      from_field: master_stats.date_date
+      to_field: ad_impressions.date_date
+      from_field: ad_impressions.date_date
     }
   }
   }
@@ -101,27 +101,27 @@ view: account_avg_cpa {
     view_label: "Campaigns"
     description: "Cost divided by average CPA for the account"
     type: number
-    sql: ${master_stats.total_cost_usd} / NULLIF(${average_cpa_of_the_account},0) ;;
+    sql: ${ad_impressions.total_cost_usd} / NULLIF(${average_cpa_of_the_account},0) ;;
     value_format_name: decimal_2
   }
 }
 
 view: campaign_avg_cpa {
-  extends: [base_expected_conversions]
+  extends: [expected_conversions_base]
 
   derived_table: {
-    explore_source: master_stats {
+    explore_source: ad_impressions {
       column: external_customer_id {}
       column: campaign_id {}
-      column: cost { field: master_stats.total_cost }
-      column: cost_usd { field: master_stats.total_cost_usd }
-      column: clicks { field: master_stats.total_clicks }
-      column: conversions { field: master_stats.total_conversions }
-      column: impressions { field: master_stats.total_impressions }
-      column: interactions { field: master_stats.total_interactions }
+      column: cost { field: ad_impressions.total_cost }
+      column: cost_usd { field: ad_impressions.total_cost_usd }
+      column: clicks { field: ad_impressions.total_clicks }
+      column: conversions { field: ad_impressions.total_conversions }
+      column: impressions { field: ad_impressions.total_impressions }
+      column: interactions { field: ad_impressions.total_interactions }
       bind_filters: {
-        to_field: master_stats.date_date
-        from_field: master_stats.date_date
+        to_field: ad_impressions.date_date
+        from_field: ad_impressions.date_date
       }
     }
   }
@@ -166,7 +166,7 @@ view: campaign_avg_cpa {
     description: "CPA compared to Average CPA of the campaign"
     view_label: "Ad Groups"
     type: number
-    sql: ${master_stats.average_cost_per_conversion} / NULLIF(${average_cpa_of_campaign},0);;
+    sql: ${ad_impressions.average_cost_per_conversion} / NULLIF(${average_cpa_of_campaign},0);;
     value_format_name: percent_0
   }
 
@@ -175,7 +175,7 @@ view: campaign_avg_cpa {
     label: "% of Campaign CTR"
     view_label: "Ad Groups"
     type: number
-    sql: ${master_stats.average_click_rate} / NULLIF(${average_ctr_of_campaign},0);;
+    sql: ${ad_impressions.average_click_rate} / NULLIF(${average_ctr_of_campaign},0);;
     value_format_name: percent_0
   }
 
@@ -184,28 +184,28 @@ view: campaign_avg_cpa {
     view_label: "Ad Groups"
     description: "Cost divided by average CPA of the campaign"
     type: number
-    sql: ${master_stats.total_cost_usd} / NULLIF(${campaign_avg_cpa.average_cpa_of_campaign},0) ;;
+    sql: ${ad_impressions.total_cost_usd} / NULLIF(${campaign_avg_cpa.average_cpa_of_campaign},0) ;;
     value_format_name: decimal_2
   }
 }
 
 view: ad_group_avg_cpa {
-  extends: [base_expected_conversions]
+  extends: [expected_conversions_base]
 
   derived_table: {
-    explore_source: master_stats {
+    explore_source: ad_impressions {
       column: external_customer_id {}
       column: campaign_id {}
       column: ad_group_id {}
-      column: cost { field: master_stats.total_cost }
-      column: cost_usd { field: master_stats.total_cost_usd }
-      column: clicks { field: master_stats.total_clicks }
-      column: conversions { field: master_stats.total_conversions }
-      column: impressions { field: master_stats.total_impressions }
-      column: interactions { field: master_stats.total_interactions }
+      column: cost { field: ad_impressions.total_cost }
+      column: cost_usd { field: ad_impressions.total_cost_usd }
+      column: clicks { field: ad_impressions.total_clicks }
+      column: conversions { field: ad_impressions.total_conversions }
+      column: impressions { field: ad_impressions.total_impressions }
+      column: interactions { field: ad_impressions.total_interactions }
     bind_filters: {
-      to_field: master_stats.date_date
-      from_field: master_stats.date_date
+      to_field: ad_impressions.date_date
+      from_field: ad_impressions.date_date
     }
   }}
 
@@ -262,7 +262,7 @@ view: ad_group_avg_cpa {
     label: "% of Ad Group CPA"
     view_label: "Ads"
     type: number
-    sql: ${master_stats.average_cost_per_conversion} / NULLIF(${average_cpa_of_ad_group},0);;
+    sql: ${ad_impressions.average_cost_per_conversion} / NULLIF(${average_cpa_of_ad_group},0);;
     value_format_name: percent_0
   }
 
@@ -271,7 +271,7 @@ view: ad_group_avg_cpa {
     label: "% of Ad Group CTR"
     view_label: "Ads"
     type: number
-    sql: ${master_stats.average_click_rate} / NULLIF(${average_ctr_of_ad_group},0);;
+    sql: ${ad_impressions.average_click_rate} / NULLIF(${average_ctr_of_ad_group},0);;
     value_format_name: percent_0
   }
 
@@ -280,7 +280,7 @@ view: ad_group_avg_cpa {
     view_label: "Ads"
     description: "Cost divided by average CPA of the Ad Group"
     type: number
-    sql: ${master_stats.total_cost_usd} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
+    sql: ${ad_impressions.total_cost_usd} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
     value_format_name: decimal_2
   }
 
@@ -289,7 +289,7 @@ view: ad_group_avg_cpa {
       view_label: "Keyword"
       description: "Cost divided by average CPA of the Ad Group"
       type: number
-      sql: ${master_stats.total_cost_usd} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
+      sql: ${ad_impressions.total_cost_usd} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
       value_format_name: decimal_2
     }
 
@@ -298,7 +298,7 @@ view: ad_group_avg_cpa {
       label: "% of Ad Group CPA"
       view_label: "Keyword"
       type: number
-      sql: ${master_stats.average_cost_per_conversion} / NULLIF(${average_cpa_of_ad_group},0);;
+      sql: ${ad_impressions.average_cost_per_conversion} / NULLIF(${average_cpa_of_ad_group},0);;
       value_format_name: percent_0
     }
 
@@ -307,7 +307,7 @@ view: ad_group_avg_cpa {
       label: "% of Ad Group Conversion Rate"
       view_label: "Keyword"
       type: number
-      sql: ${master_stats.average_conversion_rate} / NULLIF(${average_conversion_rate},0);;
+      sql: ${ad_impressions.average_conversion_rate} / NULLIF(${average_conversion_rate},0);;
       value_format_name: percent_0
     }
 }

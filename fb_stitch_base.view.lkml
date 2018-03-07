@@ -1,4 +1,4 @@
-view: stitch {
+view: stitch_base {
   extension: required
 
   dimension_group: _sdc_batched {

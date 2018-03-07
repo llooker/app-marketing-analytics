@@ -1,25 +1,25 @@
 view: kpis_last_period {
   derived_table: {
-    explore_source: master_stats {
+    explore_source: ad_impressions {
       column: campaign_name { field: campaign.campaign_name }
       column: ad_group_name { field: ad_group.ad_group_name }
-      column: total_clicks_last_period {field: master_stats.total_clicks }
-      column: external_customer_id_last_period {field: master_stats.external_customer_id}
-      column: total_conversions_last_period {field: master_stats.total_conversions}
-      column: total_impressions_last_period {field: master_stats.total_impressions}
-      column: total_interactions_last_period {field: master_stats.total_interactions}
-      column: total_cost_usd_last_period {field: master_stats.total_cost_usd}
-      column: total_cost_any_currency_last_period {field: master_stats.total_cost}
+      column: total_clicks_last_period {field: ad_impressions.total_clicks }
+      column: external_customer_id_last_period {field: ad_impressions.external_customer_id}
+      column: total_conversions_last_period {field: ad_impressions.total_conversions}
+      column: total_impressions_last_period {field: ad_impressions.total_impressions}
+      column: total_interactions_last_period {field: ad_impressions.total_interactions}
+      column: total_cost_usd_last_period {field: ad_impressions.total_cost_usd}
+      column: total_cost_any_currency_last_period {field: ad_impressions.total_cost}
       bind_filters: {
-        to_field: master_stats.period
+        to_field: ad_impressions.period
         from_field: kpis_last_period.last_timeframe
       }
       bind_filters: {
-        to_field: master_stats.date_date
+        to_field: ad_impressions.date_date
         from_field: kpis_last_period.last_timeframe
       }
       filters: {
-        field: master_stats.less_than_current_day_of_period
+        field: ad_impressions.less_than_current_day_of_period
         value: "Yes"
       }
     }

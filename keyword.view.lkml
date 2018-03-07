@@ -1,8 +1,9 @@
-include: "ad_criterion_base.view.lkml"
-include: "dated_table.view.lkml"
+include: "ad_criterion_base.view"
+include: "date_base.view"
+include: "google_adwords_base.view"
 
 view: keyword {
-  extends: [ad_criterion_base, dated_table]
+  extends: [ad_criterion_base, date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Keyword_6747157124 ;;
 
   dimension: _date {

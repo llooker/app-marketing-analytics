@@ -367,20 +367,20 @@
   - title: Spend To Date
     name: Spend To Date
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_area
     fields:
-    - master_stats.date_day_of_quarter
-    - master_stats.date_quarter
-    - master_stats.cumulative_spend
+    - ad_impressions.date_day_of_quarter
+    - ad_impressions.date_quarter
+    - ad_impressions.cumulative_spend
     pivots:
-    - master_stats.date_quarter
+    - ad_impressions.date_quarter
     filters:
-      master_stats.date_quarter: 2 quarters
-      master_stats.date_date: 2 quarters
+      ad_impressions.date_quarter: 2 quarters
+      ad_impressions.date_date: 2 quarters
     sorts:
-    - master_stats.date_quarter desc
-    - master_stats.date_day_of_quarter
+    - ad_impressions.date_quarter desc
+    - ad_impressions.date_day_of_quarter
     limit: 500
     column_limit: 50
     stacking: ''
@@ -439,11 +439,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 442
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
       __LINE_NUM: 430
     - label:
@@ -458,9 +458,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_conversions
+      - id: ad_impressions.total_conversions
         name: Conversions
-        axisId: master_stats.total_conversions
+        axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 461
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -477,9 +477,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_impressions
+      - id: ad_impressions.total_impressions
         name: Impressions
-        axisId: master_stats.total_impressions
+        axisId: ad_impressions.total_impressions
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 480
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -496,9 +496,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 499
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -515,9 +515,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_clicks
+      - id: ad_impressions.total_clicks
         name: Clicks
-        axisId: master_stats.total_clicks
+        axisId: ad_impressions.total_clicks
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 518
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -550,10 +550,10 @@
     - "#9fc190"
     series_colors: {}
     hidden_series:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
@@ -567,16 +567,16 @@
   - title: Spend by Network
     name: Spend by Network
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.ad_network_type
-    - master_stats.total_cost_usd
+    - ad_impressions.ad_network_type
+    - ad_impressions.total_cost_usd
     fill_fields:
-    - master_stats.ad_network_type
+    - ad_impressions.ad_network_type
     sorts:
-    - master_stats.total_cost_usd desc
-    - master_stats.ad_network_type
+    - ad_impressions.total_cost_usd desc
+    - ad_impressions.ad_network_type
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -616,9 +616,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 619
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -626,7 +626,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 15
     col: 0
     width: 8
@@ -634,15 +634,15 @@
   - title: Spend by Device
     name: Spend by Device
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.total_cost_usd
-    - master_stats.device_type
+    - ad_impressions.total_cost_usd
+    - ad_impressions.device_type
     fill_fields:
-    - master_stats.device_type
+    - ad_impressions.device_type
     sorts:
-    - master_stats.total_cost_usd desc
+    - ad_impressions.total_cost_usd desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -682,9 +682,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 685
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -706,7 +706,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 15
     col: 8
     width: 8
@@ -714,13 +714,13 @@
   - title: Spend by Bid Strategy
     name: Spend by Bid Strategy
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - keyword.bidding_strategy_type
     sorts:
-    - master_stats.total_cost_usd desc
+    - ad_impressions.total_cost_usd desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -760,9 +760,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 763
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -784,7 +784,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 15
     col: 16
     width: 8
@@ -792,19 +792,19 @@
   - title: Spend by Day of Week and Hour of Day
     name: Spend by Day of Week and Hour of Day
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
-    - master_stats.total_cost_usd
-    - master_stats.hour_of_day
-    - master_stats.date_day_of_week
+    - ad_impressions.total_cost_usd
+    - ad_impressions.hour_of_day
+    - ad_impressions.date_day_of_week
     pivots:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     fill_fields:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     sorts:
-    - master_stats.date_day_of_week 0
-    - master_stats.hour_of_day
+    - ad_impressions.date_day_of_week 0
+    - ad_impressions.hour_of_day
     limit: 500
     show_view_names: true
     show_row_numbers: false
@@ -870,9 +870,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 1110
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -894,17 +894,17 @@
       italic: false
       strikethrough: false
       fields:
-      - master_stats.total_cost_usd
+      - ad_impressions.total_cost_usd
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
       __LINE_NUM: 1118
     series_labels:
-      master_stats.hour_of_day: Hour of Day
-      master_stats.total_cost_usd: Spend
-      master_stats.date_day_of_week: Day of Week
+      ad_impressions.hour_of_day: Hour of Day
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.date_day_of_week: Day of Week
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 21
     col: 0
     width: 10
@@ -912,17 +912,17 @@
   - title: Top Ads
     name: Top Ads
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad.creative
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     filters:
-      master_stats.date_date: 1 quarters
+      ad_impressions.date_date: 1 quarters
     sorts:
-    - master_stats.total_cost_usd desc
+    - ad_impressions.total_cost_usd desc
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -970,17 +970,17 @@
   - title: Top Landing Pages
     name: Top Landing Pages
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad.creative_final_urls
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     filters:
-      master_stats.date_date: 1 quarters
+      ad_impressions.date_date: 1 quarters
     sorts:
-    - master_stats.total_cost_usd desc
+    - ad_impressions.total_cost_usd desc
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1028,17 +1028,17 @@
   - title: Top Keywords
     name: Top Keywords
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - keyword.criteria
     filters:
-      master_stats.date_date: 1 quarters
+      ad_impressions.date_date: 1 quarters
     sorts:
-    - master_stats.total_cost_usd desc
+    - ad_impressions.total_cost_usd desc
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1086,22 +1086,22 @@
   - name: Budget Utilization
     title: Budget Utilization
     model: google_adwords
-    explore: campaign_budget_stats
+    explore: campaign_budget_date_fact
     type: looker_column
     fields:
-    - campaign_budget_stats.percent_used_budget_tier
-    - campaign_budget_stats.total_cost_usd
-    - campaign_budget_stats.date_week
+    - campaign_budget_date_fact.percent_used_budget_tier
+    - campaign_budget_date_fact.total_cost_usd
+    - campaign_budget_date_fact.date_week
     pivots:
-    - campaign_budget_stats.percent_used_budget_tier
+    - campaign_budget_date_fact.percent_used_budget_tier
     fill_fields:
-    - campaign_budget_stats.date_week
+    - campaign_budget_date_fact.date_week
     filters:
       campaign.campaign_name: ''
-      campaign_budget_stats.date_date: 2 quarters
+      campaign_budget_date_fact.date_date: 2 quarters
     sorts:
-    - campaign_budget_stats.percent_used_budget_tier
-    - campaign_budget_stats.date_week desc
+    - campaign_budget_date_fact.percent_used_budget_tier
+    - campaign_budget_date_fact.date_week desc
     limit: 500
     column_limit: 50
     label: Campaign Budget Utilization
@@ -1165,32 +1165,32 @@
       series:
       - id: "[0.00%,20.00%)"
         name: "[0.00%,20.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 763
       - id: "[20.00%,40.00%)"
         name: "[20.00%,40.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 768
       - id: "[40.00%,60.00%)"
         name: "[40.00%,60.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 773
       - id: "[60.00%,80.00%)"
         name: "[60.00%,80.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 778
       - id: "[80.00%,100.00%)"
         name: "[80.00%,100.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 783
       - id: "[100.00%,inf)"
         name: "[100.00%,inf)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 788
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -1202,13 +1202,13 @@
   - title: Spend by Hour of Day
     name: Spend by Hour of Day
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.total_cost_usd
-    - master_stats.hour_of_day
+    - ad_impressions.total_cost_usd
+    - ad_impressions.hour_of_day
     sorts:
-    - master_stats.hour_of_day
+    - ad_impressions.hour_of_day
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -1274,9 +1274,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 981
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -1317,7 +1317,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 21
     col: 10
     width: 6
@@ -1325,15 +1325,15 @@
   - title: Spend by Day of Week
     name: Spend by Day of Week
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_column
     fields:
-    - master_stats.date_day_of_week
-    - master_stats.total_cost_usd
+    - ad_impressions.date_day_of_week
+    - ad_impressions.total_cost_usd
     fill_fields:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     sorts:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -1399,9 +1399,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Ad Stats Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
         __LINE_NUM: 869
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
@@ -1431,7 +1431,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 21
     col: 16
     width: 8
@@ -1462,7 +1462,7 @@
     type: field_filter
     default_value: ''
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: campaign.campaign_name
     listens_to_filters: []
     allow_multiple_values: true
@@ -1472,7 +1472,7 @@
     type: field_filter
     default_value: ''
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: ad_group.ad_group_name
     listens_to_filters: []
     allow_multiple_values: true
@@ -1482,8 +1482,8 @@
     type: field_filter
     default_value: 1 quarters
     model: google_adwords
-    explore: master_stats
-    field: master_stats.date_date
+    explore: ad_impressions
+    field: ad_impressions.date_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

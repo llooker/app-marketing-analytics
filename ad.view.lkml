@@ -1,7 +1,8 @@
-include: "dated_table.view.lkml"
+include: "date_base.view"
+include: "google_adwords_base.view"
 
 view: ad {
-  extends: [dated_table]
+  extends: [date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Ad_6747157124 ;;
 
   dimension: _date {

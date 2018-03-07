@@ -1,4 +1,4 @@
-view: base_insights {
+view: insights_base {
   extension: required
 
   measure: total_impressions {

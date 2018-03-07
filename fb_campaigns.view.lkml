@@ -1,7 +1,7 @@
-include: "fb_stitch.view.lkml"
+include: "fb_stitch_base.view.lkml"
 
 view: campaigns {
-  extends: ["stitch"]
+  extends: ["stitch_base"]
 
   sql_table_name: {{ _user_attributes["facebook_schema"] }}.campaigns ;;
 

@@ -237,15 +237,15 @@
   - title: Conversion Trends
     name: Conversion Trends
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_area
     fields:
-    - master_stats.date_week
-    - master_stats.total_conversions
-    - master_stats.average_cost_per_conversion
-    - master_stats.average_conversion_rate
+    - ad_impressions.date_week
+    - ad_impressions.total_conversions
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.average_conversion_rate
     sorts:
-    - master_stats.date_week desc
+    - ad_impressions.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -290,10 +290,10 @@
     labelColorEnabled: false
     labelColor: "#FFF"
     series_types:
-      master_stats.average_cost_per_conversion: line
-      master_stats.total_impressions: line
-      master_stats.total_clicks: line
-      master_stats.average_conversion_rate: line
+      ad_impressions.average_cost_per_conversion: line
+      ad_impressions.total_impressions: line
+      ad_impressions.total_clicks: line
+      ad_impressions.average_conversion_rate: line
     show_dropoff: true
     y_axes:
     - label: ''
@@ -308,11 +308,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 311
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
       __LINE_NUM: 299
     - label:
@@ -327,9 +327,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_conversions
+      - id: ad_impressions.total_conversions
         name: Conversions
-        axisId: master_stats.total_conversions
+        axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 330
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -346,9 +346,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_conversion_rate
+      - id: ad_impressions.average_conversion_rate
         name: Conversion Rate
-        axisId: master_stats.average_conversion_rate
+        axisId: ad_impressions.average_conversion_rate
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 349
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -370,10 +370,10 @@
     - 'palette: Looker Classic'
     series_colors: {}
     hidden_series:
-    - master_stats.average_conversion_rate
+    - ad_impressions.average_conversion_rate
     series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     row: 2
     col: 10
@@ -382,20 +382,20 @@
   - title: Spend To Date
     name: Spend To Date
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_area
     fields:
-    - master_stats.date_day_of_quarter
-    - master_stats.date_quarter
-    - master_stats.cumulative_spend
+    - ad_impressions.date_day_of_quarter
+    - ad_impressions.date_quarter
+    - ad_impressions.cumulative_spend
     pivots:
-    - master_stats.date_quarter
+    - ad_impressions.date_quarter
     filters:
-      master_stats.date_quarter: 2 quarters
-      master_stats.date_date: 2 quarters
+      ad_impressions.date_quarter: 2 quarters
+      ad_impressions.date_date: 2 quarters
     sorts:
-    - master_stats.date_quarter desc
-    - master_stats.date_day_of_quarter
+    - ad_impressions.date_quarter desc
+    - ad_impressions.date_day_of_quarter
     limit: 500
     column_limit: 50
     stacking: ''
@@ -454,11 +454,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 794
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
       __LINE_NUM: 782
     - label:
@@ -473,9 +473,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_conversions
+      - id: ad_impressions.total_conversions
         name: Conversions
-        axisId: master_stats.total_conversions
+        axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 813
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -492,9 +492,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_impressions
+      - id: ad_impressions.total_impressions
         name: Impressions
-        axisId: master_stats.total_impressions
+        axisId: ad_impressions.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 832
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -511,9 +511,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 851
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -530,9 +530,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_clicks
+      - id: ad_impressions.total_clicks
         name: Clicks
-        axisId: master_stats.total_clicks
+        axisId: ad_impressions.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 870
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -565,10 +565,10 @@
     - "#9fc190"
     series_colors: {}
     hidden_series:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
@@ -579,19 +579,19 @@
   - title: Campaigns
     name: Campaigns
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - campaign.campaign_name
-    - master_stats.total_cost_usd
-    - master_stats.total_conversions
-    - master_stats.average_cost_per_conversion
-    - master_stats.average_conversion_rate
-    - master_stats.average_cost_per_interaction
-    - master_stats.average_interaction_rate
-    - master_stats.average_cost_per_click
+    - ad_impressions.total_cost_usd
+    - ad_impressions.total_conversions
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_cost_per_interaction
+    - ad_impressions.average_interaction_rate
+    - ad_impressions.average_cost_per_click
     sorts:
-    - master_stats.total_conversions desc
+    - ad_impressions.total_conversions desc
     limit: 10
     column_limit: 50
     label: Campaign Details
@@ -630,7 +630,7 @@
     conditional_formatting_include_nulls: false
     hidden_fields:
     series_labels:
-      master_stats.total_cost_usd: Spend
+      ad_impressions.total_cost_usd: Spend
     row: 17
     col: 0
     width: 24
@@ -752,14 +752,14 @@
   - title: Funnel
     name: Funnel
     model: google_adwords
-    explore: account_quarter_stats
+    explore: account_quarter_fact
     type: looker_column
     fields:
-    - account_quarter_stats.total_impressions
-    - account_quarter_stats.total_clicks
-    - account_quarter_stats.total_conversions
+    - account_quarter_fact.total_impressions
+    - account_quarter_fact.total_clicks
+    - account_quarter_fact.total_conversions
     filters:
-      account_quarter_stats.date_quarter: 1 quarters
+      account_quarter_fact.date_quarter: 1 quarters
     limit: 500
     column_limit: 50
     stacking: ''
@@ -810,19 +810,19 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_quarter_stats.total_impressions
+      - id: account_quarter_fact.total_impressions
         name: Impressions
-        axisId: account_quarter_stats.total_impressions
+        axisId: account_quarter_fact.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 581
-      - id: account_quarter_stats.total_clicks
+      - id: account_quarter_fact.total_clicks
         name: Clicks
-        axisId: account_quarter_stats.total_clicks
+        axisId: account_quarter_fact.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 586
-      - id: account_quarter_stats.total_conversions
+      - id: account_quarter_fact.total_conversions
         name: Conversions
-        axisId: account_quarter_stats.total_conversions
+        axisId: account_quarter_fact.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 591
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -835,14 +835,14 @@
   - title: Click Trend
     name: Click Trend
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_line
     fields:
-    - master_stats.date_week
-    - master_stats.average_cost_per_click
-    - master_stats.average_click_rate
+    - ad_impressions.date_week
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.average_click_rate
     sorts:
-    - master_stats.date_week desc
+    - ad_impressions.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -901,11 +901,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Cost per Click
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 456
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
       __LINE_NUM: 444
     - label:
@@ -920,9 +920,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_click_rate
+      - id: ad_impressions.average_click_rate
         name: Click Through Rate
-        axisId: master_stats.average_click_rate
+        axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 475
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
@@ -955,10 +955,10 @@
     - "#9fc190"
     series_colors: {}
     hidden_series:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     y_axis_reversed: false
     row: 11

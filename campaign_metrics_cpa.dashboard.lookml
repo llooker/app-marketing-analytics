@@ -367,16 +367,16 @@
   - title: Cost Per Conversion versions by Network
     name: Cost Per Conversion versions by Network
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.ad_network_type
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.ad_network_type
+    - ad_impressions.average_cost_per_conversion
     fill_fields:
-    - master_stats.ad_network_type
+    - ad_impressions.ad_network_type
     sorts:
-    - master_stats.average_cost_per_conversion desc
-    - master_stats.ad_network_type
+    - ad_impressions.average_cost_per_conversion desc
+    - ad_impressions.ad_network_type
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -416,9 +416,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 419
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -426,7 +426,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 15
     col: 0
     width: 8
@@ -434,15 +434,15 @@
   - title: Cost Per Conversion by Device
     name: Cost Per Conversion by Device
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.average_cost_per_conversion
-    - master_stats.device_type
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.device_type
     fill_fields:
-    - master_stats.device_type
+    - ad_impressions.device_type
     sorts:
-    - master_stats.average_cost_per_conversion desc
+    - ad_impressions.average_cost_per_conversion desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -482,9 +482,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 485
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -506,7 +506,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 15
     col: 8
     width: 8
@@ -514,13 +514,13 @@
   - title: Cost Per Conversion by Bid Strategy
     name: Cost Per Conversion by Bid Strategy
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     - keyword.bidding_strategy_type
     sorts:
-    - master_stats.average_cost_per_conversion desc
+    - ad_impressions.average_cost_per_conversion desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -560,9 +560,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 563
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -584,7 +584,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 15
     col: 16
     width: 8
@@ -592,13 +592,13 @@
   - title: Cost Per Conversion by Hour of Day
     name: Cost Per Conversion by Hour of Day
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_column
     fields:
-    - master_stats.average_cost_per_conversion
-    - master_stats.hour_of_day
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.hour_of_day
     sorts:
-    - master_stats.hour_of_day
+    - ad_impressions.hour_of_day
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -664,9 +664,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 667
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -707,7 +707,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 28
     col: 14
     width: 10
@@ -715,15 +715,15 @@
   - title: Cost Per Conversion by Day of Week
     name: Cost Per Conversion by Day of Week
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.date_day_of_week
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.date_day_of_week
+    - ad_impressions.average_cost_per_conversion
     fill_fields:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     sorts:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -789,9 +789,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 792
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -821,7 +821,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 21
     col: 14
     width: 10
@@ -829,19 +829,19 @@
   - title: Cost Per Conversion by Day of Week and Hour of Day
     name: Cost Per Conversion by Day of Week and Hour of Day
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
-    - master_stats.average_cost_per_conversion
-    - master_stats.hour_of_day
-    - master_stats.date_day_of_week
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.hour_of_day
+    - ad_impressions.date_day_of_week
     pivots:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     fill_fields:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     sorts:
-    - master_stats.date_day_of_week 0
-    - master_stats.hour_of_day
+    - ad_impressions.date_day_of_week 0
+    - ad_impressions.hour_of_day
     limit: 500
     show_view_names: true
     show_row_numbers: false
@@ -907,9 +907,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 910
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -931,13 +931,13 @@
       italic: false
       strikethrough: false
       fields:
-      - master_stats.average_cost_per_conversion
+      - ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
       __LINE_NUM: 918
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 21
     col: 0
     width: 14
@@ -945,14 +945,14 @@
   - title: Cost Per Conversion To Date
     name: Cost Per Conversion To Date
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_line
     fields:
-    - master_stats.average_cost_per_conversion
-    - master_stats.date_week
-    - master_stats.total_cost_usd
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.date_week
+    - ad_impressions.total_cost_usd
     sorts:
-    - master_stats.date_week desc
+    - ad_impressions.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -1011,11 +1011,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 1014
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
       __LINE_NUM: 1002
     - label:
@@ -1030,9 +1030,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 1033
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -1063,14 +1063,14 @@
     series_colors: {}
     hidden_series: []
     series_labels:
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 4
     col: 0
     width: 24
@@ -1078,19 +1078,19 @@
   - title: Top Ads
     name: Top Ads
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad.creative
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_cost_per_conversion
     filters:
-      master_stats.date_date: 1 quarters
-      master_stats.conversions: ">0"
+      ad_impressions.date_date: 1 quarters
+      ad_impressions.conversions: ">0"
     sorts:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1129,7 +1129,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - campaign.campaign_name
     - ad_group.ad_group_name
     row: 35
@@ -1139,19 +1139,19 @@
   - title: Top Landing Pages
     name: Top Landing Pages
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_cost_per_conversion
     - ad.creative_final_urls
     filters:
-      master_stats.date_date: 1 quarters
-      master_stats.conversions: ">0"
+      ad_impressions.date_date: 1 quarters
+      ad_impressions.conversions: ">0"
     sorts:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1190,7 +1190,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - campaign.campaign_name
     - ad_group.ad_group_name
     row: 35
@@ -1200,19 +1200,19 @@
   - title: Top Keywords
     name: Top Keywords
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_cost_per_conversion
     - keyword.criteria
     filters:
-      master_stats.date_date: 1 quarters
-      master_stats.conversions: ">0"
+      ad_impressions.date_date: 1 quarters
+      ad_impressions.conversions: ">0"
     sorts:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1251,7 +1251,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - campaign.campaign_name
     - ad_group.ad_group_name
     row: 35
@@ -1284,7 +1284,7 @@
     type: field_filter
     default_value: ''
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: campaign.campaign_name
     listens_to_filters: []
     allow_multiple_values: true
@@ -1294,7 +1294,7 @@
     type: field_filter
     default_value: ''
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: ad_group.ad_group_name
     listens_to_filters: []
     allow_multiple_values: true
@@ -1304,8 +1304,8 @@
     type: field_filter
     default_value: 1 quarters
     model: google_adwords
-    explore: master_stats
-    field: master_stats.date_date
+    explore: ad_impressions
+    field: ad_impressions.date_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

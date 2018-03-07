@@ -1,4 +1,4 @@
-view: dated_table {
+view: date_base {
   extension: required
 
   dimension_group: date {
@@ -142,11 +142,5 @@ view: dated_table {
     hidden: yes
     type: max
     sql: ${date_day_of_year} ;;
-  }
-
-  dimension: latest {
-    hidden: yes
-    type: yesno
-    sql: ${TABLE}._DATA_DATE = ${TABLE}._LATEST_DATE ;;
   }
 }

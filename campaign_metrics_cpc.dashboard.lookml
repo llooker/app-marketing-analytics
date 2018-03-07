@@ -367,13 +367,13 @@
   - title: Cost Per Click by Bid Strategy
     name: Cost Per Click by Bid Strategy
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.average_cost_per_click
+    - ad_impressions.average_cost_per_click
     - keyword.bidding_strategy_type
     sorts:
-    - master_stats.average_cost_per_click desc
+    - ad_impressions.average_cost_per_click desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -413,9 +413,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
         __LINE_NUM: 416
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
@@ -437,7 +437,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 15
     col: 16
     width: 8
@@ -445,15 +445,15 @@
   - title: Cost Per Click by Device
     name: Cost Per Click by Device
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.average_cost_per_click
-    - master_stats.device_type
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.device_type
     fill_fields:
-    - master_stats.device_type
+    - ad_impressions.device_type
     sorts:
-    - master_stats.average_cost_per_click desc
+    - ad_impressions.average_cost_per_click desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -493,9 +493,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
         __LINE_NUM: 496
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
@@ -517,7 +517,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 15
     col: 8
     width: 8
@@ -525,19 +525,19 @@
   - title: Cost Per Click by Day of Week and Hour of Day
     name: Cost Per Click by Day of Week and Hour of Day
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
-    - master_stats.average_cost_per_click
-    - master_stats.hour_of_day
-    - master_stats.date_day_of_week
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.hour_of_day
+    - ad_impressions.date_day_of_week
     pivots:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     fill_fields:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     sorts:
-    - master_stats.date_day_of_week 0
-    - master_stats.hour_of_day
+    - ad_impressions.date_day_of_week 0
+    - ad_impressions.hour_of_day
     limit: 500
     show_view_names: true
     show_row_numbers: false
@@ -603,9 +603,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
         __LINE_NUM: 606
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
@@ -627,13 +627,13 @@
       italic: false
       strikethrough: false
       fields:
-      - master_stats.average_cost_per_click
+      - ad_impressions.average_cost_per_click
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
       __LINE_NUM: 614
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 21
     col: 0
     width: 14
@@ -641,15 +641,15 @@
   - title: Cost Per Click by Day of Week
     name: Cost Per Click by Day of Week
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.date_day_of_week
-    - master_stats.average_cost_per_click
+    - ad_impressions.date_day_of_week
+    - ad_impressions.average_cost_per_click
     fill_fields:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     sorts:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -715,9 +715,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
         __LINE_NUM: 718
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
@@ -747,7 +747,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 21
     col: 14
     width: 10
@@ -755,16 +755,16 @@
   - title: Cost Per Click by Network
     name: Cost Per Click by Network
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.ad_network_type
-    - master_stats.average_cost_per_click
+    - ad_impressions.ad_network_type
+    - ad_impressions.average_cost_per_click
     fill_fields:
-    - master_stats.ad_network_type
+    - ad_impressions.ad_network_type
     sorts:
-    - master_stats.average_cost_per_click desc
-    - master_stats.ad_network_type
+    - ad_impressions.average_cost_per_click desc
+    - ad_impressions.ad_network_type
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -804,9 +804,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
         __LINE_NUM: 807
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
@@ -814,7 +814,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 15
     col: 0
     width: 8
@@ -822,14 +822,14 @@
   - title: Cost Per Click To Date
     name: Cost Per Click To Date
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_line
     fields:
-    - master_stats.average_cost_per_click
-    - master_stats.average_cost_per_conversion
-    - master_stats.date_week
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.date_week
     sorts:
-    - master_stats.date_week desc
+    - ad_impressions.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -888,11 +888,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
         __LINE_NUM: 891
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
       __LINE_NUM: 879
     - label:
@@ -907,9 +907,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Cost per Click
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
         __LINE_NUM: 910
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
@@ -941,14 +941,14 @@
     series_colors: {}
     hidden_series: []
     series_labels:
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: master_stats.date_date
+      Time Range: ad_impressions.date_date
     row: 4
     col: 0
     width: 24
@@ -956,13 +956,13 @@
   - title: Cost Per Click by Hour of Day
     name: Cost Per Click by Hour of Day
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_column
     fields:
-    - master_stats.average_cost_per_click
-    - master_stats.hour_of_day
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.hour_of_day
     sorts:
-    - master_stats.hour_of_day
+    - ad_impressions.hour_of_day
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -1028,9 +1028,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Ad Stats Cost
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
         __LINE_NUM: 1031
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
@@ -1078,19 +1078,19 @@
   - title: Top Keywords
     name: Top Keywords
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - keyword.criteria
-    - master_stats.average_cost_per_click
+    - ad_impressions.average_cost_per_click
     filters:
-      master_stats.date_date: 1 quarters
-      master_stats.conversions: ">0"
+      ad_impressions.date_date: 1 quarters
+      ad_impressions.conversions: ">0"
     sorts:
-    - master_stats.average_cost_per_click
+    - ad_impressions.average_cost_per_click
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1129,7 +1129,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - campaign.campaign_name
     - ad_group.ad_group_name
     row: 35
@@ -1139,19 +1139,19 @@
   - title: Top Landing Pages
     name: Top Landing Pages
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad.creative_final_urls
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.average_cost_per_click
-    - master_stats.total_cost_usd
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.total_cost_usd
     filters:
-      master_stats.date_date: 1 quarters
-      master_stats.clicks: ">0"
+      ad_impressions.date_date: 1 quarters
+      ad_impressions.clicks: ">0"
     sorts:
-    - master_stats.average_cost_per_click
+    - ad_impressions.average_cost_per_click
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1190,7 +1190,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - ad_group.ad_group_name
     - campaign.campaign_name
     row: 35
@@ -1200,19 +1200,19 @@
   - title: Top Ads
     name: Top Ads
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
-    - master_stats.average_cost_per_click
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_cost_per_click
     - ad.creative
     filters:
-      master_stats.date_date: 1 quarters
-      master_stats.clicks: ">0"
+      ad_impressions.date_date: 1 quarters
+      ad_impressions.clicks: ">0"
     sorts:
-    - master_stats.average_cost_per_click
+    - ad_impressions.average_cost_per_click
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1251,7 +1251,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - campaign.campaign_name
     - ad_group.ad_group_name
     row: 35
@@ -1284,7 +1284,7 @@
     type: field_filter
     default_value: ''
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: campaign.campaign_name
     listens_to_filters: []
     allow_multiple_values: true
@@ -1294,7 +1294,7 @@
     type: field_filter
     default_value: ''
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: ad_group.ad_group_name
     listens_to_filters: []
     allow_multiple_values: true
@@ -1304,8 +1304,8 @@
     type: field_filter
     default_value: 1 quarters
     model: google_adwords
-    explore: master_stats
-    field: master_stats.date_date
+    explore: ad_impressions
+    field: ad_impressions.date_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

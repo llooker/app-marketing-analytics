@@ -5,19 +5,19 @@
   - title: Campaigns
     name: Campaigns
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - campaign.campaign_name
-    - master_stats.total_cost_usd
-    - master_stats.total_conversions
-    - master_stats.average_cost_per_conversion
-    - master_stats.average_conversion_rate
-    - master_stats.average_cost_per_interaction
-    - master_stats.average_interaction_rate
-    - master_stats.average_cost_per_click
+    - ad_impressions.total_cost_usd
+    - ad_impressions.total_conversions
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_cost_per_interaction
+    - ad_impressions.average_interaction_rate
+    - ad_impressions.average_cost_per_click
     sorts:
-    - master_stats.total_conversions desc
+    - ad_impressions.total_conversions desc
     limit: 10
     column_limit: 50
     label: Campaign Details
@@ -56,10 +56,10 @@
     conditional_formatting_include_nulls: false
     hidden_fields:
     series_labels:
-      master_stats.total_cost_usd: Spend
+      ad_impressions.total_cost_usd: Spend
     listen:
       Campaign: campaign.campaign_name
-      Date: master_stats.date_date
+      Date: ad_impressions.date_date
     row: 0
     col: 0
     width: 24
@@ -67,21 +67,21 @@
   - title: Conversions vs Cost Per Conversion
     name: Conversions vs Cost Per Conversion
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_column
     fields:
     - campaign.campaign_name
-    - master_stats.average_cost_per_conversion
-    - master_stats.total_conversions
-    - master_stats.total_cost_usd
-    - master_stats.average_conversion_rate
-    - master_stats.average_cost_per_interaction
-    - master_stats.average_interaction_rate
-    - master_stats.average_cost_per_click
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.total_conversions
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_cost_per_interaction
+    - ad_impressions.average_interaction_rate
+    - ad_impressions.average_cost_per_click
     filters:
-      master_stats.total_cost_usd: ">500"
+      ad_impressions.total_cost_usd: ">500"
     sorts:
-    - master_stats.average_cost_per_conversion desc
+    - ad_impressions.average_cost_per_conversion desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -114,19 +114,19 @@
     hide_row_totals: false
     table_theme: white
     series_types:
-      master_stats.average_cost_per_conversion: line
+      ad_impressions.average_cost_per_conversion: line
     enable_conditional_formatting: false
     conditional_formatting_ignored_fields: []
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - master_stats.total_cost_usd
-    - master_stats.average_conversion_rate
-    - master_stats.average_cost_per_interaction
-    - master_stats.average_interaction_rate
-    - master_stats.average_cost_per_click
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_cost_per_interaction
+    - ad_impressions.average_interaction_rate
+    - ad_impressions.average_cost_per_click
     series_labels:
-      master_stats.total_cost_usd: Spend
+      ad_impressions.total_cost_usd: Spend
     y_axes:
     - label: ''
       maxValue:
@@ -140,9 +140,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
     - label:
       maxValue:
       minValue:
@@ -155,13 +155,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_conversions
+      - id: ad_impressions.total_conversions
         name: Conversions
-        axisId: master_stats.total_conversions
+        axisId: ad_impressions.total_conversions
     x_axis_label: Campaigns
     listen:
       Campaign: campaign.campaign_name
-      Date: master_stats.date_date
+      Date: ad_impressions.date_date
     row: 7
     col: 0
     width: 12
@@ -169,22 +169,22 @@
   - title: Interactions vs Cost Per Interaction
     name: Interactions vs Cost Per Interaction
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_column
     fields:
     - campaign.campaign_name
-    - master_stats.average_cost_per_conversion
-    - master_stats.total_conversions
-    - master_stats.average_cost_per_interaction
-    - master_stats.total_interactions
-    - master_stats.total_cost_usd
-    - master_stats.average_conversion_rate
-    - master_stats.average_interaction_rate
-    - master_stats.average_cost_per_click
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.total_conversions
+    - ad_impressions.average_cost_per_interaction
+    - ad_impressions.total_interactions
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_interaction_rate
+    - ad_impressions.average_cost_per_click
     filters:
-      master_stats.total_cost_usd: ">500"
+      ad_impressions.total_cost_usd: ">500"
     sorts:
-    - master_stats.average_cost_per_interaction desc
+    - ad_impressions.average_cost_per_interaction desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -217,21 +217,21 @@
     hide_row_totals: false
     table_theme: white
     series_types:
-      master_stats.average_cost_per_conversion: line
-      master_stats.average_cost_per_interaction: line
+      ad_impressions.average_cost_per_conversion: line
+      ad_impressions.average_cost_per_interaction: line
     enable_conditional_formatting: false
     conditional_formatting_ignored_fields: []
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - master_stats.total_cost_usd
-    - master_stats.average_conversion_rate
-    - master_stats.average_interaction_rate
-    - master_stats.average_cost_per_click
-    - master_stats.average_cost_per_conversion
-    - master_stats.total_conversions
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_interaction_rate
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.total_conversions
     series_labels:
-      master_stats.total_cost_usd: Spend
+      ad_impressions.total_cost_usd: Spend
     y_axes:
     - label: ''
       maxValue:
@@ -245,9 +245,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_interactions
+      - id: ad_impressions.total_interactions
         name: Interactions
-        axisId: master_stats.total_interactions
+        axisId: ad_impressions.total_interactions
     - label:
       maxValue:
       minValue:
@@ -260,13 +260,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_interaction
+      - id: ad_impressions.average_cost_per_interaction
         name: Cost per Interaction
-        axisId: master_stats.average_cost_per_interaction
+        axisId: ad_impressions.average_cost_per_interaction
     x_axis_label: Campaigns
     listen:
       Campaign: campaign.campaign_name
-      Date: master_stats.date_date
+      Date: ad_impressions.date_date
     row: 7
     col: 12
     width: 12
@@ -287,7 +287,7 @@
     type: field_filter
     default_value: 1 quarters
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: campaign.date_date
     listens_to_filters: []
     allow_multiple_values: true

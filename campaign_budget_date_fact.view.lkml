@@ -1,13 +1,36 @@
-view: campaign_budget_stats {
+include: "campaign.view"
+include: "customer.view"
+include: "date_base.view"
+
+explore: campaign_budget_date_fact {
+  persist_with: etl_datagroup
+  label: "Campaign Budget Date Fact"
+  view_label: "Campaign Budget Date Fact"
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${campaign_budget_date_fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${campaign_budget_date_fact.date_date} = ${customer.date_date} ;;
+    relationship: many_to_one
+  }
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${campaign_budget_date_fact.campaign_id} = ${campaign.campaign_id} AND
+      ${campaign_budget_date_fact.date_date} = ${campaign.date_date} ;;
+    relationship: many_to_one
+  }
+}
+
+view: campaign_budget_date_fact {
+  extends: [date_base]
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: master_stats {
+    explore_source: ad_impressions {
       column: campaign_id {}
       column: budget_id { field: campaign.budget_id }
-      column: date { field: master_stats.date_raw}
+      column: _date { field: ad_impressions.date_date}
       column: external_customer_id {}
       column: amount { field: campaign.total_amount }
-      column: cost { field: master_stats.total_cost }
+      column: cost { field: ad_impressions.total_cost }
     }
   }
   dimension: campaign_id {
@@ -16,20 +39,9 @@ view: campaign_budget_stats {
   dimension: external_customer_id {
     type: number
   }
-  dimension_group: date {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      day_of_week,
-      day_of_week_index,
-      day_of_month,
-      day_of_year
-    ]
+  dimension: _date {
+    hidden: yes
+    sql: TIMESTAMP(${TABLE}._date) ;;
   }
   dimension: budget_id {}
   dimension: amount {}

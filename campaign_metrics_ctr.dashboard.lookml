@@ -367,16 +367,16 @@
   - title: Click Through Rate by Network
     name: Click Through Rate by Network
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.ad_network_type
-    - master_stats.average_click_rate
+    - ad_impressions.ad_network_type
+    - ad_impressions.average_click_rate
     fill_fields:
-    - master_stats.ad_network_type
+    - ad_impressions.ad_network_type
     sorts:
-    - master_stats.average_click_rate desc
-    - master_stats.ad_network_type
+    - ad_impressions.average_click_rate desc
+    - ad_impressions.ad_network_type
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -416,9 +416,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_click_rate
+      - id: ad_impressions.average_click_rate
         name: Ad Stats Cost
-        axisId: master_stats.average_click_rate
+        axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
         __LINE_NUM: 419
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
@@ -426,7 +426,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 15
     col: 0
     width: 8
@@ -434,15 +434,15 @@
   - title: Click Through Rate by Device
     name: Click Through Rate by Device
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.average_click_rate
-    - master_stats.device_type
+    - ad_impressions.average_click_rate
+    - ad_impressions.device_type
     fill_fields:
-    - master_stats.device_type
+    - ad_impressions.device_type
     sorts:
-    - master_stats.average_click_rate desc
+    - ad_impressions.average_click_rate desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -482,9 +482,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_click_rate
+      - id: ad_impressions.average_click_rate
         name: Ad Stats Cost
-        axisId: master_stats.average_click_rate
+        axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
         __LINE_NUM: 485
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
@@ -506,7 +506,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 15
     col: 8
     width: 8
@@ -514,13 +514,13 @@
   - title: Click Through Rate by Bid Strategy
     name: Click Through Rate by Bid Strategy
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.average_click_rate
+    - ad_impressions.average_click_rate
     - keyword.bidding_strategy_type
     sorts:
-    - master_stats.average_click_rate desc
+    - ad_impressions.average_click_rate desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -560,9 +560,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_click_rate
+      - id: ad_impressions.average_click_rate
         name: Ad Stats Cost
-        axisId: master_stats.average_click_rate
+        axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
         __LINE_NUM: 563
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
@@ -584,7 +584,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 15
     col: 16
     width: 8
@@ -592,15 +592,15 @@
   - title: Click Through Rate by Day of Week
     name: Click Through Rate by Day of Week
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - master_stats.date_day_of_week
-    - master_stats.average_click_rate
+    - ad_impressions.date_day_of_week
+    - ad_impressions.average_click_rate
     fill_fields:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     sorts:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -666,9 +666,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_click_rate
+      - id: ad_impressions.average_click_rate
         name: Ad Stats Cost
-        axisId: master_stats.average_click_rate
+        axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
         __LINE_NUM: 669
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
@@ -698,7 +698,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 21
     col: 14
     width: 10
@@ -706,13 +706,13 @@
   - title: Click Through Rate by Hour of Day
     name: Click Through Rate by Hour of Day
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_column
     fields:
-    - master_stats.average_click_rate
-    - master_stats.hour_of_day
+    - ad_impressions.average_click_rate
+    - ad_impressions.hour_of_day
     sorts:
-    - master_stats.hour_of_day
+    - ad_impressions.hour_of_day
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -778,9 +778,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_click_rate
+      - id: ad_impressions.average_click_rate
         name: Ad Stats Cost
-        axisId: master_stats.average_click_rate
+        axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
         __LINE_NUM: 781
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
@@ -821,7 +821,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 28
     col: 14
     width: 10
@@ -829,19 +829,19 @@
   - title: Click Through Rate by Day of Week and Hour of Day
     name: Click Through Rate by Day of Week and Hour of Day
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
-    - master_stats.average_click_rate
-    - master_stats.hour_of_day
-    - master_stats.date_day_of_week
+    - ad_impressions.average_click_rate
+    - ad_impressions.hour_of_day
+    - ad_impressions.date_day_of_week
     pivots:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     fill_fields:
-    - master_stats.date_day_of_week
+    - ad_impressions.date_day_of_week
     sorts:
-    - master_stats.date_day_of_week 0
-    - master_stats.hour_of_day
+    - ad_impressions.date_day_of_week 0
+    - ad_impressions.hour_of_day
     limit: 500
     show_view_names: true
     show_row_numbers: false
@@ -907,9 +907,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_click_rate
+      - id: ad_impressions.average_click_rate
         name: Ad Stats Cost
-        axisId: master_stats.average_click_rate
+        axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
         __LINE_NUM: 910
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
@@ -931,13 +931,13 @@
       italic: false
       strikethrough: false
       fields:
-      - master_stats.average_click_rate
+      - ad_impressions.average_click_rate
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
       __LINE_NUM: 918
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 21
     col: 0
     width: 14
@@ -945,14 +945,14 @@
   - title: Click Through Rate To Date
     name: Click Through Rate To Date
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_line
     fields:
-    - master_stats.average_click_rate
-    - master_stats.date_week
-    - master_stats.average_cost_per_click
+    - ad_impressions.average_click_rate
+    - ad_impressions.date_week
+    - ad_impressions.average_cost_per_click
     sorts:
-    - master_stats.date_week desc
+    - ad_impressions.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -1011,11 +1011,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_click_rate
+      - id: ad_impressions.average_click_rate
         name: Click Through Rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
         __LINE_NUM: 1014
-        axisId: master_stats.average_click_rate
+        axisId: ad_impressions.average_click_rate
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
       __LINE_NUM: 1002
     - label:
@@ -1030,9 +1030,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_click
+      - id: ad_impressions.average_cost_per_click
         name: Cost per Click
-        axisId: master_stats.average_cost_per_click
+        axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
         __LINE_NUM: 1033
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
@@ -1061,14 +1061,14 @@
     series_colors: {}
     hidden_series: []
     series_labels:
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: master_stats.date_date
+      Time Frame: ad_impressions.date_date
     row: 4
     col: 0
     width: 24
@@ -1076,18 +1076,18 @@
   - title: Top Ads
     name: Top Ads
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - ad.creative
-    - master_stats.average_click_rate
+    - ad_impressions.average_click_rate
     filters:
-      master_stats.date_date: 1 quarters
+      ad_impressions.date_date: 1 quarters
     sorts:
-    - master_stats.average_click_rate desc
+    - ad_impressions.average_click_rate desc
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1126,7 +1126,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - campaign.campaign_name
     - ad_group.ad_group_name
     row: 35
@@ -1136,19 +1136,19 @@
   - title: Top Keywords
     name: Top Keywords
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - keyword.criteria
-    - master_stats.average_click_rate
+    - ad_impressions.average_click_rate
     filters:
-      master_stats.date_date: 1 quarters
-      master_stats.conversions: ">0"
+      ad_impressions.date_date: 1 quarters
+      ad_impressions.conversions: ">0"
     sorts:
-    - master_stats.average_click_rate desc
+    - ad_impressions.average_click_rate desc
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1187,7 +1187,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - campaign.campaign_name
     - ad_group.ad_group_name
     row: 35
@@ -1197,18 +1197,18 @@
   - title: Top Landing Pages
     name: Top Landing Pages
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad.creative_final_urls
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - master_stats.total_cost_usd
-    - master_stats.average_click_rate
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_click_rate
     filters:
-      master_stats.date_date: 1 quarters
+      ad_impressions.date_date: 1 quarters
     sorts:
-    - master_stats.average_click_rate desc
+    - ad_impressions.average_click_rate desc
     limit: 500
     query_timezone: America/Los_Angeles
     show_view_names: true
@@ -1247,7 +1247,7 @@
       first_last: first
       num_rows: '10'
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     - ad_group.ad_group_name
     - campaign.campaign_name
     row: 35
@@ -1280,7 +1280,7 @@
     type: field_filter
     default_value: ''
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: campaign.campaign_name
     listens_to_filters: []
     allow_multiple_values: true
@@ -1290,7 +1290,7 @@
     type: field_filter
     default_value: ''
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     field: ad_group.ad_group_name
     listens_to_filters: []
     allow_multiple_values: true
@@ -1300,8 +1300,8 @@
     type: field_filter
     default_value: 1 quarters
     model: google_adwords
-    explore: master_stats
-    field: master_stats.date_date
+    explore: ad_impressions
+    field: ad_impressions.date_date
     listens_to_filters: []
     allow_multiple_values: true
     required: false

@@ -1,7 +1,8 @@
-include: "dated_table.view.lkml"
+include: "date_base.view"
+include: "google_adwords_base.view"
 
 view: campaign {
-  extends: [dated_table]
+  extends: [date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Campaign_6747157124 ;;
 
   dimension: _date {
@@ -186,7 +187,7 @@ view: campaign {
   measure: count {
     type: count_distinct
     sql: ${campaign_id} ;;
-    drill_fields: [campaign_name, campaign_basic_stats.total_impressions, campaign_basic_stats.total_interactions, campaign_basic_stats.total_conversions, campaign_basic_stats.total_cost_usd, campaign_basic_stats.average_interaction_rate, campaign_basic_stats.average_conversion_rate, campaign_basic_stats.average_cost_per_click, campaign_basic_stats.average_cost_per_conversion]
+    drill_fields: [campaign_name, campaign_basic_fact.total_impressions, campaign_basic_fact.total_interactions, campaign_basic_fact.total_conversions, campaign_basic_fact.total_cost_usd, campaign_basic_fact.average_interaction_rate, campaign_basic_fact.average_conversion_rate, campaign_basic_fact.average_cost_per_click, campaign_basic_fact.average_cost_per_conversion]
   }
 
   dimension: amount_usd {

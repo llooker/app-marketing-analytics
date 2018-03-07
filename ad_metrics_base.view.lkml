@@ -1,4 +1,4 @@
-view: stats {
+view: ad_metrics_base {
   extension: required
 
   dimension: clicks {
@@ -89,7 +89,7 @@ view: stats {
     value_format_name: usd
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/master_stats?fields=keyword.criteria,master_stats.average_cost_per_interaction&f[master_stats.date_date]=this quarter"
+      url: "/explore/google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_cost_per_interaction&f[ad_impressions.date_date]=this quarter"
     }
   }
 
@@ -120,7 +120,7 @@ view: stats {
   measure: cumulative_spend {
     type: running_total
     sql: ${total_cost_usd} ;;
-    drill_fields: [master_stats.date_date, campaign.campaign_name, master_stats.total_cost_usd]
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost_usd]
     value_format_name: usd_0
     direction: "column"
   }
@@ -128,7 +128,7 @@ view: stats {
   measure: cumulative_conversions {
     type: running_total
     sql: ${total_conversions} ;;
-    drill_fields: [master_stats.date_date, campaign.campaign_name, master_stats.total_cost_usd]
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost_usd]
     value_format_name: decimal_0
     direction: "column"
   }

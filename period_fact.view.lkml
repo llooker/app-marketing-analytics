@@ -1,34 +1,31 @@
-include: "dated_table.view"
-include: "stats.view"
-include: "account_date_stats.view"
-include: "account_week_stats.view"
-include: "account_month_stats.view"
-include: "account_quarter_stats.view"
+include: "account_fact.view"
+include: "ad_metrics_base.view"
+include: "date_base.view"
 
-explore: period_stats {
+explore: period_fact {
   persist_with: etl_datagroup
-  label: "Account Period Stats"
-  view_label: "Account Period Stats"
+  label: "Account Period Fact"
+  view_label: "Account Period Fact"
 
-  join: last_period_stats {
-    from: period_stats
-    view_label: "Last Period Account Stats"
-    sql_on: ${period_stats.external_customer_id} = ${last_period_stats.external_customer_id} AND
-      ${period_stats.date_last_period} = ${last_period_stats.date_period} AND
-      ${period_stats.less_than_current_day_of_period} = ${period_stats.less_than_current_day_of_period} AND
-      ${period_stats.less_than_current_day_of_period} = "Yes" ;;
+  join: last_period_fact {
+    from: period_fact
+    view_label: "Last Period Account Fact"
+    sql_on: ${period_fact.external_customer_id} = ${last_period_fact.external_customer_id} AND
+      ${period_fact.date_last_period} = ${last_period_fact.date_period} AND
+      ${period_fact.less_than_current_day_of_period} = ${period_fact.less_than_current_day_of_period} AND
+      ${period_fact.less_than_current_day_of_period} = "Yes" ;;
     relationship: one_to_one
   }
   join:  customer {
     view_label: "Customer"
-    sql_on: ${period_stats.external_customer_id} = ${customer.external_customer_id} AND
+    sql_on: ${period_fact.external_customer_id} = ${customer.external_customer_id} AND
       ${customer.latest} = "Yes" ;;
     relationship: many_to_one
   }
 }
 
-view: period_stats {
-  extends: [stats]
+view: period_fact {
+  extends: [ad_metrics_base]
 
   parameter: period {
     description: "Aggregation Period"
@@ -49,9 +46,9 @@ view: period_stats {
   }
 
   sql_table_name:
-    {% if period._parameter_value == "week" %}${account_week_stats.SQL_TABLE_NAME}
-    {% elsif period._parameter_value == "month" %}${account_month_stats.SQL_TABLE_NAME}
-    {% elsif period._parameter_value == "quarter" %}${account_quarter_stats.SQL_TABLE_NAME}
+    {% if period._parameter_value == "week" %}${account_week_fact.SQL_TABLE_NAME}
+    {% elsif period._parameter_value == "month" %}${account_month_fact.SQL_TABLE_NAME}
+    {% elsif period._parameter_value == "quarter" %}${account_quarter_fact.SQL_TABLE_NAME}
     {% endif %} ;;
 
   dimension: date_week {

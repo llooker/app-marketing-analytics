@@ -5,26 +5,26 @@
   - title: Ad spend qtd
     name: Ad spend qtd
     model: google_adwords
-    explore: campaign_quarter_stats
+    explore: campaign_quarter_fact
     type: single_value
     fields:
-    - campaign_quarter_stats.total_cost_usd
-    - campaign_quarter_stats.date_quarter
-    - last_campaign_quarter_stats.total_cost_usd
+    - campaign_quarter_fact.total_cost_usd
+    - campaign_quarter_fact.date_quarter
+    - last_campaign_quarter_fact.total_cost_usd
     fill_fields:
-    - campaign_quarter_stats.date_quarter
+    - campaign_quarter_fact.date_quarter
     sorts:
-    - campaign_quarter_stats.date_quarter desc
+    - campaign_quarter_fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly Change
-      expression: "${campaign_quarter_stats.total_cost_usd} - ${last_campaign_quarter_stats.total_cost_usd}\n"
+      expression: "${campaign_quarter_fact.total_cost_usd} - ${last_campaign_quarter_fact.total_cost_usd}\n"
       value_format:
       value_format_name: usd_0
     hidden_fields:
-    - last_campaign_quarter_stats.total_cost_usd
+    - last_campaign_quarter_fact.total_cost_usd
     label: Ad Spend QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -68,28 +68,28 @@
   - title: Conversions qtd (copy)
     name: Conversions qtd (copy)
     model: google_adwords
-    explore: campaign_quarter_stats
+    explore: campaign_quarter_fact
     type: single_value
     fields:
-    - campaign_quarter_stats.date_quarter
-    - campaign_quarter_stats.total_conversions
-    - last_campaign_quarter_stats.total_conversions
+    - campaign_quarter_fact.date_quarter
+    - campaign_quarter_fact.total_conversions
+    - last_campaign_quarter_fact.total_conversions
     fill_fields:
-    - campaign_quarter_stats.date_quarter
+    - campaign_quarter_fact.date_quarter
     sorts:
-    - campaign_quarter_stats.date_quarter desc
+    - campaign_quarter_fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly Change
-      expression: "${campaign_quarter_stats.total_conversions} - ${last_campaign_quarter_stats.total_conversions}\n"
+      expression: "${campaign_quarter_fact.total_conversions} - ${last_campaign_quarter_fact.total_conversions}\n"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     hidden_fields:
-    - last_campaign_quarter_stats.total_conversions
+    - last_campaign_quarter_fact.total_conversions
     label: Conversions QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -133,26 +133,26 @@
   - title: Cost per conversion qtd
     name: Cost per conversion qtd
     model: google_adwords
-    explore: campaign_quarter_stats
+    explore: campaign_quarter_fact
     type: single_value
     fields:
-    - campaign_quarter_stats.date_quarter
-    - campaign_quarter_stats.average_cost_per_conversion
-    - last_campaign_quarter_stats.average_cost_per_conversion
+    - campaign_quarter_fact.date_quarter
+    - campaign_quarter_fact.average_cost_per_conversion
+    - last_campaign_quarter_fact.average_cost_per_conversion
     fill_fields:
-    - campaign_quarter_stats.date_quarter
+    - campaign_quarter_fact.date_quarter
     sorts:
-    - campaign_quarter_stats.date_quarter desc
+    - campaign_quarter_fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${campaign_quarter_stats.average_cost_per_conversion} -  ${last_campaign_quarter_stats.average_cost_per_conversion})/${last_campaign_quarter_stats.average_cost_per_conversion}\n"
+      expression: "(${campaign_quarter_fact.average_cost_per_conversion} -  ${last_campaign_quarter_fact.average_cost_per_conversion})/${last_campaign_quarter_fact.average_cost_per_conversion}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
-    - last_campaign_quarter_stats.average_cost_per_conversion
+    - last_campaign_quarter_fact.average_cost_per_conversion
     label: Cost per Conversion QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -196,26 +196,26 @@
   - title: Conversion rate qtd
     name: Conversion rate qtd
     model: google_adwords
-    explore: campaign_quarter_stats
+    explore: campaign_quarter_fact
     type: single_value
     fields:
-    - campaign_quarter_stats.date_quarter
-    - campaign_quarter_stats.average_conversion_rate
-    - last_campaign_quarter_stats.average_conversion_rate
+    - campaign_quarter_fact.date_quarter
+    - campaign_quarter_fact.average_conversion_rate
+    - last_campaign_quarter_fact.average_conversion_rate
     fill_fields:
-    - campaign_quarter_stats.date_quarter
+    - campaign_quarter_fact.date_quarter
     sorts:
-    - campaign_quarter_stats.date_quarter desc
+    - campaign_quarter_fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${campaign_quarter_stats.average_conversion_rate} - ${last_campaign_quarter_stats.average_conversion_rate})/${last_campaign_quarter_stats.average_conversion_rate}\n"
+      expression: "(${campaign_quarter_fact.average_conversion_rate} - ${last_campaign_quarter_fact.average_conversion_rate})/${last_campaign_quarter_fact.average_conversion_rate}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
-    - last_campaign_quarter_stats.average_conversion_rate
+    - last_campaign_quarter_fact.average_conversion_rate
     label: Conversion Rate QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -259,27 +259,27 @@
   - title: Spend To Date
     name: Spend To Date
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_area
     fields:
-    - master_stats.total_cost_usd
-    - master_stats.date_day_of_quarter
-    - master_stats.date_quarter
+    - ad_impressions.total_cost_usd
+    - ad_impressions.date_day_of_quarter
+    - ad_impressions.date_quarter
     pivots:
-    - master_stats.date_quarter
+    - ad_impressions.date_quarter
     fill_fields:
-    - master_stats.date_quarter
+    - ad_impressions.date_quarter
     filters:
-      master_stats.date_quarter: 2 quarters
+      ad_impressions.date_quarter: 2 quarters
     sorts:
-    - master_stats.date_quarter desc
-    - master_stats.date_day_of_quarter
+    - ad_impressions.date_quarter desc
+    - ad_impressions.date_day_of_quarter
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: spend
       label: Spend
-      expression: if(is_null(${master_stats.total_cost_usd}), null, running_total(${master_stats.total_cost_usd}))
+      expression: if(is_null(${ad_impressions.total_cost_usd}), null, running_total(${ad_impressions.total_cost_usd}))
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
@@ -340,11 +340,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 343
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
       __LINE_NUM: 331
     - label:
@@ -359,9 +359,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_conversions
+      - id: ad_impressions.total_conversions
         name: Conversions
-        axisId: master_stats.total_conversions
+        axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 362
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -378,9 +378,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_impressions
+      - id: ad_impressions.total_impressions
         name: Impressions
-        axisId: master_stats.total_impressions
+        axisId: ad_impressions.total_impressions
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 381
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -397,9 +397,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_cost_usd
+      - id: ad_impressions.total_cost_usd
         name: Cost
-        axisId: master_stats.total_cost_usd
+        axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 400
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -416,9 +416,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_clicks
+      - id: ad_impressions.total_clicks
         name: Clicks
-        axisId: master_stats.total_clicks
+        axisId: ad_impressions.total_clicks
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 419
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -451,12 +451,12 @@
     - "#9fc190"
     series_colors: {}
     hidden_series:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
     hidden_fields:
-    - master_stats.total_cost_usd
+    - ad_impressions.total_cost_usd
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     listen:
@@ -468,27 +468,27 @@
   - title: Interaction rate qtd
     name: Interaction rate qtd
     model: google_adwords
-    explore: campaign_quarter_stats
+    explore: campaign_quarter_fact
     type: single_value
     fields:
-    - campaign_quarter_stats.date_quarter
-    - campaign_quarter_stats.average_interaction_rate
-    - last_campaign_quarter_stats.average_interaction_rate
+    - campaign_quarter_fact.date_quarter
+    - campaign_quarter_fact.average_interaction_rate
+    - last_campaign_quarter_fact.average_interaction_rate
     fill_fields:
-    - campaign_quarter_stats.date_quarter
+    - campaign_quarter_fact.date_quarter
     sorts:
-    - campaign_quarter_stats.date_quarter desc
+    - campaign_quarter_fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${campaign_quarter_stats.average_interaction_rate} - ${last_campaign_quarter_stats.average_interaction_rate}\
-        \ )/${last_campaign_quarter_stats.average_interaction_rate}\n"
+      expression: "(${campaign_quarter_fact.average_interaction_rate} - ${last_campaign_quarter_fact.average_interaction_rate}\
+        \ )/${last_campaign_quarter_fact.average_interaction_rate}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
-    - last_campaign_quarter_stats.average_interaction_rate
+    - last_campaign_quarter_fact.average_interaction_rate
     label: Interaction Rate QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -532,28 +532,28 @@
   - title: Cost per interaction qtd
     name: Cost per interaction qtd
     model: google_adwords
-    explore: campaign_quarter_stats
+    explore: campaign_quarter_fact
     type: single_value
     fields:
-    - campaign_quarter_stats.date_quarter
-    - last_campaign_quarter_stats.average_cost_per_interaction
-    - campaign_quarter_stats.average_cost_per_interaction
+    - campaign_quarter_fact.date_quarter
+    - last_campaign_quarter_fact.average_cost_per_interaction
+    - campaign_quarter_fact.average_cost_per_interaction
     fill_fields:
-    - campaign_quarter_stats.date_quarter
+    - campaign_quarter_fact.date_quarter
     sorts:
-    - campaign_quarter_stats.date_quarter desc
+    - campaign_quarter_fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: change
       label: "% Change"
-      expression: "(${campaign_quarter_stats.average_cost_per_interaction} - ${last_campaign_quarter_stats.average_cost_per_interaction})/${last_campaign_quarter_stats.average_cost_per_interaction}\n"
+      expression: "(${campaign_quarter_fact.average_cost_per_interaction} - ${last_campaign_quarter_fact.average_cost_per_interaction})/${last_campaign_quarter_fact.average_cost_per_interaction}\n"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     hidden_fields:
-    - last_campaign_quarter_stats.average_cost_per_interaction
+    - last_campaign_quarter_fact.average_cost_per_interaction
     label: Cost per Interaction QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -597,14 +597,14 @@
   - title: Funnel
     name: Funnel
     model: google_adwords
-    explore: campaign_quarter_stats
+    explore: campaign_quarter_fact
     type: looker_column
     fields:
-    - campaign_quarter_stats.total_impressions
-    - campaign_quarter_stats.total_interactions
-    - campaign_quarter_stats.total_conversions
+    - campaign_quarter_fact.total_impressions
+    - campaign_quarter_fact.total_interactions
+    - campaign_quarter_fact.total_conversions
     filters:
-      campaign_quarter_stats.date_quarter: 1 quarters
+      campaign_quarter_fact.date_quarter: 1 quarters
     limit: 500
     column_limit: 50
     stacking: ''
@@ -655,19 +655,19 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: campaign_quarter_stats.total_impressions
+      - id: campaign_quarter_fact.total_impressions
         name: Impressions
-        axisId: campaign_quarter_stats.total_impressions
+        axisId: campaign_quarter_fact.total_impressions
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 658
-      - id: campaign_quarter_stats.total_clicks
+      - id: campaign_quarter_fact.total_clicks
         name: Clicks
-        axisId: campaign_quarter_stats.total_clicks
+        axisId: campaign_quarter_fact.total_clicks
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 663
-      - id: campaign_quarter_stats.total_conversions
+      - id: campaign_quarter_fact.total_conversions
         name: Conversions
-        axisId: campaign_quarter_stats.total_conversions
+        axisId: campaign_quarter_fact.total_conversions
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 668
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -682,22 +682,22 @@
   - title: Budget Utilization
     name: Budget Utilization
     model: google_adwords
-    explore: campaign_budget_stats
+    explore: campaign_budget_date_fact
     type: looker_column
     fields:
-    - campaign_budget_stats.percent_used_budget_tier
-    - campaign_budget_stats.total_cost_usd
-    - campaign_budget_stats.date_week
+    - campaign_budget_date_fact.percent_used_budget_tier
+    - campaign_budget_date_fact.total_cost_usd
+    - campaign_budget_date_fact.date_week
     pivots:
-    - campaign_budget_stats.percent_used_budget_tier
+    - campaign_budget_date_fact.percent_used_budget_tier
     fill_fields:
-    - campaign_budget_stats.date_week
+    - campaign_budget_date_fact.date_week
     filters:
       campaign.campaign_name: ''
-      campaign_budget_stats.date_date: 2 quarters
+      campaign_budget_date_fact.date_date: 2 quarters
     sorts:
-    - campaign_budget_stats.percent_used_budget_tier
-    - campaign_budget_stats.date_week desc
+    - campaign_budget_date_fact.percent_used_budget_tier
+    - campaign_budget_date_fact.date_week desc
     limit: 500
     column_limit: 50
     label: Campaign Budget Utilization
@@ -762,32 +762,32 @@
       series:
       - id: "[0.00%,20.00%)"
         name: "[0.00%,20.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 763
       - id: "[20.00%,40.00%)"
         name: "[20.00%,40.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 766
       - id: "[40.00%,60.00%)"
         name: "[40.00%,60.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 769
       - id: "[60.00%,80.00%)"
         name: "[60.00%,80.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 772
       - id: "[80.00%,100.00%)"
         name: "[80.00%,100.00%)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 775
       - id: "[100.00%,inf)"
         name: "[100.00%,inf)"
-        axisId: campaign_budget_stats.total_cost_usd
+        axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 778
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -801,17 +801,17 @@
   - title: Conversion Trends
     name: Conversion Trends
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_area
     fields:
-    - master_stats.date_week
-    - master_stats.total_conversions
-    - master_stats.average_cost_per_conversion
-    - master_stats.average_conversion_rate
+    - ad_impressions.date_week
+    - ad_impressions.total_conversions
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.average_conversion_rate
     filters:
-      master_stats.date_date: 5 quarters
+      ad_impressions.date_date: 5 quarters
     sorts:
-    - master_stats.date_week desc
+    - ad_impressions.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -856,10 +856,10 @@
     labelColorEnabled: false
     labelColor: "#FFF"
     series_types:
-      master_stats.average_cost_per_conversion: line
-      master_stats.total_impressions: line
-      master_stats.total_clicks: line
-      master_stats.average_conversion_rate: line
+      ad_impressions.average_cost_per_conversion: line
+      ad_impressions.total_impressions: line
+      ad_impressions.total_clicks: line
+      ad_impressions.average_conversion_rate: line
     show_dropoff: true
     y_axes:
     - label: ''
@@ -874,11 +874,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_conversion
+      - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 863
-        axisId: master_stats.average_cost_per_conversion
+        axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
       __LINE_NUM: 851
     - label:
@@ -893,9 +893,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.total_conversions
+      - id: ad_impressions.total_conversions
         name: Conversions
-        axisId: master_stats.total_conversions
+        axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 882
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -912,9 +912,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_conversion_rate
+      - id: ad_impressions.average_conversion_rate
         name: Conversion Rate
-        axisId: master_stats.average_conversion_rate
+        axisId: ad_impressions.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 901
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -936,10 +936,10 @@
     - 'palette: Looker Classic'
     series_colors: {}
     hidden_series:
-    - master_stats.average_conversion_rate
+    - ad_impressions.average_conversion_rate
     series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     listen:
       Campaign Name: campaign.campaign_name
@@ -950,16 +950,16 @@
   - title: Interaction Trend
     name: Interaction Trend
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: looker_area
     fields:
-    - master_stats.date_week
-    - master_stats.average_cost_per_interaction
-    - master_stats.average_interaction_rate
+    - ad_impressions.date_week
+    - ad_impressions.average_cost_per_interaction
+    - ad_impressions.average_interaction_rate
     filters:
-      master_stats.date_date: 5 quarters
+      ad_impressions.date_date: 5 quarters
     sorts:
-    - master_stats.date_week desc
+    - ad_impressions.date_week desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -1004,11 +1004,11 @@
     labelColorEnabled: false
     labelColor: "#FFF"
     series_types:
-      master_stats.average_cost_per_conversion: line
-      master_stats.total_impressions: line
-      master_stats.total_clicks: line
-      master_stats.average_cost_per_interaction: line
-      master_stats.average_interaction_rate: line
+      ad_impressions.average_cost_per_conversion: line
+      ad_impressions.total_impressions: line
+      ad_impressions.total_clicks: line
+      ad_impressions.average_cost_per_interaction: line
+      ad_impressions.average_interaction_rate: line
     show_dropoff: true
     y_axes:
     - label: ''
@@ -1023,11 +1023,11 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_cost_per_interaction
+      - id: ad_impressions.average_cost_per_interaction
         name: Cost per Interaction
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 1012
-        axisId: master_stats.average_cost_per_interaction
+        axisId: ad_impressions.average_cost_per_interaction
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
       __LINE_NUM: 1000
     - label:
@@ -1042,9 +1042,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: master_stats.average_interaction_rate
+      - id: ad_impressions.average_interaction_rate
         name: Interaction Rate
-        axisId: master_stats.average_interaction_rate
+        axisId: ad_impressions.average_interaction_rate
         __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
         __LINE_NUM: 1031
       __FILE: app_marketing_analytics/campaign_performance.dashboard.lookml
@@ -1077,10 +1077,10 @@
     - "#9fc190"
     series_colors: {}
     hidden_series:
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.average_cost_per_conversion
     series_labels:
-      master_stats.total_cost_usd: Spend
-      master_stats.total_clicks: Interactions
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
     hidden_fields: []
     y_axis_reversed: false
     listen:
@@ -1092,22 +1092,22 @@
   - title: Ad group details
     name: Ad group details
     model: google_adwords
-    explore: master_stats
+    explore: ad_impressions
     type: table
     fields:
     - ad_group.ad_group_name
-    - master_stats.total_impressions
-    - master_stats.total_interactions
-    - master_stats.total_conversions
-    - master_stats.total_cost_usd
-    - master_stats.average_interaction_rate
-    - master_stats.average_conversion_rate
-    - master_stats.average_cost_per_click
-    - master_stats.average_cost_per_conversion
+    - ad_impressions.total_impressions
+    - ad_impressions.total_interactions
+    - ad_impressions.total_conversions
+    - ad_impressions.total_cost_usd
+    - ad_impressions.average_interaction_rate
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.average_cost_per_conversion
     filters:
       ad_group.date_date: 1 quarters
     sorts:
-    - master_stats.total_impressions desc
+    - ad_impressions.total_impressions desc
     limit: 500
     column_limit: 50
     label: Ad Group Details
