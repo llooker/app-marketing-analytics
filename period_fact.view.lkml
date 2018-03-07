@@ -15,6 +15,7 @@ explore: period_fact {
       ${period_fact.less_than_current_day_of_period} = ${period_fact.less_than_current_day_of_period} AND
       ${period_fact.less_than_current_day_of_period} ;;
     relationship: one_to_one
+    type: inner
   }
   join:  customer {
     view_label: "Customer"
