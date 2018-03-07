@@ -100,6 +100,31 @@
                       "name": "by Click Through Rate",
                       "permalink": "worst-ads-by-click-rate"
                     }
+                  ],
+                  "filters": [
+                    {
+                      "autoSuggest": false,
+                      "facetedBy": [],
+                      "field": "master_stats._data_date",
+                      "name": "Time Period",
+                      "type": "Timeperiod"
+                    },
+                    {
+                      "autoSuggest": true,
+                      "facetedBy": [],
+                      "field": "campaign.campaign_name",
+                      "name": "Campaign",
+                      "type": "Select"
+                    },
+                    {
+                      "autoSuggest": true,
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ],
+                      "field": "ad_group.ad_group_name",
+                      "name": "Ad Group",
+                      "type": "Select"
+                    }
                   ]
                 },
                 {
