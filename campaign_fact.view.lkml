@@ -62,8 +62,12 @@ explore: campaign_week_fact {
     from: campaign_week_fact
     view_label: "Last Week Campaign Fact"
     sql_on: ${campaign_week_fact.external_customer_id} = ${last_campaign_week_fact.external_customer_id} AND
-      ${campaign_week_fact.date_last_week} = ${last_campaign_week_fact.date_week} ;;
+      ${campaign_week_fact.campaign_id} = ${last_campaign_week_fact.campaign_id} AND
+      ${campaign_week_fact.date_last_week} = ${last_campaign_week_fact.date_week} AND
+      ${campaign_week_fact.less_than_current_day_of_week} = ${last_campaign_week_fact.less_than_current_day_of_week} AND
+      ${last_campaign_week_fact.less_than_current_day_of_week} ;;
     relationship: one_to_one
+    type: inner
   }
   join:  customer {
     view_label: "Customer"
@@ -124,8 +128,12 @@ explore: campaign_month_fact {
     from: campaign_month_fact
     view_label: "Last Month Campaign Fact"
     sql_on: ${campaign_month_fact.external_customer_id} = ${last_campaign_month_fact.external_customer_id} AND
-      ${campaign_month_fact.date_last_month} = ${last_campaign_month_fact.date_month} ;;
+      ${campaign_month_fact.campaign_id} = ${last_campaign_month_fact.campaign_id} AND
+      ${campaign_month_fact.date_last_month} = ${last_campaign_month_fact.date_month} AND
+      ${campaign_month_fact.less_than_current_day_of_month} = ${last_campaign_month_fact.less_than_current_day_of_month} AND
+      ${last_campaign_month_fact.less_than_current_day_of_month} ;;
     relationship: one_to_one
+    type: inner
   }
   join:  customer {
     view_label: "Customer"
@@ -186,8 +194,12 @@ explore: campaign_quarter_fact {
     from: campaign_quarter_fact
     view_label: "Last Quarter Campaign Fact"
     sql_on: ${campaign_quarter_fact.external_customer_id} = ${last_campaign_quarter_fact.external_customer_id} AND
-      ${campaign_quarter_fact.date_last_quarter} = ${last_campaign_quarter_fact.date_quarter} ;;
+      ${campaign_quarter_fact.campaign_id} = ${last_campaign_quarter_fact.campaign_id} AND
+      ${campaign_quarter_fact.date_last_quarter} = ${last_campaign_quarter_fact.date_quarter} AND
+      ${campaign_quarter_fact.less_than_current_day_of_quarter} = ${last_campaign_quarter_fact.less_than_current_day_of_quarter} AND
+      ${last_campaign_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
+    type: inner
   }
   join:  customer {
     view_label: "Customer"

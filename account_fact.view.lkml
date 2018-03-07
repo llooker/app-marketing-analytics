@@ -50,8 +50,11 @@ explore: account_week_fact {
     from: account_week_fact
     view_label: "Last Week Account Fact"
     sql_on: ${account_week_fact.external_customer_id} = ${last_account_week_fact.external_customer_id} AND
-      ${account_week_fact.date_last_week} = ${last_account_week_fact.date_week} ;;
+      ${account_week_fact.date_last_week} = ${last_account_week_fact.date_week} AND
+      ${account_week_fact.less_than_current_day_of_week} = ${last_account_week_fact.less_than_current_day_of_week} AND
+      ${last_account_week_fact.less_than_current_day_of_week} ;;
     relationship: one_to_one
+    type: inner
   }
   join:  customer {
     view_label: "Customer"
@@ -104,8 +107,11 @@ explore: account_month_fact {
     from: account_month_fact
     view_label: "Last Month Account Fact"
     sql_on: ${account_month_fact.external_customer_id} = ${last_account_month_fact.external_customer_id} AND
-      ${account_month_fact.date_last_month} = ${last_account_month_fact.date_month} ;;
+      ${account_month_fact.date_last_month} = ${last_account_month_fact.date_month} AND
+      ${account_month_fact.less_than_current_day_of_month} = ${last_account_month_fact.less_than_current_day_of_month} AND
+      ${last_account_month_fact.less_than_current_day_of_month} ;;
     relationship: one_to_one
+    type: inner
   }
   join:  customer {
     view_label: "Customer"
@@ -158,8 +164,9 @@ explore: account_quarter_fact {
     sql_on: ${account_quarter_fact.external_customer_id} = ${last_account_quarter_fact.external_customer_id} AND
       ${account_quarter_fact.date_last_quarter} = ${last_account_quarter_fact.date_quarter} AND
       ${account_quarter_fact.less_than_current_day_of_quarter} = ${last_account_quarter_fact.less_than_current_day_of_quarter} AND
-      ${account_quarter_fact.less_than_current_day_of_quarter} ;;
+      ${last_account_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
+    type: inner
   }
   join:  customer {
     view_label: "Customer"
