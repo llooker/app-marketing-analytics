@@ -4,7 +4,7 @@
   elements:
   - title: Click Through Rate
     name: Click Through Rate
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: single_value
     fields:
@@ -48,7 +48,7 @@
     height: 2
   - title: Spend
     name: Spend
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: single_value
     fields:
@@ -92,7 +92,7 @@
     height: 2
   - title: Per Click
     name: Per Click
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: single_value
     fields:
@@ -136,7 +136,7 @@
     height: 2
   - title: Click Trend
     name: Click Trend
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: looker_line
     fields:
@@ -246,7 +246,7 @@
     height: 9
   - title: Spend To Date
     name: Spend To Date
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: looker_area
     fields:
@@ -315,7 +315,7 @@
     height: 9
   - title: Impressions
     name: Impressions
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: single_value
     fields:
@@ -359,7 +359,7 @@
     height: 4
   - title: Reach
     name: Reach
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: single_value
     fields:
@@ -405,7 +405,7 @@
     height: 4
   - title: Reach Trend
     name: Reach Trend
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: looker_area
     fields:
@@ -485,7 +485,7 @@
     height: 8
   - title: Spend Age & Gender
     name: Spend Age & Gender
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights_age_and_gender
     type: table
     fields:
@@ -556,7 +556,7 @@
     height: 5
   - title: CPC Age & Gender
     name: CPC Age & Gender
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights_age_and_gender
     type: table
     fields:
@@ -628,7 +628,7 @@
     height: 5
   - title: Clicks Age & Gender
     name: Clicks Age & Gender
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights_age_and_gender
     type: table
     fields:
@@ -700,7 +700,7 @@
     height: 5
   - title: CTR Age & Gender
     name: CTR Age & Gender
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights_age_and_gender
     type: table
     fields:
@@ -773,7 +773,7 @@
     height: 5
   - title: Clicks & CPC by Device
     name: Clicks & CPC by Device
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights_platform_and_device
     type: looker_bar
     fields:
@@ -876,7 +876,7 @@
     height: 17
   - title: Top Ads by Clicks
     name: Top Ads by Clicks
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     type: table
     fields:
@@ -930,7 +930,7 @@
     title: Untitled Filter
     type: field_filter
     default_value: 1 quarters
-    model: facebook_ads
+    model: looker_app_facebook_ads
     explore: ads_insights
     field: ads_insights.date_start_date
     listens_to_filters: []

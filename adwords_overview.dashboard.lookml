@@ -4,7 +4,7 @@
   elements:
   - title: Spend
     name: Spend
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -62,7 +62,7 @@
     height: 2
   - title: Conversions
     name: Conversions
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -120,7 +120,7 @@
     height: 2
   - title: Cost Per Conversion
     name: Cost Per Conversion
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -178,7 +178,7 @@
     height: 2
   - title: Conversion Rate
     name: Conversion Rate
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -236,7 +236,7 @@
     height: 2
   - title: Conversion Trends
     name: Conversion Trends
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_area
     fields:
@@ -381,7 +381,7 @@
     height: 9
   - title: Spend To Date
     name: Spend To Date
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_area
     fields:
@@ -578,7 +578,7 @@
     height: 9
   - title: Campaigns
     name: Campaigns
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: table
     fields:
@@ -637,7 +637,7 @@
     height: 7
   - title: Per Click
     name: Per Click
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -694,7 +694,7 @@
     height: 3
   - title: Click Rate
     name: Click Rate
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -751,7 +751,7 @@
     height: 3
   - title: Funnel
     name: Funnel
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: account_quarter_fact
     type: looker_column
     fields:
@@ -834,7 +834,7 @@
     height: 6
   - title: Click Trend
     name: Click Trend
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_line
     fields:
@@ -970,7 +970,7 @@
     title: This Timeframe
     type: field_filter
     default_value: this quarter
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     field: kpis_this_period.this_timeframe
     listens_to_filters: []
@@ -980,7 +980,7 @@
     title: Last Timeframe
     type: field_filter
     default_value: 1 quarter ago
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     field: kpis_last_period.last_timeframe
     listens_to_filters: []

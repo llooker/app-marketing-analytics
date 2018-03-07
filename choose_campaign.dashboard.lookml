@@ -4,7 +4,7 @@
   elements:
   - title: Campaigns
     name: Campaigns
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: table
     fields:
@@ -66,7 +66,7 @@
     height: 7
   - title: Conversions vs Cost Per Conversion
     name: Conversions vs Cost Per Conversion
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_column
     fields:
@@ -168,7 +168,7 @@
     height: 11
   - title: Interactions vs Cost Per Interaction
     name: Interactions vs Cost Per Interaction
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_column
     fields:
@@ -276,7 +276,7 @@
     title: Campaign
     type: field_filter
     default_value: ''
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: campaign
     field: campaign.campaign_name
     listens_to_filters: []
@@ -286,7 +286,7 @@
     title: Date
     type: field_filter
     default_value: 1 quarters
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     field: campaign.date_date
     listens_to_filters: []

@@ -96,11 +96,11 @@ view: kpis_this_period {
     value_format_name: decimal_0
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_conversions&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_conversions&f[ad_impressions.date_date]=this quarter"
     }
     link: {
       label: "Conversions Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_conversions?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversions?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -110,11 +110,11 @@ view: kpis_this_period {
     value_format_name: usd_0
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_cost_usd&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_cost_usd&f[ad_impressions.date_date]=this quarter"
     }
     link: {
       label: "Spend Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_spend?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_spend?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -148,11 +148,11 @@ view: kpis_this_period {
     value_format_name: percent_2
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_conversion_rate&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_conversion_rate&f[ad_impressions.date_date]=this quarter"
     }
     link: {
       label: "Conversion Rate Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_conversion_rate?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversion_rate?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -162,7 +162,7 @@ view: kpis_this_period {
     value_format_name: percent_2
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_interaction_rate&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_interaction_rate&f[ad_impressions.date_date]=this quarter"
     }
   }
 
@@ -172,11 +172,11 @@ view: kpis_this_period {
     value_format_name: percent_2
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
     }
     link: {
       label: "Click Rate Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_click_through_rate?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_click_through_rate?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -186,7 +186,7 @@ view: kpis_this_period {
     value_format_name: usd
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_interaction_rate&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_interaction_rate&f[ad_impressions.date_date]=this quarter"
     }
   }
 
@@ -196,11 +196,11 @@ view: kpis_this_period {
     value_format_name: usd
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
     }
     link: {
       label: "Cost Per Click Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_cost_per_click?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_click?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -210,11 +210,11 @@ view: kpis_this_period {
     value_format_name: usd
     link: {
       label: "By Campaign"
-      url: "/explore/google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_cost_per_conversion&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_cost_per_conversion&f[ad_impressions.date_date]=this quarter"
     }
     link: {
       label: "Cost Per Conversion Dashboard"
-      url: "/dashboards/google_adwords::campaign_metrics_cost_per_conversion?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{_filters['kpis_last_period.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['kpis_last_period.ad_group_name'] | url_encode  }}"
     }
   }
 }

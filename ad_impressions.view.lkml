@@ -212,7 +212,7 @@ view: ad_impressions {
   measure: average_interaction_rate {
     link: {
       label: "By Keyword"
-      url: "/explore/google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_interaction_rate&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_interaction_rate&f[ad_impressions.date_date]=this quarter"
     }
   }
   measure: average_click_rate {

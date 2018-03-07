@@ -4,7 +4,7 @@
   elements:
   - title: Ad spend qtd
     name: Ad spend qtd
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_group_quarter_fact
     type: single_value
     fields:
@@ -68,7 +68,7 @@
     height: 2
   - title: Conversions qtd (copy)
     name: Conversions qtd (copy)
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_group_quarter_fact
     type: single_value
     fields:
@@ -134,7 +134,7 @@
     height: 2
   - title: Cost per conversion qtd
     name: Cost per conversion qtd
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_group_quarter_fact
     type: single_value
     fields:
@@ -198,7 +198,7 @@
     height: 2
   - title: Conversion rate qtd
     name: Conversion rate qtd
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_group_quarter_fact
     type: single_value
     fields:
@@ -262,7 +262,7 @@
     height: 2
   - title: Spend To Date
     name: Spend To Date
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_area
     fields:
@@ -472,7 +472,7 @@
     height: 8
   - title: Interaction rate qtd
     name: Interaction rate qtd
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_group_quarter_fact
     type: single_value
     fields:
@@ -537,7 +537,7 @@
     height: 2
   - title: Cost per interaction qtd
     name: Cost per interaction qtd
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_group_quarter_fact
     type: single_value
     fields:
@@ -603,7 +603,7 @@
     height: 2
   - title: Funnel
     name: Funnel
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_group_quarter_fact
     type: looker_column
     fields:
@@ -689,7 +689,7 @@
     height: 6
   - title: Conversion Trends
     name: Conversion Trends
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_area
     fields:
@@ -839,7 +839,7 @@
     height: 10
   - title: Bid Strategy
     name: Bid Strategy
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_column
     fields:
@@ -953,7 +953,7 @@
     height: 6
   - title: Match Type CPA
     name: Match Type CPA
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_column
     fields:
@@ -1071,7 +1071,7 @@
     height: 6
   - title: Ad Details
     name: Ad Details
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: table
     fields:
@@ -1134,7 +1134,7 @@
     height: 6
   - title: Keyword Detail
     name: Keyword Detail
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: table
     fields:
@@ -1200,7 +1200,7 @@
     title: Campaign Name
     type: field_filter
     default_value: ''
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: campaign
     field: campaign.campaign_name
     listens_to_filters:
@@ -1211,7 +1211,7 @@
     title: Ad Group Name
     type: field_filter
     default_value: ''
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_group
     field: ad_group.ad_group_name
     listens_to_filters:

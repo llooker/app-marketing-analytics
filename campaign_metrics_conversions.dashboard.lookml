@@ -4,7 +4,7 @@
   elements:
   - title: Spend
     name: Spend
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -67,7 +67,7 @@
     height: 4
   - title: Conversions
     name: Conversions
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -127,7 +127,7 @@
     height: 4
   - title: Conversion Rate
     name: Conversion Rate
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -187,7 +187,7 @@
     height: 4
   - title: Cost Per Click
     name: Cost Per Click
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -247,7 +247,7 @@
     height: 4
   - title: Cost Per Conversion
     name: Cost Per Conversion
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -307,7 +307,7 @@
     height: 4
   - title: Click Through Rate
     name: Click Through Rate
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     type: single_value
     fields:
@@ -367,7 +367,7 @@
     height: 4
   - title: Conversions To Date
     name: Conversions To Date
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_column
     fields:
@@ -497,7 +497,7 @@
     height: 11
   - title: Conversions by Bid Strategy
     name: Conversions by Bid Strategy
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -575,7 +575,7 @@
     height: 6
   - title: Conversions by Device
     name: Conversions by Device
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -655,7 +655,7 @@
     height: 6
   - title: Conversions by Network
     name: Conversions by Network
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -722,7 +722,7 @@
     height: 6
   - title: Conversions by Day of Week and Hour of Day
     name: Conversions by Day of Week and Hour of Day
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: table
     fields:
@@ -842,7 +842,7 @@
     height: 14
   - title: Conversions by Day of Week
     name: Conversions by Day of Week
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -956,7 +956,7 @@
     height: 7
   - title: Conversions by Hour of Day
     name: Conversions by Hour of Day
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_column
     fields:
@@ -1079,7 +1079,7 @@
     height: 7
   - title: Top Landing Pages
     name: Top Landing Pages
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: table
     fields:
@@ -1137,7 +1137,7 @@
     height: 6
   - title: Top Keywords
     name: Top Keywords
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: table
     fields:
@@ -1197,7 +1197,7 @@
     height: 6
   - title: Top Ads
     name: Top Ads
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     type: table
     fields:
@@ -1260,7 +1260,7 @@
     title: This Timeframe
     type: field_filter
     default_value: this quarter
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     field: kpis_this_period.this_timeframe
     listens_to_filters: []
@@ -1270,7 +1270,7 @@
     title: Last Timeframe
     type: field_filter
     default_value: 1 quarter ago
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: kpis_this_period
     field: kpis_last_period.last_timeframe
     listens_to_filters: []
@@ -1280,7 +1280,7 @@
     title: Campaign
     type: field_filter
     default_value: ''
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     field: campaign.campaign_name
     listens_to_filters: []
@@ -1290,7 +1290,7 @@
     title: Ad Group
     type: field_filter
     default_value: ''
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     field: ad_group.ad_group_name
     listens_to_filters: []
@@ -1300,7 +1300,7 @@
     title: Time Range
     type: field_filter
     default_value: 1 quarters
-    model: google_adwords
+    model: looker_app_google_adwords
     explore: ad_impressions
     field: ad_impressions.date_date
     listens_to_filters: []

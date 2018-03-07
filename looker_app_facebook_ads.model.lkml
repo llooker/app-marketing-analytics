@@ -6,12 +6,12 @@ include: "fb_*.view"
 # include all the dashboards
 include: "facebook_*.dashboard"
 
-datagroup: facebook_ads_default_datagroup {
+datagroup: looker_app_facebook_ads_default_datagroup {
   sql_trigger: SELECT MAX(_sdc_extracted_at) FROM ads_insight ;;
   max_cache_age: "24 hours"
 }
 
-persist_with: facebook_ads_default_datagroup
+persist_with: looker_app_facebook_ads_default_datagroup
 
 explore: adcreative {
   join: ads {
