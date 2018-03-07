@@ -253,6 +253,7 @@ view: ad_group_avg_cpa {
     label: "Average Click Through Rate of the Ad Group"
     view_label: "Ads"
     type: number
+    hidden: yes
     sql: ${total_clicks} / NULLIF(${total_impressions},0);;
     value_format_name: percent_2
   }
