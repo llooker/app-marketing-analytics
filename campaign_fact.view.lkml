@@ -68,13 +68,13 @@ explore: campaign_week_fact {
   join:  customer {
     view_label: "Customer"
     sql_on: ${campaign_week_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${campaign_week_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} = "Yes" ;;
+      ${campaign.latest} ;;
     relationship: many_to_one
   }
 }
@@ -88,7 +88,7 @@ view: campaign_week_fact {
       column: date_week {}
       column: external_customer_id {}
       column: campaign_id {}
-      column: less_than_current_day_of_quarter {}
+      column: less_than_current_day_of_week {}
       column: average_position { field: campaign_date_fact.weighted_average_position }
       column: clicks { field: campaign_date_fact.total_clicks }
       column: conversions { field: campaign_date_fact.total_conversions }
@@ -111,6 +111,7 @@ view: campaign_week_fact {
   dimension: campaign_id {
     type: number
   }
+  dimension: less_than_current_day_of_week {}
 }
 
 explore: campaign_month_fact {
@@ -129,13 +130,13 @@ explore: campaign_month_fact {
   join:  customer {
     view_label: "Customer"
     sql_on: ${campaign_month_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${campaign_month_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} = "Yes" ;;
+      ${campaign.latest} ;;
     relationship: many_to_one
   }
 }
@@ -149,7 +150,7 @@ view: campaign_month_fact {
       column: date_month {}
       column: external_customer_id {}
       column: campaign_id {}
-      column: less_than_current_day_of_quarter {}
+      column: less_than_current_day_of_month {}
       column: average_position { field: campaign_date_fact.weighted_average_position }
       column: clicks { field: campaign_date_fact.total_clicks }
       column: conversions { field: campaign_date_fact.total_conversions }
@@ -172,6 +173,7 @@ view: campaign_month_fact {
   dimension: campaign_id {
     type: number
   }
+  dimension: less_than_current_day_of_month {}
 }
 
 explore: campaign_quarter_fact {
@@ -190,13 +192,13 @@ explore: campaign_quarter_fact {
   join:  customer {
     view_label: "Customer"
     sql_on: ${campaign_quarter_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${campaign_quarter_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} = "Yes" ;;
+      ${campaign.latest} ;;
     relationship: many_to_one
   }
 }
@@ -233,4 +235,5 @@ view: campaign_quarter_fact {
   dimension: campaign_id {
     type: number
   }
+  dimension: less_than_current_day_of_quarter {}
 }

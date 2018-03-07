@@ -42,37 +42,37 @@ explore: ad_impressions {
   join: keyword {
     view_label: "Keyword"
     sql_on: ${ad_impressions.unique_key} = ${keyword.unique_key} AND
-      ${ad_impressions.date_raw} = ${keyword.date_raw} ;;
+      ${ad_impressions.date_date} = ${keyword.date_date} ;;
     relationship: many_to_one
   }
   join: audience {
     view_label: "Audience"
     sql_on: ${ad_impressions.unique_key} = ${audience.unique_key} AND
-      ${ad_impressions.date_raw} = ${audience.date_raw} ;;
+      ${ad_impressions.date_date} = ${audience.date_date} ;;
     relationship: many_to_one
   }
   join: ad {
     view_label: "Ads"
     sql_on: ${ad.creative_id} = ${ad_impressions.creative_id} AND
-      ${ad_impressions.date_raw} = ${ad.date_raw} ;;
+      ${ad_impressions.date_date} = ${ad.date_date} ;;
     relationship:  many_to_one
   }
   join: ad_group {
     view_label: "Ad Groups"
     sql_on: ${ad_impressions.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${ad_impressions.date_raw} = ${ad_group.date_raw} ;;
+      ${ad_impressions.date_date} = ${ad_group.date_date} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaigns"
     sql_on: ${ad_impressions.campaign_id} = ${campaign.campaign_id} AND
-      ${ad_impressions.date_raw} = ${campaign.date_raw};;
+      ${ad_impressions.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }
   join: customer {
     view_label: "Customer"
     sql_on: ${ad_impressions.external_customer_id} = ${customer.external_customer_id} AND
-      ${ad_impressions.date_raw} = ${customer.date_raw} ;;
+      ${ad_impressions.date_date} = ${customer.date_date} ;;
     relationship: many_to_one
   }
   join: account_avg_cpa {
@@ -119,7 +119,7 @@ explore: campaign {
   join: customer {
     view_label: "Customer"
     sql_on: ${campaign.external_customer_id} = ${customer.external_customer_id} AND
-      ${campaign.date_raw} = ${customer.date_raw} ;;
+      ${campaign.date_date} = ${customer.date_date} ;;
     relationship:  many_to_one
   }
 }
@@ -136,13 +136,13 @@ explore: ad_group {
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
-      ${ad_group.date_raw} = ${campaign.date_raw} ;;
+      ${ad_group.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
   join: customer {
     view_label: "Customer"
     sql_on: ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
-      ${ad_group.date_raw} = ${customer.date_raw} ;;
+      ${ad_group.date_date} = ${customer.date_date} ;;
     relationship:  many_to_one
   }
 }
@@ -159,19 +159,19 @@ explore: keyword {
   join: ad_group {
     view_label: "Keyword"
     sql_on: ${keyword.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${keyword.date_raw} = ${ad_group.date_raw} ;;
+      ${keyword.date_date} = ${ad_group.date_date} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${keyword.campaign_id} = ${campaign.campaign_id} AND
-      ${keyword.date_raw} = ${campaign.date_raw} ;;
+      ${keyword.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
   join: customer {
     view_label: "Customer"
     sql_on: ${keyword.external_customer_id} = ${customer.external_customer_id} AND
-      ${keyword.date_raw} = ${customer.date_raw} ;;
+      ${keyword.date_date} = ${customer.date_date} ;;
     relationship:  many_to_one
   }
 }
@@ -188,19 +188,19 @@ explore: ad {
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id}  AND
-      ${ad.date_raw} = ${ad_group.date_raw} ;;
+      ${ad.date_date} = ${ad_group.date_date} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad.campaign_id} = ${campaign.campaign_id} AND
-      ${ad.date_raw} = ${campaign.date_raw} ;;
+      ${ad.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
   join: customer {
     view_label: "Customer"
     sql_on: ${customer.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.date_raw} = ${customer.date_raw} ;;
+      ${customer.date_date} = ${customer.date_date} ;;
     relationship:  many_to_one
   }
 }

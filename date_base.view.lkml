@@ -64,22 +64,18 @@ view: date_base {
   }
 
   dimension: less_than_current_day_of_quarter {
-    type: yesno
-    sql: ${date_day_of_quarter} < ${current_day_of_quarter} ;;
+    sql: ${date_day_of_quarter} <= ${current_day_of_quarter} ;;
   }
 
   dimension: less_than_current_day_of_month {
-    type: yesno
-    sql: ${date_day_of_month} < ${current_day_of_month} ;;
+    sql: ${date_day_of_month} <= ${current_day_of_month} ;;
   }
 
   dimension: less_than_current_day_of_week {
-    type: yesno
-    sql: ${date_day_of_week_index} < ${current_day_of_week} ;;
+    sql: ${date_day_of_week_index} <= ${current_day_of_week} ;;
   }
 
   dimension: less_than_current_day_of_period {
-    type: yesno
     sql: {% if period._parameter_value == "week" %}${less_than_current_day_of_week}
       {% elsif period._parameter_value == "month" %}${less_than_current_day_of_month}
       {% elsif period._parameter_value == "quarter" %}${less_than_current_day_of_quarter}

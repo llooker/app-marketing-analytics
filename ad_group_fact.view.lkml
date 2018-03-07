@@ -79,19 +79,19 @@ explore: ad_group_week_fact {
   join:  customer {
     view_label: "Customer"
     sql_on: ${ad_group_week_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group_week_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} = "Yes" ;;
+      ${campaign.latest} ;;
     relationship: many_to_one
   }
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${ad_group_week_fact.campaign_id} = ${ad_group.ad_group_id} AND
-      ${ad_group.latest} = "Yes" ;;
+      ${ad_group.latest} ;;
     relationship: many_to_one
   }
 }
@@ -106,7 +106,7 @@ view: ad_group_week_fact {
       column: external_customer_id {}
       column: campaign_id {}
       column: ad_group_id {}
-      column: less_than_current_day_of_quarter {}
+      column: less_than_current_day_of_week {}
       column: average_position { field: ad_group_date_fact.weighted_average_position }
       column: clicks { field: ad_group_date_fact.total_clicks }
       column: conversions { field: ad_group_date_fact.total_conversions }
@@ -132,6 +132,7 @@ view: ad_group_week_fact {
   dimension: ad_group_id {
     type: number
   }
+  dimension: less_than_current_day_of_week {}
 }
 
 explore: ad_group_month_fact {
@@ -150,19 +151,19 @@ explore: ad_group_month_fact {
   join:  customer {
     view_label: "Customer"
     sql_on: ${ad_group_month_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group_month_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} = "Yes" ;;
+      ${campaign.latest} ;;
     relationship: many_to_one
   }
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${ad_group_month_fact.campaign_id} = ${ad_group.ad_group_id} AND
-      ${ad_group.latest} = "Yes" ;;
+      ${ad_group.latest} ;;
     relationship: many_to_one
   }
 }
@@ -203,6 +204,7 @@ view: ad_group_month_fact {
   dimension: ad_group_id {
     type: number
   }
+  dimension: less_than_current_day_of_month {}
 }
 
 explore: ad_group_quarter_fact {
@@ -215,25 +217,26 @@ explore: ad_group_quarter_fact {
     from: ad_group_quarter_fact
     view_label: "Last Quarter Ad Group Fact"
     sql_on: ${ad_group_quarter_fact.external_customer_id} = ${last_ad_group_quarter_fact.external_customer_id} AND
-      ${ad_group_quarter_fact.date_last_quarter} = ${last_ad_group_quarter_fact.date_quarter} ;;
+      ${ad_group_quarter_fact.date_last_quarter} = ${last_ad_group_quarter_fact.date_quarter} AND
+      ${ad_group_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
   }
   join:  customer {
     view_label: "Customer"
     sql_on: ${ad_group_quarter_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group_quarter_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} = "Yes" ;;
+      ${campaign.latest} ;;
     relationship: many_to_one
   }
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${ad_group_quarter_fact.campaign_id} = ${ad_group.ad_group_id} AND
-      ${ad_group.latest} = "Yes" ;;
+      ${ad_group.latest} ;;
     relationship: many_to_one
   }
 }
@@ -274,4 +277,5 @@ view: ad_group_quarter_fact {
   dimension: ad_group_id {
     type: number
   }
+  dimension: less_than_current_day_of_quarter {}
 }

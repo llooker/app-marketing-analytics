@@ -56,7 +56,7 @@ explore: account_week_fact {
   join:  customer {
     view_label: "Customer"
     sql_on: ${account_week_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
 }
@@ -88,12 +88,10 @@ view: account_week_fact {
     sql: DATE_ADD(${date_week}, INTERVAL -1 WEEK) ;;
     allow_fill: no
   }
-  dimension: less_than_current_day_of_week {
-    type: yesno
-  }
   dimension: external_customer_id {
     type: number
   }
+  dimension: less_than_current_day_of_week {}
 }
 
 explore: account_month_fact {
@@ -112,7 +110,7 @@ explore: account_month_fact {
   join:  customer {
     view_label: "Customer"
     sql_on: ${account_month_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
 }
@@ -143,12 +141,10 @@ view: account_month_fact {
     sql: DATE_ADD(${date_month}, INTERVAL -1 MONTH) ;;
     allow_fill: no
   }
-  dimension: less_than_current_day_of_month {
-    type: yesno
-  }
   dimension: external_customer_id {
     type: number
   }
+  dimension: less_than_current_day_of_month {}
 }
 
 explore: account_quarter_fact {
@@ -162,13 +158,13 @@ explore: account_quarter_fact {
     sql_on: ${account_quarter_fact.external_customer_id} = ${last_account_quarter_fact.external_customer_id} AND
       ${account_quarter_fact.date_last_quarter} = ${last_account_quarter_fact.date_quarter} AND
       ${account_quarter_fact.less_than_current_day_of_quarter} = ${last_account_quarter_fact.less_than_current_day_of_quarter} AND
-      ${account_quarter_fact.less_than_current_day_of_quarter} = "Yes" ;;
+      ${account_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
   }
   join:  customer {
     view_label: "Customer"
     sql_on: ${account_quarter_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
 }
@@ -199,10 +195,8 @@ view: account_quarter_fact {
     sql: DATE_ADD(${date_quarter}, INTERVAL -1 QUARTER) ;;
     allow_fill: no
   }
-  dimension: less_than_current_day_of_quarter {
-    type: yesno
-  }
   dimension: external_customer_id {
     type: number
   }
+  dimension: less_than_current_day_of_quarter {}
 }

@@ -13,13 +13,13 @@ explore: period_fact {
     sql_on: ${period_fact.external_customer_id} = ${last_period_fact.external_customer_id} AND
       ${period_fact.date_last_period} = ${last_period_fact.date_period} AND
       ${period_fact.less_than_current_day_of_period} = ${period_fact.less_than_current_day_of_period} AND
-      ${period_fact.less_than_current_day_of_period} = "Yes" ;;
+      ${period_fact.less_than_current_day_of_period} ;;
     relationship: one_to_one
   }
   join:  customer {
     view_label: "Customer"
     sql_on: ${period_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} = "Yes" ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
 }
@@ -61,7 +61,6 @@ view: period_fact {
     allow_fill: no
   }
   dimension: less_than_current_day_of_week {
-    type: yesno
   }
   dimension: date_month {
     type: date
@@ -73,7 +72,6 @@ view: period_fact {
     allow_fill: no
   }
   dimension: less_than_current_day_of_month {
-    type: yesno
   }
   dimension: external_customer_id {
     type: number
@@ -88,7 +86,6 @@ view: period_fact {
     allow_fill: no
   }
   dimension: less_than_current_day_of_quarter {
-    type: yesno
   }
   dimension: date_period {
     type: date
@@ -109,7 +106,6 @@ view: period_fact {
     allow_fill: no
   }
   dimension: less_than_current_day_of_period {
-    type: yesno
     sql:
       {% if period._parameter_value == "week" %}${less_than_current_day_of_week}
       {% elsif period._parameter_value == "month" %}${less_than_current_day_of_month}

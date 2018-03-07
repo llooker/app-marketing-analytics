@@ -5,7 +5,6 @@ view: google_adwords_base {
 
   dimension: latest {
     hidden: yes
-    type: yesno
     sql: ${TABLE}._DATA_DATE = ${TABLE}._LATEST_DATE ;;
   }
 }
