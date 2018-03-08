@@ -4,7 +4,7 @@ include: "date_base.view"
 include: "google_adwords_base.view"
 
 view: ad_impressions {
-  extends: [ad_criterion_base, ad_metrics_base, google_adwords_base, date_base]
+  extends: [ad_criterion_base, ad_metrics_base, date_base, google_adwords_base]
 
   # this logic hits the right level of aggregate stats table depending on dimensions and filters in query
   sql_table_name:

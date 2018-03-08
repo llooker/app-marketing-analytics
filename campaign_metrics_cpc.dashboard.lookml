@@ -293,7 +293,7 @@
     show_silhouette: false
     totals_color: "#808080"
     series_types: {}
-    hidden_fields: []
+    hidden_fields: [kpis_last_period.cost_per_click_last_period]
     single_value_title: ''
     listen:
       This Timeframe: kpis_this_period.this_timeframe
