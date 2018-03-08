@@ -98,24 +98,10 @@ explore: ad_impressions {
 ## Entity tables are daily snapshots
 explore: customer {
   hidden: yes
-  conditionally_filter: {
-    filters: {
-      field: latest
-      value: "Yes"
-    }
-    unless: [date_date]
-  }
 }
 
 explore: campaign {
   hidden: yes
-  conditionally_filter: {
-    filters: {
-      field: latest
-      value: "Yes"
-    }
-    unless: [date_date]
-  }
   join: customer {
     view_label: "Customer"
     sql_on: ${campaign.external_customer_id} = ${customer.external_customer_id} AND
@@ -126,13 +112,6 @@ explore: campaign {
 
 explore: ad_group {
   hidden: yes
-  conditionally_filter: {
-    filters: {
-      field: latest
-      value: "Yes"
-    }
-    unless: [date_date]
-  }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
@@ -149,13 +128,6 @@ explore: ad_group {
 
 explore: keyword {
   hidden: yes
-  conditionally_filter: {
-    filters: {
-      field: latest
-      value: "Yes"
-    }
-    unless: [date_date]
-  }
   join: ad_group {
     view_label: "Keyword"
     sql_on: ${keyword.ad_group_id} = ${ad_group.ad_group_id} AND
@@ -178,13 +150,6 @@ explore: keyword {
 
 explore: ad {
   hidden: yes
-  conditionally_filter: {
-    filters: {
-      field: latest
-      value: "Yes"
-    }
-    unless: [date_date]
-  }
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id}  AND
