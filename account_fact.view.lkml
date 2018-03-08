@@ -85,6 +85,7 @@ view: account_week_fact {
   dimension: date_week {
     type: date
     allow_fill: no
+    sql: TIMESTAMP(${TABLE}.date_week) ;;
   }
   dimension: date_last_week {
     type: date
@@ -141,6 +142,7 @@ view: account_month_fact {
   dimension: date_month {
     type: date
     allow_fill: no
+    sql: TIMESTAMP(${TABLE}.date_month) ;;
   }
   dimension: date_last_month {
     type: date
@@ -196,6 +198,7 @@ view: account_quarter_fact {
   dimension: date_quarter {
     type: date
     allow_fill: no
+    sql: TIMESTAMP(${TABLE}.date_quarter) ;;
   }
   dimension: date_last_quarter {
     type: date

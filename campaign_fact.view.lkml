@@ -104,6 +104,7 @@ view: campaign_week_fact {
   }
   dimension: date_week {
     type: date
+    sql: TIMESTAMP(${TABLE}.date_week) ;;
   }
   dimension: date_last_week {
     type: date
@@ -170,6 +171,7 @@ view: campaign_month_fact {
   }
   dimension: date_month {
     type: date
+    sql: TIMESTAMP(${TABLE}.date_month) ;;
   }
   dimension: date_last_month {
     type: date
@@ -236,6 +238,7 @@ view: campaign_quarter_fact {
   }
   dimension: date_quarter {
     type: date
+    sql: TIMESTAMP(${TABLE}.date_quarter) ;;
   }
   dimension: date_last_quarter {
     type: date
