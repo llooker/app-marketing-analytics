@@ -37,6 +37,7 @@
                   "name": "Coming Soon",
                   "permalink": "campaing-change-coming-soon",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -55,6 +56,7 @@
                   "name": "Coming Soon",
                   "permalink": "keyword-ad-change-coming-soon",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -83,6 +85,7 @@
                   "name": "Under Performing Ads",
                   "permalink": "underperforming-ads",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -132,6 +135,7 @@
                   "name": "Under Performing Keywords",
                   "permalink": "underperforming-keywords",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -156,6 +160,7 @@
                   "name": "Under Performing Ad Groups",
                   "permalink": "underperforming-ad-groups",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -181,6 +186,7 @@
                   "name": "Keyword & Ad Alerts",
                   "permalink": "keyword-and-ad-alerts",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -205,6 +211,7 @@
                   "name": "Non Converting Ads & Keywords",
                   "permalink": "non-converting-ads-keywords",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -236,6 +243,7 @@
                   "name": "Ad Groups",
                   "permalink": "ad-group-movers",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -254,6 +262,7 @@
                   "name": "Ads",
                   "permalink": "ad-movers",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
@@ -272,6 +281,7 @@
                   "name": "Keywords",
                   "permalink": "keyword-movers",
                   "singleValue": {
+                    "inverseChange": false,
                     "key": "",
                     "name": "",
                     "type": ""
