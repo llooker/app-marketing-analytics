@@ -54,12 +54,15 @@ view: ad_group_date_fact {
   }
   dimension: external_customer_id {
     type: number
+    hidden: yes
   }
   dimension: campaign_id {
     type: number
+    hidden: yes
   }
   dimension: ad_group_id {
     type: number
+    hidden: yes
   }
 }
 
@@ -131,12 +134,15 @@ view: ad_group_week_fact {
   }
   dimension: external_customer_id {
     type: number
+    hidden: yes
   }
   dimension: campaign_id {
     type: number
+    hidden: yes
   }
   dimension: ad_group_id {
     type: number
+    hidden: yes
   }
   dimension: less_than_current_day_of_week {}
 }
@@ -209,12 +215,15 @@ view: ad_group_month_fact {
   }
   dimension: external_customer_id {
     type: number
+    hidden: yes
   }
   dimension: campaign_id {
     type: number
+    hidden: yes
   }
   dimension: ad_group_id {
     type: number
+    hidden: yes
   }
   dimension: less_than_current_day_of_month {}
 }
@@ -287,12 +296,15 @@ view: ad_group_quarter_fact {
   }
   dimension: external_customer_id {
     type: number
+    hidden: yes
   }
   dimension: campaign_id {
     type: number
+    hidden: yes
   }
   dimension: ad_group_id {
     type: number
+    hidden: yes
   }
   dimension: less_than_current_day_of_quarter {}
 }

@@ -23,6 +23,7 @@ view: ad {
   dimension: ad_group_id {
     type: number
     sql: ${TABLE}.AdGroupId ;;
+    hidden: yes
   }
 
   dimension: ad_type {
@@ -38,11 +39,13 @@ view: ad {
   dimension: call_only_phone_number {
     type: string
     sql: ${TABLE}.CallOnlyPhoneNumber ;;
+    hidden: yes
   }
 
   dimension: campaign_id {
     type: number
     sql: ${TABLE}.CampaignId ;;
+    hidden: yes
   }
 
   dimension: creative_approval_status {
@@ -53,37 +56,44 @@ view: ad {
   dimension: creative_destination_url {
     type: string
     sql: ${TABLE}.CreativeDestinationUrl ;;
+    group_label: "URLS"
   }
 
   dimension: creative_final_app_urls {
     type: string
     sql: ${TABLE}.CreativeFinalAppUrls ;;
+    group_label: "URLS"
   }
 
   dimension: creative_final_mobile_urls {
     type: string
     sql: ${TABLE}.CreativeFinalMobileUrls ;;
+    group_label: "URLS"
   }
 
   dimension: creative_final_urls {
     type: string
     sql: ${TABLE}.CreativeFinalUrls ;;
+    group_label: "URLS"
   }
 
   dimension: creative_id {
     type: number
     primary_key: yes
     sql: ${TABLE}.CreativeId ;;
+    hidden: yes
   }
 
   dimension: creative_tracking_url_template {
     type: string
     sql: ${TABLE}.CreativeTrackingUrlTemplate ;;
+    hidden: yes
   }
 
   dimension: creative_url_custom_parameters {
     type: string
     sql: ${TABLE}.CreativeUrlCustomParameters ;;
+    hidden: yes
   }
 
   dimension: description {
@@ -109,51 +119,61 @@ view: ad {
   dimension: display_url {
     type: string
     sql: ${TABLE}.DisplayUrl ;;
+    group_label: "URLS"
   }
 
   dimension: enhanced_display_creative_logo_image_media_id {
     type: number
     sql: ${TABLE}.EnhancedDisplayCreativeLogoImageMediaId ;;
+    hidden: yes
   }
 
   dimension: enhanced_display_creative_marketing_image_media_id {
     type: number
     sql: ${TABLE}.EnhancedDisplayCreativeMarketingImageMediaId ;;
+    hidden: yes
   }
 
   dimension: external_customer_id {
     type: number
     sql: ${TABLE}.ExternalCustomerId ;;
+    hidden: yes
   }
 
   dimension: headline {
     type: string
     sql: ${TABLE}.Headline ;;
+    group_label: "Headline"
   }
 
   dimension: headline_part1 {
     type: string
     sql: ${TABLE}.HeadlinePart1 ;;
+    group_label: "Headline"
   }
 
   dimension: headline_part2 {
     type: string
     sql: ${TABLE}.HeadlinePart2 ;;
+    group_label: "Headline"
   }
 
   dimension: image_ad_url {
     type: string
     sql: ${TABLE}.ImageAdUrl ;;
+    group_label: "URLS"
   }
 
   dimension: image_creative_image_height {
     type: number
     sql: ${TABLE}.ImageCreativeImageHeight ;;
+    hidden: yes
   }
 
   dimension: image_creative_image_width {
     type: number
     sql: ${TABLE}.ImageCreativeImageWidth ;;
+    hidden: yes
   }
 
   dimension: image_creative_name {
@@ -164,6 +184,7 @@ view: ad {
   dimension: label_ids {
     type: string
     sql: ${TABLE}.LabelIds ;;
+    hidden: yes
   }
 
   dimension: labels {
@@ -174,21 +195,25 @@ view: ad {
   dimension: long_headline {
     type: string
     sql: ${TABLE}.LongHeadline ;;
+    hidden: yes
   }
 
   dimension: path1 {
     type: string
     sql: ${TABLE}.Path1 ;;
+    hidden: yes
   }
 
   dimension: path2 {
     type: string
     sql: ${TABLE}.Path2 ;;
+    hidden: yes
   }
 
   dimension: short_headline {
     type: string
     sql: ${TABLE}.ShortHeadline ;;
+    hidden: yes
   }
 
   dimension: status {

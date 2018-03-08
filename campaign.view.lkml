@@ -33,6 +33,7 @@ view: campaign {
   dimension: bidding_strategy_id {
     type: number
     sql: ${TABLE}.BiddingStrategyId ;;
+    hidden: yes
   }
 
   dimension: bidding_strategy_name {
@@ -48,22 +49,26 @@ view: campaign {
   dimension: budget_id {
     type: number
     sql: ${TABLE}.BudgetId ;;
+    hidden: yes
   }
 
   dimension: campaign_desktop_bid_modifier {
     type: number
     sql: ${TABLE}.CampaignDesktopBidModifier ;;
+    hidden: yes
   }
 
   dimension: campaign_id {
     type: number
     primary_key: yes
     sql: ${TABLE}.CampaignId ;;
+    hidden: yes
   }
 
   dimension: campaign_mobile_bid_modifier {
     type: number
     sql: ${TABLE}.CampaignMobileBidModifier ;;
+    hidden: yes
   }
 
   dimension: campaign_name {
@@ -99,6 +104,7 @@ view: campaign {
   dimension: campaign_tablet_bid_modifier {
     type: number
     sql: ${TABLE}.CampaignTabletBidModifier ;;
+    hidden: yes
   }
 
   dimension: campaign_trial_type {
@@ -123,26 +129,31 @@ view: campaign {
   dimension: enhanced_cpc_enabled {
     type: yesno
     sql: ${TABLE}.EnhancedCpcEnabled ;;
+    hidden: yes
   }
 
   dimension: enhanced_cpv_enabled {
     type: yesno
     sql: ${TABLE}.EnhancedCpvEnabled ;;
+    hidden: yes
   }
 
   dimension: external_customer_id {
     type: number
     sql: ${TABLE}.ExternalCustomerId ;;
+    hidden: yes
   }
 
   dimension: is_budget_explicitly_shared {
     type: yesno
     sql: ${TABLE}.IsBudgetExplicitlyShared ;;
+    hidden: yes
   }
 
   dimension: label_ids {
     type: string
     sql: ${TABLE}.LabelIds ;;
+    hidden: yes
   }
 
   dimension: labels {
@@ -177,11 +188,13 @@ view: campaign {
   dimension: tracking_url_template {
     type: string
     sql: ${TABLE}.TrackingUrlTemplate ;;
+    hidden: yes
   }
 
   dimension: url_custom_parameters {
     type: string
     sql: ${TABLE}.UrlCustomParameters ;;
+    hidden: yes
   }
 
   measure: count {

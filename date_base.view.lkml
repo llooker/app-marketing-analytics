@@ -65,14 +65,17 @@ view: date_base {
 
   dimension: less_than_current_day_of_quarter {
     sql: ${date_day_of_quarter} <= ${current_day_of_quarter} ;;
+    hidden:  yes
   }
 
   dimension: less_than_current_day_of_month {
     sql: ${date_day_of_month} <= ${current_day_of_month} ;;
+    hidden:  yes
   }
 
   dimension: less_than_current_day_of_week {
     sql: ${date_day_of_week_index} <= ${current_day_of_week} ;;
+    hidden:  yes
   }
 
   dimension: less_than_current_day_of_period {
