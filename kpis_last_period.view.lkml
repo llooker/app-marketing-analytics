@@ -18,10 +18,6 @@ view: kpis_last_period {
         to_field: ad_impressions.date_date
         from_field: kpis_last_period.last_timeframe
       }
-      filters: {
-        field: ad_impressions.less_than_current_day_of_period
-        value: "Yes"
-      }
     }
   }
 
