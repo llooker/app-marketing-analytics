@@ -134,116 +134,6 @@
     col: 12
     width: 6
     height: 2
-  - title: Click Trend
-    name: Click Trend
-    model: looker_app_facebook_ads
-    explore: ads_insights
-    type: looker_line
-    fields:
-    - ads_insights.average_cost_per_click
-    - ads_insights.average_click_rate
-    - ads_insights.date_stop_date
-    - ads_insights.total_clicks
-    sorts:
-    - ads_insights.date_stop_date
-    limit: 500
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    show_null_points: true
-    point_style: none
-    interpolation: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types:
-      ads_insights.total_clicks: area
-    y_axes:
-    - label: Cost Per Click
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ads_insights.average_cost_per_click
-        name: Cost Per Click
-        axisId: ads_insights.average_cost_per_click
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ads_insights.total_clicks
-        name: Clicks
-        axisId: ads_insights.total_clicks
-    - label: Click Through Rate
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ads_insights.average_click_rate
-        name: Click Through Rate
-        axisId: ads_insights.average_click_rate
-    series_labels:
-      ads_insights.average_cost_per_click: Cost Per Click
-      ads_insights.average_click_rate: Click Through Rate
-      ads_insights.total_clicks: Clicks
-    colors:
-    - "#62bad4"
-    - "#a9c574"
-    - "#e3e3e3"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
-    series_colors: {}
-    listen:
-      Untitled Filter: ads_insights.date_start_date
-    row: 2
-    col: 12
-    width: 12
-    height: 9
   - title: Spend To Date
     name: Spend To Date
     model: looker_app_facebook_ads
@@ -294,18 +184,17 @@
     - ads_insights.total_spend
     series_types: {}
     colors:
-    - "#9fc190"
-    - "#62bad4"
-    - "#a9c574"
-    - "#929292"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb"
+    - "#4bb86a"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#7869df"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
     series_colors: {}
     listen:
       Untitled Filter: ads_insights.date_start_date
@@ -403,86 +292,6 @@
     col: 0
     width: 6
     height: 4
-  - title: Reach Trend
-    name: Reach Trend
-    model: looker_app_facebook_ads
-    explore: ads_insights
-    type: looker_area
-    fields:
-    - ads_insights.total_reach
-    - ads_insights.date_stop_date
-    - ads_insights.total_clicks
-    sorts:
-    - ads_insights.date_stop_date
-    limit: 500
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    show_null_points: true
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
-    y_axes:
-    - label: Reach
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ads_insights.total_reach
-        name: Reach
-        axisId: ads_insights.total_reach
-    - label: Clicks
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ads_insights.total_clicks
-        name: Clicks
-        axisId: ads_insights.total_clicks
-    hidden_fields:
-    series_types:
-      ads_insights.total_clicks: line
-    series_labels:
-      ads_insights.total_clicks: Clicks
-      ads_insights.total_reach: Reach
-    listen:
-      Untitled Filter: ads_insights.date_start_date
-    row: 11
-    col: 6
-    width: 18
-    height: 8
   - title: Spend Age & Gender
     name: Spend Age & Gender
     model: looker_app_facebook_ads
@@ -542,10 +351,14 @@
         - "#F36254"
         - "#FCF758"
         - "#4FBC89"
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 550
       bold: false
       italic: false
       strikethrough: false
       fields:
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 545
     series_labels:
       ads_insights_age_and_gender.age: Age
       ads_insights_age_and_gender.total_spend: Spend
@@ -613,10 +426,14 @@
         - "#F36254"
         - "#FCF758"
         - "#4FBC89"
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 621
       bold: false
       italic: false
       strikethrough: false
       fields:
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 616
     series_labels:
       ads_insights_age_and_gender.age: Age
       ads_insights_age_and_gender.total_spend: Spend
@@ -685,10 +502,14 @@
         - "#F36254"
         - "#FCF758"
         - "#4FBC89"
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 693
       bold: false
       italic: false
       strikethrough: false
       fields:
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 688
     series_labels:
       ads_insights_age_and_gender.age: Age
       ads_insights_age_and_gender.total_spend: Spend
@@ -757,10 +578,14 @@
         - "#F36254"
         - "#FCF758"
         - "#4FBC89"
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 765
       bold: false
       italic: false
       strikethrough: false
       fields:
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 760
     series_labels:
       ads_insights_age_and_gender.age: Age
       ads_insights_age_and_gender.total_spend: Spend
@@ -771,6 +596,280 @@
     col: 12
     width: 6
     height: 5
+  - title: Top Ads by Clicks
+    name: Top Ads by Clicks
+    model: looker_app_facebook_ads
+    explore: ads_insights
+    type: table
+    fields:
+    - adcreative.body
+    - adcreative.title
+    - ads_insights.total_clicks
+    sorts:
+    - ads_insights.total_clicks desc
+    limit: 10
+    show_view_names: true
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: '10'
+    row: 24
+    col: 15
+    width: 9
+    height: 17
+  - title: Reach Trend
+    name: Reach Trend
+    model: looker_app_facebook_ads
+    explore: ads_insights
+    type: looker_area
+    fields:
+    - ads_insights.total_reach
+    - ads_insights.date_stop_date
+    - ads_insights.total_clicks
+    sorts:
+    - ads_insights.date_stop_date
+    limit: 500
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: true
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    ordering: none
+    show_null_labels: false
+    colors:
+    - "#d06180"
+    - "#a4a6a9"
+    - "#6e98f9"
+    - "#7869df"
+    - "#f1e582"
+    - "#4bb86a"
+    - "#dc9d4f"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#8ac8ca"
+    y_axes:
+    - label: Reach
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ads_insights.total_reach
+        name: Reach
+        axisId: ads_insights.total_reach
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 466
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 454
+    - label: Clicks
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ads_insights.total_clicks
+        name: Clicks
+        axisId: ads_insights.total_clicks
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 481
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 469
+    hidden_fields:
+    series_types:
+      ads_insights.total_clicks: line
+      ads_insights.total_reach: line
+    series_labels:
+      ads_insights.total_clicks: Clicks
+      ads_insights.total_reach: Reach
+    series_colors: {}
+    listen:
+      Untitled Filter: ads_insights.date_start_date
+    row: 11
+    col: 6
+    width: 18
+    height: 8
+  - title: Click Trend
+    name: Click Trend
+    model: looker_app_facebook_ads
+    explore: ads_insights
+    type: looker_line
+    fields:
+    - ads_insights.average_cost_per_click
+    - ads_insights.average_click_rate
+    - ads_insights.date_stop_date
+    - ads_insights.total_clicks
+    sorts:
+    - ads_insights.date_stop_date
+    limit: 500
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: true
+    point_style: none
+    interpolation: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types:
+      ads_insights.total_clicks: area
+    y_axes:
+    - label: Cost Per Click
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ads_insights.average_cost_per_click
+        name: Cost Per Click
+        axisId: ads_insights.average_cost_per_click
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 190
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 178
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ads_insights.total_clicks
+        name: Clicks
+        axisId: ads_insights.total_clicks
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 205
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 193
+    - label: Click Through Rate
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ads_insights.average_click_rate
+        name: Click Through Rate
+        axisId: ads_insights.average_click_rate
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 220
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 208
+    series_labels:
+      ads_insights.average_cost_per_click: Cost Per Click
+      ads_insights.average_click_rate: Click Through Rate
+      ads_insights.total_clicks: Clicks
+    colors:
+    - "#7869df"
+    - "#6e98f9"
+    - "#d7d7d9"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#f1e582"
+    - "#a6b7ff"
+    - "#8ac8ca"
+    - "#ea9895"
+    - "#a6b7ff"
+    series_colors: {}
+    listen:
+      Untitled Filter: ads_insights.date_start_date
+    row: 2
+    col: 12
+    width: 12
+    height: 9
   - title: Clicks & CPC by Device
     name: Clicks & CPC by Device
     model: looker_app_facebook_ads
@@ -822,6 +921,10 @@
       - id: ads_insights_platform_and_device.total_clicks
         name: Clicks
         axisId: ads_insights_platform_and_device.total_clicks
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 832
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 820
     - label: ''
       maxValue:
       minValue:
@@ -837,6 +940,10 @@
       - id: ads_insights_platform_and_device.total_impressions
         name: Impressions
         axisId: ads_insights_platform_and_device.total_impressions
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 847
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 835
     - label: ''
       maxValue:
       minValue:
@@ -852,20 +959,23 @@
       - id: ads_insights_platform_and_device.average_cost_per_click
         name: CPC
         axisId: ads_insights_platform_and_device.average_cost_per_click
+        __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+        __LINE_NUM: 862
+      __FILE: app_marketing_analytics/facebook_overview.dashboard.lookml
+      __LINE_NUM: 850
     series_labels: {}
     colors:
-    - "#62bad4"
-    - "#a9c574"
-    - "#d2d2d2"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
+    - "#a4a6a9"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#7869df"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
     series_colors: {}
     series_types:
       ads_insights_platform_and_device.total_clicks: line
@@ -873,57 +983,6 @@
     row: 24
     col: 0
     width: 15
-    height: 17
-  - title: Top Ads by Clicks
-    name: Top Ads by Clicks
-    model: looker_app_facebook_ads
-    explore: ads_insights
-    type: table
-    fields:
-    - adcreative.body
-    - adcreative.title
-    - ads_insights.total_clicks
-    sorts:
-    - ads_insights.total_clicks desc
-    limit: 10
-    show_view_names: true
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    limit_displayed_rows_values:
-      show_hide: hide
-      first_last: first
-      num_rows: '10'
-    row: 24
-    col: 15
-    width: 9
     height: 17
   filters:
   - name: Untitled Filter
