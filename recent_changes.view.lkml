@@ -183,7 +183,7 @@ view: status_changes {
     type: number
     sql: COUNT(DISTINCT ${ad_creative_id}) + COUNT(DISTINCT ${ad_group_id}) + COUNT(DISTINCT ${campaign_id}) + COUNT(DISTINCT ${keyword_criterion_id}) ;;
     description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
-    drill_fields: [ad.creative, campaign.campaign_name, ad_group.ad_grop_name, keyword.criteria]
+    drill_fields: [ad.creative, campaign.campaign_name, ad_group.ad_group_name, keyword.criteria]
   }
 
 
