@@ -329,7 +329,7 @@
   ],
   "singleValuesSourceView": {
     "model": "looker_app_google_adwords",
-    "params": "&fields=report_single_values.key,report_single_values.currentValue,report_single_values.previousValue",
+    "params": "&fields=report_single_values.key,report_single_values.value,report_single_values.compare",
     "view": "report_single_values"
   }
 }
