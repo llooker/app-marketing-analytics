@@ -13,17 +13,20 @@ view: ad_group {
   dimension: ad_group_desktop_bid_modifier {
     type: number
     sql: ${TABLE}.AdGroupDesktopBidModifier ;;
+    hidden: yes
   }
 
   dimension: ad_group_id {
     type: number
     primary_key: yes
     sql: ${TABLE}.AdGroupId ;;
+    hidden: yes
   }
 
   dimension: ad_group_mobile_bid_modifier {
     type: number
     sql: ${TABLE}.AdGroupMobileBidModifier ;;
+    hidden: yes
   }
 
   dimension: ad_group_name {
@@ -60,6 +63,7 @@ view: ad_group {
   dimension: ad_group_tablet_bid_modifier {
     type: number
     sql: ${TABLE}.AdGroupTabletBidModifier ;;
+    hidden: yes
   }
 
   dimension: bid_type {
@@ -70,6 +74,7 @@ view: ad_group {
   dimension: bidding_strategy_id {
     type: number
     sql: ${TABLE}.BiddingStrategyId ;;
+    hidden: yes
   }
 
   dimension: bidding_strategy_name {
@@ -90,11 +95,13 @@ view: ad_group {
   dimension: campaign_id {
     type: number
     sql: ${TABLE}.CampaignId ;;
+    hidden: yes
   }
 
   dimension: content_bid_criterion_type_group {
     type: string
     sql: ${TABLE}.ContentBidCriterionTypeGroup ;;
+    hidden: yes
   }
 
   dimension: cpc_bid {
@@ -119,21 +126,25 @@ view: ad_group {
   dimension: enhanced_cpc_enabled {
     type: yesno
     sql: ${TABLE}.EnhancedCpcEnabled ;;
+    hidden: yes
   }
 
   dimension: enhanced_cpv_enabled {
     type: yesno
     sql: ${TABLE}.EnhancedCpvEnabled ;;
+    hidden: yes
   }
 
   dimension: external_customer_id {
     type: number
     sql: ${TABLE}.ExternalCustomerId ;;
+    hidden: yes
   }
 
   dimension: label_ids {
     type: string
     sql: ${TABLE}.LabelIds ;;
+    hidden: yes
   }
 
   dimension: labels {
@@ -155,11 +166,13 @@ view: ad_group {
   dimension: tracking_url_template {
     type: string
     sql: ${TABLE}.TrackingUrlTemplate ;;
+    hidden: yes
   }
 
   dimension: url_custom_parameters {
     type: string
     sql: ${TABLE}.UrlCustomParameters ;;
+    hidden: yes
   }
 
   measure: count {

@@ -14,6 +14,7 @@ view: keyword {
   dimension: ad_group_id {
     type: number
     sql: ${TABLE}.AdGroupId ;;
+    hidden: yes
   }
 
   dimension: approval_status {
@@ -29,6 +30,7 @@ view: keyword {
   dimension: bidding_strategy_id {
     type: number
     sql: ${TABLE}.BiddingStrategyId ;;
+    hidden: yes
   }
 
   dimension: bidding_strategy_name {
@@ -49,6 +51,7 @@ view: keyword {
   dimension: campaign_id {
     type: number
     sql: ${TABLE}.CampaignId ;;
+    hidden: yes
   }
 
   dimension: cpc_bid {
@@ -71,6 +74,7 @@ view: keyword {
   dimension: creative_quality_score {
     type: string
     sql: ${TABLE}.CreativeQualityScore ;;
+    hidden: yes
   }
 
   dimension: criteria {
@@ -91,46 +95,55 @@ view: keyword {
   dimension: criteria_destination_url {
     type: string
     sql: ${TABLE}.CriteriaDestinationUrl ;;
+    group_label: "URLS"
   }
 
   dimension: criterion_id {
     type: number
     sql: ${TABLE}.CriterionId ;;
+    hidden: yes
   }
 
   dimension: enhanced_cpc_enabled {
     type: yesno
     sql: ${TABLE}.EnhancedCpcEnabled ;;
+    hidden:  yes
   }
 
   dimension: estimated_add_clicks_at_first_position_cpc {
     type: number
     sql: ${TABLE}.EstimatedAddClicksAtFirstPositionCpc ;;
+    hidden:  yes
   }
 
   dimension: estimated_add_cost_at_first_position_cpc {
     type: number
     sql: ${TABLE}.EstimatedAddCostAtFirstPositionCpc ;;
+    hidden:  yes
   }
 
   dimension: external_customer_id {
     type: number
     sql: ${TABLE}.ExternalCustomerId ;;
+    hidden: yes
   }
 
   dimension: final_app_urls {
     type: string
     sql: ${TABLE}.FinalAppUrls ;;
+    group_label: "URLS"
   }
 
   dimension: final_mobile_urls {
     type: string
     sql: ${TABLE}.FinalMobileUrls ;;
+    group_label: "URLS"
   }
 
   dimension: final_urls {
     type: string
     sql: ${TABLE}.FinalUrls ;;
+    group_label: "URLS"
   }
 
   dimension: first_page_cpc {
@@ -146,6 +159,7 @@ view: keyword {
   dimension: has_quality_score {
     type: yesno
     sql: ${TABLE}.HasQualityScore ;;
+    hidden: yes
   }
 
   dimension: is_negative {
@@ -161,6 +175,7 @@ view: keyword {
   dimension: label_ids {
     type: string
     sql: ${TABLE}.LabelIds ;;
+    hidden: yes
   }
 
   dimension: labels {
@@ -181,6 +196,7 @@ view: keyword {
   dimension: search_predicted_ctr {
     type: string
     sql: ${TABLE}.SearchPredictedCtr ;;
+    hidden:  yes
   }
 
   dimension: status {
@@ -201,11 +217,13 @@ view: keyword {
   dimension: tracking_url_template {
     type: string
     sql: ${TABLE}.TrackingUrlTemplate ;;
+    hidden:  yes
   }
 
   dimension: url_custom_parameters {
     type: string
     sql: ${TABLE}.UrlCustomParameters ;;
+    hidden:  yes
   }
 
   measure: count {

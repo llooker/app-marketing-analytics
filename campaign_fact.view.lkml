@@ -46,9 +46,11 @@ view: campaign_date_fact {
   }
   dimension: external_customer_id {
     type: number
+    hidden: yes
   }
   dimension: campaign_id {
     type: number
+    hidden: yes
   }
 }
 
@@ -112,9 +114,11 @@ view: campaign_week_fact {
   }
   dimension: external_customer_id {
     type: number
+    hidden: yes
   }
   dimension: campaign_id {
     type: number
+    hidden: yes
   }
   dimension: less_than_current_day_of_week {}
 }
@@ -179,9 +183,11 @@ view: campaign_month_fact {
   }
   dimension: external_customer_id {
     type: number
+    hidden: yes
   }
   dimension: campaign_id {
     type: number
+    hidden: yes
   }
   dimension: less_than_current_day_of_month {}
 }
@@ -246,9 +252,11 @@ view: campaign_quarter_fact {
   }
   dimension: external_customer_id {
     type: number
+    hidden: yes
   }
   dimension: campaign_id {
     type: number
+    hidden: yes
   }
   dimension: less_than_current_day_of_quarter {}
 }

@@ -23,6 +23,7 @@ view: customer {
   dimension: account_time_zone_id {
     type: string
     sql: ${TABLE}.AccountTimeZoneId ;;
+    hidden:  yes
   }
 
   dimension: can_manage_clients {
@@ -43,6 +44,7 @@ view: customer {
   dimension: external_customer_id {
     type: number
     sql: ${TABLE}.ExternalCustomerId ;;
+    hidden:  yes
   }
 
   dimension: is_auto_tagging_enabled {

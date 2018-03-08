@@ -154,11 +154,15 @@ view: status_changes {
   dimension: old_status {
     type: string
     sql: ${TABLE}.old_status ;;
+    hidden: yes
   }
 
   dimension: new_status {
+    label: "Status Update"
     type: string
-    sql: ${TABLE}.new_status ;;
+    sql: CASE WHEN ${TABLE}.new_status = 'Status_Enabled' OR ${TABLE}.new_status = 'ENABLED' OR  ${TABLE}.new_status = 'Status_Active'  THEN 'Re-enabled'
+              ELSE 'Paused'
+              END;;
   }
 
   dimension: change_date {
@@ -169,9 +173,20 @@ view: status_changes {
   dimension: type {
     type: string
     sql: CASE WHEN ${TABLE}.campaign_id IS NOT NULL THEN 'Campaign'
-              WHEN ${TABLE}.ad_group_id IS NOT NULL THEN 'Ad_Group'
+              WHEN ${TABLE}.ad_group_id IS NOT NULL THEN 'Ad Group'
               WHEN ${TABLE}.ad_creative_id IS NOT NULL THEN 'Ad'
               WHEN ${TABLE}.keyword_criterion_id IS NOT NULL THEN 'Keyword'
          END;;
   }
+
+  measure: count {
+    type: number
+    sql: COUNT(DISTINCT ${ad_creative_id}) + COUNT(DISTINCT ${ad_group_id}) + COUNT(DISTINCT ${campaign_id}) + COUNT(DISTINCT ${keyword_criterion_id}) ;;
+    description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
+    drill_fields: [ad.creative, campaign.campaign_name, ad_group.ad_grop_name, keyword.criteria]
+  }
+
+
+
+
 }
