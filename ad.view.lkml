@@ -73,7 +73,7 @@ view: ad {
 
   dimension: creative_final_urls {
     type: string
-    sql: ${TABLE}.CreativeFinalUrls ;;
+    sql: REGEXP_EXTRACT(${TABLE}.CreativeFinalUrls, r'\"([^\"]*)\"') ;;
     group_label: "URLS"
   }
 

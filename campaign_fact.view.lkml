@@ -1,28 +1,50 @@
-include: "ad_metrics_base.view.lkml"
+include: "ad_metrics_base.view"
+include: "account_fact.view"
 include: "campaign.view"
 include: "customer.view"
-include: "date_base.view.lkml"
+include: "date_base.view"
 
-explore: campaign_date_fact {
+explore: campaign_fact_base {
+  hidden: yes
+  extension: required
+  view_name: campaign_fact
   persist_with: etl_datagroup
-  label: "Campaign Date Fact"
-  view_label: "Campaign Date Fact"
-  join: customer {
+
+  join:  customer {
     view_label: "Customer"
-    sql_on: ${campaign_date_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${campaign_date_fact.date_date} = ${customer.date_date} ;;
+    sql_on: ${campaign_fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${campaign_fact.date_date} = ${customer.date_date} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
-    sql_on: ${campaign_date_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign_date_fact.date_date} = ${campaign.date_date} ;;
+    sql_on: ${campaign_fact.campaign_id} = ${campaign.campaign_id} AND
+       ${campaign_fact.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
 }
 
+view: campaign_fact_base {
+  extension: required
+  extends: [ad_metrics_base]
+
+  dimension: external_customer_id {
+    type: number
+  }
+  dimension: campaign_id {
+    type: number
+  }
+}
+
+explore: campaign_date_fact {
+  extends: [campaign_fact_base]
+  from: campaign_date_fact
+  label: "Campaign Date Fact"
+  view_label: "Campaign Date Fact"
+}
+
 view: campaign_date_fact {
-  extends: [ad_metrics_base, date_base]
+  extends: [campaign_fact_base, date_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
@@ -44,64 +66,52 @@ view: campaign_date_fact {
     hidden: yes
     sql: TIMESTAMP(${TABLE}._date) ;;
   }
-  dimension: external_customer_id {
-    type: number
-    hidden: yes
-  }
-  dimension: campaign_id {
-    type: number
-    hidden: yes
-  }
 }
 
 explore: campaign_week_fact {
-  hidden: yes
-  persist_with: etl_datagroup
+  extends: [campaign_fact_base]
+  from: campaign_week_fact
   label: "Campaign Week Fact"
   view_label: "Campaign Week Fact"
 
   join: last_campaign_week_fact {
     from: campaign_week_fact
     view_label: "Last Week Campaign Fact"
-    sql_on: ${campaign_week_fact.external_customer_id} = ${last_campaign_week_fact.external_customer_id} AND
-      ${campaign_week_fact.campaign_id} = ${last_campaign_week_fact.campaign_id} AND
-      ${campaign_week_fact.date_last_week} = ${last_campaign_week_fact.date_week} AND
-      ${campaign_week_fact.less_than_current_day_of_week} = ${last_campaign_week_fact.less_than_current_day_of_week} AND
+    sql_on: ${campaign_fact.external_customer_id} = ${last_campaign_week_fact.external_customer_id} AND
+      ${campaign_fact.campaign_id} = ${last_campaign_week_fact.campaign_id} AND
+      ${campaign_fact.date_last_week} = ${last_campaign_week_fact.date_week} AND
+      ${campaign_fact.less_than_current_day_of_week} = ${last_campaign_week_fact.less_than_current_day_of_week} AND
       ${last_campaign_week_fact.less_than_current_day_of_week} ;;
     relationship: one_to_one
     type: inner
   }
-  join:  customer {
-    view_label: "Customer"
-    sql_on: ${campaign_week_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${campaign_week_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} ;;
-    relationship: many_to_one
+  join: account_fact {
+    from: account_week_fact
+    sql_on: ${campaign_fact.external_customer_id} = ${account_fact.external_customer_id} AND
+      ${campaign_fact.date_week} = ${account_fact.date_week} AND
+      ${campaign_fact.less_than_current_day_of_week} = ${account_fact.less_than_current_day_of_week} ;;
+    relationship: one_to_one
+    type: inner
   }
 }
 
 view: campaign_week_fact {
-  extends: [ad_metrics_base]
+  extends: [campaign_fact_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: campaign_date_fact {
-      column: date_week {}
-      column: external_customer_id {}
-      column: campaign_id {}
-      column: less_than_current_day_of_week {}
-      column: average_position { field: campaign_date_fact.weighted_average_position }
-      column: clicks { field: campaign_date_fact.total_clicks }
-      column: conversions { field: campaign_date_fact.total_conversions }
-      column: conversion_value { field: campaign_date_fact.total_conversion_value }
-      column: cost { field: campaign_date_fact.total_cost }
-      column: impressions { field: campaign_date_fact.total_impressions }
-      column: interactions { field: campaign_date_fact.total_interactions }
+      column: date_week { field: campaign_fact.date_week }
+      column: external_customer_id { field: campaign_fact.external_customer_id }
+      column: campaign_id { field: campaign_fact.campaign_id }
+      column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
+      column: average_position { field: campaign_fact.weighted_average_position }
+      column: clicks { field: campaign_fact.total_clicks }
+      column: conversions { field: campaign_fact.total_conversions }
+      column: conversion_value { field: campaign_fact.total_conversion_value }
+      column: cost { field: campaign_fact.total_cost }
+      column: impressions { field: campaign_fact.total_impressions }
+      column: interactions { field: campaign_fact.total_interactions }
     }
   }
   dimension: date_week {
@@ -112,65 +122,56 @@ view: campaign_week_fact {
     type: date
     sql: DATE_ADD(${date_week}), INTERVAL -1 WEEK) ;;
   }
-  dimension: external_customer_id {
-    type: number
-    hidden: yes
-  }
-  dimension: campaign_id {
-    type: number
-    hidden: yes
+  dimension: date_date {
+    sql: ${date_week} ;;
   }
   dimension: less_than_current_day_of_week {}
 }
 
 explore: campaign_month_fact {
-  hidden: yes
-  persist_with: etl_datagroup
+  extends: [campaign_fact_base]
+  from: campaign_month_fact
   label: "Campaign Month Fact"
   view_label: "Campaign Month Fact"
 
   join: last_campaign_month_fact {
     from: campaign_month_fact
     view_label: "Last Month Campaign Fact"
-    sql_on: ${campaign_month_fact.external_customer_id} = ${last_campaign_month_fact.external_customer_id} AND
-      ${campaign_month_fact.campaign_id} = ${last_campaign_month_fact.campaign_id} AND
-      ${campaign_month_fact.date_last_month} = ${last_campaign_month_fact.date_month} AND
-      ${campaign_month_fact.less_than_current_day_of_month} = ${last_campaign_month_fact.less_than_current_day_of_month} AND
-      ${last_campaign_month_fact.less_than_current_day_of_month} ;;
+    sql_on: ${campaign_fact.external_customer_id} = ${last_campaign_month_fact.external_customer_id} AND
+      ${campaign_fact.campaign_id} = ${last_campaign_month_fact.campaign_id} AND
+      ${campaign_fact.date_last_month} = ${last_campaign_month_fact.date_month} AND
+      ${campaign_fact.less_than_current_day_of_month} = ${last_campaign_month_fact.less_than_current_day_of_month} AND
+      ${campaign_fact.less_than_current_day_of_month} ;;
     relationship: one_to_one
     type: inner
   }
-  join:  customer {
-    view_label: "Customer"
-    sql_on: ${campaign_month_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${campaign_month_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} ;;
-    relationship: many_to_one
+  join: account_fact {
+    from: account_month_fact
+    sql_on: ${campaign_fact.external_customer_id} = ${account_fact.external_customer_id} AND
+      ${campaign_fact.date_month} = ${account_fact.date_month} AND
+      ${campaign_fact.less_than_current_day_of_month} = ${account_fact.less_than_current_day_of_month} ;;
+    relationship: one_to_one
+    type: inner
   }
 }
 
 view: campaign_month_fact {
-  extends: [ad_metrics_base]
+  extends: [campaign_fact_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: campaign_date_fact {
-      column: date_month {}
-      column: external_customer_id {}
-      column: campaign_id {}
-      column: less_than_current_day_of_month {}
-      column: average_position { field: campaign_date_fact.weighted_average_position }
-      column: clicks { field: campaign_date_fact.total_clicks }
-      column: conversions { field: campaign_date_fact.total_conversions }
-      column: conversion_value { field: campaign_date_fact.total_conversion_value }
-      column: cost { field: campaign_date_fact.total_cost }
-      column: impressions { field: campaign_date_fact.total_impressions }
-      column: interactions { field: campaign_date_fact.total_interactions }
+      column: date_month { field: campaign_fact.date_month_date }
+      column: external_customer_id { field: campaign_fact.external_customer_id }
+      column: campaign_id { field: campaign_fact.campaign_id }
+      column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
+      column: average_position { field: campaign_fact.weighted_average_position }
+      column: clicks { field: campaign_fact.total_clicks }
+      column: conversions { field: campaign_fact.total_conversions }
+      column: conversion_value { field: campaign_fact.total_conversion_value }
+      column: cost { field: campaign_fact.total_cost }
+      column: impressions { field: campaign_fact.total_impressions }
+      column: interactions { field: campaign_fact.total_interactions }
     }
   }
   dimension: date_month {
@@ -181,65 +182,56 @@ view: campaign_month_fact {
     type: date
     sql: DATE_ADD(${date_month}), INTERVAL -1 MONTH) ;;
   }
-  dimension: external_customer_id {
-    type: number
-    hidden: yes
-  }
-  dimension: campaign_id {
-    type: number
-    hidden: yes
+  dimension: date_date {
+    sql: ${date_month} ;;
   }
   dimension: less_than_current_day_of_month {}
 }
 
 explore: campaign_quarter_fact {
-  hidden: yes
-  persist_with: etl_datagroup
+  extends: [campaign_fact_base]
+  from: campaign_quarter_fact
   label: "Campaign Quarter Fact"
   view_label: "Campaign Quarter Fact"
 
   join: last_campaign_quarter_fact {
     from: campaign_quarter_fact
     view_label: "Last Quarter Campaign Fact"
-    sql_on: ${campaign_quarter_fact.external_customer_id} = ${last_campaign_quarter_fact.external_customer_id} AND
-      ${campaign_quarter_fact.campaign_id} = ${last_campaign_quarter_fact.campaign_id} AND
-      ${campaign_quarter_fact.date_last_quarter} = ${last_campaign_quarter_fact.date_quarter} AND
-      ${campaign_quarter_fact.less_than_current_day_of_quarter} = ${last_campaign_quarter_fact.less_than_current_day_of_quarter} AND
+    sql_on: ${campaign_fact.external_customer_id} = ${last_campaign_quarter_fact.external_customer_id} AND
+      ${campaign_fact.campaign_id} = ${last_campaign_quarter_fact.campaign_id} AND
+      ${campaign_fact.date_last_quarter} = ${last_campaign_quarter_fact.date_quarter} AND
+      ${campaign_fact.less_than_current_day_of_quarter} = ${last_campaign_quarter_fact.less_than_current_day_of_quarter} AND
       ${last_campaign_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
     type: inner
   }
-  join:  customer {
-    view_label: "Customer"
-    sql_on: ${campaign_quarter_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${campaign_quarter_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} ;;
-    relationship: many_to_one
+  join: account_fact {
+    from: account_quarter_fact
+    sql_on: ${campaign_fact.external_customer_id} = ${account_fact.external_customer_id} AND
+      ${campaign_fact.date_quarter} = ${account_fact.date_quarter} AND
+      ${campaign_fact.less_than_current_day_of_quarter} = ${account_fact.less_than_current_day_of_quarter} ;;
+    relationship: one_to_one
+    type: inner
   }
 }
 
 view: campaign_quarter_fact {
-  extends: [ad_metrics_base]
+  extends: [campaign_fact_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: campaign_date_fact {
-      column: date_quarter {}
-      column: external_customer_id {}
-      column: campaign_id {}
-      column: less_than_current_day_of_quarter {}
-      column: average_position { field: campaign_date_fact.weighted_average_position }
-      column: clicks { field: campaign_date_fact.total_clicks }
-      column: conversions { field: campaign_date_fact.total_conversions }
-      column: conversion_value { field: campaign_date_fact.total_conversion_value }
-      column: cost { field: campaign_date_fact.total_cost }
-      column: impressions { field: campaign_date_fact.total_impressions }
-      column: interactions { field: campaign_date_fact.total_interactions }
+      column: date_quarter { field: campaign_fact.date_quarter }
+      column: external_customer_id { field: campaign_fact.external_customer_id }
+      column: campaign_id { field: campaign_fact.campaign_id }
+      column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
+      column: average_position { field: campaign_fact.weighted_average_position }
+      column: clicks { field: campaign_fact.total_clicks }
+      column: conversions { field: campaign_fact.total_conversions }
+      column: conversion_value { field: campaign_fact.total_conversion_value }
+      column: cost { field: campaign_fact.total_cost }
+      column: impressions { field: campaign_fact.total_impressions }
+      column: interactions { field: campaign_fact.total_interactions }
     }
   }
   dimension: date_quarter {
@@ -250,13 +242,8 @@ view: campaign_quarter_fact {
     type: date
     sql: DATE_ADD(${date_quarter}), INTERVAL -1 QUARTER) ;;
   }
-  dimension: external_customer_id {
-    type: number
-    hidden: yes
-  }
-  dimension: campaign_id {
-    type: number
-    hidden: yes
+  dimension: date_date {
+    sql: ${date_quarter} ;;
   }
   dimension: less_than_current_day_of_quarter {}
 }

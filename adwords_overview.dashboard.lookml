@@ -897,11 +897,11 @@
     explore: account_quarter_fact
     type: looker_column
     fields:
-    - account_quarter_fact.total_impressions
-    - account_quarter_fact.total_clicks
-    - account_quarter_fact.total_conversions
+    - account_fact.total_impressions
+    - account_fact.total_clicks
+    - account_fact.total_conversions
     filters:
-      account_quarter_fact.date_quarter: 1 quarters
+      account_fact.date_quarter: 1 quarters
     limit: 500
     column_limit: 50
     stacking: ''
@@ -964,19 +964,19 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: account_quarter_fact.total_impressions
+      - id: account_fact.total_impressions
         name: Impressions
-        axisId: account_quarter_fact.total_impressions
+        axisId: account_fact.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 834
-      - id: account_quarter_fact.total_clicks
+      - id: account_fact.total_clicks
         name: Clicks
-        axisId: account_quarter_fact.total_clicks
+        axisId: account_fact.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 839
-      - id: account_quarter_fact.total_conversions
+      - id: account_fact.total_conversions
         name: Conversions
-        axisId: account_quarter_fact.total_conversions
+        axisId: account_fact.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
         __LINE_NUM: 844
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
