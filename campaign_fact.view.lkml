@@ -55,7 +55,7 @@ view: campaign_date_fact {
       column: campaign_id {}
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
-      column: conversion_value { field: ad_impressions.total_conversion_value }
+      column: conversionvalue { field: ad_impressions.total_conversion_value }
       column: cost { field: ad_impressions.total_cost }
       column: impressions { field: ad_impressions.total_impressions }
       column: interactions { field: ad_impressions.total_interactions }
@@ -106,7 +106,7 @@ view: campaign_week_fact {
       column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
       column: clicks { field: campaign_fact.total_clicks }
       column: conversions { field: campaign_fact.total_conversions }
-      column: conversion_value { field: campaign_fact.total_conversion_value }
+      column: conversionvalue { field: campaign_fact.total_conversion_value }
       column: cost { field: campaign_fact.total_cost }
       column: impressions { field: campaign_fact.total_impressions }
       column: interactions { field: campaign_fact.total_interactions }
@@ -165,7 +165,7 @@ view: campaign_month_fact {
       column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
       column: clicks { field: campaign_fact.total_clicks }
       column: conversions { field: campaign_fact.total_conversions }
-      column: conversion_value { field: campaign_fact.total_conversion_value }
+      column: conversionvalue { field: campaign_fact.total_conversion_value }
       column: cost { field: campaign_fact.total_cost }
       column: impressions { field: campaign_fact.total_impressions }
       column: interactions { field: campaign_fact.total_interactions }
@@ -224,7 +224,7 @@ view: campaign_quarter_fact {
       column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
       column: clicks { field: campaign_fact.total_clicks }
       column: conversions { field: campaign_fact.total_conversions }
-      column: conversion_value { field: campaign_fact.total_conversion_value }
+      column: conversionvalue { field: campaign_fact.total_conversion_value }
       column: cost { field: campaign_fact.total_cost }
       column: impressions { field: campaign_fact.total_impressions }
       column: interactions { field: campaign_fact.total_interactions }
