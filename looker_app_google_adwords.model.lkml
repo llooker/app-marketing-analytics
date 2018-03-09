@@ -17,6 +17,7 @@ include: "kpis_this_period.view"
 include: "ad_impressions.view"
 include: "period_fact.view"
 include: "report_single_values.view"
+include: "recent_changes.view"
 
 # include all the dashboards
 include: "ad_group_performance.dashboard"
@@ -181,4 +182,32 @@ explore: kpis_this_period {
 
 explore: report_single_values {
   label: "Report Single Values"
+}
+
+explore: status_changes  {
+
+  join: campaign {
+    view_label: "Campaigns"
+    sql_on: ${status_changes.campaign_id} = ${campaign.campaign_id} AND
+      ${status_changes.external_customer_id} = ${campaign.external_customer_id};;
+    relationship: many_to_one
+  }
+  join: ad_group {
+    view_label: "Ad Groups"
+    sql_on: ${status_changes.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${status_changes.external_customer_id} = ${ad_group.external_customer_id};;
+    relationship: many_to_one
+  }
+  join: ad {
+    view_label: "Ads"
+    sql_on: ${ad.creative_id} = ${status_changes.ad_creative_id}  AND
+      ${status_changes.external_customer_id} = ${ad.external_customer_id};;
+    relationship:  many_to_one
+  }
+  join: keyword {
+    view_label: "Keywords"
+    sql_on: ${status_changes.keyword_criterion_id} = ${keyword.criterion_id} AND
+      ${status_changes.external_customer_id} = ${keyword.external_customer_id} ;;
+    relationship: many_to_one
+  }
 }

@@ -1,11 +1,11 @@
 view: report_single_values {
   derived_table: {
     sql:
-      select 'ad-alerts' as key, 13 as currentValue, 12 as previousValue
+      select 'ad-alerts' as key, 13 as value, 12 as compare
       UNION ALL
-      select 'keyword-alerts' as key, 12.21 as currentValue, 82.23 as previousValue
+      select 'keyword-alerts' as key, 12.21 as value, 82.23 as compare
       UNION ALL
-      select 'dead-ads-keywords' as key, 8932 as currentValue, 8329 as previousValue
+      select 'dead-ads-keywords' as key, 8932 as value, 8329 as compare
     ;;
   }
   dimension: key {
@@ -13,14 +13,14 @@ view: report_single_values {
     primary_key:  yes
     sql: ${TABLE}.key ;;
   }
-  dimension: currentValue {
+  dimension: value {
     label: "Current Value"
     type:  number
-    sql: ${TABLE}.currentValue ;;
+    sql: ${TABLE}.value ;;
   }
-  dimension: previousValue {
+  dimension: compare {
     label: "Previous Value"
     type:  number
-    sql: ${TABLE}.previousValue ;;
+    sql: ${TABLE}.compare ;;
   }
 }
