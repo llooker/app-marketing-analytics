@@ -364,6 +364,141 @@
     col: 16
     width: 4
     height: 4
+  - title: Click Through Rate To Date
+    name: Click Through Rate To Date
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_line
+    fields:
+    - ad_impressions.average_click_rate
+    - ad_impressions.date_week
+    - ad_impressions.average_cost_per_click
+    sorts:
+    - ad_impressions.date_week desc
+    limit: 500
+    column_limit: 50
+    stacking: ''
+    show_value_labels: false
+    label_density: 1
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: false
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    ordering: none
+    show_null_labels: false
+    label: Average Cost per Conversion
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    series_types: {}
+    show_dropoff: false
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_click_rate
+        name: Click Through Rate
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 1014
+        axisId: ad_impressions.average_click_rate
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 1002
+    - label:
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_cost_per_click
+        name: Cost per Click
+        axisId: ad_impressions.average_cost_per_click
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 1033
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 1021
+    discontinuous_nulls: false
+    focus_on_hover: false
+    reference_lines: []
+    trend_lines:
+    - color: "#000000"
+      label_position: right
+      period: 7
+      regression_type: linear
+      series_index: 1
+      show_label: false
+      label_type: string
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 1044
+    colors:
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    hidden_series: []
+    series_labels:
+      ad_impressions.total_clicks: Interactions
+    hidden_fields: []
+    column_group_spacing_ratio: 0
+    column_spacing_ratio: 0
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Frame: ad_impressions.date_date
+    row: 4
+    col: 0
+    width: 24
+    height: 11
   - title: Click Through Rate by Network
     name: Click Through Rate by Network
     model: looker_app_google_adwords
@@ -391,7 +526,7 @@
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
-    show_x_axis_label: true
+    show_x_axis_label: false
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
@@ -423,6 +558,19 @@
         __LINE_NUM: 419
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
       __LINE_NUM: 407
+    colors:
+    - "#8ac8ca"
+    - "#7869df"
+    - "#6e98f9"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
@@ -457,7 +605,7 @@
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
-    show_x_axis_label: true
+    show_x_axis_label: false
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
@@ -490,18 +638,17 @@
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
       __LINE_NUM: 473
     colors:
-    - "#a9c574"
-    - "#62bad4"
-    - "#929292"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
+    - "#d06180"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
     series_colors: {}
     listen:
       Campaign: campaign.campaign_name
@@ -535,7 +682,7 @@
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
-    show_x_axis_label: true
+    show_x_axis_label: false
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
@@ -568,18 +715,17 @@
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
       __LINE_NUM: 551
     colors:
-    - "#929292"
-    - "#a9c574"
-    - "#62bad4"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
+    - "#dc9d4f"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
     series_colors: {}
     listen:
       Campaign: campaign.campaign_name
@@ -589,6 +735,122 @@
     col: 16
     width: 8
     height: 6
+  - title: Click Through Rate by Day of Week and Hour of Day
+    name: Click Through Rate by Day of Week and Hour of Day
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: table
+    fields:
+    - ad_impressions.average_click_rate
+    - ad_impressions.hour_of_day
+    - ad_impressions.date_day_of_week
+    pivots:
+    - ad_impressions.date_day_of_week
+    fill_fields:
+    - ad_impressions.date_day_of_week
+    sorts:
+    - ad_impressions.date_day_of_week 0
+    - ad_impressions.hour_of_day
+    limit: 500
+    show_view_names: true
+    show_row_numbers: false
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Network
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_click_rate
+        name: Ad Stats Cost
+        axisId: ad_impressions.average_click_rate
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 910
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 898
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 923
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+      - ad_impressions.average_click_rate
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 918
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Frame: ad_impressions.date_date
+    row: 21
+    col: 0
+    width: 14
+    height: 14
   - title: Click Through Rate by Day of Week
     name: Click Through Rate by Day of Week
     model: looker_app_google_adwords
@@ -693,7 +955,17 @@
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
       __LINE_NUM: 677
     colors:
-    - 'palette: Looker Classic'
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
     series_colors: {}
     listen:
       Campaign: campaign.campaign_name
@@ -805,18 +1077,17 @@
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
       __LINE_NUM: 789
     colors:
-    - "#a9c574"
-    - "#62bad4"
-    - "#929292"
-    - "#9fdee0"
-    - "#1f3e5a"
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
     series_colors: {}
     listen:
       Campaign: campaign.campaign_name
@@ -826,253 +1097,6 @@
     col: 14
     width: 10
     height: 7
-  - title: Click Through Rate by Day of Week and Hour of Day
-    name: Click Through Rate by Day of Week and Hour of Day
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: table
-    fields:
-    - ad_impressions.average_click_rate
-    - ad_impressions.hour_of_day
-    - ad_impressions.date_day_of_week
-    pivots:
-    - ad_impressions.date_day_of_week
-    fill_fields:
-    - ad_impressions.date_day_of_week
-    sorts:
-    - ad_impressions.date_day_of_week 0
-    - ad_impressions.hour_of_day
-    limit: 500
-    show_view_names: true
-    show_row_numbers: false
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    limit_displayed_rows: false
-    enable_conditional_formatting: true
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    groupBars: true
-    labelSize: 10pt
-    showLegend: true
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    label_color: []
-    x_axis_label: Network
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.average_click_rate
-        name: Ad Stats Cost
-        axisId: ad_impressions.average_click_rate
-        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 910
-      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 898
-    conditional_formatting:
-    - type: high to low
-      value:
-      background_color:
-      font_color:
-      palette:
-        name: Red to Yellow to Green
-        colors:
-        - "#F36254"
-        - "#FCF758"
-        - "#4FBC89"
-        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 923
-      bold: false
-      italic: false
-      strikethrough: false
-      fields:
-      - ad_impressions.average_click_rate
-      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 918
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Time Frame: ad_impressions.date_date
-    row: 21
-    col: 0
-    width: 14
-    height: 14
-  - title: Click Through Rate To Date
-    name: Click Through Rate To Date
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_line
-    fields:
-    - ad_impressions.average_click_rate
-    - ad_impressions.date_week
-    - ad_impressions.average_cost_per_click
-    sorts:
-    - ad_impressions.date_week desc
-    limit: 500
-    column_limit: 50
-    stacking: ''
-    show_value_labels: false
-    label_density: 1
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
-    label: Average Cost per Conversion
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    series_types: {}
-    show_dropoff: false
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.average_click_rate
-        name: Click Through Rate
-        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 1014
-        axisId: ad_impressions.average_click_rate
-      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 1002
-    - label:
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.average_cost_per_click
-        name: Cost per Click
-        axisId: ad_impressions.average_cost_per_click
-        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 1033
-      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 1021
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 1044
-    colors:
-    - "#90c8ae"
-    - "#92818d"
-    - "#c5c6a6"
-    - "#82c2ca"
-    - "#cee0a0"
-    - "#928fb4"
-    - "#9fc190"
-    series_colors: {}
-    hidden_series: []
-    series_labels:
-      ad_impressions.total_clicks: Interactions
-    hidden_fields: []
-    column_group_spacing_ratio: 0
-    column_spacing_ratio: 0
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Time Frame: ad_impressions.date_date
-    row: 4
-    col: 0
-    width: 24
-    height: 11
   - title: Top Ads
     name: Top Ads
     model: looker_app_google_adwords
@@ -1095,7 +1119,7 @@
     truncate_column_names: false
     hide_totals: false
     hide_row_totals: false
-    table_theme: editable
+    table_theme: gray
     limit_displayed_rows: true
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
@@ -1156,7 +1180,7 @@
     truncate_column_names: false
     hide_totals: false
     hide_row_totals: false
-    table_theme: editable
+    table_theme: gray
     limit_displayed_rows: true
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
@@ -1216,7 +1240,7 @@
     truncate_column_names: false
     hide_totals: false
     hide_row_totals: false
-    table_theme: editable
+    table_theme: gray
     limit_displayed_rows: true
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
