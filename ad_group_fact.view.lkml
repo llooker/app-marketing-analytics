@@ -50,8 +50,8 @@ view: ad_group_fact_base {
 explore: ad_group_date_fact {
   extends: [ad_group_fact_base]
   from: ad_group_date_fact
-  label: "Campaign Date Fact"
-  view_label: "Campaign Date Fact"
+  label: "Ad Group Date Fact"
+  view_label: "Ad Group Date Fact"
 }
 
 view: ad_group_date_fact {
@@ -59,7 +59,7 @@ view: ad_group_date_fact {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    partition_keys: ["_date"]
+#     partition_keys: ["_date"]
     explore_source: ad_impressions {
       column: _date { field: ad_impressions.date_date }
       column: external_customer_id {}
@@ -120,6 +120,7 @@ view: ad_group_week_fact {
   }
   dimension: date_week {
     type: date
+    allow_fill: no
     sql: TIMESTAMP(${TABLE}.date_week) ;;
   }
   dimension: date_last_week {
@@ -162,7 +163,7 @@ view: ad_group_month_fact {
       column: external_customer_id { field: ad_group_fact.external_customer_id }
       column: campaign_id { field: ad_group_fact.campaign_id }
       column: ad_group_id { field: ad_group_fact.ad_group_id }
-      column: less_than_current_day_of_week { field: ad_group_fact.less_than_current_day_of_week }
+      column: less_than_current_day_of_month { field: ad_group_fact.less_than_current_day_of_month }
       column: clicks { field: ad_group_fact.total_clicks }
       column: conversions { field: ad_group_fact.total_conversions }
       column: conversionvalue { field: ad_group_fact.total_conversion_value }
@@ -173,6 +174,7 @@ view: ad_group_month_fact {
   }
   dimension: date_month {
     type: date
+    allow_fill: no
     sql: TIMESTAMP(${TABLE}.date_month) ;;
   }
   dimension: date_last_month {
@@ -215,7 +217,7 @@ view: ad_group_quarter_fact {
       column: external_customer_id { field: ad_group_fact.external_customer_id }
       column: campaign_id { field: ad_group_fact.campaign_id }
       column: ad_group_id { field: ad_group_fact.ad_group_id }
-      column: less_than_current_day_of_week { field: ad_group_fact.less_than_current_day_of_week }
+      column: less_than_current_day_of_quarter { field: ad_group_fact.less_than_current_day_of_quarter }
       column: clicks { field: ad_group_fact.total_clicks }
       column: conversions { field: ad_group_fact.total_conversions }
       column: conversionvalue { field: ad_group_fact.total_conversion_value }
@@ -226,6 +228,7 @@ view: ad_group_quarter_fact {
   }
   dimension: date_quarter {
     type: date
+    allow_fill: no
     sql: TIMESTAMP(${TABLE}.date_quarter) ;;
   }
   dimension: date_last_quarter {
