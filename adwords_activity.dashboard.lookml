@@ -1,4 +1,4 @@
-- dashboard: activity_this_month
+- dashboard: adwords_activity
   title: Activity This Month
   layout: newspaper
   elements:
