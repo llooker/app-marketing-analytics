@@ -218,7 +218,7 @@ view: campaign_quarter_fact {
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: campaign_date_fact {
-      column: date_quarter { field: campaign_fact.date_quarter }
+      column: date_quarter { field: campaign_fact.date_quarter_date }
       column: external_customer_id { field: campaign_fact.external_customer_id }
       column: campaign_id { field: campaign_fact.campaign_id }
       column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
