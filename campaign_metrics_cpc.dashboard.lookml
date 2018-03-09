@@ -1164,7 +1164,7 @@
     explore: ad_impressions
     type: table
     fields:
-    - ad.creative_final_urls
+    - ad.creative_final_urls_domain_path
     - ad_group.ad_group_name
     - campaign.campaign_name
     - ad_impressions.average_cost_per_click

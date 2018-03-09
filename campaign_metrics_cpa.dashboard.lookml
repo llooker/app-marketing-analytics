@@ -1229,7 +1229,7 @@
     - campaign.campaign_name
     - ad_impressions.total_cost_usd
     - ad_impressions.average_cost_per_conversion
-    - ad.creative_final_urls
+    - ad.creative_final_urls_domain_path
     filters:
       ad_impressions.date_date: 1 quarters
       ad_impressions.conversions: ">0"

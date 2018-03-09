@@ -72,8 +72,16 @@ view: ad {
   }
 
   dimension: creative_final_urls {
+    hidden: yes
     type: string
-    sql: REGEXP_EXTRACT(REGEXP_EXTRACT(ad.CreativeFinalUrls, r'\"([^\"]*)\"'), r'^https?://(.*)\?') ;;
+    sql: ${TABLE}.CreativeFinalUrls ;;
+    group_label: "URLS"
+  }
+
+  dimension: creative_final_urls_domain_path {
+    label: "Creative Final Urls"
+    type: string
+    sql: REGEXP_EXTRACT(REGEXP_EXTRACT(${creative_final_urls}, r'\"([^\"]*)\"'), r'^https?://(.*)\?') ;;
     group_label: "URLS"
   }
 
