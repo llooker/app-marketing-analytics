@@ -11,8 +11,6 @@
     - ad_group_fact.total_cost_usd
     - ad_group_fact.date_quarter
     - last_ad_group_quarter_fact.total_cost_usd
-    fill_fields:
-    - ad_group_fact.date_quarter
     sorts:
     - ad_group_fact.date_quarter desc
     limit: 500
@@ -75,8 +73,6 @@
     - ad_group_fact.date_quarter
     - ad_group_fact.total_conversions
     - last_ad_group_quarter_fact.total_conversions
-    fill_fields:
-    - ad_group_fact.date_quarter
     sorts:
     - ad_group_fact.date_quarter desc
     limit: 500
@@ -141,8 +137,6 @@
     - ad_group_fact.date_quarter
     - ad_group_fact.average_cost_per_conversion
     - last_ad_group_quarter_fact.average_cost_per_conversion
-    fill_fields:
-    - ad_group_fact.date_quarter
     sorts:
     - ad_group_fact.date_quarter desc
     limit: 500
@@ -205,8 +199,6 @@
     - ad_group_fact.date_quarter
     - ad_group_fact.average_conversion_rate
     - last_ad_group_quarter_fact.average_conversion_rate
-    fill_fields:
-    - ad_group_fact.date_quarter
     sorts:
     - ad_group_fact.date_quarter desc
     limit: 500
@@ -270,8 +262,6 @@
     - ad_impressions.date_day_of_quarter
     - ad_impressions.date_quarter
     pivots:
-    - ad_impressions.date_quarter
-    fill_fields:
     - ad_impressions.date_quarter
     filters:
       ad_impressions.date_quarter: 2 quarters
@@ -479,8 +469,6 @@
     - ad_group_fact.date_quarter
     - ad_group_fact.average_interaction_rate
     - last_ad_group_quarter_fact.average_interaction_rate
-    fill_fields:
-    - ad_group_fact.date_quarter
     sorts:
     - ad_group_fact.date_quarter desc
     limit: 500
@@ -544,8 +532,6 @@
     - ad_group_fact.date_quarter
     - last_ad_group_quarter_fact.average_cost_per_interaction
     - ad_group_fact.average_cost_per_interaction
-    fill_fields:
-    - ad_group_fact.date_quarter
     sorts:
     - ad_group_fact.date_quarter desc
     limit: 500

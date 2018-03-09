@@ -35,7 +35,7 @@ view: account_date_fact {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    partition_keys: ["_date"]
+#     partition_keys: ["_date"]
     explore_source: ad_impressions {
       column: _date { field: ad_impressions.date_date }
       column: external_customer_id {}
@@ -131,7 +131,7 @@ view: account_month_fact {
     explore_source: account_date_fact {
       column: date_month { field: account_fact.date_month_date }
       column: external_customer_id { field: account_fact.external_customer_id }
-      column: less_than_current_day_of_week { field: account_fact.less_than_current_day_of_week }
+      column: less_than_current_day_of_month { field: account_fact.less_than_current_day_of_month }
       column: clicks { field: account_fact.total_clicks }
       column: conversions { field: account_fact.total_conversions }
       column: conversionvalue { field: account_fact.total_conversion_value }
@@ -182,7 +182,7 @@ view: account_quarter_fact {
     explore_source: account_date_fact {
       column: date_quarter { field: account_fact.date_quarter_date }
       column: external_customer_id { field: account_fact.external_customer_id }
-      column: less_than_current_day_of_week { field: account_fact.less_than_current_day_of_week }
+      column: less_than_current_day_of_quarter { field: account_fact.less_than_current_day_of_quarter }
       column: clicks { field: account_fact.total_clicks }
       column: conversions { field: account_fact.total_conversions }
       column: conversionvalue { field: account_fact.total_conversion_value }

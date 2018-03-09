@@ -48,7 +48,7 @@ view: campaign_date_fact {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    partition_keys: ["_date"]
+#     partition_keys: ["_date"]
     explore_source: ad_impressions {
       column: _date { field: ad_impressions.date_date }
       column: external_customer_id {}
@@ -114,6 +114,7 @@ view: campaign_week_fact {
   }
   dimension: date_week {
     type: date
+    allow_fill: no
     sql: TIMESTAMP(${TABLE}.date_week) ;;
   }
   dimension: date_last_week {
@@ -162,7 +163,7 @@ view: campaign_month_fact {
       column: date_month { field: campaign_fact.date_month_date }
       column: external_customer_id { field: campaign_fact.external_customer_id }
       column: campaign_id { field: campaign_fact.campaign_id }
-      column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
+      column: less_than_current_day_of_month { field: campaign_fact.less_than_current_day_of_month }
       column: clicks { field: campaign_fact.total_clicks }
       column: conversions { field: campaign_fact.total_conversions }
       column: conversionvalue { field: campaign_fact.total_conversion_value }
@@ -173,10 +174,12 @@ view: campaign_month_fact {
   }
   dimension: date_month {
     type: date
+    allow_fill: no
     sql: TIMESTAMP(${TABLE}.date_month) ;;
   }
   dimension: date_last_month {
     type: date
+    allow_fill: no
     sql: DATE_ADD(${date_month}), INTERVAL -1 MONTH) ;;
   }
   dimension: date_date {
@@ -221,7 +224,7 @@ view: campaign_quarter_fact {
       column: date_quarter { field: campaign_fact.date_quarter_date }
       column: external_customer_id { field: campaign_fact.external_customer_id }
       column: campaign_id { field: campaign_fact.campaign_id }
-      column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
+      column: less_than_current_day_of_quarter { field: campaign_fact.less_than_current_day_of_quarter }
       column: clicks { field: campaign_fact.total_clicks }
       column: conversions { field: campaign_fact.total_conversions }
       column: conversionvalue { field: campaign_fact.total_conversion_value }
@@ -232,10 +235,12 @@ view: campaign_quarter_fact {
   }
   dimension: date_quarter {
     type: date
+    allow_fill: no
     sql: TIMESTAMP(${TABLE}.date_quarter) ;;
   }
   dimension: date_last_quarter {
     type: date
+    allow_fill: no
     sql: DATE_ADD(${date_quarter}), INTERVAL -1 QUARTER) ;;
   }
   dimension: date_date {
