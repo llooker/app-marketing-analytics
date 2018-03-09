@@ -193,18 +193,8 @@ view: status_changes {
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad_group.ad_group_name,status_changes.change_date, status_changes.new_status&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
     {% elsif (status_changes.type._value == 'Campaign') %}
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=campaign.campaign_name,status_changes.change_date, status_changes.new_status&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
-
     {% endif %};;
 }
-
-
-
-
-
-
-
-
-
 
 
 }
