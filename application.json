@@ -21,9 +21,9 @@
           "type": "dashboard"
         },
         {
-          "lookmlID": "31",
+          "lookmlID": "looker_app_google_adwords::adwords_activity",
           "name": "Activity",
-          "permalink": "activity",
+          "permalink": "adwords_activity",
           "type": "dashboard"
         },
         {
