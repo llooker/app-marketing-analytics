@@ -65,7 +65,6 @@ view: ad_group_date_fact {
       column: external_customer_id {}
       column: campaign_id {}
       column: ad_group_id {}
-      column: average_position { field: ad_impressions.weighted_average_position }
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
       column: conversion_value { field: ad_impressions.total_conversion_value }
@@ -111,7 +110,6 @@ view: ad_group_week_fact {
       column: campaign_id { field: ad_group_fact.campaign_id }
       column: ad_group_id { field: ad_group_fact.ad_group_id }
       column: less_than_current_day_of_week { field: ad_group_fact.less_than_current_day_of_week }
-      column: average_position { field: ad_group_fact.weighted_average_position }
       column: clicks { field: ad_group_fact.total_clicks }
       column: conversions { field: ad_group_fact.total_conversions }
       column: conversion_value { field: ad_group_fact.total_conversion_value }
@@ -165,7 +163,6 @@ view: ad_group_month_fact {
       column: campaign_id { field: ad_group_fact.campaign_id }
       column: ad_group_id { field: ad_group_fact.ad_group_id }
       column: less_than_current_day_of_week { field: ad_group_fact.less_than_current_day_of_week }
-      column: average_position { field: ad_group_fact.weighted_average_position }
       column: clicks { field: ad_group_fact.total_clicks }
       column: conversions { field: ad_group_fact.total_conversions }
       column: conversion_value { field: ad_group_fact.total_conversion_value }
@@ -219,7 +216,6 @@ view: ad_group_quarter_fact {
       column: campaign_id { field: ad_group_fact.campaign_id }
       column: ad_group_id { field: ad_group_fact.ad_group_id }
       column: less_than_current_day_of_week { field: ad_group_fact.less_than_current_day_of_week }
-      column: average_position { field: ad_group_fact.weighted_average_position }
       column: clicks { field: ad_group_fact.total_clicks }
       column: conversions { field: ad_group_fact.total_conversions }
       column: conversion_value { field: ad_group_fact.total_conversion_value }

@@ -53,7 +53,6 @@ view: campaign_date_fact {
       column: _date { field: ad_impressions.date_date }
       column: external_customer_id {}
       column: campaign_id {}
-      column: average_position { field: ad_impressions.weighted_average_position }
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
       column: conversion_value { field: ad_impressions.total_conversion_value }
@@ -105,7 +104,6 @@ view: campaign_week_fact {
       column: external_customer_id { field: campaign_fact.external_customer_id }
       column: campaign_id { field: campaign_fact.campaign_id }
       column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
-      column: average_position { field: campaign_fact.weighted_average_position }
       column: clicks { field: campaign_fact.total_clicks }
       column: conversions { field: campaign_fact.total_conversions }
       column: conversion_value { field: campaign_fact.total_conversion_value }
@@ -165,7 +163,6 @@ view: campaign_month_fact {
       column: external_customer_id { field: campaign_fact.external_customer_id }
       column: campaign_id { field: campaign_fact.campaign_id }
       column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
-      column: average_position { field: campaign_fact.weighted_average_position }
       column: clicks { field: campaign_fact.total_clicks }
       column: conversions { field: campaign_fact.total_conversions }
       column: conversion_value { field: campaign_fact.total_conversion_value }
@@ -225,7 +222,6 @@ view: campaign_quarter_fact {
       column: external_customer_id { field: campaign_fact.external_customer_id }
       column: campaign_id { field: campaign_fact.campaign_id }
       column: less_than_current_day_of_week { field: campaign_fact.less_than_current_day_of_week }
-      column: average_position { field: campaign_fact.weighted_average_position }
       column: clicks { field: campaign_fact.total_clicks }
       column: conversions { field: campaign_fact.total_conversions }
       column: conversion_value { field: campaign_fact.total_conversion_value }
