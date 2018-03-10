@@ -114,7 +114,6 @@ view: campaign {
 
   dimension_group: end {
     type: time
-    datatype: date
     timeframes: [
       raw,
       date,
@@ -124,7 +123,7 @@ view: campaign {
       year
     ]
     convert_tz: no
-    sql: ${TABLE}.EndDate ;;
+    sql: (TIMESTAMP(${TABLE}.EndDate)) ;;
   }
 
   dimension: enhanced_cpc_enabled {
