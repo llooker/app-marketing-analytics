@@ -114,6 +114,7 @@ view: campaign {
 
   dimension_group: end {
     type: time
+    datatype: date
     timeframes: [
       raw,
       date,

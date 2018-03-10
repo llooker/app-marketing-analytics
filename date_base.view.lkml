@@ -4,6 +4,7 @@ view: date_base {
   dimension_group: date {
     group_label: "Date"
     type: time
+    datatype: date
     timeframes: [
       raw,
       date,
