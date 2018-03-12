@@ -147,7 +147,7 @@ view: status_changes {
   dimension_group: change {
     type: time
     sql: TIMESTAMP(${TABLE}.date) ;;
-    timeframes: [date, week, month]
+    timeframes: [date, week, month, day_of_week]
   }
 
   dimension: type {
@@ -163,7 +163,6 @@ view: status_changes {
     type: number
     sql: COUNT(DISTINCT ${ad_creative_id}) + COUNT(DISTINCT ${ad_group_id}) + COUNT(DISTINCT ${campaign_id}) + COUNT(DISTINCT ${keyword_criterion_id}) ;;
     description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
-    #drill_fields: [ad.creative, campaign.campaign_name, ad_group.ad_group_name, keyword.criteria]
     html:  {% if (status_changes.type._value == 'Ad') %}
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad.creative,status_changes.change_date, status_changes.new_status&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
     {% elsif (status_changes.type._value == 'Keyword') %}
