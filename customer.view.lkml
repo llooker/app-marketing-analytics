@@ -5,11 +5,6 @@ view: customer {
   extends: [date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Customer_6747157124 ;;
 
-  dimension: _date {
-    type: date
-    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
   dimension: account_currency_code {
     type: string
     sql: ${TABLE}.AccountCurrencyCode ;;
@@ -39,12 +34,6 @@ view: customer {
       url: "/dashboards/looker_app_google_adwords::account_performance?Customer%20Name={{ value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
-  }
-
-  dimension: external_customer_id {
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-    hidden:  yes
   }
 
   dimension: is_auto_tagging_enabled {
