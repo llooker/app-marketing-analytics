@@ -5,11 +5,6 @@ view: ad_group {
   extends: [date_base, google_adwords_base]
   sql_table_name: adwords_v201609.AdGroup_6747157124 ;;
 
-  dimension: _date {
-    type: date
-    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
   dimension: ad_group_desktop_bid_modifier {
     type: number
     sql: ${TABLE}.AdGroupDesktopBidModifier ;;

@@ -34,11 +34,6 @@ view: ad_impressions {
     {% endif %}
   {% endif %} ;;
 
-  dimension: _date {
-    hidden: yes
-    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
   dimension: hour_of_day {
     hidden: yes
     type: number

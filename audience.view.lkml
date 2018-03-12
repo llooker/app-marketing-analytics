@@ -5,11 +5,6 @@ view: audience {
   extends: [date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Audience_6747157124 ;;
 
-  dimension: _date {
-    type: date
-    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
   dimension: unique_key {
     type: string
     primary_key: yes

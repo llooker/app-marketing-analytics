@@ -5,11 +5,6 @@ view: ad {
   extends: [date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Ad_6747157124 ;;
 
-  dimension: _date {
-    type: date
-    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
   dimension: ad_group_ad_disapproval_reasons {
     type: string
     sql: ${TABLE}.AdGroupAdDisapprovalReasons ;;
