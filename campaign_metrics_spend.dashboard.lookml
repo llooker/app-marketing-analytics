@@ -1,6 +1,13 @@
 - dashboard: campaign_metrics_spend
   title: Campaign Metrics Spend
   layout: newspaper
+  embed_style:
+    background_color: "#f6f8fa"
+    show_title: false
+    title_color: "#3a4245"
+    show_filters_bar: false
+    tile_text_color: "#3a4245"
+    text_tile_text_color: ''
   elements:
   - title: Spend
     name: Spend
@@ -448,237 +455,37 @@
         name: "[0.00%,20.00%)"
         axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1166
+        __LINE_NUM: 447
       - id: "[20.00%,40.00%)"
         name: "[20.00%,40.00%)"
         axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1171
+        __LINE_NUM: 452
       - id: "[40.00%,60.00%)"
         name: "[40.00%,60.00%)"
         axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1176
+        __LINE_NUM: 457
       - id: "[60.00%,80.00%)"
         name: "[60.00%,80.00%)"
         axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1181
+        __LINE_NUM: 462
       - id: "[80.00%,100.00%)"
         name: "[80.00%,100.00%)"
         axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1186
+        __LINE_NUM: 467
       - id: "[100.00%,inf)"
         name: "[100.00%,inf)"
         axisId: campaign_budget_date_fact.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1191
+        __LINE_NUM: 472
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1154
+      __LINE_NUM: 435
     row: 4
     col: 16
     width: 8
-    height: 11
-  - title: Spend To Date
-    name: Spend To Date
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_area
-    fields:
-    - ad_impressions.date_day_of_quarter
-    - ad_impressions.date_quarter
-    - ad_impressions.cumulative_spend
-    pivots:
-    - ad_impressions.date_quarter
-    filters:
-      ad_impressions.date_quarter: 2 quarters
-      ad_impressions.date_date: 2 quarters
-    sorts:
-    - ad_impressions.date_quarter desc
-    - ad_impressions.date_day_of_quarter
-    limit: 500
-    column_limit: 50
-    stacking: ''
-    show_value_labels: false
-    label_density: 1
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
-    label: Average Cost per Conversion
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    series_types: {}
-    show_dropoff: false
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.average_cost_per_conversion
-        name: Cost per Conversion
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 442
-        axisId: ad_impressions.average_cost_per_conversion
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 430
-    - label:
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.total_conversions
-        name: Conversions
-        axisId: ad_impressions.total_conversions
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 461
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 449
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.total_impressions
-        name: Impressions
-        axisId: ad_impressions.total_impressions
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 480
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 468
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.total_cost_usd
-        name: Cost
-        axisId: ad_impressions.total_cost_usd
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 499
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 487
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.total_clicks
-        name: Clicks
-        axisId: ad_impressions.total_clicks
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 518
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 506
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 529
-    colors:
-    - "#4bb86a"
-    - "#8fe4a7"
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#d06180"
-    - "#dc9d4f"
-    - "#7869df"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
-    hidden_series:
-    - ad_impressions.average_cost_per_conversion
-    series_labels:
-      ad_impressions.total_cost_usd: Spend
-      ad_impressions.total_clicks: Interactions
-    hidden_fields: []
-    column_group_spacing_ratio: 0
-    column_spacing_ratio: 0
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-    row: 4
-    col: 0
-    width: 16
     height: 11
   - title: Spend by Network
     name: Spend by Network
@@ -736,9 +543,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 619
+        __LINE_NUM: 735
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 607
+      __LINE_NUM: 723
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -815,9 +622,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 685
+        __LINE_NUM: 814
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 673
+      __LINE_NUM: 802
     colors:
     - "#d06180"
     - "#7869df"
@@ -892,9 +699,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 763
+        __LINE_NUM: 891
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 751
+      __LINE_NUM: 879
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -1001,9 +808,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 873
+        __LINE_NUM: 1000
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 861
+      __LINE_NUM: 988
     conditional_formatting:
     - type: high to low
       value:
@@ -1016,14 +823,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 886
+        __LINE_NUM: 1013
       bold: false
       italic: false
       strikethrough: false
       fields:
       - ad_impressions.total_cost_usd
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 881
+      __LINE_NUM: 1008
     series_labels:
       ad_impressions.hour_of_day: Hour of Day
       ad_impressions.total_cost_usd: Spend
@@ -1035,7 +842,7 @@
     row: 21
     col: 0
     width: 14
-    height: 14
+    height: 12
   - title: Spend by Day of Week
     name: Spend by Day of Week
     model: looker_app_google_adwords
@@ -1117,9 +924,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1402
+        __LINE_NUM: 1116
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1390
+      __LINE_NUM: 1104
     conditional_formatting:
     - type: high to low
       value:
@@ -1132,13 +939,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1415
+        __LINE_NUM: 1129
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1410
+      __LINE_NUM: 1124
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -1159,7 +966,7 @@
     row: 21
     col: 14
     width: 10
-    height: 7
+    height: 6
   - title: Spend by Hour of Day
     name: Spend by Hour of Day
     model: looker_app_google_adwords
@@ -1239,9 +1046,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1277
+        __LINE_NUM: 1238
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1265
+      __LINE_NUM: 1226
     conditional_formatting:
     - type: high to low
       value:
@@ -1254,13 +1061,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1290
+        __LINE_NUM: 1251
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1285
+      __LINE_NUM: 1246
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -1278,68 +1085,219 @@
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
       Time Frame: ad_impressions.date_date
-    row: 28
+    row: 27
     col: 14
     width: 10
-    height: 7
-  - title: Top Ads
-    name: Top Ads
+    height: 6
+  - title: Spend To Date
+    name: Spend To Date
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: table
+    type: looker_area
     fields:
-    - ad.creative
-    - ad_group.ad_group_name
-    - campaign.campaign_name
+    - ad_impressions.date_day_of_quarter
+    - ad_impressions.date_quarter
     - ad_impressions.total_cost_usd
+    pivots:
+    - ad_impressions.date_quarter
     filters:
-      ad_impressions.date_date: 1 quarters
+      ad_impressions.date_quarter: 2 quarters
+      ad_impressions.date_date: 2 quarters
     sorts:
-    - ad_impressions.total_cost_usd desc
+    - ad_impressions.date_quarter desc
+    - ad_impressions.date_day_of_quarter
     limit: 500
-    query_timezone: America/Los_Angeles
-    show_view_names: true
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
+    column_limit: 50
+    dynamic_fields:
+    - table_calculation: cumulative_spend
+      label: Cumulative Spend
+      expression: if(is_null(${ad_impressions.total_cost_usd}), null, running_total(${ad_impressions.total_cost_usd}))
+      value_format:
+      value_format_name: usd_0
+      _kind_hint: measure
+      _type_hint: number
     stacking: ''
     show_value_labels: false
-    label_density: 25
+    label_density: 1
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
-    show_x_axis_label: true
+    show_x_axis_label: false
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
+    show_null_points: false
+    point_style: none
+    interpolation: linear
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
+    ordering: none
+    show_null_labels: false
+    label: Average Cost per Conversion
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
     series_types: {}
-    limit_displayed_rows_values:
-      show_hide: show
-      first_last: first
-      num_rows: '10'
+    show_dropoff: false
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_cost_per_conversion
+        name: Cost per Conversion
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 558
+        axisId: ad_impressions.average_cost_per_conversion
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 546
+    - label:
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_conversions
+        name: Conversions
+        axisId: ad_impressions.total_conversions
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 577
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 565
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_impressions
+        name: Impressions
+        axisId: ad_impressions.total_impressions
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 596
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 584
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_cost_usd
+        name: Cost
+        axisId: ad_impressions.total_cost_usd
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 615
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 603
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_clicks
+        name: Clicks
+        axisId: ad_impressions.total_clicks
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 634
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 622
+    discontinuous_nulls: false
+    focus_on_hover: false
+    reference_lines: []
+    trend_lines:
+    - color: "#000000"
+      label_position: right
+      period: 7
+      regression_type: linear
+      series_index: 1
+      show_label: false
+      label_type: string
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 645
+    colors:
+    - "#4bb86a"
+    - "#8fe4a7"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#7869df"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    hidden_series:
+    - ad_impressions.average_cost_per_conversion
+    series_labels:
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
     hidden_fields:
-    - campaign.campaign_name
-    - ad_group.ad_group_name
-    row: 35
+    - ad_impressions.total_cost_usd
+    column_group_spacing_ratio: 0
+    column_spacing_ratio: 0
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+    row: 4
     col: 0
-    width: 8
-    height: 7
+    width: 16
+    height: 11
   - title: Top Keywords
     name: Top Keywords
     model: looker_app_google_adwords
@@ -1356,7 +1314,7 @@
     - ad_impressions.total_cost_usd desc
     limit: 500
     query_timezone: America/Los_Angeles
-    show_view_names: true
+    show_view_names: false
     show_row_numbers: true
     truncate_column_names: false
     hide_totals: false
@@ -1394,10 +1352,10 @@
     hidden_fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    row: 35
+    row: 33
     col: 8
-    width: 5
-    height: 7
+    width: 8
+    height: 6
   - title: Top Landing Pages
     name: Top Landing Pages
     model: looker_app_google_adwords
@@ -1414,7 +1372,7 @@
     - ad_impressions.total_cost_usd desc
     limit: 500
     query_timezone: America/Los_Angeles
-    show_view_names: true
+    show_view_names: false
     show_row_numbers: true
     truncate_column_names: false
     hide_totals: false
@@ -1452,58 +1410,116 @@
     hidden_fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    row: 35
-    col: 13
-    width: 11
-    height: 7
+    row: 33
+    col: 16
+    width: 8
+    height: 6
+  - title: Top Ads
+    name: Top Ads
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: table
+    fields:
+    - ad.creative
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - ad_impressions.total_cost_usd
+    filters:
+      ad_impressions.date_date: 1 quarters
+    sorts:
+    - ad_impressions.total_cost_usd desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    limit_displayed_rows: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    hidden_fields:
+    - campaign.campaign_name
+    - ad_group.ad_group_name
+    row: 33
+    col: 0
+    width: 8
+    height: 6
   filters:
   - name: This Timeframe
     title: This Timeframe
     type: field_filter
     default_value: this quarter
-    model: looker_app_google_adwords
-    explore: kpis_this_period
-    field: kpis_this_period.this_timeframe
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: kpis_this_period
+    listens_to_filters: []
+    field: kpis_this_period.this_timeframe
   - name: Last Timeframe
     title: Last Timeframe
     type: field_filter
     default_value: 1 quarter ago
-    model: looker_app_google_adwords
-    explore: kpis_this_period
-    field: kpis_last_period.last_timeframe
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: kpis_this_period
+    listens_to_filters: []
+    field: kpis_last_period.last_timeframe
   - name: Campaign
     title: Campaign
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: campaign.campaign_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: campaign.campaign_name
   - name: Ad Group
     title: Ad Group
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_group.ad_group_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: ad_group.ad_group_name
   - name: Time Frame
     title: Time Frame
     type: field_filter
     default_value: 1 quarters
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_impressions.date_date
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: ad_impressions.date_date
