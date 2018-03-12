@@ -43,9 +43,15 @@ view: ad {
     hidden: yes
   }
 
-  dimension: creative_approval_status {
+  dimension: creative_approval_status_raw {
+    hidden: yes
     type: string
     sql: ${TABLE}.CreativeApprovalStatus ;;
+  }
+
+  dimension: creative_approval_status {
+    type: string
+    sql: REPLACE(${creative_approval_status_raw}, "ApprovalStatus_", "") ;;
   }
 
   dimension: creative_destination_url {
@@ -219,9 +225,15 @@ view: ad {
     hidden: yes
   }
 
-  dimension: status {
+  dimension: status_raw {
+    hidden: yes
     type: string
     sql: ${TABLE}.Status ;;
+  }
+
+  dimension: status {
+    type: string
+    sql: REPLACE(${status_raw}, "Status_", "") ;;
   }
 
   dimension: trademarks {
