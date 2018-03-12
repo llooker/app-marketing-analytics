@@ -38,8 +38,8 @@ datagroup: etl_datagroup {
 
 explore: ad_impressions {
   persist_with: etl_datagroup
-  label: "Ad Stats"
-  view_label: "Ad Stats"
+  label: "Ad Impressions"
+  view_label: "Ad Impressions"
 
   join: keyword {
     view_label: "Keyword"
