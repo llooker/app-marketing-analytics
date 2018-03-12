@@ -1,5 +1,5 @@
 - dashboard: adwords_overview
-  title: This Quarter vs Last Quarter
+  title: AdWords Overview
   layout: newspaper
   embed_style:
     background_color: "#f6f8fa"
@@ -355,203 +355,6 @@
     col: 0
     width: 6
     height: 3
-  - title: Spend To Date
-    name: Spend To Date
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_area
-    fields:
-    - ad_impressions.date_day_of_quarter
-    - ad_impressions.date_quarter
-    - ad_impressions.cumulative_spend
-    pivots:
-    - ad_impressions.date_quarter
-    filters:
-      ad_impressions.date_quarter: 2 quarters
-      ad_impressions.date_date: 2 quarters
-    sorts:
-    - ad_impressions.date_quarter desc
-    - ad_impressions.date_day_of_quarter
-    limit: 500
-    column_limit: 50
-    stacking: ''
-    show_value_labels: false
-    label_density: 1
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
-    label: Average Cost per Conversion
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    series_types: {}
-    show_dropoff: false
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.average_cost_per_conversion
-        name: Cost per Conversion
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 485
-        axisId: ad_impressions.average_cost_per_conversion
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 473
-    - label:
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.total_conversions
-        name: Conversions
-        axisId: ad_impressions.total_conversions
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 504
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 492
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.total_impressions
-        name: Impressions
-        axisId: ad_impressions.total_impressions
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 523
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 511
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.total_cost_usd
-        name: Cost
-        axisId: ad_impressions.total_cost_usd
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 542
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 530
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.total_clicks
-        name: Clicks
-        axisId: ad_impressions.total_clicks
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 561
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 549
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 572
-    colors:
-    - "#4bb86a"
-    - "#8fe4a7"
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#d06180"
-    - "#dc9d4f"
-    - "#7869df"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
-    hidden_series:
-    - ad_impressions.average_cost_per_conversion
-    series_labels:
-      ad_impressions.total_cost_usd: Spend
-      ad_impressions.total_clicks: Interactions
-    hidden_fields: []
-    column_group_spacing_ratio: 0
-    column_spacing_ratio: 0
-    row: 3
-    col: 0
-    width: 9
-    height: 9
   - title: Funnel
     name: Funnel
     model: looker_app_google_adwords
@@ -1021,6 +824,212 @@
     col: 6
     width: 10
     height: 6
+  - title: Spend To Date
+    name: Spend To Date
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_area
+    fields:
+    - ad_impressions.date_day_of_quarter
+    - ad_impressions.date_quarter
+    - ad_impressions.total_cost_usd
+    pivots:
+    - ad_impressions.date_quarter
+    filters:
+      ad_impressions.date_quarter: 2 quarters
+      ad_impressions.date_date: 2 quarters
+    sorts:
+    - ad_impressions.date_quarter desc
+    - ad_impressions.date_day_of_quarter
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - table_calculation: cumulative_spend
+      label: Cumulative Spend
+      expression: if(is_null(${ad_impressions.total_cost_usd}), null, running_total(${ad_impressions.total_cost_usd}))
+      value_format:
+      value_format_name:
+      _kind_hint: measure
+      _type_hint: number
+    stacking: ''
+    show_value_labels: false
+    label_density: 1
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: false
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    ordering: none
+    show_null_labels: false
+    label: Average Cost per Conversion
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    series_types: {}
+    show_dropoff: false
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_cost_per_conversion
+        name: Cost per Conversion
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 485
+        axisId: ad_impressions.average_cost_per_conversion
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 473
+    - label:
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_conversions
+        name: Conversions
+        axisId: ad_impressions.total_conversions
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 504
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 492
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_impressions
+        name: Impressions
+        axisId: ad_impressions.total_impressions
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 523
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 511
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_cost_usd
+        name: Cost
+        axisId: ad_impressions.total_cost_usd
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 542
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 530
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_clicks
+        name: Clicks
+        axisId: ad_impressions.total_clicks
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 561
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 549
+    discontinuous_nulls: false
+    focus_on_hover: false
+    reference_lines: []
+    trend_lines:
+    - color: "#000000"
+      label_position: right
+      period: 7
+      regression_type: linear
+      series_index: 1
+      show_label: false
+      label_type: string
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 572
+    colors:
+    - "#4bb86a"
+    - "#8fe4a7"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#7869df"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    hidden_series:
+    - ad_impressions.average_cost_per_conversion
+    series_labels:
+      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_clicks: Interactions
+    hidden_fields:
+    - ad_impressions.total_cost_usd
+    column_group_spacing_ratio: 0
+    column_spacing_ratio: 0
+    row: 3
+    col: 0
+    width: 9
+    height: 9
   filters:
   - name: This Timeframe
     title: This Timeframe
