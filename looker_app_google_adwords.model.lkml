@@ -98,10 +98,6 @@ explore: ad_impressions {
 }
 
 ## Entity tables are daily snapshots
-explore: customer {
-  hidden: yes
-}
-
 explore: campaign {
   hidden: yes
   join: customer {
@@ -124,50 +120,6 @@ explore: ad_group {
     view_label: "Customer"
     sql_on: ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
       ${ad_group.date_date} = ${customer.date_date} ;;
-    relationship:  many_to_one
-  }
-}
-
-explore: keyword {
-  hidden: yes
-  join: ad_group {
-    view_label: "Keyword"
-    sql_on: ${keyword.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${keyword.date_date} = ${ad_group.date_date} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${keyword.campaign_id} = ${campaign.campaign_id} AND
-      ${keyword.date_date} = ${campaign.date_date} ;;
-    relationship: many_to_one
-  }
-  join: customer {
-    view_label: "Customer"
-    sql_on: ${keyword.external_customer_id} = ${customer.external_customer_id} AND
-      ${keyword.date_date} = ${customer.date_date} ;;
-    relationship:  many_to_one
-  }
-}
-
-explore: ad {
-  hidden: yes
-  join: ad_group {
-    view_label: "Ad Group"
-    sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id}  AND
-      ${ad.date_date} = ${ad_group.date_date} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${ad.campaign_id} = ${campaign.campaign_id} AND
-      ${ad.date_date} = ${campaign.date_date} ;;
-    relationship: many_to_one
-  }
-  join: customer {
-    view_label: "Customer"
-    sql_on: ${customer.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.date_date} = ${customer.date_date} ;;
     relationship:  many_to_one
   }
 }

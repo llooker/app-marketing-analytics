@@ -240,11 +240,6 @@ view: ad {
     sql: REPLACE(${status_raw}, "Status_", "") ;;
   }
 
-  dimension: status {
-    type: string
-    sql: REPLACE(${status_raw}, "Status_", "") ;;
-  }
-
   dimension: trademarks {
     type: string
     sql: ${TABLE}.Trademarks ;;
