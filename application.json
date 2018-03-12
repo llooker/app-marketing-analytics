@@ -66,7 +66,7 @@
                     {
                       "autoSuggest": false,
                       "facetedBy": [],
-                      "field": "master_stats._data_date",
+                      "field": "ad_group.date_date",
                       "name": "Time Period",
                       "type": "Timeperiod"
                     },
