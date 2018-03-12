@@ -79,10 +79,20 @@ view: ad {
     group_label: "URLS"
   }
 
+  dimension: creative_final_urls_clean {
+    hidden: yes
+    type: string
+    sql: REGEXP_EXTRACT(${creative_final_urls}, r'\"([^\"]*)\"') ;;
+  }
+
   dimension: creative_final_urls_domain_path {
     label: "Creative Final Urls"
     type: string
-    sql: REGEXP_EXTRACT(REGEXP_EXTRACT(${creative_final_urls}, r'\"([^\"]*)\"'), r'^https?://(.*)\?') ;;
+    sql: SUBSTR(REGEXP_EXTRACT(${creative_final_urls_clean}, r'^https?://(.*)\?'), 0, 50) ;;
+    link: {
+      url: "{{ creative_final_urls_clean }}"
+      label: "Landing Page"
+    }
     group_label: "URLS"
   }
 
@@ -230,6 +240,11 @@ view: ad {
     sql: REPLACE(${status_raw}, "Status_", "") ;;
   }
 
+  dimension: status {
+    type: string
+    sql: REPLACE(${status_raw}, "Status_", "") ;;
+  }
+
   dimension: trademarks {
     type: string
     sql: ${TABLE}.Trademarks ;;
@@ -237,14 +252,11 @@ view: ad {
 
   dimension: creative {
     type: string
-    sql: CONCAT(
+    sql: SUBSTR(CONCAT(
       COALESCE(CONCAT(${headline}, "\n"),"")
       , COALESCE(CONCAT(${headline_part1}, "\n"),"")
       , COALESCE(CONCAT(${headline_part2}, "\n"),"")
-      , COALESCE(CONCAT(${description}, "\n"),"")
-      , COALESCE(CONCAT(${description1}, "\n"),"")
-      , COALESCE(CONCAT(${description2}, "\n"),"")
-      ) ;;
+      ), 0, 50) ;;
     link: {
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
