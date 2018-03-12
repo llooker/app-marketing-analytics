@@ -5,11 +5,6 @@ view: ad {
   extends: [date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Ad_6747157124 ;;
 
-  dimension: _date {
-    type: date
-    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
   dimension: ad_group_ad_disapproval_reasons {
     type: string
     sql: ${TABLE}.AdGroupAdDisapprovalReasons ;;
@@ -158,12 +153,6 @@ view: ad {
     hidden: yes
   }
 
-  dimension: external_customer_id {
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-    hidden: yes
-  }
-
   dimension: headline {
     type: string
     sql: ${TABLE}.Headline ;;
@@ -244,6 +233,11 @@ view: ad {
     hidden: yes
     type: string
     sql: ${TABLE}.Status ;;
+  }
+
+  dimension: status {
+    type: string
+    sql: REPLACE(${status_raw}, "Status_", "") ;;
   }
 
   dimension: status {

@@ -18,6 +18,7 @@ include: "ad_impressions.view"
 include: "period_fact.view"
 include: "report_single_values.view"
 include: "recent_changes.view"
+include: "recently_added.view"
 
 # include all the dashboards
 include: "ad_group_performance.dashboard"
@@ -209,6 +210,34 @@ explore: status_changes  {
     view_label: "Keywords"
     sql_on: ${status_changes.keyword_criterion_id} = ${keyword.criterion_id} AND
       ${status_changes.external_customer_id} = ${keyword.external_customer_id} ;;
+    relationship: many_to_one
+  }
+}
+
+explore: recently_added  {
+
+  join: campaign {
+    view_label: "Campaigns"
+    sql_on: ${recently_added.campaign_id} = ${campaign.campaign_id} AND
+      ${recently_added.external_customer_id} = ${campaign.external_customer_id};;
+    relationship: many_to_one
+  }
+  join: ad_group {
+    view_label: "Ad Groups"
+    sql_on: ${recently_added.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${recently_added.external_customer_id} = ${ad_group.external_customer_id};;
+    relationship: many_to_one
+  }
+  join: ad {
+    view_label: "Ads"
+    sql_on: ${ad.creative_id} = ${recently_added.ad_creative_id}  AND
+      ${recently_added.external_customer_id} = ${ad.external_customer_id};;
+    relationship:  many_to_one
+  }
+  join: keyword {
+    view_label: "Keywords"
+    sql_on: ${recently_added.keyword_criterion_id} = ${keyword.criterion_id} AND
+      ${recently_added.external_customer_id} = ${keyword.external_customer_id} ;;
     relationship: many_to_one
   }
 }

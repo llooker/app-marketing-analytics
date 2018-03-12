@@ -6,11 +6,6 @@ view: keyword {
   extends: [ad_criterion_base, date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Keyword_6747157124 ;;
 
-  dimension: _date {
-    type: date
-    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
   dimension: ad_group_id {
     type: number
     sql: ${TABLE}.AdGroupId ;;
@@ -120,12 +115,6 @@ view: keyword {
     type: number
     sql: ${TABLE}.EstimatedAddCostAtFirstPositionCpc ;;
     hidden:  yes
-  }
-
-  dimension: external_customer_id {
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-    hidden: yes
   }
 
   dimension: final_app_urls {

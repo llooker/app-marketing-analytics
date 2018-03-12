@@ -34,11 +34,6 @@ view: ad_impressions {
     {% endif %}
   {% endif %} ;;
 
-  dimension: _date {
-    hidden: yes
-    sql: TIMESTAMP(${TABLE}._DATA_DATE) ;;
-  }
-
   dimension: hour_of_day {
     hidden: yes
     type: number
@@ -133,12 +128,6 @@ view: ad_impressions {
     hidden: yes
     type: string
     sql: ${TABLE}.Device ;;
-  }
-
-  dimension: external_customer_id {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
   }
 
   dimension: interaction_types {
