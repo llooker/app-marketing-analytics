@@ -1,4 +1,5 @@
 include: "ad_metrics_base.view"
+include: "ad_metrics_comparison_base.view"
 include: "account_fact.view"
 include: "campaign.view"
 include: "customer.view"
@@ -216,7 +217,7 @@ explore: campaign_quarter_fact {
 }
 
 view: campaign_quarter_fact {
-  extends: [campaign_fact_base]
+  extends: [campaign_fact_base, ad_metrics_comparison_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
