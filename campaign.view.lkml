@@ -96,9 +96,15 @@ view: campaign {
     }
   }
 
-  dimension: campaign_status {
+  dimension: campaign_status_raw {
+    hidden: yes
     type: string
     sql: ${TABLE}.CampaignStatus ;;
+  }
+
+  dimension: campaign_status {
+    type: string
+    sql: REPLACE(${campaign_status_raw}, "Status_", "") ;;
   }
 
   dimension: campaign_tablet_bid_modifier {
@@ -166,9 +172,15 @@ view: campaign {
     sql: ${TABLE}.Period ;;
   }
 
-  dimension: serving_status {
+  dimension: serving_status_raw {
+    hidden: yes
     type: string
     sql: ${TABLE}.ServingStatus ;;
+  }
+
+  dimension: serving_status {
+    type: string
+    sql: REPLACE(${serving_status_raw}, "CAMPAIGN_SYSTEM_SERVING_STATUS_", "") ;;
   }
 
   dimension_group: start {

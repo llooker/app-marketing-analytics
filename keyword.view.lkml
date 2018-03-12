@@ -199,14 +199,26 @@ view: keyword {
     hidden:  yes
   }
 
-  dimension: status {
+  dimension: status_raw {
+    hidden: yes
     type: string
     sql: ${TABLE}.Status ;;
   }
 
-  dimension: system_serving_status {
+  dimension: status {
+    type: string
+    sql: REPLACE(${status_raw}, "Status_", "") ;;
+  }
+
+  dimension: system_serving_status_raw {
+    hidden: yes
     type: string
     sql: ${TABLE}.SystemServingStatus ;;
+  }
+
+  dimension: system_serving_status {
+    type: string
+    sql: REPLACE(${system_serving_status_raw}, "CRITERIA_SYSTEM_SERVING_STATUS_", "") ;;
   }
 
   dimension: top_of_page_cpc {
