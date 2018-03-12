@@ -1,5 +1,5 @@
-- dashboard: AdWords Overview
-  title: This Quarter vs Last Quarter
+- dashboard: adwords_overview
+  title: AdWords Overview
   layout: newspaper
   embed_style:
     background_color: "#f6f8fa"
