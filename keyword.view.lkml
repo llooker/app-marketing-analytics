@@ -117,12 +117,6 @@ view: keyword {
     hidden:  yes
   }
 
-  dimension: external_customer_id {
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-    hidden: yes
-  }
-
   dimension: final_app_urls {
     type: string
     sql: ${TABLE}.FinalAppUrls ;;

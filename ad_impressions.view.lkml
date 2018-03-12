@@ -130,12 +130,6 @@ view: ad_impressions {
     sql: ${TABLE}.Device ;;
   }
 
-  dimension: external_customer_id {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-  }
-
   dimension: interaction_types {
     hidden: yes
     type: string

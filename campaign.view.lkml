@@ -139,12 +139,6 @@ view: campaign {
     hidden: yes
   }
 
-  dimension: external_customer_id {
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-    hidden: yes
-  }
-
   dimension: is_budget_explicitly_shared {
     type: yesno
     sql: ${TABLE}.IsBudgetExplicitlyShared ;;

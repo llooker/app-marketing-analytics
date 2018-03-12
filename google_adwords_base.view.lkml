@@ -12,4 +12,11 @@ view: google_adwords_base {
     hidden: yes
     sql: ${TABLE}._DATA_DATE = ${TABLE}._LATEST_DATE ;;
   }
+
+  dimension: external_customer_id {
+    type: number
+    sql: ${TABLE}.ExternalCustomerId ;;
+    hidden: yes
+  }
+
 }

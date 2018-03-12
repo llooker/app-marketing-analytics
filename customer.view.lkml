@@ -36,12 +36,6 @@ view: customer {
     }
   }
 
-  dimension: external_customer_id {
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-    hidden:  yes
-  }
-
   dimension: is_auto_tagging_enabled {
     type: yesno
     sql: ${TABLE}.IsAutoTaggingEnabled ;;

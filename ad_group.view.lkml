@@ -130,12 +130,6 @@ view: ad_group {
     hidden: yes
   }
 
-  dimension: external_customer_id {
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-    hidden: yes
-  }
-
   dimension: label_ids {
     type: string
     sql: ${TABLE}.LabelIds ;;

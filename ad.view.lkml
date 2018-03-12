@@ -143,12 +143,6 @@ view: ad {
     hidden: yes
   }
 
-  dimension: external_customer_id {
-    type: number
-    sql: ${TABLE}.ExternalCustomerId ;;
-    hidden: yes
-  }
-
   dimension: headline {
     type: string
     sql: ${TABLE}.Headline ;;
