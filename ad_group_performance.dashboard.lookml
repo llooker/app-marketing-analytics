@@ -8,17 +8,17 @@
     explore: ad_group_quarter_fact
     type: single_value
     fields:
-    - ad_group_fact.total_cost_usd
-    - ad_group_fact.date_quarter
+    - fact.total_cost_usd
+    - fact.date_quarter
     - last_ad_group_quarter_fact.total_cost_usd
     sorts:
-    - ad_group_fact.date_quarter desc
+    - fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly Change
-      expression: "${ad_group_quarter_fact.total_cost_usd} - ${last_ad_group_quarter_fact.total_cost_usd}\n"
+      expression: "${fact.total_cost_usd} - ${last_ad_group_quarter_fact.total_cost_usd}\n"
       value_format:
       value_format_name: usd_0
     hidden_fields:
@@ -70,17 +70,17 @@
     explore: ad_group_quarter_fact
     type: single_value
     fields:
-    - ad_group_fact.date_quarter
-    - ad_group_fact.total_conversions
+    - fact.date_quarter
+    - fact.total_conversions
     - last_ad_group_quarter_fact.total_conversions
     sorts:
-    - ad_group_fact.date_quarter desc
+    - fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly Change
-      expression: "${ad_group_quarter_fact.total_conversions} - ${last_ad_group_quarter_fact.total_conversions}\n"
+      expression: "${fact.total_conversions} - ${last_ad_group_quarter_fact.total_conversions}\n"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
@@ -134,17 +134,17 @@
     explore: ad_group_quarter_fact
     type: single_value
     fields:
-    - ad_group_fact.date_quarter
-    - ad_group_fact.average_cost_per_conversion
+    - fact.date_quarter
+    - fact.average_cost_per_conversion
     - last_ad_group_quarter_fact.average_cost_per_conversion
     sorts:
-    - ad_group_fact.date_quarter desc
+    - fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${ad_group_quarter_fact.average_cost_per_conversion} -  ${last_ad_group_quarter_fact.average_cost_per_conversion})/${last_ad_group_quarter_fact.average_cost_per_conversion}\n"
+      expression: "(${fact.average_cost_per_conversion} -  ${last_ad_group_quarter_fact.average_cost_per_conversion})/${last_ad_group_quarter_fact.average_cost_per_conversion}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
@@ -196,17 +196,17 @@
     explore: ad_group_quarter_fact
     type: single_value
     fields:
-    - ad_group_fact.date_quarter
-    - ad_group_fact.average_conversion_rate
+    - fact.date_quarter
+    - fact.average_conversion_rate
     - last_ad_group_quarter_fact.average_conversion_rate
     sorts:
-    - ad_group_fact.date_quarter desc
+    - fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${ad_group_quarter_fact.average_conversion_rate} - ${last_ad_group_quarter_fact.average_conversion_rate})/${last_ad_group_quarter_fact.average_conversion_rate}\n"
+      expression: "(${fact.average_conversion_rate} - ${last_ad_group_quarter_fact.average_conversion_rate})/${last_ad_group_quarter_fact.average_conversion_rate}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
@@ -466,17 +466,17 @@
     explore: ad_group_quarter_fact
     type: single_value
     fields:
-    - ad_group_fact.date_quarter
-    - ad_group_fact.average_interaction_rate
+    - fact.date_quarter
+    - fact.average_interaction_rate
     - last_ad_group_quarter_fact.average_interaction_rate
     sorts:
-    - ad_group_fact.date_quarter desc
+    - fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${ad_group_quarter_fact.average_interaction_rate} - ${last_ad_group_quarter_fact.average_interaction_rate}\
+      expression: "(${fact.average_interaction_rate} - ${last_ad_group_quarter_fact.average_interaction_rate}\
         \ )/${last_ad_group_quarter_fact.average_interaction_rate}\n"
       value_format:
       value_format_name: percent_0
@@ -529,17 +529,17 @@
     explore: ad_group_quarter_fact
     type: single_value
     fields:
-    - ad_group_fact.date_quarter
+    - fact.date_quarter
     - last_ad_group_quarter_fact.average_cost_per_interaction
-    - ad_group_fact.average_cost_per_interaction
+    - fact.average_cost_per_interaction
     sorts:
-    - ad_group_fact.date_quarter desc
+    - fact.date_quarter desc
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: change
       label: "% Change"
-      expression: "(${ad_group_quarter_fact.average_cost_per_interaction} - ${last_ad_group_quarter_fact.average_cost_per_interaction})/${last_ad_group_quarter_fact.average_cost_per_interaction}\n"
+      expression: "(${fact.average_cost_per_interaction} - ${last_ad_group_quarter_fact.average_cost_per_interaction})/${last_ad_group_quarter_fact.average_cost_per_interaction}\n"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -593,11 +593,11 @@
     explore: ad_group_quarter_fact
     type: looker_column
     fields:
-    - ad_group_fact.total_impressions
-    - ad_group_fact.total_interactions
-    - ad_group_fact.total_conversions
+    - fact.total_impressions
+    - fact.total_interactions
+    - fact.total_conversions
     filters:
-      ad_group_fact.date_quarter: 1 quarters
+      fact.date_quarter: 1 quarters
     limit: 500
     column_limit: 50
     stacking: ''

@@ -8,16 +8,16 @@
     explore: campaign_quarter_fact
     type: looker_column
     fields:
-    - campaign_fact.date_quarter
+    - fact.date_quarter
     - campaign.campaign_name
-    - campaign_fact.average_click_rate
-    - account_fact.average_click_rate
-    - campaign_fact.average_click_rate_ratio
+    - fact.average_click_rate
+    - parent_fact.average_click_rate
+    - fact.average_click_rate_ratio
     filters:
-      campaign_fact.average_click_rate_significant: 'Yes'
+      fact.average_click_rate_significant: 'Yes'
     sorts:
-    - campaign_fact.date_quarter desc
-    - campaign_fact.average_click_rate_ratio
+    - fact.date_quarter desc
+    - fact.average_click_rate_ratio
     limit: 500
     query_timezone: America/Los_Angeles
     stacking: ''
@@ -52,8 +52,8 @@
     conditional_formatting_include_nulls: false
     series_types: {}
     hidden_fields:
-    - campaign_fact.average_click_rate
-    - account_fact.average_click_rate
+    - fact.average_click_rate
+    - parent_fact.average_click_rate
     limit_displayed_rows_values:
       show_hide: show
       first_last: first

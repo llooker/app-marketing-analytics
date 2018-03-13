@@ -3,25 +3,25 @@ view: ad_metrics_comparison_base {
 
   measure: average_click_rate_ratio {
     type: number
-    sql: ${campaign_fact.average_click_rate} / ${account_fact.average_click_rate} ;;
+    sql: ${fact.average_click_rate} / ${parent_fact.average_click_rate} ;;
     value_format_name: decimal_2
   }
   measure: average_conversion_rate_ratio {
     type: number
-    sql: ${campaign_fact.average_conversion_rate} / ${account_fact.average_conversion_rate} ;;
+    sql: ${fact.average_conversion_rate} / ${parent_fact.average_conversion_rate} ;;
     value_format_name: decimal_2
   }
   measure: total_clicks_delta {
     type: number
-    sql: ${account_fact.total_clicks} - ${campaign_fact.total_clicks} ;;
+    sql: ${parent_fact.total_clicks} - ${fact.total_clicks} ;;
   }
   measure: total_impressions_delta {
     type: number
-    sql: ${account_fact.total_impressions} - ${campaign_fact.total_impressions} ;;
+    sql: ${parent_fact.total_impressions} - ${fact.total_impressions} ;;
   }
   measure: total_conversions_delta {
     type: number
-    sql: ${account_fact.total_conversions} - ${campaign_fact.total_conversions} ;;
+    sql: ${parent_fact.total_conversions} - ${fact.total_conversions} ;;
   }
   measure: average_click_rate_delta {
     type: number
@@ -37,13 +37,13 @@ view: ad_metrics_comparison_base {
     type: number
     sql:
     (
-      (${campaign_fact.average_click_rate}) -
+      (${fact.average_click_rate}) -
       (${average_click_rate_delta})
     ) /
     SQRT(
-      ${account_fact.average_click_rate} *
-      (1 - ${account_fact.average_click_rate}) *
-      (1 / ${campaign_fact.total_impressions} + 1 / ${total_impressions_delta})
+      ${parent_fact.average_click_rate} *
+      (1 - ${parent_fact.average_click_rate}) *
+      (1 / ${fact.total_impressions} + 1 / ${total_impressions_delta})
     ) ;;
     value_format_name: decimal_2
   }
@@ -56,13 +56,13 @@ view: ad_metrics_comparison_base {
     type: number
     sql:
     (
-      (${campaign_fact.average_conversion_rate}) -
+      (${fact.average_conversion_rate}) -
       (${average_conversion_rate_delta})
     ) /
     SQRT(
-      ${account_fact.average_conversion_rate} *
-      (1 - ${account_fact.average_conversion_rate}) *
-      (1 / ${campaign_fact.total_clicks} + 1 / ${total_impressions_delta})
+      ${parent_fact.average_conversion_rate} *
+      (1 - ${parent_fact.average_conversion_rate}) *
+      (1 / ${fact.total_clicks} + 1 / ${total_impressions_delta})
     ) ;;
     value_format_name: decimal_2
   }
