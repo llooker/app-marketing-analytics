@@ -44,9 +44,9 @@
                   "permalink": "underperforming-ads",
                   "singleValue": {
                     "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
+                    "key": "underperforming_ads",
+                    "name": "Underperforming Ads",
+                    "type": "number"
                   },
                   "variations": [
                     {
@@ -94,9 +94,9 @@
                   "permalink": "underperforming-keywords",
                   "singleValue": {
                     "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
+                    "key": "underperforming_keywords",
+                    "name": "Underperforming Keywords",
+                    "type": "number"
                   },
                   "variations": [
                     {
@@ -119,9 +119,9 @@
                   "permalink": "underperforming-ad-groups",
                   "singleValue": {
                     "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
+                    "key": "underperforming_ad_groups",
+                    "name": "Underperforming Ad Groups",
+                    "type": "number"
                   },
                   "variations": [
                     {
@@ -145,9 +145,9 @@
                   "permalink": "keyword-and-ad-alerts",
                   "singleValue": {
                     "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
+                    "key": "keyword_and_ad_alerts",
+                    "name": "Keyword And Ad Alerts",
+                    "type": "number"
                   },
                   "variations": [
                     {
@@ -170,9 +170,9 @@
                   "permalink": "non-converting-ads-keywords",
                   "singleValue": {
                     "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
+                    "key": "nonconverting_ads_and_keywords",
+                    "name": "Nonconverting Ads and Keywords",
+                    "type": "number"
                   },
                   "variations": [
                     {
