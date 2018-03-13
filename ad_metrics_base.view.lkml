@@ -109,6 +109,7 @@ view: ad_metrics_base {
     type: number
     sql: ${total_conversions}*1.0 / NULLIF(${total_interactions},0) ;;
     value_format_name: percent_2
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_conversion_rate]
   }
 
   measure: weighted_average_position {
