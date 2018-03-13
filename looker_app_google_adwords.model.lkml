@@ -23,6 +23,7 @@ include: "recently_added.view"
 # include all the dashboards
 include: "ad_group_performance.dashboard"
 include: "adwords_overview.dashboard"
+include: "campaign_metrics_base.dashboard"
 include: "campaign_metrics_conversion_rate.dashboard"
 include: "campaign_metrics_conversions.dashboard"
 include: "campaign_metrics_cpa.dashboard"
