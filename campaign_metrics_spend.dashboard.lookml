@@ -729,6 +729,7 @@
     - ad_impressions.date_day_of_quarter
     - ad_impressions.date_quarter
     - ad_impressions.total_cost_usd
+    - ad_impressions.cumulative_spend
     pivots:
     - ad_impressions.date_quarter
     filters:
@@ -739,14 +740,6 @@
     - ad_impressions.date_day_of_quarter
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - table_calculation: cumulative_spend
-      label: Cumulative Spend
-      expression: if(is_null(${ad_impressions.total_cost_usd}), null, running_total(${ad_impressions.total_cost_usd}))
-      value_format:
-      value_format_name: usd_0
-      _kind_hint: measure
-      _type_hint: number
     stacking: ''
     show_value_labels: false
     label_density: 1
@@ -806,10 +799,10 @@
       - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 558
+        __LINE_NUM: 806
         axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 546
+      __LINE_NUM: 794
     - label:
       maxValue:
       minValue:
@@ -826,9 +819,9 @@
         name: Conversions
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 577
+        __LINE_NUM: 825
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 565
+      __LINE_NUM: 813
     - label: ''
       maxValue:
       minValue:
@@ -845,9 +838,9 @@
         name: Impressions
         axisId: ad_impressions.total_impressions
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 596
+        __LINE_NUM: 844
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 584
+      __LINE_NUM: 832
     - label: ''
       maxValue:
       minValue:
@@ -864,9 +857,9 @@
         name: Cost
         axisId: ad_impressions.total_cost_usd
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 615
+        __LINE_NUM: 863
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 603
+      __LINE_NUM: 851
     - label: ''
       maxValue:
       minValue:
@@ -883,9 +876,9 @@
         name: Clicks
         axisId: ad_impressions.total_clicks
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 634
+        __LINE_NUM: 882
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 622
+      __LINE_NUM: 870
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -898,7 +891,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 645
+      __LINE_NUM: 893
     colors:
     - "#4bb86a"
     - "#8fe4a7"
