@@ -233,7 +233,7 @@
     - kpis_last_period.total_cost_last_period
     - kpis_this_period.conversions_this_period
     - kpis_last_period.conversions_last_period
-    - kpis_this_period.cost_per_conversion_this_period
+    - kpis_last_period.cost_per_conversion_last_period
     - kpis_this_period.avg_conversion_rate_this_period
     - kpis_last_period.avg_conversion_rate_last_period
     - kpis_this_period.avg_click_rate_this_period
@@ -242,7 +242,7 @@
     - kpis_last_period.cost_per_click_last_period
     - click_through_rate_percent_change
     - conversion_rate_percent_change
-    - cost_per_conversion_percent_change
+    - cost_per_click_percent_change
     - total_conversion_change
     - total_cost_change
     single_value_title: Per Conversion
@@ -357,7 +357,7 @@
     - kpis_last_period.conversions_last_period
     - kpis_last_period.cost_per_conversion_last_period
     - kpis_this_period.cost_per_conversion_this_period
-    - kpis_this_period.avg_conversion_rate_this_period
+    - kpis_last_period.avg_conversion_rate_last_period
     - kpis_this_period.avg_click_rate_this_period
     - kpis_last_period.avg_click_rate_last_period
     - kpis_this_period.cost_per_click_this_period
