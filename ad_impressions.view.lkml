@@ -213,4 +213,156 @@ view: ad_impressions {
   measure: average_cost_per_conversion {
     drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_conversions]
   }
+  measure: cost_this_month {
+    type: sum
+    sql: ${cost_usd} ;;
+    filters: {
+      field: date_date
+      value: "this month"
+    }
+    hidden: yes
+  }
+  measure: conversions_this_month {
+    type: sum
+    sql: ${conversions} ;;
+    filters: {
+      field: date_date
+      value: "this month"
+    }
+    hidden: yes
+  }
+  measure: cost_per_conversion_this_month {
+    type: number
+    sql: ${cost_this_month} / NULLIF(${conversions_this_month},0) ;;
+    hidden: yes
+  }
+  measure: cost_last_month {
+    type: sum
+    sql: ${cost_usd} ;;
+    filters: {
+      field: date_date
+      value: "last month"
+    }
+    filters: {
+      field: less_than_current_day_of_month
+      value: "yes"
+    }
+    hidden: yes
+  }
+  measure: conversions_last_month {
+    type: sum
+    sql: ${conversions} ;;
+    filters: {
+      field: date_date
+      value: "last month"
+    }
+    filters: {
+      field: less_than_current_day_of_month
+      value: "yes"
+    }
+    hidden: yes
+  }
+  measure: cost_per_conversion_last_month {
+    type: number
+    sql: ${cost_last_month} / NULLIF(${conversions_last_month},0) ;;
+    hidden: yes
+  }
+  measure: cost_per_conversion_monthly_change {
+    type: number
+    sql: (${cost_per_conversion_this_month}  - ${cost_per_conversion_last_month}) / NULLIF(${cost_per_conversion_last_month},0) ;;
+    value_format_name: percent_1
+    group_label: "Monthly Comparison"
+  }
+  measure: cpa_monthly_change_absolute_value {
+    type: number
+    sql: ABS(${cost_per_conversion_monthly_change}) ;;
+    value_format_name: percent_1
+    group_label: "Monthly Comparison"
+  }
+
+  measure: clicks_this_month {
+    type: sum
+    sql: ${clicks} ;;
+    filters: {
+      field: date_date
+      value: "this month"
+    }
+    hidden: yes
+  }
+  measure: impressions_this_month {
+    type: sum
+    sql: ${impressions} ;;
+    filters: {
+      field: date_date
+      value: "this month"
+    }
+    hidden: yes
+  }
+  measure: click_through_rate_this_month {
+    type: number
+    sql: ${clicks_this_month} / NULLIF(${impressions_this_month},0) ;;
+    hidden: yes
+  }
+  measure: clicks_last_month {
+    type: sum
+    sql: ${clicks} ;;
+    filters: {
+      field: date_date
+      value: "last month"
+    }
+    filters: {
+      field: less_than_current_day_of_month
+      value: "yes"
+    }
+    hidden: yes
+  }
+  measure: impressions_last_month {
+    type: sum
+    sql: ${impressions} ;;
+    filters: {
+      field: date_date
+      value: "last month"
+    }
+    filters: {
+      field: less_than_current_day_of_month
+      value: "yes"
+    }
+    hidden: yes
+  }
+  measure: click_through_rate_last_month {
+    type: number
+    sql: ${clicks_last_month} / NULLIF(${impressions_last_month},0) ;;
+    hidden: yes
+  }
+  measure: click_through_rate_monthly_change {
+    type: number
+    sql: (${click_through_rate_this_month}  - ${click_through_rate_last_month}) / NULLIF(${click_through_rate_last_month},0) ;;
+    value_format_name: percent_1
+    group_label: "Monthly Comparison"
+  }
+  measure: click_through_rate_absolute_value {
+    type: number
+    sql: ABS(${click_through_rate_monthly_change}) ;;
+    value_format_name: percent_1
+    group_label: "Monthly Comparison"
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
