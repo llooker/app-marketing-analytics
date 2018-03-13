@@ -63,6 +63,7 @@ view: ad_metrics_base {
     type: number
     sql: ${total_clicks}*1.0/nullif(${total_impressions},0) ;;
     value_format_name: percent_2
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_click_rate]
   }
 
   measure: average_cost_per_conversion {
@@ -79,6 +80,7 @@ view: ad_metrics_base {
     type: number
     sql: ${total_cost_usd}*1.0 / NULLIF(${total_clicks},0) ;;
     value_format_name: usd
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_cost_per_click]
   }
 
   measure: average_cost_per_interaction {
@@ -107,6 +109,7 @@ view: ad_metrics_base {
     type: number
     sql: ${total_conversions}*1.0 / NULLIF(${total_interactions},0) ;;
     value_format_name: percent_2
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_conversion_rate]
   }
 
   measure: weighted_average_position {
@@ -139,6 +142,7 @@ view: ad_metrics_base {
     type: sum
     sql: ${clicks} ;;
     value_format_name: decimal_0
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, total_clicks]
   }
 
   measure: total_conversions {

@@ -11,7 +11,7 @@
     - status_changes.count
     filters:
       status_changes.change_date: 1 months
-      status_changes.type: Ad
+      status_changes.content_type: Ad
     limit: 500
     custom_color_enabled: false
     custom_color: forestgreen
@@ -66,7 +66,7 @@
     - status_changes.count
     filters:
       status_changes.change_date: 1 months
-      status_changes.type: Keyword
+      status_changes.content_type: Keyword
     limit: 500
     custom_color_enabled: false
     custom_color: forestgreen
@@ -121,7 +121,7 @@
     - status_changes.count
     filters:
       status_changes.change_date: 1 months
-      status_changes.type: Campaign
+      status_changes.content_type: Campaign
     limit: 500
     custom_color_enabled: false
     custom_color: forestgreen
@@ -176,7 +176,7 @@
     - status_changes.count
     filters:
       status_changes.change_date: 1 months
-      status_changes.type: Ad Group
+      status_changes.content_type: Ad Group
     limit: 500
     custom_color_enabled: false
     custom_color: forestgreen
@@ -230,14 +230,14 @@
     fields:
     - status_changes.count
     - status_changes.change_date
-    - status_changes.type
+    - status_changes.content_type
     pivots:
-    - status_changes.type
+    - status_changes.content_type
     filters:
       status_changes.change_date: 1 months
     sorts:
     - status_changes.change_date desc
-    - status_changes.type
+    - status_changes.content_type
     limit: 500
     stacking: normal
     show_value_labels: false
@@ -329,7 +329,7 @@
     - status_changes.change_date
     filters:
       status_changes.change_date: 1 months
-      status_changes.type: Ad
+      status_changes.content_type: Ad
     sorts:
     - status_changes.change_date desc
     limit: 500
@@ -410,7 +410,7 @@
     - status_changes.change_date
     filters:
       status_changes.change_date: 1 months
-      status_changes.type: Keyword
+      status_changes.content_type: Keyword
     sorts:
     - status_changes.change_date desc
     limit: 500
