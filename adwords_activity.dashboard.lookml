@@ -632,7 +632,7 @@
     fields:
     - status_changes.change_date
     - ad.creative
-    - status_changes.new_status
+    - status_changes.status_lag
     filters:
       status_changes.change_date: 1 months
       status_changes.type: Ad
@@ -684,7 +684,7 @@
     fields:
     - status_changes.change_date
     - keyword.criteria
-    - status_changes.new_status
+    - status_changes.status_lag
     filters:
       status_changes.change_date: 1 months
       status_changes.type: Keyword
@@ -736,7 +736,7 @@
     fields:
     - status_changes.change_date
     - ad_group.ad_group_name
-    - status_changes.new_status
+    - status_changes.status_lag
     filters:
       status_changes.change_date: 1 months
       status_changes.type: Ad Group
@@ -787,7 +787,7 @@
     type: table
     fields:
     - status_changes.change_date
-    - status_changes.new_status
+    - status_changes.status_lag
     - campaign.campaign_name
     filters:
       status_changes.change_date: 1 months
