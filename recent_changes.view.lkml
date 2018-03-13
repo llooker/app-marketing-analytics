@@ -10,8 +10,8 @@ view: status_changes {
      FROM adwords_v201609.Ad_6747157124  AS ad
    ),
 
-   ad_changed as (
-   SELECT * FROM ad_status WHERE ad_status.ad_status != ad_status.ad_status_lag),
+    ad_changed as (
+    SELECT * FROM ad_status WHERE ad_status.ad_status != ad_status.ad_status_lag OR ad_status.ad_status_lag = "Not Present"),
 
    keyword_status as (
      SELECT
@@ -24,8 +24,8 @@ view: status_changes {
      FROM adwords_v201609.Keyword_6747157124 as keyword
    ),
 
-   keywords_changed as (
-   SELECT * FROM keyword_status WHERE keyword_status.keyword_status != keyword_status.keyword_status_lag),
+    keywords_changed as (
+    SELECT * FROM keyword_status WHERE keyword_status.keyword_status != keyword_status.keyword_status_lag OR keyword_status.keyword_status_lag = "Not Present"),
 
    campaign_status as (
      SELECT
@@ -37,8 +37,8 @@ view: status_changes {
      FROM adwords_v201609.Campaign_6747157124 as campaign
    ),
 
-   campaign_changed as (
-   SELECT * FROM campaign_status WHERE campaign_status.campaign_status != campaign_status.campaign_status_lag),
+    campaign_changed as (
+      SELECT * FROM campaign_status WHERE campaign_status.campaign_status != campaign_status.campaign_status_lag OR campaign_status.campaign_status_lag  = "Not Present"),
 
    ad_group_status as (
      SELECT
@@ -51,7 +51,7 @@ view: status_changes {
    ),
 
    ad_group_changed as (
-   SELECT * FROM ad_group_status WHERE ad_group_status.ad_group_status != ad_group_status.ad_group_status_lag)
+   SELECT * FROM ad_group_status WHERE ad_group_status.ad_group_status != ad_group_status.ad_group_status_lag OR ad_group_status.ad_group_status_lag  = "Not Present")
 
 
    SELECT
@@ -62,7 +62,8 @@ view: status_changes {
      null as ad_group_id,
      ad_changed.ad_date as date,
      ad_changed.ad_status as status,
-     ad_changed.ad_status_lag as status_lag
+     ad_changed.ad_status_lag as status_lag,
+     CASE WHEN ad_changed.ad_status_lag = "Not Present" THEN 'Addition' ELSE 'Status Change' END as change_type
    FROM ad_changed
    UNION ALL
    SELECT
@@ -73,7 +74,8 @@ view: status_changes {
      keywords_changed.ad_group_id as ad_group_id,
      keywords_changed.keyword_date,
      keywords_changed.keyword_status,
-     keywords_changed.keyword_status_lag
+     keywords_changed.keyword_status_lag,
+     CASE WHEN keywords_changed.keyword_status_lag  = "Not Present" THEN 'Addition' ELSE 'Status Change' END as change_type
    FROM keywords_changed
    UNION ALL
    SELECT
@@ -84,7 +86,8 @@ view: status_changes {
      null as ad_group_id,
      campaign_changed.campaign_date,
      campaign_changed.campaign_status,
-     campaign_changed.campaign_status_lag
+     campaign_changed.campaign_status_lag,
+     CASE WHEN campaign_changed.campaign_status_lag  = "Not Present" THEN 'Addition' ELSE 'Status Change' END as change_type
    FROM campaign_changed
    UNION ALL
    SELECT
@@ -95,7 +98,8 @@ view: status_changes {
      ad_group_changed.ad_group_id,
      ad_group_changed.ad_group_date,
      ad_group_changed.ad_group_status,
-     ad_group_changed.ad_group_status_lag
+     ad_group_changed.ad_group_status_lag,
+     CASE WHEN ad_group_changed.ad_group_status_lag  = "Not Present" THEN 'Addition' ELSE 'Status Change' END as change_type
    FROM ad_group_changed
    ORDER BY 1,2,3,4 DESC
     ;;
@@ -134,12 +138,20 @@ view: status_changes {
     hidden: yes
   }
 
+  dimension: change_type {
+    type: string
+  }
+
   dimension: status_display {
     label: "Status Update"
     type: string
     case: {
       when: {
-        sql: ${status} = 'Status_Enabled' OR ${status} = "ENABLED" OR ${status} = "Status_Active" ;;
+        sql: ${status} = 'Status_Enabled' OR ${status} = "ENABLED" OR ${status} = "Status_Active" AND ${change_type} = 'Status Change';;
+        label: "Re-enabled"
+      }
+      when: {
+        sql: ${status} = 'Status_Enabled' OR ${status} = "ENABLED" OR ${status} = "Status_Active" AND ${change_type} = 'Addition';;
         label: "Enabled"
       }
       else: "Disabled"
@@ -149,10 +161,10 @@ view: status_changes {
   dimension_group: change {
     type: time
     sql: TIMESTAMP(${TABLE}.date) ;;
-    timeframes: [date, week, month, day_of_week]
+    timeframes: [date, week, month, day_of_week, day_of_month]
   }
 
-  dimension: type {
+  dimension: content_type {
     type: string
     case: {
       when: {
@@ -175,17 +187,28 @@ view: status_changes {
     }
   }
 
+  dimension: current_day_of_month {
+    hidden: yes
+    type:  number
+    sql: EXTRACT(DAY FROM TIMESTAMP(CURRENT_DATE())) ;;
+  }
+
+  dimension: less_than_current_day_of_month {
+    sql: ${change_day_of_month} <= ${current_day_of_month} ;;
+    type:  yesno
+  }
+
   measure: count {
     type: count_distinct
     sql: COALESCE(${ad_creative_id}, ${ad_group_id}, ${campaign_id}, ${keyword_criterion_id}) ;;
     description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
-    html:  {% if (status_changes.type._value == 'Ad') %}
+    html:  {% if (status_changes.content_type._value == 'Ad') %}
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad.creative,status_changes.change_date, status_changes.status_display&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
-    {% elsif (status_changes.type._value == 'Keyword') %}
+    {% elsif (status_changes.content_type._value == 'Keyword') %}
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=keyword.criteria,status_changes.change_date, status_changes.status_display&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}} </a>
-     {% elsif (status_changes.type._value == 'Ad Group') %}
+     {% elsif (status_changes.content_type._value == 'Ad Group') %}
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad_group.ad_group_name,status_changes.change_date, status_changes.status_display&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
-    {% elsif (status_changes.type._value == 'Campaign') %}
+    {% elsif (status_changes.content_type._value == 'Campaign') %}
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=campaign.campaign_name,status_changes.change_date, status_changes.status_display&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
     {% endif %};;
 }
