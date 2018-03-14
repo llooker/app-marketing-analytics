@@ -69,7 +69,7 @@ view: date_base {
 
   dimension: less_than_current_day_of_quarter {
     sql: ${date_day_of_quarter} <= ${current_day_of_quarter} ;;
-    hidden:  yes
+    hidden:  no
     type: yesno
   }
 
