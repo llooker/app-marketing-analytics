@@ -2,6 +2,146 @@
   extends: campaign_metrics_base
   title: Campaign Metrics Conversions
   elements:
+  - title: Conversions To Date
+    name: Conversions To Date
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_column
+    fields:
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.total_conversions
+    - ad_impressions.date_week
+    sorts:
+    - ad_impressions.date_week
+    limit: 500
+    column_limit: 50
+    stacking: ''
+    show_value_labels: false
+    label_density: 1
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_null_points: false
+    point_style: none
+    interpolation: linear
+    label: Average Cost per Conversion
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    series_types:
+      ad_impressions.average_cost_per_conversion: line
+    show_dropoff: false
+    y_axes:
+    - label:
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_cost_per_conversion
+        name: Cost Per Conversion
+        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+        __LINE_NUM: 438
+        axisId: ad_impressions.average_cost_per_conversion
+      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+      __LINE_NUM: 426
+    - label:
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_conversions
+        name: Conversions
+        axisId: ad_impressions.total_conversions
+        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+        __LINE_NUM: 457
+      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+      __LINE_NUM: 445
+    discontinuous_nulls: false
+    focus_on_hover: false
+    reference_lines: []
+    trend_lines:
+    - color: "#000000"
+      label_position: right
+      period: 7
+      regression_type: linear
+      series_index: 1
+      show_label: false
+      label_type: string
+      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+      __LINE_NUM: 468
+    colors:
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    hidden_series:
+    - ad_impressions.average_conversion_rate
+    series_labels:
+      ad_impressions.total_conversions: Conversions
+      ad_impressions.total_clicks: Interactions
+      ad_impressions.average_conversion_rate: Conversion Rate
+      ad_impressions.average_cost_per_conversion: Cost Per Conversion
+    hidden_fields: []
+    column_group_spacing_ratio:
+    column_spacing_ratio:
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: ad_impressions.date_date
+    row: 4
+    col: 0
+    width: 24
+    height: 11
   - title: Conversions by Day of Week
     name: Conversions by Day of Week
     model: looker_app_google_adwords
