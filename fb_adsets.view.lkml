@@ -14,6 +14,7 @@ view: adsets {
   dimension: account_id {
     type: string
     sql: ${TABLE}.account_id ;;
+    hidden: yes
   }
 
   dimension: bid_info {
@@ -28,7 +29,7 @@ view: adsets {
 
   dimension: campaign_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.campaign_id ;;
   }
 

@@ -14,11 +14,13 @@ view: ads {
   dimension: account_id {
     type: string
     sql: ${TABLE}.account_id ;;
+    hidden: yes
   }
 
   dimension: adset_id {
     type: string
     sql: ${TABLE}.adset_id ;;
+    hidden: yes
   }
 
   dimension: bid_amount {
@@ -39,6 +41,7 @@ view: ads {
   dimension: campaign_id {
     type: string
     sql: ${TABLE}.campaign_id ;;
+    hidden: yes
   }
 
   dimension: conversion_specs {
@@ -63,6 +66,7 @@ view: ads {
   dimension: creative_id {
     type: string
     sql: ${TABLE}.creative.id ;;
+    hidden: yes
   }
 
   dimension: effective_status {
@@ -73,6 +77,7 @@ view: ads {
   dimension: last_updated_by_app_id {
     type: string
     sql: ${TABLE}.last_updated_by_app_id ;;
+    hidden: yes
   }
 
   dimension: name {
@@ -88,6 +93,7 @@ view: ads {
   dimension: source_ad_id {
     type: string
     sql: ${TABLE}.source_ad_id ;;
+    hidden: yes
   }
 
   dimension: status {

@@ -68,6 +68,7 @@ view: insights_base {
   dimension: account_id {
     type: string
     sql: ${TABLE}.account_id ;;
+    hidden:  yes
   }
 
   dimension: account_name {
@@ -83,6 +84,7 @@ view: insights_base {
   dimension: ad_id {
     type: string
     sql: ${TABLE}.ad_id ;;
+    hidden:  yes
   }
 
   dimension: ad_name {
@@ -93,6 +95,7 @@ view: insights_base {
   dimension: adset_id {
     type: string
     sql: ${TABLE}.adset_id ;;
+    hidden:  yes
   }
 
   dimension: adset_name {
@@ -103,6 +106,7 @@ view: insights_base {
   dimension: campaign_id {
     type: string
     sql: ${TABLE}.campaign_id ;;
+    hidden:  yes
   }
 
   dimension: campaign_name {
@@ -172,6 +176,7 @@ view: insights_base {
 
   dimension_group: date_start {
     type: time
+    label: "Start"
     timeframes: [
       raw,
       time,
@@ -185,6 +190,7 @@ view: insights_base {
   }
 
   dimension_group: date_stop {
+    label: "Stop"
     type: time
     timeframes: [
       raw,
