@@ -271,13 +271,13 @@ view: ad_impressions {
     type: number
     sql: (${cost_per_conversion_this_month}  - ${cost_per_conversion_last_month}) / NULLIF(${cost_per_conversion_last_month},0) ;;
     value_format_name: percent_1
-    group_label: "Monthly Comparison"
+    group_label: "Monthly Comparisons"
   }
   measure: cpa_monthly_change_absolute_value {
     type: number
     sql: ABS(${cost_per_conversion_monthly_change}) ;;
     value_format_name: percent_1
-    group_label: "Monthly Comparison"
+    group_label: "Monthly Comparisons"
   }
 
   measure: clicks_this_month {
@@ -338,30 +338,58 @@ view: ad_impressions {
     type: number
     sql: (${click_through_rate_this_month}  - ${click_through_rate_last_month}) / NULLIF(${click_through_rate_last_month},0) ;;
     value_format_name: percent_1
-    group_label: "Monthly Comparison"
+    group_label: "Monthly Comparisons"
   }
   measure: click_through_rate_absolute_value {
     type: number
     sql: ABS(${click_through_rate_monthly_change}) ;;
     value_format_name: percent_1
-    group_label: "Monthly Comparison"
+    group_label: "Monthly Comparisons"
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  measure: interactions_this_month {
+    type: sum
+    sql: ${interactions} ;;
+    filters: {
+      field: date_date
+      value: "this month"
+    }
+    hidden: yes
+  }
+  measure: conversion_rate_this_month {
+    type: number
+    sql: ${conversions_this_month} / NULLIF(${interactions_this_month},0) ;;
+    hidden: yes
+  }
+  measure: interactions_last_month {
+    type: sum
+    sql: ${interactions} ;;
+    filters: {
+      field: date_date
+      value: "last month"
+    }
+    filters: {
+      field: less_than_current_day_of_month
+      value: "yes"
+    }
+    hidden: yes
+  }
+  measure: conversion_rate_last_month {
+    type: number
+    sql: ${conversions_last_month} / NULLIF(${interactions_last_month},0) ;;
+    hidden: yes
+  }
+  measure: conversion_rate_monthly_change {
+    type: number
+    sql: (${conversion_rate_this_month}  - ${conversion_rate_last_month}) / NULLIF(${conversion_rate_last_month},0) ;;
+    value_format_name: percent_1
+    group_label: "Monthly Comparisons"
+  }
+  measure: conversion_rate_absolute_value {
+    type: number
+    sql: ABS(${conversion_rate_monthly_change}) ;;
+    value_format_name: percent_1
+    group_label: "Monthly Comparisons"
+  }
 
 
 
