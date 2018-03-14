@@ -3,6 +3,7 @@ view: date_base {
 
   dimension_group: date {
     group_label: "Date"
+    label: " "
     type: time
     datatype: timestamp
     timeframes: [
