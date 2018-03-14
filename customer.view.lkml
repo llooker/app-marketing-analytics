@@ -51,6 +51,10 @@ view: customer {
     sql: ${TABLE}.PrimaryCompanyName ;;
   }
 
+  dimension_group: date {
+    hidden: yes
+  }
+
   measure: count {
     type: count_distinct
     sql: ${external_customer_id} ;;
