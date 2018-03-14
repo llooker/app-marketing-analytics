@@ -14,6 +14,7 @@ view: campaigns {
   dimension: account_id {
     type: string
     sql: ${TABLE}.account_id ;;
+    hidden: yes
   }
 
   dimension: ads {

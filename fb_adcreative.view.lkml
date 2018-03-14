@@ -14,6 +14,7 @@ view: adcreative {
   dimension: account_id {
     type: string
     sql: ${TABLE}.account_id ;;
+    hidden: yes
   }
 
   dimension: body {
@@ -29,26 +30,31 @@ view: adcreative {
   dimension: effective_instagram_story_id {
     type: string
     sql: ${TABLE}.effective_instagram_story_id ;;
+    hidden: yes
   }
 
   dimension: effective_object_story_id {
     type: string
     sql: ${TABLE}.effective_object_story_id ;;
+    hidden: yes
   }
 
   dimension: image_hash {
     type: string
     sql: ${TABLE}.image_hash ;;
+    hidden: yes
   }
 
   dimension: image_url {
     type: string
     sql: ${TABLE}.image_url ;;
+    hidden: yes
   }
 
   dimension: instagram_actor_id {
     type: string
     sql: ${TABLE}.instagram_actor_id ;;
+    hidden: yes
   }
 
   dimension: instagram_permalink_url {
@@ -64,6 +70,7 @@ view: adcreative {
   dimension: object_story_id {
     type: string
     sql: ${TABLE}.object_story_id ;;
+    hidden: yes
   }
 
   dimension: object_story_spec {
@@ -94,6 +101,7 @@ view: adcreative {
   dimension: video_id {
     type: string
     sql: ${TABLE}.video_id ;;
+    hidden: yes
   }
 
   measure: count {
