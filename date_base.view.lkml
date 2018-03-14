@@ -2,8 +2,8 @@ view: date_base {
   extension: required
 
   dimension_group: date {
-    group_label: "Date"
-    label: " "
+    group_label: "Event"
+    label: ""
     type: time
     datatype: timestamp
     timeframes: [
@@ -14,7 +14,6 @@ view: date_base {
       quarter,
       year,
       day_of_week,
-      day_of_week_index,
       day_of_month,
       day_of_year
     ]
@@ -23,22 +22,25 @@ view: date_base {
   }
 
   dimension: date_month_date {
-    group_label: "Date"
+    group_label: "Event"
     label: "Month Date"
+    hidden: yes
     type: date
     sql: DATE_TRUNC(${date_date}, MONTH) ;;
   }
 
   dimension: date_quarter_date {
-    group_label: "Date"
+    group_label: "Event"
     label: "Quarter Date"
+    hidden: yes
     type: date
     sql: DATE_TRUNC(${date_date}, QUARTER) ;;
   }
 
   dimension: date_day_of_quarter {
-    group_label: "Date"
+    group_label: "Event"
     label: "Day of Quarter"
+    hidden: yes
     type: number
     sql: DATE_DIFF(
            ${date_date},
@@ -85,29 +87,38 @@ view: date_base {
 
   dimension: less_than_current_day_of_period {
     type: yesno
-  sql: CASE WHEN {% parameter period %} = "1 week ago" THEN ${less_than_current_day_of_week}
+    sql: CASE WHEN {% parameter period %} = "1 week ago" THEN ${less_than_current_day_of_week}
         WHEN {% parameter period %} = "1 quarter ago" THEN ${less_than_current_day_of_quarter}
         WHEN {% parameter period %} = "1 month ago" THEN ${less_than_current_day_of_month}
         ELSE NULL
         END;;
+    hidden: yes
 }
 
-  parameter: period {}
+  parameter: period {
+    hidden: yes
+  }
 
   dimension: date_last_week {
-    group_label: "Date"
+    group_label: "Event"
+    label: "Last Week"
+    hidden: yes
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL -1 WEEK) ;;
   }
 
   dimension: date_last_month {
-    group_label: "Date"
+    group_label: "Event"
+    label: "Last Month"
+    hidden: yes
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL -1 MONTH) ;;
   }
 
   dimension: date_last_quarter {
-    group_label: "Date"
+    group_label: "Event"
+    label: "Last Quarter"
+    hidden: yes
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL -1 QUARTER) ;;
   }

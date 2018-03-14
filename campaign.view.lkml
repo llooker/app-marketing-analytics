@@ -186,6 +186,10 @@ view: campaign {
     sql: (TIMESTAMP(${TABLE}.StartDate)) ;;
   }
 
+  dimension_group: date {
+    hidden: yes
+  }
+
   dimension: tracking_url_template {
     type: string
     sql: ${TABLE}.TrackingUrlTemplate ;;

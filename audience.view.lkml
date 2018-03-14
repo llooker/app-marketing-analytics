@@ -128,6 +128,10 @@ view: audience {
     sql: ${TABLE}.UserListName ;;
   }
 
+  dimension_group: date {
+    hidden: yes
+  }
+
   measure: count {
     type: count_distinct
     sql:  ${criterion_id} ;;

@@ -190,6 +190,10 @@ view: ad_group {
     sql: (${target_cpa} / 1000000) ;;
   }
 
+  dimension_group: date {
+    hidden: yes
+  }
+
   # ----- Detail ------
   set: detail {
     fields: [ad_group_id, ad_group_name, ad_group_status, cpc_bid, ad.count, keyword.count]

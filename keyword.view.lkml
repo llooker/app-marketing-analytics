@@ -227,6 +227,10 @@ view: keyword {
     hidden:  yes
   }
 
+  dimension_group: date {
+    hidden: yes
+  }
+
   measure: count {
     type: count_distinct
     sql: ${criterion_id} ;;
