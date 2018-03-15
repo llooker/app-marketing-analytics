@@ -3,6 +3,7 @@ include: "ad_metrics_base.view"
 include: "date_base.view"
 
 explore: period_fact {
+  hidden: yes
   persist_with: etl_datagroup
   label: "Account Period Fact"
   view_label: "Account Period Fact"
