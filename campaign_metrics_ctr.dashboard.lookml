@@ -74,10 +74,10 @@
       - id: ad_impressions.average_click_rate
         name: Click Through Rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 1014
+        __LINE_NUM: 74
         axisId: ad_impressions.average_click_rate
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 1002
+      __LINE_NUM: 62
     - label:
       maxValue:
       minValue:
@@ -94,9 +94,9 @@
         name: Cost per Click
         axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 1033
+        __LINE_NUM: 93
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 1021
+      __LINE_NUM: 81
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -109,7 +109,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 1044
+      __LINE_NUM: 104
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -193,9 +193,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 419
+        __LINE_NUM: 192
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 407
+      __LINE_NUM: 180
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -272,9 +272,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 485
+        __LINE_NUM: 271
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 473
+      __LINE_NUM: 259
     colors:
     - "#d06180"
     - "#7869df"
@@ -349,9 +349,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 563
+        __LINE_NUM: 348
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 551
+      __LINE_NUM: 336
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -458,9 +458,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 910
+        __LINE_NUM: 457
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 898
+      __LINE_NUM: 445
     conditional_formatting:
     - type: high to low
       value:
@@ -473,14 +473,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 923
+        __LINE_NUM: 470
       bold: false
       italic: false
       strikethrough: false
       fields:
       - ad_impressions.average_click_rate
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 918
+      __LINE_NUM: 465
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
@@ -570,9 +570,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 669
+        __LINE_NUM: 569
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 657
+      __LINE_NUM: 557
     conditional_formatting:
     - type: high to low
       value:
@@ -585,17 +585,17 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 682
+        __LINE_NUM: 582
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 677
+      __LINE_NUM: 577
     colors:
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
     - "#d06180"
     - "#dc9d4f"
     - "#4bb86a"
@@ -692,9 +692,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 781
+        __LINE_NUM: 691
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 769
+      __LINE_NUM: 679
     conditional_formatting:
     - type: high to low
       value:
@@ -707,17 +707,17 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 794
+        __LINE_NUM: 704
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 789
+      __LINE_NUM: 699
     colors:
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
     - "#d06180"
     - "#dc9d4f"
     - "#4bb86a"
@@ -735,45 +735,41 @@
     col: 14
     width: 10
     height: 7
-  - title: Top Ads
-    name: Top Ads
+  - title: Ad Group Click Through Rate Change
+    name: Ad Group Click Through Rate Change
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: table
+    type: looker_bar
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.total_cost_usd
-    - ad.creative
-    - ad_impressions.average_click_rate
+    - ad_impressions.click_through_rate_absolute_value
+    - ad_impressions.click_through_rate_last_month
+    - ad_impressions.click_through_rate_this_month
     filters:
+      campaign.campaign_name: ''
+      ad_group.ad_group_name: ''
       ad_impressions.date_date: 1 quarters
+      ad_impressions.click_through_rate_absolute_value: ">0.2"
     sorts:
-    - ad_impressions.average_click_rate desc
-    limit: 500
+    - ad_impressions.click_through_rate_absolute_value desc
+    limit: 50
+    column_limit: 50
     query_timezone: America/Los_Angeles
-    show_view_names: true
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
     stacking: ''
-    show_value_labels: false
+    show_value_labels: true
     label_density: 25
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: true
     y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
-    show_x_axis_label: true
+    show_x_axis_label: false
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
@@ -782,59 +778,99 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    hidden_fields:
+    - campaign.campaign_name
+    - ad_impressions.click_through_rate_absolute_value
     series_types: {}
+    colors:
+    - "#a6b7ff"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
     limit_displayed_rows_values:
       show_hide: show
       first_last: first
       num_rows: '10'
-    hidden_fields:
-    - ad_impressions.total_cost_usd
-    - campaign.campaign_name
-    - ad_group.ad_group_name
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: true
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.conversion_rate_last_month
+        name: Conversion Rate Last Month
+        axisId: ad_impressions.conversion_rate_last_month
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 832
+      - id: ad_impressions.conversion_rate_this_month
+        name: Conversion Rate This Month
+        axisId: ad_impressions.conversion_rate_this_month
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 820
     row: 35
     col: 0
-    width: 8
-    height: 8
-  - title: Top Keywords
-    name: Top Keywords
+    width: 14
+    height: 10
+  - title: Ad Click Through Rate Change
+    name: Ad Click Through Rate Change
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: table
+    type: looker_bar
     fields:
+    - ad.creative
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.total_cost_usd
-    - keyword.criteria
-    - ad_impressions.average_click_rate
+    - ad_impressions.click_through_rate_absolute_value
+    - ad_impressions.click_through_rate_last_month
+    - ad_impressions.click_through_rate_this_month
     filters:
+      campaign.campaign_name: ''
+      ad_group.ad_group_name: ''
       ad_impressions.date_date: 1 quarters
-      ad_impressions.conversions: ">0"
+      ad_impressions.click_through_rate_absolute_value: ">0.2"
     sorts:
-    - ad_impressions.average_click_rate desc
-    limit: 500
+    - ad_impressions.click_through_rate_absolute_value desc
+    limit: 50
+    column_limit: 50
     query_timezone: America/Los_Angeles
-    show_view_names: true
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
     stacking: ''
-    show_value_labels: false
+    show_value_labels: true
     label_density: 25
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: true
     y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
     y_axis_tick_density: default
     y_axis_tick_density_custom: 5
-    show_x_axis_label: true
+    show_x_axis_label: false
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
@@ -843,79 +879,64 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    series_types: {}
-    limit_displayed_rows_values:
-      show_hide: show
-      first_last: first
-      num_rows: '10'
-    hidden_fields:
-    - ad_impressions.total_cost_usd
-    - campaign.campaign_name
-    - ad_group.ad_group_name
-    row: 35
-    col: 8
-    width: 6
-    height: 8
-  - title: Top Landing Pages
-    name: Top Landing Pages
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: table
-    fields:
-    - ad.creative_final_urls_domain_path
-    - ad_group.ad_group_name
-    - campaign.campaign_name
-    - ad_impressions.total_cost_usd
-    - ad_impressions.average_click_rate
-    filters:
-      ad_impressions.date_date: 1 quarters
-    sorts:
-    - ad_impressions.average_click_rate desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    show_view_names: true
     show_row_numbers: true
     truncate_column_names: false
     hide_totals: false
     hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: true
+    table_theme: editable
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
+    hidden_fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - ad_impressions.click_through_rate_absolute_value
     series_types: {}
     limit_displayed_rows_values:
       show_hide: show
       first_last: first
       num_rows: '10'
-    hidden_fields:
-    - ad_impressions.total_cost_usd
-    - ad_group.ad_group_name
-    - campaign.campaign_name
+    colors:
+    - "#ea9895"
+    - "#d06180"
+    - "#a6b7ff"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea989"
+    series_colors: {}
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: true
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.conversion_rate_last_month
+        name: Conversion Rate Last Month
+        axisId: ad_impressions.conversion_rate_last_month
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 942
+      - id: ad_impressions.conversion_rate_this_month
+        name: Conversion Rate This Month
+        axisId: ad_impressions.conversion_rate_this_month
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 930
     row: 35
     col: 14
     width: 10
-    height: 8
+    height: 10
   filters:
   - name: This Timeframe
     title: This Timeframe

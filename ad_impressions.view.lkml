@@ -234,7 +234,8 @@ view: ad_impressions {
   measure: cost_per_conversion_this_month {
     type: number
     sql: ${cost_this_month} / NULLIF(${conversions_this_month},0) ;;
-    hidden: yes
+    value_format_name: usd
+    group_label: "Monthly Comparisons"
   }
   measure: cost_last_month {
     type: sum
@@ -265,7 +266,8 @@ view: ad_impressions {
   measure: cost_per_conversion_last_month {
     type: number
     sql: ${cost_last_month} / NULLIF(${conversions_last_month},0) ;;
-    hidden: yes
+    value_format_name: usd
+    group_label: "Monthly Comparisons"
   }
   measure: cost_per_conversion_monthly_change {
     type: number
@@ -274,6 +276,7 @@ view: ad_impressions {
     group_label: "Monthly Comparisons"
   }
   measure: cpa_monthly_change_absolute_value {
+    label: "CPA Monthly Change Absolute Value"
     type: number
     sql: ABS(${cost_per_conversion_monthly_change}) ;;
     value_format_name: percent_1
@@ -301,7 +304,8 @@ view: ad_impressions {
   measure: click_through_rate_this_month {
     type: number
     sql: ${clicks_this_month} / NULLIF(${impressions_this_month},0) ;;
-    hidden: yes
+    value_format_name: percent_1
+    group_label: "Monthly Comparisons"
   }
   measure: clicks_last_month {
     type: sum
@@ -332,7 +336,8 @@ view: ad_impressions {
   measure: click_through_rate_last_month {
     type: number
     sql: ${clicks_last_month} / NULLIF(${impressions_last_month},0) ;;
-    hidden: yes
+    value_format_name: percent_1
+    group_label: "Monthly Comparisons"
   }
   measure: click_through_rate_monthly_change {
     type: number
@@ -341,6 +346,7 @@ view: ad_impressions {
     group_label: "Monthly Comparisons"
   }
   measure: click_through_rate_absolute_value {
+    label: "CTR Monthly Change Absolute Value"
     type: number
     sql: ABS(${click_through_rate_monthly_change}) ;;
     value_format_name: percent_1
@@ -358,7 +364,8 @@ view: ad_impressions {
   measure: conversion_rate_this_month {
     type: number
     sql: ${conversions_this_month} / NULLIF(${interactions_this_month},0) ;;
-    hidden: yes
+    value_format_name: percent_1
+    group_label: "Monthly Comparisons"
   }
   measure: interactions_last_month {
     type: sum
@@ -376,7 +383,8 @@ view: ad_impressions {
   measure: conversion_rate_last_month {
     type: number
     sql: ${conversions_last_month} / NULLIF(${interactions_last_month},0) ;;
-    hidden: yes
+    value_format_name: percent_1
+    group_label: "Monthly Comparisons"
   }
   measure: conversion_rate_monthly_change {
     type: number
@@ -385,8 +393,34 @@ view: ad_impressions {
     group_label: "Monthly Comparisons"
   }
   measure: conversion_rate_absolute_value {
+    label: "Conversion Rate Monthly Change Absolute Value"
     type: number
     sql: ABS(${conversion_rate_monthly_change}) ;;
+    value_format_name: percent_1
+    group_label: "Monthly Comparisons"
+  }
+  measure: cost_per_click_this_month {
+    type: number
+    sql: ${cost_this_month} / NULLIF(${clicks_this_month},0) ;;
+    value_format_name: usd
+    group_label: "Monthly Comparisons"
+  }
+  measure: cost_per_click_last_month {
+    type: number
+    sql: ${cost_last_month} / NULLIF(${clicks_last_month},0) ;;
+    value_format_name: usd
+    group_label: "Monthly Comparisons"
+  }
+  measure: cost_per_click_monthly_change {
+    type: number
+    sql: (${cost_per_click_this_month}  - ${cost_per_click_last_month}) / NULLIF(${cost_per_click_last_month},0) ;;
+    value_format_name: percent_1
+    group_label: "Monthly Comparisons"
+  }
+  measure: cost_per_click_absolute_value {
+    label: "CPC Monthly Change Absolute Value"
+    type: number
+    sql: ABS(${cost_per_click_monthly_change}) ;;
     value_format_name: percent_1
     group_label: "Monthly Comparisons"
   }
