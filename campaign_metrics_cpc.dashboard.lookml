@@ -1,6 +1,6 @@
 - dashboard: campaign_metrics_cost_per_click
   extends: campaign_metrics_base
-  title: Campaign Metrics Cost Per Click
+  title: Campaign Metrics - Cost Per Click - This Quarter
   elements:
   - title: Cost Per Click To Date
     name: Cost Per Click To Date
