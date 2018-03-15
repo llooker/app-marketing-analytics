@@ -1,6 +1,6 @@
 - dashboard: campaign_metrics_click_through_rate
   extends: campaign_metrics_base
-  title: Campaign Metrics Click Through Rate
+  title: Campaign Metrics - Click Through Rate - This Quarter
   elements:
   - title: Click Through Rate To Date
     name: Click Through Rate To Date
