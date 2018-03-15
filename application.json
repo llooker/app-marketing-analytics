@@ -529,7 +529,7 @@
     },
     {
       "description": "",
-      "enabled": true,
+      "enabled": false,
       "icon": "social",
       "name": "Social",
       "pages": [
