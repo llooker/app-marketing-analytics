@@ -39,7 +39,7 @@
               "permalink": "under-performing",
               "reports": [
                 {
-                  "description": "Quickly find the ads that need to be paused, have their bid lowered.",
+                  "description": "Quickly find the ads that need to be paused or have their bid lowered.",
                   "name": "Under Performing Ads",
                   "permalink": "underperforming-ads",
                   "singleValue": {
@@ -143,7 +143,7 @@
                   ]
                 },
                 {
-                  "description": "Quickly find the ad gropss that need to be paused, have their bid lowered.",
+                  "description": "Quickly find the ad groups that need to be paused or have their bid lowered.",
                   "name": "Under Performing Ad Groups",
                   "permalink": "underperforming-ad-groups",
                   "singleValue": {
