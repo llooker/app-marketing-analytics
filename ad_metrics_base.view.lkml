@@ -116,7 +116,7 @@ view: ad_metrics_base {
     label: "Average Position"
     description: "Average auction position."
     type: number
-    sql: ${average_position}*${total_impressions} / NULLIF(${total_impressions},0) ;;
+    sql: SUM(${average_position}*${impressions}) / NULLIF(${total_impressions},0) ;;
     value_format_name: decimal_0
   }
 
