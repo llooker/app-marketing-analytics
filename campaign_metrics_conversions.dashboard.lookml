@@ -1,6 +1,14 @@
 - dashboard: campaign_metrics_conversions
   extends: campaign_metrics_base
   title: Campaign Metrics Conversions
+  layout: newspaper
+  embed_style:
+    background_color: "#f6f8fa"
+    show_title: false
+    title_color: "#3a4245"
+    show_filters_bar: false
+    tile_text_color: "#3a4245"
+    text_tile_text_color: ''
   elements:
   - title: Conversions To Date
     name: Conversions To Date
@@ -75,10 +83,10 @@
       - id: ad_impressions.average_cost_per_conversion
         name: Cost Per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 438
+        __LINE_NUM: 75
         axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 426
+      __LINE_NUM: 63
     - label:
       maxValue:
       minValue:
@@ -95,9 +103,9 @@
         name: Conversions
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 457
+        __LINE_NUM: 94
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 445
+      __LINE_NUM: 82
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -110,7 +118,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 468
+      __LINE_NUM: 105
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -223,9 +231,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 920
+        __LINE_NUM: 222
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 908
+      __LINE_NUM: 210
     conditional_formatting:
     - type: high to low
       value:
@@ -238,13 +246,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 933
+        __LINE_NUM: 235
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 928
+      __LINE_NUM: 230
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -345,9 +353,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 1032
+        __LINE_NUM: 344
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 1020
+      __LINE_NUM: 332
     conditional_formatting:
     - type: high to low
       value:
@@ -360,13 +368,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 1045
+        __LINE_NUM: 357
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 1040
+      __LINE_NUM: 352
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -473,9 +481,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 804
+        __LINE_NUM: 472
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 792
+      __LINE_NUM: 460
     conditional_formatting:
     - type: high to low
       value:
@@ -488,14 +496,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 817
+        __LINE_NUM: 485
       bold: false
       italic: false
       strikethrough: false
       fields:
       - ad_impressions.total_conversions
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 812
+      __LINE_NUM: 480
     series_labels:
       ad_impressions.hour_of_day: Hour of Day
       ad_impressions.total_conversions: Conversions
@@ -508,184 +516,6 @@
     col: 0
     width: 14
     height: 14
-  - title: Top Ads
-    name: Top Ads
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: table
-    fields:
-    - ad.creative
-    - ad_group.ad_group_name
-    - campaign.campaign_name
-    - ad_impressions.total_cost_usd
-    - ad_impressions.total_conversions
-    filters:
-      ad_impressions.date_date: 1 quarters
-    sorts:
-    - ad_impressions.total_conversions desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    show_view_names: true
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    limit_displayed_rows_values:
-      show_hide: show
-      first_last: first
-      num_rows: '10'
-    hidden_fields:
-    - ad_impressions.total_cost_usd
-    - campaign.campaign_name
-    - ad_group.ad_group_name
-    row: 35
-    col: 0
-    width: 9
-    height: 6
-  - title: Top Keywords
-    name: Top Keywords
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: table
-    fields:
-    - ad_group.ad_group_name
-    - campaign.campaign_name
-    - ad_impressions.total_cost_usd
-    - ad_impressions.total_conversions
-    - keyword.criteria
-    filters:
-      ad_impressions.date_date: 1 quarters
-    sorts:
-    - ad_impressions.total_conversions desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    show_view_names: true
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    limit_displayed_rows_values:
-      show_hide: show
-      first_last: first
-      num_rows: '10'
-    hidden_fields:
-    - ad_impressions.total_cost_usd
-    - campaign.campaign_name
-    - ad_group.ad_group_name
-    row: 35
-    col: 9
-    width: 5
-    height: 6
-  - title: Top Landing Pages
-    name: Top Landing Pages
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: table
-    fields:
-    - ad.creative_final_urls_domain_path
-    - ad_group.ad_group_name
-    - campaign.campaign_name
-    - ad_impressions.total_conversions
-    filters:
-      ad_impressions.date_date: 1 quarters
-    sorts:
-    - ad_impressions.total_conversions desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    show_view_names: true
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    limit_displayed_rows_values:
-      show_hide: show
-      first_last: first
-      num_rows: '10'
-    hidden_fields:
-    - ad_group.ad_group_name
-    - campaign.campaign_name
-    row: 35
-    col: 14
-    width: 10
-    height: 6
   - title: Conversions by Network
     name: Conversions by Network
     model: looker_app_google_adwords
@@ -742,9 +572,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 708
+        __LINE_NUM: 741
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 696
+      __LINE_NUM: 729
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -821,9 +651,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 627
+        __LINE_NUM: 820
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 615
+      __LINE_NUM: 808
     colors:
     - "#d06180"
     - "#7869df"
@@ -898,9 +728,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 547
+        __LINE_NUM: 897
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 535
+      __LINE_NUM: 885
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -922,54 +752,340 @@
     col: 16
     width: 8
     height: 6
+  - name: Top Landing Pages by Conversions
+    title: Top Landing Pages by Conversions
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - ad.creative_final_urls_domain_path
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - ad_impressions.total_conversions
+    sorts:
+    - ad_impressions.total_conversions desc
+    limit: 50
+    column_limit: 50
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    query_timezone: America/Los_Angeles
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '7'
+    hidden_fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    colors:
+    - "#f1e582"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_conversions
+        name: Conversions
+        axisId: ad_impressions.total_conversions
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 1199
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 1187
+    row: 42
+    col: 0
+    width: 12
+    height: 7
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: ad_impressions.date_date
+  - name: Top Keywords by Conversions
+    title: Top Keywords by Conversions
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_column
+    fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - keyword.criteria
+    - ad_impressions.total_conversions
+    sorts:
+    - ad_impressions.total_conversions desc
+    limit: 50
+    column_limit: 50
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    query_timezone: America/Los_Angeles
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '7'
+    hidden_fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    colors:
+    - "#ea9895"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_conversions
+        name: Conversions
+        axisId: ad_impressions.total_conversions
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 1180
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 1168
+    row: 35
+    col: 12
+    width: 12
+    height: 14
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: ad_impressions.date_date
+  - name: Top Ads by Conversions
+    title: Top Ads by Conversions
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - ad.creative
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - ad_impressions.total_conversions
+    sorts:
+    - ad_impressions.total_conversions desc
+    limit: 50
+    column_limit: 50
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    query_timezone: America/Los_Angeles
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '7'
+    hidden_fields:
+    - campaign.campaign_name
+    - ad_group.ad_group_name
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.total_conversions
+        name: Conversions
+        axisId: ad_impressions.total_conversions
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 1079
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 1067
+    hide_legend: false
+    colors:
+    - "#a6b7ff"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    row: 35
+    col: 0
+    width: 12
+    height: 7
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: ad_impressions.date_date
   filters:
   - name: This Timeframe
     title: This Timeframe
     type: field_filter
     default_value: this quarter
-    model: looker_app_google_adwords
-    explore: kpis_this_period
-    field: kpis_this_period.this_timeframe
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: kpis_this_period
+    listens_to_filters: []
+    field: kpis_this_period.this_timeframe
   - name: Last Timeframe
     title: Last Timeframe
     type: field_filter
     default_value: 1 quarter ago
-    model: looker_app_google_adwords
-    explore: kpis_this_period
-    field: kpis_last_period.last_timeframe
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: kpis_this_period
+    listens_to_filters: []
+    field: kpis_last_period.last_timeframe
   - name: Campaign
     title: Campaign
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: campaign.campaign_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: campaign.campaign_name
   - name: Ad Group
     title: Ad Group
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_group.ad_group_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: ad_group.ad_group_name
   - name: Time Range
     title: Time Range
     type: field_filter
     default_value: 1 quarters
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_impressions.date_date
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: ad_impressions.date_date
