@@ -1,14 +1,7 @@
 - dashboard: campaign_metrics_conversions
   extends: campaign_metrics_base
-  title: Campaign Metrics Conversions
+  title: Campaign Metrics - Conversions - This Quarter
   layout: newspaper
-  embed_style:
-    background_color: "#f6f8fa"
-    show_title: false
-    title_color: "#3a4245"
-    show_filters_bar: false
-    tile_text_color: "#3a4245"
-    text_tile_text_color: ''
   elements:
   - title: Conversions To Date
     name: Conversions To Date

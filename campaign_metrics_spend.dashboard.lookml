@@ -1,14 +1,7 @@
 - dashboard: campaign_metrics_spend
   extends: campaign_metrics_base
-  title: Campaign Metrics Spend
+  title: Campaign Metrics - Spend - This Quarter
   layout: newspaper
-  embed_style:
-    background_color: "#f6f8fa"
-    show_title: false
-    title_color: "#3a4245"
-    show_filters_bar: false
-    tile_text_color: "#3a4245"
-    text_tile_text_color: ''
   elements:
   - title: Budget Utilization
     name: Budget Utilization

@@ -1,6 +1,6 @@
 - dashboard: campaign_metrics_cost_per_conversion
   extends: campaign_metrics_base
-  title: Campaign Metrics Cost Per Conversion
+  title: Campaign Metrics - Cost Per Conversion - This Quarter
   elements:
   - title: Cost Per Conversion To Date
     name: Cost Per Conversion To Date

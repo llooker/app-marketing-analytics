@@ -1,9 +1,9 @@
 - dashboard: adwords_overview
-  title: AdWords Overview
+  title: AdWords Overview - This Quarter vs Last
   layout: newspaper
   embed_style:
     background_color: "#f6f8fa"
-    show_title: false
+    show_title: true
     title_color: "#3a4245"
     show_filters_bar: false
     tile_text_color: "#3a4245"
