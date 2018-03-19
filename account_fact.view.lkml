@@ -41,10 +41,9 @@ view: account_date_fact {
       column: external_customer_id {}
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
-      column: conversionvalue { field: ad_impressions.total_conversion_value }
+      column: conversionvalue { field: ad_impressions.total_conversionvalue }
       column: cost { field: ad_impressions.total_cost }
       column: impressions { field: ad_impressions.total_impressions }
-      column: interactions { field: ad_impressions.total_interactions }
     }
   }
   dimension: _date {
@@ -83,10 +82,9 @@ view: account_week_fact {
       column: less_than_current_day_of_week { field: account_fact.less_than_current_day_of_week }
       column: clicks { field: account_fact.total_clicks }
       column: conversions { field: account_fact.total_conversions }
-      column: conversionvalue { field: account_fact.total_conversion_value }
+      column: conversionvalue { field: account_fact.total_conversionvalue }
       column: cost { field: account_fact.total_cost }
       column: impressions { field: account_fact.total_impressions }
-      column: interactions { field: account_fact.total_interactions }
     }
   }
   dimension: date_week {
@@ -134,10 +132,9 @@ view: account_month_fact {
       column: less_than_current_day_of_month { field: account_fact.less_than_current_day_of_month }
       column: clicks { field: account_fact.total_clicks }
       column: conversions { field: account_fact.total_conversions }
-      column: conversionvalue { field: account_fact.total_conversion_value }
+      column: conversionvalue { field: account_fact.total_conversionvalue }
       column: cost { field: account_fact.total_cost }
       column: impressions { field: account_fact.total_impressions }
-      column: interactions { field: account_fact.total_interactions }
     }
   }
   dimension: date_month {
@@ -185,10 +182,9 @@ view: account_quarter_fact {
       column: less_than_current_day_of_quarter { field: account_fact.less_than_current_day_of_quarter }
       column: clicks { field: account_fact.total_clicks }
       column: conversions { field: account_fact.total_conversions }
-      column: conversionvalue { field: account_fact.total_conversion_value }
+      column: conversionvalue { field: account_fact.total_conversionvalue }
       column: cost { field: account_fact.total_cost }
       column: impressions { field: account_fact.total_impressions }
-      column: interactions { field: account_fact.total_interactions }
     }
   }
   dimension: date_quarter {

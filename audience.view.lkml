@@ -13,19 +13,16 @@ view: audience {
   }
 
   dimension: ad_group_id {
-    type: number
     sql: ${TABLE}.AdGroupId ;;
     hidden:  yes
   }
 
   dimension: base_ad_group_id {
-    type: number
     sql: ${TABLE}.BaseAdGroupId ;;
     hidden:  yes
   }
 
   dimension: base_campaign_id {
-    type: number
     sql: ${TABLE}.BaseCampaignId ;;
     hidden:  yes
   }
@@ -41,7 +38,6 @@ view: audience {
   }
 
   dimension: campaign_id {
-    type: number
     sql: ${TABLE}.CampaignId ;;
     hidden:  yes
   }
@@ -78,7 +74,6 @@ view: audience {
   }
 
   dimension: criterion_id {
-    type: number
     sql: ${TABLE}.CriterionId ;;
     hidden:  yes
   }

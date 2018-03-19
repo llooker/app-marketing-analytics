@@ -1,5 +1,16 @@
+include: "customer.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
+
+explore: campaign {
+  hidden: yes
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${campaign.external_customer_id} = ${customer.external_customer_id} AND
+      ${campaign.date_date} = ${customer.date_date} ;;
+    relationship: many_to_one
+  }
+}
 
 view: campaign {
   extends: [date_base, google_adwords_base]
@@ -26,7 +37,6 @@ view: campaign {
   }
 
   dimension: bidding_strategy_id {
-    type: number
     sql: ${TABLE}.BiddingStrategyId ;;
     hidden: yes
   }
@@ -42,7 +52,6 @@ view: campaign {
   }
 
   dimension: budget_id {
-    type: number
     sql: ${TABLE}.BudgetId ;;
     hidden: yes
   }
@@ -54,7 +63,6 @@ view: campaign {
   }
 
   dimension: campaign_id {
-    type: number
     primary_key: yes
     sql: ${TABLE}.CampaignId ;;
     hidden: yes
@@ -205,7 +213,7 @@ view: campaign {
   measure: count {
     type: count_distinct
     sql: ${campaign_id} ;;
-    drill_fields: [campaign_name, campaign_basic_fact.total_impressions, campaign_basic_fact.total_interactions, campaign_basic_fact.total_conversions, campaign_basic_fact.total_cost_usd, campaign_basic_fact.average_interaction_rate, campaign_basic_fact.average_conversion_rate, campaign_basic_fact.average_cost_per_click, campaign_basic_fact.average_cost_per_conversion]
+    drill_fields: [campaign_name, campaign_basic_fact.total_impressions, campaign_basic_fact.total_clicks, campaign_basic_fact.total_conversions, campaign_basic_fact.total_cost, campaign_basic_fact.average_click_rate, campaign_basic_fact.average_conversion_rate, campaign_basic_fact.average_cost_per_click, campaign_basic_fact.average_cost_per_conversion]
   }
 
   dimension: amount_usd {

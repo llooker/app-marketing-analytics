@@ -1,4 +1,4 @@
-view: ad_metrics_comparison_base {
+view: ad_metrics_parent_comparison_base {
   extension: required
 
   measure: average_click_rate_ratio {

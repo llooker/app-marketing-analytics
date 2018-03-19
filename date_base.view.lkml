@@ -68,31 +68,30 @@ view: date_base {
   }
 
   dimension: less_than_current_day_of_quarter {
-    sql: ${date_day_of_quarter} <= ${current_day_of_quarter} ;;
-    hidden:  no
+    hidden: yes
     type: yesno
+    sql: ${date_day_of_quarter} <= ${current_day_of_quarter} ;;
   }
 
   dimension: less_than_current_day_of_month {
-    sql: ${date_day_of_month} <= ${current_day_of_month} ;;
-    type: yesno
     hidden:  yes
+    type: yesno
+    sql: ${date_day_of_month} <= ${current_day_of_month} ;;
   }
 
   dimension: less_than_current_day_of_week {
-    sql: ${date_day_of_week_index} <= ${current_day_of_week} ;;
     hidden:  yes
     type: yesno
+    sql: ${date_day_of_week_index} <= ${current_day_of_week} ;;
   }
 
   dimension: less_than_current_day_of_period {
+    hidden:  yes
     type: yesno
-    sql: CASE WHEN {% parameter period %} = "1 week ago" THEN ${less_than_current_day_of_week}
-        WHEN {% parameter period %} = "1 quarter ago" THEN ${less_than_current_day_of_quarter}
-        WHEN {% parameter period %} = "1 month ago" THEN ${less_than_current_day_of_month}
-        ELSE NULL
-        END;;
-    hidden: yes
+    sql: {% if period._parameter_value == "'1 week ago'" %}${less_than_current_day_of_week}
+      {% elsif period._parameter_value == "'1 month ago'" %}${less_than_current_day_of_month}
+      {% elsif period._parameter_value == "'1 quarter ago'" %}${less_than_current_day_of_quarter}
+      {% endif %} ;;
 }
 
   parameter: period {

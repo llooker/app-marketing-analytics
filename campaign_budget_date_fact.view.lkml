@@ -34,10 +34,8 @@ view: campaign_budget_date_fact {
     }
   }
   dimension: campaign_id {
-    type: number
   }
   dimension: external_customer_id {
-    type: number
   }
   dimension: _date {
     hidden: yes
@@ -86,7 +84,7 @@ view: campaign_budget_date_fact {
     sql: ${amount_usd} ;;
     value_format_name: usd_0
   }
-  measure: total_cost_usd {
+  measure: total_cost {
     type: sum
     sql: ${cost_usd} ;;
     value_format_name: usd_0

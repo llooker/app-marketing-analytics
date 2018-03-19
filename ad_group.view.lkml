@@ -1,5 +1,23 @@
+include: "campaign.view"
+include: "customer.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
+
+explore: ad_group {
+  hidden: yes
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_group.date_date} = ${campaign.date_date};;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_group.date_date} = ${customer.date_date} ;;
+    relationship: many_to_one
+  }
+}
 
 view: ad_group {
   extends: [date_base, google_adwords_base]
@@ -12,7 +30,6 @@ view: ad_group {
   }
 
   dimension: ad_group_id {
-    type: number
     primary_key: yes
     sql: ${TABLE}.AdGroupId ;;
     hidden: yes
@@ -67,7 +84,6 @@ view: ad_group {
   }
 
   dimension: bidding_strategy_id {
-    type: number
     sql: ${TABLE}.BiddingStrategyId ;;
     hidden: yes
   }
@@ -88,7 +104,6 @@ view: ad_group {
   }
 
   dimension: campaign_id {
-    type: number
     sql: ${TABLE}.CampaignId ;;
     hidden: yes
   }

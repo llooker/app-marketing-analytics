@@ -1,13 +1,37 @@
 include: "ad_criterion_base.view"
+include: "ad_group.view"
+include: "campaign.view"
+include: "customer.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
+
+explore: keyword {
+  hidden: yes
+  join: ad_group {
+    view_label: "Ad Groups"
+    sql_on: ${keyword.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${keyword.date_date} = ${ad_group.date_date} ;;
+    relationship: many_to_one
+  }
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${keyword.campaign_id} = ${campaign.campaign_id} AND
+      ${keyword.date_date} = ${campaign.date_date};;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${keyword.external_customer_id} = ${customer.external_customer_id} AND
+      ${keyword.date_date} = ${customer.date_date} ;;
+    relationship: many_to_one
+  }
+}
 
 view: keyword {
   extends: [ad_criterion_base, date_base, google_adwords_base]
   sql_table_name: adwords_v201609.Keyword_6747157124 ;;
 
   dimension: ad_group_id {
-    type: number
     sql: ${TABLE}.AdGroupId ;;
     hidden: yes
   }
@@ -23,7 +47,6 @@ view: keyword {
   }
 
   dimension: bidding_strategy_id {
-    type: number
     sql: ${TABLE}.BiddingStrategyId ;;
     hidden: yes
   }
@@ -44,7 +67,6 @@ view: keyword {
   }
 
   dimension: campaign_id {
-    type: number
     sql: ${TABLE}.CampaignId ;;
     hidden: yes
   }
@@ -94,7 +116,6 @@ view: keyword {
   }
 
   dimension: criterion_id {
-    type: number
     sql: ${TABLE}.CriterionId ;;
     hidden: yes
   }
