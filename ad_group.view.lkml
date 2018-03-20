@@ -115,22 +115,18 @@ view: ad_group {
   }
 
   dimension: cpc_bid {
-    hidden: yes
     type: string
-    sql: ${TABLE}.CpcBid ;;
+    sql: (${TABLE}.CpcBid / 1000000) ;;
   }
 
   dimension: cpm_bid {
-    hidden: yes
     type: number
-    value_format_name: id
-    sql: ${TABLE}.CpmBid ;;
+    sql: (${TABLE}.CpmBid / 1000000) ;;
   }
 
   dimension: cpv_bid {
-    hidden: yes
     type: string
-    sql: ${TABLE}.CpvBid ;;
+    sql: (${TABLE}.CpvBid / 1000000) ;;
   }
 
   dimension: enhanced_cpc_enabled {
@@ -157,9 +153,8 @@ view: ad_group {
   }
 
   dimension: target_cpa {
-    hidden: yes
     type: number
-    sql: ${TABLE}.TargetCpa ;;
+    sql: (${TABLE}.TargetCpa / 1000000) ;;
   }
 
   dimension: target_cpa_bid_source {
@@ -183,30 +178,6 @@ view: ad_group {
     type: count_distinct
     sql: ${ad_group_id} ;;
     drill_fields: [detail*]
-  }
-
-  dimension: cpc_bid_usd {
-    type: number
-    sql: (${cpc_bid} / 1000000)  ;;
-  }
-
-  dimension: cpm_bid_usd {
-    type: number
-    sql: (${cpm_bid} / 1000000) ;;
-  }
-
-  dimension: cpv_bid_usd {
-    type: number
-    sql: (${cpv_bid} / 1000000) ;;
-  }
-
-  dimension: target_cpa_usd {
-    type: number
-    sql: (${target_cpa} / 1000000) ;;
-  }
-
-  dimension_group: date {
-    hidden: yes
   }
 
   # ----- Detail ------

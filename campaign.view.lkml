@@ -28,7 +28,7 @@ view: campaign {
 
   dimension: amount {
     type: number
-    sql: ${TABLE}.Amount ;;
+    sql: (${TABLE}.Amount / 1000000) ;;
   }
 
   dimension: bid_type {
@@ -216,21 +216,9 @@ view: campaign {
     drill_fields: [campaign_name, campaign_basic_fact.total_impressions, campaign_basic_fact.total_clicks, campaign_basic_fact.total_conversions, campaign_basic_fact.total_cost, campaign_basic_fact.average_click_rate, campaign_basic_fact.average_conversion_rate, campaign_basic_fact.average_cost_per_click, campaign_basic_fact.average_cost_per_conversion]
   }
 
-  dimension: amount_usd {
-    description: "Daily Budget in USD"
-    type: number
-    sql: (${amount}  / 1000000) ;;
-  }
-
   measure: total_amount {
     type: sum
     sql: ${amount} ;;
-  }
-
-  measure: total_amount_usd {
-    type: sum
-    sql: ${amount_usd} ;;
-    value_format_name: usd_0
   }
 
   # ----- Detail ------

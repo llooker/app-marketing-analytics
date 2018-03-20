@@ -74,7 +74,7 @@ view: keyword {
   dimension: cpc_bid {
     hidden: yes
     type: number
-    sql: ${TABLE}.CpcBid ;;
+    sql: (${TABLE}.CpcBid / 1000000) ;;
   }
 
   dimension: cpc_bid_source {
@@ -85,7 +85,7 @@ view: keyword {
   dimension: cpm_bid {
     hidden: yes
     type: number
-    sql: ${TABLE}.CpmBid ;;
+    sql: (${TABLE}.CpmBid / 1000000) ;;
   }
 
   dimension: creative_quality_score {
@@ -248,24 +248,10 @@ view: keyword {
     hidden:  yes
   }
 
-  dimension_group: date {
-    hidden: yes
-  }
-
   measure: count {
     type: count_distinct
     sql: ${criterion_id} ;;
     drill_fields: [detail*, ad_group.detail*]
-  }
-
-  dimension: cpc_bid_usd {
-    type: number
-    sql: coalesce((${cpc_bid} / 1000000), ${ad_group.cpc_bid_usd}) ;;
-  }
-
-  dimension: cpm_bid_usd {
-    type: number
-    sql: coalesce((${cpm_bid} / 1000000), ${ad_group.cpm_bid_usd}) ;;
   }
 
   # ----- Detail ------
