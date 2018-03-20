@@ -100,7 +100,7 @@ explore: ads_insights_country {
 view: ads_insights_country {
   extends: ["stitch_base", "insights_base"]
 
-  sql_table_name: {{ _user_attributes["facebook_schema"] }}.ads_insights_country ;;
+  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.ads_insights_country ;;
 
   dimension: country {
     type: string

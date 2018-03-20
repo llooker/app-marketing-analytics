@@ -115,7 +115,7 @@ explore: adsets {
 view: adsets {
   extends: ["stitch_base"]
 
-  sql_table_name: {{ _user_attributes["facebook_schema"] }}.adsets ;;
+  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.adsets ;;
 
   dimension: id {
     primary_key: yes

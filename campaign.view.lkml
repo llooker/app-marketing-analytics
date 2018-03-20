@@ -14,7 +14,7 @@ explore: campaign {
 
 view: campaign {
   extends: [date_base, google_adwords_base]
-  sql_table_name: adwords_v201609.Campaign_6747157124 ;;
+  sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }} ;;
 
   dimension: advertising_channel_sub_type {
     type: string

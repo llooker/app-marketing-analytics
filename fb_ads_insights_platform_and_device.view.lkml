@@ -100,7 +100,7 @@ explore: ads_insights_platform_and_device {
 view: ads_insights_platform_and_device {
   extends: ["stitch_base", "insights_base"]
 
-  sql_table_name: {{ _user_attributes["facebook_schema"] }}.ads_insights_platform_and_device ;;
+  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.ads_insights_platform_and_device ;;
 
   dimension: impression_device {
     type: string
