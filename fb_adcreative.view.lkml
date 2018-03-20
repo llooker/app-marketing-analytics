@@ -61,7 +61,7 @@ explore: adcreative {
 view: adcreative {
   extends: ["stitch_base"]
 
-  sql_table_name: {{ _user_attributes["facebook_schema"] }}.adcreative ;;
+  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.adcreative ;;
 
   dimension: id {
     primary_key: yes

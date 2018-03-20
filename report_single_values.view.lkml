@@ -14,7 +14,7 @@ view: report_single_values {
             COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
             COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
           FROM
-            adwords_v201609.CampaignBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.CampaignBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
           AS ad_impressions
           WHERE
                   ((((TIMESTAMP(ad_impressions._DATA_DATE)) ) >= ((TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER))) AND ((TIMESTAMP(ad_impressions._DATA_DATE)) ) < ((TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL 3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING)))))))
@@ -27,11 +27,11 @@ view: report_single_values {
           campaign.CampaignName  AS campaign_campaign_name,
           ad_group.AdGroupName  AS ad_group_ad_group_name
         FROM
-          adwords_v201609.AdGroupBasicStats_6747157124
+          {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
         AS ad_impressions
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN campaign_avg_cpa ON ad_impressions.ExternalCustomerId = campaign_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = campaign_avg_cpa.campaign_id
@@ -51,7 +51,7 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
           COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
         FROM
-          adwords_v201609.CampaignBasicStats_6747157124
+          {{ _user_attributes["google_adwords_schema"] }}.CampaignBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
         AS ad_impressions
         WHERE
           ((((TIMESTAMP(ad_impressions._DATA_DATE)) ) >= ((TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL -3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING))))) AND ((TIMESTAMP(ad_impressions._DATA_DATE)) ) < ((TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL -3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING))) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL 3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL -3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING))) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING)))))))
@@ -63,11 +63,11 @@ view: report_single_values {
           campaign.CampaignName  AS campaign_campaign_name,
           ad_group.AdGroupName  AS ad_group_ad_group_name
         FROM
-          adwords_v201609.AdGroupBasicStats_6747157124
+          {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
         AS ad_impressions
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN campaign_avg_cpa ON ad_impressions.ExternalCustomerId = campaign_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = campaign_avg_cpa.campaign_id
@@ -94,7 +94,7 @@ view: report_single_values {
             COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
             COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
           FROM
-            adwords_v201609.AdGroupBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
           AS ad_impressions
           GROUP BY 1,2,3
         )
@@ -106,13 +106,13 @@ view: report_single_values {
           ad_group.AdGroupName  AS ad_group_ad_group_name,
           campaign.CampaignName  AS campaign_campaign_name
         FROM
-            adwords_v201609.KeywordBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.KeywordBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Keyword_6747157124  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Keyword_{{ _user_attributes["google_adwords_customer_id"] }}  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(keyword._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -137,7 +137,7 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
         FROM
 
-              adwords_v201609.AdGroupBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
 
             AS ad_impressions
 
@@ -150,13 +150,13 @@ view: report_single_values {
           ad_group.AdGroupName  AS ad_group_ad_group_name,
           campaign.CampaignName  AS campaign_campaign_name
         FROM
-            adwords_v201609.KeywordBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.KeywordBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Keyword_6747157124  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Keyword_{{ _user_attributes["google_adwords_customer_id"] }}  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(keyword._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -184,7 +184,7 @@ view: report_single_values {
             COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
             COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
           FROM
-            adwords_v201609.AdGroupBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
           AS ad_impressions
           GROUP BY 1,2,3
         )
@@ -202,13 +202,13 @@ view: report_single_values {
           ad_group.AdGroupName  AS ad_group_ad_group_name,
           campaign.CampaignName  AS campaign_campaign_name
         FROM
-            adwords_v201609.AdBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Ad_6747157124  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Ad_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -233,7 +233,7 @@ view: report_single_values {
               COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
               COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
             FROM
-              adwords_v201609.AdGroupBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
 
             GROUP BY 1,2,3
@@ -254,13 +254,13 @@ view: report_single_values {
             (COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(ad_impressions.Conversions ), 0)),0)  AS ad_impressions_average_cost_per_conversion,
             ((COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(ad_impressions.Conversions ), 0)),0)) / NULLIF(((COALESCE(SUM(ad_group_avg_cpa.cost_usd ), 0)) / NULLIF((COALESCE(SUM(ad_group_avg_cpa.conversions ), 0)),0)),0) AS ad_group_avg_cpa_cpa_compared_to_average_for_ad_group
           FROM
-              adwords_v201609.AdBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
               AS ad_impressions
-          LEFT JOIN adwords_v201609.Ad_6747157124  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
+          LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Ad_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
                 (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad._DATA_DATE))  AS DATE))
-          LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+          LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
                 (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-          LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+          LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
                 (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
           LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
                 ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -289,7 +289,7 @@ view: report_single_values {
             COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
             COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
           FROM
-            adwords_v201609.AdGroupBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
           AS ad_impressions
           WHERE
             ((((TIMESTAMP(ad_impressions._DATA_DATE)) ) >= ((TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER))) AND ((TIMESTAMP(ad_impressions._DATA_DATE)) ) < ((TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL 3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING)))))))
@@ -306,13 +306,13 @@ view: report_single_values {
           ((COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(ad_impressions.Conversions ), 0)),0)) / NULLIF(((COALESCE(SUM(ad_group_avg_cpa.cost_usd ), 0)) / NULLIF((COALESCE(SUM(ad_group_avg_cpa.conversions ), 0)),0)),0) AS ad_group_avg_cpa_cpa_compared_to_average_for_ad_group_keyword,
           COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
-            adwords_v201609.KeywordBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.KeywordBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Keyword_6747157124  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Keyword_{{ _user_attributes["google_adwords_customer_id"] }}  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(keyword._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -345,7 +345,7 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
         FROM
 
-              adwords_v201609.AdGroupBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
 
             AS ad_impressions
 
@@ -360,13 +360,13 @@ view: report_single_values {
           ad_group.AdGroupName  AS ad_group_ad_group_name,
           keyword.Criteria  AS keyword_criteria
         FROM
-            adwords_v201609.KeywordBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.KeywordBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Keyword_6747157124  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Keyword_{{ _user_attributes["google_adwords_customer_id"] }}  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(keyword._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -401,7 +401,7 @@ view: report_single_values {
             COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
             COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
           FROM
-            adwords_v201609.AdGroupBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
           AS ad_impressions
           GROUP BY 1,2,3
         )
@@ -419,13 +419,13 @@ view: report_single_values {
               , COALESCE(CONCAT(ad.HeadlinePart2, "\n"),"")
               ), 0, 50)  AS ad_creative
         FROM
-            adwords_v201609.AdBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Ad_6747157124  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Ad_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -456,7 +456,7 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
           COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
         FROM
-              adwords_v201609.AdGroupBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
         GROUP BY 1,2,3)
         SELECT
@@ -473,13 +473,13 @@ view: report_single_values {
               , COALESCE(CONCAT(ad.HeadlinePart2, "\n"),"")
               ), 0, 50)  AS ad_creative
         FROM
-            adwords_v201609.AdBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Ad_6747157124  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Ad_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -515,7 +515,7 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
         FROM
 
-              adwords_v201609.AdGroupBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
 
             AS ad_impressions
 
@@ -538,13 +538,13 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS ad_impressions_total_impressions,
           COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
-            adwords_v201609.AdBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Ad_6747157124  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Ad_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -568,7 +568,7 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
         FROM
 
-              adwords_v201609.AdGroupBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
 
             AS ad_impressions
 
@@ -596,13 +596,13 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS ad_impressions_total_impressions,
           COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
-            adwords_v201609.AdBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.AdBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Ad_6747157124  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Ad_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad ON ad.CreativeId = ad_impressions.CreativeId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -628,7 +628,7 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
           COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
         FROM
-              adwords_v201609.AdGroupBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
         GROUP BY 1,2,3)
         SELECT
@@ -643,13 +643,13 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS ad_impressions_total_impressions,
           COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
-            adwords_v201609.KeywordBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.KeywordBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Keyword_6747157124  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Keyword_{{ _user_attributes["google_adwords_customer_id"] }}  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(keyword._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND
@@ -672,7 +672,7 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS impressions,
           COALESCE(SUM(ad_impressions.Interactions ), 0) AS interactions
         FROM
-              adwords_v201609.AdGroupBasicStats_6747157124
+              {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
         WHERE
           ((((TIMESTAMP(ad_impressions._DATA_DATE)) ) >= ((TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL -3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING))))) AND ((TIMESTAMP(ad_impressions._DATA_DATE)) ) < ((TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL -3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING))) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL 3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP(CONCAT(CAST(DATE_ADD(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS DATE), INTERVAL -3 MONTH) AS STRING), ' ', CAST(TIME(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CAST(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY) AS TIMESTAMP), QUARTER) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING))) AS TIMESTAMP), QUARTER) AS TIMESTAMP)) AS STRING)))))))
@@ -689,13 +689,13 @@ view: report_single_values {
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS ad_impressions_total_impressions,
           COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
-            adwords_v201609.KeywordBasicStats_6747157124
+            {{ _user_attributes["google_adwords_schema"] }}.KeywordBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
             AS ad_impressions
-        LEFT JOIN adwords_v201609.Keyword_6747157124  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Keyword_{{ _user_attributes["google_adwords_customer_id"] }}  AS keyword ON (CONCAT(CAST(ad_impressions.AdGroupId AS STRING), "-", CAST(ad_impressions.CriterionId AS STRING))) = (CONCAT(CAST(keyword.AdGroupId AS STRING), "-", CAST(keyword.CriterionId AS STRING))) AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(keyword._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.AdGroup_6747157124  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }}  AS ad_group ON ad_impressions.AdGroupId = ad_group.AdGroupId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE))
-        LEFT JOIN adwords_v201609.Campaign_6747157124  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
+        LEFT JOIN {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }}  AS campaign ON ad_impressions.CampaignId = campaign.CampaignId AND
               (CAST((TIMESTAMP(ad_impressions._DATA_DATE))  AS DATE)) = (CAST((TIMESTAMP(campaign._DATA_DATE))  AS DATE))
         LEFT JOIN ad_group_avg_cpa ON ad_impressions.ExternalCustomerId = ad_group_avg_cpa.external_customer_id AND
               ad_impressions.CampaignId = ad_group_avg_cpa.campaign_id AND

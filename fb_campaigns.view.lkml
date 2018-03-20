@@ -17,7 +17,7 @@ explore: campaigns {
 view: campaigns {
   extends: ["stitch_base"]
 
-  sql_table_name: {{ _user_attributes["facebook_schema"] }}.campaigns ;;
+  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.campaigns ;;
 
   dimension: id {
     primary_key: yes

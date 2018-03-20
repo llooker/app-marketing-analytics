@@ -106,7 +106,7 @@ explore: ads_insights {
 view: ads_insights {
   extends: ["stitch_base", "insights_base"]
 
-  sql_table_name: {{ _user_attributes["facebook_schema"] }}.ads_insights ;;
+  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.ads_insights ;;
 
   dimension: call_to_action_clicks {
     type: number

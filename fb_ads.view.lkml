@@ -152,7 +152,7 @@ explore: ads {
 view: ads {
   extends: ["stitch_base"]
 
-  sql_table_name: {{ _user_attributes["facebook_schema"] }}.ads ;;
+  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.ads ;;
 
   dimension: id {
     primary_key: yes

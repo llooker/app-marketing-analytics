@@ -21,7 +21,7 @@ explore: ad_group {
 
 view: ad_group {
   extends: [date_base, google_adwords_base]
-  sql_table_name: adwords_v201609.AdGroup_6747157124 ;;
+  sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }} ;;
 
   dimension: ad_group_desktop_bid_modifier {
     type: number

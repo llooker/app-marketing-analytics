@@ -100,7 +100,7 @@ explore: ads_insights_age_and_gender {
 view: ads_insights_age_and_gender {
   extends: ["stitch_base", "insights_base"]
 
-  sql_table_name: {{ _user_attributes["facebook_schema"] }}.ads_insights_age_and_gender ;;
+  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.ads_insights_age_and_gender ;;
 
   dimension: age {
     type: string
