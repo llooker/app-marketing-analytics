@@ -10,7 +10,7 @@
     fields:
     - ad_impressions.average_cost_per_conversion
     - ad_impressions.date_week
-    - ad_impressions.total_cost_usd
+    - ad_impressions.total_cost
     sorts:
     - ad_impressions.date_week desc
     limit: 500
@@ -90,9 +90,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.total_cost_usd
+      - id: ad_impressions.total_cost
         name: Cost
-        axisId: ad_impressions.total_cost_usd
+        axisId: ad_impressions.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 93
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -1050,8 +1050,8 @@
     type: field_filter
     default_value: this quarter
     model: looker_app_google_adwords
-    explore: kpis_this_period
-    field: kpis_this_period.this_timeframe
+    explore: ad_group_fact_this_timeframe
+    field: fact.this_timeframe
     listens_to_filters: []
     allow_multiple_values: true
     required: false
@@ -1060,8 +1060,8 @@
     type: field_filter
     default_value: 1 quarter ago
     model: looker_app_google_adwords
-    explore: kpis_this_period
-    field: kpis_last_period.last_timeframe
+    explore: ad_group_fact_this_timeframe
+    field: ad_group_fact_last_timeframe.last_timeframe
     listens_to_filters: []
     allow_multiple_values: true
     required: false

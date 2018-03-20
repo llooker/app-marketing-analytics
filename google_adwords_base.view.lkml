@@ -14,8 +14,12 @@ view: google_adwords_base {
   }
 
   dimension: external_customer_id {
-    type: number
     sql: ${TABLE}.ExternalCustomerId ;;
+    hidden: yes
+  }
+
+  dimension: external_customer_id_string {
+    sql: CAST(${TABLE}.ExternalCustomerId as STRING) ;;
     hidden: yes
   }
 

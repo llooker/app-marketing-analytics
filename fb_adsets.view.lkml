@@ -1,4 +1,116 @@
-include: "fb_stitch_base.view.lkml"
+include: "fb_stitch_base.view"
+include: "fb_campaigns.view"
+
+explore: adsets {
+  join: campaigns {
+    type: left_outer
+    sql_on: ${adsets.campaign_id} = ${campaigns.id} ;;
+    relationship: many_to_one
+  }
+
+  join: adsets__bid_info {
+    view_label: "Adsets: Bid Info"
+    sql: LEFT JOIN UNNEST([${adsets.bid_info}]) as adsets__bid_info ;;
+    relationship: one_to_one
+  }
+
+  join: adsets__targeting {
+    view_label: "Adsets: Targeting"
+    sql: LEFT JOIN UNNEST([${adsets.targeting}]) as adsets__targeting ;;
+    relationship: one_to_one
+  }
+
+  join: adsets__targeting__flexible_spec__work_positions {
+    view_label: "Adsets: Targeting Flexible Spec Work Positions"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__flexible_spec.work_positions}) as adsets__targeting__flexible_spec__work_positions ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__flexible_spec__friends_of_connections {
+    view_label: "Adsets: Targeting Flexible Spec Friends Of Connections"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__flexible_spec.friends_of_connections}) as adsets__targeting__flexible_spec__friends_of_connections ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__flexible_spec__behaviors {
+    view_label: "Adsets: Targeting Flexible Spec Behaviors"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__flexible_spec.behaviors}) as adsets__targeting__flexible_spec__behaviors ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__flexible_spec__interests {
+    view_label: "Adsets: Targeting Flexible Spec Interests"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__flexible_spec.interests}) as adsets__targeting__flexible_spec__interests ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__flexible_spec__connections {
+    view_label: "Adsets: Targeting Flexible Spec Connections"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__flexible_spec.connections}) as adsets__targeting__flexible_spec__connections ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__flexible_spec__work_employers {
+    view_label: "Adsets: Targeting Flexible Spec Work Employers"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__flexible_spec.work_employers}) as adsets__targeting__flexible_spec__work_employers ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__geo_locations__regions {
+    view_label: "Adsets: Targeting Geo Locations Regions"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__geo_locations.regions}) as adsets__targeting__geo_locations__regions ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__geo_locations {
+    view_label: "Adsets: Targeting Geo Locations"
+    sql: LEFT JOIN UNNEST([${adsets__targeting.geo_locations}]) as adsets__targeting__geo_locations ;;
+    relationship: one_to_one
+  }
+
+  join: adsets__targeting__geo_locations__cities {
+    view_label: "Adsets: Targeting Geo Locations Cities"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__geo_locations.cities}) as adsets__targeting__geo_locations__cities ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__geo_locations__countries {
+    view_label: "Ads: Targeting Geo Locations Countries"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__geo_locations.countries}) as adsets__targeting__geo_locations__countries ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__geo_locations__location_types {
+    view_label: "Ads: Targeting Geo Locations Location Types"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__geo_locations.location_types}) as adsets__targeting__geo_locations__location_types ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__geo_locations__zips {
+    view_label: "Adsets: Targeting Geo Locations Zips"
+    sql: LEFT JOIN UNNEST(${adsets__targeting__geo_locations.zips}) as adsets__targeting__geo_locations__zips ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__targeting__custom_audiences {
+    view_label: "Adsets: Targeting Custom Audiences"
+    sql: LEFT JOIN UNNEST(${adsets__targeting.custom_audiences}) as adsets__targeting__custom_audiences ;;
+    relationship: one_to_many
+  }
+
+  join: adsets__promoted_object {
+    view_label: "Adsets: Promoted Object"
+    sql: LEFT JOIN UNNEST([${adsets.promoted_object}]) as adsets__promoted_object ;;
+    relationship: one_to_one
+  }
+
+  join: adsets__targeting__flexible_spec {
+    view_label: "Adsets: Targeting Flexible Spec"
+    sql: LEFT JOIN UNNEST([${adsets__targeting.flexible_spec}]) as adsets__targeting__flexible_spec ;;
+    relationship: one_to_one
+  }
+}
+
 
 view: adsets {
   extends: ["stitch_base"]

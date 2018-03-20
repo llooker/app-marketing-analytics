@@ -14,15 +14,7 @@ view: expected_conversions_base {
     type: number
     hidden: yes
   }
-  dimension: cost_usd {
-    type: number
-    hidden: yes
-  }
   dimension: impressions {
-    type: number
-    hidden: yes
-  }
-  dimension: interactions {
     type: number
     hidden: yes
   }
@@ -38,25 +30,15 @@ view: expected_conversions_base {
     drill_fields: [total_clicks]
     hidden: yes
   }
-  measure: total_interactions {
-    type: sum
-    sql: ${interactions} ;;
-    drill_fields: [total_interactions]
-    hidden: yes
-  }
   measure: total_conversions {
     type: sum
     sql: ${conversions} ;;
     drill_fields: [total_conversions]
     hidden: yes
   }
-  measure: total_cost_usd {
-    type: sum
-    sql: ${cost_usd} ;;
-    drill_fields: [total_cost_usd]
-    hidden: yes
-  }
   measure: total_cost {
+    type: sum
+    sql: ${cost} ;;
     drill_fields: [total_cost]
     hidden: yes
   }
@@ -68,11 +50,9 @@ view: account_avg_cpa {
     explore_source: ad_impressions {
       column: external_customer_id {}
       column: cost { field: ad_impressions.total_cost }
-      column: cost_usd { field: ad_impressions.total_cost_usd }
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
       column: impressions { field: ad_impressions.total_impressions }
-      column: interactions { field: ad_impressions.total_interactions }
     bind_filters: {
       to_field: ad_impressions.date_date
       from_field: ad_impressions.date_date
@@ -81,7 +61,6 @@ view: account_avg_cpa {
   }
 
   dimension: external_customer_id {
-    type: string
     primary_key: yes
     hidden: yes
   }
@@ -92,16 +71,16 @@ view: account_avg_cpa {
     view_label: "Ad Stats"
     hidden: yes
     type: number
-    sql: ${total_cost_usd} / NULLIF(${total_conversions},0);;
+    sql: ${total_cost} / NULLIF(${total_conversions},0);;
     value_format_name: usd
   }
 
   measure: expected_conversions_for_campaign {
     label: "Expected Conversions"
-    view_label: "Campaigns"
+    view_label: "Campaign"
     description: "Cost divided by average CPA for the account"
     type: number
-    sql: ${ad_impressions.total_cost_usd} / NULLIF(${average_cpa_of_the_account},0) ;;
+    sql: ${ad_impressions.total_cost} / NULLIF(${average_cpa_of_the_account},0) ;;
     value_format_name: decimal_2
   }
 }
@@ -114,11 +93,9 @@ view: campaign_avg_cpa {
       column: external_customer_id {}
       column: campaign_id {}
       column: cost { field: ad_impressions.total_cost }
-      column: cost_usd { field: ad_impressions.total_cost_usd }
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
       column: impressions { field: ad_impressions.total_impressions }
-      column: interactions { field: ad_impressions.total_interactions }
       bind_filters: {
         to_field: ad_impressions.date_date
         from_field: ad_impressions.date_date
@@ -127,17 +104,14 @@ view: campaign_avg_cpa {
   }
 
   dimension: id {
-    type: string
     sql: CONCAT(${TABLE}.external_customer_id, ${TABLE}.campaign_id) ;;
     primary_key: yes
     hidden: yes
   }
   dimension: external_customer_id {
-    type: number
     hidden: yes
   }
   dimension: campaign_id {
-    type: number
     hidden: yes
   }
 
@@ -147,7 +121,7 @@ view: campaign_avg_cpa {
     view_label: "Ad Groups"
     hidden: yes
     type: number
-    sql: ${total_cost_usd} / NULLIF(${total_conversions},0);;
+    sql: ${total_cost} / NULLIF(${total_conversions},0);;
     value_format_name: usd
   }
 
@@ -184,7 +158,7 @@ view: campaign_avg_cpa {
     view_label: "Ad Groups"
     description: "Cost divided by average CPA of the campaign"
     type: number
-    sql: ${ad_impressions.total_cost_usd} / NULLIF(${campaign_avg_cpa.average_cpa_of_campaign},0) ;;
+    sql: ${ad_impressions.total_cost} / NULLIF(${campaign_avg_cpa.average_cpa_of_campaign},0) ;;
     value_format_name: decimal_2
   }
 }
@@ -198,11 +172,9 @@ view: ad_group_avg_cpa {
       column: campaign_id {}
       column: ad_group_id {}
       column: cost { field: ad_impressions.total_cost }
-      column: cost_usd { field: ad_impressions.total_cost_usd }
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
       column: impressions { field: ad_impressions.total_impressions }
-      column: interactions { field: ad_impressions.total_interactions }
     bind_filters: {
       to_field: ad_impressions.date_date
       from_field: ad_impressions.date_date
@@ -210,21 +182,17 @@ view: ad_group_avg_cpa {
   }}
 
   dimension: id {
-    type: string
     sql: CONCAT(${TABLE}.external_customer_id, ${TABLE}.campaign_id, ${TABLE}.ad_group_id) ;;
     primary_key: yes
     hidden: yes
   }
   dimension: external_customer_id {
-    type: number
     hidden: yes
   }
   dimension: ad_group_id {
-    type: number
     hidden: yes
   }
   dimension: campaign_id {
-    type: number
     hidden: yes
   }
 
@@ -234,7 +202,7 @@ view: ad_group_avg_cpa {
     view_label: "Keywords"
     hidden: yes
     type: number
-    sql: ${total_conversions} / NULLIF(${total_interactions},0);;
+    sql: ${total_conversions} / NULLIF(${total_clicks},0);;
     value_format_name: percent_2
   }
 
@@ -244,7 +212,7 @@ view: ad_group_avg_cpa {
     view_label: "Ads"
     hidden: yes
     type: number
-    sql: ${total_cost_usd} / NULLIF(${total_conversions},0);;
+    sql: ${total_cost} / NULLIF(${total_conversions},0);;
     value_format_name: usd
   }
 
@@ -281,7 +249,7 @@ view: ad_group_avg_cpa {
     view_label: "Ads"
     description: "Cost divided by average CPA of the Ad Group"
     type: number
-    sql: ${ad_impressions.total_cost_usd} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
+    sql: ${ad_impressions.total_cost} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
     value_format_name: decimal_2
   }
 
@@ -290,7 +258,7 @@ view: ad_group_avg_cpa {
       view_label: "Keyword"
       description: "Cost divided by average CPA of the Ad Group"
       type: number
-      sql: ${ad_impressions.total_cost_usd} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
+      sql: ${ad_impressions.total_cost} / NULLIF(${ad_group_avg_cpa.average_cpa_of_ad_group},0) ;;
       value_format_name: decimal_2
     }
 

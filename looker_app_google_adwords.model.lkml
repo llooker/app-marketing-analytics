@@ -12,12 +12,11 @@ include: "campaign_fact.view"
 include: "customer.view"
 include: "expected_conversions.view"
 include: "keyword.view"
-include: "kpis_last_period.view"
-include: "kpis_this_period.view"
 include: "ad_impressions.view"
-include: "period_fact.view"
 include: "report_single_values.view"
 include: "recent_changes.view"
+
+include: "combined_ad_impressions.view"
 
 # include all the dashboards
 include: "ad_group_performance.dashboard"
@@ -67,7 +66,7 @@ explore: ad_impressions {
     relationship: many_to_one
   }
   join: campaign {
-    view_label: "Campaigns"
+    view_label: "Campaign"
     sql_on: ${ad_impressions.campaign_id} = ${campaign.campaign_id} AND
       ${ad_impressions.date_date} = ${campaign.date_date};;
     relationship: many_to_one
@@ -98,43 +97,6 @@ explore: ad_impressions {
   }
 }
 
-## Entity tables are daily snapshots
-explore: campaign {
-  hidden: yes
-  join: customer {
-    view_label: "Customer"
-    sql_on: ${campaign.external_customer_id} = ${customer.external_customer_id} AND
-      ${campaign.date_date} = ${customer.date_date} ;;
-    relationship:  many_to_one
-  }
-}
-
-explore: ad_group {
-  hidden: yes
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
-      ${ad_group.date_date} = ${campaign.date_date} ;;
-    relationship: many_to_one
-  }
-  join: customer {
-    view_label: "Customer"
-    sql_on: ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
-      ${ad_group.date_date} = ${customer.date_date} ;;
-    relationship:  many_to_one
-  }
-}
-
-explore: kpis_this_period {
-  label: "Kpis Period Over Period"
-  join: kpis_last_period {
-    sql_on: ${kpis_this_period.external_customer_id_this_period} = ${kpis_last_period.external_customer_id_last_period} AND
-    ${kpis_this_period.campaign_name} = ${kpis_last_period.campaign_name} AND
-    ${kpis_this_period.ad_group_name} = ${kpis_last_period.ad_group_name};;
-    relationship: one_to_one
-  }
-}
-
 explore: report_single_values {
   label: "Report Single Values"
 }
@@ -142,7 +104,7 @@ explore: report_single_values {
 explore: status_changes  {
 
   join: campaign {
-    view_label: "Campaigns"
+    view_label: "Campaign"
     sql_on: ${status_changes.campaign_id} = ${campaign.campaign_id} AND
       ${status_changes.external_customer_id} = ${campaign.external_customer_id};;
     relationship: many_to_one
@@ -155,13 +117,15 @@ explore: status_changes  {
   }
   join: ad {
     view_label: "Ads"
-    sql_on: ${ad.creative_id} = ${status_changes.ad_creative_id}  AND
+    sql_on: ${status_changes.creative_id} = ${ad.creative_id} AND
+      ${status_changes.ad_group_id} = ${ad.ad_group_id} AND
       ${status_changes.external_customer_id} = ${ad.external_customer_id};;
     relationship:  many_to_one
   }
   join: keyword {
     view_label: "Keywords"
-    sql_on: ${status_changes.keyword_criterion_id} = ${keyword.criterion_id} AND
+    sql_on: ${status_changes.criterion_id} = ${keyword.criterion_id} AND
+      ${status_changes.ad_group_id} = ${keyword.ad_group_id} AND
       ${status_changes.external_customer_id} = ${keyword.external_customer_id} ;;
     relationship: many_to_one
   }

@@ -33,6 +33,22 @@ view: insights_base {
     value_format_name: usd_0
   }
 
+  measure: total_actions {
+    type: sum
+    sql: ${actions_dim} ;;
+    label: "Actions"
+    description: "Total actions."
+    value_format_name: decimal_0
+  }
+
+  measure: total_action_value {
+    type: sum
+    sql: ${action_value} ;;
+    label: "Action Value"
+    description: "Total action value."
+    value_format_name: usd_0
+  }
+
   measure: average_cost_per_impression {
     label: "CPM"
     description: "Average cost per 1000 ad impressions viewed."
@@ -115,61 +131,73 @@ view: insights_base {
   }
 
   dimension: canvas_avg_view_percent {
+    hidden: yes
     type: number
     sql: ${TABLE}.canvas_avg_view_percent ;;
   }
 
   dimension: canvas_avg_view_time {
+    hidden: yes
     type: number
     sql: ${TABLE}.canvas_avg_view_time ;;
   }
 
   dimension: clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.clicks ;;
   }
 
   dimension: cost_per_inline_link_click {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost_per_inline_link_click ;;
   }
 
   dimension: cost_per_inline_post_engagement {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost_per_inline_post_engagement ;;
   }
 
   dimension: cost_per_total_action {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost_per_total_action ;;
   }
 
   dimension: cost_per_unique_click {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost_per_unique_click ;;
   }
 
   dimension: cost_per_unique_inline_link_click {
+    hidden: yes
     type: number
     sql: ${TABLE}.cost_per_unique_inline_link_click ;;
   }
 
   dimension: cpc {
+    hidden: yes
     type: number
     sql: ${TABLE}.cpc ;;
   }
 
   dimension: cpm {
+    hidden: yes
     type: number
     sql: ${TABLE}.cpm ;;
   }
 
   dimension: cpp {
+    hidden: yes
     type: number
     sql: ${TABLE}.cpp ;;
   }
 
   dimension: ctr {
+    hidden: yes
     type: number
     sql: ${TABLE}.ctr ;;
   }
@@ -205,26 +233,31 @@ view: insights_base {
   }
 
   dimension: frequency {
+    hidden: yes
     type: number
     sql: ${TABLE}.frequency ;;
   }
 
   dimension: impressions {
+    hidden: yes
     type: number
     sql: ${TABLE}.impressions ;;
   }
 
   dimension: inline_link_click_ctr {
+    hidden: yes
     type: number
     sql: ${TABLE}.inline_link_click_ctr ;;
   }
 
   dimension: inline_link_clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.inline_link_clicks ;;
   }
 
   dimension: inline_post_engagement {
+    hidden: yes
     type: number
     sql: ${TABLE}.inline_post_engagement ;;
   }
@@ -235,41 +268,49 @@ view: insights_base {
   }
 
   dimension: reach {
+    hidden: yes
     type: number
     sql: ${TABLE}.reach ;;
   }
 
   dimension: social_clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.social_clicks ;;
   }
 
   dimension: social_impressions {
+    hidden: yes
     type: number
     sql: ${TABLE}.social_impressions ;;
   }
 
   dimension: social_reach {
+    hidden: yes
     type: number
     sql: ${TABLE}.social_reach ;;
   }
 
   dimension: spend {
+    hidden: yes
     type: number
     sql: ${TABLE}.spend ;;
   }
 
-  dimension: total_action_value {
+  dimension: action_value {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_action_value ;;
   }
 
-  dimension: total_actions {
+  dimension: actions_dim {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_actions ;;
   }
 
   dimension: total_unique_actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.total_unique_actions ;;
   }
@@ -280,31 +321,37 @@ view: insights_base {
   }
 
   dimension: unique_clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.unique_clicks ;;
   }
 
   dimension: unique_ctr {
+    hidden: yes
     type: number
     sql: ${TABLE}.unique_ctr ;;
   }
 
   dimension: unique_inline_link_click_ctr {
+    hidden: yes
     type: number
     sql: ${TABLE}.unique_inline_link_click_ctr ;;
   }
 
   dimension: unique_inline_link_clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.unique_inline_link_clicks ;;
   }
 
   dimension: unique_link_clicks_ctr {
+    hidden: yes
     type: number
     sql: ${TABLE}.unique_link_clicks_ctr ;;
   }
 
   dimension: unique_social_clicks {
+    hidden: yes
     type: number
     sql: ${TABLE}.unique_social_clicks ;;
   }
@@ -355,6 +402,7 @@ view: insights_base {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }

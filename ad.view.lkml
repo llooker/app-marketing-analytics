@@ -1,5 +1,32 @@
+include: "ad_group.view"
+include: "campaign.view"
+include: "customer.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
+
+explore: ad {
+  hidden: yes
+
+  join: ad_group {
+    view_label: "Ad Group"
+    sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${ad.date_date} = ${ad_group.date_date};;
+    relationship: many_to_one
+
+  }
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_group.date_date} = ${campaign.date_date};;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_group.date_date} = ${customer.date_date} ;;
+    relationship: many_to_one
+  }
+}
 
 view: ad {
   extends: [date_base, google_adwords_base]
@@ -16,7 +43,6 @@ view: ad {
   }
 
   dimension: ad_group_id {
-    type: number
     sql: ${TABLE}.AdGroupId ;;
     hidden: yes
   }
@@ -38,7 +64,6 @@ view: ad {
   }
 
   dimension: campaign_id {
-    type: number
     sql: ${TABLE}.CampaignId ;;
     hidden: yes
   }
@@ -97,7 +122,6 @@ view: ad {
   }
 
   dimension: creative_id {
-    type: number
     primary_key: yes
     sql: ${TABLE}.CreativeId ;;
     hidden: yes
@@ -142,13 +166,11 @@ view: ad {
   }
 
   dimension: enhanced_display_creative_logo_image_media_id {
-    type: number
     sql: ${TABLE}.EnhancedDisplayCreativeLogoImageMediaId ;;
     hidden: yes
   }
 
   dimension: enhanced_display_creative_marketing_image_media_id {
-    type: number
     sql: ${TABLE}.EnhancedDisplayCreativeMarketingImageMediaId ;;
     hidden: yes
   }

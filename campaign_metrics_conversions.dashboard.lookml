@@ -1039,9 +1039,9 @@
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
-    explore: kpis_this_period
+    explore: ad_group_fact_this_timeframe
     listens_to_filters: []
-    field: kpis_this_period.this_timeframe
+    field: fact.this_timeframe
   - name: Last Timeframe
     title: Last Timeframe
     type: field_filter
@@ -1049,9 +1049,9 @@
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
-    explore: kpis_this_period
+    explore: ad_group_fact_this_timeframe
     listens_to_filters: []
-    field: kpis_last_period.last_timeframe
+    field: ad_group_fact_last_timeframe.last_timeframe
   - name: Campaign
     title: Campaign
     type: field_filter

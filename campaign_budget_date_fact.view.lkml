@@ -34,10 +34,8 @@ view: campaign_budget_date_fact {
     }
   }
   dimension: campaign_id {
-    type: number
   }
   dimension: external_customer_id {
-    type: number
   }
   dimension: _date {
     hidden: yes
@@ -46,22 +44,14 @@ view: campaign_budget_date_fact {
   dimension: budget_id {}
   dimension: amount {}
   dimension: cost {}
-  dimension: amount_usd {
-    type: number
-    sql: (${amount} / 1000000) ;;
-  }
-  dimension: cost_usd {
-    type: number
-    sql: (${cost} / 1000000) ;;
-  }
   dimension: remaining_budget {
     type: number
-    sql: ${amount_usd} - ${cost_usd} ;;
+    sql: ${amount} - ${cost} ;;
     value_format_name: usd_0
   }
   dimension: percent_remaining_budget {
     type: number
-    sql: ${remaining_budget} / ${amount_usd} ;;
+    sql: ${remaining_budget} / ${amount} ;;
     value_format_name: percent_2
   }
   dimension: percent_used_budget {
@@ -81,14 +71,14 @@ view: campaign_budget_date_fact {
     description: "Daily spend within 20% of campaign budget"
     sql:  ${percent_remaining_budget} <= .2 ;;
   }
-  measure: total_amount_usd {
+  measure: total_amount {
     type: sum
-    sql: ${amount_usd} ;;
+    sql: ${amount} ;;
     value_format_name: usd_0
   }
-  measure: total_cost_usd {
+  measure: total_cost {
     type: sum
-    sql: ${cost_usd} ;;
+    sql: ${cost} ;;
     value_format_name: usd_0
   }
   measure: count_constrained_budget_days {

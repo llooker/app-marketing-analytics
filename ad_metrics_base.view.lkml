@@ -4,57 +4,26 @@ view: ad_metrics_base {
   dimension: clicks {
     hidden: yes
     type: number
-    sql: ${TABLE}.Clicks ;;
   }
 
   dimension: conversions {
     hidden: yes
     type: number
-    sql: ${TABLE}.Conversions ;;
   }
 
-  dimension: conversion_value {
+  dimension: conversionvalue {
     hidden: yes
     type: number
-    sql: ${TABLE}.ConversionValue ;;
   }
 
   dimension: cost {
     hidden: yes
     type: number
-    sql: ${TABLE}.Cost ;;
   }
 
   dimension: impressions {
     hidden: yes
     type: number
-    sql: ${TABLE}.Impressions ;;
-  }
-
-  dimension: interactions {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.Interactions ;;
-  }
-
-  dimension: average_position {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.AveragePosition ;;
-  }
-
-  dimension: cost_usd {
-    hidden: yes
-    type: number
-    sql: (${cost} / 1000000) ;;
-  }
-
-  measure: average_interaction_rate {
-    label: "Interaction Rate"
-    description: "Percent of people that interact with an ad."
-    type: number
-    sql: ${total_interactions}*1.0/nullif(${total_impressions},0) ;;
-    value_format_name: percent_2
   }
 
   measure: average_click_rate {
@@ -70,7 +39,7 @@ view: ad_metrics_base {
     label: "Cost per Conversion"
     description: "Cost per conversion."
     type: number
-    sql: ${total_cost_usd}*1.0 / NULLIF(${total_conversions},0) ;;
+    sql: ${total_cost}*1.0 / NULLIF(${total_conversions},0) ;;
     value_format_name: usd
   }
 
@@ -78,28 +47,16 @@ view: ad_metrics_base {
     label: "Cost per Click"
     description: "Average cost per ad click."
     type: number
-    sql: ${total_cost_usd}*1.0 / NULLIF(${total_clicks},0) ;;
+    sql: ${total_cost}*1.0 / NULLIF(${total_clicks},0) ;;
     value_format_name: usd
     drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_cost_per_click]
-  }
-
-  measure: average_cost_per_interaction {
-    label: "Cost per Interaction"
-    description: "Average cost per interaction with an ad."
-    type: number
-    sql: ${total_cost_usd}*1.0 / NULLIF(${total_interactions},0) ;;
-    value_format_name: usd
-    link: {
-      label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_cost_per_interaction&f[ad_impressions.date_date]=this quarter"
-    }
   }
 
   measure: average_cost_per_impression {
     label: "Cost per Impression"
     description: "Average cost per ad impression viewed."
     type: number
-    sql: ${total_cost_usd}*1.0 / NULLIF(${total_impressions},0) ;;
+    sql: ${total_cost}*1.0 / NULLIF(${total_impressions},0) ;;
     value_format_name: usd
   }
 
@@ -107,23 +64,15 @@ view: ad_metrics_base {
     label: "Conversion Rate"
     description: "Percent of people that convert after they interact with an ad."
     type: number
-    sql: ${total_conversions}*1.0 / NULLIF(${total_interactions},0) ;;
+    sql: ${total_conversions}*1.0 / NULLIF(${total_clicks},0) ;;
     value_format_name: percent_2
     drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_conversion_rate]
   }
 
-  measure: weighted_average_position {
-    label: "Average Position"
-    description: "Average auction position."
-    type: number
-    sql: SUM(${average_position}*${impressions}) / NULLIF(${total_impressions},0) ;;
-    value_format_name: decimal_0
-  }
-
   measure: cumulative_spend {
     type: running_total
-    sql: ${total_cost_usd} ;;
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost_usd]
+    sql: ${total_cost} ;;
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost]
     value_format_name: usd_0
     direction: "column"
   }
@@ -131,7 +80,7 @@ view: ad_metrics_base {
   measure: cumulative_conversions {
     type: running_total
     sql: ${total_conversions} ;;
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost_usd]
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost]
     value_format_name: decimal_0
     direction: "column"
   }
@@ -153,25 +102,19 @@ view: ad_metrics_base {
     value_format_name: decimal_0
   }
 
-  measure: total_conversion_value {
+  measure: total_conversionvalue {
     label: "Conversion Value"
     description: "Total conversion value."
     type: sum
-    sql: ${conversion_value} ;;
+    sql: ${conversionvalue} ;;
     value_format_name: decimal_0
   }
 
   measure: total_cost {
-    hidden: yes
-    type: sum
-    sql: ${cost} ;;
-  }
-
-  measure: total_cost_usd {
     label: "Cost"
     description: "Total cost."
     type: sum
-    sql: ${cost_usd} ;;
+    sql: ${cost} ;;
     value_format_name: usd_0
   }
 
@@ -180,15 +123,6 @@ view: ad_metrics_base {
     description: "Total ad impressions."
     type:  sum
     sql:  ${impressions} ;;
-    drill_fields: [external_customer_id, total_impressions]
-    value_format_name: decimal_0
-  }
-
-  measure: total_interactions {
-    label: "Interactions"
-    description: "Total ad interactions."
-    type:  sum
-    sql:  ${interactions} ;;
     drill_fields: [external_customer_id, total_impressions]
     value_format_name: decimal_0
   }

@@ -1,5 +1,19 @@
 include: "fb_stitch_base.view.lkml"
 
+explore: campaigns {
+  join: campaigns__ads__data {
+    view_label: "Campaigns: Ads Data"
+    sql: LEFT JOIN UNNEST(${campaigns__ads.data}) as campaigns__ads__data ;;
+    relationship: one_to_many
+  }
+
+  join: campaigns__ads {
+    view_label: "Campaigns: Ads"
+    sql: LEFT JOIN UNNEST([${campaigns.ads}]) as campaigns__ads ;;
+    relationship: one_to_one
+  }
+}
+
 view: campaigns {
   extends: ["stitch_base"]
 

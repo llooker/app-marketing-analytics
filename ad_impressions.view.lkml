@@ -1,10 +1,10 @@
 include: "ad_criterion_base.view"
-include: "ad_metrics_base.view"
+include: "google_ad_metrics_base.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
 
 view: ad_impressions {
-  extends: [ad_criterion_base, ad_metrics_base, date_base, google_adwords_base]
+  extends: [ad_criterion_base, date_base, google_ad_metrics_base, google_adwords_base]
 
   # this logic hits the right level of aggregate stats table depending on dimensions and filters in query
   sql_table_name:
@@ -42,7 +42,6 @@ view: ad_impressions {
 
   dimension: audience_criterion_id {
     hidden: yes
-    type: number
     sql: ${TABLE}.CriterionId ;;
   }
 
@@ -78,8 +77,12 @@ view: ad_impressions {
 
   dimension: ad_group_id {
     hidden: yes
-    type: number
     sql: ${TABLE}.AdGroupId ;;
+  }
+
+  dimension: ad_group_id_string {
+    hidden: yes
+    sql: CAST(${ad_group_id} as STRING) ;;
   }
 
   dimension: ad_network_type1 {
@@ -96,32 +99,42 @@ view: ad_impressions {
 
   dimension: base_ad_group_id {
     hidden: yes
-    type: number
     sql: ${TABLE}.BaseAdGroupId ;;
   }
 
   dimension: base_campaign_id {
     hidden: yes
-    type: number
     sql: ${TABLE}.BaseCampaignId ;;
   }
 
   dimension: campaign_id {
     hidden: yes
-    type: number
     sql: ${TABLE}.CampaignId ;;
+  }
+
+  dimension: campaign_id_string {
+    hidden: yes
+    sql: CAST(${campaign_id} as STRING) ;;
   }
 
   dimension: creative_id {
     hidden: yes
-    type: number
     sql: ${TABLE}.CreativeId ;;
+  }
+
+  dimension: creative_id_string {
+    hidden: yes
+    sql: CAST(${creative_id} as STRING) ;;
   }
 
   dimension: criterion_id {
     hidden: yes
-    type: number
     sql: ${TABLE}.CriterionId ;;
+  }
+
+  dimension: criterion_id_string {
+    hidden: yes
+    sql: CAST(${criterion_id} as STRING) ;;
   }
 
   dimension: device {
@@ -190,21 +203,17 @@ view: ad_impressions {
   }
   measure: total_clicks {
   }
-  measure: total_interactions {
-  }
   measure: total_conversions {
     drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_conversions]
   }
-  measure: total_cost_usd {
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost_usd]
-  }
-  measure: average_interaction_rate {
-    link: {
-      label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_interaction_rate&f[ad_impressions.date_date]=this quarter"
-    }
+  measure: total_cost {
+    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost]
   }
   measure: average_click_rate {
+    link: {
+      label: "By Keyword"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
+    }
   }
   measure: average_conversion_rate {
   }
@@ -215,7 +224,7 @@ view: ad_impressions {
   }
   measure: cost_this_month {
     type: sum
-    sql: ${cost_usd} ;;
+    sql: ${cost} ;;
     filters: {
       field: date_date
       value: "this month"
@@ -239,7 +248,7 @@ view: ad_impressions {
   }
   measure: cost_last_month {
     type: sum
-    sql: ${cost_usd} ;;
+    sql: ${cost} ;;
     filters: {
       field: date_date
       value: "last month"

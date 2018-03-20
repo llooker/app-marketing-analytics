@@ -8,9 +8,9 @@
     explore: ad_group_quarter_fact
     type: single_value
     fields:
-    - fact.total_cost_usd
+    - fact.total_cost
     - fact.date_quarter
-    - last_ad_group_quarter_fact.total_cost_usd
+    - last_ad_group_quarter_fact.total_cost
     sorts:
     - fact.date_quarter desc
     limit: 500
@@ -18,11 +18,11 @@
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly Change
-      expression: "${fact.total_cost_usd} - ${last_ad_group_quarter_fact.total_cost_usd}\n"
+      expression: "${fact.total_cost} - ${last_ad_group_quarter_fact.total_cost}\n"
       value_format:
       value_format_name: usd_0
     hidden_fields:
-    - last_ad_group_quarter_fact.total_cost_usd
+    - last_ad_group_quarter_fact.total_cost
     label: Ad Spend QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -258,7 +258,7 @@
     explore: ad_impressions
     type: looker_area
     fields:
-    - ad_impressions.total_cost_usd
+    - ad_impressions.total_cost
     - ad_impressions.date_day_of_quarter
     - ad_impressions.date_quarter
     pivots:
@@ -273,7 +273,7 @@
     dynamic_fields:
     - table_calculation: spend
       label: Spend
-      expression: if(is_null(${ad_impressions.total_cost_usd}), null, running_total(${ad_impressions.total_cost_usd}))
+      expression: if(is_null(${ad_impressions.total_cost}), null, running_total(${ad_impressions.total_cost}))
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
@@ -391,9 +391,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.total_cost_usd
+      - id: ad_impressions.total_cost
         name: Cost
-        axisId: ad_impressions.total_cost_usd
+        axisId: ad_impressions.total_cost
         __FILE: app_marketing_analytics/ad_group_performance.dashboard.lookml
         __LINE_NUM: 404
       __FILE: app_marketing_analytics/ad_group_performance.dashboard.lookml
@@ -447,10 +447,10 @@
     hidden_series:
     - ad_impressions.average_cost_per_conversion
     series_labels:
-      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_cost: Spend
       ad_impressions.total_clicks: Interactions
     hidden_fields:
-    - ad_impressions.total_cost_usd
+    - ad_impressions.total_cost
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     listen:
@@ -467,8 +467,8 @@
     type: single_value
     fields:
     - fact.date_quarter
-    - fact.average_interaction_rate
-    - last_ad_group_quarter_fact.average_interaction_rate
+    - fact.average_click_rate
+    - last_ad_group_quarter_fact.average_click_rate
     sorts:
     - fact.date_quarter desc
     limit: 500
@@ -476,12 +476,12 @@
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${fact.average_interaction_rate} - ${last_ad_group_quarter_fact.average_interaction_rate}\
-        \ )/${last_ad_group_quarter_fact.average_interaction_rate}\n"
+      expression: "(${fact.average_click_rate} - ${last_ad_group_quarter_fact.average_click_rate}\
+        \ )/${last_ad_group_quarter_fact.average_click_rate}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
-    - last_ad_group_quarter_fact.average_interaction_rate
+    - last_ad_group_quarter_fact.average_click_rate
     label: Interaction Rate QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -530,8 +530,8 @@
     type: single_value
     fields:
     - fact.date_quarter
-    - last_ad_group_quarter_fact.average_cost_per_interaction
-    - fact.average_cost_per_interaction
+    - last_ad_group_quarter_fact.average_cost_per_click
+    - fact.average_cost_per_click
     sorts:
     - fact.date_quarter desc
     limit: 500
@@ -539,13 +539,13 @@
     dynamic_fields:
     - table_calculation: change
       label: "% Change"
-      expression: "(${fact.average_cost_per_interaction} - ${last_ad_group_quarter_fact.average_cost_per_interaction})/${last_ad_group_quarter_fact.average_cost_per_interaction}\n"
+      expression: "(${fact.average_cost_per_click} - ${last_ad_group_quarter_fact.average_cost_per_click})/${last_ad_group_quarter_fact.average_cost_per_click}\n"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     hidden_fields:
-    - last_ad_group_quarter_fact.average_cost_per_interaction
+    - last_ad_group_quarter_fact.average_cost_per_click
     label: Cost per Interaction QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -594,7 +594,7 @@
     type: looker_column
     fields:
     - fact.total_impressions
-    - fact.total_interactions
+    - fact.total_clicks
     - fact.total_conversions
     filters:
       fact.date_quarter: 1 quarters
@@ -813,7 +813,7 @@
     hidden_series:
     - ad_impressions.average_conversion_rate
     series_labels:
-      ad_impressions.total_cost_usd: Spend
+      ad_impressions.total_cost: Spend
       ad_impressions.total_clicks: Interactions
     hidden_fields: []
     listen:
@@ -831,11 +831,11 @@
     fields:
     - keyword.bidding_strategy_type
     - ad_impressions.average_cost_per_conversion
-    - ad_impressions.total_cost_usd
+    - ad_impressions.total_cost
     filters:
       ad_impressions.date_date: 1 quarters
     sorts:
-    - ad_impressions.total_cost_usd desc
+    - ad_impressions.total_cost desc
     limit: 500
     column_limit: 50
     label: Top 10 Keyword Performance
@@ -875,7 +875,7 @@
     show_comparison_label: true
     font_size: '12'
     hidden_fields:
-    - ad_impressions.total_cost_usd
+    - ad_impressions.total_cost
     y_axes:
     - label: ''
       maxValue:
@@ -945,7 +945,7 @@
     fields:
     - keyword.bidding_strategy_type
     - ad_impressions.average_cost_per_conversion
-    - ad_impressions.total_cost_usd
+    - ad_impressions.total_cost
     - keyword.keyword_match_type
     pivots:
     - keyword.keyword_match_type
@@ -953,7 +953,7 @@
       ad_impressions.average_cost_per_conversion: NOT NULL
     sorts:
     - keyword.keyword_match_type desc 0
-    - ad_impressions.total_cost_usd desc 0
+    - ad_impressions.total_cost desc 0
     limit: 500
     column_limit: 50
     label: Top 10 Keyword Performance (keyword)
@@ -993,7 +993,7 @@
     show_comparison_label: true
     font_size: '12'
     hidden_fields:
-    - ad_impressions.total_cost_usd
+    - ad_impressions.total_cost
     y_axes:
     - label: ''
       maxValue:
@@ -1062,10 +1062,10 @@
     type: table
     fields:
     - ad_impressions.total_impressions
-    - ad_impressions.total_interactions
+    - ad_impressions.total_clicks
     - ad_impressions.total_conversions
-    - ad_impressions.total_cost_usd
-    - ad_impressions.average_interaction_rate
+    - ad_impressions.total_cost
+    - ad_impressions.average_click_rate
     - ad_impressions.average_conversion_rate
     - ad_impressions.average_cost_per_click
     - ad_impressions.average_cost_per_conversion
@@ -1112,7 +1112,7 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - ad_impressions.total_interactions
+    - ad_impressions.total_clicks
     - ad_impressions.total_impressions
     row: 22
     col: 0
@@ -1125,10 +1125,10 @@
     type: table
     fields:
     - ad_impressions.total_impressions
-    - ad_impressions.total_interactions
+    - ad_impressions.total_clicks
     - ad_impressions.total_conversions
-    - ad_impressions.total_cost_usd
-    - ad_impressions.average_interaction_rate
+    - ad_impressions.total_cost
+    - ad_impressions.average_click_rate
     - ad_impressions.average_conversion_rate
     - ad_impressions.average_cost_per_click
     - ad_impressions.average_cost_per_conversion
@@ -1175,7 +1175,7 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - ad_impressions.total_interactions
+    - ad_impressions.total_clicks
     - ad_impressions.total_impressions
     row: 16
     col: 0

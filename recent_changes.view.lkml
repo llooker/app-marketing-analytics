@@ -1,107 +1,168 @@
+include: "ad.view.lkml"
+include: "ad_group.view.lkml"
+include: "keyword.view.lkml"
+
+explore: ad_status {}
+view: ad_status {
+  derived_table: {
+    explore_source: ad {
+      column: _date {}
+      column: external_customer_id {}
+      column: campaign_id {}
+      column: ad_group_id {}
+      column: creative_id {}
+      column: status {}
+      derived_column: status_lag {
+        sql: LAG(status, 1, "Not Present") OVER (PARTITION BY external_customer_id, campaign_id, ad_group_id, creative_id ORDER BY _date ASC) ;;
+      }
+    }
+  }
+  dimension: _date {}
+  dimension: external_customer_id {}
+  dimension: campaign_id {}
+  dimension: ad_group_id {}
+  dimension: creative_id {}
+  dimension: status {}
+  dimension: status_lag {}
+  dimension: status_changed {
+    type: yesno
+    sql: ${status} != ${status_lag} ;;
+  }
+}
+
+explore: keyword_status {}
+view: keyword_status {
+  derived_table: {
+    explore_source: keyword {
+      column: _date {}
+      column: external_customer_id {}
+      column: campaign_id {}
+      column: ad_group_id {}
+      column: criterion_id {}
+      column: status {}
+      derived_column: status_lag {
+        sql: LAG(status, 1, "Not Present") OVER (PARTITION BY external_customer_id, campaign_id, ad_group_id, criterion_id ORDER BY _date ASC) ;;
+      }
+    }
+  }
+  dimension: _date {}
+  dimension: external_customer_id {}
+  dimension: campaign_id {}
+  dimension: ad_group_id {}
+  dimension: criterion_id {}
+  dimension: status {}
+  dimension: status_lag {}
+  dimension: status_changed {
+    type: yesno
+    sql: ${status} != ${status_lag} ;;
+  }
+}
+
+explore: ad_group_status {}
+view: ad_group_status {
+  derived_table: {
+    explore_source: ad_group {
+      column: _date {}
+      column: external_customer_id {}
+      column: campaign_id {}
+      column: ad_group_id {}
+      column: status { field: ad_group.ad_group_status }
+      derived_column: status_lag {
+        sql: LAG(status, 1, "Not Present") OVER (PARTITION BY external_customer_id, campaign_id, ad_group_id ORDER BY _date ASC) ;;
+      }
+    }
+  }
+  dimension: _date {}
+  dimension: external_customer_id {}
+  dimension: campaign_id {}
+  dimension: ad_group_id {}
+  dimension: status {}
+  dimension: status_lag {}
+  dimension: status_changed {
+    type: yesno
+    sql: ${status} != ${status_lag} ;;
+  }
+}
+
+explore: campaign_status {}
+view: campaign_status {
+  derived_table: {
+    explore_source: campaign {
+      column: _date {}
+      column: external_customer_id {}
+      column: campaign_id {}
+      column: status { field: campaign.campaign_status }
+      derived_column: status_lag {
+        sql: LAG(status, 1, "Not Present") OVER (PARTITION BY external_customer_id, campaign_id ORDER BY _date ASC) ;;
+      }
+    }
+  }
+  dimension: _date {}
+  dimension: external_customer_id {}
+  dimension: campaign_id {}
+  dimension: status {}
+  dimension: status_lag {}
+  dimension: status_changed {
+    type: yesno
+    sql: ${status} != ${status_lag} ;;
+  }
+}
+
+
 view: status_changes {
   derived_table: {
-    sql: with ad_status as (
-      SELECT
-       ad.ExternalCustomerId as external_customer_id,
-       ad.CreativeId  AS ad_creative_id,
-       ad.Status  AS ad_status,
-       ad._DATA_DATE  AS ad_date,
-       LAG(ad.Status, 1, "Not Present") OVER (PARTITION BY ad.CreativeId ORDER BY  ad._DATA_DATE  ASC) AS ad_status_lag
-     FROM adwords_v201609.Ad_6747157124  AS ad
-   ),
-
-    ad_changed as (
-    SELECT * FROM ad_status WHERE ad_status.ad_status != ad_status.ad_status_lag OR ad_status.ad_status_lag = "Not Present"),
-
-   keyword_status as (
-     SELECT
-       keyword.ExternalCustomerId as external_customer_id,
-       keyword.AdGroupId  AS ad_group_id,
-       keyword.CriterionId  AS keyword_criterion_id,
-       keyword.Status  AS keyword_status,
-       keyword._DATA_DATE AS keyword_date,
-       LAG(keyword.Status, 1, "Not Present") OVER (PARTITION BY keyword.AdGroupId, keyword.CriterionId ORDER BY keyword._DATA_DATE ASC) AS keyword_status_lag
-     FROM adwords_v201609.Keyword_6747157124 as keyword
-   ),
-
-    keywords_changed as (
-    SELECT * FROM keyword_status WHERE keyword_status.keyword_status != keyword_status.keyword_status_lag OR keyword_status.keyword_status_lag = "Not Present"),
-
-   campaign_status as (
-     SELECT
-       campaign.ExternalCustomerId as external_customer_id,
-       campaign.CampaignId  AS campaign_id,
-       campaign.CampaignStatus  AS campaign_status,
-       campaign._DATA_DATE AS campaign_date,
-       LAG(campaign.CampaignStatus, 1, "Not Present") OVER (PARTITION BY campaign.CampaignId ORDER BY campaign._DATA_DATE ASC) AS campaign_status_lag
-     FROM adwords_v201609.Campaign_6747157124 as campaign
-   ),
-
-    campaign_changed as (
-      SELECT * FROM campaign_status WHERE campaign_status.campaign_status != campaign_status.campaign_status_lag OR campaign_status.campaign_status_lag  = "Not Present"),
-
-   ad_group_status as (
-     SELECT
-       ad_group.ExternalCustomerId as external_customer_id,
-       ad_group.AdGroupId  AS ad_group_id,
-       ad_group.AdGroupStatus  AS ad_group_status,
-       ad_group._DATA_DATE AS ad_group_date,
-       LAG(ad_group.AdGroupStatus, 1, "Not Present") OVER (PARTITION BY ad_group.AdGroupId ORDER BY ad_group._DATA_DATE ASC) AS ad_group_status_lag
-     FROM adwords_v201609.AdGroup_6747157124 as ad_group
-   ),
-
-   ad_group_changed as (
-   SELECT * FROM ad_group_status WHERE ad_group_status.ad_group_status != ad_group_status.ad_group_status_lag OR ad_group_status.ad_group_status_lag  = "Not Present")
-
-
-   SELECT
-     ad_changed.external_customer_id as external_customer_id,
-     ad_changed.ad_creative_id as ad_creative_id,
-     null as keyword_criterion_id,
-     null as campaign_id,
-     null as ad_group_id,
-     ad_changed.ad_date as date,
-     ad_changed.ad_status as status,
-     ad_changed.ad_status_lag as status_lag,
-     CASE WHEN ad_changed.ad_status_lag = "Not Present" THEN 'Addition' ELSE 'Status Change' END as change_type
-   FROM ad_changed
-   UNION ALL
-   SELECT
-     keywords_changed.external_customer_id as external_customer_id,
-     null as ad_creative_id,
-     keywords_changed.keyword_criterion_id,
-     null as campaign_id,
-     keywords_changed.ad_group_id as ad_group_id,
-     keywords_changed.keyword_date,
-     keywords_changed.keyword_status,
-     keywords_changed.keyword_status_lag,
-     CASE WHEN keywords_changed.keyword_status_lag  = "Not Present" THEN 'Addition' ELSE 'Status Change' END as change_type
-   FROM keywords_changed
-   UNION ALL
-   SELECT
-     campaign_changed.external_customer_id as external_customer_id,
-     null as ad_creative_id,
-     null as keyword_criterion_id,
-     campaign_changed.campaign_id,
-     null as ad_group_id,
-     campaign_changed.campaign_date,
-     campaign_changed.campaign_status,
-     campaign_changed.campaign_status_lag,
-     CASE WHEN campaign_changed.campaign_status_lag  = "Not Present" THEN 'Addition' ELSE 'Status Change' END as change_type
-   FROM campaign_changed
-   UNION ALL
-   SELECT
-     ad_group_changed.external_customer_id as external_customer_id,
-     null as ad_creative_id,
-     null as keyword_criterion_id,
-     null as campaign_id,
-     ad_group_changed.ad_group_id,
-     ad_group_changed.ad_group_date,
-     ad_group_changed.ad_group_status,
-     ad_group_changed.ad_group_status_lag,
-     CASE WHEN ad_group_changed.ad_group_status_lag  = "Not Present" THEN 'Addition' ELSE 'Status Change' END as change_type
-   FROM ad_group_changed
-   ORDER BY 1,2,3,4 DESC
+    sql:
+    SELECT
+      ad_status._date AS _date,
+      ad_status.external_customer_id AS external_customer_id,
+      ad_status.campaign_id AS campaign_id,
+      ad_status.ad_group_id AS ad_group_id,
+      ad_status.creative_id AS creative_id,
+      null AS criterion_id,
+      ad_status.status AS status,
+      ad_status.status_lag AS status_lag
+    FROM ${ad_status.SQL_TABLE_NAME} as ad_status
+    WHERE
+      ad_status.status != ad_status.status_lag
+    UNION ALL
+    SELECT
+      keyword_status._date AS _date,
+      keyword_status.external_customer_id AS external_customer_id,
+      keyword_status.campaign_id AS campaign_id,
+      keyword_status.ad_group_id AS ad_group_id,
+      null AS creative_id,
+      keyword_status.criterion_id AS criterion_id,
+      keyword_status.status AS status,
+      keyword_status.status_lag AS status_lag
+    FROM ${keyword_status.SQL_TABLE_NAME} as keyword_status
+    WHERE
+      keyword_status.status != keyword_status.status_lag
+    UNION ALL
+    SELECT
+      ad_group_status._date AS _date,
+      ad_group_status.external_customer_id AS external_customer_id,
+      ad_group_status.campaign_id AS campaign_id,
+      ad_group_status.ad_group_id AS ad_group_id,
+      null AS creative_id,
+      null AS criterion_id,
+      ad_group_status.status AS status,
+      ad_group_status.status_lag AS status_lag
+    FROM ${ad_group_status.SQL_TABLE_NAME} as ad_group_status
+    WHERE
+      ad_group_status.status != ad_group_status.status_lag
+    UNION ALL
+    SELECT
+      campaign_status._date AS _date,
+      campaign_status.external_customer_id AS external_customer_id,
+      campaign_status.campaign_id AS campaign_id,
+      null AS ad_group_id,
+      null AS creative_id,
+      null AS criterion_id,
+      campaign_status.status AS status,
+      campaign_status.status_lag AS status_lag
+    FROM ${campaign_status.SQL_TABLE_NAME} as campaign_status
+    WHERE
+      campaign_status.status != campaign_status.status_lag
     ;;
   }
 
@@ -120,12 +181,12 @@ view: status_changes {
     hidden: yes
   }
 
-  dimension: ad_creative_id {
+  dimension: creative_id {
     type: number
     hidden: yes
   }
 
-  dimension: keyword_criterion_id {
+  dimension: criterion_id {
     type: number
     hidden: yes
   }
@@ -140,6 +201,13 @@ view: status_changes {
 
   dimension: change_type {
     type: string
+    case: {
+      when: {
+        sql: ${status_lag} = "Not Present" ;;
+        label: "Addition"
+      }
+      else: "Status Change"
+    }
   }
 
   dimension: status_display {
@@ -160,7 +228,7 @@ view: status_changes {
 
   dimension_group: change {
     type: time
-    sql: TIMESTAMP(${TABLE}.date) ;;
+    sql: ${TABLE}._date ;;
     timeframes: [date, week, month, day_of_week, day_of_month]
   }
 
@@ -168,20 +236,20 @@ view: status_changes {
     type: string
     case: {
       when: {
-        sql: ${campaign_id} IS NOT NULL ;;
-        label: "Campaign"
-      }
-      when: {
-        sql: ${ad_creative_id} IS NOT NULL ;;
+        sql: ${creative_id} IS NOT NULL ;;
         label: "Ad"
       }
       when: {
-        sql: ${keyword_criterion_id} IS NOT NULL AND ${ad_group_id} IS NOT NULL;;
+        sql: ${criterion_id} IS NOT NULL ;;
         label: "Keyword"
       }
       when: {
-        sql: ${ad_group_id} IS NOT NULL AND ${keyword_criterion_id} IS NULL ;;
+        sql: ${ad_group_id} IS NOT NULL ;;
         label: "Ad Group"
+      }
+      when: {
+        sql: ${campaign_id} IS NOT NULL ;;
+        label: "Campaign"
       }
       else: "Other"
     }
@@ -200,7 +268,7 @@ view: status_changes {
 
   measure: count {
     type: count_distinct
-    sql: COALESCE(${ad_creative_id}, ${ad_group_id}, ${campaign_id}, ${keyword_criterion_id}) ;;
+    sql: COALESCE(${creative_id}, ${ad_group_id}, ${campaign_id}, ${criterion_id}) ;;
     description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
     html:  {% if (status_changes.content_type._value == 'Ad') %}
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad.creative,status_changes.change_date, status_changes.status_display&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
@@ -210,8 +278,6 @@ view: status_changes {
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad_group.ad_group_name,status_changes.change_date, status_changes.status_display&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
     {% elsif (status_changes.content_type._value == 'Campaign') %}
     <a href= "/explore/looker_app_google_adwords/status_changes?fields=campaign.campaign_name,status_changes.change_date, status_changes.status_display&f[status_changes.change_date]={{_filters['status_changes.change_date']}}"> {{value}}  </a>
-    {% endif %};;
-}
-
-
+    {% endif %} ;;
+  }
 }

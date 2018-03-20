@@ -1,5 +1,23 @@
+include: "campaign.view"
+include: "customer.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
+
+explore: ad_group {
+  hidden: yes
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_group.date_date} = ${campaign.date_date};;
+    relationship: many_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_group.date_date} = ${customer.date_date} ;;
+    relationship: many_to_one
+  }
+}
 
 view: ad_group {
   extends: [date_base, google_adwords_base]
@@ -12,7 +30,6 @@ view: ad_group {
   }
 
   dimension: ad_group_id {
-    type: number
     primary_key: yes
     sql: ${TABLE}.AdGroupId ;;
     hidden: yes
@@ -67,7 +84,6 @@ view: ad_group {
   }
 
   dimension: bidding_strategy_id {
-    type: number
     sql: ${TABLE}.BiddingStrategyId ;;
     hidden: yes
   }
@@ -88,7 +104,6 @@ view: ad_group {
   }
 
   dimension: campaign_id {
-    type: number
     sql: ${TABLE}.CampaignId ;;
     hidden: yes
   }
@@ -100,22 +115,18 @@ view: ad_group {
   }
 
   dimension: cpc_bid {
-    hidden: yes
     type: string
-    sql: ${TABLE}.CpcBid ;;
+    sql: (${TABLE}.CpcBid / 1000000) ;;
   }
 
   dimension: cpm_bid {
-    hidden: yes
     type: number
-    value_format_name: id
-    sql: ${TABLE}.CpmBid ;;
+    sql: (${TABLE}.CpmBid / 1000000) ;;
   }
 
   dimension: cpv_bid {
-    hidden: yes
     type: string
-    sql: ${TABLE}.CpvBid ;;
+    sql: (${TABLE}.CpvBid / 1000000) ;;
   }
 
   dimension: enhanced_cpc_enabled {
@@ -142,9 +153,8 @@ view: ad_group {
   }
 
   dimension: target_cpa {
-    hidden: yes
     type: number
-    sql: ${TABLE}.TargetCpa ;;
+    sql: (${TABLE}.TargetCpa / 1000000) ;;
   }
 
   dimension: target_cpa_bid_source {
@@ -168,30 +178,6 @@ view: ad_group {
     type: count_distinct
     sql: ${ad_group_id} ;;
     drill_fields: [detail*]
-  }
-
-  dimension: cpc_bid_usd {
-    type: number
-    sql: (${cpc_bid} / 1000000)  ;;
-  }
-
-  dimension: cpm_bid_usd {
-    type: number
-    sql: (${cpm_bid} / 1000000) ;;
-  }
-
-  dimension: cpv_bid_usd {
-    type: number
-    sql: (${cpv_bid} / 1000000) ;;
-  }
-
-  dimension: target_cpa_usd {
-    type: number
-    sql: (${target_cpa} / 1000000) ;;
-  }
-
-  dimension_group: date {
-    hidden: yes
   }
 
   # ----- Detail ------

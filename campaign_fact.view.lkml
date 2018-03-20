@@ -1,5 +1,5 @@
 include: "ad_metrics_base.view"
-include: "ad_metrics_comparison_base.view"
+include: "ad_metrics_parent_comparison_base.view"
 include: "account_fact.view"
 include: "campaign.view"
 include: "customer.view"
@@ -30,10 +30,8 @@ view: campaign_fact_base {
   extends: [ad_metrics_base]
 
   dimension: external_customer_id {
-    type: number
   }
   dimension: campaign_id {
-    type: number
   }
 }
 
@@ -56,10 +54,9 @@ view: campaign_date_fact {
       column: campaign_id {}
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
-      column: conversionvalue { field: ad_impressions.total_conversion_value }
+      column: conversionvalue { field: ad_impressions.total_conversionvalue }
       column: cost { field: ad_impressions.total_cost }
       column: impressions { field: ad_impressions.total_impressions }
-      column: interactions { field: ad_impressions.total_interactions }
     }
   }
   dimension: _date {
@@ -107,10 +104,9 @@ view: campaign_week_fact {
       column: less_than_current_day_of_week { field: fact.less_than_current_day_of_week }
       column: clicks { field: fact.total_clicks }
       column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversion_value }
+      column: conversionvalue { field: fact.total_conversionvalue }
       column: cost { field: fact.total_cost }
       column: impressions { field: fact.total_impressions }
-      column: interactions { field: fact.total_interactions }
     }
   }
   dimension: date_week {
@@ -167,10 +163,9 @@ view: campaign_month_fact {
       column: less_than_current_day_of_month { field: fact.less_than_current_day_of_month }
       column: clicks { field: fact.total_clicks }
       column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversion_value }
+      column: conversionvalue { field: fact.total_conversionvalue }
       column: cost { field: fact.total_cost }
       column: impressions { field: fact.total_impressions }
-      column: interactions { field: fact.total_interactions }
     }
   }
   dimension: date_month {
@@ -217,7 +212,7 @@ explore: campaign_quarter_fact {
 }
 
 view: campaign_quarter_fact {
-  extends: [campaign_fact_base, ad_metrics_comparison_base]
+  extends: [campaign_fact_base, ad_metrics_parent_comparison_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
@@ -228,10 +223,9 @@ view: campaign_quarter_fact {
       column: less_than_current_day_of_quarter { field: fact.less_than_current_day_of_quarter }
       column: clicks { field: fact.total_clicks }
       column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversion_value }
+      column: conversionvalue { field: fact.total_conversionvalue }
       column: cost { field: fact.total_cost }
       column: impressions { field: fact.total_impressions }
-      column: interactions { field: fact.total_interactions }
     }
   }
   dimension: date_quarter {

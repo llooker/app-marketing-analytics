@@ -304,7 +304,7 @@ view: report_single_values {
           keyword.Criteria  AS keyword_criteria,
           (COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(ad_impressions.Conversions ), 0)),0)  AS ad_impressions_average_cost_per_conversion,
           ((COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0))*1.0 / NULLIF((COALESCE(SUM(ad_impressions.Conversions ), 0)),0)) / NULLIF(((COALESCE(SUM(ad_group_avg_cpa.cost_usd ), 0)) / NULLIF((COALESCE(SUM(ad_group_avg_cpa.conversions ), 0)),0)),0) AS ad_group_avg_cpa_cpa_compared_to_average_for_ad_group_keyword,
-          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost_usd
+          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
             adwords_v201609.KeywordBasicStats_6747157124
             AS ad_impressions
@@ -536,7 +536,7 @@ view: report_single_values {
           (COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0)) / NULLIF(((COALESCE(SUM(ad_group_avg_cpa.cost_usd ), 0)) / NULLIF((COALESCE(SUM(ad_group_avg_cpa.conversions ), 0)),0)),0)  AS ad_group_avg_cpa_expected_conversions_for_ad,
           COALESCE(SUM(ad_impressions.Conversions ), 0) AS ad_impressions_total_conversions,
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS ad_impressions_total_impressions,
-          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost_usd
+          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
             adwords_v201609.AdBasicStats_6747157124
             AS ad_impressions
@@ -594,7 +594,7 @@ view: report_single_values {
           (COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0)) / NULLIF(((COALESCE(SUM(ad_group_avg_cpa.cost_usd ), 0)) / NULLIF((COALESCE(SUM(ad_group_avg_cpa.conversions ), 0)),0)),0)  AS ad_group_avg_cpa_expected_conversions_for_ad,
           COALESCE(SUM(ad_impressions.Conversions ), 0) AS ad_impressions_total_conversions,
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS ad_impressions_total_impressions,
-          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost_usd
+          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
             adwords_v201609.AdBasicStats_6747157124
             AS ad_impressions
@@ -641,7 +641,7 @@ view: report_single_values {
           (COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0)) / NULLIF(((COALESCE(SUM(ad_group_avg_cpa.cost_usd ), 0)) / NULLIF((COALESCE(SUM(ad_group_avg_cpa.conversions ), 0)),0)),0)  AS ad_group_avg_cpa_expected_conversions_for_keyword,
           COALESCE(SUM(ad_impressions.Conversions ), 0) AS ad_impressions_total_conversions,
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS ad_impressions_total_impressions,
-          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost_usd
+          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
             adwords_v201609.KeywordBasicStats_6747157124
             AS ad_impressions
@@ -687,7 +687,7 @@ view: report_single_values {
           (COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0)) / NULLIF(((COALESCE(SUM(ad_group_avg_cpa.cost_usd ), 0)) / NULLIF((COALESCE(SUM(ad_group_avg_cpa.conversions ), 0)),0)),0)  AS ad_group_avg_cpa_expected_conversions_for_keyword,
           COALESCE(SUM(ad_impressions.Conversions ), 0) AS ad_impressions_total_conversions,
           COALESCE(SUM(ad_impressions.Impressions ), 0) AS ad_impressions_total_impressions,
-          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost_usd
+          COALESCE(SUM((ad_impressions.Cost / 1000000) ), 0) AS ad_impressions_total_cost
         FROM
             adwords_v201609.KeywordBasicStats_6747157124
             AS ad_impressions

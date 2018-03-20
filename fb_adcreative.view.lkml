@@ -1,5 +1,63 @@
-include: "fb_stitch_base.view.lkml"
+include: "fb_stitch_base.view"
+include: "fb_ads.view"
+include: "fb_adsets.view"
+include: "fb_campaigns.view"
 
+explore: adcreative {
+  join: ads {
+    type: left_outer
+    sql_on: ${ads.creative_id} = ${adcreative.id} ;;
+    relationship: one_to_one
+  }
+
+  join: adsets {
+    type: left_outer
+    sql_on: ${ads.adset_id} = ${adsets.id} ;;
+    relationship: many_to_one
+  }
+
+  join: campaigns {
+    type: left_outer
+    sql_on: ${ads.campaign_id} = ${campaigns.id} ;;
+    relationship: many_to_one
+  }
+
+  join: adcreative__object_story_spec {
+    view_label: "Adcreative: Object Story Spec"
+    sql: LEFT JOIN UNNEST([${adcreative.object_story_spec}]) as adcreative__object_story_spec ;;
+    relationship: one_to_one
+  }
+
+  join: adcreative__object_story_spec__video_data__call_to_action {
+    view_label: "Adcreative: Object Story Spec Video Data Call To Action"
+    sql: LEFT JOIN UNNEST([${adcreative__object_story_spec__video_data.call_to_action}]) as adcreative__object_story_spec__video_data__call_to_action ;;
+    relationship: one_to_one
+  }
+
+  join: adcreative__object_story_spec__video_data__call_to_action__value {
+    view_label: "Adcreative: Object Story Spec Video Data Call To Action Value"
+    sql: LEFT JOIN UNNEST([${adcreative__object_story_spec__video_data__call_to_action.value}]) as adcreative__object_story_spec__video_data__call_to_action__value ;;
+    relationship: one_to_one
+  }
+
+  join: adcreative__object_story_spec__video_data {
+    view_label: "Adcreative: Object Story Spec Video Data"
+    sql: LEFT JOIN UNNEST([${adcreative__object_story_spec.video_data}]) as adcreative__object_story_spec__video_data ;;
+    relationship: one_to_one
+  }
+
+  join: adcreative__object_story_spec__link_data__call_to_action {
+    view_label: "Adcreative: Object Story Spec Link Data Call To Action"
+    sql: LEFT JOIN UNNEST([${adcreative__object_story_spec__link_data.call_to_action}]) as adcreative__object_story_spec__link_data__call_to_action ;;
+    relationship: one_to_one
+  }
+
+  join: adcreative__object_story_spec__link_data {
+    view_label: "Adcreative: Object Story Spec Link Data"
+    sql: LEFT JOIN UNNEST([${adcreative__object_story_spec.link_data}]) as adcreative__object_story_spec__link_data ;;
+    relationship: one_to_one
+  }
+}
 view: adcreative {
   extends: ["stitch_base"]
 

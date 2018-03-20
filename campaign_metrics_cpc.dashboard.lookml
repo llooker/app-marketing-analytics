@@ -1016,8 +1016,8 @@
     type: field_filter
     default_value: this quarter
     model: looker_app_google_adwords
-    explore: kpis_this_period
-    field: kpis_this_period.this_timeframe
+    explore: ad_group_fact_this_timeframe
+    field: fact.this_timeframe
     listens_to_filters: []
     allow_multiple_values: true
     required: false
@@ -1026,8 +1026,8 @@
     type: field_filter
     default_value: 1 quarter ago
     model: looker_app_google_adwords
-    explore: kpis_this_period
-    field: kpis_last_period.last_timeframe
+    explore: ad_group_fact_this_timeframe
+    field: ad_group_fact_last_timeframe.last_timeframe
     listens_to_filters: []
     allow_multiple_values: true
     required: false
