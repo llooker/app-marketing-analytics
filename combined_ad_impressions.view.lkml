@@ -150,5 +150,4 @@ view: combined_ad_impressions {
        FROM ${facebook_ad_impressions.SQL_TABLE_NAME} as facebook_ad_impressions ;;
   }
   dimension: channel {}
-
 }
