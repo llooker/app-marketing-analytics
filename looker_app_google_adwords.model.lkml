@@ -1,4 +1,4 @@
-connection: "bigquery-connectors-adwords"
+connection: "looker_app"
 
 # include all the views
 include: "account_fact.view"
