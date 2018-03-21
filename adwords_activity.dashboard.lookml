@@ -1,9 +1,9 @@
 - dashboard: adwords_activity
-  title: Activity This Month
+  title: Change History This Month
   layout: newspaper
   elements:
   - title: Ad Changes
-    name: Ad Changes
+    name: Ad Changes Single Value
     model: looker_app_google_adwords
     explore: status_changes
     type: single_value
@@ -58,7 +58,7 @@
     width: 6
     height: 5
   - title: Keyword Changes
-    name: Keyword Changes
+    name: Keyword Changes Single Value
     model: looker_app_google_adwords
     explore: status_changes
     type: single_value
@@ -222,8 +222,8 @@
     col: 20
     width: 4
     height: 4
-  - title: Activity Over Time
-    name: Activity Over Time
+  - title: Changes Over Time
+    name: Changes Over Time
     model: looker_app_google_adwords
     explore: status_changes
     type: looker_column
@@ -297,30 +297,30 @@
         name: Ad
         axisId: status_changes.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 611
+        __LINE_NUM: 296
       - id: Ad Group
         name: Ad Group
         axisId: status_changes.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 614
+        __LINE_NUM: 301
       - id: Campaign
         name: Campaign
         axisId: status_changes.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 617
+        __LINE_NUM: 306
       - id: Keyword
         name: Keyword
         axisId: status_changes.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 620
+        __LINE_NUM: 311
       __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-      __LINE_NUM: 599
+      __LINE_NUM: 284
     row: 0
     col: 0
     width: 20
     height: 9
-  - title: Ad Activity
-    name: Ad Activity
+  - title: Ad Changes
+    name: Ad Changes
     model: looker_app_google_adwords
     explore: status_changes
     type: looker_line
@@ -393,15 +393,15 @@
         name: Status Changes
         axisId: status_changes.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 297
+        __LINE_NUM: 392
       __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-      __LINE_NUM: 285
+      __LINE_NUM: 380
     row: 9
     col: 6
     width: 18
     height: 5
-  - title: Keyword Activity
-    name: Keyword Activity
+  - title: Keyword Changes
+    name: Keyword Changes
     model: looker_app_google_adwords
     explore: status_changes
     type: looker_line
@@ -473,9 +473,9 @@
         name: Status Changes
         axisId: status_changes.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 375
+        __LINE_NUM: 472
       __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-      __LINE_NUM: 363
+      __LINE_NUM: 460
     row: 14
     col: 6
     width: 18
