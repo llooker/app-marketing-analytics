@@ -17,6 +17,7 @@ include: "report_single_values.view"
 include: "recent_changes.view"
 
 include: "combined_ad_impressions.view"
+include: "combined_ad_group_fact.view"
 
 # include all the dashboards
 include: "ad_group_performance.dashboard"
@@ -29,6 +30,7 @@ include: "campaign_metrics_cpa.dashboard"
 include: "campaign_metrics_cpc.dashboard"
 include: "campaign_metrics_ctr.dashboard"
 include: "campaign_metrics_spend.dashboard"
+include: "combined_overview.dashboard"
 include: "top_campaign_significant.dashboard"
 
 datagroup: etl_datagroup {

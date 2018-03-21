@@ -35,7 +35,7 @@ view: insights_base {
 
   measure: total_actions {
     type: sum
-    sql: ${actions_dim} ;;
+    sql: 0 ;; #${actions_dim} ;;
     label: "Actions"
     description: "Total actions."
     value_format_name: decimal_0
@@ -425,7 +425,32 @@ view: insights_base {
   }
 }
 
-view: ads_insights__video_30_sec_watched_actions {
+view: ads_insights__actions_website_base {
+  extension: required
+  dimension: action_destination {
+    type: string
+    sql: ${TABLE}.action_destination ;;
+  }
+
+  dimension: action_target_id {
+    type: string
+    sql: ${TABLE}.action_target_id ;;
+  }
+
+  dimension: action_type {
+    type: string
+    sql: ${TABLE}.action_type ;;
+  }
+
+  dimension: value {
+    type: number
+    sql: ${TABLE}.value ;;
+  }
+}
+
+view: ads_insights__actions_base {
+  extends: [ads_insights__actions_website_base]
+  extension: required
   dimension: _1d_click {
     type: number
     sql: ${TABLE}._1d_click ;;
@@ -455,514 +480,48 @@ view: ads_insights__video_30_sec_watched_actions {
     type: number
     sql: ${TABLE}._7d_view ;;
   }
+}
 
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+view: ads_insights__video_30_sec_watched_actions {
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__video_p75_watched_actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__video_p95_watched_actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__website_ctr {
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_website_base]
 }
 
 view: ads_insights__video_15_sec_watched_actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__video_10_sec_watched_actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__unique_actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__video_p25_watched_actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__video_p100_watched_actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
 
 view: ads_insights__video_p50_watched_actions {
-  dimension: _1d_click {
-    type: number
-    sql: ${TABLE}._1d_click ;;
-  }
-
-  dimension: _1d_view {
-    type: number
-    sql: ${TABLE}._1d_view ;;
-  }
-
-  dimension: _28d_click {
-    type: number
-    sql: ${TABLE}._28d_click ;;
-  }
-
-  dimension: _28d_view {
-    type: number
-    sql: ${TABLE}._28d_view ;;
-  }
-
-  dimension: _7d_click {
-    type: number
-    sql: ${TABLE}._7d_click ;;
-  }
-
-  dimension: _7d_view {
-    type: number
-    sql: ${TABLE}._7d_view ;;
-  }
-
-  dimension: action_destination {
-    type: string
-    sql: ${TABLE}.action_destination ;;
-  }
-
-  dimension: action_target_id {
-    type: string
-    sql: ${TABLE}.action_target_id ;;
-  }
-
-  dimension: action_type {
-    type: string
-    sql: ${TABLE}.action_type ;;
-  }
-
-  dimension: value {
-    type: number
-    sql: ${TABLE}.value ;;
-  }
+  extends: [ads_insights__actions_base]
 }
