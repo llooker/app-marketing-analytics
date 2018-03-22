@@ -128,7 +128,7 @@ view: ad_group_fact_this_timeframe {
     }
     link: {
       label: "Conversions Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversions?Campaign={{_filters['fact.campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.ad_group.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversions?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -139,7 +139,7 @@ view: ad_group_fact_this_timeframe {
     }
     link: {
       label: "Spend Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_spend?Campaign={{_filters['fact.campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.ad_group.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_spend?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -150,7 +150,7 @@ view: ad_group_fact_this_timeframe {
     }
     link: {
       label: "Conversion Rate Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversion_rate?Campaign={{_filters['fact.campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.ad_group.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversion_rate?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -161,7 +161,7 @@ view: ad_group_fact_this_timeframe {
     }
     link: {
       label: "Click Rate Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_click_through_rate?Campaign={{_filters['fact.campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.ad_group.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_click_through_rate?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -172,7 +172,7 @@ view: ad_group_fact_this_timeframe {
     }
     link: {
       label: "Cost Per Click Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_click?Campaign={{_filters['fact.campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.ad_group.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_click?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
     }
   }
 
@@ -183,7 +183,7 @@ view: ad_group_fact_this_timeframe {
     }
     link: {
       label: "Cost Per Conversion Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{_filters['fact.campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.ad_group.ad_group_name'] | url_encode  }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
     }
   }
 }
