@@ -50,6 +50,14 @@ explore: ad_group_fact_this_timeframe {
   from: ad_group_fact_this_timeframe
   view_name: fact
   persist_with: etl_datagroup
+  always_filter: {
+    filters: {
+      field: fact.this_timeframe
+    }
+    filters: {
+      field: ad_group_fact_last_timeframe.last_timeframe
+    }
+  }
   join: ad_group_fact_last_timeframe {
     sql_on: ${fact.external_customer_id} = ${ad_group_fact_last_timeframe.external_customer_id} AND
           ${fact.campaign_id} = ${ad_group_fact_last_timeframe.campaign_id} AND

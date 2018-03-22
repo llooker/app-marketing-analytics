@@ -27,6 +27,14 @@ explore: account_fact_this_timeframe {
   from: account_fact_this_timeframe
   view_name: fact
   persist_with: etl_datagroup
+  always_filter: {
+    filters: {
+      field: fact.this_timeframe
+    }
+    filters: {
+      field: account_fact_last_timeframe.last_timeframe
+    }
+  }
   join: account_fact_last_timeframe {
     sql_on: ${fact.external_customer_id} = ${account_fact_last_timeframe.external_customer_id} ;;
     relationship: one_to_one
