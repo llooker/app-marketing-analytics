@@ -128,8 +128,8 @@
       This Timeframe: fact.this_timeframe
       Last Timeframe: ad_group_fact_last_timeframe.last_timeframe
     row: 0
-    col: 6
-    width: 6
+    col: 9
+    width: 5
     height: 3
   - title: Cost Per Conversion
     name: Cost Per Conversion
@@ -250,8 +250,8 @@
       This Timeframe: fact.this_timeframe
       Last Timeframe: ad_group_fact_last_timeframe.last_timeframe
     row: 0
-    col: 12
-    width: 6
+    col: 14
+    width: 5
     height: 3
   - title: Conversion Rate
     name: Conversion Rate
@@ -372,8 +372,8 @@
       This Timeframe: fact.this_timeframe
       Last Timeframe: ad_group_fact_last_timeframe.last_timeframe
     row: 0
-    col: 18
-    width: 6
+    col: 19
+    width: 5
     height: 3
   - title: Per Click
     name: Per Click
@@ -493,9 +493,9 @@
     listen:
       This Timeframe: fact.this_timeframe
       Last Timeframe: ad_group_fact_last_timeframe.last_timeframe
-    row: 12
-    col: 0
-    width: 6
+    row: 16
+    col: 9
+    width: 5
     height: 3
   - title: Click Rate
     name: Click Rate
@@ -615,9 +615,9 @@
     listen:
       This Timeframe: fact.this_timeframe
       Last Timeframe: ad_group_fact_last_timeframe.last_timeframe
-    row: 15
-    col: 0
-    width: 6
+    row: 13
+    col: 9
+    width: 5
     height: 3
   - title: Funnel
     name: Funnel
@@ -711,9 +711,9 @@
       __LINE_NUM: 683
     show_dropoff: true
     series_colors: {}
-    row: 12
-    col: 16
-    width: 8
+    row: 13
+    col: 0
+    width: 9
     height: 6
   - title: Campaigns
     name: Campaigns
@@ -728,7 +728,6 @@
     - ad_impressions.average_conversion_rate
     - ad_impressions.average_cost_per_click
     - ad_impressions.average_click_rate
-    - ad_impressions.average_cost_per_click
     sorts:
     - ad_impressions.total_cost desc
     limit: 10
@@ -770,7 +769,7 @@
     hidden_fields:
     series_labels:
       ad_impressions.total_cost: Spend
-    row: 18
+    row: 19
     col: 0
     width: 24
     height: 6
@@ -908,7 +907,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 899
+      __LINE_NUM: 903
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -935,7 +934,7 @@
     row: 3
     col: 9
     width: 15
-    height: 9
+    height: 10
   - title: Click Trend
     name: Click Trend
     model: looker_app_google_adwords
@@ -1013,10 +1012,10 @@
       - id: ad_impressions.average_cost_per_click
         name: Cost per Click
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1009
+        __LINE_NUM: 1013
         axisId: ad_impressions.average_cost_per_click
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 997
+      __LINE_NUM: 1001
     - label:
       maxValue:
       minValue:
@@ -1033,9 +1032,9 @@
         name: Click Through Rate
         axisId: ad_impressions.average_click_rate
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1028
+        __LINE_NUM: 1032
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1016
+      __LINE_NUM: 1020
     - label: ''
       maxValue:
       minValue:
@@ -1052,9 +1051,9 @@
         name: Clicks
         axisId: ad_impressions.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1047
+        __LINE_NUM: 1051
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1035
+      __LINE_NUM: 1039
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -1067,7 +1066,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1054
+      __LINE_NUM: 1062
     colors:
     - "#d06180"
     - "#dc9d4f"
@@ -1092,8 +1091,8 @@
     - ad_impressions.average_conversion_rate
     - ad_impressions.total_conversions
     y_axis_reversed: false
-    row: 12
-    col: 6
+    row: 13
+    col: 14
     width: 10
     height: 6
   - title: Spend
@@ -1217,7 +1216,7 @@
       Last Timeframe: ad_group_fact_last_timeframe.last_timeframe
     row: 0
     col: 0
-    width: 6
+    width: 9
     height: 3
   - title: Spend To Date
     name: Spend To Date
@@ -1298,10 +1297,10 @@
       - id: ad_impressions.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1173
+        __LINE_NUM: 1298
         axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1161
+      __LINE_NUM: 1286
     - label:
       maxValue:
       minValue:
@@ -1318,9 +1317,9 @@
         name: Conversions
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1192
+        __LINE_NUM: 1317
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1180
+      __LINE_NUM: 1305
     - label: ''
       maxValue:
       minValue:
@@ -1337,9 +1336,9 @@
         name: Impressions
         axisId: ad_impressions.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1211
+        __LINE_NUM: 1336
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1199
+      __LINE_NUM: 1324
     - label: ''
       maxValue:
       minValue:
@@ -1356,9 +1355,9 @@
         name: Cost
         axisId: ad_impressions.total_cost
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1230
+        __LINE_NUM: 1355
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1218
+      __LINE_NUM: 1343
     - label: ''
       maxValue:
       minValue:
@@ -1375,9 +1374,9 @@
         name: Clicks
         axisId: ad_impressions.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1249
+        __LINE_NUM: 1374
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1237
+      __LINE_NUM: 1362
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -1390,7 +1389,7 @@
       show_label: false
       label_type: string
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1260
+      __LINE_NUM: 1385
     colors:
     - "#4bb86a"
     - "#8fe4a7"
@@ -1417,25 +1416,25 @@
     row: 3
     col: 0
     width: 9
-    height: 9
+    height: 10
   filters:
   - name: This Timeframe
     title: This Timeframe
     type: field_filter
     default_value: this quarter
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    field: fact.this_timeframe
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_group_fact_this_timeframe
+    listens_to_filters: []
+    field: fact.this_timeframe
   - name: Last Timeframe
     title: Last Timeframe
     type: field_filter
     default_value: 1 quarter ago
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    field: ad_group_fact_last_timeframe.last_timeframe
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_group_fact_this_timeframe
+    listens_to_filters: []
+    field: ad_group_fact_last_timeframe.last_timeframe
