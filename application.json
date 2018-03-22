@@ -58,7 +58,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -67,7 +66,6 @@
                       "type": "Select"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         "campaign.campaign_name"
                       ],
@@ -103,7 +101,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -112,7 +109,6 @@
                       "type": "Select"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         "campaign.campaign_name"
                       ],
@@ -154,7 +150,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -197,21 +192,18 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": false,
                       "facetedBy": [],
                       "field": "ad_impressions.date_date",
                       "name": "Time Period",
                       "type": "Timeperiod"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
                       "type": "Select"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         "campaign.campaign_name"
                       ],
@@ -247,7 +239,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": false,
                       "facetedBy": [
                         ""
                       ],
@@ -256,7 +247,6 @@
                       "type": "Timeperiod"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -265,7 +255,6 @@
                       "type": "Select"
                     },
                     {
-                      "autoSuggest": false,
                       "facetedBy": [
                         "campaign.campaign_name"
                       ],
@@ -295,7 +284,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": false,
                       "facetedBy": [
                         ""
                       ],
@@ -304,7 +292,6 @@
                       "type": ""
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -341,7 +328,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": false,
                       "facetedBy": [
                         ""
                       ],
@@ -350,7 +336,6 @@
                       "type": "Timeperiod"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -359,7 +344,6 @@
                       "type": "Select"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         "campaign.campaign_name"
                       ],
@@ -389,7 +373,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": false,
                       "facetedBy": [
                         ""
                       ],
@@ -398,7 +381,6 @@
                       "type": "Timeperiod"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -407,7 +389,6 @@
                       "type": "Select"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         "campaign.campaign_name"
                       ],
@@ -437,7 +418,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": false,
                       "facetedBy": [
                         ""
                       ],
@@ -446,7 +426,6 @@
                       "type": "Timeperiod"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -455,7 +434,6 @@
                       "type": "Select"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         "campaign.campaign_name"
                       ],
@@ -485,7 +463,6 @@
                   ],
                   "filters": [
                     {
-                      "autoSuggest": false,
                       "facetedBy": [
                         ""
                       ],
@@ -494,7 +471,6 @@
                       "type": "Timeperiod"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         ""
                       ],
@@ -503,7 +479,6 @@
                       "type": "Select"
                     },
                     {
-                      "autoSuggest": true,
                       "facetedBy": [
                         "campaign.campaign_name"
                       ],
