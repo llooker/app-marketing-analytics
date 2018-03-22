@@ -20,7 +20,7 @@ explore: campaign_fact_base {
   join: campaign {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
-       ${fact.date_date} = ${campaign.date_date} ;;
+      ${fact.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
 }
@@ -29,9 +29,185 @@ view: campaign_fact_base {
   extension: required
   extends: [ad_metrics_base]
 
-  dimension: external_customer_id {
+  dimension: external_customer_id {}
+  dimension: campaign_id {}
+}
+
+explore: campaign_fact_this_timeframe {
+  from: campaign_fact_this_timeframe
+  view_name: fact
+  persist_with: etl_datagroup
+  join: campaign_fact_last_timeframe {
+    sql_on: ${fact.external_customer_id} = ${campaign_fact_last_timeframe.external_customer_id} AND
+          ${fact.campaign_id} = ${campaign_fact_last_timeframe.campaign_id} ;;
+    relationship: one_to_one
   }
-  dimension: campaign_id {
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${customer.latest} ;;
+    relationship: many_to_one
+  }
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${campaign.latest} ;;
+    relationship: many_to_one
+  }
+  join: parent_fact {
+    from: account_fact_this_timeframe
+    sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} ;;
+    relationship: one_to_one
+    type: inner
+  }
+}
+
+view: campaign_fact {
+  extends: [ad_metrics_base, campaign_fact_base]
+
+  derived_table: {
+    explore_source: ad_impressions {
+      column: external_customer_id {}
+      column: campaign_id {}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue { field: ad_impressions.total_conversionvalue }
+      column: impressions {field: ad_impressions.total_impressions}
+      column: cost {field: ad_impressions.total_cost}
+    }
+  }
+}
+
+view: campaign_fact_this_timeframe {
+  extends: [campaign_fact, ad_metrics_parent_comparison_base]
+  derived_table: {
+    explore_source: ad_impressions {
+      bind_filters: {
+        to_field: ad_impressions.date_date
+        from_field: fact.this_timeframe
+      }
+    }
+  }
+
+  parameter: this_timeframe {
+    type: string
+    allowed_value: {
+      value: "this quarter"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "this week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "this month"
+      label: "Month"
+    }
+    default_value: "this quarter"
+  }
+
+  measure: total_conversions {
+    link: {
+      label: "By Campaign"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_conversions&f[ad_impressions.date_date]=this quarter"
+    }
+    link: {
+      label: "Conversions Dashboard"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversions?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
+    }
+  }
+
+  measure: total_cost {
+    link: {
+      label: "By Campaign"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_cost&f[ad_impressions.date_date]=this quarter"
+    }
+    link: {
+      label: "Spend Dashboard"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_spend?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
+    }
+  }
+
+  measure: average_conversion_rate {
+    link: {
+      label: "By Campaign"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_conversion_rate&f[ad_impressions.date_date]=this quarter"
+    }
+    link: {
+      label: "Conversion Rate Dashboard"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversion_rate?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
+    }
+  }
+
+  measure: average_click_rate {
+    link: {
+      label: "By Keyword"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
+    }
+    link: {
+      label: "Click Rate Dashboard"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_click_through_rate?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
+    }
+  }
+
+  measure: average_cost_per_click {
+    link: {
+      label: "By Keyword"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
+    }
+    link: {
+      label: "Cost Per Click Dashboard"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_click?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
+    }
+  }
+
+  measure: average_cost_per_conversion {
+    link: {
+      label: "By Campaign"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_cost_per_conversion&f[ad_impressions.date_date]=this quarter"
+    }
+    link: {
+      label: "Cost Per Conversion Dashboard"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
+    }
+  }
+}
+
+view: campaign_fact_last_timeframe {
+  extends: [campaign_fact]
+
+  derived_table: {
+    explore_source: ad_impressions {
+      bind_filters: {
+        to_field: ad_impressions.period
+        from_field: campaign_fact_last_timeframe.last_timeframe
+      }
+      bind_filters: {
+        to_field: ad_impressions.date_date
+        from_field: campaign_fact_last_timeframe.last_timeframe
+      }
+      filters: {
+        field: ad_impressions.less_than_current_day_of_period
+        value: "Yes"
+      }
+    }
+  }
+
+  parameter: last_timeframe {
+    type: string
+    allowed_value: {
+      value: "1 quarter ago"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "1 week ago"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "1 month ago"
+      label: "Month"
+    }
+    default_value: "1 quarter ago"
   }
 }
 

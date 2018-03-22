@@ -74,6 +74,13 @@ explore: ad_group_fact_this_timeframe {
       ${ad_group.latest}  ;;
     relationship: many_to_one
   }
+  join: parent_fact {
+    from: campaign_fact_this_timeframe
+    sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${parent_fact.campaign_id} ;;
+    relationship: one_to_one
+    type: inner
+  }
 }
 
 view: ad_group_fact {
@@ -94,7 +101,7 @@ view: ad_group_fact {
 }
 
 view: ad_group_fact_this_timeframe {
-  extends: [ad_group_fact]
+  extends: [ad_group_fact, ad_metrics_parent_comparison_base]
   derived_table: {
     explore_source: ad_impressions {
       bind_filters: {
