@@ -1,16 +1,17 @@
 include: "ad_metrics_base.view"
 include: "customer.view"
 include: "date_base.view"
+include: "timeframe_base.view"
 
 explore: account_fact_base {
   hidden: yes
   extension: required
-  view_name: account_fact
+  view_name: fact
   persist_with: etl_datagroup
   join: customer {
     view_label: "Customer"
-    sql_on: ${account_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${account_fact.date_date} = ${customer.date_date} ;;
+    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${fact.date_date} = ${customer.date_date} ;;
     relationship: many_to_one
   }
 }
@@ -18,9 +19,52 @@ explore: account_fact_base {
 view: account_fact_base {
   extension: required
   extends: [ad_metrics_base]
+  derived_table: {
+    explore_source: ad_impressions {
+      column: external_customer_id {}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue { field: ad_impressions.total_conversionvalue }
+      column: impressions {field: ad_impressions.total_impressions}
+      column: cost {field: ad_impressions.total_cost}
+    }
+  }
   dimension: external_customer_id {
     type: number
   }
+}
+
+explore: account_fact_this_timeframe {
+  from: account_fact_this_timeframe
+  view_name: fact
+  persist_with: etl_datagroup
+  always_filter: {
+    filters: {
+      field: fact.this_timeframe
+    }
+    filters: {
+      field: last_fact.last_timeframe
+    }
+  }
+  join: last_fact {
+    from: account_fact_last_timeframe
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} ;;
+    relationship: one_to_one
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${customer.latest} ;;
+    relationship: many_to_one
+  }
+}
+
+view: account_fact_this_timeframe {
+  extends: [account_fact_base, this_timeframe_base]
+}
+
+view: account_fact_last_timeframe {
+  extends: [account_fact_base, last_timeframe_base]
 }
 
 explore: account_date_fact {
@@ -34,16 +78,9 @@ view: account_date_fact {
   extends: [account_fact_base, date_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
 #     partition_keys: ["_date"]
     explore_source: ad_impressions {
       column: _date { field: ad_impressions.date_date }
-      column: external_customer_id {}
-      column: clicks { field: ad_impressions.total_clicks }
-      column: conversions { field: ad_impressions.total_conversions }
-      column: conversionvalue { field: ad_impressions.total_conversionvalue }
-      column: cost { field: ad_impressions.total_cost }
-      column: impressions { field: ad_impressions.total_impressions }
     }
   }
   dimension: _date {
@@ -61,9 +98,9 @@ explore: account_week_fact {
   join: last_account_week_fact {
     from: account_week_fact
     view_label: "Last Week Account Fact"
-    sql_on: ${account_fact.external_customer_id} = ${last_account_week_fact.external_customer_id} AND
-      ${account_fact.date_last_week} = ${last_account_week_fact.date_week} AND
-      ${account_fact.less_than_current_day_of_week} = ${last_account_week_fact.less_than_current_day_of_week} AND
+    sql_on: ${fact.external_customer_id} = ${last_account_week_fact.external_customer_id} AND
+      ${fact.date_last_week} = ${last_account_week_fact.date_week} AND
+      ${fact.less_than_current_day_of_week} = ${last_account_week_fact.less_than_current_day_of_week} AND
       ${last_account_week_fact.less_than_current_day_of_week} ;;
     relationship: one_to_one
     type: inner
@@ -75,16 +112,9 @@ view: account_week_fact {
   extends: [account_fact_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
-    explore_source: account_date_fact {
-      column: date_week { field: account_fact.date_week }
-      column: external_customer_id { field: account_fact.external_customer_id }
-      column: less_than_current_day_of_week { field: account_fact.less_than_current_day_of_week }
-      column: clicks { field: account_fact.total_clicks }
-      column: conversions { field: account_fact.total_conversions }
-      column: conversionvalue { field: account_fact.total_conversionvalue }
-      column: cost { field: account_fact.total_cost }
-      column: impressions { field: account_fact.total_impressions }
+    explore_source: ad_impressions {
+      column: date_week { field: ad_impressions.date_week }
+      column: less_than_current_day_of_week { field: ad_impressions.less_than_current_day_of_week }
     }
   }
   dimension: date_week {
@@ -112,9 +142,9 @@ explore: account_month_fact {
   join: last_account_month_fact {
     from: account_month_fact
     view_label: "Last Month Account Fact"
-    sql_on: ${account_fact.external_customer_id} = ${last_account_month_fact.external_customer_id} AND
-      ${account_fact.date_last_month} = ${last_account_month_fact.date_month} AND
-      ${account_fact.less_than_current_day_of_month} = ${last_account_month_fact.less_than_current_day_of_month} AND
+    sql_on: ${fact.external_customer_id} = ${last_account_month_fact.external_customer_id} AND
+      ${fact.date_last_month} = ${last_account_month_fact.date_month} AND
+      ${fact.less_than_current_day_of_month} = ${last_account_month_fact.less_than_current_day_of_month} AND
       ${last_account_month_fact.less_than_current_day_of_month} ;;
     relationship: one_to_one
     type: inner
@@ -125,16 +155,9 @@ view: account_month_fact {
   extends: [account_fact_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
-    explore_source: account_date_fact {
-      column: date_month { field: account_fact.date_month_date }
-      column: external_customer_id { field: account_fact.external_customer_id }
-      column: less_than_current_day_of_month { field: account_fact.less_than_current_day_of_month }
-      column: clicks { field: account_fact.total_clicks }
-      column: conversions { field: account_fact.total_conversions }
-      column: conversionvalue { field: account_fact.total_conversionvalue }
-      column: cost { field: account_fact.total_cost }
-      column: impressions { field: account_fact.total_impressions }
+    explore_source: ad_impressions {
+      column: date_month { field: ad_impressions.date_month_date }
+      column: less_than_current_day_of_month { field: ad_impressions.less_than_current_day_of_month }
     }
   }
   dimension: date_month {
@@ -162,9 +185,9 @@ explore: account_quarter_fact {
   join: last_account_quarter_fact {
     from: account_quarter_fact
     view_label: "Last Quarter Account Fact"
-    sql_on: ${account_fact.external_customer_id} = ${last_account_quarter_fact.external_customer_id} AND
-      ${account_fact.date_last_quarter} = ${last_account_quarter_fact.date_quarter} AND
-      ${account_fact.less_than_current_day_of_quarter} = ${last_account_quarter_fact.less_than_current_day_of_quarter} AND
+    sql_on: ${fact.external_customer_id} = ${last_account_quarter_fact.external_customer_id} AND
+      ${fact.date_last_quarter} = ${last_account_quarter_fact.date_quarter} AND
+      ${fact.less_than_current_day_of_quarter} = ${last_account_quarter_fact.less_than_current_day_of_quarter} AND
       ${last_account_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
     type: inner
@@ -176,15 +199,9 @@ view: account_quarter_fact {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: account_date_fact {
-      column: date_quarter { field: account_fact.date_quarter_date }
-      column: external_customer_id { field: account_fact.external_customer_id }
-      column: less_than_current_day_of_quarter { field: account_fact.less_than_current_day_of_quarter }
-      column: clicks { field: account_fact.total_clicks }
-      column: conversions { field: account_fact.total_conversions }
-      column: conversionvalue { field: account_fact.total_conversionvalue }
-      column: cost { field: account_fact.total_cost }
-      column: impressions { field: account_fact.total_impressions }
+    explore_source: ad_impressions {
+      column: date_quarter { field: ad_impressions.date_quarter_date }
+      column: less_than_current_day_of_quarter { field: ad_impressions.less_than_current_day_of_quarter }
     }
   }
   dimension: date_quarter {

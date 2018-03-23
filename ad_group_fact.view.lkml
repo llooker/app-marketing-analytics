@@ -5,225 +5,74 @@ include: "campaign.view"
 include: "campaign_fact.view"
 include: "customer.view"
 include: "date_base.view"
+include: "timeframe_base.view"
 
 explore: ad_group_fact_base {
+  extends: [campaign_fact_base]
   hidden: yes
   extension: required
   view_name: fact
-  persist_with: etl_datagroup
-
-  join: customer {
-    view_label: "Customer"
-    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${fact.date_date} = ${customer.date_date} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.date_date} = ${campaign.date_date} ;;
-    relationship: many_to_one
-  }
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${fact.campaign_id} = ${ad_group.campaign_id} AND
+      ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
       ${fact.date_date} = ${ad_group.date_date}  ;;
     relationship: many_to_one
   }
 }
 
-view: ad_group_fact_base {
-  extension: required
-  extends: [ad_metrics_base]
-  dimension: external_customer_id {
-    hidden: yes
+view: ad_group_base {
+  extends: [campaign_base]
+
+  derived_table: {
+    explore_source: ad_impressions {
+      column: ad_group_id {}
+    }
   }
-  dimension: campaign_id {
-    hidden: yes
-  }
-  dimension: ad_group_id {
-    hidden: yes
-  }
+
+  dimension: ad_group_id {}
 }
 
+view: ad_group_fact_base {
+  extends: [campaign_fact_base, ad_group_base]
+}
+
+
 explore: ad_group_fact_this_timeframe {
+  extends: [campaign_fact_this_timeframe]
   from: ad_group_fact_this_timeframe
-  view_name: fact
-  persist_with: etl_datagroup
-  join: ad_group_fact_last_timeframe {
-    sql_on: ${fact.external_customer_id} = ${ad_group_fact_last_timeframe.external_customer_id} AND
-          ${fact.campaign_id} = ${ad_group_fact_last_timeframe.campaign_id} AND
-          ${fact.ad_group_id} = ${ad_group_fact_last_timeframe.ad_group_id} ;;
+  join: last_fact {
+    from: ad_group_fact_last_timeframe
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+          ${fact.campaign_id} = ${last_fact.campaign_id} AND
+          ${fact.ad_group_id} = ${last_fact.ad_group_id} ;;
     relationship: one_to_one
-  }
-  join: customer {
-    view_label: "Customer"
-    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign.latest} ;;
-    relationship: many_to_one
   }
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${fact.campaign_id} = ${ad_group.campaign_id} AND
+      ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
       ${ad_group.latest}  ;;
     relationship: many_to_one
   }
-}
-
-view: ad_group_fact {
-  extends: [ad_metrics_base, ad_group_fact_base]
-
-  derived_table: {
-    explore_source: ad_impressions {
-      column: external_customer_id {}
-      column: campaign_id {}
-      column: ad_group_id {}
-      column: clicks {field: ad_impressions.total_clicks }
-      column: conversions {field: ad_impressions.total_conversions}
-      column: conversionvalue { field: ad_impressions.total_conversionvalue }
-      column: impressions {field: ad_impressions.total_impressions}
-      column: cost {field: ad_impressions.total_cost}
-    }
+  join: parent_fact {
+    view_label: "Campaign This Period"
+    from: campaign_fact_this_timeframe
+    sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${parent_fact.campaign_id} ;;
+    relationship: one_to_one
+    type: inner
   }
 }
 
 view: ad_group_fact_this_timeframe {
-  extends: [ad_group_fact]
-  derived_table: {
-    explore_source: ad_impressions {
-      bind_filters: {
-        to_field: ad_impressions.date_date
-        from_field: fact.this_timeframe
-      }
-    }
-  }
-
-  parameter: this_timeframe {
-    type: string
-    allowed_value: {
-      value: "this quarter"
-      label: "Quarter"
-    }
-    allowed_value: {
-      value: "this week"
-      label: "Week"
-    }
-    allowed_value: {
-      value: "this month"
-      label: "Month"
-    }
-    default_value: "this quarter"
-  }
-
-  measure: total_conversions {
-    link: {
-      label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_conversions&f[ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Conversions Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversions?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
-    }
-  }
-
-  measure: total_cost {
-    link: {
-      label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_cost&f[ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Spend Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_spend?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
-    }
-  }
-
-  measure: average_conversion_rate {
-    link: {
-      label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_conversion_rate&f[ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Conversion Rate Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversion_rate?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
-    }
-  }
-
-  measure: average_click_rate {
-    link: {
-      label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Click Rate Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_click_through_rate?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
-    }
-  }
-
-  measure: average_cost_per_click {
-    link: {
-      label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Cost Per Click Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_click?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
-    }
-  }
-
-  measure: average_cost_per_conversion {
-    link: {
-      label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_cost_per_conversion&f[ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Cost Per Conversion Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{_filters['campaign.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['ad_group.ad_group_name'] | url_encode  }}"
-    }
-  }
+  extends: [ad_group_fact_base, this_timeframe_base]
 }
 
 view: ad_group_fact_last_timeframe {
-  extends: [ad_group_fact]
-
-  derived_table: {
-    explore_source: ad_impressions {
-      bind_filters: {
-        to_field: ad_impressions.period
-        from_field: ad_group_fact_last_timeframe.last_timeframe
-      }
-      bind_filters: {
-        to_field: ad_impressions.date_date
-        from_field: ad_group_fact_last_timeframe.last_timeframe
-      }
-      filters: {
-        field: ad_impressions.less_than_current_day_of_period
-        value: "Yes"
-      }
-    }
-  }
-
-  parameter: last_timeframe {
-    type: string
-    allowed_value: {
-      value: "1 quarter ago"
-      label: "Quarter"
-    }
-    allowed_value: {
-      value: "1 week ago"
-      label: "Week"
-    }
-    allowed_value: {
-      value: "1 month ago"
-      label: "Month"
-    }
-    default_value: "1 quarter ago"
-  }
+  extends: [ad_group_fact_base, last_timeframe_base]
 }
 
 explore: ad_group_date_fact {
@@ -231,30 +80,18 @@ explore: ad_group_date_fact {
   from: ad_group_date_fact
   label: "Ad Group Date Fact"
   view_label: "Ad Group Date Fact"
+  join: parent_fact {
+    from: campaign_date_fact
+    sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${parent_fact.campaign_id} AND
+      ${fact.date_date} = ${parent_fact.date_date} ;;
+    relationship: one_to_one
+    type: inner
+  }
 }
 
 view: ad_group_date_fact {
-  extends: [ad_group_fact_base, date_base]
-
-  derived_table: {
-    datagroup_trigger: etl_datagroup
-#     partition_keys: ["_date"]
-    explore_source: ad_impressions {
-      column: _date { field: ad_impressions.date_date }
-      column: external_customer_id {}
-      column: campaign_id {}
-      column: ad_group_id {}
-      column: clicks { field: ad_impressions.total_clicks }
-      column: conversions { field: ad_impressions.total_conversions }
-      column: conversionvalue { field: ad_impressions.total_conversionvalue }
-      column: cost { field: ad_impressions.total_cost }
-      column: impressions { field: ad_impressions.total_impressions }
-    }
-  }
-  dimension: _date {
-    hidden: yes
-    sql: TIMESTAMP(${TABLE}._date) ;;
-  }
+  extends: [campaign_date_fact, ad_group_base, date_base]
 }
 
 explore: ad_group_week_fact {
@@ -287,36 +124,7 @@ explore: ad_group_week_fact {
 }
 
 view: ad_group_week_fact {
-  extends: [ad_group_fact_base]
-
-  derived_table: {
-    datagroup_trigger: etl_datagroup
-    explore_source: ad_group_date_fact {
-      column: date_week { field: fact.date_week }
-      column: external_customer_id { field: fact.external_customer_id }
-      column: campaign_id { field: fact.campaign_id }
-      column: ad_group_id { field: fact.ad_group_id }
-      column: less_than_current_day_of_week { field: fact.less_than_current_day_of_week }
-      column: clicks { field: fact.total_clicks }
-      column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversionvalue }
-      column: cost { field: fact.total_cost }
-      column: impressions { field: fact.total_impressions }
-    }
-  }
-  dimension: date_week {
-    type: date
-    allow_fill: no
-    sql: TIMESTAMP(${TABLE}.date_week) ;;
-  }
-  dimension: date_last_week {
-    type: date
-    sql: DATE_ADD(${date_week}, INTERVAL -1 WEEK) ;;
-  }
-  dimension: date_date {
-    sql: ${date_week} ;;
-  }
-  dimension: less_than_current_day_of_week {}
+  extends: [campaign_week_fact, ad_group_base]
 }
 
 explore: ad_group_month_fact {
@@ -349,36 +157,7 @@ explore: ad_group_month_fact {
 }
 
 view: ad_group_month_fact {
-  extends: [ad_group_fact_base]
-
-  derived_table: {
-    datagroup_trigger: etl_datagroup
-    explore_source: ad_group_date_fact {
-      column: date_month { field: fact.date_month_date }
-      column: external_customer_id { field: fact.external_customer_id }
-      column: campaign_id { field: fact.campaign_id }
-      column: ad_group_id { field: fact.ad_group_id }
-      column: less_than_current_day_of_month { field: fact.less_than_current_day_of_month }
-      column: clicks { field: fact.total_clicks }
-      column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversionvalue }
-      column: cost { field: fact.total_cost }
-      column: impressions { field: fact.total_impressions }
-    }
-  }
-  dimension: date_month {
-    type: date
-    allow_fill: no
-    sql: TIMESTAMP(${TABLE}.date_month) ;;
-  }
-  dimension: date_last_month {
-    type: date
-    sql: DATE_ADD(${date_month}, INTERVAL -1 MONTH) ;;
-  }
-  dimension: date_date {
-    sql: ${date_month} ;;
-  }
-  dimension: less_than_current_day_of_month {}
+  extends: [campaign_month_fact, ad_group_base]
 }
 
 explore: ad_group_quarter_fact {
@@ -411,34 +190,5 @@ explore: ad_group_quarter_fact {
 }
 
 view: ad_group_quarter_fact {
-  extends: [ad_group_fact_base, ad_metrics_parent_comparison_base]
-
-  derived_table: {
-    datagroup_trigger: etl_datagroup
-    explore_source: ad_group_date_fact {
-      column: date_quarter { field: fact.date_quarter_date }
-      column: external_customer_id { field: fact.external_customer_id }
-      column: campaign_id { field: fact.campaign_id }
-      column: ad_group_id { field: fact.ad_group_id }
-      column: less_than_current_day_of_quarter { field: fact.less_than_current_day_of_quarter }
-      column: clicks { field: fact.total_clicks }
-      column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversionvalue }
-      column: cost { field: fact.total_cost }
-      column: impressions { field: fact.total_impressions }
-    }
-  }
-  dimension: date_quarter {
-    type: date
-    allow_fill: no
-    sql: TIMESTAMP(${TABLE}.date_quarter) ;;
-  }
-  dimension: date_last_quarter {
-    type: date
-    sql: DATE_ADD(${date_quarter}, INTERVAL -1 QUARTER) ;;
-  }
-  dimension: date_date {
-    sql: ${date_quarter} ;;
-  }
-  dimension: less_than_current_day_of_quarter {}
+  extends: [campaign_quarter_fact, ad_group_base]
 }
