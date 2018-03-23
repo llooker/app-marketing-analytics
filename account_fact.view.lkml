@@ -19,6 +19,16 @@ explore: account_fact_base {
 view: account_fact_base {
   extension: required
   extends: [ad_metrics_base]
+  derived_table: {
+    explore_source: ad_impressions {
+      column: external_customer_id {}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue { field: ad_impressions.total_conversionvalue }
+      column: impressions {field: ad_impressions.total_impressions}
+      column: cost {field: ad_impressions.total_cost}
+    }
+  }
   dimension: external_customer_id {
     type: number
   }
@@ -49,27 +59,12 @@ explore: account_fact_this_timeframe {
   }
 }
 
-view: account_fact {
-  extends: [ad_metrics_base, account_fact_base]
-
-  derived_table: {
-    explore_source: ad_impressions {
-      column: external_customer_id {}
-      column: clicks {field: ad_impressions.total_clicks }
-      column: conversions {field: ad_impressions.total_conversions}
-      column: conversionvalue { field: ad_impressions.total_conversionvalue }
-      column: impressions {field: ad_impressions.total_impressions}
-      column: cost {field: ad_impressions.total_cost}
-    }
-  }
-}
-
 view: account_fact_this_timeframe {
-  extends: [account_fact, this_timeframe_base]
+  extends: [account_fact_base, this_timeframe_base]
 }
 
 view: account_fact_last_timeframe {
-  extends: [account_fact, last_timeframe_base]
+  extends: [account_fact_base, last_timeframe_base]
 }
 
 explore: account_date_fact {
@@ -83,16 +78,9 @@ view: account_date_fact {
   extends: [account_fact_base, date_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
 #     partition_keys: ["_date"]
     explore_source: ad_impressions {
       column: _date { field: ad_impressions.date_date }
-      column: external_customer_id {}
-      column: clicks { field: ad_impressions.total_clicks }
-      column: conversions { field: ad_impressions.total_conversions }
-      column: conversionvalue { field: ad_impressions.total_conversionvalue }
-      column: cost { field: ad_impressions.total_cost }
-      column: impressions { field: ad_impressions.total_impressions }
     }
   }
   dimension: _date {
@@ -124,16 +112,9 @@ view: account_week_fact {
   extends: [account_fact_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
-    explore_source: account_date_fact {
-      column: date_week { field: fact.date_week }
-      column: external_customer_id { field: fact.external_customer_id }
-      column: less_than_current_day_of_week { field: fact.less_than_current_day_of_week }
-      column: clicks { field: fact.total_clicks }
-      column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversionvalue }
-      column: cost { field: fact.total_cost }
-      column: impressions { field: fact.total_impressions }
+    explore_source: ad_impressions {
+      column: date_week { field: ad_impressions.date_week }
+      column: less_than_current_day_of_week { field: ad_impressions.less_than_current_day_of_week }
     }
   }
   dimension: date_week {
@@ -174,16 +155,9 @@ view: account_month_fact {
   extends: [account_fact_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
-    explore_source: account_date_fact {
-      column: date_month { field: fact.date_month_date }
-      column: external_customer_id { field: fact.external_customer_id }
-      column: less_than_current_day_of_month { field: fact.less_than_current_day_of_month }
-      column: clicks { field: fact.total_clicks }
-      column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversionvalue }
-      column: cost { field: fact.total_cost }
-      column: impressions { field: fact.total_impressions }
+    explore_source: ad_impressions {
+      column: date_month { field: ad_impressions.date_month_date }
+      column: less_than_current_day_of_month { field: ad_impressions.less_than_current_day_of_month }
     }
   }
   dimension: date_month {
@@ -225,15 +199,9 @@ view: account_quarter_fact {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: account_date_fact {
-      column: date_quarter { field: fact.date_quarter_date }
-      column: external_customer_id { field: fact.external_customer_id }
-      column: less_than_current_day_of_quarter { field: fact.less_than_current_day_of_quarter }
-      column: clicks { field: fact.total_clicks }
-      column: conversions { field: fact.total_conversions }
-      column: conversionvalue { field: fact.total_conversionvalue }
-      column: cost { field: fact.total_cost }
-      column: impressions { field: fact.total_impressions }
+    explore_source: ad_impressions {
+      column: date_quarter { field: ad_impressions.date_quarter_date }
+      column: less_than_current_day_of_quarter { field: ad_impressions.less_than_current_day_of_quarter }
     }
   }
   dimension: date_quarter {

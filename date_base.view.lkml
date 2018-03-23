@@ -69,19 +69,16 @@ view: date_base {
 
   dimension: less_than_current_day_of_quarter {
     hidden: yes
-    type: yesno
     sql: ${date_day_of_quarter} <= ${current_day_of_quarter} ;;
   }
 
   dimension: less_than_current_day_of_month {
     hidden:  yes
-    type: yesno
     sql: ${date_day_of_month} <= ${current_day_of_month} ;;
   }
 
   dimension: less_than_current_day_of_week {
     hidden:  yes
-    type: yesno
     sql: ${date_day_of_week_index} <= ${current_day_of_week} ;;
   }
 
