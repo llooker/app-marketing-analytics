@@ -12,7 +12,7 @@ view: ad_impressions {
     {{ _user_attributes["google_adwords_schema"] }}.AdBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
   {% elsif (audience._in_query or ad_impressions.audience_criterion_id._in_query) %}
     {{ _user_attributes["google_adwords_schema"] }}.AudienceBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
-  {% elsif (keyword._in_query or ad_impressions.criteria_id._in_query) %}
+  {% elsif (keyword._in_query or ad_impressions.criterion_id._in_query) %}
     {{ _user_attributes["google_adwords_schema"] }}.KeywordBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
   {% elsif (ad_group._in_query or ad_impressions.ad_group_id._in_query) %}
     {% if ad_impressions.hour_of_day._in_query %}

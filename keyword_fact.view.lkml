@@ -1,4 +1,3 @@
-include: "ad.view"
 include: "ad_metrics_base.view"
 include: "ad_metrics_parent_comparison_base.view"
 include: "ad_group.view"
@@ -7,9 +6,10 @@ include: "campaign.view"
 include: "campaign_fact.view"
 include: "customer.view"
 include: "date_base.view"
+include: "keyword.view"
 include: "timeframe_base.view"
 
-explore: ad_fact_base {
+explore: keyword_fact_base {
   hidden: yes
   extension: required
   view_name: fact
@@ -36,18 +36,18 @@ explore: ad_fact_base {
       ${fact.date_date} = ${ad_group.date_date}  ;;
     relationship: many_to_one
   }
-  join: ad {
-    view_label: "Ad"
-    sql_on: ${fact.creative_id} = ${ad.creative_id} AND
-      ${fact.ad_group_id} = ${ad.ad_group_id} AND
-      ${fact.campaign_id} = ${ad.campaign_id} AND
-      ${fact.external_customer_id} = ${ad.external_customer_id} AND
-      ${fact.date_date} = ${ad.date_date}  ;;
+  join: keyword {
+    view_label: "Keyword"
+    sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
+      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
+      ${fact.campaign_id} = ${keyword.campaign_id} AND
+      ${fact.external_customer_id} = ${keyword.external_customer_id} AND
+      ${fact.date_date} = ${keyword.date_date}  ;;
     relationship: many_to_one
   }
 }
 
-view: ad_fact_base {
+view: keyword_fact_base {
   extension: required
   extends: [ad_metrics_base]
   dimension: external_customer_id {
@@ -59,13 +59,13 @@ view: ad_fact_base {
   dimension: ad_group_id {
     hidden: yes
   }
-  dimension: creative_id {
+  dimension: criterion_id {
     hidden: yes
   }
 }
 
-explore: ad_fact_this_timeframe {
-  from: ad_fact_this_timeframe
+explore: keyword_fact_this_timeframe {
+  from: keyword_fact_this_timeframe
   view_name: fact
   persist_with: etl_datagroup
   always_filter: {
@@ -75,9 +75,12 @@ explore: ad_fact_this_timeframe {
     filters: {
       field: last_fact.last_timeframe
     }
+    filters: {
+      field: parent_fact.this_timeframe
+    }
   }
   join: last_fact {
-    from: ad_fact_last_timeframe
+    from: keyword_fact_last_timeframe
     sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
           ${fact.campaign_id} = ${last_fact.campaign_id} AND
           ${fact.ad_group_id} = ${last_fact.ad_group_id} ;;
@@ -104,13 +107,13 @@ explore: ad_fact_this_timeframe {
       ${ad_group.latest}  ;;
     relationship: many_to_one
   }
-  join: ad {
-    view_label: "Ad"
-    sql_on: ${fact.ad_group_id} = ${ad.creative_id} AND
-      ${fact.ad_group_id} = ${ad.ad_group_id} AND
-      ${fact.campaign_id} = ${ad.campaign_id} AND
-      ${fact.external_customer_id} = ${ad.external_customer_id} AND
-      ${ad.latest}  ;;
+  join: keyword {
+    view_label: "Keyword"
+    sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
+      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
+      ${fact.campaign_id} = ${keyword.campaign_id} AND
+      ${fact.external_customer_id} = ${keyword.external_customer_id} AND
+      ${keyword.latest}  ;;
     relationship: many_to_one
   }
   join: parent_fact {
@@ -124,15 +127,15 @@ explore: ad_fact_this_timeframe {
   }
 }
 
-view: ad_fact {
-  extends: [ad_metrics_base, ad_fact_base]
+view: keyword_fact {
+  extends: [ad_metrics_base, keyword_fact_base]
 
   derived_table: {
     explore_source: ad_impressions {
       column: external_customer_id {}
       column: campaign_id {}
       column: ad_group_id {}
-      column: creative_id {}
+      column: criterion_id {}
       column: clicks {field: ad_impressions.total_clicks }
       column: conversions {field: ad_impressions.total_conversions}
       column: conversionvalue { field: ad_impressions.total_conversionvalue }
@@ -142,23 +145,23 @@ view: ad_fact {
   }
 }
 
-view: ad_fact_this_timeframe {
-  extends: [ad_fact, ad_metrics_parent_comparison_base, this_timeframe_base]
+view: keyword_fact_this_timeframe {
+  extends: [keyword_fact, ad_metrics_parent_comparison_base, this_timeframe_base]
 }
 
-view: ad_fact_last_timeframe {
-  extends: [ad_fact, last_timeframe_base]
+view: keyword_fact_last_timeframe {
+  extends: [keyword_fact, last_timeframe_base]
 }
 
-explore: ad_date_fact {
-  extends: [ad_fact_base]
-  from: ad_date_fact
+explore: keyword_date_fact {
+  extends: [keyword_fact_base]
+  from: keyword_date_fact
   label: "Ad Date Fact"
   view_label: "Ad Date Fact"
 }
 
-view: ad_date_fact {
-  extends: [ad_fact_base, date_base]
+view: keyword_date_fact {
+  extends: [keyword_fact_base, date_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
@@ -168,7 +171,7 @@ view: ad_date_fact {
       column: external_customer_id {}
       column: campaign_id {}
       column: ad_group_id {}
-      column: creative_id {}
+      column: criterion_id {}
       column: clicks { field: ad_impressions.total_clicks }
       column: conversions { field: ad_impressions.total_conversions }
       column: conversionvalue { field: ad_impressions.total_conversionvalue }
@@ -182,27 +185,27 @@ view: ad_date_fact {
   }
 }
 
-explore: ad_week_fact {
-  extends: [ad_fact_base]
-  from: ad_week_fact
+explore: keyword_week_fact {
+  extends: [keyword_fact_base]
+  from: keyword_week_fact
   label: "Ad Week Fact"
   view_label: "Ad Week Fact"
 
-  join: last_ad_week_fact {
-    from: ad_week_fact
+  join: last_keyword_week_fact {
+    from: keyword_week_fact
     view_label: "Last Week Ad Fact"
-    sql_on: ${fact.external_customer_id} = ${last_ad_week_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_ad_week_fact.campaign_id} AND
-      ${fact.ad_group_id} = ${last_ad_week_fact.ad_group_id} AND
-      ${fact.creative_id} = ${last_ad_week_fact.creative_id} AND
-      ${fact.date_last_week} = ${last_ad_week_fact.date_week} AND
-      ${fact.less_than_current_day_of_week} = ${last_ad_week_fact.less_than_current_day_of_week} AND
-      ${last_ad_week_fact.less_than_current_day_of_week} ;;
+    sql_on: ${fact.external_customer_id} = ${last_keyword_week_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_keyword_week_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${last_keyword_week_fact.ad_group_id} AND
+      ${fact.criterion_id} = ${last_keyword_week_fact.criterion_id} AND
+      ${fact.date_last_week} = ${last_keyword_week_fact.date_week} AND
+      ${fact.less_than_current_day_of_week} = ${last_keyword_week_fact.less_than_current_day_of_week} AND
+      ${last_keyword_week_fact.less_than_current_day_of_week} ;;
     relationship: one_to_one
     type: inner
   }
   join: parent_fact {
-    from: ad_week_fact
+    from: keyword_week_fact
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.campaign_id} = ${parent_fact.campaign_id} AND
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
@@ -213,17 +216,17 @@ explore: ad_week_fact {
   }
 }
 
-view: ad_week_fact {
-  extends: [ad_fact_base]
+view: keyword_week_fact {
+  extends: [keyword_fact_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: ad_date_fact {
+    explore_source: keyword_date_fact {
       column: date_week { field: fact.date_week }
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
-      column: creative_id { field: fact.creative_id }
+      column: criterion_id { field: fact.criterion_id }
       column: less_than_current_day_of_week { field: fact.less_than_current_day_of_week }
       column: clicks { field: fact.total_clicks }
       column: conversions { field: fact.total_conversions }
@@ -247,21 +250,21 @@ view: ad_week_fact {
   dimension: less_than_current_day_of_week {}
 }
 
-explore: ad_month_fact {
-  extends: [ad_fact_base]
-  from: ad_month_fact
-  label: "Ad Month Fact"
-  view_label: "Ad Month Fact"
+explore: keyword_month_fact {
+  extends: [keyword_fact_base]
+  from: keyword_month_fact
+  label: "Keyword Month Fact"
+  view_label: "Keyword Month Fact"
 
-  join: last_ad_month_fact {
-    from: ad_month_fact
-    view_label: "Last Month Ad Fact"
-    sql_on: ${fact.external_customer_id} = ${last_ad_month_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_ad_month_fact.campaign_id} AND
-      ${fact.ad_group_id} = ${last_ad_month_fact.ad_group_id} AND
-      ${fact.date_last_month} = ${last_ad_month_fact.date_month} AND
-      ${fact.less_than_current_day_of_month} = ${last_ad_month_fact.less_than_current_day_of_month} AND
-      ${last_ad_month_fact.less_than_current_day_of_month} ;;
+  join: last_keyword_month_fact {
+    from: keyword_month_fact
+    view_label: "Last Month Keyword Fact"
+    sql_on: ${fact.external_customer_id} = ${last_keyword_month_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_keyword_month_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${last_keyword_month_fact.ad_group_id} AND
+      ${fact.date_last_month} = ${last_keyword_month_fact.date_month} AND
+      ${fact.less_than_current_day_of_month} = ${last_keyword_month_fact.less_than_current_day_of_month} AND
+      ${last_keyword_month_fact.less_than_current_day_of_month} ;;
     relationship: one_to_one
     type: inner
   }
@@ -277,17 +280,17 @@ explore: ad_month_fact {
   }
 }
 
-view: ad_month_fact {
-  extends: [ad_fact_base]
+view: keyword_month_fact {
+  extends: [keyword_fact_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: ad_date_fact {
+    explore_source: keyword_date_fact {
       column: date_month { field: fact.date_month_date }
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
-      column: creative_id { field: fact.creative_id }
+      column: criterion_id { field: fact.criterion_id }
       column: less_than_current_day_of_month { field: fact.less_than_current_day_of_month }
       column: clicks { field: fact.total_clicks }
       column: conversions { field: fact.total_conversions }
@@ -311,21 +314,21 @@ view: ad_month_fact {
   dimension: less_than_current_day_of_month {}
 }
 
-explore: ad_quarter_fact {
-  extends: [ad_fact_base]
-  from: ad_quarter_fact
-  label: "Ad Quarter Fact"
-  view_label: "Ad Quarter Fact"
+explore: keyword_quarter_fact {
+  extends: [keyword_fact_base]
+  from: keyword_quarter_fact
+  label: "Keyword Quarter Fact"
+  view_label: "Keyword Quarter Fact"
 
-  join: last_ad_quarter_fact {
-    from: ad_quarter_fact
-    view_label: "Last Quarter Ad Fact"
-    sql_on: ${fact.external_customer_id} = ${last_ad_quarter_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_ad_quarter_fact.campaign_id} AND
-      ${fact.ad_group_id} = ${last_ad_quarter_fact.ad_group_id} AND
-      ${fact.date_last_quarter} = ${last_ad_quarter_fact.date_quarter} AND
-      ${fact.less_than_current_day_of_quarter} = ${last_ad_quarter_fact.less_than_current_day_of_quarter} AND
-      ${last_ad_quarter_fact.less_than_current_day_of_quarter} ;;
+  join: last_keyword_quarter_fact {
+    from: keyword_quarter_fact
+    view_label: "Last Quarter Keyword Fact"
+    sql_on: ${fact.external_customer_id} = ${last_keyword_quarter_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_keyword_quarter_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${last_keyword_quarter_fact.ad_group_id} AND
+      ${fact.date_last_quarter} = ${last_keyword_quarter_fact.date_quarter} AND
+      ${fact.less_than_current_day_of_quarter} = ${last_keyword_quarter_fact.less_than_current_day_of_quarter} AND
+      ${last_keyword_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
     type: inner
   }
@@ -341,17 +344,17 @@ explore: ad_quarter_fact {
   }
 }
 
-view: ad_quarter_fact {
-  extends: [ad_fact_base, ad_metrics_parent_comparison_base]
+view: keyword_quarter_fact {
+  extends: [keyword_fact_base, ad_metrics_parent_comparison_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: ad_date_fact {
+    explore_source: keyword_date_fact {
       column: date_quarter { field: fact.date_quarter_date }
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
-      column: creative_id { field: fact.creative_id }
+      column: criterion_id { field: fact.criterion_id }
       column: less_than_current_day_of_quarter { field: fact.less_than_current_day_of_quarter }
       column: clicks { field: fact.total_clicks }
       column: conversions { field: fact.total_conversions }

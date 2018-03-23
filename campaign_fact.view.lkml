@@ -65,6 +65,7 @@ explore: campaign_fact_this_timeframe {
     relationship: many_to_one
   }
   join: parent_fact {
+    view_label: "Customer This Period"
     from: account_fact_this_timeframe
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} ;;
     relationship: one_to_one
