@@ -15,7 +15,7 @@
       "name": "Search Ads",
       "pages": [
         {
-          "lookmlID": "looker_app_google_adwords::campaign_metrics_spend",
+          "lookmlID": "looker_app_google_adwords::campaign_metrics_cost_per_conversion",
           "name": "Campaigns",
           "permalink": "campaigns",
           "type": "dashboard"
