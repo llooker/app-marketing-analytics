@@ -1,6 +1,7 @@
 include: "ad_metrics_base.view"
 include: "customer.view"
 include: "date_base.view"
+include: "timeframe_base.view"
 
 explore: account_fact_base {
   hidden: yes
@@ -32,11 +33,12 @@ explore: account_fact_this_timeframe {
       field: fact.this_timeframe
     }
     filters: {
-      field: account_fact_last_timeframe.last_timeframe
+      field: last_fact.last_timeframe
     }
   }
-  join: account_fact_last_timeframe {
-    sql_on: ${fact.external_customer_id} = ${account_fact_last_timeframe.external_customer_id} ;;
+  join: last_fact {
+    from: account_fact_last_timeframe
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} ;;
     relationship: one_to_one
   }
   join: customer {
@@ -63,112 +65,11 @@ view: account_fact {
 }
 
 view: account_fact_this_timeframe {
-  extends: [account_fact]
-  derived_table: {
-    explore_source: ad_impressions {
-      bind_filters: {
-        to_field: ad_impressions.date_date
-        from_field: fact.this_timeframe
-      }
-    }
-  }
-
-  parameter: this_timeframe {
-    type: string
-    allowed_value: {
-      value: "this quarter"
-      label: "Quarter"
-    }
-    allowed_value: {
-      value: "this week"
-      label: "Week"
-    }
-    allowed_value: {
-      value: "this month"
-      label: "Month"
-    }
-    default_value: "this quarter"
-  }
-
-  measure: total_conversions {
-    link: {
-      label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_conversions&f[ad_impressions.date_date]=this quarter"
-    }
-  }
-
-  measure: total_cost {
-    link: {
-      label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_cost&f[ad_impressions.date_date]=this quarter"
-    }
-  }
-
-  measure: average_conversion_rate {
-    link: {
-      label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_conversion_rate&f[ad_impressions.date_date]=this quarter"
-    }
-  }
-
-  measure: average_click_rate {
-    link: {
-      label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
-    }
-  }
-
-  measure: average_cost_per_click {
-    link: {
-      label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
-    }
-  }
-
-  measure: average_cost_per_conversion {
-    link: {
-      label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_cost_per_conversion&f[ad_impressions.date_date]=this quarter"
-    }
-  }
+  extends: [account_fact, this_timeframe_base]
 }
 
 view: account_fact_last_timeframe {
-  extends: [account_fact]
-
-  derived_table: {
-    explore_source: ad_impressions {
-      bind_filters: {
-        to_field: ad_impressions.period
-        from_field: account_fact_last_timeframe.last_timeframe
-      }
-      bind_filters: {
-        to_field: ad_impressions.date_date
-        from_field: account_fact_last_timeframe.last_timeframe
-      }
-      filters: {
-        field: ad_impressions.less_than_current_day_of_period
-        value: "Yes"
-      }
-    }
-  }
-
-  parameter: last_timeframe {
-    type: string
-    allowed_value: {
-      value: "1 quarter ago"
-      label: "Quarter"
-    }
-    allowed_value: {
-      value: "1 week ago"
-      label: "Week"
-    }
-    allowed_value: {
-      value: "1 month ago"
-      label: "Month"
-    }
-    default_value: "1 quarter ago"
-  }
+  extends: [account_fact, last_timeframe_base]
 }
 
 explore: account_date_fact {

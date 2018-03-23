@@ -1027,7 +1027,7 @@
     default_value: 1 quarter ago
     model: looker_app_google_adwords
     explore: ad_group_fact_this_timeframe
-    field: ad_group_fact_last_timeframe.last_timeframe
+    field: last_fact.last_timeframe
     listens_to_filters: []
     allow_multiple_values: true
     required: false

@@ -17,60 +17,60 @@
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_cost
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_cost
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_ad_group_fact_last_timeframe.total_cost}"
+      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_ad_group_fact_last_timeframe.total_conversions}"
+      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
+        \ / ${combined_last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_ad_group_fact_last_timeframe.average_cost_per_click})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
+        \ / ${combined_last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_ad_group_fact_last_timeframe.average_conversion_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
+        \ / ${combined_last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_ad_group_fact_last_timeframe.average_click_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
+        \ / ${combined_last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -108,16 +108,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_ad_group_fact_last_timeframe.total_cost
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_cost
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - conversion_rate_percent_change
     - cost_per_click_percent_change
@@ -126,7 +126,7 @@
     single_value_title: ''
     listen:
       This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_ad_group_fact_last_timeframe.last_timeframe
+      Last Timeframe: combined_last_fact.last_timeframe
     row: 0
     col: 6
     width: 6
@@ -139,60 +139,60 @@
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_cost
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_cost
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_ad_group_fact_last_timeframe.total_cost}"
+      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_ad_group_fact_last_timeframe.total_conversions}"
+      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
+        \ / ${combined_last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_ad_group_fact_last_timeframe.average_cost_per_click})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
+        \ / ${combined_last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_ad_group_fact_last_timeframe.average_conversion_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
+        \ / ${combined_last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_ad_group_fact_last_timeframe.average_click_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
+        \ / ${combined_last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -230,16 +230,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_ad_group_fact_last_timeframe.total_cost
+    - combined_last_fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - conversion_rate_percent_change
     - cost_per_click_percent_change
@@ -248,7 +248,7 @@
     single_value_title: Per Conversion
     listen:
       This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_ad_group_fact_last_timeframe.last_timeframe
+      Last Timeframe: combined_last_fact.last_timeframe
     row: 0
     col: 12
     width: 6
@@ -261,60 +261,60 @@
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_cost
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_cost
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_ad_group_fact_last_timeframe.total_cost}"
+      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_ad_group_fact_last_timeframe.total_conversions}"
+      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
+        \ / ${combined_last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_ad_group_fact_last_timeframe.average_cost_per_click})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
+        \ / ${combined_last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_ad_group_fact_last_timeframe.average_conversion_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
+        \ / ${combined_last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_ad_group_fact_last_timeframe.average_click_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
+        \ / ${combined_last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -352,16 +352,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_ad_group_fact_last_timeframe.total_cost
+    - combined_last_fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - cost_per_click_percent_change
     - cost_per_conversion_percent_change
@@ -370,7 +370,7 @@
     single_value_title: ''
     listen:
       This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_ad_group_fact_last_timeframe.last_timeframe
+      Last Timeframe: combined_last_fact.last_timeframe
     row: 0
     col: 18
     width: 6
@@ -383,60 +383,60 @@
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_cost
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_cost
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_ad_group_fact_last_timeframe.total_cost}"
+      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_ad_group_fact_last_timeframe.total_conversions}"
+      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
+        \ / ${combined_last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_ad_group_fact_last_timeframe.average_cost_per_click})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
+        \ / ${combined_last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_ad_group_fact_last_timeframe.average_conversion_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
+        \ / ${combined_last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_ad_group_fact_last_timeframe.average_click_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
+        \ / ${combined_last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -474,16 +474,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_ad_group_fact_last_timeframe.total_cost
+    - combined_last_fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_click_rate
+    - combined_last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - conversion_rate_percent_change
     - cost_per_conversion_percent_change
@@ -492,7 +492,7 @@
     single_value_title: ''
     listen:
       This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_ad_group_fact_last_timeframe.last_timeframe
+      Last Timeframe: combined_last_fact.last_timeframe
     row: 12
     col: 0
     width: 6
@@ -505,60 +505,60 @@
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_cost
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_cost
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_ad_group_fact_last_timeframe.total_cost}"
+      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_ad_group_fact_last_timeframe.total_conversions}"
+      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
+        \ / ${combined_last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_ad_group_fact_last_timeframe.average_cost_per_click})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
+        \ / ${combined_last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_ad_group_fact_last_timeframe.average_conversion_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
+        \ / ${combined_last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_ad_group_fact_last_timeframe.average_click_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
+        \ / ${combined_last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -596,16 +596,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_ad_group_fact_last_timeframe.total_cost
+    - combined_last_fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_conversion_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     - conversion_rate_percent_change
     - cost_per_click_percent_change
     - cost_per_conversion_percent_change
@@ -614,7 +614,7 @@
     single_value_title: ''
     listen:
       This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_ad_group_fact_last_timeframe.last_timeframe
+      Last Timeframe: combined_last_fact.last_timeframe
     row: 15
     col: 0
     width: 6
@@ -1106,61 +1106,61 @@
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_cost
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_cost
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_ad_group_fact_last_timeframe.total_cost}"
+      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_ad_group_fact_last_timeframe.total_conversions}"
+      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
+        \ / ${combined_last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_ad_group_fact_last_timeframe.average_cost_per_click})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
+        \ / ${combined_last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_ad_group_fact_last_timeframe.average_conversion_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
+        \ / ${combined_last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_ad_group_fact_last_timeframe.average_click_rate})\
-        \ / ${combined_ad_group_fact_last_timeframe.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
+        \ / ${combined_last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -1197,17 +1197,17 @@
     totals_color: "#808080"
     series_types: {}
     hidden_fields:
-    - combined_ad_group_fact_last_timeframe.total_cost
+    - combined_last_fact.total_cost
     - fact.total_conversions
-    - combined_ad_group_fact_last_timeframe.total_conversions
-    - combined_ad_group_fact_last_timeframe.average_cost_per_conversion
+    - combined_last_fact.total_conversions
+    - combined_last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_ad_group_fact_last_timeframe.average_conversion_rate
+    - combined_last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_ad_group_fact_last_timeframe.average_click_rate
+    - combined_last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_ad_group_fact_last_timeframe.average_cost_per_click
+    - combined_last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - conversion_rate_percent_change
     - cost_per_click_percent_change
@@ -1216,7 +1216,7 @@
     single_value_title: Spend
     listen:
       This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_ad_group_fact_last_timeframe.last_timeframe
+      Last Timeframe: combined_last_fact.last_timeframe
     row: 0
     col: 0
     width: 6
@@ -1436,7 +1436,7 @@
     default_value: 1 quarter ago
     model: looker_app_google_adwords
     explore: combined_ad_group_fact_this_timeframe
-    field: combined_ad_group_fact_last_timeframe.last_timeframe
+    field: combined_last_fact.last_timeframe
     listens_to_filters: []
     allow_multiple_values: true
     required: false
