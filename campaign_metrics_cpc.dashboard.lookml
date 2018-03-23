@@ -458,9 +458,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 702
+        __LINE_NUM: 457
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 690
+      __LINE_NUM: 445
     conditional_formatting:
     - type: high to low
       value:
@@ -473,14 +473,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 715
+        __LINE_NUM: 470
       bold: false
       italic: false
       strikethrough: false
       fields:
       - ad_impressions.average_cost_per_click
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 710
+      __LINE_NUM: 465
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
@@ -570,9 +570,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 453
+        __LINE_NUM: 569
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 441
+      __LINE_NUM: 557
     conditional_formatting:
     - type: high to low
       value:
@@ -585,13 +585,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 466
+        __LINE_NUM: 582
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 461
+      __LINE_NUM: 577
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -692,9 +692,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 575
+        __LINE_NUM: 691
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 563
+      __LINE_NUM: 679
     conditional_formatting:
     - type: high to low
       value:
@@ -707,13 +707,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 588
+        __LINE_NUM: 704
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 583
+      __LINE_NUM: 699
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -734,6 +734,106 @@
     col: 14
     width: 10
     height: 7
+  - title: Keyword Cost Per Click Change
+    name: Keyword Cost Per Click Change
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - keyword.criteria
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - ad_impressions.cost_per_click_absolute_value
+    - ad_impressions.cost_per_click_last_month
+    - ad_impressions.cost_per_click_this_month
+    filters:
+      ad_group.ad_group_name: ''
+      ad_impressions.date_date: 1 quarters
+      campaign.campaign_name: ''
+      ad_impressions.cost_per_click_absolute_value: ">0.2"
+    sorts:
+    - ad_impressions.cost_per_click_absolute_value desc
+    limit: 500
+    column_limit: 50
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields:
+    - campaign.campaign_name
+    - ad_impressions.cost_per_click_absolute_value
+    - ad_group.ad_group_name
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.cost_per_click_absolute_value
+        name: Ad Impressions CPC Monthly Change Absolute Value
+        axisId: ad_impressions.cost_per_click_absolute_value
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 986
+      - id: ad_impressions.cost_per_click_this_month
+        name: Ad Impressions Cost per Click This Month
+        axisId: ad_impressions.cost_per_click_this_month
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 989
+      - id: ad_impressions.cost_per_click_last_month
+        name: Ad Impressions Cost per Click Last Month
+        axisId: ad_impressions.cost_per_click_last_month
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 992
+      __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+      __LINE_NUM: 974
+    series_colors: {}
+    colors:
+    - "#ea9895"
+    - "#d06180"
+    - "#a6b7ff"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea989"
+    row: 35
+    col: 8
+    width: 8
+    height: 10
   - title: Ad Cost Per Click Change
     name: Ad Cost Per Click Change
     model: looker_app_google_adwords
@@ -817,7 +917,7 @@
       maxValue:
       minValue:
       orientation: bottom
-      showLabels: true
+      showLabels: false
       showValues: false
       tickDensity: default
       tickDensityCustom:
@@ -825,18 +925,20 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.conversion_rate_last_month
-        name: Conversion Rate Last Month
-        axisId: ad_impressions.conversion_rate_last_month
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 942
-      - id: ad_impressions.conversion_rate_this_month
-        name: Conversion Rate This Month
-        axisId: ad_impressions.conversion_rate_this_month
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 930
+      - id: ad_impressions.cost_per_conversion_last_month
+        name: Cost per Conversion Last Month
+        axisId: ad_impressions.cost_per_conversion_last_month
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 828
+      - id: ad_impressions.cost_per_conversion_this_month
+        name: Cost per Conversion This Month
+        axisId: ad_impressions.cost_per_conversion_this_month
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 833
+      __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+      __LINE_NUM: 816
     row: 35
-    col: 9
+    col: 16
     width: 8
     height: 10
   - title: Ad Group Cost Per Click Change
@@ -905,99 +1007,26 @@
       - id: ad_impressions.cost_per_click_absolute_value
         name: Ad Impressions CPC Monthly Change Absolute Value
         axisId: ad_impressions.cost_per_click_absolute_value
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 905
       - id: ad_impressions.cost_per_click_this_month
         name: Ad Impressions Cost per Click This Month
         axisId: ad_impressions.cost_per_click_this_month
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 908
       - id: ad_impressions.cost_per_click_last_month
         name: Ad Impressions Cost per Click Last Month
         axisId: ad_impressions.cost_per_click_last_month
-    series_colors:
-      ad_impressions.cost_per_click_this_month: "#a6b7ff"
-      ad_impressions.cost_per_click_last_month: "#7869df"
-    row: 35
-    col: 0
-    width: 9
-    height: 10
-  - title: Keyword Cost Per Click Change
-    name: Keyword Cost Per Click Change
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_bar
-    fields:
-    - keyword.criteria
-    - ad_group.ad_group_name
-    - campaign.campaign_name
-    - ad_impressions.cost_per_click_absolute_value
-    - ad_impressions.cost_per_click_last_month
-    - ad_impressions.cost_per_click_this_month
-    filters:
-      ad_group.ad_group_name: ''
-      ad_impressions.date_date: 1 quarters
-      campaign.campaign_name: ''
-      ad_impressions.cost_per_click_absolute_value: ">0.2"
-    sorts:
-    - ad_impressions.cost_per_click_absolute_value desc
-    limit: 500
-    column_limit: 50
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - campaign.campaign_name
-    - ad_impressions.cost_per_click_absolute_value
-    - ad_group.ad_group_name
-    limit_displayed_rows_values:
-      show_hide: show
-      first_last: first
-      num_rows: '10'
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.cost_per_click_absolute_value
-        name: Ad Impressions CPC Monthly Change Absolute Value
-        axisId: ad_impressions.cost_per_click_absolute_value
-      - id: ad_impressions.cost_per_click_this_month
-        name: Ad Impressions Cost per Click This Month
-        axisId: ad_impressions.cost_per_click_this_month
-      - id: ad_impressions.cost_per_click_last_month
-        name: Ad Impressions Cost per Click Last Month
-        axisId: ad_impressions.cost_per_click_last_month
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 911
+      __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+      __LINE_NUM: 893
     series_colors: {}
     colors:
-    - "#ea9895"
-    - "#d06180"
     - "#a6b7ff"
     - "#7869df"
+    - "#ea9895"
+    - "#d06180"
     - "#6e98f9"
     - "#8ac8ca"
     - "#dc9d4f"
@@ -1007,20 +1036,20 @@
     - "#afe8fd"
     - "#ea989"
     row: 35
-    col: 17
-    width: 7
+    col: 0
+    width: 8
     height: 10
   filters:
   - name: This Timeframe
     title: This Timeframe
     type: field_filter
     default_value: this quarter
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    field: fact.this_timeframe
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_group_fact_this_timeframe
+    listens_to_filters: []
+    field: fact.this_timeframe
   - name: Last Timeframe
     title: Last Timeframe
     type: field_filter
@@ -1031,33 +1060,37 @@
     listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_group_fact_this_timeframe
+    listens_to_filters: []
+    field: last_fact.last_timeframe
   - name: Campaign
     title: Campaign
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: campaign.campaign_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: campaign.campaign_name
   - name: Ad Group
     title: Ad Group
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_group.ad_group_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: ad_group.ad_group_name
   - name: Time Range
     title: Time Range
     type: field_filter
     default_value: 1 quarters
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_impressions.date_date
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: ad_impressions.date_date
