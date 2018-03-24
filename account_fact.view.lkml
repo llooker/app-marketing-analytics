@@ -29,8 +29,16 @@ view: account_fact_base {
       column: cost {field: ad_impressions.total_cost}
     }
   }
-  dimension: external_customer_id {
-    type: number
+  dimension: external_customer_id {}
+  dimension: account_base {
+    expression: ${external_customer_id} ;;
+  }
+  dimension: key_base {
+    expression: ${external_customer_id} ;;
+  }
+  dimension: primary_key {
+    primary_key: yes
+    expression: ${key_base} ;;
   }
 }
 
@@ -87,6 +95,10 @@ view: account_date_fact {
     hidden: yes
     sql: TIMESTAMP(${TABLE}._date) ;;
   }
+  dimension: primary_key {
+    primary_key: yes
+    expression: concat(${_date}, ${key_base}) ;;
+  }
 }
 
 explore: account_week_fact {
@@ -103,7 +115,6 @@ explore: account_week_fact {
       ${fact.less_than_current_day_of_week} = ${last_account_week_fact.less_than_current_day_of_week} AND
       ${last_account_week_fact.less_than_current_day_of_week} ;;
     relationship: one_to_one
-    type: inner
   }
 }
 
@@ -131,6 +142,13 @@ view: account_week_fact {
     sql: ${date_week} ;;
   }
   dimension: less_than_current_day_of_week {}
+  dimension: week_base {
+    expression: concat(${date_week}, ${less_than_current_day_of_week}) ;;
+  }
+  dimension: primary_key {
+    primary_key: yes
+    expression: concat(${week_base}, ${key_base}) ;;
+  }
 }
 
 explore: account_month_fact {
@@ -147,7 +165,6 @@ explore: account_month_fact {
       ${fact.less_than_current_day_of_month} = ${last_account_month_fact.less_than_current_day_of_month} AND
       ${last_account_month_fact.less_than_current_day_of_month} ;;
     relationship: one_to_one
-    type: inner
   }
 }
 
@@ -174,6 +191,13 @@ view: account_month_fact {
     sql: ${date_month} ;;
   }
   dimension: less_than_current_day_of_month {}
+  dimension: month_base {
+    expression: concat(${date_month}, ${less_than_current_day_of_month}) ;;
+  }
+  dimension: primary_key {
+    primary_key: yes
+    expression: concat(${month_base}, ${key_base}) ;;
+  }
 }
 
 explore: account_quarter_fact {
@@ -190,7 +214,6 @@ explore: account_quarter_fact {
       ${fact.less_than_current_day_of_quarter} = ${last_account_quarter_fact.less_than_current_day_of_quarter} AND
       ${last_account_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
-    type: inner
   }
 }
 
@@ -218,4 +241,11 @@ view: account_quarter_fact {
     sql: ${date_quarter} ;;
   }
   dimension: less_than_current_day_of_quarter {}
+  dimension: quarter_base {
+    expression: concat(${date_quarter}, ${less_than_current_day_of_quarter}) ;;
+  }
+  dimension: primary_key {
+    primary_key: yes
+    expression: concat(${quarter_base}, ${key_base}) ;;
+  }
 }

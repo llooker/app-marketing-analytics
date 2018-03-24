@@ -8,8 +8,8 @@ include: "timeframe_base.view"
 
 explore: campaign_fact_base {
   extends: [account_fact_base]
-  view_name: fact
   extension: required
+  view_name: fact
   join: campaign {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
@@ -26,13 +26,18 @@ view: campaign_base {
       column: campaign_id {}
     }
   }
-
   dimension: campaign_id {}
 }
 
 
 view: campaign_fact_base {
   extends: [account_fact_base, campaign_base]
+  dimension: campaign_base {
+    expression: concat(${account_base}, ${campaign_id}) ;;
+  }
+  dimension: key_base {
+    expression: ${campaign_base} ;;
+  }
 }
 
 explore: campaign_fact_this_timeframe {
@@ -59,8 +64,7 @@ explore: campaign_fact_this_timeframe {
     view_label: "Customer This Period"
     from: account_fact_this_timeframe
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} ;;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
@@ -82,8 +86,7 @@ explore: campaign_date_fact {
     from: account_date_fact
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.date_date} = ${parent_fact.date_date};;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
@@ -113,8 +116,7 @@ explore: campaign_week_fact {
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.date_week} = ${parent_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${parent_fact.less_than_current_day_of_week} ;;
-    relationship: one_to_one
-    type: inner
+    relationship:many_to_one
   }
 }
 
@@ -137,15 +139,13 @@ explore: campaign_month_fact {
       ${fact.less_than_current_day_of_month} = ${last_campaign_month_fact.less_than_current_day_of_month} AND
       ${fact.less_than_current_day_of_month} ;;
     relationship: one_to_one
-    type: inner
   }
   join: parent_fact {
     from: account_month_fact
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.date_month} = ${parent_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${parent_fact.less_than_current_day_of_month} ;;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
@@ -168,15 +168,13 @@ explore: campaign_quarter_fact {
       ${fact.less_than_current_day_of_quarter} = ${last_campaign_quarter_fact.less_than_current_day_of_quarter} AND
       ${last_campaign_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
-    type: inner
   }
   join: parent_fact {
     from: account_quarter_fact
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.date_quarter} = ${parent_fact.date_quarter} AND
       ${fact.less_than_current_day_of_quarter} = ${parent_fact.less_than_current_day_of_quarter} ;;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
