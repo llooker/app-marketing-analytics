@@ -11,9 +11,8 @@ include: "timeframe_base.view"
 
 explore: ad_fact_base {
   extends: [ad_group_fact_base]
-  hidden: yes
   extension: required
-#   view_name: fact
+  view_name: fact
   join: ad {
     view_label: "Ad"
     sql_on: ${fact.creative_id} = ${ad.creative_id} AND
@@ -39,6 +38,12 @@ view: ad_base {
 
 view: ad_fact_base {
   extends: [ad_group_fact_base, ad_base]
+  dimension: ad_base {
+    expression: concat(${ad_group_base}, ${creative_id}) ;;
+  }
+  dimension: key_base {
+    expression: ${ad_base} ;;
+  }
 }
 
 explore: ad_fact_this_timeframe {
@@ -67,8 +72,7 @@ explore: ad_fact_this_timeframe {
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.campaign_id} = ${parent_fact.campaign_id} AND
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} ;;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
@@ -91,8 +95,7 @@ explore: ad_date_fact {
       ${fact.campaign_id} = ${parent_fact.campaign_id} AND
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
       ${fact.date_date} = ${parent_fact.date_date} ;;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
@@ -117,7 +120,6 @@ explore: ad_week_fact {
       ${fact.less_than_current_day_of_week} = ${last_ad_week_fact.less_than_current_day_of_week} AND
       ${last_ad_week_fact.less_than_current_day_of_week} ;;
     relationship: one_to_one
-    type: inner
   }
   join: parent_fact {
     from: ad_group_week_fact
@@ -126,8 +128,7 @@ explore: ad_week_fact {
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
       ${fact.date_week} = ${parent_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${parent_fact.less_than_current_day_of_week} ;;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
@@ -151,7 +152,6 @@ explore: ad_month_fact {
       ${fact.less_than_current_day_of_month} = ${last_ad_month_fact.less_than_current_day_of_month} AND
       ${last_ad_month_fact.less_than_current_day_of_month} ;;
     relationship: one_to_one
-    type: inner
   }
   join: parent_fact {
     from: ad_group_month_fact
@@ -160,8 +160,7 @@ explore: ad_month_fact {
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
       ${fact.date_month} = ${parent_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${parent_fact.less_than_current_day_of_month} ;;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
@@ -186,7 +185,6 @@ explore: ad_quarter_fact {
       ${fact.less_than_current_day_of_quarter} = ${last_ad_quarter_fact.less_than_current_day_of_quarter} AND
       ${last_ad_quarter_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
-    type: inner
   }
   join: parent_fact {
     from: ad_group_quarter_fact
@@ -195,8 +193,7 @@ explore: ad_quarter_fact {
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
       ${fact.date_quarter} = ${parent_fact.date_quarter} AND
       ${fact.less_than_current_day_of_quarter} = ${parent_fact.less_than_current_day_of_quarter} ;;
-    relationship: one_to_one
-    type: inner
+    relationship: many_to_one
   }
 }
 
