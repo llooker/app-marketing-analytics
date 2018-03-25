@@ -1,7 +1,5 @@
-include: "fb_stitch_base.view"
 include: "fb_ads.view"
 include: "fb_adsets.view"
-include: "fb_campaigns.view"
 
 explore: adcreative {
   join: ads {
@@ -58,6 +56,7 @@ explore: adcreative {
     relationship: one_to_one
   }
 }
+
 view: adcreative {
   extends: ["stitch_base"]
 

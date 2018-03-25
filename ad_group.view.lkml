@@ -1,13 +1,11 @@
 include: "campaign.view"
-include: "customer.view"
-include: "date_base.view"
-include: "google_adwords_base.view"
 
 explore: ad_group {
   hidden: yes
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
       ${ad_group.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }

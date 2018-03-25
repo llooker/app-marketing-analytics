@@ -1,10 +1,9 @@
-include: "ad_criterion_base.view"
-include: "google_ad_metrics_base.view"
+include: "google_ad_transformations_base.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
 
 view: ad_impressions {
-  extends: [ad_criterion_base, date_base, google_ad_metrics_base, google_adwords_base]
+  extends: [date_base, google_ad_transformations_base, google_adwords_base]
 
   # this logic hits the right level of aggregate stats table depending on dimensions and filters in query
   sql_table_name:

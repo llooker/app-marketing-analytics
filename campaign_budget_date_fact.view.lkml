@@ -1,5 +1,4 @@
 include: "campaign.view"
-include: "customer.view"
 include: "date_base.view"
 
 explore: campaign_budget_date_fact {

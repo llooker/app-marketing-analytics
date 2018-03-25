@@ -5,13 +5,6 @@ view: audience {
   extends: [date_base, google_adwords_base]
   sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.Audience_{{ _user_attributes["google_adwords_customer_id"] }} ;;
 
-  dimension: unique_key {
-    type: string
-    primary_key: yes
-    hidden: yes
-    sql: CONCAT(CAST(${ad_group_id} AS STRING),CAST(${criterion_id} AS STRING)) ;;
-  }
-
   dimension: ad_group_id {
     sql: ${TABLE}.AdGroupId ;;
     hidden:  yes

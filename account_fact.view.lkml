@@ -1,4 +1,4 @@
-include: "ad_metrics_base.view"
+include: "google_ad_metrics_base.view"
 include: "customer.view"
 include: "date_base.view"
 include: "timeframe_base.view"
@@ -18,15 +18,17 @@ explore: account_fact_base {
 
 view: account_fact_base {
   extension: required
-  extends: [ad_metrics_base]
+  extends: [google_ad_metrics_base]
   derived_table: {
     explore_source: ad_impressions {
       column: external_customer_id {}
+      column: averageposition {field: ad_impressions.weighted_average_position}
       column: clicks {field: ad_impressions.total_clicks }
       column: conversions {field: ad_impressions.total_conversions}
-      column: conversionvalue { field: ad_impressions.total_conversionvalue }
-      column: impressions {field: ad_impressions.total_impressions}
+      column: conversionvalue {field: ad_impressions.total_conversionvalue}
       column: cost {field: ad_impressions.total_cost}
+      column: impressions { field: ad_impressions.total_impressions}
+      column: interactions {field: ad_impressions.total_interactions}
     }
   }
   dimension: external_customer_id {}
@@ -113,7 +115,7 @@ explore: account_week_fact {
     sql_on: ${fact.external_customer_id} = ${last_account_week_fact.external_customer_id} AND
       ${fact.date_last_week} = ${last_account_week_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${last_account_week_fact.less_than_current_day_of_week} AND
-      ${last_account_week_fact.less_than_current_day_of_week} ;;
+      ${last_account_week_fact.less_than_current_day_of_week} = "Yes" ;;
     relationship: one_to_one
   }
 }
@@ -163,7 +165,7 @@ explore: account_month_fact {
     sql_on: ${fact.external_customer_id} = ${last_account_month_fact.external_customer_id} AND
       ${fact.date_last_month} = ${last_account_month_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${last_account_month_fact.less_than_current_day_of_month} AND
-      ${last_account_month_fact.less_than_current_day_of_month} ;;
+      ${last_account_month_fact.less_than_current_day_of_month} = "Yes" ;;
     relationship: one_to_one
   }
 }

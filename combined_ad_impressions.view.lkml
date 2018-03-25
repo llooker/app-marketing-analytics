@@ -1,8 +1,6 @@
 include: "ad_metrics_base.view"
 include: "ad_group.view"
-include: "campaign.view"
 include: "campaign_fact.view"
-include: "customer.view"
 include: "date_base.view"
 
 include: "fb_ads_insights_platform_and_device.view"

@@ -1,13 +1,5 @@
 include: "ad.view"
-include: "ad_metrics_base.view"
-include: "ad_metrics_parent_comparison_base.view"
-include: "ad_group.view"
 include: "ad_group_fact.view"
-include: "campaign.view"
-include: "campaign_fact.view"
-include: "customer.view"
-include: "date_base.view"
-include: "timeframe_base.view"
 
 explore: ad_fact_base {
   extends: [ad_group_fact_base]
@@ -100,7 +92,7 @@ explore: ad_date_fact {
 }
 
 view: ad_date_fact {
-  extends: [ad_group_date_fact, ad_base, date_base]
+  extends: [ad_group_date_fact, ad_base]
 }
 
 explore: ad_week_fact {
@@ -118,7 +110,7 @@ explore: ad_week_fact {
       ${fact.creative_id} = ${last_ad_week_fact.creative_id} AND
       ${fact.date_last_week} = ${last_ad_week_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${last_ad_week_fact.less_than_current_day_of_week} AND
-      ${last_ad_week_fact.less_than_current_day_of_week} ;;
+      ${last_ad_week_fact.less_than_current_day_of_week} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {
@@ -150,7 +142,7 @@ explore: ad_month_fact {
       ${fact.ad_group_id} = ${last_ad_month_fact.ad_group_id} AND
       ${fact.date_last_month} = ${last_ad_month_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${last_ad_month_fact.less_than_current_day_of_month} AND
-      ${last_ad_month_fact.less_than_current_day_of_month} ;;
+      ${last_ad_month_fact.less_than_current_day_of_month} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {
@@ -183,7 +175,7 @@ explore: ad_quarter_fact {
       ${fact.creative_id} = ${last_ad_quarter_fact.creative_id} AND
       ${fact.date_last_quarter} = ${last_ad_quarter_fact.date_quarter} AND
       ${fact.less_than_current_day_of_quarter} = ${last_ad_quarter_fact.less_than_current_day_of_quarter} AND
-      ${last_ad_quarter_fact.less_than_current_day_of_quarter} ;;
+      ${last_ad_quarter_fact.less_than_current_day_of_quarter} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {

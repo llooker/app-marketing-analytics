@@ -1,13 +1,5 @@
-include: "ad_metrics_base.view"
-include: "ad_metrics_parent_comparison_base.view"
-include: "ad_group.view"
 include: "ad_group_fact.view"
-include: "campaign.view"
-include: "campaign_fact.view"
-include: "customer.view"
-include: "date_base.view"
 include: "keyword.view"
-include: "timeframe_base.view"
 
 explore: keyword_fact_base {
   extends: [ad_group_fact_base]
@@ -100,7 +92,7 @@ explore: keyword_date_fact {
 }
 
 view: keyword_date_fact {
-  extends: [ad_group_date_fact, keyword_base, date_base]
+  extends: [ad_group_date_fact, keyword_base]
 }
 
 explore: keyword_week_fact {
@@ -118,7 +110,7 @@ explore: keyword_week_fact {
       ${fact.criterion_id} = ${last_keyword_week_fact.criterion_id} AND
       ${fact.date_last_week} = ${last_keyword_week_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${last_keyword_week_fact.less_than_current_day_of_week} AND
-      ${last_keyword_week_fact.less_than_current_day_of_week} ;;
+      ${last_keyword_week_fact.less_than_current_day_of_week} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {
@@ -148,9 +140,10 @@ explore: keyword_month_fact {
     sql_on: ${fact.external_customer_id} = ${last_keyword_month_fact.external_customer_id} AND
       ${fact.campaign_id} = ${last_keyword_month_fact.campaign_id} AND
       ${fact.ad_group_id} = ${last_keyword_month_fact.ad_group_id} AND
+      ${fact.criterion_id} = ${last_keyword_month_fact.criterion_id} AND
       ${fact.date_last_month} = ${last_keyword_month_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${last_keyword_month_fact.less_than_current_day_of_month} AND
-      ${last_keyword_month_fact.less_than_current_day_of_month} ;;
+      ${last_keyword_month_fact.less_than_current_day_of_month} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {
@@ -183,7 +176,7 @@ explore: keyword_quarter_fact {
       ${fact.criterion_id} = ${last_keyword_quarter_fact.criterion_id} AND
       ${fact.date_last_quarter} = ${last_keyword_quarter_fact.date_quarter} AND
       ${fact.less_than_current_day_of_quarter} = ${last_keyword_quarter_fact.less_than_current_day_of_quarter} AND
-      ${last_keyword_quarter_fact.less_than_current_day_of_quarter} ;;
+      ${last_keyword_quarter_fact.less_than_current_day_of_quarter} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {
