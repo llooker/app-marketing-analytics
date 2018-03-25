@@ -1,11 +1,5 @@
-include: "ad_metrics_base.view"
-include: "ad_metrics_parent_comparison_base.view"
 include: "ad_group.view"
-include: "campaign.view"
 include: "campaign_fact.view"
-include: "customer.view"
-include: "date_base.view"
-include: "timeframe_base.view"
 
 explore: ad_group_fact_base {
   extends: [campaign_fact_base]
@@ -94,7 +88,7 @@ explore: ad_group_date_fact {
 }
 
 view: ad_group_date_fact {
-  extends: [campaign_date_fact, ad_group_base, date_base]
+  extends: [campaign_date_fact, ad_group_base]
 }
 
 explore: ad_group_week_fact {
@@ -111,7 +105,7 @@ explore: ad_group_week_fact {
       ${fact.ad_group_id} = ${last_ad_group_week_fact.ad_group_id} AND
       ${fact.date_last_week} = ${last_ad_group_week_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${last_ad_group_week_fact.less_than_current_day_of_week} AND
-      ${last_ad_group_week_fact.less_than_current_day_of_week} ;;
+      ${last_ad_group_week_fact.less_than_current_day_of_week} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {
@@ -142,7 +136,7 @@ explore: ad_group_month_fact {
       ${fact.ad_group_id} = ${last_ad_group_month_fact.ad_group_id} AND
       ${fact.date_last_month} = ${last_ad_group_month_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${last_ad_group_month_fact.less_than_current_day_of_month} AND
-      ${last_ad_group_month_fact.less_than_current_day_of_month} ;;
+      ${last_ad_group_month_fact.less_than_current_day_of_month} = "Yes" ;;
     relationship: many_to_one
   }
   join: parent_fact {
@@ -173,7 +167,7 @@ explore: ad_group_quarter_fact {
       ${fact.ad_group_id} = ${last_ad_group_quarter_fact.ad_group_id} AND
       ${fact.date_last_quarter} = ${last_ad_group_quarter_fact.date_quarter} AND
       ${fact.less_than_current_day_of_quarter} = ${last_ad_group_quarter_fact.less_than_current_day_of_quarter} AND
-      ${last_ad_group_quarter_fact.less_than_current_day_of_quarter} ;;
+      ${last_ad_group_quarter_fact.less_than_current_day_of_quarter} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {

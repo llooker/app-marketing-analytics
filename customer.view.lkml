@@ -29,11 +29,6 @@ view: customer {
   dimension: customer_descriptive_name {
     type: string
     sql: ${TABLE}.CustomerDescriptiveName ;;
-    link: {
-      label: "Account Dashboard"
-      url: "/dashboards/looker_app_google_adwords::account_performance?Customer%20Name={{ value | encode_uri }}"
-      icon_url: "http://www.looker.com/favicon.ico"
-    }
   }
 
   dimension: is_auto_tagging_enabled {

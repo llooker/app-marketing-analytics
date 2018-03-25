@@ -898,16 +898,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 903
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -1057,16 +1047,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1062
     colors:
     - "#d06180"
     - "#dc9d4f"
@@ -1380,16 +1360,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1385
     colors:
     - "#4bb86a"
     - "#8fe4a7"

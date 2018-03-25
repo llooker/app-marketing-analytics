@@ -1,21 +1,19 @@
-include: "ad_criterion_base.view"
 include: "ad_group.view"
-include: "campaign.view"
-include: "customer.view"
-include: "date_base.view"
-include: "google_adwords_base.view"
 
 explore: keyword {
   hidden: yes
   join: ad_group {
     view_label: "Ad Groups"
     sql_on: ${keyword.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${keyword.campaign_id} = ${campaign.campaign_id} AND
+      ${keyword.external_customer_id} = ${customer.external_customer_id} AND
       ${keyword.date_date} = ${ad_group.date_date} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${keyword.campaign_id} = ${campaign.campaign_id} AND
+      ${keyword.external_customer_id} = ${customer.external_customer_id} AND
       ${keyword.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }
@@ -28,7 +26,7 @@ explore: keyword {
 }
 
 view: keyword {
-  extends: [ad_criterion_base, date_base, google_adwords_base]
+  extends: [date_base, google_adwords_base]
   sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.Keyword_{{ _user_attributes["google_adwords_customer_id"] }} ;;
 
   dimension: ad_group_id {

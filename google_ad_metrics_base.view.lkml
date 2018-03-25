@@ -4,12 +4,6 @@ view: google_ad_metrics_base {
   extension: required
   extends: [ad_metrics_base]
 
-  dimension: cost {
-    hidden: yes
-    type: number
-    sql: (${TABLE}.Cost / 1000000) ;;
-  }
-
   dimension: interactions {
     hidden: yes
     type: number

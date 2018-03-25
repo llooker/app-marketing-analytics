@@ -1,10 +1,6 @@
-include: "ad_metrics_base.view"
 include: "ad_metrics_parent_comparison_base.view"
 include: "account_fact.view"
 include: "campaign.view"
-include: "customer.view"
-include: "date_base.view"
-include: "timeframe_base.view"
 
 explore: campaign_fact_base {
   extends: [account_fact_base]
@@ -13,6 +9,7 @@ explore: campaign_fact_base {
   join: campaign {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
       ${fact.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
@@ -91,7 +88,7 @@ explore: campaign_date_fact {
 }
 
 view: campaign_date_fact {
-  extends: [account_date_fact, campaign_base, date_base]
+  extends: [account_date_fact, campaign_base]
 }
 
 explore: campaign_week_fact {
@@ -107,7 +104,7 @@ explore: campaign_week_fact {
       ${fact.campaign_id} = ${last_campaign_week_fact.campaign_id} AND
       ${fact.date_last_week} = ${last_campaign_week_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${last_campaign_week_fact.less_than_current_day_of_week} AND
-      ${last_campaign_week_fact.less_than_current_day_of_week} ;;
+      ${last_campaign_week_fact.less_than_current_day_of_week} = "Yes"  ;;
     relationship: one_to_one
     type: inner
   }
@@ -137,7 +134,7 @@ explore: campaign_month_fact {
       ${fact.campaign_id} = ${last_campaign_month_fact.campaign_id} AND
       ${fact.date_last_month} = ${last_campaign_month_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${last_campaign_month_fact.less_than_current_day_of_month} AND
-      ${fact.less_than_current_day_of_month} ;;
+      ${fact.less_than_current_day_of_month} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {
@@ -166,7 +163,7 @@ explore: campaign_quarter_fact {
       ${fact.campaign_id} = ${last_campaign_quarter_fact.campaign_id} AND
       ${fact.date_last_quarter} = ${last_campaign_quarter_fact.date_quarter} AND
       ${fact.less_than_current_day_of_quarter} = ${last_campaign_quarter_fact.less_than_current_day_of_quarter} AND
-      ${last_campaign_quarter_fact.less_than_current_day_of_quarter} ;;
+      ${last_campaign_quarter_fact.less_than_current_day_of_quarter} = "Yes" ;;
     relationship: one_to_one
   }
   join: parent_fact {

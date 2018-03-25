@@ -100,16 +100,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 104
     colors:
     - "#7869df"
     - "#6e98f9"

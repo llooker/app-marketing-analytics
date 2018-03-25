@@ -1,5 +1,3 @@
-include: "date_base.view.lkml"
-
 view: google_adwords_base {
   extension: required
 
