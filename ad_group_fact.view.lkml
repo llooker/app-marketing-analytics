@@ -37,8 +37,8 @@ view: ad_group_fact_base {
   dimension: ad_group_id {}
   dimension: key_base {
     sql: CONCAT(
-      CAST(${external_customer_id} AS STRING),
-      CAST(${campaign_id} AS STRING),
+      CAST(${external_customer_id} AS STRING), "-",
+      CAST(${campaign_id} AS STRING), "-",
       CAST(${ad_group_id} AS STRING)) ;;
   }
   dimension: primary_key {

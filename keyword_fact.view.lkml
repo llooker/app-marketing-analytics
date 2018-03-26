@@ -47,9 +47,9 @@ view: keyword_fact_base {
   dimension: criterion_id {}
   dimension: key_base {
     sql: CONCAT(
-      CAST(${external_customer_id} AS STRING),
-      CAST(${campaign_id} AS STRING),
-      CAST(${ad_group_id} AS STRING),
+      CAST(${external_customer_id} AS STRING), "-",
+      CAST(${campaign_id} AS STRING), "-",
+      CAST(${ad_group_id} AS STRING), "-",
       CAST(${criterion_id} AS STRING)) ;;
   }
   dimension: primary_key {
