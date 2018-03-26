@@ -1,5 +1,6 @@
 include: "ad.view"
 include: "ad_group_fact.view"
+include: "ad_metrics_period_comparison_base.view"
 
 explore: ad_fact_base {
   extends: [ad_group_fact_base]
@@ -69,7 +70,7 @@ explore: ad_fact_this_timeframe {
 }
 
 view: ad_fact_this_timeframe {
-  extends: [ad_fact_base, this_timeframe_base]
+  extends: [ad_fact_base, ad_metrics_period_comparison_base, this_timeframe_base]
 }
 
 view: ad_fact_last_timeframe {

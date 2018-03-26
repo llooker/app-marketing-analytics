@@ -127,4 +127,26 @@ view: ad_metrics_base {
     value_format_name: decimal_0
   }
 
+  set: ad_metrics_set {
+    fields: [
+      cost,
+      impressions,
+      clicks,
+      conversions,
+      conversionvalue,
+      total_cost,
+      total_impressions,
+      total_clicks,
+      total_conversions,
+      total_conversionvalue,
+      average_click_rate,
+      average_conversion_rate,
+      average_cost_per_impression,
+      average_cost_per_click,
+      average_cost_per_conversion,
+      cumulative_conversions,
+      cumulative_spend
+    ]
+  }
+
 }
