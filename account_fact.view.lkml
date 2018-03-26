@@ -46,6 +46,7 @@ explore: account_fact_this_timeframe {
     from: account_fact_last_timeframe
     sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} ;;
     relationship: one_to_one
+    fields: [last_fact.last_timeframe, last_fact.google_ad_metrics_set*]
   }
   join: customer {
     view_label: "Customer"
@@ -221,14 +222,15 @@ explore: account_week_fact {
   label: "Account Week Fact"
   view_label: "Account Week Fact"
 
-  join: last_account_week_fact {
+  join: last_fact {
     from: account_week_fact
     view_label: "Last Week Account Fact"
-    sql_on: ${fact.external_customer_id} = ${last_account_week_fact.external_customer_id} AND
-      ${fact.date_last_week} = ${last_account_week_fact.date_week} AND
-      ${fact.less_than_current_day_of_week} = ${last_account_week_fact.less_than_current_day_of_week} AND
-      ${last_account_week_fact.less_than_current_day_of_week} = "Yes" ;;
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.date_last_week} = ${last_fact.date_week} AND
+      ${fact.less_than_current_day_of_week} = ${last_fact.less_than_current_day_of_week} AND
+      ${last_fact.less_than_current_day_of_week} = "Yes" ;;
     relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
   }
 }
 
@@ -279,14 +281,15 @@ explore: account_month_fact {
   label: "Account Month Fact"
   view_label: "Account Month Fact"
 
-  join: last_account_month_fact {
+  join: last_fact {
     from: account_month_fact
     view_label: "Last Month Account Fact"
-    sql_on: ${fact.external_customer_id} = ${last_account_month_fact.external_customer_id} AND
-      ${fact.date_last_month} = ${last_account_month_fact.date_month} AND
-      ${fact.less_than_current_day_of_month} = ${last_account_month_fact.less_than_current_day_of_month} AND
-      ${last_account_month_fact.less_than_current_day_of_month} = "Yes" ;;
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.date_last_month} = ${last_fact.date_month} AND
+      ${fact.less_than_current_day_of_month} = ${last_fact.less_than_current_day_of_month} AND
+      ${last_fact.less_than_current_day_of_month} = "Yes" ;;
     relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
   }
 }
 
@@ -336,14 +339,15 @@ explore: account_quarter_fact {
   label: "Account Quarter Fact"
   view_label: "Account Quarter Fact"
 
-  join: last_account_quarter_fact {
+  join: last_fact {
     from: account_quarter_fact
     view_label: "Last Quarter Account Fact"
-    sql_on: ${fact.external_customer_id} = ${last_account_quarter_fact.external_customer_id} AND
-      ${fact.date_last_quarter} = ${last_account_quarter_fact.date_quarter} AND
-      ${fact.less_than_current_day_of_quarter} = ${last_account_quarter_fact.less_than_current_day_of_quarter} AND
-      ${last_account_quarter_fact.less_than_current_day_of_quarter} ;;
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.date_last_quarter} = ${last_fact.date_quarter} AND
+      ${fact.less_than_current_day_of_quarter} = ${last_fact.less_than_current_day_of_quarter} AND
+      ${last_fact.less_than_current_day_of_quarter} ;;
     relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
   }
 }
 
