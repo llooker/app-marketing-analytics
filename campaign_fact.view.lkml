@@ -59,6 +59,7 @@ explore: campaign_fact_this_timeframe {
     sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
       ${fact.campaign_id} = ${last_fact.campaign_id} ;;
     relationship: one_to_one
+    fields: [last_fact.last_timeframe, last_fact.google_ad_metrics_set*]
   }
   join: customer {
     view_label: "Customer"
@@ -77,6 +78,7 @@ explore: campaign_fact_this_timeframe {
     from: account_fact_this_timeframe
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} ;;
     relationship: many_to_one
+    fields: [parent_fact.this_timeframe, parent_fact.google_ad_metrics_set*]
   }
 }
 
@@ -217,6 +219,7 @@ explore: campaign_date_fact {
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.date_date} = ${parent_fact.date_date};;
     relationship: many_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 
@@ -253,16 +256,16 @@ explore: campaign_week_fact {
   label: "Campaign Week Fact"
   view_label: "Campaign Week Fact"
 
-  join: last_campaign_week_fact {
+  join: last_fact {
     from: campaign_week_fact
     view_label: "Last Week Campaign Fact"
-    sql_on: ${fact.external_customer_id} = ${last_campaign_week_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_campaign_week_fact.campaign_id} AND
-      ${fact.date_last_week} = ${last_campaign_week_fact.date_week} AND
-      ${fact.less_than_current_day_of_week} = ${last_campaign_week_fact.less_than_current_day_of_week} AND
-      ${last_campaign_week_fact.less_than_current_day_of_week} = "Yes"  ;;
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_fact.campaign_id} AND
+      ${fact.date_last_week} = ${last_fact.date_week} AND
+      ${fact.less_than_current_day_of_week} = ${last_fact.less_than_current_day_of_week} AND
+      ${last_fact.less_than_current_day_of_week} = "Yes"  ;;
     relationship: one_to_one
-    type: inner
+    fields: [last_fact.google_ad_metrics_set*]
   }
   join: parent_fact {
     from: account_week_fact
@@ -270,6 +273,7 @@ explore: campaign_week_fact {
       ${fact.date_week} = ${parent_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${parent_fact.less_than_current_day_of_week} ;;
     relationship:many_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 
@@ -321,15 +325,16 @@ explore: campaign_month_fact {
   label: "Campaign Month Fact"
   view_label: "Campaign Month Fact"
 
-  join: last_campaign_month_fact {
+  join: last_fact {
     from: campaign_month_fact
     view_label: "Last Month Campaign Fact"
-    sql_on: ${fact.external_customer_id} = ${last_campaign_month_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_campaign_month_fact.campaign_id} AND
-      ${fact.date_last_month} = ${last_campaign_month_fact.date_month} AND
-      ${fact.less_than_current_day_of_month} = ${last_campaign_month_fact.less_than_current_day_of_month} AND
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_fact.campaign_id} AND
+      ${fact.date_last_month} = ${last_fact.date_month} AND
+      ${fact.less_than_current_day_of_month} = ${last_fact.less_than_current_day_of_month} AND
       ${fact.less_than_current_day_of_month} = "Yes" ;;
     relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
   }
   join: parent_fact {
     from: account_month_fact
@@ -337,6 +342,7 @@ explore: campaign_month_fact {
       ${fact.date_month} = ${parent_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${parent_fact.less_than_current_day_of_month} ;;
     relationship: many_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 
@@ -388,15 +394,16 @@ explore: campaign_quarter_fact {
   label: "Campaign Quarter Fact"
   view_label: "Campaign Quarter Fact"
 
-  join: last_campaign_quarter_fact {
+  join: last_fact {
     from: campaign_quarter_fact
     view_label: "Last Quarter Campaign Fact"
-    sql_on: ${fact.external_customer_id} = ${last_campaign_quarter_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_campaign_quarter_fact.campaign_id} AND
-      ${fact.date_last_quarter} = ${last_campaign_quarter_fact.date_quarter} AND
-      ${fact.less_than_current_day_of_quarter} = ${last_campaign_quarter_fact.less_than_current_day_of_quarter} AND
-      ${last_campaign_quarter_fact.less_than_current_day_of_quarter} = "Yes" ;;
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_fact.campaign_id} AND
+      ${fact.date_last_quarter} = ${last_fact.date_quarter} AND
+      ${fact.less_than_current_day_of_quarter} = ${last_fact.less_than_current_day_of_quarter} AND
+      ${last_fact.less_than_current_day_of_quarter} = "Yes" ;;
     relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
   }
   join: parent_fact {
     from: account_quarter_fact
@@ -404,6 +411,7 @@ explore: campaign_quarter_fact {
       ${fact.date_quarter} = ${parent_fact.date_quarter} AND
       ${fact.less_than_current_day_of_quarter} = ${parent_fact.less_than_current_day_of_quarter} ;;
     relationship: many_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 

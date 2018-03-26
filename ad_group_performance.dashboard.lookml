@@ -10,7 +10,7 @@
     fields:
     - fact.total_cost
     - fact.date_quarter
-    - last_ad_group_quarter_fact.total_cost
+    - last_fact.total_cost
     sorts:
     - fact.date_quarter desc
     limit: 500
@@ -18,11 +18,11 @@
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly Change
-      expression: "${fact.total_cost} - ${last_ad_group_quarter_fact.total_cost}\n"
+      expression: "${fact.total_cost} - ${last_fact.total_cost}\n"
       value_format:
       value_format_name: usd_0
     hidden_fields:
-    - last_ad_group_quarter_fact.total_cost
+    - last_fact.total_cost
     label: Ad Spend QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -72,7 +72,7 @@
     fields:
     - fact.date_quarter
     - fact.total_conversions
-    - last_ad_group_quarter_fact.total_conversions
+    - last_fact.total_conversions
     sorts:
     - fact.date_quarter desc
     limit: 500
@@ -80,13 +80,13 @@
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly Change
-      expression: "${fact.total_conversions} - ${last_ad_group_quarter_fact.total_conversions}\n"
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}\n"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     hidden_fields:
-    - last_ad_group_quarter_fact.total_conversions
+    - last_fact.total_conversions
     label: Conversions QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -136,7 +136,7 @@
     fields:
     - fact.date_quarter
     - fact.average_cost_per_conversion
-    - last_ad_group_quarter_fact.average_cost_per_conversion
+    - last_fact.average_cost_per_conversion
     sorts:
     - fact.date_quarter desc
     limit: 500
@@ -144,11 +144,11 @@
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${fact.average_cost_per_conversion} -  ${last_ad_group_quarter_fact.average_cost_per_conversion})/${last_ad_group_quarter_fact.average_cost_per_conversion}\n"
+      expression: "(${fact.average_cost_per_conversion} -  ${last_fact.average_cost_per_conversion})/${last_fact.average_cost_per_conversion}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
-    - last_ad_group_quarter_fact.average_cost_per_conversion
+    - last_fact.average_cost_per_conversion
     label: Cost per Conversion QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -198,7 +198,7 @@
     fields:
     - fact.date_quarter
     - fact.average_conversion_rate
-    - last_ad_group_quarter_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     sorts:
     - fact.date_quarter desc
     limit: 500
@@ -206,11 +206,11 @@
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${fact.average_conversion_rate} - ${last_ad_group_quarter_fact.average_conversion_rate})/${last_ad_group_quarter_fact.average_conversion_rate}\n"
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})/${last_fact.average_conversion_rate}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
-    - last_ad_group_quarter_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     label: Conversion Rate QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -468,7 +468,7 @@
     fields:
     - fact.date_quarter
     - fact.average_click_rate
-    - last_ad_group_quarter_fact.average_click_rate
+    - last_fact.average_click_rate
     sorts:
     - fact.date_quarter desc
     limit: 500
@@ -476,12 +476,12 @@
     dynamic_fields:
     - table_calculation: quarterly_change
       label: Quarterly % Change
-      expression: "(${fact.average_click_rate} - ${last_ad_group_quarter_fact.average_click_rate}\
-        \ )/${last_ad_group_quarter_fact.average_click_rate}\n"
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate}\
+        \ )/${last_fact.average_click_rate}\n"
       value_format:
       value_format_name: percent_0
     hidden_fields:
-    - last_ad_group_quarter_fact.average_click_rate
+    - last_fact.average_click_rate
     label: Interaction Rate QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false
@@ -530,7 +530,7 @@
     type: single_value
     fields:
     - fact.date_quarter
-    - last_ad_group_quarter_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     - fact.average_cost_per_click
     sorts:
     - fact.date_quarter desc
@@ -539,13 +539,13 @@
     dynamic_fields:
     - table_calculation: change
       label: "% Change"
-      expression: "(${fact.average_cost_per_click} - ${last_ad_group_quarter_fact.average_cost_per_click})/${last_ad_group_quarter_fact.average_cost_per_click}\n"
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})/${last_fact.average_cost_per_click}\n"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     hidden_fields:
-    - last_ad_group_quarter_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     label: Cost per Interaction QTD
     query_timezone: America/Los_Angeles
     custom_color_enabled: false

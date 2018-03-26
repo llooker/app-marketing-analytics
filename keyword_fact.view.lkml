@@ -80,6 +80,7 @@ explore: keyword_fact_this_timeframe {
           ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
           ${fact.criterion_id} = ${last_fact.criterion_id} ;;
     relationship: one_to_one
+    fields: [last_fact.last_timeframe, last_fact.google_ad_metrics_set*]
   }
   join: customer {
     view_label: "Customer"
@@ -117,6 +118,7 @@ explore: keyword_fact_this_timeframe {
       ${fact.campaign_id} = ${parent_fact.campaign_id} AND
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} ;;
     relationship: many_to_one
+    fields: [parent_fact.this_timeframe, parent_fact.google_ad_metrics_set*]
   }
 }
 
@@ -264,6 +266,7 @@ explore: keyword_date_fact {
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
       ${fact.date_date} = ${parent_fact.date_date} ;;
     relationship: one_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 
@@ -302,17 +305,18 @@ explore: keyword_week_fact {
   label: "Keyword Week Fact"
   view_label: "Keyword Week Fact"
 
-  join: last_keyword_week_fact {
+  join: last_fact {
     from: keyword_week_fact
     view_label: "Last Week Keyword Fact"
-    sql_on: ${fact.external_customer_id} = ${last_keyword_week_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_keyword_week_fact.campaign_id} AND
-      ${fact.ad_group_id} = ${last_keyword_week_fact.ad_group_id} AND
-      ${fact.criterion_id} = ${last_keyword_week_fact.criterion_id} AND
-      ${fact.date_last_week} = ${last_keyword_week_fact.date_week} AND
-      ${fact.less_than_current_day_of_week} = ${last_keyword_week_fact.less_than_current_day_of_week} AND
-      ${last_keyword_week_fact.less_than_current_day_of_week} = "Yes" ;;
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
+      ${fact.criterion_id} = ${last_fact.criterion_id} AND
+      ${fact.date_last_week} = ${last_fact.date_week} AND
+      ${fact.less_than_current_day_of_week} = ${last_fact.less_than_current_day_of_week} AND
+      ${last_fact.less_than_current_day_of_week} = "Yes" ;;
     relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
   }
   join: parent_fact {
     from: ad_group_week_fact
@@ -322,6 +326,7 @@ explore: keyword_week_fact {
       ${fact.date_week} = ${parent_fact.date_week} AND
       ${fact.less_than_current_day_of_week} = ${parent_fact.less_than_current_day_of_week} ;;
     relationship: many_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 
@@ -374,17 +379,18 @@ explore: keyword_month_fact {
   label: "Keyword Month Fact"
   view_label: "Keyword Month Fact"
 
-  join: last_keyword_month_fact {
+  join: last_fact {
     from: keyword_month_fact
     view_label: "Last Month Keyword Fact"
-    sql_on: ${fact.external_customer_id} = ${last_keyword_month_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_keyword_month_fact.campaign_id} AND
-      ${fact.ad_group_id} = ${last_keyword_month_fact.ad_group_id} AND
-      ${fact.criterion_id} = ${last_keyword_month_fact.criterion_id} AND
-      ${fact.date_last_month} = ${last_keyword_month_fact.date_month} AND
-      ${fact.less_than_current_day_of_month} = ${last_keyword_month_fact.less_than_current_day_of_month} AND
-      ${last_keyword_month_fact.less_than_current_day_of_month} = "Yes" ;;
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
+      ${fact.criterion_id} = ${last_fact.criterion_id} AND
+      ${fact.date_last_month} = ${last_fact.date_month} AND
+      ${fact.less_than_current_day_of_month} = ${last_fact.less_than_current_day_of_month} AND
+      ${last_fact.less_than_current_day_of_month} = "Yes" ;;
     relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
   }
   join: parent_fact {
     from: ad_group_month_fact
@@ -394,6 +400,7 @@ explore: keyword_month_fact {
       ${fact.date_month} = ${parent_fact.date_month} AND
       ${fact.less_than_current_day_of_month} = ${parent_fact.less_than_current_day_of_month} ;;
     relationship: many_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 
@@ -446,17 +453,18 @@ explore: keyword_quarter_fact {
   label: "Keyword Quarter Fact"
   view_label: "Keyword Quarter Fact"
 
-  join: last_keyword_quarter_fact {
+  join: last_fact {
     from: keyword_quarter_fact
     view_label: "Last Quarter Keyword Fact"
-    sql_on: ${fact.external_customer_id} = ${last_keyword_quarter_fact.external_customer_id} AND
-      ${fact.campaign_id} = ${last_keyword_quarter_fact.campaign_id} AND
-      ${fact.ad_group_id} = ${last_keyword_quarter_fact.ad_group_id} AND
-      ${fact.criterion_id} = ${last_keyword_quarter_fact.criterion_id} AND
-      ${fact.date_last_quarter} = ${last_keyword_quarter_fact.date_quarter} AND
-      ${fact.less_than_current_day_of_quarter} = ${last_keyword_quarter_fact.less_than_current_day_of_quarter} AND
-      ${last_keyword_quarter_fact.less_than_current_day_of_quarter} = "Yes" ;;
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
+      ${fact.criterion_id} = ${last_fact.criterion_id} AND
+      ${fact.date_last_quarter} = ${last_fact.date_quarter} AND
+      ${fact.less_than_current_day_of_quarter} = ${last_fact.less_than_current_day_of_quarter} AND
+      ${last_fact.less_than_current_day_of_quarter} = "Yes" ;;
     relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
   }
   join: parent_fact {
     from: ad_group_quarter_fact
@@ -466,6 +474,7 @@ explore: keyword_quarter_fact {
       ${fact.date_quarter} = ${parent_fact.date_quarter} AND
       ${fact.less_than_current_day_of_quarter} = ${parent_fact.less_than_current_day_of_quarter} ;;
     relationship: many_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 
