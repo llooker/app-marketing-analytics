@@ -2,7 +2,6 @@ include: "ad_metrics_period_comparison_base.view"
 include: "google_ad_metrics_base.view"
 include: "customer.view"
 include: "date_base.view"
-include: "timeframe_base.view"
 
 explore: account_fact_base {
   hidden: yes
@@ -18,30 +17,16 @@ explore: account_fact_base {
 }
 
 view: account_fact_base {
-  extension: required
   extends: [google_ad_metrics_base]
-  derived_table: {
-    explore_source: ad_impressions {
-      column: external_customer_id {}
-      column: averageposition {field: ad_impressions.weighted_average_position}
-      column: clicks {field: ad_impressions.total_clicks }
-      column: conversions {field: ad_impressions.total_conversions}
-      column: conversionvalue {field: ad_impressions.total_conversionvalue}
-      column: cost {field: ad_impressions.total_cost}
-      column: impressions { field: ad_impressions.total_impressions}
-      column: interactions {field: ad_impressions.total_interactions}
-    }
-  }
+  extension: required
+
   dimension: external_customer_id {}
-  dimension: account_base {
-    expression: ${external_customer_id} ;;
-  }
   dimension: key_base {
-    expression: ${external_customer_id} ;;
+    sql: CAST(${external_customer_id} as STRING) ;;
   }
   dimension: primary_key {
     primary_key: yes
-    expression: ${key_base} ;;
+    sql: ${key_base} ;;
   }
 }
 
@@ -71,11 +56,129 @@ explore: account_fact_this_timeframe {
 }
 
 view: account_fact_this_timeframe {
-  extends: [ad_metrics_period_comparison_base, account_fact_base, this_timeframe_base]
+  extends: [ad_metrics_period_comparison_base, account_fact_base]
+
+  derived_table: {
+    explore_source: ad_impressions {
+      column: external_customer_id {}
+      column: averageposition {field: ad_impressions.weighted_average_position}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue {field: ad_impressions.total_conversionvalue}
+      column: cost {field: ad_impressions.total_cost}
+      column: impressions { field: ad_impressions.total_impressions}
+      column: interactions {field: ad_impressions.total_interactions}
+      bind_filters: {
+        to_field: ad_impressions.date_date
+        from_field: fact.this_timeframe
+      }
+    }
+  }
+
+  parameter: this_timeframe {
+    type: string
+    allowed_value: {
+      value: "this quarter"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "this week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "this month"
+      label: "Month"
+    }
+    default_value: "this quarter"
+  }
+
+  measure: total_conversions {
+    link: {
+      label: "By Campaign"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_conversions&f[ad_impressions.date_date]=this quarter"
+    }
+  }
+
+  measure: total_cost {
+    link: {
+      label: "By Campaign"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_cost&f[ad_impressions.date_date]=this quarter"
+    }
+  }
+
+  measure: average_conversion_rate {
+    link: {
+      label: "By Campaign"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_conversion_rate&f[ad_impressions.date_date]=this quarter"
+    }
+  }
+
+  measure: average_click_rate {
+    link: {
+      label: "By Keyword"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
+    }
+  }
+
+  measure: average_cost_per_click {
+    link: {
+      label: "By Keyword"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
+    }
+  }
+
+  measure: average_cost_per_conversion {
+    link: {
+      label: "By Campaign"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_cost_per_conversion&f[ad_impressions.date_date]=this quarter"
+    }
+  }
 }
 
 view: account_fact_last_timeframe {
-  extends: [account_fact_base, last_timeframe_base]
+  extends: [account_fact_base]
+
+  derived_table: {
+    explore_source: ad_impressions {
+      column: external_customer_id {}
+      column: averageposition {field: ad_impressions.weighted_average_position}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue {field: ad_impressions.total_conversionvalue}
+      column: cost {field: ad_impressions.total_cost}
+      column: impressions { field: ad_impressions.total_impressions}
+      column: interactions {field: ad_impressions.total_interactions}
+      bind_filters: {
+        to_field: ad_impressions.period
+        from_field: last_fact.last_timeframe
+      }
+      bind_filters: {
+        to_field: ad_impressions.date_date
+        from_field: last_fact.last_timeframe
+      }
+      filters: {
+        field: ad_impressions.less_than_current_day_of_period
+        value: "Yes"
+      }
+    }
+  }
+
+  parameter: last_timeframe {
+    type: string
+    allowed_value: {
+      value: "1 quarter ago"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "1 week ago"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "1 month ago"
+      label: "Month"
+    }
+    default_value: "1 quarter ago"
+  }
 }
 
 explore: account_date_fact {
@@ -90,18 +193,26 @@ view: account_date_fact {
 
   derived_table: {
 #     partition_keys: ["_date"]
-    explore_source: ad_impressions {
-      column: _date { field: ad_impressions.date_date }
-    }
+  explore_source: ad_impressions {
+    column: _date { field: ad_impressions.date_date }
+    column: external_customer_id {}
+    column: averageposition {field: ad_impressions.weighted_average_position}
+    column: clicks {field: ad_impressions.total_clicks }
+    column: conversions {field: ad_impressions.total_conversions}
+    column: conversionvalue {field: ad_impressions.total_conversionvalue}
+    column: cost {field: ad_impressions.total_cost}
+    column: impressions { field: ad_impressions.total_impressions}
+    column: interactions {field: ad_impressions.total_interactions}
   }
-  dimension: _date {
-    hidden: yes
-    sql: TIMESTAMP(${TABLE}._date) ;;
-  }
-  dimension: primary_key {
-    primary_key: yes
-    expression: concat(${_date}, ${key_base}) ;;
-  }
+}
+dimension: _date {
+  hidden: yes
+  sql: TIMESTAMP(${TABLE}._date) ;;
+}
+dimension: primary_key {
+  primary_key: yes
+  sql: concat(${_date}, ${key_base}) ;;
+}
 }
 
 explore: account_week_fact {
@@ -129,6 +240,14 @@ view: account_week_fact {
     explore_source: ad_impressions {
       column: date_week { field: ad_impressions.date_week }
       column: less_than_current_day_of_week { field: ad_impressions.less_than_current_day_of_week }
+      column: external_customer_id {}
+      column: averageposition {field: ad_impressions.weighted_average_position}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue {field: ad_impressions.total_conversionvalue}
+      column: cost {field: ad_impressions.total_cost}
+      column: impressions { field: ad_impressions.total_impressions}
+      column: interactions {field: ad_impressions.total_interactions}
     }
   }
   dimension: date_week {
@@ -146,11 +265,11 @@ view: account_week_fact {
   }
   dimension: less_than_current_day_of_week {}
   dimension: week_base {
-    expression: concat(${date_week}, ${less_than_current_day_of_week}) ;;
+    sql: concat(${date_week}, ${less_than_current_day_of_week}) ;;
   }
   dimension: primary_key {
     primary_key: yes
-    expression: concat(${week_base}, ${key_base}) ;;
+    sql: concat(${week_base}, ${key_base}) ;;
   }
 }
 
@@ -178,6 +297,14 @@ view: account_month_fact {
     explore_source: ad_impressions {
       column: date_month { field: ad_impressions.date_month_date }
       column: less_than_current_day_of_month { field: ad_impressions.less_than_current_day_of_month }
+      column: external_customer_id {}
+      column: averageposition {field: ad_impressions.weighted_average_position}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue {field: ad_impressions.total_conversionvalue}
+      column: cost {field: ad_impressions.total_cost}
+      column: impressions { field: ad_impressions.total_impressions}
+      column: interactions {field: ad_impressions.total_interactions}
     }
   }
   dimension: date_month {
@@ -195,11 +322,11 @@ view: account_month_fact {
   }
   dimension: less_than_current_day_of_month {}
   dimension: month_base {
-    expression: concat(${date_month}, ${less_than_current_day_of_month}) ;;
+    sql: concat(${date_month}, ${less_than_current_day_of_month}) ;;
   }
   dimension: primary_key {
     primary_key: yes
-    expression: concat(${month_base}, ${key_base}) ;;
+    sql: concat(${month_base}, ${key_base}) ;;
   }
 }
 
@@ -228,6 +355,14 @@ view: account_quarter_fact {
     explore_source: ad_impressions {
       column: date_quarter { field: ad_impressions.date_quarter_date }
       column: less_than_current_day_of_quarter { field: ad_impressions.less_than_current_day_of_quarter }
+      column: external_customer_id {}
+      column: averageposition {field: ad_impressions.weighted_average_position}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue {field: ad_impressions.total_conversionvalue}
+      column: cost {field: ad_impressions.total_cost}
+      column: impressions { field: ad_impressions.total_impressions}
+      column: interactions {field: ad_impressions.total_interactions}
     }
   }
   dimension: date_quarter {
@@ -245,10 +380,10 @@ view: account_quarter_fact {
   }
   dimension: less_than_current_day_of_quarter {}
   dimension: quarter_base {
-    expression: concat(${date_quarter}, ${less_than_current_day_of_quarter}) ;;
+    sql: concat(${date_quarter}, ${less_than_current_day_of_quarter}) ;;
   }
   dimension: primary_key {
     primary_key: yes
-    expression: concat(${quarter_base}, ${key_base}) ;;
+    sql: concat(${quarter_base}, ${key_base}) ;;
   }
 }
