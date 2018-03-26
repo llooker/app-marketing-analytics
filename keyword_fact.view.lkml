@@ -1,4 +1,5 @@
 include: "ad_group_fact.view"
+include: "ad_metrics_period_comparison_base.view"
 include: "keyword.view"
 
 explore: keyword_fact_base {
@@ -69,7 +70,7 @@ explore: keyword_fact_this_timeframe {
 }
 
 view: keyword_fact_this_timeframe {
-  extends: [keyword_fact_base, this_timeframe_base]
+  extends: [ad_metrics_period_comparison_base, keyword_fact_base, this_timeframe_base]
 }
 
 view: keyword_fact_last_timeframe {

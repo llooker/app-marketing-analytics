@@ -1,4 +1,5 @@
 include: "ad_metrics_parent_comparison_base.view"
+include: "ad_metrics_period_comparison_base.view"
 include: "account_fact.view"
 include: "campaign.view"
 
@@ -66,7 +67,7 @@ explore: campaign_fact_this_timeframe {
 }
 
 view: campaign_fact_this_timeframe {
-  extends: [campaign_fact_base, this_timeframe_base]
+  extends: [ad_metrics_period_comparison_base, campaign_fact_base, this_timeframe_base]
 }
 
 view: campaign_fact_last_timeframe {

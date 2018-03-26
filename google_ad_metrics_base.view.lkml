@@ -53,4 +53,16 @@ view: google_ad_metrics_base {
     value_format_name: decimal_0
   }
 
+  set: google_ad_metrics_set {
+    fields: [
+      interactions,
+      average_position,
+      average_interaction_rate,
+      average_cost_per_interaction,
+      total_interactions,
+      weighted_average_position,
+      ad_metrics_set*
+    ]
+  }
+
 }

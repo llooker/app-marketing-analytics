@@ -1,3 +1,4 @@
+include: "ad_metrics_period_comparison_base.view"
 include: "google_ad_metrics_base.view"
 include: "customer.view"
 include: "date_base.view"
@@ -70,7 +71,7 @@ explore: account_fact_this_timeframe {
 }
 
 view: account_fact_this_timeframe {
-  extends: [account_fact_base, this_timeframe_base]
+  extends: [ad_metrics_period_comparison_base, account_fact_base, this_timeframe_base]
 }
 
 view: account_fact_last_timeframe {
