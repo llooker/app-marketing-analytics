@@ -36,7 +36,7 @@ include: "combined_overview.dashboard"
 include: "top_campaign_significant.dashboard"
 
 datagroup: etl_datagroup {
-  sql_trigger: SELECT MAX(CONCAT(CAST(_DATA_DATE as STRING), format(" %02d", HourOfDay))) FROM {{ _user_attributes["google_adwords_schema"] }}.HourlyAccountStats_{{ _user_attributes["google_adwords_customer_id"] }} ;;
+  sql_trigger: SELECT MAX(CONCAT(CAST(_DATA_DATE as STRING), format(" %02d", HourOfDay))) FROM adwords_v201609.HourlyAccountStats_6747157124 ;;
   max_cache_age: "24 hours"
 }
 
@@ -56,7 +56,7 @@ explore: ad_impressions {
   }
   join: audience {
     view_label: "Audience"
-    sql_on: ${ad_impressions.criterion_id} = ${audience.criterion_id} AND
+    sql_on: ${ad_impressions.audience_criterion_id} = ${audience.criterion_id} AND
       ${ad_impressions.ad_group_id} = ${ad_group.ad_group_id} AND
       ${ad_impressions.campaign_id} = ${campaign.campaign_id} AND
       ${ad_impressions.external_customer_id} = ${customer.external_customer_id} AND
