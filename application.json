@@ -68,7 +68,7 @@
               },
               {
                 "defaultValue": "1 quarter ago",
-                "field": "ad_group_fact_last_timeframe.last_timeframe",
+                "field": "last_fact.last_timeframe",
                 "name": "Compare To",
                 "dashboardAlias": "Last Timeframe",
                 "type": "PastTimeFrame"
@@ -106,29 +106,29 @@
                 "spend": {
                   "inverseChange": true,
                   "value": "fact.total_cost",
-                  "compare": "ad_group_fact_last_timeframe.total_cost"
+                  "compare": "last_fact.total_cost"
                 },
                 "conversions": {
                   "value": "fact.total_conversions",
-                  "compare": "ad_group_fact_last_timeframe.total_conversions"
+                  "compare": "last_fact.total_conversions"
                 },
                 "cost_per_conversion": {
                   "inverseChange": true,
                   "value": "fact.average_cost_per_conversion",
-                  "compare": "ad_group_fact_last_timeframe.average_cost_per_conversion"
+                  "compare": "last_fact.average_cost_per_conversion"
                 },
                 "conversion_rate": {
                   "value": "fact.average_conversion_rate",
-                  "compare": "ad_group_fact_last_timeframe.average_conversion_rate"
+                  "compare": "last_fact.average_conversion_rate"
                 },
                 "cost_per_click": {
                   "inverseChange": true,
                   "value": "fact.average_cost_per_click",
-                  "compare": "ad_group_fact_last_timeframe.average_cost_per_click"
+                  "compare": "last_fact.average_cost_per_click"
                 },
                 "click_through_rate": {
                   "value": "fact.average_click_rate",
-                  "compare": "ad_group_fact_last_timeframe.average_click_rate"
+                  "compare": "last_fact.average_click_rate"
                 }
               }
             }
