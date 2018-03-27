@@ -5,7 +5,6 @@ include: "campaign_fact.view"
 explore: ad_group_fact_base {
   extension: required
   view_name: fact
-  persist_with: etl_datagroup
   join: customer {
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
@@ -50,7 +49,6 @@ view: ad_group_fact_base {
 explore: ad_group_fact_this_timeframe {
   from: ad_group_fact_this_timeframe
   view_name: fact
-  persist_with: etl_datagroup
   always_filter: {
     filters: {
       field: fact.this_timeframe
@@ -247,6 +245,7 @@ view: ad_group_date_fact {
   extends: [ad_group_fact_base, date_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: _date { field: ad_impressions.date_date }
       column: ad_group_id {}
@@ -303,6 +302,7 @@ explore: ad_group_week_fact {
 view: ad_group_week_fact {
   extends: [ad_group_fact_base]
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: date_week { field: ad_impressions.date_week }
       column: less_than_current_day_of_week { field: ad_impressions.less_than_current_day_of_week }
@@ -374,6 +374,7 @@ explore: ad_group_month_fact {
 view: ad_group_month_fact {
   extends: [ad_group_fact_base]
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: date_month { field: ad_impressions.date_month }
       column: less_than_current_day_of_month { field: ad_impressions.less_than_current_day_of_month }
@@ -446,6 +447,7 @@ view: ad_group_quarter_fact {
   extends: [ad_group_fact_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: date_quarter { field: ad_impressions.date_quarter_date }
       column: less_than_current_day_of_quarter { field: ad_impressions.less_than_current_day_of_quarter }

@@ -247,31 +247,52 @@ view: ad_metrics_period_comparison_base {
     group_label: "Period Comparisons"
   }
 
-  measure: cost_per_conversion_big_mover {
-    type: count_distinct
-    sql: ${key_base} ;;
-    filters: {
-      field: cost_per_conversion_period_percent_change_abs
-      value: ">.2"
-    }
+  dimension: cost_per_conversion_big_mover {
+    type: yesno
+    sql: ${cost_per_conversion_period_percent_change_abs} > .2 ;;
+    group_label: "Period Comparisons"
   }
 
-  measure: conversion_rate_big_mover {
-    type: count_distinct
-    sql: ${key_base} ;;
-    filters: {
-      field: conversion_rate_period_percent_change_abs
-      value: ">.2"
-    }
+  dimension: conversion_rate_big_mover {
+    type: yesno
+    sql: ${conversion_rate_period_percent_change_abs} > .2 ;;
+    group_label: "Period Comparisons"
   }
 
-  measure: click_rate_big_mover {
+  dimension: click_rate_big_mover {
+    type: yesno
+    sql: ${click_rate_period_percent_change_abs} > .2 ;;
+    group_label: "Period Comparisons"
+  }
+
+  measure: cost_per_conversion_count_big_mover {
     type: count_distinct
     sql: ${key_base} ;;
     filters: {
-      field: click_rate_period_percent_change_abs
-      value: ">.2"
+      field: cost_per_conversion_big_mover
+      value: "Yes"
     }
+    group_label: "Period Comparisons"
+  }
+
+  measure: conversion_rate_count_big_mover {
+    type: count_distinct
+    sql: ${key_base} ;;
+    filters: {
+      field: conversion_rate_big_mover
+      value: "Yes"
+    }
+    group_label: "Period Comparisons"
+  }
+
+  measure: click_rate_count_big_mover {
+    type: count_distinct
+    sql: ${key_base} ;;
+    filters: {
+      field: click_rate_big_mover
+      value: "Yes"
+    }
+    group_label: "Period Comparisons"
   }
 
   set: ad_metrics_period_comparison_set {

@@ -6,7 +6,6 @@ include: "campaign.view"
 explore: campaign_fact_base {
   extension: required
   view_name: fact
-  persist_with: etl_datagroup
   join: customer {
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
@@ -25,7 +24,6 @@ explore: campaign_fact_base {
 view: campaign_fact_base {
   extends: [ad_metrics_parent_comparison_base, google_ad_metrics_base]
 
-
   dimension: external_customer_id {}
   dimension: campaign_id {}
   dimension: key_base {
@@ -42,7 +40,6 @@ view: campaign_fact_base {
 explore: campaign_fact_this_timeframe {
   from: campaign_fact_this_timeframe
   view_name: fact
-  persist_with: etl_datagroup
   always_filter: {
     filters: {
       field: fact.this_timeframe
@@ -227,6 +224,7 @@ view: campaign_date_fact {
   extends: [campaign_fact_base, date_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: _date { field: ad_impressions.date_date }
       column: campaign_id {}
@@ -281,6 +279,7 @@ view: campaign_week_fact {
   extends: [campaign_fact_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: date_week { field: ad_impressions.date_week }
       column: less_than_current_day_of_week { field: ad_impressions.less_than_current_day_of_week }
@@ -350,6 +349,7 @@ view: campaign_month_fact {
   extends: [campaign_fact_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: date_month { field: ad_impressions.date_month_date }
       column: less_than_current_day_of_month { field: ad_impressions.less_than_current_day_of_month }
@@ -419,6 +419,7 @@ view: campaign_quarter_fact {
   extends: [campaign_fact_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: date_quarter { field: ad_impressions.date_quarter_date }
       column: less_than_current_day_of_quarter { field: ad_impressions.less_than_current_day_of_quarter }
