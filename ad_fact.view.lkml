@@ -539,6 +539,10 @@ explore: ad_period_fact {
     filters: {
       field: fact.period
     }
+    filters: {
+      field: fact.less_than_current_day_of_period
+      value: "Yes"
+    }
   }
 
   join: last_fact {
@@ -549,8 +553,7 @@ explore: ad_period_fact {
       ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
       ${fact.creative_id} = ${last_fact.creative_id} AND
       ${fact.date_last_period} = ${last_fact.date_period} AND
-      ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period} AND
-      ${last_fact.less_than_current_day_of_period} = "Yes" ;;
+      ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period} ;;
     relationship: one_to_one
     fields: [last_fact.google_ad_metrics_set*]
   }
@@ -600,6 +603,7 @@ view: ad_period_fact {
   dimension: date_period {
     type: date
     sql: TIMESTAMP(${TABLE}.date_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
+    allow_fill: no
   }
   dimension: date_date {
     sql: ${date_period} ;;

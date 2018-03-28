@@ -517,6 +517,10 @@ explore: account_period_fact {
     filters: {
       field: fact.period
     }
+    filters: {
+      field: fact.less_than_current_day_of_period
+      value: "Yes"
+    }
   }
 
   join: last_fact {
@@ -524,8 +528,7 @@ explore: account_period_fact {
     view_label: "Last Quarter Account Fact"
     sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
       ${fact.date_last_period} = ${last_fact.date_period} AND
-      ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period} AND
-      ${last_fact.less_than_current_day_of_period} = "Yes" ;;
+      ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period} ;;
     relationship: one_to_one
     fields: [last_fact.google_ad_metrics_set*]
   }
