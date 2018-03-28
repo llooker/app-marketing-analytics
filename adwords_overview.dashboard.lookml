@@ -2,7 +2,7 @@
   title: AdWords Overview - This Quarter vs Last
   layout: newspaper
   embed_style:
-    background_color: "#f6f8fa"
+    background_color: "#F6F6F7"
     show_title: true
     title_color: "#3a4245"
     show_filters_bar: false
