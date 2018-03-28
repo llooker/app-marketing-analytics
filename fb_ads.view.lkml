@@ -1,7 +1,5 @@
-include: "fb_stitch_base.view"
 include: "fb_adcreative.view"
 include: "fb_adsets.view"
-include: "fb_campaigns.view"
 
 explore: ads {
   join: adcreative {

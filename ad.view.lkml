@@ -1,8 +1,4 @@
 include: "ad_group.view"
-include: "campaign.view"
-include: "customer.view"
-include: "date_base.view"
-include: "google_adwords_base.view"
 
 explore: ad {
   hidden: yes
@@ -10,6 +6,8 @@ explore: ad {
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
       ${ad.date_date} = ${ad_group.date_date};;
     relationship: many_to_one
 
@@ -17,6 +15,7 @@ explore: ad {
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
       ${ad_group.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }
@@ -30,7 +29,7 @@ explore: ad {
 
 view: ad {
   extends: [date_base, google_adwords_base]
-  sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.Ad_{{ _user_attributes["google_adwords_customer_id"] }} ;;
+  sql_table_name: adwords_v201609.Ad_6747157124 ;;
 
   dimension: ad_group_ad_disapproval_reasons {
     type: string

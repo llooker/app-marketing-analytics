@@ -101,16 +101,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 112
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -965,7 +955,7 @@
     default_value: 1 quarter ago
     model: looker_app_google_adwords
     explore: ad_group_fact_this_timeframe
-    field: ad_group_fact_last_timeframe.last_timeframe
+    field: last_fact.last_timeframe
     listens_to_filters: []
     allow_multiple_values: true
     required: false

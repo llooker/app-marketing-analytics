@@ -14,7 +14,7 @@ explore: campaign {
 
 view: campaign {
   extends: [date_base, google_adwords_base]
-  sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.Campaign_{{ _user_attributes["google_adwords_customer_id"] }} ;;
+  sql_table_name: adwords_v201609.Campaign_6747157124 ;;
 
   dimension: advertising_channel_sub_type {
     type: string
@@ -79,7 +79,7 @@ view: campaign {
     sql: ${TABLE}.CampaignName ;;
     link: {
       label: "Campaign Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_spend?Campaign={{ value | encode_uri }}"
+      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{ value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
     link: {

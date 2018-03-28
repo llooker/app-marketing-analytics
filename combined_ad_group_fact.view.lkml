@@ -4,7 +4,6 @@ include: "date_base.view"
 explore: combined_ad_group_fact_base {
   extension: required
   view_name: fact
-#   persist_with: etl_datagroup
 
   # TODO make these depend on channel
   # If channel = google adwords then
@@ -55,11 +54,12 @@ view: combined_ad_group_fact_base {
 explore: combined_ad_group_fact_this_timeframe {
   extends: [combined_ad_group_fact_base]
   from: combined_ad_group_fact_this_timeframe
-  join: combined_ad_group_fact_last_timeframe {
-    sql_on: ${fact.channel} = ${combined_ad_group_fact_last_timeframe.channel} AND
-      ${fact.account_id} = ${combined_ad_group_fact_last_timeframe.account_id} AND
-      ${fact.campaign_id} = ${combined_ad_group_fact_last_timeframe.campaign_id} AND
-      ${fact.ad_group_id} = ${combined_ad_group_fact_last_timeframe.ad_group_id} ;;
+  join: combined_last_fact {
+    from: combined_ad_group_fact_last_timeframe
+    sql_on: ${fact.channel} = ${combined_last_fact.channel} AND
+      ${fact.account_id} = ${combined_last_fact.account_id} AND
+      ${fact.campaign_id} = ${combined_last_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${combined_last_fact.ad_group_id} ;;
     relationship: one_to_one
   }
 }
@@ -87,6 +87,8 @@ view: combined_ad_group_fact {
 
 view: combined_ad_group_fact_this_timeframe {
   extends: [combined_ad_group_fact]
+  view_label: "This Period"
+
   derived_table: {
     explore_source: combined_ad_impressions {
       bind_filters: {
@@ -116,82 +118,59 @@ view: combined_ad_group_fact_this_timeframe {
   measure: total_conversions {
     link: {
       label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/combined_ad_impressions?fields=combined_ad_impressions.campaign_name,combined_ad_impressions.total_conversions&f[combined_ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Conversions Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversions?Campaign={{_filters['fact.combined_ad_impressions.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.combined_ad_impressions.ad_group_name'] | url_encode  }}"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_conversions&f[ad_impressions.date_date]=this quarter"
     }
   }
 
   measure: total_cost {
     link: {
       label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/combined_ad_impressions?fields=combined_ad_impressions.campaign_name,combined_ad_impressions.total_cost&f[combined_ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Spend Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_spend?Campaign={{_filters['fact.combined_ad_impressions.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.combined_ad_impressions.ad_group_name'] | url_encode  }}"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.total_cost&f[ad_impressions.date_date]=this quarter"
     }
   }
 
   measure: average_conversion_rate {
     link: {
       label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/combined_ad_impressions?fields=combined_ad_impressions.campaign_name,combined_ad_impressions.average_conversion_rate&f[combined_ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Conversion Rate Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_conversion_rate?Campaign={{_filters['fact.combined_ad_impressions.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.combined_ad_impressions.ad_group_name'] | url_encode  }}"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_conversion_rate&f[ad_impressions.date_date]=this quarter"
     }
   }
 
   measure: average_click_rate {
     link: {
       label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/combined_ad_impressions?fields=keyword.criteria,combined_ad_impressions.average_click_rate&f[combined_ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Click Rate Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_click_through_rate?Campaign={{_filters['fact.combined_ad_impressions.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.combined_ad_impressions.ad_group_name'] | url_encode  }}"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
     }
   }
 
   measure: average_cost_per_click {
     link: {
       label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/combined_ad_impressions?fields=keyword.criteria,combined_ad_impressions.average_click_rate&f[combined_ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Cost Per Click Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_click?Campaign={{_filters['fact.combined_ad_impressions.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.combined_ad_impressions.ad_group_name'] | url_encode  }}"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_click_rate&f[ad_impressions.date_date]=this quarter"
     }
   }
 
   measure: average_cost_per_conversion {
     link: {
       label: "By Campaign"
-      url: "/explore/looker_app_google_adwords/combined_ad_impressions?fields=combined_ad_impressions.campaign_name,combined_ad_impressions.average_cost_per_conversion&f[combined_ad_impressions.date_date]=this quarter"
-    }
-    link: {
-      label: "Cost Per Conversion Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{_filters['fact.combined_ad_impressions.campaign_name'] | url_encode  }}&Ad%20Group={{_filters['fact.combined_ad_impressions.ad_group_name'] | url_encode  }}"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=campaign.campaign_name,ad_impressions.average_cost_per_conversion&f[ad_impressions.date_date]=this quarter"
     }
   }
 }
 
 view: combined_ad_group_fact_last_timeframe {
   extends: [combined_ad_group_fact]
+  view_label: "Last Period"
 
   derived_table: {
     explore_source: combined_ad_impressions {
       bind_filters: {
         to_field: combined_ad_impressions.period
-        from_field: combined_ad_group_fact_last_timeframe.last_timeframe
+        from_field: combined_last_fact.last_timeframe
       }
       bind_filters: {
         to_field: combined_ad_impressions.date_date
-        from_field: combined_ad_group_fact_last_timeframe.last_timeframe
+        from_field: combined_last_fact.last_timeframe
       }
       filters: {
         field: combined_ad_impressions.less_than_current_day_of_period

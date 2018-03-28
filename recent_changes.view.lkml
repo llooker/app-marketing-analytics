@@ -1,5 +1,4 @@
 include: "ad.view.lkml"
-include: "ad_group.view.lkml"
 include: "keyword.view.lkml"
 
 explore: ad_status {}

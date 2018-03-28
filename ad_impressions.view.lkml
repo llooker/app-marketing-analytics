@@ -1,36 +1,33 @@
-include: "ad_criterion_base.view"
-include: "google_ad_metrics_base.view"
+include: "google_ad_transformations_base.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
 
 view: ad_impressions {
-  extends: [ad_criterion_base, date_base, google_ad_metrics_base, google_adwords_base]
-
-  # this logic hits the right level of aggregate stats table depending on dimensions and filters in query
+  extends: [date_base, google_ad_transformations_base, google_adwords_base]
   sql_table_name:
   {% if (ad._in_query or ad_impressions.creative_id._in_query) %}
-    {{ _user_attributes["google_adwords_schema"] }}.AdBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
+    adwords_v201609.AdBasicStats_6747157124
   {% elsif (audience._in_query or ad_impressions.audience_criterion_id._in_query) %}
-    {{ _user_attributes["google_adwords_schema"] }}.AudienceBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
-  {% elsif (keyword._in_query or ad_impressions.criteria_id._in_query) %}
-    {{ _user_attributes["google_adwords_schema"] }}.KeywordBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
+    adwords_v201609.AudienceBasicStats_6747157124
+  {% elsif (keyword._in_query or ad_impressions.criterion_id._in_query) %}
+    adwords_v201609.KeywordBasicStats_6747157124
   {% elsif (ad_group._in_query or ad_impressions.ad_group_id._in_query) %}
     {% if ad_impressions.hour_of_day._in_query %}
-      {{ _user_attributes["google_adwords_schema"] }}.HourlyAdGroupStats_{{ _user_attributes["google_adwords_customer_id"] }}
+      adwords_v201609.HourlyAdGroupStats_6747157124
     {% else %}
-      {{ _user_attributes["google_adwords_schema"] }}.AdGroupBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
+      adwords_v201609.AdGroupBasicStats_6747157124
     {% endif %}
   {% elsif (campaign._in_query or ad_impressions.campaign_id._in_query) %}
     {% if ad_impressions.hour_of_day._in_query %}
-      {{ _user_attributes["google_adwords_schema"] }}.HourlyCampaignStats_{{ _user_attributes["google_adwords_customer_id"] }}
+      adwords_v201609.HourlyCampaignStats_6747157124
     {% else %}
-      {{ _user_attributes["google_adwords_schema"] }}.CampaignBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
+      adwords_v201609.CampaignBasicStats_6747157124
     {% endif %}
   {% else %}
     {% if ad_impressions.hour_of_day._in_query %}
-      {{ _user_attributes["google_adwords_schema"] }}.HourlyAccountStats_{{ _user_attributes["google_adwords_customer_id"] }}
+      adwords_v201609.HourlyAccountStats_6747157124
     {% else %}
-      {{ _user_attributes["google_adwords_schema"] }}.AccountBasicStats_{{ _user_attributes["google_adwords_customer_id"] }}
+      adwords_v201609.AccountBasicStats_6747157124
     {% endif %}
   {% endif %} ;;
 

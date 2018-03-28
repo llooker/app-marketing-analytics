@@ -100,16 +100,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 104
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -813,7 +803,7 @@
       maxValue:
       minValue:
       orientation: bottom
-      showLabels: true
+      showLabels: false
       showValues: false
       tickDensity: default
       tickDensityCustom:
@@ -821,19 +811,21 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.conversion_rate_last_month
-        name: Conversion Rate Last Month
-        axisId: ad_impressions.conversion_rate_last_month
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 832
-      - id: ad_impressions.conversion_rate_this_month
-        name: Conversion Rate This Month
-        axisId: ad_impressions.conversion_rate_this_month
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 820
+      - id: ad_impressions.click_through_rate_last_month
+        name: Click Through Rate Last Month
+        axisId: ad_impressions.click_through_rate_last_month
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 824
+      - id: ad_impressions.click_through_rate_this_month
+        name: Click Through Rate This Month
+        axisId: ad_impressions.click_through_rate_this_month
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 829
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 812
     row: 35
     col: 0
-    width: 14
+    width: 12
     height: 10
   - title: Ad Click Through Rate Change
     name: Ad Click Through Rate Change
@@ -915,7 +907,7 @@
       maxValue:
       minValue:
       orientation: bottom
-      showLabels: true
+      showLabels: false
       showValues: false
       tickDensity: default
       tickDensityCustom:
@@ -923,68 +915,74 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.conversion_rate_last_month
-        name: Conversion Rate Last Month
-        axisId: ad_impressions.conversion_rate_last_month
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 942
-      - id: ad_impressions.conversion_rate_this_month
-        name: Conversion Rate This Month
-        axisId: ad_impressions.conversion_rate_this_month
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 930
+      - id: ad_impressions.click_through_rate_last_month
+        name: Click Through Rate Last Month
+        axisId: ad_impressions.click_through_rate_last_month
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 926
+      - id: ad_impressions.click_through_rate_this_month
+        name: Click Through Rate This Month
+        axisId: ad_impressions.click_through_rate_this_month
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 931
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 914
     row: 35
-    col: 14
-    width: 10
+    col: 12
+    width: 12
     height: 10
   filters:
   - name: This Timeframe
     title: This Timeframe
     type: field_filter
     default_value: this quarter
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    field: fact.this_timeframe
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_group_fact_this_timeframe
+    listens_to_filters: []
+    field: fact.this_timeframe
   - name: Last Timeframe
     title: Last Timeframe
     type: field_filter
     default_value: 1 quarter ago
     model: looker_app_google_adwords
     explore: ad_group_fact_this_timeframe
-    field: ad_group_fact_last_timeframe.last_timeframe
+    field: last_fact.last_timeframe
     listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_group_fact_this_timeframe
+    listens_to_filters: []
+    field: last_fact.last_timeframe
   - name: Campaign
     title: Campaign
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: campaign.campaign_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: campaign.campaign_name
   - name: Ad Group
     title: Ad Group
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_group.ad_group_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: ad_group.ad_group_name
   - name: Time Frame
     title: Time Frame
     type: field_filter
     default_value: 1 quarters
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_impressions.date_date
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    listens_to_filters: []
+    field: ad_impressions.date_date

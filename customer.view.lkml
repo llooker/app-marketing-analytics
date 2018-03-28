@@ -3,7 +3,7 @@ include: "google_adwords_base.view"
 
 view: customer {
   extends: [date_base, google_adwords_base]
-  sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.Customer_{{ _user_attributes["google_adwords_customer_id"] }} ;;
+  sql_table_name: adwords_v201609.Customer_6747157124 ;;
 
   dimension: account_currency_code {
     type: string
@@ -29,11 +29,6 @@ view: customer {
   dimension: customer_descriptive_name {
     type: string
     sql: ${TABLE}.CustomerDescriptiveName ;;
-    link: {
-      label: "Account Dashboard"
-      url: "/dashboards/looker_app_google_adwords::account_performance?Customer%20Name={{ value | encode_uri }}"
-      icon_url: "http://www.looker.com/favicon.ico"
-    }
   }
 
   dimension: is_auto_tagging_enabled {

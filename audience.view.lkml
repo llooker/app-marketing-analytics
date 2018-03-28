@@ -3,14 +3,7 @@ include: "google_adwords_base.view"
 
 view: audience {
   extends: [date_base, google_adwords_base]
-  sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.Audience_{{ _user_attributes["google_adwords_customer_id"] }} ;;
-
-  dimension: unique_key {
-    type: string
-    primary_key: yes
-    hidden: yes
-    sql: CONCAT(CAST(${ad_group_id} AS STRING),CAST(${criterion_id} AS STRING)) ;;
-  }
+  sql_table_name: adwords_v201609.Audience_6747157124 ;;
 
   dimension: ad_group_id {
     sql: ${TABLE}.AdGroupId ;;

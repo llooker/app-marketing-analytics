@@ -1,13 +1,11 @@
 include: "campaign.view"
-include: "customer.view"
-include: "date_base.view"
-include: "google_adwords_base.view"
 
 explore: ad_group {
   hidden: yes
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
+      ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
       ${ad_group.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }
@@ -21,7 +19,7 @@ explore: ad_group {
 
 view: ad_group {
   extends: [date_base, google_adwords_base]
-  sql_table_name: {{ _user_attributes["google_adwords_schema"] }}.AdGroup_{{ _user_attributes["google_adwords_customer_id"] }} ;;
+  sql_table_name: adwords_v201609.AdGroup_6747157124 ;;
 
   dimension: ad_group_desktop_bid_modifier {
     type: number

@@ -92,7 +92,7 @@ view: date_base {
       {% elsif period._parameter_value == "'1 month ago'" %}${less_than_current_day_of_month}
       {% elsif period._parameter_value == "'1 quarter ago'" %}${less_than_current_day_of_quarter}
       {% endif %} ;;
-}
+  }
 
   parameter: period {
     hidden: yes

@@ -1,4 +1,3 @@
-include: "fb_stitch_base.view"
 include: "fb_campaigns.view"
 
 explore: adsets {

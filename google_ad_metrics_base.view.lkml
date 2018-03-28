@@ -4,12 +4,6 @@ view: google_ad_metrics_base {
   extension: required
   extends: [ad_metrics_base]
 
-  dimension: cost {
-    hidden: yes
-    type: number
-    sql: (${TABLE}.Cost / 1000000) ;;
-  }
-
   dimension: interactions {
     hidden: yes
     type: number
@@ -57,6 +51,18 @@ view: google_ad_metrics_base {
     sql:  ${interactions} ;;
     drill_fields: [external_customer_id, total_impressions]
     value_format_name: decimal_0
+  }
+
+  set: google_ad_metrics_set {
+    fields: [
+      interactions,
+      average_position,
+      average_interaction_rate,
+      average_cost_per_interaction,
+      total_interactions,
+      weighted_average_position,
+      ad_metrics_set*
+    ]
   }
 
 }
