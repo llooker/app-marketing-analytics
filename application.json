@@ -4,7 +4,8 @@
     "looker_app_google_adwords/ad_impressions"
   ],
   "home": {
-    "lookmlID": "looker_app_google_adwords::adwords_overview"
+    "lookmlID": "looker_app_google_adwords::adwords_overview",
+    "name": "Adwords Overview"
   },
   "name": "Marketing Analytics",
   "pillars": [
@@ -60,18 +61,14 @@
             ],
             "filters": [
               {
-                "defaultValue": "this quarter",
+                "defaultValue": "quarter",
                 "field": "fact.this_timeframe",
                 "name": "Time Frame",
-                "dashboardAlias": "This Timeframe",
+                "filterStrings": {
+                  "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE",
+                  "dashboard": "This Timeframe=this REPLACE&Last Timeframe=1 REPLACE ago&Time Range=1 REPLACEs&Time Frame=1 REPLACEs"
+                },
                 "type": "TimeFrame"
-              },
-              {
-                "defaultValue": "1 quarter ago",
-                "field": "last_fact.last_timeframe",
-                "name": "Compare To",
-                "dashboardAlias": "Last Timeframe",
-                "type": "PastTimeFrame"
               },
               {
                 "autoSuggest": {
@@ -99,7 +96,6 @@
               }
             ],
             "singleValuesSource": {
-              "flat": true,
               "model": "looker_app_google_adwords",
               "view": "ad_group_fact_this_timeframe",
               "fields": {
@@ -388,7 +384,7 @@
               ]
             },
             {
-              "description": "Quickly find Ad Groups, Keywords, and Ads that are underperforming compared to their peers. Fix or pause under performers to gain immediate improvements in your marketing spend.",
+              "description": "Quickly find Ad Groups, Keywords, and Ads that are underperforming compared to their peers. Fix or pause underperformers to gain immediate improvements in your marketing spend.",
               "name": "Underperforming",
               "permalink": "underperforming",
               "reports": [
@@ -424,10 +420,13 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [],
-                      "field": "ad_impressions.date_date",
-                      "name": "Time Period",
-                      "type": "Timeperiod"
+                      "defaultValue": "quarter",
+                      "field": "fact.this_timeframe",
+                      "name": "Time Frame",
+                      "filterStrings": {
+                        "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
+                      },
+                      "type": "TimeFrame"
                     },
                     {
                       "facetedBy": [],
@@ -477,12 +476,13 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [
-                        ""
-                      ],
-                      "field": "ad_impressions.date_date",
-                      "name": "Time Period",
-                      "type": "Timeperiod"
+                      "defaultValue": "quarter",
+                      "field": "fact.this_timeframe",
+                      "name": "Time Frame",
+                      "filterStrings": {
+                        "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
+                      },
+                      "type": "TimeFrame"
                     },
                     {
                       "facetedBy": [
@@ -534,12 +534,13 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [
-                        ""
-                      ],
-                      "field": "ad_impressions.date_date",
-                      "name": "Time Period",
-                      "type": "Timeperiod"
+                      "defaultValue": "quarter",
+                      "field": "fact.this_timeframe",
+                      "name": "Time Frame",
+                      "filterStrings": {
+                        "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
+                      },
+                      "type": "TimeFrame"
                     },
                     {
                       "facetedBy": [
@@ -589,9 +590,60 @@
       "permalink": "display"
     }
   ],
-  "singleValuesSourceView": {
-    "model": "looker_app_google_adwords",
-    "params": "&fields=report_single_values.key,report_single_values.value,report_single_values.compare",
-    "view": "report_single_values"
-  }
+  "singleValuesSources": [
+    {
+      "model": "looker_app_google_adwords",
+      "view": "ad_fact_this_timeframe",
+      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
+      "fields": {
+        "ads_opportunities": {
+          "value": "fact.cost_per_conversion_count_good",
+          "compare": "last_fact.cost_per_conversion_count_good"
+        },
+        "ads_underpeforming": {
+          "value": "fact.cost_per_conversion_count_bad",
+          "compare": "last_fact.cost_per_conversion_count_bad"
+        },
+        "ads_big_movers": {
+          "value": "fact.average_cost_per_conversion"
+        }
+      }
+    },
+    {
+      "model": "looker_app_google_adwords",
+      "view": "keyword_fact_this_timeframe",
+      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
+      "fields": {
+        "keywords_opportunities": {
+          "value": "fact.cost_per_conversion_count_good",
+          "compare": "last_fact.cost_per_conversion_count_good"
+        },
+        "keywords_underpeforming": {
+          "value": "fact.cost_per_conversion_count_bad",
+          "compare": "last_fact.cost_per_conversion_count_bad"
+        },
+        "keywords_big_movers": {
+          "value": "fact.average_cost_per_conversion"
+        }
+      }
+    },
+    {
+      "model": "looker_app_google_adwords",
+      "view": "ad_group_fact_this_timeframe",
+      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
+      "fields": {
+        "ad_groups_opportunities": {
+          "value": "fact.cost_per_conversion_count_good",
+          "compare": "last_fact.cost_per_conversion_count_good"
+        },
+        "ad_groups_underpeforming": {
+          "value": "fact.cost_per_conversion_count_bad",
+          "compare": "last_fact.cost_per_conversion_count_bad"
+        },
+        "ad_groups_big_movers": {
+          "value": "fact.average_cost_per_conversion"
+        }
+      }
+    }
+  ]
 }
