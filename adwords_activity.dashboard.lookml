@@ -1,6 +1,13 @@
 - dashboard: adwords_activity
   title: Change History This Month
   layout: newspaper
+  embed_style:
+    background_color: "#ffffff"
+    show_title: true
+    title_color: "#3a4245"
+    show_filters_bar: false
+    tile_text_color: "#3a4245"
+    text_tile_text_color: ''
   elements:
   - title: Changes Over Time
     name: Changes Over Time
