@@ -618,6 +618,6 @@ view: ad_period_fact {
   }
   dimension: primary_key {
     primary_key: yes
-    sql: concat(${date_period}, ${less_than_current_day_of_period}) ;;
+    sql: concat(${date_period}, ${less_than_current_day_of_period}, ${key_base}) ;;
   }
 }
