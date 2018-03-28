@@ -2,7 +2,6 @@ include: "campaign.view"
 include: "date_base.view"
 
 explore: campaign_budget_date_fact {
-  persist_with: etl_datagroup
   label: "Campaign Budget Date Fact"
   view_label: "Campaign Budget Date Fact"
   join: customer {

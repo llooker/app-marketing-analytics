@@ -7,7 +7,6 @@ explore: account_fact_base {
   hidden: yes
   extension: required
   view_name: fact
-  persist_with: etl_datagroup
   join: customer {
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
@@ -33,7 +32,6 @@ view: account_fact_base {
 explore: account_fact_this_timeframe {
   from: account_fact_this_timeframe
   view_name: fact
-  persist_with: etl_datagroup
   always_filter: {
     filters: {
       field: fact.this_timeframe
@@ -185,36 +183,150 @@ view: account_fact_last_timeframe {
 explore: account_date_fact {
   extends: [account_fact_base]
   from: account_date_fact
-  label: "Account Date Fact"
-  view_label: "Account Date Fact"
 }
 
 view: account_date_fact {
   extends: [account_fact_base, date_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
 #     partition_keys: ["_date"]
-  explore_source: ad_impressions {
-    column: _date { field: ad_impressions.date_date }
-    column: external_customer_id {}
-    column: averageposition {field: ad_impressions.weighted_average_position}
-    column: clicks {field: ad_impressions.total_clicks }
-    column: conversions {field: ad_impressions.total_conversions}
-    column: conversionvalue {field: ad_impressions.total_conversionvalue}
-    column: cost {field: ad_impressions.total_cost}
-    column: impressions { field: ad_impressions.total_impressions}
-    column: interactions {field: ad_impressions.total_interactions}
+    explore_source: ad_impressions {
+      column: _date { field: ad_impressions.date_date }
+      column: external_customer_id {}
+      column: averageposition {field: ad_impressions.weighted_average_position}
+      column: clicks {field: ad_impressions.total_clicks }
+      column: conversions {field: ad_impressions.total_conversions}
+      column: conversionvalue {field: ad_impressions.total_conversionvalue}
+      column: cost {field: ad_impressions.total_cost}
+      column: impressions { field: ad_impressions.total_impressions}
+      column: interactions {field: ad_impressions.total_interactions}
+    }
+  }
+
+  dimension: _date {
+    hidden: yes
+    sql: TIMESTAMP(${TABLE}._date) ;;
+  }
+  dimension: primary_key {
+    primary_key: yes
+    sql: concat(${_date}, ${key_base}) ;;
   }
 }
-dimension: _date {
-  hidden: yes
-  sql: TIMESTAMP(${TABLE}._date) ;;
+
+explore: account_date_this_fact {
+  extends: [account_fact_base]
+  from: account_date_this_fact
+  label: "Account Fact"
+  view_label: "Account Fact"
+  always_filter: {
+    filters: {
+      field: fact.this_timeframe
+    }
+    filters: {
+      field: last_fact.last_timeframe
+    }
+  }
+  join: last_fact {
+    from: account_fact_last_timeframe
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} ;;
+    relationship: one_to_one
+    fields: [last_fact.last_timeframe, last_fact.google_ad_metrics_set*]
+  }
+  join: customer {
+    view_label: "Customer"
+    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${customer.latest} ;;
+    relationship: many_to_one
+  }
 }
-dimension: primary_key {
-  primary_key: yes
-  sql: concat(${_date}, ${key_base}) ;;
+
+view: account_date_this_fact {
+  extends: [account_fact_base]
+
+  derived_table: {
+    explore_source: account_date_fact {
+      column: external_customer_id {field: fact.external_customer_id}
+      column: averageposition {field: fact.weighted_average_position}
+      column: clicks {field: fact.total_clicks }
+      column: conversions {field: fact.total_conversions}
+      column: conversionvalue {field: fact.total_conversionvalue}
+      column: cost {field: fact.total_cost}
+      column: impressions { field: fact.total_impressions}
+      column: interactions {field: fact.total_interactions}
+      bind_filters: {
+        to_field: fact.date_date
+        from_field: fact.this_timeframe
+      }
+    }
+  }
+
+  parameter: this_timeframe {
+    type: string
+    allowed_value: {
+      value: "this quarter"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "this week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "this month"
+      label: "Month"
+    }
+    default_value: "this quarter"
+  }
 }
+
+view: account_date_last_fact {
+  extends: [account_fact_base]
+
+  derived_table: {
+    explore_source: account_date_fact {
+      column: external_customer_id {field: fact.external_customer_id}
+      column: averageposition {field: fact.weighted_average_position}
+      column: clicks {field: fact.total_clicks }
+      column: conversions {field: fact.total_conversions}
+      column: conversionvalue {field: fact.total_conversionvalue}
+      column: cost {field: fact.total_cost}
+      column: impressions { field: fact.total_impressions}
+      column: interactions {field: fact.total_interactions}
+      bind_filters: {
+        to_field: fact.period
+        from_field: last_fact.last_timeframe
+      }
+      bind_filters: {
+        to_field: fact.date_date
+        from_field: last_fact.last_timeframe
+      }
+      filters: {
+        field: fact.less_than_current_day_of_period
+        value: "Yes"
+      }
+    }
+  }
+
+  parameter: last_timeframe {
+    type: string
+    allowed_value: {
+      value: "1 quarter ago"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "1 week ago"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "1 month ago"
+      label: "Month"
+    }
+    default_value: "1 quarter ago"
+  }
+
 }
+
+
 
 explore: account_week_fact {
   extends: [account_fact_base]
@@ -239,6 +351,7 @@ view: account_week_fact {
   extends: [account_fact_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: date_week { field: ad_impressions.date_week }
       column: less_than_current_day_of_week { field: ad_impressions.less_than_current_day_of_week }
@@ -297,6 +410,7 @@ view: account_month_fact {
   extends: [account_fact_base]
 
   derived_table: {
+    datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
       column: date_month { field: ad_impressions.date_month_date }
       column: less_than_current_day_of_month { field: ad_impressions.less_than_current_day_of_month }
@@ -389,5 +503,85 @@ view: account_quarter_fact {
   dimension: primary_key {
     primary_key: yes
     sql: concat(${quarter_base}, ${key_base}) ;;
+  }
+}
+
+explore: account_period_fact {
+  extends: [account_fact_base]
+  from: account_period_fact
+  view_name: fact
+  label: "Account Period Fact"
+  view_label: "Account Period Fact"
+
+  always_filter: {
+    filters: {
+      field: fact.period
+    }
+    filters: {
+      field: fact.less_than_current_day_of_period
+      value: "Yes"
+    }
+  }
+
+  join: last_fact {
+    from: account_period_fact
+    view_label: "Last Quarter Account Fact"
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.date_last_period} = ${last_fact.date_period} AND
+      ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period} ;;
+    relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
+  }
+}
+
+view: account_period_fact {
+  extends: [account_fact_base, ad_metrics_period_comparison_base]
+
+  sql_table_name: {% if fact.period_passthrough._sql == "week" %}${account_week_fact.SQL_TABLE_NAME}
+    {% elsif fact.period_passthrough._sql == "month" %}${account_month_fact.SQL_TABLE_NAME}
+    {% elsif fact.period_passthrough._sql == "quarter" %}${account_quarter_fact.SQL_TABLE_NAME}
+    {% endif %} ;;
+
+  parameter: period {
+    type: unquoted
+    allowed_value: {
+      value: "quarter"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "month"
+      label: "Month"
+    }
+    default_value: "quarter"
+  }
+
+  dimension: period_passthrough {
+    hidden: yes
+    sql: {% parameter period %};;
+  }
+
+  dimension: date_period {
+    type: date
+    allow_fill: no
+    sql: TIMESTAMP(${TABLE}.date_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
+  }
+  dimension: date_date {
+    sql: ${date_period} ;;
+  }
+  dimension: less_than_current_day_of_period {
+    sql: ${TABLE}.less_than_current_day_of_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %} ;;
+  }
+  dimension: date_last_period {
+    type: date
+    allow_fill: no
+    sql: DATE_ADD(${date_period}, INTERVAL -1 {% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
+  }
+  dimension: primary_key {
+    primary_key: yes
+    sql: concat(${date_period}, ${less_than_current_day_of_period}, ${key_base}) ;;
   }
 }

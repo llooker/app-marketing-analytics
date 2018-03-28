@@ -4,7 +4,6 @@ include: "date_base.view"
 explore: combined_ad_group_fact_base {
   extension: required
   view_name: fact
-#   persist_with: etl_datagroup
 
   # TODO make these depend on channel
   # If channel = google adwords then

@@ -25,7 +25,6 @@ view: combined_ad_impressions_base {
 
 explore: google_adwords_ad_impressions {
 #   hidden: yes
-  persist_with: etl_datagroup
 
   join: customer {
     view_label: "Customer"
