@@ -244,7 +244,7 @@ view: campaign_date_fact {
   }
   dimension: primary_key {
     primary_key: yes
-    sql: concat(${_date}, ${key_base}) ;;
+    sql: concat(CAST(${_date} as STRING), ${key_base}) ;;
   }
 }
 
@@ -310,7 +310,7 @@ view: campaign_week_fact {
   }
   dimension: less_than_current_day_of_week {}
   dimension: week_base {
-    sql: concat(${date_week}, ${less_than_current_day_of_week}) ;;
+    sql: concat(CAST(${date_week} AS STRING), ${less_than_current_day_of_week});;
   }
   dimension: primary_key {
     primary_key: yes
@@ -380,7 +380,7 @@ view: campaign_month_fact {
   }
   dimension: less_than_current_day_of_month {}
   dimension: month_base {
-    sql: concat(${date_month}, ${less_than_current_day_of_month}) ;;
+    sql: concat(CAST(${date_month} as STRING), ${less_than_current_day_of_month}) ;;
   }
   dimension: primary_key {
     primary_key: yes
@@ -450,7 +450,7 @@ view: campaign_quarter_fact {
   }
   dimension: less_than_current_day_of_quarter {}
   dimension: quarter_base {
-    sql: concat(${date_quarter}, ${less_than_current_day_of_quarter}) ;;
+    sql: concat(CAST(${date_quarter} as STRING), ${less_than_current_day_of_quarter}) ;;
   }
   dimension: primary_key {
     primary_key: yes
@@ -544,6 +544,6 @@ view: campaign_period_fact {
   }
   dimension: primary_key {
     primary_key: yes
-    sql: concat(${date_period}, ${less_than_current_day_of_period}) ;;
+    sql: concat(CAST(${date_period} AS STRING), ${less_than_current_day_of_period}, ${key_base}) ;;
   }
 }

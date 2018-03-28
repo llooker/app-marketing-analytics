@@ -622,7 +622,7 @@
   - title: Funnel
     name: Funnel
     model: looker_app_google_adwords
-    explore: account_quarter_fact
+    explore: account_date_fact
     type: looker_column
     fields:
     - fact.total_impressions
