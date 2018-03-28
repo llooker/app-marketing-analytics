@@ -301,78 +301,100 @@ view: ad_metrics_parent_comparison_base {
     group_label: "Parent Comparisons"
   }
 
+  dimension: cost_per_conversion_good {
+    type: yesno
+    sql: ${cost_per_conversion_delta_ratio} < .8 AND ${average_position} > 1 ;;
+    group_label: "Parent Comparisons"
+  }
+
+  dimension: conversion_rate_good {
+    type: yesno
+    sql: ${conversion_rate_better} AND ${conversion_rate_significant} ;;
+    group_label: "Parent Comparisons"
+  }
+
+  dimension: click_rate_good {
+    type: yesno
+    sql: ${click_rate_better} AND ${click_rate_significant} ;;
+    group_label: "Parent Comparisons"
+  }
+
   measure: cost_per_conversion_count_good {
     type: count_distinct
     sql: ${key_base} ;;
     filters: {
-      field: cost_per_conversion_delta_ratio
-      value: "<.8"
+      field: cost_per_conversion_good
+      value: "Yes"
     }
-    filters: {
-      field: average_position
-      value: ">1"
-    }
+    group_label: "Parent Comparisons"
   }
 
   measure: conversion_rate_count_good {
     type: count_distinct
     sql: ${key_base} ;;
     filters: {
-      field: conversion_rate_better
+      field: conversion_rate_good
       value: "Yes"
     }
-    filters: {
-      field: conversion_rate_significant
-      value: "Yes"
-    }
+    group_label: "Parent Comparisons"
   }
 
   measure: click_rate_count_good {
     type: count_distinct
     sql: ${key_base} ;;
     filters: {
-      field: click_rate_better
+      field: click_rate_good
       value: "Yes"
     }
-    filters: {
-      field: click_rate_significant
-      value: "Yes"
-    }
+    group_label: "Parent Comparisons"
+  }
+
+  dimension: cost_per_conversion_bad {
+    type: yesno
+    sql: ${cost_per_conversion_delta_ratio} > 1.2 ;;
+    group_label: "Parent Comparisons"
+  }
+
+  dimension: conversion_rate_bad {
+    type: yesno
+    sql: NOT ${conversion_rate_better} AND ${conversion_rate_significant} ;;
+    group_label: "Parent Comparisons"
+  }
+
+  dimension: click_rate_bad {
+    type: yesno
+    sql: NOT ${click_rate_better} AND ${click_rate_significant} ;;
+    group_label: "Parent Comparisons"
   }
 
   measure: cost_per_conversion_count_bad {
     type: count_distinct
     sql: ${key_base} ;;
     filters: {
-      field: cost_per_conversion_delta_ratio
-      value: ">1.2"
+      field: cost_per_conversion_bad
+      value: "Yes"
     }
+    group_label: "Parent Comparisons"
   }
 
   measure: conversion_rate_count_bad {
     type: count_distinct
     sql: ${key_base} ;;
     filters: {
-      field: conversion_rate_better
-      value: "No"
-    }
-    filters: {
-      field: conversion_rate_significant
+      field: conversion_rate_bad
       value: "Yes"
     }
+    group_label: "Parent Comparisons"
   }
 
   measure: click_rate_count_bad {
     type: count_distinct
     sql: ${key_base} ;;
     filters: {
-      field: click_rate_better
-      value: "No"
-    }
-    filters: {
-      field: click_rate_significant
+      field: click_rate_bad
       value: "Yes"
     }
+    group_label: "Parent Comparisons"
   }
 
   set: ad_metrics_parent_comparison_measures_set {
@@ -402,8 +424,21 @@ view: ad_metrics_parent_comparison_base {
       average_cost_per_impression_delta_ratio,
       cost_per_conversion_count_good,
       conversion_rate_count_good,
-      click_rate_count_good
+      click_rate_count_good,
+      cost_per_conversion_count_bad,
+      conversion_rate_count_bad,
+      click_rate_count_bad
     ]
   }
 
+  set: ad_metrics_parent_comparison_report_measure_set {
+    fields: [
+      cost_per_conversion_count_good,
+      conversion_rate_count_good,
+      click_rate_count_good,
+      cost_per_conversion_count_bad,
+      conversion_rate_count_bad,
+      click_rate_count_bad
+    ]
+  }
 }
