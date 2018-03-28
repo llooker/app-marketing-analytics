@@ -522,3 +522,94 @@ view: keyword_quarter_fact {
     sql: concat(${quarter_base}, ${key_base}) ;;
   }
 }
+
+
+explore: keyword_period_fact {
+  extends: [keyword_fact_base]
+  from: keyword_period_fact
+  view_name: fact
+  label: "Keyword Period Fact"
+  view_label: "Keyword Period Fact"
+
+  always_filter: {
+    filters: {
+      field: fact.period
+    }
+  }
+
+  join: last_fact {
+    from: keyword_period_fact
+    view_label: "Last Period Keyword Fact"
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${last_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
+      ${fact.criterion_id} = ${last_fact.criterion_id} AND
+      ${fact.date_last_period} = ${last_fact.date_period} AND
+      ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period} AND
+      ${last_fact.less_than_current_day_of_period} = "Yes" ;;
+    relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
+  }
+  join: parent_fact {
+    from: ad_group_period_fact
+    view_label: "Ad Group Period Fact"
+    sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
+      ${fact.campaign_id} = ${parent_fact.campaign_id} AND
+      ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
+      ${fact.date_period} = ${parent_fact.date_period} AND
+      ${fact.less_than_current_day_of_period} = ${parent_fact.less_than_current_day_of_period} ;;
+    relationship: many_to_one
+    fields: [parent_fact.google_ad_metrics_set*]
+  }
+}
+
+view: keyword_period_fact {
+  extends: [keyword_fact_base, ad_metrics_period_comparison_base]
+
+  sql_table_name: {% if fact.period_passthrough._sql == "week" %}${keyword_week_fact.SQL_TABLE_NAME}
+    {% elsif fact.period_passthrough._sql == "month" %}${keyword_month_fact.SQL_TABLE_NAME}
+    {% elsif fact.period_passthrough._sql == "quarter" %}${keyword_quarter_fact.SQL_TABLE_NAME}
+    {% endif %} ;;
+
+  parameter: period {
+    type: unquoted
+    allowed_value: {
+      value: "quarter"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "month"
+      label: "Month"
+    }
+    default_value: "quarter"
+  }
+
+  dimension: period_passthrough {
+    hidden: yes
+    sql: {% parameter period %};;
+  }
+
+  dimension: date_period {
+    type: date
+    sql: TIMESTAMP(${TABLE}.date_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
+  }
+  dimension: date_date {
+    sql: ${date_period} ;;
+  }
+  dimension: less_than_current_day_of_period {
+    sql: ${TABLE}.less_than_current_day_of_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %} ;;
+  }
+  dimension: date_last_period {
+    type: date
+    sql: DATE_ADD(${date_period}, INTERVAL -1 {% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
+    allow_fill: no
+  }
+  dimension: primary_key {
+    primary_key: yes
+    sql: concat(${date_period}, ${less_than_current_day_of_period}) ;;
+  }
+}

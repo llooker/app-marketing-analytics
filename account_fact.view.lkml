@@ -505,3 +505,80 @@ view: account_quarter_fact {
     sql: concat(${quarter_base}, ${key_base}) ;;
   }
 }
+
+explore: account_period_fact {
+  extends: [account_fact_base]
+  from: account_period_fact
+  view_name: fact
+  label: "Account Period Fact"
+  view_label: "Account Period Fact"
+
+  always_filter: {
+    filters: {
+      field: fact.period
+    }
+  }
+
+  join: last_fact {
+    from: account_period_fact
+    view_label: "Last Quarter Account Fact"
+    sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
+      ${fact.date_last_period} = ${last_fact.date_period} AND
+      ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period} AND
+      ${last_fact.less_than_current_day_of_period} = "Yes" ;;
+    relationship: one_to_one
+    fields: [last_fact.google_ad_metrics_set*]
+  }
+}
+
+view: account_period_fact {
+  extends: [account_fact_base, ad_metrics_period_comparison_base]
+
+  sql_table_name: {% if fact.period_passthrough._sql == "week" %}${account_week_fact.SQL_TABLE_NAME}
+    {% elsif fact.period_passthrough._sql == "month" %}${account_month_fact.SQL_TABLE_NAME}
+    {% elsif fact.period_passthrough._sql == "quarter" %}${account_quarter_fact.SQL_TABLE_NAME}
+    {% endif %} ;;
+
+  parameter: period {
+    type: unquoted
+    allowed_value: {
+      value: "quarter"
+      label: "Quarter"
+    }
+    allowed_value: {
+      value: "week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "month"
+      label: "Month"
+    }
+    default_value: "quarter"
+  }
+
+  dimension: period_passthrough {
+    hidden: yes
+    sql: {% parameter period %};;
+  }
+
+  dimension: date_period {
+    type: date
+    allow_fill: no
+    sql: TIMESTAMP(${TABLE}.date_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
+  }
+  dimension: date_date {
+    sql: ${date_period} ;;
+  }
+  dimension: less_than_current_day_of_period {
+    sql: ${TABLE}.less_than_current_day_of_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %} ;;
+  }
+  dimension: date_last_period {
+    type: date
+    allow_fill: no
+    sql: DATE_ADD(${date_period}, INTERVAL -1 {% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
+  }
+  dimension: primary_key {
+    primary_key: yes
+    sql: concat(${date_period}, ${less_than_current_day_of_period}, ${key_base}) ;;
+  }
+}
