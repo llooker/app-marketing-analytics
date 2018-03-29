@@ -146,12 +146,7 @@
                   "description": "Increase the bid on these Ads to drive more conversions.",
                   "name": "Ad Opportunities",
                   "permalink": "optimization-ad-opportunities",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "ads_opportunities" },
                   "variations": [
                     {
                       "description": "",
@@ -177,12 +172,7 @@
                   "description": "Increase the bid on these Keywords to drive more conversions.",
                   "name": "Keyword Opportunities",
                   "permalink": "optimization-keyword-opportunities",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "keywords_opportunities" },
                   "variations": [
                     {
                       "description": "",
@@ -208,12 +198,7 @@
                   "description": "Increase the bid on these Ad Groups to drive more conversions.",
                   "name": "Ad Group Opportunities",
                   "permalink": "optimization-ad-group-opportunities",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "ad_groups_opportunities" },
                   "variations": [
                     {
                       "description": "",
@@ -246,12 +231,7 @@
                   "description": "Ads that have had recent big performance changes.",
                   "name": "Ad Performance Changes",
                   "permalink": "ad-movers",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "ads_big_movers" },
                   "variations": [
                     {
                       "description": "",
@@ -295,12 +275,7 @@
                   "description": "Keywords that have had recent big performance changes.",
                   "name": "Keyword Performance Changes",
                   "permalink": "keyword-movers",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "keywords_big_movers" },
                   "variations": [
                     {
                       "description": "",
@@ -344,12 +319,7 @@
                   "description": "Ad Groups that have had recent big performance changes.",
                   "name": "Ad Group Performance Changes",
                   "permalink": "ad-group-movers",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "ad_groups_big_movers" },
                   "variations": [
                     {
                       "description": "",
@@ -392,12 +362,7 @@
                   "description": "Quickly find the ads that need to be paused or have their bid lowered.",
                   "name": "Underperforming Ads",
                   "permalink": "underperforming-ads",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "underperforming_ads",
-                    "name": "Ads",
-                    "type": "number"
-                  },
+                  "singleValueReference": { "key": "ads_underpeforming" },
                   "variations": [
                     {
                       "description": "",
@@ -448,12 +413,7 @@
                   "description": "Quickly find the keywords that need to be paused or have their bid lowered.",
                   "name": "Underperforming Keywords",
                   "permalink": "underperforming-keywords",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "underperforming_keywords",
-                    "name": "Keywords",
-                    "type": "number"
-                  },
+                  "singleValueReference": { "key": "keywords_underpeforming" },
                   "variations": [
                     {
                       "description": "",
@@ -506,12 +466,7 @@
                   "description": "Quickly find the ad groups that need to be paused or have their bid lowered.",
                   "name": "Underperforming Ad Groups",
                   "permalink": "underperforming-ad-groups",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "underperforming_ad_groups",
-                    "name": "Ad Groups",
-                    "type": "number"
-                  },
+                  "singleValueReference": { "key": "ad_groups_underpeforming" },
                   "variations": [
                     {
                       "description": "No Description",
@@ -597,12 +552,10 @@
       "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
       "fields": {
         "ads_opportunities": {
-          "value": "fact.cost_per_conversion_count_good",
-          "compare": "last_fact.cost_per_conversion_count_good"
+          "value": "fact.cost_per_conversion_count_good"
         },
         "ads_underpeforming": {
-          "value": "fact.cost_per_conversion_count_bad",
-          "compare": "last_fact.cost_per_conversion_count_bad"
+          "value": "fact.cost_per_conversion_count_bad"
         },
         "ads_big_movers": {
           "value": "fact.average_cost_per_conversion"
@@ -615,12 +568,10 @@
       "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
       "fields": {
         "keywords_opportunities": {
-          "value": "fact.cost_per_conversion_count_good",
-          "compare": "last_fact.cost_per_conversion_count_good"
+          "value": "fact.cost_per_conversion_count_good"
         },
         "keywords_underpeforming": {
-          "value": "fact.cost_per_conversion_count_bad",
-          "compare": "last_fact.cost_per_conversion_count_bad"
+          "value": "fact.cost_per_conversion_count_bad"
         },
         "keywords_big_movers": {
           "value": "fact.average_cost_per_conversion"
@@ -633,12 +584,10 @@
       "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
       "fields": {
         "ad_groups_opportunities": {
-          "value": "fact.cost_per_conversion_count_good",
-          "compare": "last_fact.cost_per_conversion_count_good"
+          "value": "fact.cost_per_conversion_count_good"
         },
         "ad_groups_underpeforming": {
-          "value": "fact.cost_per_conversion_count_bad",
-          "compare": "last_fact.cost_per_conversion_count_bad"
+          "value": "fact.cost_per_conversion_count_bad"
         },
         "ad_groups_big_movers": {
           "value": "fact.average_cost_per_conversion"
