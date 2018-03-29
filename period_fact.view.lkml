@@ -77,7 +77,7 @@ explore: period_fact {
     from: period_fact
     view_label: "Last Period Fact"
     sql_on:
-      ${fact.date_period} = ${last_fact.date_period}
+      ${fact.date_last_period} = ${last_fact.date_period}
       AND ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period}
       {% if (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
         AND ${fact.ad_group_id} = ${last_fact.ad_group_id}
