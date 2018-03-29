@@ -1,3 +1,4 @@
+include: "/app_marketing_analytics_adapter/ad.view"
 include: "ad_group.view"
 
 explore: ad {
@@ -28,8 +29,7 @@ explore: ad {
 }
 
 view: ad {
-  extends: [date_base, google_adwords_base]
-  sql_table_name: adwords_v201609.Ad_6747157124 ;;
+  extends: [date_base, google_adwords_base, ad_adapter]
 
   dimension: ad_group_ad_disapproval_reasons {
     type: string

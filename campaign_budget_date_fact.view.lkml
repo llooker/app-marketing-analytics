@@ -50,7 +50,7 @@ view: campaign_budget_date_fact {
   }
   dimension: percent_remaining_budget {
     type: number
-    sql: ${remaining_budget} / ${amount} ;;
+    sql: ${remaining_budget} / NULLIF(${amount},0) ;;
     value_format_name: percent_2
   }
   dimension: percent_used_budget {
