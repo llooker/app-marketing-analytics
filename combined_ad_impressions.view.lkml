@@ -24,7 +24,7 @@ view: combined_ad_impressions_base {
 }
 
 explore: google_adwords_ad_impressions {
-#   hidden: yes
+  hidden: yes
 
   join: customer {
     view_label: "Customer"
@@ -70,7 +70,7 @@ view: google_adwords_ad_impressions {
 }
 
 explore: facebook_ad_impressions {
-#   hidden: yes
+  hidden: yes
 
   join: campaigns {
     sql_on: ${facebook_ad_impressions.campaign_id} = ${campaigns.id} ;;
@@ -106,7 +106,9 @@ view: facebook_ad_impressions {
   }
 }
 
-explore: combined_ad_impressions {}
+explore: combined_ad_impressions {
+  hidden: yes
+}
 view: combined_ad_impressions {
   extends: [combined_ad_impressions_base]
 

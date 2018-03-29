@@ -52,6 +52,7 @@ view: combined_ad_group_fact_base {
 }
 
 explore: combined_ad_group_fact_this_timeframe {
+  hidden: yes
   extends: [combined_ad_group_fact_base]
   from: combined_ad_group_fact_this_timeframe
   join: combined_last_fact {
@@ -198,6 +199,7 @@ view: combined_ad_group_fact_last_timeframe {
 }
 
 explore: combined_ad_group_date_fact {
+  hidden: yes
   extends: [combined_ad_group_fact_base]
   from: combined_ad_group_date_fact
   label: "Combined Ad Group Date Fact"

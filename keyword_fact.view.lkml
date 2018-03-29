@@ -58,6 +58,7 @@ view: keyword_fact_base {
 }
 
 explore: keyword_fact_this_timeframe {
+  hidden: yes
   from: keyword_fact_this_timeframe
   view_name: fact
   always_filter: {
@@ -253,6 +254,7 @@ view: keyword_fact_last_timeframe {
 }
 
 explore: keyword_date_fact {
+  hidden: yes
   extends: [keyword_fact_base]
   from: keyword_date_fact
   label: "Keyword Date Fact"
@@ -299,6 +301,7 @@ view: keyword_date_fact {
 }
 
 explore: keyword_week_fact {
+  hidden: yes
   extends: [keyword_fact_base]
   from: keyword_week_fact
   label: "Keyword Week Fact"
@@ -374,6 +377,7 @@ view: keyword_week_fact {
 }
 
 explore: keyword_month_fact {
+  hidden: yes
   extends: [keyword_fact_base]
   from: keyword_month_fact
   label: "Keyword Month Fact"
@@ -449,6 +453,7 @@ view: keyword_month_fact {
 }
 
 explore: keyword_quarter_fact {
+  hidden: yes
   extends: [keyword_fact_base]
   from: keyword_quarter_fact
   label: "Keyword Quarter Fact"
@@ -525,6 +530,7 @@ view: keyword_quarter_fact {
 
 
 explore: keyword_period_fact {
+  hidden: yes
   extends: [keyword_fact_base]
   from: keyword_period_fact
   view_name: fact

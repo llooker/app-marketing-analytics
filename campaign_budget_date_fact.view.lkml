@@ -2,6 +2,7 @@ include: "campaign.view"
 include: "date_base.view"
 
 explore: campaign_budget_date_fact {
+  hidden: yes
   label: "Campaign Budget Date Fact"
   view_label: "Campaign Budget Date Fact"
   join: customer {
