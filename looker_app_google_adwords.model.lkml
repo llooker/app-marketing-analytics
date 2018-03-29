@@ -14,8 +14,10 @@ include: "customer.view"
 include: "expected_conversions.view"
 include: "keyword.view"
 include: "keyword_fact.view"
+include: "period_fact.view"
 include: "ad_impressions.view"
 include: "report_single_values.view"
+include: "reports.view"
 include: "recent_changes.view"
 
 include: "combined_ad_impressions.view"
@@ -40,8 +42,9 @@ datagroup: etl_datagroup {
   max_cache_age: "24 hours"
 }
 
+persist_with: etl_datagroup
+
 explore: ad_impressions {
-  persist_with: etl_datagroup
   label: "Ad Impressions"
   view_label: "Ad Impressions"
 
@@ -114,11 +117,45 @@ explore: ad_impressions {
 }
 
 explore: report_single_values {
+  hidden: yes
   label: "Report Single Values"
 }
 
-explore: status_changes  {
+explore: reports  {
+  hidden: yes
+  join: campaign {
+    view_label: "Campaign"
+    sql_on: ${reports.campaign_id} = ${campaign.campaign_id} AND
+      ${reports.external_customer_id} = ${campaign.external_customer_id};;
+    relationship: many_to_one
+  }
+  join: ad_group {
+    view_label: "Ad Groups"
+    sql_on: ${reports.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${reports.campaign_id} = ${campaign.campaign_id} AND
+      ${reports.external_customer_id} = ${ad_group.external_customer_id};;
+    relationship: many_to_one
+  }
+  join: ad {
+    view_label: "Ads"
+    sql_on: ${reports.creative_id} = ${ad.creative_id} AND
+      ${reports.ad_group_id} = ${ad.ad_group_id} AND
+      ${reports.campaign_id} = ${campaign.campaign_id} AND
+      ${reports.external_customer_id} = ${ad.external_customer_id};;
+    relationship:  many_to_one
+  }
+  join: keyword {
+    view_label: "Keywords"
+    sql_on: ${reports.criterion_id} = ${keyword.criterion_id} AND
+      ${reports.ad_group_id} = ${keyword.ad_group_id} AND
+      ${reports.campaign_id} = ${campaign.campaign_id} AND
+      ${reports.external_customer_id} = ${keyword.external_customer_id} ;;
+    relationship: many_to_one
+  }
+}
 
+explore: status_changes  {
+  hidden: yes
   join: campaign {
     view_label: "Campaign"
     sql_on: ${status_changes.campaign_id} = ${campaign.campaign_id} AND

@@ -4,7 +4,6 @@ include: "date_base.view"
 explore: combined_ad_group_fact_base {
   extension: required
   view_name: fact
-#   persist_with: etl_datagroup
 
   # TODO make these depend on channel
   # If channel = google adwords then
@@ -53,6 +52,7 @@ view: combined_ad_group_fact_base {
 }
 
 explore: combined_ad_group_fact_this_timeframe {
+  hidden: yes
   extends: [combined_ad_group_fact_base]
   from: combined_ad_group_fact_this_timeframe
   join: combined_last_fact {
@@ -199,6 +199,7 @@ view: combined_ad_group_fact_last_timeframe {
 }
 
 explore: combined_ad_group_date_fact {
+  hidden: yes
   extends: [combined_ad_group_fact_base]
   from: combined_ad_group_date_fact
   label: "Combined Ad Group Date Fact"

@@ -88,15 +88,19 @@ view: date_base {
   dimension: less_than_current_day_of_period {
     hidden:  yes
     type: yesno
-    sql: CASE WHEN {% parameter period %} = "1 week ago" THEN ${less_than_current_day_of_week}
-        WHEN {% parameter period %} = "1 quarter ago" THEN ${less_than_current_day_of_quarter}
-        WHEN {% parameter period %} = "1 month ago" THEN ${less_than_current_day_of_month}
-        ELSE NULL
-        END;;
-}
+    sql: {% if period_passthrough._sql == "'1 week ago'" %} ${less_than_current_day_of_week}
+    {% elsif period_passthrough._sql == "'1 month ago'" %} ${less_than_current_day_of_month}
+    {% elsif period_passthrough._sql == "'1 quarter ago'" %} ${less_than_current_day_of_quarter}
+    {% endif %} ;;
+  }
 
   parameter: period {
     hidden: yes
+  }
+
+  dimension: period_passthrough {
+    hidden: yes
+    sql: {% parameter period %};;
   }
 
   dimension: date_last_week {
