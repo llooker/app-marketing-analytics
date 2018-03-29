@@ -1,6 +1,7 @@
 include: "fb_campaigns.view"
 
 explore: adsets {
+  hidden: yes
   join: campaigns {
     type: left_outer
     sql_on: ${adsets.campaign_id} = ${campaigns.id} ;;

@@ -2,6 +2,7 @@ include: "fb_adcreative.view"
 include: "fb_adsets.view"
 
 explore: ads {
+  hidden: yes
   join: adcreative {
     type: left_outer
     sql_on: ${ads.creative_id} = ${adcreative.id} ;;

@@ -117,10 +117,12 @@ explore: ad_impressions {
 }
 
 explore: report_single_values {
+  hidden: yes
   label: "Report Single Values"
 }
 
 explore: reports  {
+  hidden: yes
   join: campaign {
     view_label: "Campaign"
     sql_on: ${reports.campaign_id} = ${campaign.campaign_id} AND
@@ -153,6 +155,7 @@ explore: reports  {
 }
 
 explore: status_changes  {
+  hidden: yes
   join: campaign {
     view_label: "Campaign"
     sql_on: ${status_changes.campaign_id} = ${campaign.campaign_id} AND

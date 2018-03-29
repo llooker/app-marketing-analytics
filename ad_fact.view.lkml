@@ -58,6 +58,7 @@ view: ad_fact_base {
 }
 
 explore: ad_fact_this_timeframe {
+  hidden: yes
   from: ad_fact_this_timeframe
   view_name: fact
   always_filter: {
@@ -253,6 +254,7 @@ view: ad_fact_last_timeframe {
 }
 
 explore: ad_date_fact {
+  hidden: yes
   extends: [ad_fact_base]
   from: ad_date_fact
   label: "Ad Date Fact"
@@ -299,6 +301,7 @@ view: ad_date_fact {
 }
 
 explore: ad_week_fact {
+  hidden: yes
   extends: [ad_fact_base]
   from: ad_week_fact
   label: "Ad Week Fact"
@@ -376,6 +379,7 @@ view: ad_week_fact {
 }
 
 explore: ad_month_fact {
+  hidden: yes
   extends: [ad_fact_base]
   from: ad_month_fact
   label: "Ad Month Fact"
@@ -452,6 +456,7 @@ view: ad_month_fact {
 }
 
 explore: ad_quarter_fact {
+  hidden: yes
   extends: [ad_fact_base]
   from: ad_quarter_fact
   label: "Ad Quarter Fact"
@@ -529,6 +534,7 @@ view: ad_quarter_fact {
 }
 
 explore: ad_period_fact {
+  hidden: yes
   extends: [ad_fact_base]
   from: ad_period_fact
   view_name: fact
