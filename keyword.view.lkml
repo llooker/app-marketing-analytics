@@ -1,3 +1,4 @@
+include: "/app_marketing_analytics_adapter/keyword.view"
 include: "ad_group.view"
 
 explore: keyword {
@@ -26,8 +27,7 @@ explore: keyword {
 }
 
 view: keyword {
-  extends: [date_base, google_adwords_base]
-  sql_table_name: adwords_v201609.Keyword_6747157124 ;;
+  extends: [date_base, google_adwords_base, keyword_adapter]
 
   dimension: ad_group_id {
     sql: ${TABLE}.AdGroupId ;;

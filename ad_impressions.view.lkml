@@ -1,35 +1,10 @@
+include: "/app_marketing_analytics_adapter/ad_impressions.view"
 include: "google_ad_transformations_base.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
 
 view: ad_impressions {
-  extends: [date_base, google_ad_transformations_base, google_adwords_base]
-  sql_table_name:
-  {% if (ad._in_query or ad_impressions.creative_id._in_query) %}
-    adwords_v201609.AdBasicStats_6747157124
-  {% elsif (audience._in_query or ad_impressions.audience_criterion_id._in_query) %}
-    adwords_v201609.AudienceBasicStats_6747157124
-  {% elsif (keyword._in_query or ad_impressions.criterion_id._in_query) %}
-    adwords_v201609.KeywordBasicStats_6747157124
-  {% elsif (ad_group._in_query or ad_impressions.ad_group_id._in_query) %}
-    {% if ad_impressions.hour_of_day._in_query %}
-      adwords_v201609.HourlyAdGroupStats_6747157124
-    {% else %}
-      adwords_v201609.AdGroupBasicStats_6747157124
-    {% endif %}
-  {% elsif (campaign._in_query or ad_impressions.campaign_id._in_query) %}
-    {% if ad_impressions.hour_of_day._in_query %}
-      adwords_v201609.HourlyCampaignStats_6747157124
-    {% else %}
-      adwords_v201609.CampaignBasicStats_6747157124
-    {% endif %}
-  {% else %}
-    {% if ad_impressions.hour_of_day._in_query %}
-      adwords_v201609.HourlyAccountStats_6747157124
-    {% else %}
-      adwords_v201609.AccountBasicStats_6747157124
-    {% endif %}
-  {% endif %} ;;
+  extends: [date_base, google_ad_transformations_base, google_adwords_base, ad_impressions_adapter]
 
   dimension: hour_of_day {
     hidden: yes

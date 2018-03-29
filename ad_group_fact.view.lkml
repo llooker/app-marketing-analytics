@@ -47,6 +47,7 @@ view: ad_group_fact_base {
 }
 
 explore: ad_group_fact_this_timeframe {
+  hidden: yes
   from: ad_group_fact_this_timeframe
   view_name: fact
   always_filter: {
@@ -227,6 +228,7 @@ view: ad_group_fact_last_timeframe {
 }
 
 explore: ad_group_date_fact {
+  hidden: yes
   extends: [ad_group_fact_base]
   from: ad_group_date_fact
   label: "Ad Group Date Fact"
@@ -266,11 +268,12 @@ view: ad_group_date_fact {
   }
   dimension: primary_key {
     primary_key: yes
-    sql: concat(${_date}, ${key_base}) ;;
+    sql: concat(CAST(${_date} as STRING), ${key_base}) ;;
   }
 }
 
 explore: ad_group_week_fact {
+  hidden: yes
   extends: [ad_group_fact_base]
   from: ad_group_week_fact
   label: "Ad Group Week Fact"
@@ -334,7 +337,7 @@ view: ad_group_week_fact {
   }
   dimension: less_than_current_day_of_week {}
   dimension: week_base {
-    sql: concat(${date_week}, ${less_than_current_day_of_week}) ;;
+    sql: concat(CAST(${date_week} AS STRING), ${less_than_current_day_of_week});;
   }
   dimension: primary_key {
     primary_key: yes
@@ -343,6 +346,7 @@ view: ad_group_week_fact {
 }
 
 explore: ad_group_month_fact {
+  hidden: yes
   extends: [ad_group_fact_base]
   from: ad_group_month_fact
   label: "Ad Group Month Fact"
@@ -406,7 +410,7 @@ view: ad_group_month_fact {
   }
   dimension: less_than_current_day_of_month {}
   dimension: month_base {
-    sql: concat(${date_month}, ${less_than_current_day_of_month}) ;;
+    sql: concat(CAST(${date_month} as STRING), ${less_than_current_day_of_month}) ;;
   }
   dimension: primary_key {
     primary_key: yes
@@ -415,6 +419,7 @@ view: ad_group_month_fact {
 }
 
 explore: ad_group_quarter_fact {
+  hidden: yes
   extends: [ad_group_fact_base]
   from: ad_group_quarter_fact
   label: "Ad Group Quarter Fact"
@@ -479,7 +484,7 @@ view: ad_group_quarter_fact {
   }
   dimension: less_than_current_day_of_quarter {}
   dimension: quarter_base {
-    sql: concat(${date_quarter}, ${less_than_current_day_of_quarter}) ;;
+    sql: concat(CAST(${date_quarter} as STRING), ${less_than_current_day_of_quarter}) ;;
   }
   dimension: primary_key {
     primary_key: yes
@@ -488,6 +493,7 @@ view: ad_group_quarter_fact {
 }
 
 explore: ad_group_period_fact {
+  hidden: yes
   extends: [ad_group_fact_base]
   from: ad_group_period_fact
   view_name: fact
@@ -575,6 +581,6 @@ view: ad_group_period_fact {
   }
   dimension: primary_key {
     primary_key: yes
-    sql: concat(${date_period}, ${less_than_current_day_of_period}) ;;
+    sql: concat(CAST(${date_period} AS STRING), ${less_than_current_day_of_period}, ${key_base}) ;;
   }
 }

@@ -1,6 +1,7 @@
 include: "fb_stitch_base.view.lkml"
 
 explore: campaigns {
+  hidden: yes
   join: campaigns__ads__data {
     view_label: "Campaigns: Ads Data"
     sql: LEFT JOIN UNNEST(${campaigns__ads.data}) as campaigns__ads__data ;;
