@@ -2,6 +2,7 @@ include: "campaign.view"
 include: "date_base.view"
 
 explore: campaign_budget_date_fact {
+  hidden: yes
   label: "Campaign Budget Date Fact"
   view_label: "Campaign Budget Date Fact"
   join: customer {
@@ -49,7 +50,7 @@ view: campaign_budget_date_fact {
   }
   dimension: percent_remaining_budget {
     type: number
-    sql: ${remaining_budget} / ${amount} ;;
+    sql: ${remaining_budget} / NULLIF(${amount},0) ;;
     value_format_name: percent_2
   }
   dimension: percent_used_budget {

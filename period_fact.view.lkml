@@ -57,6 +57,7 @@ view: period_fact_base {
 }
 
 explore: period_fact {
+  hidden: yes
   extends: [period_fact_base]
   from: period_fact
   view_name: fact

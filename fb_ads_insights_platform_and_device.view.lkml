@@ -3,6 +3,7 @@ include: "fb_adcreative.view"
 include: "fb_ads.view"
 
 explore: ads_insights_platform_and_device {
+  hidden: yes
   join: campaigns {
     type: left_outer
     sql_on: ${ads_insights_platform_and_device.campaign_id} = ${campaigns.id} ;;

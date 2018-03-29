@@ -1,7 +1,9 @@
 include: "ad.view.lkml"
 include: "keyword.view.lkml"
 
-explore: ad_status {}
+explore: ad_status {
+  hidden: yes
+}
 view: ad_status {
   derived_table: {
     explore_source: ad {
@@ -29,7 +31,9 @@ view: ad_status {
   }
 }
 
-explore: keyword_status {}
+explore: keyword_status {
+  hidden: yes
+}
 view: keyword_status {
   derived_table: {
     explore_source: keyword {
@@ -57,7 +61,9 @@ view: keyword_status {
   }
 }
 
-explore: ad_group_status {}
+explore: ad_group_status {
+  hidden: yes
+}
 view: ad_group_status {
   derived_table: {
     explore_source: ad_group {
@@ -83,7 +89,9 @@ view: ad_group_status {
   }
 }
 
-explore: campaign_status {}
+explore: campaign_status {
+  hidden: yes
+}
 view: campaign_status {
   derived_table: {
     explore_source: campaign {

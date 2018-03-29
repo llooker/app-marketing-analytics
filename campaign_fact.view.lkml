@@ -38,6 +38,7 @@ view: campaign_fact_base {
 }
 
 explore: campaign_fact_this_timeframe {
+  hidden: yes
   from: campaign_fact_this_timeframe
   view_name: fact
   always_filter: {
@@ -206,6 +207,7 @@ view: campaign_fact_last_timeframe {
 }
 
 explore: campaign_date_fact {
+  hidden: yes
   extends: [campaign_fact_base]
   from: campaign_date_fact
   label: "Campaign Date Fact"
@@ -249,6 +251,7 @@ view: campaign_date_fact {
 }
 
 explore: campaign_week_fact {
+  hidden: yes
   extends: [campaign_fact_base]
   from: campaign_week_fact
   label: "Campaign Week Fact"
@@ -319,6 +322,7 @@ view: campaign_week_fact {
 }
 
 explore: campaign_month_fact {
+  hidden: yes
   extends: [campaign_fact_base]
   from: campaign_month_fact
   label: "Campaign Month Fact"
@@ -389,6 +393,7 @@ view: campaign_month_fact {
 }
 
 explore: campaign_quarter_fact {
+  hidden: yes
   extends: [campaign_fact_base]
   from: campaign_quarter_fact
   label: "Campaign Quarter Fact"
@@ -459,6 +464,7 @@ view: campaign_quarter_fact {
 }
 
 explore: campaign_period_fact {
+  hidden: yes
   extends: [campaign_fact_base]
   from: campaign_period_fact
   view_name: fact
