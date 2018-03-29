@@ -1,3 +1,4 @@
+include: "/app_marketing_analytics_adapter/campaign.view"
 include: "customer.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
@@ -13,8 +14,7 @@ explore: campaign {
 }
 
 view: campaign {
-  extends: [date_base, google_adwords_base]
-  sql_table_name: adwords_v201609.Campaign_6747157124 ;;
+  extends: [date_base, google_adwords_base, campaign_adapter]
 
   dimension: advertising_channel_sub_type {
     type: string
