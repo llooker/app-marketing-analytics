@@ -172,6 +172,7 @@
                   "description": "Increase the bid on these Keywords to drive more conversions.",
                   "name": "Keyword Opportunities",
                   "permalink": "optimization-keyword-opportunities",
+                  "singleValueReference": { "key": "keywords_opportunities" },
                   "variations": [
                     {
                       "description": "",
@@ -197,12 +198,7 @@
                   "description": "Increase the bid on these Ad Groups to drive more conversions.",
                   "name": "Ad Group Opportunities",
                   "permalink": "optimization-ad-group-opportunities",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "ad_groups_opportunities" },
                   "variations": [
                     {
                       "description": "",
@@ -279,12 +275,7 @@
                   "description": "Keywords that have had recent big performance changes.",
                   "name": "Keyword Performance Changes",
                   "permalink": "keyword-movers",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "keywords_big_movers" },
                   "variations": [
                     {
                       "description": "",
@@ -328,12 +319,7 @@
                   "description": "Ad Groups that have had recent big performance changes.",
                   "name": "Ad Group Performance Changes",
                   "permalink": "ad-group-movers",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "",
-                    "name": "",
-                    "type": ""
-                  },
+                  "singleValueReference": { "key": "ad_groups_big_movers" },
                   "variations": [
                     {
                       "description": "",
@@ -427,12 +413,7 @@
                   "description": "Quickly find the keywords that need to be paused or have their bid lowered.",
                   "name": "Underperforming Keywords",
                   "permalink": "underperforming-keywords",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "underperforming_keywords",
-                    "name": "Keywords",
-                    "type": "number"
-                  },
+                  "singleValueReference": { "key": "keywords_underpeforming" },
                   "variations": [
                     {
                       "description": "",
@@ -485,12 +466,7 @@
                   "description": "Quickly find the ad groups that need to be paused or have their bid lowered.",
                   "name": "Underperforming Ad Groups",
                   "permalink": "underperforming-ad-groups",
-                  "singleValue": {
-                    "inverseChange": false,
-                    "key": "underperforming_ad_groups",
-                    "name": "Ad Groups",
-                    "type": "number"
-                  },
+                  "singleValueReference": { "key": "ad_groups_underpeforming" },
                   "variations": [
                     {
                       "description": "No Description",
