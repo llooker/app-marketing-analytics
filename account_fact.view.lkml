@@ -30,6 +30,7 @@ view: account_fact_base {
 }
 
 explore: account_fact_this_timeframe {
+  hidden: yes
   from: account_fact_this_timeframe
   view_name: fact
   always_filter: {
@@ -181,6 +182,7 @@ view: account_fact_last_timeframe {
 }
 
 explore: account_date_fact {
+  hidden: yes
   extends: [account_fact_base]
   from: account_date_fact
 }
@@ -215,6 +217,7 @@ view: account_date_fact {
 }
 
 explore: account_date_this_fact {
+  hidden: yes
   extends: [account_fact_base]
   from: account_date_this_fact
   label: "Account Fact"
@@ -329,6 +332,7 @@ view: account_date_last_fact {
 
 
 explore: account_week_fact {
+  hidden: yes
   extends: [account_fact_base]
   from: account_week_fact
   label: "Account Week Fact"
@@ -389,6 +393,7 @@ view: account_week_fact {
 }
 
 explore: account_month_fact {
+  hidden: yes
   extends: [account_fact_base]
   from: account_month_fact
   label: "Account Month Fact"
@@ -448,6 +453,7 @@ view: account_month_fact {
 }
 
 explore: account_quarter_fact {
+  hidden: yes
   extends: [account_fact_base]
   from: account_quarter_fact
   label: "Account Quarter Fact"
@@ -507,6 +513,7 @@ view: account_quarter_fact {
 }
 
 explore: account_period_fact {
+  hidden: yes
   extends: [account_fact_base]
   from: account_period_fact
   view_name: fact

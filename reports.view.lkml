@@ -1,4 +1,6 @@
-explore: ad_fact_click_rate_good {}
+explore: ad_fact_click_rate_good {
+  hidden: yes
+}
 view: ad_fact_click_rate_good {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -30,7 +32,9 @@ view: ad_fact_click_rate_good {
   dimension: creative_id {}
 }
 
-explore: ad_fact_conversion_rate_good {}
+explore: ad_fact_conversion_rate_good {
+  hidden: yes
+}
 view: ad_fact_conversion_rate_good {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -62,7 +66,9 @@ view: ad_fact_conversion_rate_good {
   dimension: creative_id {}
 }
 
-explore: ad_fact_cost_per_conversion_good {}
+explore: ad_fact_cost_per_conversion_good {
+  hidden: yes
+}
 view: ad_fact_cost_per_conversion_good {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -94,7 +100,9 @@ view: ad_fact_cost_per_conversion_good {
   dimension: creative_id {}
 }
 
-explore: ad_fact_click_rate_bad {}
+explore: ad_fact_click_rate_bad {
+  hidden: yes
+}
 view: ad_fact_click_rate_bad {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -126,7 +134,9 @@ view: ad_fact_click_rate_bad {
   dimension: creative_id {}
 }
 
-explore: ad_fact_conversion_rate_bad {}
+explore: ad_fact_conversion_rate_bad {
+  hidden: yes
+}
 view: ad_fact_conversion_rate_bad {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -158,7 +168,9 @@ view: ad_fact_conversion_rate_bad {
   dimension: creative_id {}
 }
 
-explore: ad_fact_cost_per_conversion_bad {}
+explore: ad_fact_cost_per_conversion_bad {
+  hidden: yes
+}
 view: ad_fact_cost_per_conversion_bad {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -190,7 +202,9 @@ view: ad_fact_cost_per_conversion_bad {
   dimension: creative_id {}
 }
 
-explore: ad_fact_click_rate_big_mover {}
+explore: ad_fact_click_rate_big_mover {
+  hidden: yes
+}
 view: ad_fact_click_rate_big_mover {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -222,7 +236,9 @@ view: ad_fact_click_rate_big_mover {
   dimension: creative_id {}
 }
 
-explore: ad_fact_conversion_rate_big_mover {}
+explore: ad_fact_conversion_rate_big_mover {
+  hidden: yes
+}
 view: ad_fact_conversion_rate_big_mover {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -254,7 +270,9 @@ view: ad_fact_conversion_rate_big_mover {
   dimension: creative_id {}
 }
 
-explore: ad_fact_cost_per_conversion_big_mover {}
+explore: ad_fact_cost_per_conversion_big_mover {
+  hidden: yes
+}
 view: ad_fact_cost_per_conversion_big_mover {
   derived_table: {
     explore_source: ad_fact_this_timeframe {
@@ -286,7 +304,9 @@ view: ad_fact_cost_per_conversion_big_mover {
   dimension: creative_id {}
 }
 
-explore: keyword_fact_click_rate_good {}
+explore: keyword_fact_click_rate_good {
+  hidden: yes
+}
 view: keyword_fact_click_rate_good {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -318,7 +338,9 @@ view: keyword_fact_click_rate_good {
   dimension: criterion_id {}
 }
 
-explore: keyword_fact_conversion_rate_good {}
+explore: keyword_fact_conversion_rate_good {
+  hidden: yes
+}
 view: keyword_fact_conversion_rate_good {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -350,7 +372,9 @@ view: keyword_fact_conversion_rate_good {
   dimension: criterion_id {}
 }
 
-explore: keyword_fact_cost_per_conversion_good {}
+explore: keyword_fact_cost_per_conversion_good {
+  hidden: yes
+}
 view: keyword_fact_cost_per_conversion_good {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -382,7 +406,9 @@ view: keyword_fact_cost_per_conversion_good {
   dimension: criterion_id {}
 }
 
-explore: keyword_fact_click_rate_bad {}
+explore: keyword_fact_click_rate_bad {
+  hidden: yes
+}
 view: keyword_fact_click_rate_bad {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -414,7 +440,9 @@ view: keyword_fact_click_rate_bad {
   dimension: criterion_id {}
 }
 
-explore: keyword_fact_conversion_rate_bad {}
+explore: keyword_fact_conversion_rate_bad {
+  hidden: yes
+}
 view: keyword_fact_conversion_rate_bad {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -446,7 +474,9 @@ view: keyword_fact_conversion_rate_bad {
   dimension: criterion_id {}
 }
 
-explore: keyword_fact_cost_per_conversion_bad {}
+explore: keyword_fact_cost_per_conversion_bad {
+  hidden: yes
+}
 view: keyword_fact_cost_per_conversion_bad {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -478,7 +508,9 @@ view: keyword_fact_cost_per_conversion_bad {
   dimension: criterion_id {}
 }
 
-explore: keyword_fact_click_rate_big_mover {}
+explore: keyword_fact_click_rate_big_mover {
+  hidden: yes
+}
 view: keyword_fact_click_rate_big_mover {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -510,7 +542,9 @@ view: keyword_fact_click_rate_big_mover {
   dimension: criterion_id {}
 }
 
-explore: keyword_fact_conversion_rate_big_mover {}
+explore: keyword_fact_conversion_rate_big_mover {
+  hidden: yes
+}
 view: keyword_fact_conversion_rate_big_mover {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -542,7 +576,9 @@ view: keyword_fact_conversion_rate_big_mover {
   dimension: criterion_id {}
 }
 
-explore: keyword_fact_cost_per_conversion_big_mover {}
+explore: keyword_fact_cost_per_conversion_big_mover {
+  hidden: yes
+}
 view: keyword_fact_cost_per_conversion_big_mover {
   derived_table: {
     explore_source: keyword_fact_this_timeframe {
@@ -574,7 +610,9 @@ view: keyword_fact_cost_per_conversion_big_mover {
   dimension: criterion_id {}
 }
 
-explore: ad_group_fact_click_rate_good {}
+explore: ad_group_fact_click_rate_good {
+  hidden: yes
+}
 view: ad_group_fact_click_rate_good {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
@@ -604,7 +642,9 @@ view: ad_group_fact_click_rate_good {
   dimension: ad_group_id {}
 }
 
-explore: ad_group_fact_conversion_rate_good {}
+explore: ad_group_fact_conversion_rate_good {
+  hidden: yes
+}
 view: ad_group_fact_conversion_rate_good {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
@@ -634,7 +674,9 @@ view: ad_group_fact_conversion_rate_good {
   dimension: ad_group_id {}
 }
 
-explore: ad_group_fact_cost_per_conversion_good {}
+explore: ad_group_fact_cost_per_conversion_good {
+  hidden: yes
+}
 view: ad_group_fact_cost_per_conversion_good {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
@@ -664,7 +706,9 @@ view: ad_group_fact_cost_per_conversion_good {
   dimension: ad_group_id {}
 }
 
-explore: ad_group_fact_click_rate_bad {}
+explore: ad_group_fact_click_rate_bad {
+  hidden: yes
+}
 view: ad_group_fact_click_rate_bad {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
@@ -694,7 +738,9 @@ view: ad_group_fact_click_rate_bad {
   dimension: ad_group_id {}
 }
 
-explore: ad_group_fact_conversion_rate_bad {}
+explore: ad_group_fact_conversion_rate_bad {
+  hidden: yes
+}
 view: ad_group_fact_conversion_rate_bad {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
@@ -724,7 +770,9 @@ view: ad_group_fact_conversion_rate_bad {
   dimension: ad_group_id {}
 }
 
-explore: ad_group_fact_cost_per_conversion_bad {}
+explore: ad_group_fact_cost_per_conversion_bad {
+  hidden: yes
+}
 view: ad_group_fact_cost_per_conversion_bad {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
@@ -754,7 +802,9 @@ view: ad_group_fact_cost_per_conversion_bad {
   dimension: ad_group_id {}
 }
 
-explore: ad_group_fact_click_rate_big_mover {}
+explore: ad_group_fact_click_rate_big_mover {
+  hidden: yes
+}
 view: ad_group_fact_click_rate_big_mover {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
@@ -784,7 +834,9 @@ view: ad_group_fact_click_rate_big_mover {
   dimension: ad_group_id {}
 }
 
-explore: ad_group_fact_conversion_rate_big_mover {}
+explore: ad_group_fact_conversion_rate_big_mover {
+  hidden: yes
+}
 view: ad_group_fact_conversion_rate_big_mover {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
@@ -814,7 +866,9 @@ view: ad_group_fact_conversion_rate_big_mover {
   dimension: ad_group_id {}
 }
 
-explore: ad_group_fact_cost_per_conversion_big_mover {}
+explore: ad_group_fact_cost_per_conversion_big_mover {
+  hidden: yes
+}
 view: ad_group_fact_cost_per_conversion_big_mover {
   derived_table: {
     explore_source: ad_group_fact_this_timeframe {
