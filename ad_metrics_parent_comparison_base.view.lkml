@@ -98,7 +98,7 @@ view: ad_metrics_parent_comparison_base {
     sql: ${fact.total_cost_delta}*1.0 / NULLIF(${fact.total_clicks_delta},0) ;;
     group_label: "Parent Comparisons"
     value_format_name: usd
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_cost_per_click]
+    drill_fields: [fact.date_date, campaign.campaign_name, average_cost_per_click]
   }
   dimension: cost_per_impression_delta {
     type: number

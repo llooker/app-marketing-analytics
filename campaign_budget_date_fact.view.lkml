@@ -1,35 +1,38 @@
 include: "campaign.view"
 include: "date_base.view"
+include: "period_base.view"
 
 explore: campaign_budget_date_fact {
   hidden: yes
   label: "Campaign Budget Date Fact"
   view_label: "Campaign Budget Date Fact"
+  from: campaign_budget_date_fact
+  view_name: fact
   join: customer {
     view_label: "Customer"
-    sql_on: ${campaign_budget_date_fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${campaign_budget_date_fact.date_date} = ${customer.date_date} ;;
+    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${fact.date_date} = ${customer.date_date} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
-    sql_on: ${campaign_budget_date_fact.campaign_id} = ${campaign.campaign_id} AND
-      ${campaign_budget_date_fact.date_date} = ${campaign.date_date} ;;
+    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
 }
 
 view: campaign_budget_date_fact {
-  extends: [date_base]
+  extends: [date_base, period_base]
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
-      column: campaign_id {}
+      column: campaign_id { field: fact.campaign_id }
       column: budget_id { field: campaign.budget_id }
-      column: _date { field: ad_impressions.date_date}
-      column: external_customer_id {}
+      column: _date { field: fact.date_date}
+      column: external_customer_id { field: fact.external_customer_id }
       column: amount { field: campaign.total_amount }
-      column: cost { field: ad_impressions.total_cost }
+      column: cost { field: fact.total_cost }
     }
   }
   dimension: campaign_id {

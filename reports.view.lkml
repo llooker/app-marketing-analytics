@@ -3,22 +3,14 @@ explore: ad_fact_click_rate_good {
 }
 view: ad_fact_click_rate_good {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_good
@@ -37,22 +29,14 @@ explore: ad_fact_conversion_rate_good {
 }
 view: ad_fact_conversion_rate_good {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_good
@@ -71,22 +55,14 @@ explore: ad_fact_cost_per_conversion_good {
 }
 view: ad_fact_cost_per_conversion_good {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_good
@@ -105,22 +81,14 @@ explore: ad_fact_click_rate_bad {
 }
 view: ad_fact_click_rate_bad {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_bad
@@ -139,22 +107,14 @@ explore: ad_fact_conversion_rate_bad {
 }
 view: ad_fact_conversion_rate_bad {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_bad
@@ -173,22 +133,14 @@ explore: ad_fact_cost_per_conversion_bad {
 }
 view: ad_fact_cost_per_conversion_bad {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_bad
@@ -207,22 +159,14 @@ explore: ad_fact_click_rate_big_mover {
 }
 view: ad_fact_click_rate_big_mover {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_big_mover
@@ -241,22 +185,14 @@ explore: ad_fact_conversion_rate_big_mover {
 }
 view: ad_fact_conversion_rate_big_mover {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_big_mover
@@ -275,22 +211,14 @@ explore: ad_fact_cost_per_conversion_big_mover {
 }
 view: ad_fact_cost_per_conversion_big_mover {
   derived_table: {
-    explore_source: ad_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: creative_id { field: fact.creative_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_big_mover
@@ -309,22 +237,14 @@ explore: keyword_fact_click_rate_good {
 }
 view: keyword_fact_click_rate_good {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_good
@@ -343,22 +263,14 @@ explore: keyword_fact_conversion_rate_good {
 }
 view: keyword_fact_conversion_rate_good {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_good
@@ -377,22 +289,14 @@ explore: keyword_fact_cost_per_conversion_good {
 }
 view: keyword_fact_cost_per_conversion_good {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_good
@@ -411,22 +315,14 @@ explore: keyword_fact_click_rate_bad {
 }
 view: keyword_fact_click_rate_bad {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_bad
@@ -445,22 +341,14 @@ explore: keyword_fact_conversion_rate_bad {
 }
 view: keyword_fact_conversion_rate_bad {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_bad
@@ -479,22 +367,14 @@ explore: keyword_fact_cost_per_conversion_bad {
 }
 view: keyword_fact_cost_per_conversion_bad {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_bad
@@ -513,22 +393,14 @@ explore: keyword_fact_click_rate_big_mover {
 }
 view: keyword_fact_click_rate_big_mover {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_big_mover
@@ -547,22 +419,14 @@ explore: keyword_fact_conversion_rate_big_mover {
 }
 view: keyword_fact_conversion_rate_big_mover {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_big_mover
@@ -581,22 +445,14 @@ explore: keyword_fact_cost_per_conversion_big_mover {
 }
 view: keyword_fact_cost_per_conversion_big_mover {
   derived_table: {
-    explore_source: keyword_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       column: criterion_id { field: fact.criterion_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_big_mover
@@ -615,21 +471,13 @@ explore: ad_group_fact_click_rate_good {
 }
 view: ad_group_fact_click_rate_good {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_good
@@ -647,21 +495,13 @@ explore: ad_group_fact_conversion_rate_good {
 }
 view: ad_group_fact_conversion_rate_good {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_good
@@ -679,21 +519,13 @@ explore: ad_group_fact_cost_per_conversion_good {
 }
 view: ad_group_fact_cost_per_conversion_good {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_good
@@ -711,21 +543,13 @@ explore: ad_group_fact_click_rate_bad {
 }
 view: ad_group_fact_click_rate_bad {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_bad
@@ -743,21 +567,13 @@ explore: ad_group_fact_conversion_rate_bad {
 }
 view: ad_group_fact_conversion_rate_bad {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_bad
@@ -775,21 +591,13 @@ explore: ad_group_fact_cost_per_conversion_bad {
 }
 view: ad_group_fact_cost_per_conversion_bad {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_bad
@@ -807,21 +615,13 @@ explore: ad_group_fact_click_rate_big_mover {
 }
 view: ad_group_fact_click_rate_big_mover {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.click_rate_big_mover
@@ -839,21 +639,13 @@ explore: ad_group_fact_conversion_rate_big_mover {
 }
 view: ad_group_fact_conversion_rate_big_mover {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.conversion_rate_big_mover
@@ -871,21 +663,13 @@ explore: ad_group_fact_cost_per_conversion_big_mover {
 }
 view: ad_group_fact_cost_per_conversion_big_mover {
   derived_table: {
-    explore_source: ad_group_fact_this_timeframe {
+    explore_source: period_fact {
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_id { field: fact.ad_group_id }
       filters: {
-        field: fact.this_timeframe
-        value: "this quarter"
-      }
-      filters: {
-        field: last_fact.last_timeframe
-        value: "1 quarter ago"
-      }
-      filters: {
-        field: parent_fact.this_timeframe
-        value: "this quarter"
+        field: fact.period
+        value: "quarter"
       }
       filters: {
         field: fact.cost_per_conversion_big_mover
@@ -1174,23 +958,23 @@ view: reports {
   }
 
   dimension: external_customer_id {
-  #     hidden: yes
+    #     hidden: yes
   }
 
   dimension: campaign_id {
-  #     hidden: yes
+    #     hidden: yes
   }
 
   dimension: ad_group_id {
-  #     hidden: yes
+    #     hidden: yes
   }
 
   dimension: creative_id {
-  #     hidden: yes
+    #     hidden: yes
   }
 
   dimension: criterion_id {
-  #     hidden: yes
+    #     hidden: yes
   }
 
   dimension: content_type {

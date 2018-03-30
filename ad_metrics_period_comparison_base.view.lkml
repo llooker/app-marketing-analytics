@@ -247,6 +247,11 @@ view: ad_metrics_period_comparison_base {
     group_label: "Period Comparisons"
   }
 
+  dimension: cost_per_click_big_mover {
+    type: yesno
+    sql: ${cost_per_click_period_percent_change_abs} > .2 ;;
+    group_label: "Period Comparisons"
+  }
   dimension: cost_per_conversion_big_mover {
     type: yesno
     sql: ${cost_per_conversion_period_percent_change_abs} > .2 ;;

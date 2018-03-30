@@ -14,6 +14,7 @@ view: date_base {
       quarter,
       year,
       day_of_week,
+      day_of_week_index,
       day_of_month,
       day_of_year
     ]
@@ -37,6 +38,14 @@ view: date_base {
     sql: DATE_TRUNC(${date_date}, QUARTER) ;;
   }
 
+  dimension: date_year_date {
+    group_label: "Event"
+    label: "Year Date"
+    hidden: yes
+    type: date
+    sql: DATE_TRUNC(${date_date}, YEAR) ;;
+  }
+
   dimension: date_day_of_quarter {
     group_label: "Event"
     label: "Day of Quarter"
@@ -47,6 +56,12 @@ view: date_base {
           CAST(CONCAT(${date_quarter}, '-01') as DATE),
           day) + 1
        ;;
+  }
+
+  dimension: current_day_of_year {
+    hidden: yes
+    type:  number
+    sql: DATE_DIFF(CURRENT_DATE(), DATE_TRUNC(CURRENT_DATE(), YEAR), DAY) ;;
   }
 
   dimension: current_day_of_quarter {
@@ -67,6 +82,12 @@ view: date_base {
     sql: EXTRACT(DAYOFWEEK FROM TIMESTAMP(CURRENT_DATE()))  ;;
   }
 
+  dimension: less_than_current_day_of_year {
+    hidden: yes
+    type: yesno
+    sql: ${date_day_of_year} <= ${current_day_of_year} ;;
+  }
+
   dimension: less_than_current_day_of_quarter {
     hidden: yes
     type: yesno
@@ -83,24 +104,6 @@ view: date_base {
     hidden:  yes
     type: yesno
     sql: ${date_day_of_week_index} <= ${current_day_of_week} ;;
-  }
-
-  dimension: less_than_current_day_of_period {
-    hidden:  yes
-    type: yesno
-    sql: {% if period_passthrough._sql == "'1 week ago'" %} ${less_than_current_day_of_week}
-    {% elsif period_passthrough._sql == "'1 month ago'" %} ${less_than_current_day_of_month}
-    {% elsif period_passthrough._sql == "'1 quarter ago'" %} ${less_than_current_day_of_quarter}
-    {% endif %} ;;
-  }
-
-  parameter: period {
-    hidden: yes
-  }
-
-  dimension: period_passthrough {
-    hidden: yes
-    sql: {% parameter period %};;
   }
 
   dimension: date_last_week {
@@ -131,6 +134,12 @@ view: date_base {
     hidden: yes
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL 1 QUARTER) ;;
+  }
+
+  dimension: date_last_year {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}), INTERVAL -1 YEAR) ;;
   }
 
   dimension:  date_days_in_quarter {

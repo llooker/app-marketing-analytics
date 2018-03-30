@@ -1,4 +1,4 @@
-- dashboard: adwords_overview
+- dashboard: adwords_overview__this_quarter_vs_last
   title: AdWords Overview - This Quarter vs Last
   layout: newspaper
   embed_style:
@@ -9,1079 +9,6 @@
     tile_text_color: "#3a4245"
     text_tile_text_color: ''
   elements:
-  - title: Conversions
-    name: Conversions
-    model: looker_app_google_adwords
-    explore: period_fact
-    type: single_value
-    fields:
-    - fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_cost
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - fact.date_period
-    sorts: [date_period desc]
-    limit: 1
-    dynamic_fields:
-    - table_calculation: total_cost_change
-      label: Total Cost Change
-      expression: "${fact.total_cost} - ${last_fact.total_cost}"
-      value_format:
-      value_format_name: usd_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: total_conversion_change
-      label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
-      value_format:
-      value_format_name: decimal_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_conversion_percent_change
-      label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
-        \ / ${last_fact.average_cost_per_conversion}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_click_percent_change
-      label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
-        \ / ${last_fact.average_cost_per_click}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: conversion_rate_percent_change
-      label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
-        \ / ${last_fact.average_conversion_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: click_through_rate_percent_change
-      label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
-        \ / ${last_fact.average_click_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - fact.total_cost
-    - last_fact.total_cost
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - click_through_rate_percent_change
-    - conversion_rate_percent_change
-    - cost_per_click_percent_change
-    - cost_per_conversion_percent_change
-    - total_cost_change
-    single_value_title: ''
-    listen:
-      Period: fact.period
-    row: 0
-    col: 9
-    width: 5
-    height: 3
-  - title: Cost Per Conversion
-    name: Cost Per Conversion
-    model: looker_app_google_adwords
-    explore: period_fact
-    type: single_value
-    fields:
-    - fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_cost
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - fact.date_period
-    sorts: [date_period desc]
-    limit: 1
-    dynamic_fields:
-    - table_calculation: total_cost_change
-      label: Total Cost Change
-      expression: "${fact.total_cost} - ${last_fact.total_cost}"
-      value_format:
-      value_format_name: usd_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: total_conversion_change
-      label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
-      value_format:
-      value_format_name: decimal_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_conversion_percent_change
-      label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
-        \ / ${last_fact.average_cost_per_conversion}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_click_percent_change
-      label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
-        \ / ${last_fact.average_cost_per_click}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: conversion_rate_percent_change
-      label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
-        \ / ${last_fact.average_conversion_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: click_through_rate_percent_change
-      label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
-        \ / ${last_fact.average_click_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: true
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - fact.total_cost
-    - last_fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - click_through_rate_percent_change
-    - conversion_rate_percent_change
-    - cost_per_click_percent_change
-    - total_conversion_change
-    - total_cost_change
-    single_value_title: Per Conversion
-    listen:
-      Period: fact.period
-    row: 0
-    col: 14
-    width: 5
-    height: 3
-  - title: Conversion Rate
-    name: Conversion Rate
-    model: looker_app_google_adwords
-    explore: period_fact
-    type: single_value
-    fields:
-    - fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_cost
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - fact.date_period
-    sorts: [date_period desc]
-    limit: 1
-    dynamic_fields:
-    - table_calculation: total_cost_change
-      label: Total Cost Change
-      expression: "${fact.total_cost} - ${last_fact.total_cost}"
-      value_format:
-      value_format_name: usd_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: total_conversion_change
-      label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
-      value_format:
-      value_format_name: decimal_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_conversion_percent_change
-      label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
-        \ / ${last_fact.average_cost_per_conversion}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_click_percent_change
-      label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
-        \ / ${last_fact.average_cost_per_click}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: conversion_rate_percent_change
-      label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
-        \ / ${last_fact.average_conversion_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: click_through_rate_percent_change
-      label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
-        \ / ${last_fact.average_click_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - fact.total_cost
-    - last_fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - click_through_rate_percent_change
-    - cost_per_click_percent_change
-    - cost_per_conversion_percent_change
-    - total_conversion_change
-    - total_cost_change
-    single_value_title: ''
-    listen:
-      Period: fact.period
-    row: 0
-    col: 19
-    width: 5
-    height: 3
-  - title: Per Click
-    name: Per Click
-    model: looker_app_google_adwords
-    explore: period_fact
-    type: single_value
-    fields:
-    - fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_cost
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - fact.date_period
-    sorts: [date_period desc]
-    limit: 1
-    dynamic_fields:
-    - table_calculation: total_cost_change
-      label: Total Cost Change
-      expression: "${fact.total_cost} - ${last_fact.total_cost}"
-      value_format:
-      value_format_name: usd_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: total_conversion_change
-      label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
-      value_format:
-      value_format_name: decimal_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_conversion_percent_change
-      label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
-        \ / ${last_fact.average_cost_per_conversion}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_click_percent_change
-      label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
-        \ / ${last_fact.average_cost_per_click}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: conversion_rate_percent_change
-      label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
-        \ / ${last_fact.average_conversion_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: click_through_rate_percent_change
-      label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
-        \ / ${last_fact.average_click_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: true
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - fact.total_cost
-    - last_fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - last_fact.average_cost_per_click
-    - click_through_rate_percent_change
-    - conversion_rate_percent_change
-    - cost_per_conversion_percent_change
-    - total_conversion_change
-    - total_cost_change
-    single_value_title: ''
-    listen:
-      Period: fact.period
-    row: 16
-    col: 9
-    width: 5
-    height: 3
-  - title: Click Rate
-    name: Click Rate
-    model: looker_app_google_adwords
-    explore: period_fact
-    type: single_value
-    fields:
-    - fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_cost
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - fact.average_click_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - fact.date_period
-    sorts: [date_period desc]
-    limit: 1
-    dynamic_fields:
-    - table_calculation: total_cost_change
-      label: Total Cost Change
-      expression: "${fact.total_cost} - ${last_fact.total_cost}"
-      value_format:
-      value_format_name: usd_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: total_conversion_change
-      label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
-      value_format:
-      value_format_name: decimal_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_conversion_percent_change
-      label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
-        \ / ${last_fact.average_cost_per_conversion}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: cost_per_click_percent_change
-      label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
-        \ / ${last_fact.average_cost_per_click}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: conversion_rate_percent_change
-      label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
-        \ / ${last_fact.average_conversion_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: click_through_rate_percent_change
-      label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
-        \ / ${last_fact.average_click_rate}"
-      value_format:
-      value_format_name: percent_0
-      _kind_hint: measure
-      _type_hint: number
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    hidden_fields:
-    - fact.total_cost
-    - last_fact.total_cost
-    - fact.total_conversions
-    - last_fact.total_conversions
-    - last_fact.average_cost_per_conversion
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - last_fact.average_conversion_rate
-    - last_fact.average_click_rate
-    - fact.average_cost_per_click
-    - last_fact.average_cost_per_click
-    - conversion_rate_percent_change
-    - cost_per_click_percent_change
-    - cost_per_conversion_percent_change
-    - total_conversion_change
-    - total_cost_change
-    - fact.date_period
-    single_value_title: ''
-    listen:
-      Period: fact.period
-    row: 13
-    col: 9
-    width: 5
-    height: 3
-  - title: Funnel
-    name: Funnel
-    model: looker_app_google_adwords
-    explore: period_fact
-    type: looker_column
-    fields:
-    - fact.total_impressions
-    - fact.total_clicks
-    - fact.total_conversions
-    - fact.date_period
-    sorts: [fact.date_period desc]
-    limit: 1
-    column_limit: 50
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    hidden_fields: [fact.date_period]
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
-    comparison_reverse_colors: false
-    show_comparison_label: false
-    series_types: {}
-    single_value_title: Conversion Rate
-    comparison_label: ''
-    colors:
-    - "#d06180"
-    - "#a4a6a9"
-    - "#7869df"
-    - "#6e98f9"
-    - "#dc9d4f"
-    - "#4bb86a"
-    - "#8ac8ca"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: log
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.total_impressions
-        name: Impressions
-        axisId: fact.total_impressions
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 695
-      - id: fact.total_clicks
-        name: Clicks
-        axisId: fact.total_clicks
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 700
-      - id: fact.total_conversions
-        name: Conversions
-        axisId: fact.total_conversions
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 705
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 683
-    show_dropoff: true
-    series_colors: {}
-    listen:
-      Period: fact.period
-    row: 13
-    col: 0
-    width: 9
-    height: 6
-  - title: Campaigns
-    name: Campaigns
-    model: looker_app_google_adwords
-    explore: campaign_date_fact
-    type: table
-    fields:
-    - campaign.campaign_name
-    - fact.total_cost
-    - fact.total_conversions
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - fact.average_cost_per_click
-    - fact.average_click_rate
-    sorts:
-    - fact.total_cost desc
-    limit: 10
-    column_limit: 50
-    label: Campaign Details
-    query_timezone: America/Los_Angeles
-    show_view_names: false
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: white
-    limit_displayed_rows: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    enable_conditional_formatting: false
-    conditional_formatting_ignored_fields: []
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    hidden_fields:
-    series_labels:
-      fact.total_cost: Spend
-    row: 19
-    col: 0
-    width: 24
-    height: 6
-  - title: Conversion Trend
-    name: Conversion Trend
-    model: looker_app_google_adwords
-    explore: account_date_fact
-    type: looker_area
-    fields:
-    - fact.date_week
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - fact.total_conversions
-    - fact.average_cost_per_click
-    - fact.average_click_rate
-    - fact.total_clicks
-    sorts:
-    - fact.date_week desc
-    limit: 500
-    column_limit: 50
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: time
-    y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    label: Average Cost per Conversion
-    ordering: none
-    show_null_labels: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    series_types:
-      fact.average_cost_per_conversion: line
-      fact.total_impressions: line
-      fact.total_clicks: line
-      fact.average_conversion_rate: line
-    show_dropoff: true
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat: "$0"
-      series:
-      - id: fact.average_cost_per_conversion
-        name: Cost per Conversion
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 854
-        axisId: fact.average_cost_per_conversion
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 842
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat: 0.0%
-      series:
-      - id: fact.average_conversion_rate
-        name: Conversion Rate
-        axisId: fact.average_conversion_rate
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 873
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 861
-    - label:
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat: ''
-      series:
-      - id: fact.total_conversions
-        name: Conversions
-        axisId: fact.total_conversions
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 892
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 880
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
-    colors:
-    - "#7869df"
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#d06180"
-    - "#dc9d4f"
-    - "#4bb86a"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
-    hidden_series:
-    - fact.total_conversions
-    - fact.average_conversion_rate
-    series_labels:
-      fact.total_cost: Spend
-      fact.total_clicks: Clicks
-    hidden_fields:
-    - fact.average_cost_per_click
-    - fact.average_click_rate
-    - fact.total_clicks
-    row: 3
-    col: 9
-    width: 15
-    height: 10
-  - title: Click Trend
-    name: Click Trend
-    model: looker_app_google_adwords
-    explore: account_date_fact
-    type: looker_line
-    fields:
-    - fact.date_week
-    - fact.average_cost_per_click
-    - fact.average_click_rate
-    - fact.total_clicks
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - fact.total_conversions
-    sorts:
-    - fact.date_week desc
-    limit: 500
-    column_limit: 50
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: time
-    y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    label: Average Cost per Conversion
-    ordering: none
-    show_null_labels: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    series_types:
-      fact.total_clicks: area
-    show_dropoff: true
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat: "$0"
-      series:
-      - id: fact.average_cost_per_click
-        name: Cost per Click
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1013
-        axisId: fact.average_cost_per_click
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1001
-    - label:
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat: 0.0%
-      series:
-      - id: fact.average_click_rate
-        name: Click Through Rate
-        axisId: fact.average_click_rate
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1032
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1020
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.total_clicks
-        name: Clicks
-        axisId: fact.total_clicks
-        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1051
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1039
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
-    colors:
-    - "#d06180"
-    - "#dc9d4f"
-    - "#7869df"
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#4bb86a"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
-    hidden_series:
-    - fact.average_click_rate
-    - fact.total_clicks
-    series_labels:
-      fact.total_cost: Spend
-      fact.total_clicks: Clicks
-    hidden_fields:
-    - fact.average_cost_per_conversion
-    - fact.average_conversion_rate
-    - fact.total_conversions
-    y_axis_reversed: false
-    row: 13
-    col: 14
-    width: 10
-    height: 6
   - title: Spend
     name: Spend
     model: looker_app_google_adwords
@@ -1101,7 +28,8 @@
     - fact.average_cost_per_click
     - last_fact.average_cost_per_click
     - fact.date_period
-    sorts: [date_period desc]
+    sorts:
+    - date_period desc
     limit: 1
     dynamic_fields:
     - table_calculation: total_cost_change
@@ -1202,27 +130,399 @@
     single_value_title: Spend
     listen:
       Period: fact.period
+      Date: fact.date_date
     row: 0
     col: 0
     width: 9
     height: 3
+  - title: Conversion Rate
+    name: Conversion Rate
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: single_value
+    fields:
+    - fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - fact.date_period
+    sorts:
+    - date_period desc
+    limit: 1
+    dynamic_fields:
+    - table_calculation: total_cost_change
+      label: Total Cost Change
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
+      value_format:
+      value_format_name: usd_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: total_conversion_change
+      label: Total Conversion Change
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_conversion_percent_change
+      label: Cost Per Conversion Percent Change
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_click_percent_change
+      label: Cost Per Click Percent Change
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: conversion_rate_percent_change
+      label: Conversion Rate Percent Change
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: click_through_rate_percent_change
+      label: Click Through Rate Percent Change
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields:
+    - fact.total_cost
+    - last_fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - click_through_rate_percent_change
+    - cost_per_click_percent_change
+    - cost_per_conversion_percent_change
+    - total_conversion_change
+    - total_cost_change
+    single_value_title: ''
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 0
+    col: 19
+    width: 5
+    height: 3
+  - title: Cost Per Conversion
+    name: Cost Per Conversion
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: single_value
+    fields:
+    - fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - fact.date_period
+    sorts:
+    - date_period desc
+    limit: 1
+    dynamic_fields:
+    - table_calculation: total_cost_change
+      label: Total Cost Change
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
+      value_format:
+      value_format_name: usd_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: total_conversion_change
+      label: Total Conversion Change
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_conversion_percent_change
+      label: Cost Per Conversion Percent Change
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_click_percent_change
+      label: Cost Per Click Percent Change
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: conversion_rate_percent_change
+      label: Conversion Rate Percent Change
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: click_through_rate_percent_change
+      label: Click Through Rate Percent Change
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: true
+    show_comparison_label: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields:
+    - fact.total_cost
+    - last_fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - click_through_rate_percent_change
+    - conversion_rate_percent_change
+    - cost_per_click_percent_change
+    - total_conversion_change
+    - total_cost_change
+    single_value_title: Per Conversion
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 0
+    col: 14
+    width: 5
+    height: 3
+  - title: Conversions
+    name: Conversions
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: single_value
+    fields:
+    - fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - fact.date_period
+    sorts:
+    - date_period desc
+    limit: 1
+    dynamic_fields:
+    - table_calculation: total_cost_change
+      label: Total Cost Change
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
+      value_format:
+      value_format_name: usd_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: total_conversion_change
+      label: Total Conversion Change
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_conversion_percent_change
+      label: Cost Per Conversion Percent Change
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_click_percent_change
+      label: Cost Per Click Percent Change
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: conversion_rate_percent_change
+      label: Conversion Rate Percent Change
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: click_through_rate_percent_change
+      label: Click Through Rate Percent Change
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields:
+    - fact.total_cost
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - click_through_rate_percent_change
+    - conversion_rate_percent_change
+    - cost_per_click_percent_change
+    - cost_per_conversion_percent_change
+    - total_cost_change
+    single_value_title: ''
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 0
+    col: 9
+    width: 5
+    height: 3
   - title: Spend To Date
     name: Spend To Date
     model: looker_app_google_adwords
-    explore: account_date_fact
+    explore: period_fact
     type: looker_area
     fields:
-    - fact.date_day_of_quarter
-    - fact.date_quarter
+    - fact.date_day_of_period
     - fact.total_cost
     - fact.cumulative_spend
-    pivots:
-    - fact.date_quarter
-    filters:
-      fact.date_date: 2 quarters
+    - last_fact.total_cost
+    - last_fact.cumulative_spend
     sorts:
-    - fact.date_quarter desc
-    - fact.date_day_of_quarter
+    - fact.date_day_of_period
     limit: 500
     column_limit: 50
     stacking: ''
@@ -1284,10 +584,10 @@
       - id: fact.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1298
+        __LINE_NUM: 1275
         axisId: fact.average_cost_per_conversion
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1286
+      __LINE_NUM: 1263
     - label:
       maxValue:
       minValue:
@@ -1304,9 +604,9 @@
         name: Conversions
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1317
+        __LINE_NUM: 1294
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1305
+      __LINE_NUM: 1282
     - label: ''
       maxValue:
       minValue:
@@ -1323,9 +623,9 @@
         name: Impressions
         axisId: fact.total_impressions
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1336
+        __LINE_NUM: 1313
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1324
+      __LINE_NUM: 1301
     - label: ''
       maxValue:
       minValue:
@@ -1342,9 +642,9 @@
         name: Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1355
+        __LINE_NUM: 1332
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1343
+      __LINE_NUM: 1320
     - label: ''
       maxValue:
       minValue:
@@ -1361,9 +661,9 @@
         name: Clicks
         axisId: fact.total_clicks
         __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-        __LINE_NUM: 1374
+        __LINE_NUM: 1351
       __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1362
+      __LINE_NUM: 1339
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -1381,19 +681,740 @@
     - "#ea9895"
     - "#f1e582"
     series_colors: {}
-    hidden_series:
-    - fact.average_cost_per_conversion
     series_labels:
       fact.total_cost: Spend
-      fact.total_clicks: Clicks
     hidden_fields:
     - fact.total_cost
+    - last_fact.total_cost
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
+    listen:
+      Period: fact.period
+      Date: fact.date_date
     row: 3
     col: 0
     width: 9
     height: 10
+  - title: Conversion Trend
+    name: Conversion Trend
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: looker_area
+    fields:
+    - fact.date_period_dynamic_grain
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.total_conversions
+    - fact.average_cost_per_click
+    - fact.average_click_rate
+    - fact.total_clicks
+    sorts:
+    - fact.date_period_dynamic_grain desc
+    limit: 500
+    column_limit: 50
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: time
+    y_axis_scale_mode: linear
+    show_null_points: false
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    label: Average Cost per Conversion
+    ordering: none
+    show_null_labels: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    series_types:
+      fact.average_cost_per_conversion: line
+      fact.total_impressions: line
+      fact.total_clicks: line
+      fact.average_conversion_rate: line
+    show_dropoff: true
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat: "$0"
+      series:
+      - id: fact.average_cost_per_conversion
+        name: Cost per Conversion
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 860
+        axisId: fact.average_cost_per_conversion
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 848
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat: 0.0%
+      series:
+      - id: fact.average_conversion_rate
+        name: Conversion Rate
+        axisId: fact.average_conversion_rate
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 879
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 867
+    - label:
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat: ''
+      series:
+      - id: fact.total_conversions
+        name: Conversions
+        axisId: fact.total_conversions
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 898
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 886
+    discontinuous_nulls: false
+    focus_on_hover: false
+    reference_lines: []
+    colors:
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    hidden_series:
+    - fact.total_conversions
+    - fact.average_conversion_rate
+    series_labels:
+      fact.total_cost: Spend
+      fact.total_clicks: Clicks
+    hidden_fields:
+    - fact.average_cost_per_click
+    - fact.average_click_rate
+    - fact.total_clicks
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 3
+    col: 9
+    width: 15
+    height: 10
+  - title: Funnel
+    name: Funnel
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: looker_column
+    fields:
+    - fact.total_impressions
+    - fact.total_clicks
+    - fact.total_conversions
+    - fact.date_period
+    sorts:
+    - fact.date_period desc
+    limit: 1
+    column_limit: 50
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    hidden_fields:
+    - fact.date_period
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: false
+    series_types: {}
+    single_value_title: Conversion Rate
+    comparison_label: ''
+    colors:
+    - "#d06180"
+    - "#a4a6a9"
+    - "#7869df"
+    - "#6e98f9"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#8ac8ca"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom: 5
+      type: log
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: fact.total_impressions
+        name: Impressions
+        axisId: fact.total_impressions
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 700
+      - id: fact.total_clicks
+        name: Clicks
+        axisId: fact.total_clicks
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 705
+      - id: fact.total_conversions
+        name: Conversions
+        axisId: fact.total_conversions
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 710
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 688
+    show_dropoff: true
+    series_colors: {}
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 13
+    col: 0
+    width: 9
+    height: 6
+  - title: Click Rate
+    name: Click Rate
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: single_value
+    fields:
+    - fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - fact.date_period
+    sorts:
+    - date_period desc
+    limit: 1
+    dynamic_fields:
+    - table_calculation: total_cost_change
+      label: Total Cost Change
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
+      value_format:
+      value_format_name: usd_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: total_conversion_change
+      label: Total Conversion Change
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_conversion_percent_change
+      label: Cost Per Conversion Percent Change
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_click_percent_change
+      label: Cost Per Click Percent Change
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: conversion_rate_percent_change
+      label: Conversion Rate Percent Change
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: click_through_rate_percent_change
+      label: Click Through Rate Percent Change
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: false
+    show_comparison_label: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields:
+    - fact.total_cost
+    - last_fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - conversion_rate_percent_change
+    - cost_per_click_percent_change
+    - cost_per_conversion_percent_change
+    - total_conversion_change
+    - total_cost_change
+    - fact.date_period
+    single_value_title: ''
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 13
+    col: 9
+    width: 5
+    height: 3
+  - title: Per Click
+    name: Per Click
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: single_value
+    fields:
+    - fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - fact.average_cost_per_click
+    - last_fact.average_cost_per_click
+    - fact.date_period
+    sorts:
+    - date_period desc
+    limit: 1
+    dynamic_fields:
+    - table_calculation: total_cost_change
+      label: Total Cost Change
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
+      value_format:
+      value_format_name: usd_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: total_conversion_change
+      label: Total Conversion Change
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
+      value_format:
+      value_format_name: decimal_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_conversion_percent_change
+      label: Cost Per Conversion Percent Change
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: cost_per_click_percent_change
+      label: Cost Per Click Percent Change
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: conversion_rate_percent_change
+      label: Conversion Rate Percent Change
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    - table_calculation: click_through_rate_percent_change
+      label: Click Through Rate Percent Change
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
+      value_format:
+      value_format_name: percent_0
+      _kind_hint: measure
+      _type_hint: number
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: change
+    comparison_reverse_colors: true
+    show_comparison_label: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    hidden_fields:
+    - fact.total_cost
+    - last_fact.total_cost
+    - fact.total_conversions
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - last_fact.average_conversion_rate
+    - fact.average_click_rate
+    - last_fact.average_click_rate
+    - last_fact.average_cost_per_click
+    - click_through_rate_percent_change
+    - conversion_rate_percent_change
+    - cost_per_conversion_percent_change
+    - total_conversion_change
+    - total_cost_change
+    single_value_title: ''
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 16
+    col: 9
+    width: 5
+    height: 3
+  - title: Click Trend
+    name: Click Trend
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: looker_line
+    fields:
+    - fact.date_period_dynamic_grain
+    - fact.average_cost_per_click
+    - fact.average_click_rate
+    - fact.total_clicks
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.total_conversions
+    sorts:
+    - fact.date_period_dynamic_grain desc
+    limit: 500
+    column_limit: 50
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: time
+    y_axis_scale_mode: linear
+    show_null_points: false
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    label: Average Cost per Conversion
+    ordering: none
+    show_null_labels: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    series_types:
+      fact.total_clicks: area
+    show_dropoff: true
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat: "$0"
+      series:
+      - id: fact.average_cost_per_click
+        name: Cost per Click
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 1009
+        axisId: fact.average_cost_per_click
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 997
+    - label:
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat: 0.0%
+      series:
+      - id: fact.average_click_rate
+        name: Click Through Rate
+        axisId: fact.average_click_rate
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 1028
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 1016
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: right
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: fact.total_clicks
+        name: Clicks
+        axisId: fact.total_clicks
+        __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+        __LINE_NUM: 1047
+      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
+      __LINE_NUM: 1035
+    discontinuous_nulls: false
+    focus_on_hover: false
+    reference_lines: []
+    colors:
+    - "#d06180"
+    - "#dc9d4f"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    hidden_series:
+    - fact.average_click_rate
+    - fact.total_clicks
+    series_labels:
+      fact.total_cost: Spend
+      fact.total_clicks: Clicks
+    hidden_fields:
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.total_conversions
+    y_axis_reversed: false
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 13
+    col: 14
+    width: 10
+    height: 6
+  - title: Campaigns
+    name: Campaigns
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: table
+    fields:
+    - campaign.campaign_name
+    - fact.total_cost
+    - fact.total_conversions
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.average_cost_per_click
+    - fact.average_click_rate
+    sorts:
+    - fact.total_cost desc
+    limit: 10
+    column_limit: 50
+    label: Campaign Details
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: white
+    limit_displayed_rows: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    enable_conditional_formatting: false
+    conditional_formatting_ignored_fields: []
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    hidden_fields:
+    series_labels:
+      fact.total_cost: Spend
+    listen:
+      Period: fact.period
+      Date: fact.date_date
+    row: 19
+    col: 0
+    width: 24
+    height: 6
   filters:
   - name: Period
     title: Period
@@ -1405,3 +1426,13 @@
     explore: period_fact
     listens_to_filters: []
     field: fact.period
+  - name: Date
+    title: Date
+    type: field_filter
+    default_value: 1 quarters
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.date_date
