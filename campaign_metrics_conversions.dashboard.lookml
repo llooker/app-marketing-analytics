@@ -9,9 +9,12 @@
     explore: ad_impressions
     type: looker_column
     fields:
-    - ad_impressions.average_cost_per_conversion
-    - ad_impressions.total_conversions
     - ad_impressions.date_week
+    - ad_impressions.total_conversions
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.average_click_rate
     sorts:
     - ad_impressions.date_week
     limit: 500
@@ -59,6 +62,9 @@
     labelColor: "#FFF"
     series_types:
       ad_impressions.average_cost_per_conversion: line
+      ad_impressions.average_conversion_rate: line
+      ad_impressions.average_click_rate: line
+      ad_impressions.average_cost_per_click: line
     show_dropoff: false
     y_axes:
     - label:
@@ -76,10 +82,10 @@
       - id: ad_impressions.average_cost_per_conversion
         name: Cost Per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 75
+        __LINE_NUM: 76
         axisId: ad_impressions.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 63
+      __LINE_NUM: 64
     - label:
       maxValue:
       minValue:
@@ -96,9 +102,9 @@
         name: Conversions
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 94
+        __LINE_NUM: 95
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 82
+      __LINE_NUM: 83
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -117,6 +123,8 @@
     series_colors: {}
     hidden_series:
     - ad_impressions.average_conversion_rate
+    - ad_impressions.average_click_rate
+    - ad_impressions.average_cost_per_click
     series_labels:
       ad_impressions.total_conversions: Conversions
       ad_impressions.total_clicks: Interactions
@@ -214,9 +222,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 222
+        __LINE_NUM: 213
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 210
+      __LINE_NUM: 201
     conditional_formatting:
     - type: high to low
       value:
@@ -229,17 +237,17 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 235
+        __LINE_NUM: 226
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 230
+      __LINE_NUM: 221
     colors:
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
     - "#d06180"
     - "#dc9d4f"
     - "#4bb86a"
@@ -336,9 +344,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 344
+        __LINE_NUM: 335
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 332
+      __LINE_NUM: 323
     conditional_formatting:
     - type: high to low
       value:
@@ -351,17 +359,17 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 357
+        __LINE_NUM: 348
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 352
+      __LINE_NUM: 343
     colors:
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
     - "#d06180"
     - "#dc9d4f"
     - "#4bb86a"
@@ -369,7 +377,7 @@
     - "#a6b7ff"
     - "#afe8fd"
     - "#ea9895"
-    - "#f1e582"
+    - "#f1e58"
     series_colors: {}
     listen:
       Campaign: campaign.campaign_name

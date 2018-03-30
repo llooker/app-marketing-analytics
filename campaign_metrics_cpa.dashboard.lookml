@@ -6,13 +6,20 @@
     name: Cost Per Conversion To Date
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: looker_line
+    type: looker_column
     fields:
-    - ad_impressions.average_cost_per_conversion
     - ad_impressions.date_week
-    - ad_impressions.total_cost
+    - ad_impressions.total_conversions
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_cost_per_click
+    - ad_impressions.average_click_rate
+    filters:
+      campaign.campaign_name: ''
+      ad_group.ad_group_name: ''
+      ad_impressions.date_date: 1 quarters
     sorts:
-    - ad_impressions.date_week desc
+    - ad_impressions.date_week
     limit: 500
     column_limit: 50
     stacking: ''
@@ -32,14 +39,14 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
+    ordering: none
+    show_null_labels: false
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
+    show_null_points: false
+    point_style: none
+    interpolation: linear
     label: Average Cost per Conversion
     leftAxisLabelVisible: false
     leftAxisLabel: ''
@@ -56,10 +63,14 @@
     valuePosition: right
     labelColorEnabled: false
     labelColor: "#FFF"
-    series_types: {}
+    series_types:
+      ad_impressions.average_cost_per_conversion: line
+      ad_impressions.average_conversion_rate: line
+      ad_impressions.average_click_rate: line
+      ad_impressions.average_cost_per_click: line
     show_dropoff: false
     y_axes:
-    - label: ''
+    - label:
       maxValue:
       minValue:
       orientation: left
@@ -72,12 +83,12 @@
       valueFormat:
       series:
       - id: ad_impressions.average_cost_per_conversion
-        name: Cost per Conversion
-        __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 74
+        name: Cost Per Conversion
+        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+        __LINE_NUM: 76
         axisId: ad_impressions.average_cost_per_conversion
-      __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 62
+      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+      __LINE_NUM: 64
     - label:
       maxValue:
       minValue:
@@ -90,13 +101,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.total_cost
-        name: Cost
-        axisId: ad_impressions.total_cost
-        __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 93
-      __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 81
+      - id: ad_impressions.total_conversions
+        name: Conversions
+        axisId: ad_impressions.total_conversions
+        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+        __LINE_NUM: 95
+      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+      __LINE_NUM: 83
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -113,20 +124,20 @@
     - "#ea9895"
     - "#f1e582"
     series_colors: {}
-    hidden_series: []
+    hidden_series:
+    - ad_impressions.average_conversion_rate
+    - ad_impressions.average_click_rate
+    - ad_impressions.average_cost_per_click
     series_labels:
+      ad_impressions.total_conversions: Conversions
       ad_impressions.total_clicks: Interactions
+      ad_impressions.average_conversion_rate: Conversion Rate
+      ad_impressions.average_cost_per_conversion: Cost Per Conversion
     hidden_fields: []
-    column_group_spacing_ratio: 0
-    column_spacing_ratio: 0
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Time Range: ad_impressions.date_date
-    row: 4
+    row: 0
     col: 0
     width: 24
-    height: 11
+    height: 10
   - title: Cost Per Conversion versions by Network
     name: Cost Per Conversion versions by Network
     model: looker_app_google_adwords
