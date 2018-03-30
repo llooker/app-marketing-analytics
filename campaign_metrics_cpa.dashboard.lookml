@@ -725,8 +725,8 @@
     col: 14
     width: 10
     height: 7
-  - title: Keyword CPA Change
-    name: Keyword CPA Change
+  - title: Keyword Cost Per Conversion Change
+    name: Keyword Cost Per Conversion Change
     model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar
@@ -827,8 +827,8 @@
     col: 8
     width: 8
     height: 9
-  - title: Ad Group CPA Change
-    name: Ad Group CPA Change
+  - title: Ad Group Cost Per Conversion Change
+    name: Ad Group Cost Per Conversion Change
     model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar
@@ -929,8 +929,8 @@
     col: 0
     width: 8
     height: 9
-  - title: Ad CPA Change
-    name: Ad CPA Change
+  - title: Ad Cost Per Conversion Change
+    name: Ad Cost Per Conversion Change
     model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar

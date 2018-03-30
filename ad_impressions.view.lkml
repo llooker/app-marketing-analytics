@@ -257,7 +257,7 @@ view: ad_impressions {
     group_label: "Monthly Comparisons"
   }
   measure: cpa_monthly_change_absolute_value {
-    label: "CPA Monthly Change Absolute Value"
+    label: "Cost Per Conversion Monthly Change Absolute Value"
     type: number
     sql: ABS(${cost_per_conversion_monthly_change}) ;;
     value_format_name: percent_1

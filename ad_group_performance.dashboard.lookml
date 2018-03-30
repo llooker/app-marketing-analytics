@@ -937,8 +937,8 @@
     col: 0
     width: 8
     height: 6
-  - title: Match Type CPA
-    name: Match Type CPA
+  - title: Match Type Cost Per Conversion
+    name: Match Type Cost Per Conversion
     model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_column
