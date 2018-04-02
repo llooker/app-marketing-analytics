@@ -105,7 +105,7 @@ view: period_fact {
   dimension: criterion_id {}
   dimension: _date {
     hidden: yes
-    sql: TIMESTAMP(${TABLE}._date) ;;
+    type: date_raw
   }
 
   sql_table_name:

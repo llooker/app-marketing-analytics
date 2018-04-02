@@ -10,7 +10,7 @@ view: combined_ad_impressions_base {
 
   dimension: _date {
     hidden: yes
-    sql: TIMESTAMP(${TABLE}._date) ;;
+    type: date_raw
   }
   dimension: account_name {}
   dimension: account_id {}

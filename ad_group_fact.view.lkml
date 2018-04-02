@@ -80,7 +80,7 @@ view: ad_group_date_fact {
   }
   dimension: _date {
     hidden: yes
-    sql: TIMESTAMP(${TABLE}._date) ;;
+    type: date_raw
   }
   dimension: primary_key {
     primary_key: yes

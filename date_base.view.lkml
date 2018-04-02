@@ -5,7 +5,7 @@ view: date_base {
     group_label: "Event"
     label: ""
     type: time
-    datatype: timestamp
+    datatype: date
     timeframes: [
       raw,
       date,
