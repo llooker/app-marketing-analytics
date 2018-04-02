@@ -558,7 +558,7 @@
           "value": "fact.cost_per_conversion_count_bad"
         },
         "ads_big_movers": {
-          "value": "fact.average_cost_per_conversion"
+          "value": "fact.cost_per_conversion_count_big_mover"
         }
       }
     },
@@ -574,7 +574,7 @@
           "value": "fact.cost_per_conversion_count_bad"
         },
         "keywords_big_movers": {
-          "value": "fact.average_cost_per_conversion"
+          "value": "fact.cost_per_conversion_count_big_mover"
         }
       }
     },
@@ -590,7 +590,7 @@
           "value": "fact.cost_per_conversion_count_bad"
         },
         "ad_groups_big_movers": {
-          "value": "fact.average_cost_per_conversion"
+          "value": "fact.cost_per_conversion_count_big_mover"
         }
       }
     }
