@@ -1,25 +1,21 @@
 - dashboard: campaign_metrics_cost_per_conversion
   extends: campaign_metrics_base
-  title: Campaign Metrics - Cost Per Conversion - This Quarter
+  title: Campaign Metrics - Cost Per Conversion
   elements:
   - title: Cost Per Conversion To Date
     name: Cost Per Conversion To Date
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     type: looker_column
     fields:
-    - ad_impressions.date_week
-    - ad_impressions.total_conversions
-    - ad_impressions.average_cost_per_conversion
-    - ad_impressions.average_conversion_rate
-    - ad_impressions.average_cost_per_click
-    - ad_impressions.average_click_rate
-    filters:
-      campaign.campaign_name: ''
-      ad_group.ad_group_name: ''
-      ad_impressions.date_date: 1 quarters
+    - fact.date_period_dynamic_grain
+    - fact.total_conversions
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.average_cost_per_click
+    - fact.average_click_rate
     sorts:
-    - ad_impressions.date_week
+    - fact.date_period_dynamic_grain desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -64,10 +60,10 @@
     labelColorEnabled: false
     labelColor: "#FFF"
     series_types:
-      ad_impressions.average_cost_per_conversion: line
-      ad_impressions.average_conversion_rate: line
-      ad_impressions.average_click_rate: line
-      ad_impressions.average_cost_per_click: line
+      fact.average_cost_per_conversion: line
+      fact.average_conversion_rate: line
+      fact.average_click_rate: line
+      fact.average_cost_per_click: line
     show_dropoff: false
     y_axes:
     - label:
@@ -82,13 +78,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_cost_per_conversion
+      - id: fact.average_cost_per_conversion
         name: Cost Per Conversion
-        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 76
-        axisId: ad_impressions.average_cost_per_conversion
-      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 64
+        __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
+        __LINE_NUM: 74
+        axisId: fact.average_cost_per_conversion
+      __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
+      __LINE_NUM: 62
     - label:
       maxValue:
       minValue:
@@ -101,9 +97,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.total_conversions
+      - id: fact.total_conversions
         name: Conversions
-        axisId: ad_impressions.total_conversions
+        axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
         __LINE_NUM: 95
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
@@ -125,16 +121,23 @@
     - "#f1e582"
     series_colors: {}
     hidden_series:
-    - ad_impressions.average_conversion_rate
-    - ad_impressions.average_click_rate
-    - ad_impressions.average_cost_per_click
+    - fact.average_conversion_rate
+    - fact.average_click_rate
+    - fact.average_cost_per_click
     series_labels:
-      ad_impressions.total_conversions: Conversions
-      ad_impressions.total_clicks: Interactions
-      ad_impressions.average_conversion_rate: Conversion Rate
-      ad_impressions.average_cost_per_conversion: Cost Per Conversion
+      fact.total_conversions: Conversions
+      fact.total_clicks: Interactions
+      fact.average_conversion_rate: Conversion Rate
+      fact.average_cost_per_conversion: Cost Per Conversion
     hidden_fields: []
-    row: 0
+    column_group_spacing_ratio: 0
+    column_spacing_ratio: 0
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: fact.date_date
+      Period: fact.period
+    row: 4
     col: 0
     width: 24
     height: 10
@@ -144,13 +147,13 @@
     explore: ad_impressions
     type: looker_bar
     fields:
-    - ad_impressions.ad_network_type
-    - ad_impressions.average_cost_per_conversion
+    - fact.ad_network_type
+    - fact.average_cost_per_conversion
     fill_fields:
-    - ad_impressions.ad_network_type
+    - fact.ad_network_type
     sorts:
-    - ad_impressions.average_cost_per_conversion desc
-    - ad_impressions.ad_network_type
+    - fact.average_cost_per_conversion desc
+    - fact.ad_network_type
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -190,9 +193,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_cost_per_conversion
+      - id: fact.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: ad_impressions.average_cost_per_conversion
+        axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 192
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -213,7 +216,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: ad_impressions.date_date
+      Time Range: fact.date_date
     row: 15
     col: 0
     width: 8
@@ -224,12 +227,12 @@
     explore: ad_impressions
     type: looker_bar
     fields:
-    - ad_impressions.average_cost_per_conversion
-    - ad_impressions.device_type
+    - fact.average_cost_per_conversion
+    - fact.device_type
     fill_fields:
-    - ad_impressions.device_type
+    - fact.device_type
     sorts:
-    - ad_impressions.average_cost_per_conversion desc
+    - fact.average_cost_per_conversion desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -269,9 +272,9 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_cost_per_conversion
+      - id: fact.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: ad_impressions.average_cost_per_conversion
+        axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
         __LINE_NUM: 271
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
@@ -292,7 +295,7 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: ad_impressions.date_date
+      Time Range: fact.date_date
     row: 15
     col: 8
     width: 8
@@ -303,10 +306,10 @@
     explore: ad_impressions
     type: looker_bar
     fields:
-    - ad_impressions.average_cost_per_conversion
+    - fact.average_cost_per_conversion
     - keyword.bidding_strategy_type
     sorts:
-    - ad_impressions.average_cost_per_conversion desc
+    - fact.average_cost_per_conversion desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -346,13 +349,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_cost_per_conversion
+      - id: fact.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: ad_impressions.average_cost_per_conversion
+        axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 348
+        __LINE_NUM: 338
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 336
+      __LINE_NUM: 326
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -369,7 +372,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 15
     col: 16
     width: 8
@@ -380,16 +384,16 @@
     explore: ad_impressions
     type: table
     fields:
-    - ad_impressions.average_cost_per_conversion
-    - ad_impressions.hour_of_day
-    - ad_impressions.date_day_of_week
+    - fact.average_cost_per_conversion
+    - fact.hour_of_day
+    - fact.date_day_of_week
     pivots:
-    - ad_impressions.date_day_of_week
+    - fact.date_day_of_week
     fill_fields:
-    - ad_impressions.date_day_of_week
+    - fact.date_day_of_week
     sorts:
-    - ad_impressions.date_day_of_week 0
-    - ad_impressions.hour_of_day
+    - fact.date_day_of_week 0
+    - fact.hour_of_day
     limit: 500
     show_view_names: true
     show_row_numbers: false
@@ -455,13 +459,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_cost_per_conversion
+      - id: fact.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: ad_impressions.average_cost_per_conversion
+        axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 703
+        __LINE_NUM: 447
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 691
+      __LINE_NUM: 435
     conditional_formatting:
     - type: high to low
       value:
@@ -474,18 +478,19 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 716
+        __LINE_NUM: 460
       bold: false
       italic: false
       strikethrough: false
       fields:
-      - ad_impressions.average_cost_per_conversion
+      - fact.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 711
+      __LINE_NUM: 455
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 21
     col: 0
     width: 14
@@ -493,15 +498,15 @@
   - title: Cost Per Conversion by Day of Week
     name: Cost Per Conversion by Day of Week
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     type: looker_bar
     fields:
-    - ad_impressions.date_day_of_week
-    - ad_impressions.average_cost_per_conversion
+    - fact.date_day_of_week
+    - fact.average_cost_per_conversion
     fill_fields:
-    - ad_impressions.date_day_of_week
+    - fact.date_day_of_week
     sorts:
-    - ad_impressions.date_day_of_week
+    - fact.date_day_of_week
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -567,13 +572,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_cost_per_conversion
+      - id: fact.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: ad_impressions.average_cost_per_conversion
+        axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 453
+        __LINE_NUM: 559
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 441
+      __LINE_NUM: 547
     conditional_formatting:
     - type: high to low
       value:
@@ -586,13 +591,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 466
+        __LINE_NUM: 572
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 461
+      __LINE_NUM: 567
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -609,7 +614,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 21
     col: 14
     width: 10
@@ -620,10 +626,10 @@
     explore: ad_impressions
     type: looker_column
     fields:
-    - ad_impressions.average_cost_per_conversion
-    - ad_impressions.hour_of_day
+    - fact.average_cost_per_conversion
+    - fact.hour_of_day
     sorts:
-    - ad_impressions.hour_of_day
+    - fact.hour_of_day
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -689,13 +695,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_cost_per_conversion
+      - id: fact.average_cost_per_conversion
         name: Ad Stats Cost
-        axisId: ad_impressions.average_cost_per_conversion
+        axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 575
+        __LINE_NUM: 681
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 563
+      __LINE_NUM: 669
     conditional_formatting:
     - type: high to low
       value:
@@ -708,13 +714,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 588
+        __LINE_NUM: 694
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 583
+      __LINE_NUM: 689
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -731,30 +737,28 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 28
     col: 14
     width: 10
     height: 7
-  - title: Keyword Cost Per Conversion Change
-    name: Keyword Cost Per Conversion Change
+  - title: Keyword CPA Change
+    name: Keyword CPA Change
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     type: looker_bar
     fields:
     - keyword.criteria
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.cpa_monthly_change_absolute_value
-    - ad_impressions.cost_per_conversion_last_month
-    - ad_impressions.cost_per_conversion_this_month
+    - fact.average_cost_per_conversion_period_percent_change_abs
+    - fact.average_cost_per_conversion
+    - last_fact.average_cost_per_conversion
     filters:
-      campaign.campaign_name: ''
-      ad_group.ad_group_name: ''
-      ad_impressions.date_date: 1 quarters
-      ad_impressions.cpa_monthly_change_absolute_value: ">0.2"
+      fact.cost_per_conversion_big_mover: 'Yes'
     sorts:
-    - ad_impressions.cpa_monthly_change_absolute_value desc
+    - fact.average_cost_per_conversion_period_percent_change_abs desc
     limit: 50
     column_limit: 50
     query_timezone: America/Los_Angeles
@@ -791,7 +795,7 @@
     hidden_fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.cpa_monthly_change_absolute_value
+    - fact.average_cost_per_conversion_period_percent_change_abs
     series_types: {}
     limit_displayed_rows_values:
       show_hide: show
@@ -824,16 +828,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.cost_per_conversion_last_month
-        name: Cost per Conversion Last Month
-        axisId: ad_impressions.cost_per_conversion_last_month
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 942
-      - id: ad_impressions.cost_per_conversion_this_month
-        name: Cost per Conversion This Month
-        axisId: ad_impressions.cost_per_conversion_this_month
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 930
+      __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
+      __LINE_NUM: 801
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: fact.date_date
+      Period: fact.period
     row: 35
     col: 8
     width: 8
@@ -846,16 +847,14 @@
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.cpa_monthly_change_absolute_value
-    - ad_impressions.cost_per_conversion_last_month
-    - ad_impressions.cost_per_conversion_this_month
+    - fact.average_cost_per_conversion_period_percent_change_abs
+    - fact.average_cost_per_conversion
+    - last_fact.average_cost_per_conversion
     filters:
-      campaign.campaign_name: ''
-      ad_group.ad_group_name: ''
-      ad_impressions.date_date: 1 quarters
-      ad_impressions.cpa_monthly_change_absolute_value: ">0.2"
+      fact.cost_per_conversion_big_mover: 'Yes'
     sorts:
-    - ad_impressions.cpa_monthly_change_absolute_value desc
+    - fact.average_cost_per_conversion_period_percent_change_abs desc
+
     limit: 50
     column_limit: 50
     query_timezone: America/Los_Angeles
@@ -891,7 +890,7 @@
     conditional_formatting_include_nulls: false
     hidden_fields:
     - campaign.campaign_name
-    - ad_impressions.cpa_monthly_change_absolute_value
+    - fact.average_cost_per_conversion_period_percent_change_abs
     series_types: {}
     limit_displayed_rows_values:
       show_hide: show
@@ -926,14 +925,14 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.cost_per_conversion_last_month
+      - id: fact.cost_per_conversion_last_month
         name: Cost per Conversion Last Month
-        axisId: ad_impressions.cost_per_conversion_last_month
+        axisId: fact.cost_per_conversion_last_month
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
         __LINE_NUM: 942
-      - id: ad_impressions.cost_per_conversion_this_month
+      - id: fact.cost_per_conversion_this_month
         name: Cost per Conversion This Month
-        axisId: ad_impressions.cost_per_conversion_this_month
+        axisId: fact.cost_per_conversion_this_month
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
       __LINE_NUM: 930
     row: 35
@@ -943,22 +942,19 @@
   - title: Ad Cost Per Conversion Change
     name: Ad Cost Per Conversion Change
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     type: looker_bar
     fields:
     - ad.creative
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.cpa_monthly_change_absolute_value
-    - ad_impressions.cost_per_conversion_last_month
-    - ad_impressions.cost_per_conversion_this_month
+    - fact.average_cost_per_conversion_period_percent_change_abs
+    - fact.average_cost_per_conversion
+    - last_fact.average_cost_per_conversion
     filters:
-      campaign.campaign_name: ''
-      ad_group.ad_group_name: ''
-      ad_impressions.date_date: 1 quarters
-      ad_impressions.cpa_monthly_change_absolute_value: ">0.2"
+      fact.cost_per_conversion_big_mover: 'Yes'
     sorts:
-    - ad_impressions.cpa_monthly_change_absolute_value desc
+    - fact.average_cost_per_conversion_period_percent_change_abs desc
     limit: 50
     column_limit: 50
     query_timezone: America/Los_Angeles
@@ -995,7 +991,7 @@
     hidden_fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.cpa_monthly_change_absolute_value
+    - fact.average_cost_per_conversion_period_percent_change_abs
     series_types: {}
     limit_displayed_rows_values:
       show_hide: show
@@ -1017,7 +1013,7 @@
     - "#afe8fd"
     - "#ea989"
     series_colors:
-      ad_impressions.cost_per_conversion_last_month: "#f1cc9a"
+      last_fact.average_cost_per_conversion: "#f1cc9a"
     y_axes:
     - label: ''
       maxValue:
@@ -1031,68 +1027,55 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.cost_per_conversion_last_month
-        name: Cost per Conversion Last Month
-        axisId: ad_impressions.cost_per_conversion_last_month
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 942
-      - id: ad_impressions.cost_per_conversion_this_month
-        name: Cost per Conversion This Month
-        axisId: ad_impressions.cost_per_conversion_this_month
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 930
+      __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
+      __LINE_NUM: 982
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: fact.date_date
+      Period: fact.period
     row: 35
     col: 16
     width: 8
     height: 9
   filters:
-  - name: This Timeframe
-    title: This Timeframe
-    type: field_filter
-    default_value: this quarter
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    field: fact.this_timeframe
-    listens_to_filters: []
-    allow_multiple_values: true
-    required: false
-  - name: Last Timeframe
-    title: Last Timeframe
-    type: field_filter
-    default_value: 1 quarter ago
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    field: last_fact.last_timeframe
-    listens_to_filters: []
-    allow_multiple_values: true
-    required: false
   - name: Campaign
     title: Campaign
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: campaign.campaign_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: campaign.campaign_name
   - name: Ad Group
     title: Ad Group
     type: field_filter
     default_value: ''
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_group.ad_group_name
-    listens_to_filters: []
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: ad_group.ad_group_name
   - name: Time Range
     title: Time Range
     type: field_filter
-    default_value: 1 quarters
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    field: ad_impressions.date_date
-    listens_to_filters: []
+    default_value: 28 days
     allow_multiple_values: true
     required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.date_date
+  - name: Period
+    title: Period
+    type: field_filter
+    default_value: 28day
+    allow_multiple_values: true
+    required: true
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.period

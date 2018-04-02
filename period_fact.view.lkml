@@ -1,10 +1,21 @@
 include: "ad_metrics_parent_comparison_base.view"
 include: "ad_metrics_period_comparison_base.view"
+include: "date_base.view"
 include: "google_ad_metrics_base.view"
+include: "period_base.view"
+include: "customer.view"
+include: "campaign.view"
+include: "ad_group.view"
+include: "ad.view"
+include: "keyword.view"
 
-explore: period_fact_base {
-  extension: required
+explore: period_fact {
+  hidden: yes
+  from: period_fact
   view_name: fact
+  label: "Period Fact"
+  view_label: "Period Fact"
+
   join: customer {
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
@@ -44,49 +55,23 @@ explore: period_fact_base {
       ${fact.date_date} = ${keyword.date_date}  ;;
     relationship: many_to_one
   }
-}
-
-view: period_fact_base {
-  extends: [ad_metrics_parent_comparison_base, google_ad_metrics_base]
-
-  dimension: external_customer_id {}
-  dimension: campaign_id {}
-  dimension: ad_group_id {}
-  dimension: creative_id {}
-  dimension: criterion_id {}
-}
-
-explore: period_fact {
-  hidden: yes
-  extends: [period_fact_base]
-  from: period_fact
-  view_name: fact
-  label: "Period Fact"
-  view_label: "Period Fact"
-
-  always_filter: {
-    filters: {
-      field: fact.period
-    }
-    filters: {
-      field: fact.less_than_current_day_of_period
-      value: "Yes"
-    }
-  }
 
   join: last_fact {
     from: period_fact
     view_label: "Last Period Fact"
     sql_on:
-      ${fact.date_period} = ${last_fact.date_period}
-      AND ${fact.less_than_current_day_of_period} = ${last_fact.less_than_current_day_of_period}
-      {% if (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
-        AND ${fact.ad_group_id} = ${last_fact.ad_group_id}
+      ${fact.date_last_period} = ${last_fact.date_period}
+      AND ${fact.date_day_of_period} = ${last_fact.date_day_of_period}
+      {% if (ad._in_query or fact.creative_id._in_query) %}
+        AND ${fact.creative_id} = ${last_fact.creative_id}
+      {% elsif (keyword._in_query or fact.criterion_id._in_query) %}
+        AND ${fact.criterion_id} = ${last_fact.criterion_id}
       {% elsif (ad_group._in_query or fact.ad_group_id._in_query) or (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
+        AND ${fact.ad_group_id} = ${last_fact.ad_group_id}
+      {% elsif (campaign._in_query or fact.campaign_id._in_query) or (ad_group._in_query or fact.ad_group_id._in_query) or (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
         AND ${fact.campaign_id} = ${last_fact.campaign_id}
-      {% elsif (campaign._in_query or fact.campaign_id._in_query) (ad_group._in_query or fact.ad_group_id._in_query) or (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
-        AND ${fact.external_customer_id} = ${last_fact.external_customer_id}
-      {% endif %} ;;
+      {% endif %}
+      AND ${fact.external_customer_id} = ${last_fact.external_customer_id} ;;
     relationship: one_to_one
     fields: [last_fact.google_ad_metrics_set*]
   }
@@ -95,14 +80,14 @@ explore: period_fact {
     view_label: "Parent Period Fact"
     sql_on:
       ${fact.date_period} = ${parent_fact.date_period}
-      AND ${fact.less_than_current_day_of_period} = ${parent_fact.less_than_current_day_of_period}
+      AND ${fact.date_day_of_period} = ${last_fact.date_day_of_period}
       {% if (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
         AND ${fact.ad_group_id} = ${parent_fact.ad_group_id}
       {% endif %}
       {% if (ad_group._in_query or fact.ad_group_id._in_query) or (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
         AND ${fact.campaign_id} = ${parent_fact.campaign_id}
       {% endif %}
-      {% if (campaign._in_query or fact.campaign_id._in_query) (ad_group._in_query or fact.ad_group_id._in_query) or (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
+      {% if (campaign._in_query or fact.campaign_id._in_query) or (ad_group._in_query or fact.ad_group_id._in_query) or (ad._in_query or fact.creative_id._in_query) or (keyword._in_query or fact.criterion_id._in_query) %}
         AND ${fact.external_customer_id} = ${parent_fact.external_customer_id}
       {% endif %} ;;
     relationship: many_to_one
@@ -111,74 +96,40 @@ explore: period_fact {
 }
 
 view: period_fact {
-  extends: [period_fact_base, ad_metrics_period_comparison_base]
+  extends: [date_base, period_base, ad_metrics_period_comparison_base, ad_metrics_parent_comparison_base, google_ad_metrics_base]
+
+  dimension: external_customer_id {
+    hidden: yes
+  }
+  dimension: campaign_id {
+    hidden: yes
+  }
+  dimension: ad_group_id {
+    hidden: yes
+  }
+  dimension: creative_id {
+    hidden: yes
+  }
+  dimension: criterion_id {
+    hidden: yes
+  }
+  dimension: _date {
+    type: date_raw
+  }
 
   sql_table_name:
   {% if (ad._in_query or fact.creative_id._in_query) %}
-    {% if (fact.period_passthrough._sql == "week") %}${ad_week_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "month") %}${ad_month_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "quarter") %}${ad_quarter_fact.SQL_TABLE_NAME}
-    {% endif %}
+    ${ad_date_fact.SQL_TABLE_NAME}
   {% elsif (keyword._in_query or fact.criterion_id._in_query) %}
-    {% if (fact.period_passthrough._sql == "week") %}${keyword_week_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "month") %}${keyword_month_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "quarter") %}${keyword_quarter_fact.SQL_TABLE_NAME}
-    {% endif %}
+    ${keyword_date_fact.SQL_TABLE_NAME}
   {% elsif (ad_group._in_query or fact.ad_group_id._in_query) %}
-    {% if (fact.period_passthrough._sql == "week") %}${ad_group_week_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "month") %}${ad_group_month_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "quarter") %}${ad_group_quarter_fact.SQL_TABLE_NAME}
-    {% endif %}
+    ${ad_group_date_fact.SQL_TABLE_NAME}
   {% elsif (campaign._in_query or fact.campaign_id._in_query) %}
-    {% if (fact.period_passthrough._sql == "week") %}${campaign_week_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "month") %}${campaign_month_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "quarter") %}${campaign_quarter_fact.SQL_TABLE_NAME}
-    {% endif %}
+    ${campaign_date_fact.SQL_TABLE_NAME}
   {% else %}
-    {% if (fact.period_passthrough._sql == "week") %}${account_week_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "month") %}${account_month_fact.SQL_TABLE_NAME}
-    {% elsif (fact.period_passthrough._sql == "quarter") %}${account_quarter_fact.SQL_TABLE_NAME}
-    {% endif %}
+    ${account_date_fact.SQL_TABLE_NAME}
   {% endif %} ;;
 
-  parameter: period {
-    type: unquoted
-    allowed_value: {
-      value: "quarter"
-      label: "Quarter"
-    }
-    allowed_value: {
-      value: "week"
-      label: "Week"
-    }
-    allowed_value: {
-      value: "month"
-      label: "Month"
-    }
-    default_value: "quarter"
-  }
-
-  dimension: period_passthrough {
-    hidden: yes
-    sql: {% parameter period %};;
-  }
-
-  dimension: date_period {
-    type: date
-    sql: TIMESTAMP(${TABLE}.date_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
-    allow_fill: no
-  }
-  dimension: date_date {
-    sql: ${date_period} ;;
-  }
-  dimension: less_than_current_day_of_period {
-    sql: ${TABLE}.less_than_current_day_of_{% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %} ;;
-  }
-  dimension: date_last_period {
-    type: date
-    sql: DATE_ADD(${date_period}, INTERVAL -1 {% if fact.period_passthrough._sql == "week" %}week{% elsif fact.period_passthrough._sql == "month" %}month{% elsif fact.period_passthrough._sql == "quarter" %}quarter{% endif %}) ;;
-    allow_fill: no
-  }
   dimension: key_base {
     sql:
       CONCAT(
@@ -198,6 +149,6 @@ view: period_fact {
   }
   dimension: primary_key {
     primary_key: yes
-    sql: concat(CAST(${date_date} as STRING), ${less_than_current_day_of_period}, ${key_base}) ;;
+    sql: concat(CAST(${date_period} as STRING), ${date_day_of_period}, ${key_base}) ;;
   }
 }

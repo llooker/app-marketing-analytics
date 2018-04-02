@@ -1,25 +1,26 @@
 - dashboard: campaign_metrics_click_through_rate
-  extends: campaign_metrics_base
-  title: Campaign Metrics - Click Through Rate - This Quarter
+  title: Campaign Metrics - Click Through Rate
+  layout: newspaper
+  embed_style:
+    background_color: "#ffffff"
+    title_color: "#3a4245"
+    tile_text_color: "#3a4245"
+    text_tile_text_color: ''
   elements:
   - title: Click Through Rate To Date
     name: Click Through Rate To Date
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     type: looker_column
     fields:
-    - ad_impressions.date_week
-    - ad_impressions.total_conversions
-    - ad_impressions.average_cost_per_conversion
-    - ad_impressions.average_conversion_rate
-    - ad_impressions.average_cost_per_click
-    - ad_impressions.average_click_rate
-    filters:
-      campaign.campaign_name: ''
-      ad_group.ad_group_name: ''
-      ad_impressions.date_date: 1 quarters
+    - fact.date_period_dynamic_grain
+    - fact.total_conversions
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.average_cost_per_click
+    - fact.average_click_rate
     sorts:
-    - ad_impressions.date_week
+    - fact.date_period_dynamic_grain desc
     limit: 500
     column_limit: 50
     stacking: ''
@@ -47,7 +48,6 @@
     show_null_points: false
     point_style: none
     interpolation: linear
-    label: Average Cost per Conversion
     leftAxisLabelVisible: false
     leftAxisLabel: ''
     rightAxisLabelVisible: false
@@ -64,10 +64,10 @@
     labelColorEnabled: false
     labelColor: "#FFF"
     series_types:
-      ad_impressions.average_cost_per_conversion: line
-      ad_impressions.average_conversion_rate: line
-      ad_impressions.average_click_rate: line
-      ad_impressions.average_cost_per_click: line
+      fact.average_cost_per_conversion: line
+      fact.average_conversion_rate: line
+      fact.average_click_rate: line
+      fact.average_cost_per_click: line
     show_dropoff: false
     y_axes:
     - label:
@@ -82,13 +82,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_cost_per_conversion
-        name: Cost Per Conversion
-        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 76
-        axisId: ad_impressions.average_cost_per_conversion
-      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 64
+      - id: fact.average_click_rate
+        name: Click Through Rate
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 74
+        axisId: fact.average_click_rate
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 62
     - label:
       maxValue:
       minValue:
@@ -101,13 +101,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.total_conversions
-        name: Conversions
-        axisId: ad_impressions.total_conversions
-        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 95
-      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 83
+      - id: fact.average_cost_per_click
+        name: Cost per Click
+        axisId: fact.average_cost_per_click
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 93
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 81
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -125,16 +125,19 @@
     - "#f1e582"
     series_colors: {}
     hidden_series:
-    - ad_impressions.average_cost_per_conversion
-    - ad_impressions.average_conversion_rate
-    - ad_impressions.average_cost_per_click
-    series_labels:
-      ad_impressions.total_conversions: Conversions
-      ad_impressions.total_clicks: Interactions
-      ad_impressions.average_conversion_rate: Conversion Rate
-      ad_impressions.average_cost_per_conversion: Cost Per Conversion
+    - fact.total_conversions
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.average_cost_per_click
     hidden_fields: []
-    row: 0
+    column_group_spacing_ratio: 0
+    column_spacing_ratio: 0
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: fact.date_date
+      Period: fact.period
+    row: 4
     col: 0
     width: 24
     height: 10
@@ -144,13 +147,13 @@
     explore: ad_impressions
     type: looker_bar
     fields:
-    - ad_impressions.ad_network_type
-    - ad_impressions.average_click_rate
+    - fact.ad_network_type
+    - fact.average_click_rate
     fill_fields:
-    - ad_impressions.ad_network_type
+    - fact.ad_network_type
     sorts:
-    - ad_impressions.average_click_rate desc
-    - ad_impressions.ad_network_type
+    - fact.average_click_rate desc
+    - fact.ad_network_type
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -190,13 +193,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_click_rate
+      - id: fact.average_click_rate
         name: Ad Stats Cost
-        axisId: ad_impressions.average_click_rate
+        axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 192
+        __LINE_NUM: 182
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 180
+      __LINE_NUM: 170
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -213,88 +216,10 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 15
     col: 0
-    width: 8
-    height: 6
-  - title: Click Through Rate by Device
-    name: Click Through Rate by Device
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_bar
-    fields:
-    - ad_impressions.average_click_rate
-    - ad_impressions.device_type
-    fill_fields:
-    - ad_impressions.device_type
-    sorts:
-    - ad_impressions.average_click_rate desc
-    limit: 500
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    label_color: []
-    x_axis_label: Device
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: ad_impressions.average_click_rate
-        name: Ad Stats Cost
-        axisId: ad_impressions.average_click_rate
-        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 271
-      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 259
-    colors:
-    - "#d06180"
-    - "#7869df"
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#dc9d4f"
-    - "#4bb86a"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Time Frame: ad_impressions.date_date
-    row: 15
-    col: 8
     width: 8
     height: 6
   - title: Click Through Rate by Bid Strategy
@@ -303,10 +228,10 @@
     explore: ad_impressions
     type: looker_bar
     fields:
-    - ad_impressions.average_click_rate
+    - fact.average_click_rate
     - keyword.bidding_strategy_type
     sorts:
-    - ad_impressions.average_click_rate desc
+    - fact.average_click_rate desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -346,13 +271,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_click_rate
+      - id: fact.average_click_rate
         name: Ad Stats Cost
-        axisId: ad_impressions.average_click_rate
+        axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 348
+        __LINE_NUM: 338
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 336
+      __LINE_NUM: 326
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -369,7 +294,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 15
     col: 16
     width: 8
@@ -380,16 +306,16 @@
     explore: ad_impressions
     type: table
     fields:
-    - ad_impressions.average_click_rate
-    - ad_impressions.hour_of_day
-    - ad_impressions.date_day_of_week
+    - fact.average_click_rate
+    - fact.hour_of_day
+    - fact.date_day_of_week
     pivots:
-    - ad_impressions.date_day_of_week
+    - fact.date_day_of_week
     fill_fields:
-    - ad_impressions.date_day_of_week
+    - fact.date_day_of_week
     sorts:
-    - ad_impressions.date_day_of_week 0
-    - ad_impressions.hour_of_day
+    - fact.date_day_of_week 0
+    - fact.hour_of_day
     limit: 500
     show_view_names: true
     show_row_numbers: false
@@ -455,13 +381,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_click_rate
+      - id: fact.average_click_rate
         name: Ad Stats Cost
-        axisId: ad_impressions.average_click_rate
+        axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 457
+        __LINE_NUM: 447
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 445
+      __LINE_NUM: 435
     conditional_formatting:
     - type: high to low
       value:
@@ -474,34 +400,115 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 470
+        __LINE_NUM: 460
       bold: false
       italic: false
       strikethrough: false
       fields:
-      - ad_impressions.average_click_rate
+      - fact.average_click_rate
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 465
+      __LINE_NUM: 455
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 21
     col: 0
     width: 14
     height: 14
+  - title: Click Through Rate by Device
+    name: Click Through Rate by Device
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - fact.average_click_rate
+    - fact.device_type
+    fill_fields:
+    - fact.device_type
+    sorts:
+    - fact.average_click_rate desc
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Device
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: fact.average_click_rate
+        name: Ad Stats Cost
+        axisId: fact.average_click_rate
+        __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+        __LINE_NUM: 261
+      __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
+      __LINE_NUM: 249
+    colors:
+    - "#d06180"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: fact.date_date
+      Period: fact.period
+    row: 15
+    col: 8
+    width: 8
+    height: 6
   - title: Click Through Rate by Day of Week
     name: Click Through Rate by Day of Week
     model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar
     fields:
-    - ad_impressions.date_day_of_week
-    - ad_impressions.average_click_rate
+    - fact.date_day_of_week
+    - fact.average_click_rate
     fill_fields:
-    - ad_impressions.date_day_of_week
+    - fact.date_day_of_week
     sorts:
-    - ad_impressions.date_day_of_week
+    - fact.date_day_of_week
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -567,13 +574,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_click_rate
+      - id: fact.average_click_rate
         name: Ad Stats Cost
-        axisId: ad_impressions.average_click_rate
+        axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 569
+        __LINE_NUM: 559
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 557
+      __LINE_NUM: 547
     conditional_formatting:
     - type: high to low
       value:
@@ -586,13 +593,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 582
+        __LINE_NUM: 572
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 577
+      __LINE_NUM: 567
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -609,7 +616,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 21
     col: 14
     width: 10
@@ -620,10 +628,10 @@
     explore: ad_impressions
     type: looker_column
     fields:
-    - ad_impressions.average_click_rate
-    - ad_impressions.hour_of_day
+    - fact.average_click_rate
+    - fact.hour_of_day
     sorts:
-    - ad_impressions.hour_of_day
+    - fact.hour_of_day
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -689,13 +697,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.average_click_rate
+      - id: fact.average_click_rate
         name: Ad Stats Cost
-        axisId: ad_impressions.average_click_rate
+        axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 691
+        __LINE_NUM: 681
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 679
+      __LINE_NUM: 669
     conditional_formatting:
     - type: high to low
       value:
@@ -708,13 +716,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 704
+        __LINE_NUM: 694
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 699
+      __LINE_NUM: 689
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -731,7 +739,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Frame: ad_impressions.date_date
+      Time Range: fact.date_date
+      Period: fact.period
     row: 28
     col: 14
     width: 10
@@ -739,21 +748,18 @@
   - title: Ad Group Click Through Rate Change
     name: Ad Group Click Through Rate Change
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     type: looker_bar
     fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.click_through_rate_absolute_value
-    - ad_impressions.click_through_rate_last_month
-    - ad_impressions.click_through_rate_this_month
+    - fact.average_click_rate_period_percent_change_abs
+    - fact.average_click_rate
+    - last_fact.average_click_rate
     filters:
-      campaign.campaign_name: ''
-      ad_group.ad_group_name: ''
-      ad_impressions.date_date: 1 quarters
-      ad_impressions.click_through_rate_absolute_value: ">0.2"
+      fact.click_rate_big_mover: 'Yes'
     sorts:
-    - ad_impressions.click_through_rate_absolute_value desc
+    - fact.average_click_rate_period_percent_change_abs desc
     limit: 50
     column_limit: 50
     query_timezone: America/Los_Angeles
@@ -789,7 +795,7 @@
     conditional_formatting_include_nulls: false
     hidden_fields:
     - campaign.campaign_name
-    - ad_impressions.click_through_rate_absolute_value
+    - fact.average_click_rate_period_percent_change_abs
     series_types: {}
     colors:
     - "#a6b7ff"
@@ -822,18 +828,23 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.click_through_rate_last_month
+      - id: fact.click_through_rate_last_month
         name: Click Through Rate Last Month
-        axisId: ad_impressions.click_through_rate_last_month
+        axisId: fact.click_through_rate_last_month
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 824
-      - id: ad_impressions.click_through_rate_this_month
+        __LINE_NUM: 811
+      - id: fact.click_through_rate_this_month
         name: Click Through Rate This Month
-        axisId: ad_impressions.click_through_rate_this_month
+        axisId: fact.click_through_rate_this_month
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 829
+        __LINE_NUM: 816
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 812
+      __LINE_NUM: 799
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: fact.date_date
+      Period: fact.period
     row: 35
     col: 0
     width: 12
@@ -841,22 +852,19 @@
   - title: Ad Click Through Rate Change
     name: Ad Click Through Rate Change
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     type: looker_bar
     fields:
     - ad.creative
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.click_through_rate_absolute_value
-    - ad_impressions.click_through_rate_last_month
-    - ad_impressions.click_through_rate_this_month
+    - fact.average_click_rate_period_percent_change_abs
+    - fact.average_click_rate
+    - last_fact.average_click_rate
     filters:
-      campaign.campaign_name: ''
-      ad_group.ad_group_name: ''
-      ad_impressions.date_date: 1 quarters
-      ad_impressions.click_through_rate_absolute_value: ">0.2"
+      fact.click_rate_big_mover: 'Yes'
     sorts:
-    - ad_impressions.click_through_rate_absolute_value desc
+    - fact.average_click_rate_period_percent_change_abs desc
     limit: 50
     column_limit: 50
     query_timezone: America/Los_Angeles
@@ -893,7 +901,7 @@
     hidden_fields:
     - ad_group.ad_group_name
     - campaign.campaign_name
-    - ad_impressions.click_through_rate_absolute_value
+    - fact.average_click_rate_period_percent_change_abs
     series_types: {}
     limit_displayed_rows_values:
       show_hide: show
@@ -926,47 +934,28 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: ad_impressions.click_through_rate_last_month
+      - id: fact.click_through_rate_last_month
         name: Click Through Rate Last Month
-        axisId: ad_impressions.click_through_rate_last_month
+        axisId: fact.click_through_rate_last_month
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 926
-      - id: ad_impressions.click_through_rate_this_month
+        __LINE_NUM: 912
+      - id: fact.click_through_rate_this_month
         name: Click Through Rate This Month
-        axisId: ad_impressions.click_through_rate_this_month
+        axisId: fact.click_through_rate_this_month
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 931
+        __LINE_NUM: 917
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 914
+      __LINE_NUM: 900
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: fact.date_date
+      Period: fact.period
     row: 35
     col: 12
     width: 12
     height: 10
   filters:
-  - name: This Timeframe
-    title: This Timeframe
-    type: field_filter
-    default_value: this quarter
-    allow_multiple_values: true
-    required: false
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    listens_to_filters: []
-    field: fact.this_timeframe
-  - name: Last Timeframe
-    title: Last Timeframe
-    type: field_filter
-    default_value: 1 quarter ago
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    field: last_fact.last_timeframe
-    listens_to_filters: []
-    allow_multiple_values: true
-    required: false
-    model: looker_app_google_adwords
-    explore: ad_group_fact_this_timeframe
-    listens_to_filters: []
-    field: last_fact.last_timeframe
   - name: Campaign
     title: Campaign
     type: field_filter
@@ -974,7 +963,7 @@
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     listens_to_filters: []
     field: campaign.campaign_name
   - name: Ad Group
@@ -984,16 +973,26 @@
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     listens_to_filters: []
     field: ad_group.ad_group_name
-  - name: Time Frame
-    title: Time Frame
+  - name: Time Range
+    title: Time Range
     type: field_filter
-    default_value: 1 quarters
+    default_value: 28 days
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     listens_to_filters: []
-    field: ad_impressions.date_date
+    field: fact.date_date
+  - name: Period
+    title: Period
+    type: field_filter
+    default_value: 28day
+    allow_multiple_values: true
+    required: true
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.period
