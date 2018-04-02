@@ -98,13 +98,22 @@ explore: period_fact {
 view: period_fact {
   extends: [date_base, period_base, ad_metrics_period_comparison_base, ad_metrics_parent_comparison_base, google_ad_metrics_base]
 
-  dimension: external_customer_id {}
-  dimension: campaign_id {}
-  dimension: ad_group_id {}
-  dimension: creative_id {}
-  dimension: criterion_id {}
-  dimension: _date {
+  dimension: external_customer_id {
     hidden: yes
+  }
+  dimension: campaign_id {
+    hidden: yes
+  }
+  dimension: ad_group_id {
+    hidden: yes
+  }
+  dimension: creative_id {
+    hidden: yes
+  }
+  dimension: criterion_id {
+    hidden: yes
+  }
+  dimension: _date {
     type: date_raw
   }
 

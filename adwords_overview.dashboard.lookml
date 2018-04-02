@@ -1,5 +1,5 @@
-- dashboard: adwords_overview__this_quarter_vs_last
-  title: AdWords Overview - This Quarter vs Last
+- dashboard: adwords_overview
+  title: AdWords Overview
   layout: newspaper
   embed_style:
     background_color: "#F6F6F7"
@@ -1419,7 +1419,7 @@
   - name: Period
     title: Period
     type: field_filter
-    default_value: quarter
+    default_value: 28day
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
@@ -1429,7 +1429,7 @@
   - name: Date
     title: Date
     type: field_filter
-    default_value: 1 quarters
+    default_value: 28 days
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords

@@ -36,14 +36,18 @@ view: campaign_budget_date_fact {
     }
   }
   dimension: campaign_id {
+    hidden: yes
   }
   dimension: external_customer_id {
+    hidden: yes
   }
   dimension: _date {
     hidden: yes
     type: date_raw
   }
-  dimension: budget_id {}
+  dimension: budget_id {
+    hidden: yes
+  }
   dimension: amount {}
   dimension: cost {}
   dimension: remaining_budget {

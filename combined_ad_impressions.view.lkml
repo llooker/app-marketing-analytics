@@ -13,11 +13,17 @@ view: combined_ad_impressions_base {
     type: date_raw
   }
   dimension: account_name {}
-  dimension: account_id {}
+  dimension: account_id {
+    hidden: yes
+  }
   dimension: campaign_name {}
-  dimension: campaign_id {}
+  dimension: campaign_id {
+    hidden: yes
+  }
   dimension: ad_group_name {}
-  dimension: ad_group_id {}
+  dimension: ad_group_id {
+    hidden: yes
+  }
   dimension: device {}
 }
 

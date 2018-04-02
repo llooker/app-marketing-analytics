@@ -69,9 +69,15 @@ view: ad_group_date_fact {
     }
   }
 
-  dimension: external_customer_id {}
-  dimension: campaign_id {}
-  dimension: ad_group_id {}
+  dimension: external_customer_id {
+    hidden: yes
+  }
+  dimension: campaign_id {
+    hidden: yes
+  }
+  dimension: ad_group_id {
+    hidden: yes
+  }
   dimension: key_base {
     sql: CONCAT(
       CAST(${external_customer_id} AS STRING), "-",

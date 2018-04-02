@@ -1,5 +1,5 @@
-- dashboard: campaign_metrics__conversions__this_quarter
-  title: Campaign Metrics - Conversions - This Quarter
+- dashboard: campaign_metrics_conversions
+  title: Campaign Metrics - Conversions
   layout: newspaper
   embed_style:
     background_color: "#ffffff"
@@ -1059,7 +1059,7 @@
   - name: Time Range
     title: Time Range
     type: field_filter
-    default_value: 1 quarters
+    default_value: 28 days
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
@@ -1069,7 +1069,7 @@
   - name: Period
     title: Period
     type: field_filter
-    default_value: quarter
+    default_value: 28day
     allow_multiple_values: true
     required: true
     model: looker_app_google_adwords

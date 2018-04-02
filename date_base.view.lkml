@@ -150,6 +150,36 @@ view: date_base {
            day) ;;
   }
 
+  dimension: date_days_prior {
+    hidden: yes
+    type: number
+    sql: DATE_DIFF(${date_date}, CURRENT_DATE(), DAY) ;;
+  }
+
+  dimension: date_day_of_7_days_prior {
+    hidden: yes
+    type: number
+    sql: ABS(MOD(${date_days_prior}, 7)) ;;
+  }
+
+  dimension: date_day_of_28_days_prior {
+    hidden: yes
+    type: number
+    sql: ABS(MOD(${date_days_prior}, 28)) ;;
+  }
+
+  dimension: date_date_7_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(7-${date_day_of_7_days_prior}, 7)) DAY) ;;
+  }
+
+  dimension: date_date_28_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(28-${date_day_of_28_days_prior}, 28)) DAY) ;;
+  }
+
   measure: date_max_day_of_week_index {
     hidden: yes
     type: max

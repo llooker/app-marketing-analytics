@@ -65,8 +65,12 @@ view: campaign_date_fact {
     hidden: yes
     type: date_raw
   }
-  dimension: external_customer_id {}
-  dimension: campaign_id {}
+  dimension: external_customer_id {
+    hidden: yes
+  }
+  dimension: campaign_id {
+    hidden: yes
+  }
   dimension: key_base {
     sql: CONCAT(
       CAST(${external_customer_id} AS STRING), "-",

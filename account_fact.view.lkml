@@ -43,7 +43,9 @@ view: account_date_fact {
       column: interactions {field: fact.total_interactions}
     }
   }
-  dimension: external_customer_id {}
+  dimension: external_customer_id {
+    hidden: yes
+  }
   dimension: key_base {
     sql: CAST(${external_customer_id} as STRING) ;;
   }
