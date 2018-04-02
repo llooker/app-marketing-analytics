@@ -94,7 +94,6 @@ view: keyword {
 
   dimension: criteria {
     type: string
-    sql: ${TABLE}.Criteria ;;
     link: {
       icon_url: "https://www.google.com/images/branding/product/ico/googleg_lodp.ico"
       label: "Google Search"

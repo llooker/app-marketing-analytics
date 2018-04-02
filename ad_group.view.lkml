@@ -41,7 +41,6 @@ view: ad_group {
 
   dimension: ad_group_name {
     type: string
-    sql: ${TABLE}.AdGroupName ;;
     link: {
       label: "Ad Group Dashboard"
       url: "/dashboards/looker_app_google_adwords::ad_performance?Ad%20Group%20Name={{ value | encode_uri }}&Campaign%20Name={{ campaign.campaign_name._value | encode_uri }}"
