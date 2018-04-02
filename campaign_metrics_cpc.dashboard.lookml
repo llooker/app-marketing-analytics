@@ -60,10 +60,10 @@
     labelColorEnabled: false
     labelColor: "#FFF"
     series_types:
-      ad_impressions.average_cost_per_conversion: line
-      ad_impressions.average_conversion_rate: line
-      ad_impressions.average_click_rate: line
-      ad_impressions.average_cost_per_click: line
+      fact.average_cost_per_conversion: line
+      fact.average_conversion_rate: line
+      fact.average_click_rate: line
+      fact.average_cost_per_click: line
     show_dropoff: false
     y_axes:
     - label:

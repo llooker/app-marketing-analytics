@@ -13,7 +13,7 @@
     explore: period_fact
     type: looker_column
     fields:
-    - fact.date_week
+    - fact.date_period_dynamic_grain
     - fact.total_conversions
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
@@ -125,6 +125,7 @@
     - "#f1e582"
     series_colors: {}
     hidden_series:
+    - fact.total_conversions
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
     - fact.average_cost_per_click
