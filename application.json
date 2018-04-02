@@ -146,7 +146,9 @@
                   "description": "Increase the bid on these Ads to drive more conversions.",
                   "name": "Ad Opportunities",
                   "permalink": "optimization-ad-opportunities",
-                  "singleValueReference": { "key": "ads_opportunities" },
+                  "singleValueReference": {
+                    "key": "ads_opportunities"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -172,7 +174,9 @@
                   "description": "Increase the bid on these Keywords to drive more conversions.",
                   "name": "Keyword Opportunities",
                   "permalink": "optimization-keyword-opportunities",
-                  "singleValueReference": { "key": "keywords_opportunities" },
+                  "singleValueReference": {
+                    "key": "keywords_opportunities"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -198,7 +202,9 @@
                   "description": "Increase the bid on these Ad Groups to drive more conversions.",
                   "name": "Ad Group Opportunities",
                   "permalink": "optimization-ad-group-opportunities",
-                  "singleValueReference": { "key": "ad_groups_opportunities" },
+                  "singleValueReference": {
+                    "key": "ad_groups_opportunities"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -231,7 +237,9 @@
                   "description": "Ads that have had recent big performance changes.",
                   "name": "Ad Performance Changes",
                   "permalink": "ad-movers",
-                  "singleValueReference": { "key": "ads_big_movers" },
+                  "singleValueReference": {
+                    "key": "ads_big_movers"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -254,20 +262,20 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     },
                     {
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ],
                       "field": "ad_group.ad_group_name",
                       "name": "Ad Group",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ]
                     }
                   ]
                 },
@@ -275,7 +283,9 @@
                   "description": "Keywords that have had recent big performance changes.",
                   "name": "Keyword Performance Changes",
                   "permalink": "keyword-movers",
-                  "singleValueReference": { "key": "keywords_big_movers" },
+                  "singleValueReference": {
+                    "key": "keywords_big_movers"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -298,20 +308,20 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     },
                     {
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ],
                       "field": "ad_group.ad_group_name",
                       "name": "Ad Group",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ]
                     }
                   ]
                 },
@@ -319,7 +329,9 @@
                   "description": "Ad Groups that have had recent big performance changes.",
                   "name": "Ad Group Performance Changes",
                   "permalink": "ad-group-movers",
-                  "singleValueReference": { "key": "ad_groups_big_movers" },
+                  "singleValueReference": {
+                    "key": "ad_groups_big_movers"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -342,12 +354,12 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     }
                   ]
                 }
@@ -362,7 +374,9 @@
                   "description": "Quickly find the ads that need to be paused or have their bid lowered.",
                   "name": "Underperforming Ads",
                   "permalink": "underperforming-ads",
-                  "singleValueReference": { "key": "ads_underpeforming" },
+                  "singleValueReference": {
+                    "key": "ads_underpeforming"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -385,27 +399,27 @@
                   ],
                   "filters": [
                     {
-                      "defaultValue": "quarter",
                       "field": "fact.this_timeframe",
                       "name": "Time Frame",
+                      "type": "TimeFrame",
+                      "defaultValue": "quarter",
                       "filterStrings": {
                         "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
-                      },
-                      "type": "TimeFrame"
+                      }
                     },
                     {
-                      "facetedBy": [],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": []
                     },
                     {
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ],
                       "field": "ad_group.ad_group_name",
                       "name": "Ad Group",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ]
                     }
                   ]
                 },
@@ -413,7 +427,9 @@
                   "description": "Quickly find the keywords that need to be paused or have their bid lowered.",
                   "name": "Underperforming Keywords",
                   "permalink": "underperforming-keywords",
-                  "singleValueReference": { "key": "keywords_underpeforming" },
+                  "singleValueReference": {
+                    "key": "keywords_underpeforming"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -436,29 +452,29 @@
                   ],
                   "filters": [
                     {
-                      "defaultValue": "quarter",
                       "field": "fact.this_timeframe",
                       "name": "Time Frame",
+                      "type": "TimeFrame",
+                      "defaultValue": "quarter",
                       "filterStrings": {
                         "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
-                      },
-                      "type": "TimeFrame"
+                      }
                     },
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     },
                     {
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ],
                       "field": "ad_group.ad_group_name",
                       "name": "Ad Group",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ]
                     }
                   ]
                 },
@@ -466,7 +482,9 @@
                   "description": "Quickly find the ad groups that need to be paused or have their bid lowered.",
                   "name": "Underperforming Ad Groups",
                   "permalink": "underperforming-ad-groups",
-                  "singleValueReference": { "key": "ad_groups_underpeforming" },
+                  "singleValueReference": {
+                    "key": "ad_groups_underpeforming"
+                  },
                   "variations": [
                     {
                       "description": "No Description",
@@ -489,21 +507,21 @@
                   ],
                   "filters": [
                     {
-                      "defaultValue": "quarter",
                       "field": "fact.this_timeframe",
                       "name": "Time Frame",
+                      "type": "TimeFrame",
+                      "defaultValue": "quarter",
                       "filterStrings": {
                         "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
-                      },
-                      "type": "TimeFrame"
+                      }
                     },
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     }
                   ]
                 }
