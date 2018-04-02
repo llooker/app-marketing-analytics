@@ -28,7 +28,6 @@ view: campaign {
 
   dimension: amount {
     type: number
-    sql: (${TABLE}.Amount / 1000000) ;;
   }
 
   dimension: bid_type {
@@ -76,7 +75,6 @@ view: campaign {
 
   dimension: campaign_name {
     type: string
-    sql: ${TABLE}.CampaignName ;;
     link: {
       label: "Campaign Dashboard"
       url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{ value | encode_uri }}"

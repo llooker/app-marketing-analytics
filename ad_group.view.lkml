@@ -41,7 +41,6 @@ view: ad_group {
 
   dimension: ad_group_name {
     type: string
-    sql: ${TABLE}.AdGroupName ;;
     link: {
       label: "View on Adwords"
       icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"

@@ -92,11 +92,14 @@
     name: Cost Per Click To Date
     model: looker_app_google_adwords
     explore: period_fact
-    type: looker_line
+    type: looker_column
     fields:
-    - fact.average_cost_per_click
-    - fact.average_cost_per_conversion
     - fact.date_period_dynamic_grain
+    - fact.total_conversions
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.average_cost_per_click
+    - fact.average_click_rate
     sorts:
     - fact.date_period_dynamic_grain desc
     limit: 500
@@ -118,14 +121,14 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
+    ordering: none
+    show_null_labels: false
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
+    show_null_points: false
+    point_style: none
+    interpolation: linear
     label: Average Cost per Conversion
     leftAxisLabelVisible: false
     leftAxisLabel: ''
@@ -142,10 +145,14 @@
     valuePosition: right
     labelColorEnabled: false
     labelColor: "#FFF"
-    series_types: {}
+    series_types:
+      ad_impressions.average_cost_per_conversion: line
+      ad_impressions.average_conversion_rate: line
+      ad_impressions.average_click_rate: line
+      ad_impressions.average_cost_per_click: line
     show_dropoff: false
     y_axes:
-    - label: ''
+    - label:
       maxValue:
       minValue:
       orientation: left
@@ -199,9 +206,15 @@
     - "#ea9895"
     - "#f1e582"
     series_colors: {}
-    hidden_series: []
+    hidden_series:
+    - fact.average_conversion_rate
+    - fact.average_click_rate
+    - fact.average_cost_per_click
     series_labels:
+      fact.total_conversions: Conversions
       fact.total_clicks: Interactions
+      fact.average_conversion_rate: Conversion Rate
+      fact.average_cost_per_conversion: Cost Per Conversion
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
@@ -213,7 +226,87 @@
     row: 4
     col: 0
     width: 24
-    height: 11
+    height: 10
+  - title: Cost Per Click by Network
+    name: Cost Per Click by Network
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - ad_impressions.ad_network_type
+    - ad_impressions.average_cost_per_click
+    fill_fields:
+    - ad_impressions.ad_network_type
+    sorts:
+    - ad_impressions.average_cost_per_click desc
+    - ad_impressions.ad_network_type
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Network
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_cost_per_click
+        name: Ad Stats Cost
+        axisId: ad_impressions.average_cost_per_click
+        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+        __LINE_NUM: 192
+      __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
+      __LINE_NUM: 180
+    colors:
+    - "#8ac8ca"
+    - "#7869df"
+    - "#6e98f9"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: ad_impressions.date_date
+    row: 15
+    col: 0
+    width: 8
+    height: 6
   - title: Cost Per Click by Device
     name: Cost Per Click by Device
     model: looker_app_google_adwords

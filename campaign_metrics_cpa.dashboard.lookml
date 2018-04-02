@@ -93,10 +93,18 @@
     model: looker_app_google_adwords
     explore: period_fact
     type: looker_line
+    type: looker_column
     fields:
-    - fact.average_cost_per_conversion
     - fact.date_period_dynamic_grain
-    - fact.total_cost
+    - fact.total_conversions
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.average_cost_per_click
+    - fact.average_click_rate
+    filters:
+      campaign.campaign_name: ''
+      ad_group.ad_group_name: ''
+      fact.date_date: 1 quarters
     sorts:
     - fact.date_period_dynamic_grain desc
     limit: 500
@@ -118,14 +126,14 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
+    ordering: none
+    show_null_labels: false
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
+    show_null_points: false
+    point_style: none
+    interpolation: linear
     label: Average Cost per Conversion
     leftAxisLabelVisible: false
     leftAxisLabel: ''
@@ -142,10 +150,14 @@
     valuePosition: right
     labelColorEnabled: false
     labelColor: "#FFF"
-    series_types: {}
+    series_types:
+      ad_impressions.average_cost_per_conversion: line
+      ad_impressions.average_conversion_rate: line
+      ad_impressions.average_click_rate: line
+      ad_impressions.average_cost_per_click: line
     show_dropoff: false
     y_axes:
-    - label: ''
+    - label:
       maxValue:
       minValue:
       orientation: left
@@ -176,13 +188,13 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: fact.total_cost
-        name: Cost
-        axisId: fact.total_cost
-        __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 93
-      __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 81
+      - id: fact.total_conversions
+        name: Conversions
+        axisId: ad_impressions.total_conversions
+        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+        __LINE_NUM: 95
+      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+      __LINE_NUM: 83
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -199,9 +211,15 @@
     - "#ea9895"
     - "#f1e582"
     series_colors: {}
-    hidden_series: []
+    hidden_series:
+    - fact.average_conversion_rate
+    - fact.average_click_rate
+    - fact.average_cost_per_click
     series_labels:
+      fact.total_conversions: Conversions
       fact.total_clicks: Interactions
+      fact.average_conversion_rate: Conversion Rate
+      fact.average_cost_per_conversion: Cost Per Conversion
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
@@ -213,7 +231,166 @@
     row: 4
     col: 0
     width: 24
-    height: 11
+    height: 10
+  - title: Cost Per Conversion versions by Network
+    name: Cost Per Conversion versions by Network
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - ad_impressions.ad_network_type
+    - ad_impressions.average_cost_per_conversion
+    fill_fields:
+    - ad_impressions.ad_network_type
+    sorts:
+    - ad_impressions.average_cost_per_conversion desc
+    - ad_impressions.ad_network_type
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Network
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_cost_per_conversion
+        name: Ad Stats Cost
+        axisId: ad_impressions.average_cost_per_conversion
+        __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
+        __LINE_NUM: 192
+      __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
+      __LINE_NUM: 180
+    colors:
+    - "#8ac8ca"
+    - "#7869df"
+    - "#6e98f9"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: ad_impressions.date_date
+    row: 15
+    col: 0
+    width: 8
+    height: 6
+  - title: Cost Per Conversion by Device
+    name: Cost Per Conversion by Device
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - ad_impressions.average_cost_per_conversion
+    - ad_impressions.device_type
+    fill_fields:
+    - ad_impressions.device_type
+    sorts:
+    - ad_impressions.average_cost_per_conversion desc
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Device
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.average_cost_per_conversion
+        name: Ad Stats Cost
+        axisId: ad_impressions.average_cost_per_conversion
+        __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
+        __LINE_NUM: 271
+      __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
+      __LINE_NUM: 259
+    colors:
+    - "#d06180"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Time Range: ad_impressions.date_date
+    row: 15
+    col: 8
+    width: 8
+    height: 6
   - title: Cost Per Conversion by Bid Strategy
     name: Cost Per Conversion by Bid Strategy
     model: looker_app_google_adwords
@@ -929,8 +1106,110 @@
     col: 8
     width: 8
     height: 9
-  - title: Ad CPA Change
-    name: Ad CPA Change
+  - title: Ad Group Cost Per Conversion Change
+    name: Ad Group Cost Per Conversion Change
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - ad_impressions.cpa_monthly_change_absolute_value
+    - ad_impressions.cost_per_conversion_last_month
+    - ad_impressions.cost_per_conversion_this_month
+    filters:
+      campaign.campaign_name: ''
+      ad_group.ad_group_name: ''
+      ad_impressions.date_date: 1 quarters
+      ad_impressions.cpa_monthly_change_absolute_value: ">0.2"
+    sorts:
+    - ad_impressions.cpa_monthly_change_absolute_value desc
+    limit: 50
+    column_limit: 50
+    query_timezone: America/Los_Angeles
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    hidden_fields:
+    - campaign.campaign_name
+    - ad_impressions.cpa_monthly_change_absolute_value
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '10'
+    colors:
+    - "#a6b7ff"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#dc9d4f"
+    - "#dc9d4f"
+    - "#ea9895"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea989"
+    series_colors: {}
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: true
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: ad_impressions.cost_per_conversion_last_month
+        name: Cost per Conversion Last Month
+        axisId: ad_impressions.cost_per_conversion_last_month
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 942
+      - id: ad_impressions.cost_per_conversion_this_month
+        name: Cost per Conversion This Month
+        axisId: ad_impressions.cost_per_conversion_this_month
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 930
+    row: 35
+    col: 0
+    width: 8
+    height: 9
+  - title: Ad Cost Per Conversion Change
+    name: Ad Cost Per Conversion Change
     model: looker_app_google_adwords
     explore: period_fact
     type: looker_bar

@@ -94,9 +94,12 @@
     explore: period_fact
     type: looker_column
     fields:
-    - fact.average_cost_per_conversion
-    - fact.total_conversions
     - fact.date_period_dynamic_grain
+    - fact.total_conversions
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.average_cost_per_click
+    - fact.average_click_rate
     sorts:
     - fact.date_period_dynamic_grain
     limit: 500
@@ -144,6 +147,9 @@
     labelColor: "#FFF"
     series_types:
       fact.average_cost_per_conversion: line
+      fact.average_conversion_rate: line
+      fact.average_click_rate: line
+      fact.average_cost_per_click: line
     show_dropoff: false
     y_axes:
     - label:
@@ -202,6 +208,8 @@
     series_colors: {}
     hidden_series:
     - fact.average_conversion_rate
+    - fact.average_click_rate
+    - fact.average_cost_per_click
     series_labels:
       fact.total_conversions: Conversions
       fact.total_clicks: Interactions
@@ -275,11 +283,29 @@
         __LINE_NUM: 710
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
       __LINE_NUM: 698
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+        __LINE_NUM: 226
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+      __LINE_NUM: 221
     colors:
-    - "#dc9d4f"
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
     - "#d06180"
     - "#4bb86a"
     - "#a4a6a9"
@@ -355,18 +381,37 @@
         __LINE_NUM: 633
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
       __LINE_NUM: 621
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+        __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+        __LINE_NUM: 348
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+      __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
+      __LINE_NUM: 343
     colors:
-    - "#d06180"
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
+    - "#d06180"
     - "#dc9d4f"
     - "#4bb86a"
     - "#a4a6a9"
     - "#a6b7ff"
     - "#afe8fd"
     - "#ea9895"
-    - "#f1e582"
+    - "#f1e58"
     series_colors: {}
     listen:
       Campaign: campaign.campaign_name

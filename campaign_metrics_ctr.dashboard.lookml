@@ -10,12 +10,15 @@
   - title: Click Through Rate To Date
     name: Click Through Rate To Date
     model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_line
+    explore: period_fact
+    type: looker_column
     fields:
-    - fact.average_click_rate
-    - fact.date_period_dynamic_grain
+    - fact.date_week
+    - fact.total_conversions
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
     - fact.average_cost_per_click
+    - fact.average_click_rate
     sorts:
     - fact.date_period_dynamic_grain desc
     limit: 500
@@ -37,15 +40,14 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
+    ordering: none
+    show_null_labels: false
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
-    label: Average Cost per Conversion
+    show_null_points: false
+    point_style: none
+    interpolation: linear
     leftAxisLabelVisible: false
     leftAxisLabel: ''
     rightAxisLabelVisible: false
@@ -61,10 +63,14 @@
     valuePosition: right
     labelColorEnabled: false
     labelColor: "#FFF"
-    series_types: {}
+    series_types:
+      fact.average_cost_per_conversion: line
+      fact.average_conversion_rate: line
+      fact.average_click_rate: line
+      fact.average_cost_per_click: line
     show_dropoff: false
     y_axes:
-    - label: ''
+    - label:
       maxValue:
       minValue:
       orientation: left
@@ -118,9 +124,10 @@
     - "#ea9895"
     - "#f1e582"
     series_colors: {}
-    hidden_series: []
-    series_labels:
-      fact.total_clicks: Interactions
+    hidden_series:
+    - fact.average_cost_per_conversion
+    - fact.average_conversion_rate
+    - fact.average_cost_per_click
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
@@ -132,7 +139,7 @@
     row: 4
     col: 0
     width: 24
-    height: 11
+    height: 10
   - title: Click Through Rate by Network
     name: Click Through Rate by Network
     model: looker_app_google_adwords

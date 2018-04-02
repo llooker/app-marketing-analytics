@@ -1,5 +1,8 @@
+include: "/app_marketing_analytics_adapter/ad_metrics_base.view"
+
 view: ad_metrics_base {
   extension: required
+  extends: [ad_metrics_base_adapter]
 
   dimension: clicks {
     hidden: yes
