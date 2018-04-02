@@ -556,9 +556,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 554
+        __LINE_NUM: 555
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 542
+      __LINE_NUM: 543
     conditional_formatting:
     - type: high to low
       value:
@@ -571,17 +571,17 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 567
+        __LINE_NUM: 568
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 562
+      __LINE_NUM: 563
     colors:
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
     - "#d06180"
     - "#dc9d4f"
     - "#4bb86a"
@@ -678,9 +678,9 @@
         name: Ad Stats Cost
         axisId: ad_impressions.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 676
+        __LINE_NUM: 677
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 664
+      __LINE_NUM: 665
     conditional_formatting:
     - type: high to low
       value:
@@ -693,17 +693,17 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 689
+        __LINE_NUM: 690
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 684
+      __LINE_NUM: 685
     colors:
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
     - "#d06180"
     - "#dc9d4f"
     - "#4bb86a"

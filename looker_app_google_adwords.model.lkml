@@ -97,18 +97,18 @@ explore: ad_impressions {
     relationship: many_to_one
   }
   join: account_avg_cpa {
-    view_label: "Account Average CPA"
+    view_label: "Account Average Cost Per Conversion"
     sql_on: ${ad_impressions.external_customer_id} = ${account_avg_cpa.external_customer_id} ;;
     relationship: one_to_one
   }
   join: campaign_avg_cpa {
-    view_label: "Campaign Average CPA"
+    view_label: "Campaign Average Cost Per Conversion"
     sql_on: ${ad_impressions.external_customer_id} = ${campaign_avg_cpa.external_customer_id} AND
       ${ad_impressions.campaign_id} = ${campaign_avg_cpa.campaign_id};;
     relationship: one_to_one
   }
   join: ad_group_avg_cpa {
-    view_label: "Ad Group Average CPA"
+    view_label: "Ad Group Average Cost Per Conversion"
     sql_on: ${ad_impressions.external_customer_id} = ${ad_group_avg_cpa.external_customer_id} AND
       ${ad_impressions.campaign_id} = ${ad_group_avg_cpa.campaign_id} AND
       ${ad_impressions.ad_group_id} = ${ad_group_avg_cpa.ad_group_id};;

@@ -66,8 +66,8 @@ view: account_avg_cpa {
   }
 
   measure: average_cpa_of_the_account {
-    label: "Average CPA of the account"
-    description: "Average CPA of the whole account for all time"
+    label: "Average Cost Per Conversion of the account"
+    description: "Average Cost Per Conversion of the whole account for all time"
     view_label: "Ad Stats"
     hidden: yes
     type: number
@@ -78,7 +78,7 @@ view: account_avg_cpa {
   measure: expected_conversions_for_campaign {
     label: "Expected Conversions"
     view_label: "Campaign"
-    description: "Cost divided by average CPA for the account"
+    description: "Cost divided by average Cost Per Conversion for the account"
     type: number
     sql: ${ad_impressions.total_cost} / NULLIF(${average_cpa_of_the_account},0) ;;
     value_format_name: decimal_2
@@ -116,8 +116,8 @@ view: campaign_avg_cpa {
   }
 
   measure: average_cpa_of_campaign {
-    label: "Average CPA of the campaign"
-    description: "Average CPA for the campaign"
+    label: "Average Cost Per Conversion of the campaign"
+    description: "Average Cost Per Conversion for the campaign"
     view_label: "Ad Groups"
     hidden: yes
     type: number
@@ -136,8 +136,8 @@ view: campaign_avg_cpa {
   }
 
   measure: cpa_compared_to_average_for_campaign {
-    label: "% of Campaign CPA"
-    description: "CPA compared to Average CPA of the campaign"
+    label: "% of Campaign Cost Per Conversion"
+    description: "Cost Per Conversion compared to Average Cost Per Conversion of the campaign"
     view_label: "Ad Groups"
     type: number
     sql: ${ad_impressions.average_cost_per_conversion} / NULLIF(${average_cpa_of_campaign},0);;
@@ -156,7 +156,7 @@ view: campaign_avg_cpa {
   measure: expected_conversions_for_ad_group {
     label: "Expected Conversions"
     view_label: "Ad Groups"
-    description: "Cost divided by average CPA of the campaign"
+    description: "Cost divided by average Cost Per Conversion of the campaign"
     type: number
     sql: ${ad_impressions.total_cost} / NULLIF(${campaign_avg_cpa.average_cpa_of_campaign},0) ;;
     value_format_name: decimal_2
@@ -207,8 +207,8 @@ view: ad_group_avg_cpa {
   }
 
   measure: average_cpa_of_ad_group {
-    description: "Average CPA of the ad group"
-    label: "Average CPA of the Ad Group"
+    description: "Average Cost Per Conversion of the ad group"
+    label: "Average Cost Per Conversion of the Ad Group"
     view_label: "Ads"
     hidden: yes
     type: number
@@ -227,8 +227,8 @@ view: ad_group_avg_cpa {
   }
 
   measure: cpa_compared_to_average_for_ad_group {
-    description: "CPA compared to Average CPA of the ad group"
-    label: "% of Ad Group CPA"
+    description: "Cost Per Conversion compared to Average CPA of the ad group"
+    label: "% of Ad Group Cost Per Conversion"
     view_label: "Ads"
     type: number
     sql: ${ad_impressions.average_cost_per_conversion} / NULLIF(${average_cpa_of_ad_group},0);;
@@ -263,8 +263,8 @@ view: ad_group_avg_cpa {
     }
 
     measure: cpa_compared_to_average_for_ad_group_keyword {
-      description: "CPA compared to Average CPA of the ad group"
-      label: "% of Ad Group CPA"
+      description: "Cost Per Conversion compared to Average CPA of the ad group"
+      label: "% of Ad Group Cost Per Conversion"
       view_label: "Keyword"
       type: number
       sql: ${ad_impressions.average_cost_per_conversion} / NULLIF(${average_cpa_of_ad_group},0);;
