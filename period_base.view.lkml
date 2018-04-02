@@ -9,21 +9,25 @@ view: period_base {
   }
 
   dimension: date_start_date_range {
+    hidden: yes
     type: date_raw
     sql: {% date_start date_range %} ;;
   }
 
   dimension: date_end_date_range {
+    hidden: yes
     type: date_raw
     sql: {% date_end date_range %} ;;
   }
 
   dimension: date_range_difference {
+    hidden: yes
     type: number
     expression: diff_days(${date_start_date_range}, ${date_end_date_range}) ;;
   }
 
   dimension: in_date_range {
+    hidden: yes
     type: yesno
     sql: {% condition date_range %}${fact._date}{% endcondition %} ;;
   }
