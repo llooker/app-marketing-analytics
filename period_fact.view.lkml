@@ -73,7 +73,7 @@ explore: period_fact {
       {% endif %}
       AND ${fact.external_customer_id} = ${last_fact.external_customer_id} ;;
     relationship: one_to_one
-    fields: [last_fact.google_ad_metrics_set*]
+    fields: [last_fact.google_ad_metrics_set*, last_fact.ad_metrics_parent_comparison_measures_set*]
   }
   join: parent_fact {
     from: period_fact

@@ -427,7 +427,13 @@ view: ad_metrics_parent_comparison_base {
       click_rate_count_good,
       cost_per_conversion_count_bad,
       conversion_rate_count_bad,
-      click_rate_count_bad
+      click_rate_count_bad,
+      click_rate_good,
+      cost_per_conversion_good,
+      conversion_rate_good,
+      click_rate_bad,
+      cost_per_conversion_bad,
+      conversion_rate_bad
     ]
   }
 
