@@ -84,6 +84,22 @@ view: period_base {
       {% endif %} ;;
     allow_fill: no
   }
+  dimension: date_end_of_period {
+    type: date
+    label_from_parameter: period
+    group_label: "Event"
+    sql: {% if fact.period_passthrough._sql contains "day" %}
+        {% if fact.period_passthrough._sql == "7day" %}DATE_ADD(${date_date_7_days_prior}, INTERVAL 7 DAY)
+        {% elsif fact.period_passthrough._sql == "28day" %}DATE_ADD(${date_date_28_days_prior}, INTERVAL 28 DAY)
+        {% else %}${date_date}
+        {% endif %}
+      {% elsif fact.period_passthrough._sql contains "week" %}DATE_ADD(${date_week_date}, INTERVAL 1 WEEK)
+      {% elsif fact.period_passthrough._sql contains "month" %}DATE_ADD(${date_month_date}, INTERVAL 1 MONTH)
+      {% elsif fact.period_passthrough._sql contains "quarter" %}DATE_ADD(${date_quarter_date}, INTERVAL 1 QUARTER)
+      {% elsif fact.period_passthrough._sql contains "year" %}DATE_ADD(${date_year_date}, INTERVAL 1 YEAR)
+      {% endif %} ;;
+    allow_fill: no
+  }
   dimension: date_period_dynamic_grain {
     hidden: yes
     type: date
