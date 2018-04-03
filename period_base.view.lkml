@@ -40,7 +40,7 @@ view: period_base {
     }
     allowed_value: {
       value: "week"
-      label: "Week"
+      label: "Week (Mon - Sun)"
     }
     allowed_value: {
       value: "month"
@@ -56,19 +56,19 @@ view: period_base {
     }
     allowed_value: {
       value: "7day"
-      label: "Last Week"
+      label: "Last 7 Days"
     }
     allowed_value: {
       value: "28day"
-      label: "Last Month"
+      label: "Last 28 Days"
     }
     allowed_value: {
       value: "91day"
-      label: "Last Quarter"
+      label: "Last 91 Days"
     }
     allowed_value: {
       value: "364day"
-      label: "Last Year"
+      label: "Last 364 Days"
     }
     default_value: "28day"
   }
