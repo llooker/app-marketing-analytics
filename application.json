@@ -59,6 +59,7 @@
                 "singleValueReference": { "key": "click_through_rate" }
               }
             ],
+            "defaultDashboard": "cost_per_conversion",
             "filters": [
               {
                 "defaultValue": "quarter",
