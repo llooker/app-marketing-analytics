@@ -22,6 +22,14 @@ view: date_base {
     sql: ${_date} ;;
   }
 
+  dimension: date_week_date {
+    group_label: "Event"
+    label: "Week Date"
+    hidden: yes
+    type: date
+    sql: DATE_TRUNC(${date_date}, WEEK) ;;
+  }
+
   dimension: date_month_date {
     group_label: "Event"
     label: "Month Date"
@@ -130,10 +138,28 @@ view: date_base {
     sql: DATE_ADD(${date_date}), INTERVAL -1 QUARTER) ;;
   }
 
+  dimension: date_next_week {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}), INTERVAL 1 WEEK) ;;
+  }
+
+  dimension: date_next_month {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}), INTERVAL 1 MONTH) ;;
+  }
+
   dimension: date_next_quarter {
     hidden: yes
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL 1 QUARTER) ;;
+  }
+
+  dimension: date_next_year {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}), INTERVAL 1 YEAR) ;;
   }
 
   dimension: date_last_year {
