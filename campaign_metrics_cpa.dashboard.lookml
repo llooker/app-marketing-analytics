@@ -1094,7 +1094,7 @@
   - name: Period
     title: Period
     type: field_filter
-    default_value: 28day
+    default_value: 28_day
     allow_multiple_values: true
     required: true
     model: looker_app_google_adwords
