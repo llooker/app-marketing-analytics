@@ -15,7 +15,6 @@ include: "keyword.view"
 include: "keyword_fact.view"
 include: "period_fact.view"
 include: "ad_impressions.view"
-include: "reports.view"
 include: "recent_changes.view"
 
 include: "combined_ad_impressions.view"
@@ -92,39 +91,6 @@ explore: ad_impressions {
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
       ${fact.date_date} = ${customer.date_date} ;;
-    relationship: many_to_one
-  }
-}
-
-explore: reports  {
-  hidden: yes
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${reports.campaign_id} = ${campaign.campaign_id} AND
-      ${reports.external_customer_id} = ${campaign.external_customer_id};;
-    relationship: many_to_one
-  }
-  join: ad_group {
-    view_label: "Ad Groups"
-    sql_on: ${reports.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${reports.campaign_id} = ${campaign.campaign_id} AND
-      ${reports.external_customer_id} = ${ad_group.external_customer_id};;
-    relationship: many_to_one
-  }
-  join: ad {
-    view_label: "Ads"
-    sql_on: ${reports.creative_id} = ${ad.creative_id} AND
-      ${reports.ad_group_id} = ${ad.ad_group_id} AND
-      ${reports.campaign_id} = ${campaign.campaign_id} AND
-      ${reports.external_customer_id} = ${ad.external_customer_id};;
-    relationship:  many_to_one
-  }
-  join: keyword {
-    view_label: "Keywords"
-    sql_on: ${reports.criterion_id} = ${keyword.criterion_id} AND
-      ${reports.ad_group_id} = ${keyword.ad_group_id} AND
-      ${reports.campaign_id} = ${campaign.campaign_id} AND
-      ${reports.external_customer_id} = ${keyword.external_customer_id} ;;
     relationship: many_to_one
   }
 }
