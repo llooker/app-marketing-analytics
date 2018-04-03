@@ -8,11 +8,11 @@ explore: campaign_date_fact {
   hidden: yes
   from: campaign_date_fact
   view_name: fact
-  label: "Campaign Date Fact"
-  view_label: "Campaign Date Fact"
+  label: "Campaign This Period"
+  view_label: "Campaign This Period"
   join: last_fact {
     from: campaign_date_fact
-    view_label: "Last Period Campaign Fact"
+    view_label: "Campaign Prior Period"
     sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
       ${fact.campaign_id} = ${last_fact.campaign_id} AND
       ${fact.date_last_period} = ${last_fact.date_period} AND
