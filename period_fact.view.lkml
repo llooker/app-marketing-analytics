@@ -13,8 +13,8 @@ explore: period_fact {
   hidden: yes
   from: period_fact
   view_name: fact
-  label: "Period Fact"
-  view_label: "Period Fact"
+  label: "This Period"
+  view_label: "This Period"
 
   join: customer {
     view_label: "Customer"
@@ -58,7 +58,7 @@ explore: period_fact {
 
   join: last_fact {
     from: period_fact
-    view_label: "Last Period Fact"
+    view_label: "Prior Period"
     sql_on:
       ${fact.date_last_period} = ${last_fact.date_period}
       AND ${fact.date_day_of_period} = ${last_fact.date_day_of_period}
@@ -77,7 +77,7 @@ explore: period_fact {
   }
   join: parent_fact {
     from: period_fact
-    view_label: "Parent Period Fact"
+    view_label: "Parent This Period"
     sql_on:
       ${fact.date_period} = ${parent_fact.date_period}
       AND ${fact.date_day_of_period} = ${last_fact.date_day_of_period}

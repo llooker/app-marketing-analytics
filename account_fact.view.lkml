@@ -8,9 +8,11 @@ explore: account_date_fact {
   hidden: yes
   from: account_date_fact
   view_name: fact
+  label: "Account This Period"
+  view_label: "Account This Period"
   join: last_fact {
     from: account_date_fact
-    view_label: "Last Period Account Fact"
+    view_label: "Account Prior Period"
     sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
       ${fact.date_last_period} = ${last_fact.date_period} AND
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;

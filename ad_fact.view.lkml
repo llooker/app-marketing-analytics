@@ -5,11 +5,11 @@ explore: ad_date_fact {
   hidden: yes
   from: ad_date_fact
   view_name: fact
-  label: "Ad Date Fact"
-  view_label: "Ad Date Fact"
+  label: "Ad This Period"
+  view_label: "Ad This Period"
   join: last_fact {
     from: ad_date_fact
-    view_label: "Last Period Ad Fact"
+    view_label: "Ad Last Period"
     sql_on: ${fact.external_customer_id} = ${last_fact.external_customer_id} AND
       ${fact.campaign_id} = ${last_fact.campaign_id} AND
       ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
@@ -21,7 +21,7 @@ explore: ad_date_fact {
   }
   join: parent_fact {
     from: ad_group_date_fact
-    view_label: "Ad Group Fact"
+    view_label: "Ad Group This Period"
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.campaign_id} = ${parent_fact.campaign_id} AND
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
