@@ -842,7 +842,7 @@
   - title: Ad Group Cost Per Conversion Change
     name: Ad Group Cost Per Conversion Change
     model: looker_app_google_adwords
-    explore: ad_impressions
+    explore: period_fact
     type: looker_bar
     fields:
     - ad_group.ad_group_name
