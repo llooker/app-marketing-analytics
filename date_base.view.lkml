@@ -194,6 +194,18 @@ view: date_base {
     sql: ABS(MOD(${date_days_prior}, 28)) ;;
   }
 
+  dimension: date_day_of_91_days_prior {
+    hidden: yes
+    type: number
+    sql: ABS(MOD(${date_days_prior}, 91)) ;;
+  }
+
+  dimension: date_day_of_364_days_prior {
+    hidden: yes
+    type: number
+    sql: ABS(MOD(${date_days_prior}, 364)) ;;
+  }
+
   dimension: date_date_7_days_prior {
     hidden: yes
     type: date
@@ -204,6 +216,18 @@ view: date_base {
     hidden: yes
     type: date
     sql: DATE_ADD(${date_date}, INTERVAL -(MOD(28-${date_day_of_28_days_prior}, 28)) DAY) ;;
+  }
+
+  dimension: date_date_91_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(91-${date_day_of_91_days_prior}, 91)) DAY) ;;
+  }
+
+  dimension: date_date_364_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(364-${date_day_of_364_days_prior}, 364)) DAY) ;;
   }
 
   measure: date_max_day_of_week_index {
