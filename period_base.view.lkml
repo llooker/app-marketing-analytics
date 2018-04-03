@@ -56,11 +56,19 @@ view: period_base {
     }
     allowed_value: {
       value: "7day"
-      label: "7 days"
+      label: "Last Week"
     }
     allowed_value: {
       value: "28day"
-      label: "28 days"
+      label: "Last Month"
+    }
+    allowed_value: {
+      value: "91day"
+      label: "Last Quarter"
+    }
+    allowed_value: {
+      value: "364day"
+      label: "Last Year"
     }
     default_value: "28day"
   }
@@ -75,6 +83,8 @@ view: period_base {
     sql: {% if fact.period_passthrough._sql contains "day" %}
         {% if fact.period_passthrough._sql == "7day" %}${date_date_7_days_prior}
         {% elsif fact.period_passthrough._sql == "28day" %}${date_date_28_days_prior}
+        {% elsif fact.period_passthrough._sql == "91day" %}${date_date_91_days_prior}
+        {% elsif fact.period_passthrough._sql == "364day" %}${date_date_364_days_prior}
         {% else %}${date_date}
         {% endif %}
       {% elsif fact.period_passthrough._sql contains "week" %}${date_week}
@@ -91,6 +101,8 @@ view: period_base {
     sql: {% if fact.period_passthrough._sql contains "day" %}
         {% if fact.period_passthrough._sql == "7day" %}DATE_ADD(${date_date_7_days_prior}, INTERVAL 7 DAY)
         {% elsif fact.period_passthrough._sql == "28day" %}DATE_ADD(${date_date_28_days_prior}, INTERVAL 28 DAY)
+        {% elsif fact.period_passthrough._sql == "91day" %}DATE_ADD(${date_date_91_days_prior}, INTERVAL 91 DAY)
+        {% elsif fact.period_passthrough._sql == "364day" %}DATE_ADD(${date_date_364_days_prior}, INTERVAL 364 DAY)
         {% else %}${date_date}
         {% endif %}
       {% elsif fact.period_passthrough._sql contains "week" %}DATE_ADD(${date_week_date}, INTERVAL 1 WEEK)
@@ -109,10 +121,10 @@ view: period_base {
     or fact.period_passthrough._sql contains 'week'
     or fact.period_passthrough._sql contains 'day' %}Date{% endif %}"
     sql: {% if fact.period_passthrough._sql contains "year"
-        or fact.period_passthrough._sql contains "quarter" %}${date_week}
-      {% elsif fact.period_passthrough._sql contains "month"
-        or fact.period_passthrough._sql contains "week"
-        or fact.period_passthrough._sql contains "day" %}${date_date}
+        or fact.period_passthrough._sql contains "quarter"
+        or fact.period_passthrough._sql == "364day"
+        or fact.period_passthrough._sql == "91day"%}${date_week}
+      {% else %}${date_date}
       {% endif %} ;;
     allow_fill: no
   }
@@ -129,6 +141,8 @@ view: period_base {
     sql: {% if fact.period_passthrough._sql contains "day" %}
         {% if fact.period_passthrough._sql == "7day" %}${date_day_of_7_days_prior}
         {% elsif fact.period_passthrough._sql == "28day" %}${date_day_of_28_days_prior}
+        {% elsif fact.period_passthrough._sql == "91day" %}${date_day_of_91_days_prior}
+        {% elsif fact.period_passthrough._sql == "364day" %}${date_day_of_364_days_prior}
         {% else %}0
         {% endif %}
       {% elsif fact.period_passthrough._sql contains "week" %}${date_day_of_week_index}
@@ -141,7 +155,7 @@ view: period_base {
     group_label: "Event"
     label: "Prior Period"
     type: date
-    sql: DATE_ADD(${date_period}, INTERVAL -{% if fact.period_passthrough._sql == "7day" %}7{% elsif fact.period_passthrough._sql == "28day" %}28{% else %}1{% endif %} {% if fact.period_passthrough._sql contains "day" %}day{% elsif fact.period_passthrough._sql contains "week" %}week{% elsif fact.period_passthrough._sql contains "month" %}month{% elsif fact.period_passthrough._sql contains "quarter" %}quarter{% elsif fact.period_passthrough._sql contains "year" %}year{% endif %}) ;;
+    sql: DATE_ADD(${date_period}, INTERVAL -{% if fact.period_passthrough._sql == "7day" %}7{% elsif fact.period_passthrough._sql == "28day" %}28{% elsif fact.period_passthrough._sql == "91day" %}91{% elsif fact.period_passthrough._sql == "364day" %}364{% else %}1{% endif %} {% if fact.period_passthrough._sql contains "day" %}day{% elsif fact.period_passthrough._sql contains "week" %}week{% elsif fact.period_passthrough._sql contains "month" %}month{% elsif fact.period_passthrough._sql contains "quarter" %}quarter{% elsif fact.period_passthrough._sql contains "year" %}year{% endif %}) ;;
     allow_fill: no
   }
   dimension: less_than_current_day_of_period {
