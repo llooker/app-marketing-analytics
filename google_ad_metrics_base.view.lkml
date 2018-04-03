@@ -32,7 +32,7 @@ view: google_ad_metrics_base {
     value_format_name: usd
     link: {
       label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,ad_impressions.average_cost_per_interaction&f[ad_impressions.date_date]=this quarter"
+      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,fact.average_cost_per_interaction&f[fact.date_date]=this quarter"
     }
   }
 

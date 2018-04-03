@@ -147,7 +147,9 @@
                   "description": "Increase the bid on these Ads to drive more conversions.",
                   "name": "Ad Opportunities",
                   "permalink": "optimization-ad-opportunities",
-                  "singleValueReference": { "key": "ads_opportunities" },
+                  "singleValueReference": {
+                    "key": "ads_opportunities"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -173,7 +175,9 @@
                   "description": "Increase the bid on these Keywords to drive more conversions.",
                   "name": "Keyword Opportunities",
                   "permalink": "optimization-keyword-opportunities",
-                  "singleValueReference": { "key": "keywords_opportunities" },
+                  "singleValueReference": {
+                    "key": "keywords_opportunities"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -199,7 +203,9 @@
                   "description": "Increase the bid on these Ad Groups to drive more conversions.",
                   "name": "Ad Group Opportunities",
                   "permalink": "optimization-ad-group-opportunities",
-                  "singleValueReference": { "key": "ad_groups_opportunities" },
+                  "singleValueReference": {
+                    "key": "ad_groups_opportunities"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -232,7 +238,9 @@
                   "description": "Ads that have had recent big performance changes.",
                   "name": "Ad Performance Changes",
                   "permalink": "ad-movers",
-                  "singleValueReference": { "key": "ads_big_movers" },
+                  "singleValueReference": {
+                    "key": "ads_big_movers"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -255,20 +263,20 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     },
                     {
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ],
                       "field": "ad_group.ad_group_name",
                       "name": "Ad Group",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ]
                     }
                   ]
                 },
@@ -276,7 +284,9 @@
                   "description": "Keywords that have had recent big performance changes.",
                   "name": "Keyword Performance Changes",
                   "permalink": "keyword-movers",
-                  "singleValueReference": { "key": "keywords_big_movers" },
+                  "singleValueReference": {
+                    "key": "keywords_big_movers"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -299,20 +309,20 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     },
                     {
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ],
                       "field": "ad_group.ad_group_name",
                       "name": "Ad Group",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ]
                     }
                   ]
                 },
@@ -320,7 +330,9 @@
                   "description": "Ad Groups that have had recent big performance changes.",
                   "name": "Ad Group Performance Changes",
                   "permalink": "ad-group-movers",
-                  "singleValueReference": { "key": "ad_groups_big_movers" },
+                  "singleValueReference": {
+                    "key": "ad_groups_big_movers"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -343,12 +355,12 @@
                   ],
                   "filters": [
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     }
                   ]
                 }
@@ -363,7 +375,9 @@
                   "description": "Quickly find the ads that need to be paused or have their bid lowered.",
                   "name": "Underperforming Ads",
                   "permalink": "underperforming-ads",
-                  "singleValueReference": { "key": "ads_underpeforming" },
+                  "singleValueReference": {
+                    "key": "ads_underpeforming"
+                  },
                   "variations": [
                     {
                       "description": "",
@@ -386,27 +400,27 @@
                   ],
                   "filters": [
                     {
-                      "defaultValue": "quarter",
                       "field": "fact.this_timeframe",
                       "name": "Time Frame",
+                      "type": "TimeFrame",
+                      "defaultValue": "quarter",
                       "filterStrings": {
                         "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
-                      },
-                      "type": "TimeFrame"
+                      }
                     },
                     {
-                      "facetedBy": [],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": []
                     },
                     {
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ],
                       "field": "ad_group.ad_group_name",
                       "name": "Ad Group",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ]
                     }
                   ]
                 },
@@ -414,11 +428,13 @@
                   "description": "Quickly find the keywords that need to be paused or have their bid lowered.",
                   "name": "Underperforming Keywords",
                   "permalink": "underperforming-keywords",
-                  "singleValueReference": { "key": "keywords_underpeforming" },
+                  "singleValueReference": {
+                    "key": "keywords_underpeforming"
+                  },
                   "variations": [
                     {
                       "description": "",
-                      "exploreParams": "looker_app_google_adwords/keyword_fact_this_timeframe?fields=keyword.criteria,ad_group.ad_group_name,campaign.campaign_name,fact.average_cost_per_conversion,parent_fact.average_cost_per_conversion,fact.average_cost_per_conversion_delta_ratio&f[fact.this_timeframe]=this+quarter&f[last_fact.last_timeframe]=1+quarter+ago&f[parent_fact.this_timeframe]=this+quarter&f[ad_group.ad_group_status]=ENABLED&f[campaign.campaign_status]=Active&f[fact.average_cost_per_conversion_delta_ratio]=%3E1.2&f[ad_group.ad_group_name]=&f[campaign.campaign_name]=&sorts=fact.average_cost_per_conversion_delta_ratio+desc&limit=50&query_timezone=America%2FLos_Angeles&vis=%7B%22show_view_names%22%3Afalse%2C%22show_row_numbers%22%3Atrue%2C%22truncate_column_names%22%3Afalse%2C%22hide_totals%22%3Afalse%2C%22hide_row_totals%22%3Afalse%2C%22table_theme%22%3A%22gray%22%2C%22limit_displayed_rows%22%3Atrue%2C%22enable_conditional_formatting%22%3Atrue%2C%22conditional_formatting_include_totals%22%3Afalse%2C%22conditional_formatting_include_nulls%22%3Afalse%2C%22type%22%3A%22table%22%2C%22stacking%22%3A%22%22%2C%22show_value_labels%22%3Afalse%2C%22label_density%22%3A25%2C%22legend_position%22%3A%22center%22%2C%22x_axis_gridlines%22%3Afalse%2C%22y_axis_gridlines%22%3Atrue%2C%22y_axis_combined%22%3Atrue%2C%22show_y_axis_labels%22%3Atrue%2C%22show_y_axis_ticks%22%3Atrue%2C%22y_axis_tick_density%22%3A%22default%22%2C%22y_axis_tick_density_custom%22%3A5%2C%22show_x_axis_label%22%3Atrue%2C%22show_x_axis_ticks%22%3Atrue%2C%22x_axis_scale%22%3A%22auto%22%2C%22y_axis_scale_mode%22%3A%22linear%22%2C%22x_axis_reversed%22%3Afalse%2C%22y_axis_reversed%22%3Afalse%2C%22ordering%22%3A%22none%22%2C%22show_null_labels%22%3Afalse%2C%22show_totals_labels%22%3Afalse%2C%22show_silhouette%22%3Afalse%2C%22totals_color%22%3A%22%23808080%22%2C%22hidden_fields%22%3Anull%2C%22series_types%22%3A%7B%7D%2C%22limit_displayed_rows_values%22%3A%7B%22show_hide%22%3A%22show%22%2C%22first_last%22%3A%22first%22%2C%22num_rows%22%3A%2210%22%7D%2C%22series_labels%22%3A%7B%22fact.average_cost_per_conversion%22%3A%22Cost+Per+Conversion%22%2C%22parent_fact.average_cost_per_conversion%22%3A%22Ad+Group+CPA%22%2C%22fact.average_cost_per_conversion_delta_ratio%22%3A%22CPA+Delta%22%7D%2C%22conditional_formatting%22%3A%5B%7B%22type%22%3A%22low+to+high%22%2C%22value%22%3Anull%2C%22background_color%22%3Anull%2C%22font_color%22%3Anull%2C%22palette%22%3A%7B%22name%22%3A%22White+to+Green%22%2C%22colors%22%3A%5B%22%23FFFFFF%22%2C%22%234FBC89%22%5D%7D%2C%22bold%22%3Afalse%2C%22italic%22%3Afalse%2C%22strikethrough%22%3Afalse%2C%22fields%22%3A%5B%22fact.average_cost_per_conversion_delta_ratio%22%5D%7D%5D%7D&filter_config=%7B%22fact.this_timeframe%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22this+quarter%22%7D%2C%7B%7D%5D%2C%22id%22%3A0%2C%22error%22%3Afalse%7D%5D%2C%22last_fact.last_timeframe%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%221+quarter+ago%22%7D%2C%7B%7D%5D%2C%22id%22%3A1%2C%22error%22%3Afalse%7D%5D%2C%22parent_fact.this_timeframe%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22this+quarter%22%7D%2C%7B%7D%5D%2C%22id%22%3A2%2C%22error%22%3Afalse%7D%5D%2C%22ad_group.ad_group_status%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22ENABLED%22%7D%2C%7B%7D%5D%2C%22id%22%3A4%2C%22error%22%3Afalse%7D%5D%2C%22campaign.campaign_status%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22Active%22%7D%2C%7B%7D%5D%2C%22id%22%3A5%2C%22error%22%3Afalse%7D%5D%2C%22fact.average_cost_per_conversion_delta_ratio%22%3A%5B%7B%22type%22%3A%22%5Cu003e%22%2C%22values%22%3A%5B%7B%22constant%22%3A%221.2%22%7D%2C%7B%7D%5D%2C%22id%22%3A7%2C%22error%22%3Afalse%7D%5D%2C%22ad_group.ad_group_name%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22%22%7D%2C%7B%7D%5D%2C%22id%22%3A8%2C%22error%22%3Afalse%7D%5D%2C%22campaign.campaign_name%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22%22%7D%2C%7B%7D%5D%2C%22id%22%3A9%2C%22error%22%3Afalse%7D%5D%7D&dynamic_fields=%5B%5D",
+                      "exploreParams": "looker_app_google_adwords/keyword_fact_this_timeframe?fields=keyword.criteria,ad_group.ad_group_name,campaign.campaign_name,fact.average_cost_per_conversion,parent_fact.average_cost_per_conversion,fact.average_cost_per_conversion_delta_ratio&f[fact.this_timeframe]=this+quarter&f[last_fact.last_timeframe]=1+quarter+ago&f[parent_fact.this_timeframe]=this+quarter&f[ad_group.ad_group_status]=ENABLED&f[campaign.campaign_status]=Active&f[fact.average_cost_per_conversion_delta_ratio]=%3E1.2&f[ad_group.ad_group_name]=&f[campaign.campaign_name]=&sorts=fact.average_cost_per_conversion_delta_ratio+desc&limit=50&query_timezone=America%2FLos_Angeles&vis=%7B%22show_view_names%22%3Afalse%2C%22show_row_numbers%22%3Atrue%2C%22truncate_column_names%22%3Afalse%2C%22hide_totals%22%3Afalse%2C%22hide_row_totals%22%3Afalse%2C%22table_theme%22%3A%22gray%22%2C%22limit_displayed_rows%22%3Atrue%2C%22enable_conditional_formatting%22%3Atrue%2C%22conditional_formatting_include_totals%22%3Afalse%2C%22conditional_formatting_include_nulls%22%3Afalse%2C%22type%22%3A%22table%22%2C%22stacking%22%3A%22%22%2C%22show_value_labels%22%3Afalse%2C%22label_density%22%3A25%2C%22legend_position%22%3A%22center%22%2C%22x_axis_gridlines%22%3Afalse%2C%22y_axis_gridlines%22%3Atrue%2C%22y_axis_combined%22%3Atrue%2C%22show_y_axis_labels%22%3Atrue%2C%22show_y_axis_ticks%22%3Atrue%2C%22y_axis_tick_density%22%3A%22default%22%2C%22y_axis_tick_density_custom%22%3A5%2C%22show_x_axis_label%22%3Atrue%2C%22show_x_axis_ticks%22%3Atrue%2C%22x_axis_scale%22%3A%22auto%22%2C%22y_axis_scale_mode%22%3A%22linear%22%2C%22x_axis_reversed%22%3Afalse%2C%22y_axis_reversed%22%3Afalse%2C%22ordering%22%3A%22none%22%2C%22show_null_labels%22%3Afalse%2C%22show_totals_labels%22%3Afalse%2C%22show_silhouette%22%3Afalse%2C%22totals_color%22%3A%22%23808080%22%2C%22hidden_fields%22%3Anull%2C%22series_types%22%3A%7B%7D%2C%22limit_displayed_rows_values%22%3A%7B%22show_hide%22%3A%22show%22%2C%22first_last%22%3A%22first%22%2C%22num_rows%22%3A%2210%22%7D%2C%22series_labels%22%3A%7B%22fact.average_cost_per_conversion%22%3A%22Cost+Per+Conversion%22%2C%22parent_fact.average_cost_per_conversion%22%3A%22Ad+Group+CPA%22%2C%22fact.average_cost_per_conversion_delta_ratio%22%3A%22CPA+Delta%22%7D%2C%22conditional_formatting%22%3A%5B%7B%22type%22%3A%22low+to+high%22%2C%22value%22%3Anull%2C%22background_color%22%3Anull%2C%22font_color%22%3Anull%2C%22palette%22%3A%7B%22name%22%3A%22Red+to+White+to+Green%22%2C%22colors%22%3A%5B%22%23F36254%22%2C%22%23FFFFFF%22%2C%22%234FBC89%22%5D%7D%2C%22bold%22%3Afalse%2C%22italic%22%3Afalse%2C%22strikethrough%22%3Afalse%2C%22fields%22%3A%5B%22fact.average_cost_per_conversion_delta_ratio%22%5D%7D%5D%7D&filter_config=%7B%22fact.this_timeframe%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22this+quarter%22%7D%2C%7B%7D%5D%2C%22id%22%3A0%2C%22error%22%3Afalse%7D%5D%2C%22last_fact.last_timeframe%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%221+quarter+ago%22%7D%2C%7B%7D%5D%2C%22id%22%3A1%2C%22error%22%3Afalse%7D%5D%2C%22parent_fact.this_timeframe%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22this+quarter%22%7D%2C%7B%7D%5D%2C%22id%22%3A2%2C%22error%22%3Afalse%7D%5D%2C%22ad_group.ad_group_status%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22ENABLED%22%7D%2C%7B%7D%5D%2C%22id%22%3A4%2C%22error%22%3Afalse%7D%5D%2C%22campaign.campaign_status%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22Active%22%7D%2C%7B%7D%5D%2C%22id%22%3A5%2C%22error%22%3Afalse%7D%5D%2C%22fact.average_cost_per_conversion_delta_ratio%22%3A%5B%7B%22type%22%3A%22%5Cu003e%22%2C%22values%22%3A%5B%7B%22constant%22%3A%221.2%22%7D%2C%7B%7D%5D%2C%22id%22%3A7%2C%22error%22%3Afalse%7D%5D%2C%22ad_group.ad_group_name%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22%22%7D%2C%7B%7D%5D%2C%22id%22%3A8%2C%22error%22%3Afalse%7D%5D%2C%22campaign.campaign_name%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22%22%7D%2C%7B%7D%5D%2C%22id%22%3A9%2C%22error%22%3Afalse%7D%5D%7D&dynamic_fields=%5B%5D&origin=share-expanded",
                       "name": "by Cost Per Conversion",
                       "permalink": "worst-kw-by-cpa"
                     },
@@ -437,29 +453,29 @@
                   ],
                   "filters": [
                     {
-                      "defaultValue": "quarter",
                       "field": "fact.this_timeframe",
                       "name": "Time Frame",
+                      "type": "TimeFrame",
+                      "defaultValue": "quarter",
                       "filterStrings": {
                         "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
-                      },
-                      "type": "TimeFrame"
+                      }
                     },
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     },
                     {
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ],
                       "field": "ad_group.ad_group_name",
                       "name": "Ad Group",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        "campaign.campaign_name"
+                      ]
                     }
                   ]
                 },
@@ -467,7 +483,9 @@
                   "description": "Quickly find the ad groups that need to be paused or have their bid lowered.",
                   "name": "Underperforming Ad Groups",
                   "permalink": "underperforming-ad-groups",
-                  "singleValueReference": { "key": "ad_groups_underpeforming" },
+                  "singleValueReference": {
+                    "key": "ad_groups_underpeforming"
+                  },
                   "variations": [
                     {
                       "description": "No Description",
@@ -490,21 +508,21 @@
                   ],
                   "filters": [
                     {
-                      "defaultValue": "quarter",
                       "field": "fact.this_timeframe",
                       "name": "Time Frame",
+                      "type": "TimeFrame",
+                      "defaultValue": "quarter",
                       "filterStrings": {
                         "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
-                      },
-                      "type": "TimeFrame"
+                      }
                     },
                     {
-                      "facetedBy": [
-                        ""
-                      ],
                       "field": "campaign.campaign_name",
                       "name": "Campaign",
-                      "type": "Select"
+                      "type": "Select",
+                      "facetedBy": [
+                        ""
+                      ]
                     }
                   ]
                 }
