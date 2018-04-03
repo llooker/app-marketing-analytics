@@ -70,7 +70,7 @@
             "defaultDashboard": "cost_per_conversion",
             "filters": [
               {
-                "defaultValue": "28^_day",
+                "defaultValue": "28 day",
                 "field": "fact.period",
                 "name": "Time Frame",
                 "type": "TimeFrame",
