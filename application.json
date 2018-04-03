@@ -566,9 +566,6 @@
   ],
   "singleValuesSources": [
     {
-      "model": "looker_app_google_adwords",
-      "view": "ad_fact_this_timeframe",
-      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
       "fields": {
         "ads_opportunities": {
           "value": "fact.cost_per_conversion_count_good"
@@ -579,12 +576,12 @@
         "ads_big_movers": {
           "value": "fact.cost_per_conversion_count_big_mover"
         }
-      }
+      },
+      "model": "looker_app_google_adwords",
+      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
+      "view": "ad_fact_this_timeframe"
     },
     {
-      "model": "looker_app_google_adwords",
-      "view": "keyword_fact_this_timeframe",
-      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
       "fields": {
         "keywords_opportunities": {
           "value": "fact.cost_per_conversion_count_good"
@@ -595,12 +592,12 @@
         "keywords_big_movers": {
           "value": "fact.cost_per_conversion_count_big_mover"
         }
-      }
+      },
+      "model": "looker_app_google_adwords",
+      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
+      "view": "keyword_fact_this_timeframe"
     },
     {
-      "model": "looker_app_google_adwords",
-      "view": "ad_group_fact_this_timeframe",
-      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
       "fields": {
         "ad_groups_opportunities": {
           "value": "fact.cost_per_conversion_count_good"
@@ -611,7 +608,10 @@
         "ad_groups_big_movers": {
           "value": "fact.cost_per_conversion_count_big_mover"
         }
-      }
+      },
+      "model": "looker_app_google_adwords",
+      "params": "f[fact.this_timeframe]=this quarter&f[last_fact.last_timeframe]=1 quarter ago&f[parent_fact.this_timeframe]=this quarter&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
+      "view": "ad_group_fact_this_timeframe"
     }
   ]
 }
