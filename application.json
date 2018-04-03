@@ -70,14 +70,14 @@
             "defaultDashboard": "cost_per_conversion",
             "filters": [
               {
-                "defaultValue": "28_day",
+                "defaultValue": "28^_day",
                 "field": "fact.period",
                 "name": "Time Frame",
                 "type": "TimeFrame",
                 "filterStrings": {
                   "explore": "f[fact.data_date]=REPLACE&f[fact.period]=UNDERSCORED",
                   "dashboard": "Time Range=REPLACEs&Period=UNDERSCORED"
-                },
+                }
               },
               {
                 "autoSuggest": {
