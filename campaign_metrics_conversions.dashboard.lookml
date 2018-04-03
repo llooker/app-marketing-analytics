@@ -1,11 +1,6 @@
 - dashboard: campaign_metrics_conversions
+  extends: campaign_metrics_base
   title: Campaign Metrics - Conversions
-  layout: newspaper
-  embed_style:
-    background_color: "#ffffff"
-    title_color: "#3a4245"
-    tile_text_color: "#3a4245"
-    text_tile_text_color: ''
   elements:
   - title: Conversions To Date
     name: Conversions To Date
@@ -131,7 +126,7 @@
     - fact.average_cost_per_click
     series_labels:
       fact.total_conversions: Conversions
-      fact.total_clicks: Interactions
+      fact.total_clicks: Clicks
       fact.average_conversion_rate: Conversion Rate
       fact.average_cost_per_conversion: Cost Per Conversion
     hidden_fields: []
