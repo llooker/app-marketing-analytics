@@ -145,7 +145,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -225,7 +225,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -305,7 +305,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -428,7 +428,7 @@
     - fact.date_day_of_week 0
     - fact.hour_of_day
     limit: 500
-    show_view_names: true
+    show_view_names: false
     show_row_numbers: false
     truncate_column_names: false
     hide_totals: false
@@ -521,7 +521,7 @@
       __LINE_NUM: 606
     series_labels:
       fact.hour_of_day: Hour of Day
-      fact.total_conversions: Conversions
+      fact.average_conversion_rate: "-"
       fact.date_day_of_week: Day of Week
     listen:
       Campaign: campaign.campaign_name
@@ -549,7 +549,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -672,7 +672,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
