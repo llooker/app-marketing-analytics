@@ -76,7 +76,7 @@ view: period_base {
     type: date
     label_from_parameter: period
     group_label: "Event"
-    sql: {% if fact.period._parameter_value contains "day" %}
+    sql: TIMESTAMP({% if fact.period._parameter_value contains "day" %}
         {% if fact.period._parameter_value == "'7 day'" %}${date_date_7_days_prior}
         {% elsif fact.period._parameter_value == "'28 day'" %}${date_date_28_days_prior}
         {% elsif fact.period._parameter_value == "'91 day'" %}${date_date_91_days_prior}
@@ -87,14 +87,14 @@ view: period_base {
       {% elsif fact.period._parameter_value contains "month" %}${date_month_date}
       {% elsif fact.period._parameter_value contains "quarter" %}${date_quarter_date}
       {% elsif fact.period._parameter_value contains "year" %}${date_year_date}
-      {% endif %} ;;
+      {% endif %}) ;;
     allow_fill: no
   }
   dimension: date_end_of_period {
     type: date
     label_from_parameter: period
     group_label: "Event"
-    sql: {% if fact.period._parameter_value contains "day" %}
+    sql: TIMESTAMP({% if fact.period._parameter_value contains "day" %}
         {% if fact.period._parameter_value == "'7 day'" %}DATE_ADD(${date_date_7_days_prior}, INTERVAL 7 DAY)
         {% elsif fact.period._parameter_value == "'28 day'" %}DATE_ADD(${date_date_28_days_prior}, INTERVAL 28 DAY)
         {% elsif fact.period._parameter_value == "'91 day'" %}DATE_ADD(${date_date_91_days_prior}, INTERVAL 91 DAY)
@@ -105,7 +105,7 @@ view: period_base {
       {% elsif fact.period._parameter_value contains "month" %}DATE_ADD(${date_month_date}, INTERVAL 1 MONTH)
       {% elsif fact.period._parameter_value contains "quarter" %}DATE_ADD(${date_quarter_date}, INTERVAL 1 QUARTER)
       {% elsif fact.period._parameter_value contains "year" %}DATE_ADD(${date_year_date}, INTERVAL 1 YEAR)
-      {% endif %} ;;
+      {% endif %}) ;;
     allow_fill: no
   }
   dimension: date_period_dynamic_grain {
