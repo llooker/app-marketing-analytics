@@ -3,52 +3,52 @@ view: ad_metrics_parent_comparison_base {
 
   dimension: cost_delta {
     type: number
-    sql: IF(${parent_fact.cost} - ${fact.cost} <= 0, NULL, ${parent_fact.cost} - ${fact.cost}) ;;
+    sql: ${parent_fact.cost} - ${fact.cost} ;;
     group_label: "Parent Comparisons"
   }
   measure: total_cost_delta {
     type: number
-    sql: IF(${parent_fact.total_cost} - ${fact.total_cost} <= 0, NULL, ${parent_fact.total_cost} - ${fact.total_cost}) ;;
+    sql: ${parent_fact.total_cost} - ${fact.total_cost} ;;
     group_label: "Parent Comparisons"
   }
   dimension: impressions_delta {
     type: number
-    sql: IF(${parent_fact.impressions} - ${fact.impressions} <= 0, NULL, ${parent_fact.impressions} - ${fact.impressions}) ;;
+    sql: ${parent_fact.impressions} - ${fact.impressions} ;;
     group_label: "Parent Comparisons"
   }
   measure: total_impressions_delta {
     type: number
-    sql: IF(${parent_fact.total_impressions} - ${fact.total_impressions} <= 0, NULL, ${parent_fact.total_impressions} - ${fact.total_impressions}) ;;
+    sql: ${parent_fact.total_impressions} - ${fact.total_impressions} ;;
     group_label: "Parent Comparisons"
   }
   dimension: clicks_delta {
     type: number
-    sql: IF(${parent_fact.clicks} - ${fact.clicks} <= 0, NULL, ${parent_fact.clicks} - ${fact.clicks}) ;;
+    sql: ${parent_fact.clicks} - ${fact.clicks} ;;
     group_label: "Parent Comparisons"
   }
   measure: total_clicks_delta {
     type: number
-    sql: IF(${parent_fact.total_clicks} - ${fact.total_clicks} <= 0, NULL, ${parent_fact.total_clicks} - ${fact.total_clicks}) ;;
+    sql: ${parent_fact.total_clicks} - ${fact.total_clicks} ;;
     group_label: "Parent Comparisons"
   }
   dimension: conversions_delta {
     type: number
-    sql: IF(${parent_fact.conversions} - ${fact.conversions} <= 0, NULL, ${parent_fact.conversions} - ${fact.conversions}) ;;
+    sql: ${parent_fact.conversions} - ${fact.conversions} ;;
     group_label: "Parent Comparisons"
   }
   measure: total_conversions_delta {
     type: number
-    sql: IF(${parent_fact.total_conversions} - ${fact.total_conversions} <= 0, NULL, ${parent_fact.total_conversions} - ${fact.total_conversions}) ;;
+    sql: ${parent_fact.total_conversions} - ${fact.total_conversions} ;;
     group_label: "Parent Comparisons"
   }
   dimension: conversionvalue_delta {
     type: number
-    sql: IF(${parent_fact.conversionvalue} - ${fact.conversionvalue} <= 0, NULL, ${parent_fact.conversionvalue} - ${fact.conversionvalue}) ;;
+    sql: ${parent_fact.conversionvalue} - ${fact.conversionvalue} ;;
     group_label: "Parent Comparisons"
   }
   measure: total_conversionvalue_delta {
     type: number
-    sql: IF(${parent_fact.total_conversionvalue} - ${fact.total_conversionvalue} <= 0, NULL, ${parent_fact.total_conversionvalue} - ${fact.total_conversionvalue}) ;;
+    sql: ${parent_fact.total_conversionvalue} - ${fact.total_conversionvalue};;
     group_label: "Parent Comparisons"
   }
   dimension: click_rate_ratio {
@@ -98,7 +98,7 @@ view: ad_metrics_parent_comparison_base {
     sql: ${fact.total_cost_delta}*1.0 / NULLIF(${fact.total_clicks_delta},0) ;;
     group_label: "Parent Comparisons"
     value_format_name: usd
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_cost_per_click]
+    drill_fields: [fact.date_date, campaign.campaign_name, average_cost_per_click]
   }
   dimension: cost_per_impression_delta {
     type: number
@@ -205,8 +205,8 @@ view: ad_metrics_parent_comparison_base {
     ) /
     NULLIF(SQRT(
       ${parent_fact.click_rate}  *
-      (1 - ${parent_fact.click_rate}) *
-      ((1 / NULLIF(${fact.impressions},0)) + (1 / NULLIF(${fact.impressions_delta},0)))
+      (1 - IF(${parent_fact.click_rate}>1, NULL, ${parent_fact.click_rate})) *
+      ((1 / IF(${fact.impressions}<=0, NULL, ${fact.impressions})) + (1 / IF(${fact.impressions_delta}<=0, NULL, ${fact.impressions_delta})))
     ),0) ;;
     group_label: "Parent Comparisons"
     value_format_name: decimal_2
@@ -220,8 +220,8 @@ view: ad_metrics_parent_comparison_base {
     ) /
     NULLIF(SQRT(
       ${parent_fact.average_click_rate}  *
-      (1 - ${parent_fact.average_click_rate}) *
-      ((1 / NULLIF(${fact.total_impressions},0)) + (1 / NULLIF(${fact.total_impressions_delta},0)))
+      (1 - IF(${parent_fact.average_click_rate}>1, NULL, ${parent_fact.average_click_rate})) *
+      ((1 / IF(${fact.total_impressions}<=0, NULL, ${fact.total_impressions})) + (1 / IF(${fact.total_impressions_delta}<=0, NULL, ${fact.total_impressions_delta})))
     ),0) ;;
     group_label: "Parent Comparisons"
     value_format_name: decimal_2
@@ -257,8 +257,8 @@ view: ad_metrics_parent_comparison_base {
     ) /
     NULLIF(SQRT(
       ${parent_fact.conversion_rate} *
-      (1 - ${parent_fact.conversion_rate}) *
-      ((1 / NULLIF(${fact.clicks},0)) + (1 / NULLIF(${fact.clicks_delta},0)))
+      (1 - IF(${parent_fact.conversion_rate} > 1, NULL, ${parent_fact.conversion_rate})) *
+      ((1 / IF(${fact.clicks} <=0, NULL, ${fact.clicks})) + (1 / IF(${fact.clicks_delta}<=0, NULL, ${fact.clicks_delta})))
     ),0) ;;
     group_label: "Parent Comparisons"
     value_format_name: decimal_2
@@ -272,8 +272,8 @@ view: ad_metrics_parent_comparison_base {
     ) /
     NULLIF(SQRT(
       ${parent_fact.average_conversion_rate} *
-      (1 - ${parent_fact.average_conversion_rate}) *
-      ((1 / NULLIF(${fact.total_clicks},0)) + (1 / NULLIF(${fact.total_clicks_delta},0)))
+      (1 - IF(${parent_fact.average_conversion_rate} > 1, NULL, ${parent_fact.average_conversion_rate})) *
+      ((1 / IF(${fact.total_clicks} <=0, NULL, ${fact.total_clicks})) + (1 / IF(${fact.total_clicks_delta}<=0, NULL, ${fact.total_clicks_delta})))
     ),0) ;;
     group_label: "Parent Comparisons"
     value_format_name: decimal_2
@@ -427,7 +427,13 @@ view: ad_metrics_parent_comparison_base {
       click_rate_count_good,
       cost_per_conversion_count_bad,
       conversion_rate_count_bad,
-      click_rate_count_bad
+      click_rate_count_bad,
+      click_rate_good,
+      cost_per_conversion_good,
+      conversion_rate_good,
+      click_rate_bad,
+      cost_per_conversion_bad,
+      conversion_rate_bad
     ]
   }
 

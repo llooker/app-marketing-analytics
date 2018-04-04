@@ -1,49 +1,36 @@
 include: "ad_metrics_base.view"
-include: "ad_group.view"
-include: "campaign_fact.view"
+include: "period_fact.view"
 include: "date_base.view"
+include: "period_base.view"
 
 include: "fb_ads_insights_platform_and_device.view"
-include: "fb_adsets.view"
-include: "fb_campaigns.view"
 
 view: combined_ad_impressions_base {
-  extends: [ad_metrics_base, date_base]
+  extends: [ad_metrics_base, date_base, period_base]
 
   dimension: _date {
     hidden: yes
-    sql: TIMESTAMP(${TABLE}._date) ;;
+    type: date_raw
   }
   dimension: account_name {}
-  dimension: account_id {}
+  dimension: account_id {
+    hidden: yes
+  }
   dimension: campaign_name {}
-  dimension: campaign_id {}
+  dimension: campaign_id {
+    hidden: yes
+  }
   dimension: ad_group_name {}
-  dimension: ad_group_id {}
+  dimension: ad_group_id {
+    hidden: yes
+  }
   dimension: device {}
 }
 
 explore: google_adwords_ad_impressions {
   hidden: yes
-
-  join: customer {
-    view_label: "Customer"
-    sql_on: ${google_adwords_ad_impressions.account_id} = ${customer.external_customer_id} AND
-      ${google_adwords_ad_impressions.date_date} = ${customer.date_date} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${google_adwords_ad_impressions.campaign_id} = ${campaign.campaign_id} AND
-      ${google_adwords_ad_impressions.date_date} = ${campaign.date_date} ;;
-    relationship: many_to_one
-  }
-  join: ad_group {
-    view_label: "Ad Group"
-    sql_on: ${google_adwords_ad_impressions.campaign_id} = ${ad_group.ad_group_id} AND
-      ${google_adwords_ad_impressions.date_date} = ${ad_group.date_date}  ;;
-    relationship: many_to_one
-  }
+  from: google_adwords_ad_impressions
+  view_name: fact
 }
 
 view: google_adwords_ad_impressions {
@@ -52,34 +39,27 @@ view: google_adwords_ad_impressions {
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
-      column: _date { field: ad_impressions.date_date}
+      column: _date { field: fact.date_date}
       column: account_name { field: customer.account_descriptive_name }
-      column: account_id { field: ad_impressions.external_customer_id_string }
+      column: account_id { field: fact.external_customer_id_string }
       column: campaign_name { field: campaign.campaign_name }
-      column: campaign_id { field: ad_impressions.campaign_id_string }
+      column: campaign_id { field: fact.campaign_id_string }
       column: ad_group_name { field: ad_group.ad_group_name }
-      column: ad_group_id { field: ad_impressions.ad_group_id_string }
-      column: device {field: ad_impressions.device_type }
-      column: cost { field: ad_impressions.total_cost }
-      column: impressions { field: ad_impressions.total_impressions }
-      column: clicks { field: ad_impressions.total_clicks }
-      column: conversions { field: ad_impressions.total_conversions }
-      column: conversionvalue { field: ad_impressions.total_conversionvalue }
+      column: ad_group_id { field: fact.ad_group_id_string }
+      column: device {field: fact.device_type }
+      column: cost { field: fact.total_cost }
+      column: impressions { field: fact.total_impressions }
+      column: clicks { field: fact.total_clicks }
+      column: conversions { field: fact.total_conversions }
+      column: conversionvalue { field: fact.total_conversionvalue }
     }
   }
 }
 
 explore: facebook_ad_impressions {
   hidden: yes
-
-  join: campaigns {
-    sql_on: ${facebook_ad_impressions.campaign_id} = ${campaigns.id} ;;
-    relationship: many_to_one
-  }
-  join: adsets {
-    sql_on: ${facebook_ad_impressions.ad_group_id} = ${adsets.id} ;;
-    relationship: many_to_one
-  }
+  from: facebook_ad_impressions
+  view_name: fact
 }
 
 view: facebook_ad_impressions {
@@ -108,6 +88,8 @@ view: facebook_ad_impressions {
 
 explore: combined_ad_impressions {
   hidden: yes
+  from: combined_ad_impressions
+  view_name: fact
 }
 view: combined_ad_impressions {
   extends: [combined_ad_impressions_base]

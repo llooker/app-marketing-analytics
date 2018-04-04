@@ -80,7 +80,7 @@ view: ad_metrics_base {
     type: number
     sql: ${total_clicks}*1.0/nullif(${total_impressions},0) ;;
     value_format_name: percent_2
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_click_rate]
+    drill_fields: [fact.date_date, campaign.campaign_name, average_click_rate]
   }
 
   measure: average_cost_per_conversion {
@@ -97,7 +97,7 @@ view: ad_metrics_base {
     type: number
     sql: ${total_cost}*1.0 / NULLIF(${total_clicks},0) ;;
     value_format_name: usd
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_cost_per_click]
+    drill_fields: [fact.date_date, campaign.campaign_name, average_cost_per_click]
   }
 
   measure: average_cost_per_impression {
@@ -114,13 +114,13 @@ view: ad_metrics_base {
     type: number
     sql: ${total_conversions}*1.0 / NULLIF(${total_clicks},0) ;;
     value_format_name: percent_2
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, average_conversion_rate]
+    drill_fields: [fact.date_date, campaign.campaign_name, average_conversion_rate]
   }
 
   measure: cumulative_spend {
     type: running_total
     sql: ${total_cost} ;;
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost]
+    drill_fields: [fact.date_date, campaign.campaign_name, fact.total_cost]
     value_format_name: usd_0
     direction: "column"
   }
@@ -128,7 +128,7 @@ view: ad_metrics_base {
   measure: cumulative_conversions {
     type: running_total
     sql: ${total_conversions} ;;
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, ad_impressions.total_cost]
+    drill_fields: [fact.date_date, campaign.campaign_name, fact.total_cost]
     value_format_name: decimal_0
     direction: "column"
   }
@@ -139,7 +139,7 @@ view: ad_metrics_base {
     type: sum
     sql: ${clicks} ;;
     value_format_name: decimal_0
-    drill_fields: [ad_impressions.date_date, campaign.campaign_name, total_clicks]
+    drill_fields: [fact.date_date, campaign.campaign_name, total_clicks]
   }
 
   measure: total_conversions {

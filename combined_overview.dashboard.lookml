@@ -12,65 +12,65 @@
   - title: Conversions
     name: Conversions
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
+    explore: combined_ad_group_date_fact
     type: single_value
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_cost
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
-        \ / ${combined_last_fact.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
-        \ / ${combined_last_fact.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
-        \ / ${combined_last_fact.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
-        \ / ${combined_last_fact.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -89,7 +89,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -108,16 +108,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_last_fact.total_cost
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - conversion_rate_percent_change
     - cost_per_click_percent_change
@@ -125,8 +125,7 @@
     - total_cost_change
     single_value_title: ''
     listen:
-      This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_last_fact.last_timeframe
+      Period: fact.period
     row: 0
     col: 6
     width: 6
@@ -134,65 +133,65 @@
   - title: Cost Per Conversion
     name: Cost Per Conversion
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
+    explore: combined_ad_group_date_fact
     type: single_value
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_cost
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
-        \ / ${combined_last_fact.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
-        \ / ${combined_last_fact.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
-        \ / ${combined_last_fact.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
-        \ / ${combined_last_fact.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -211,7 +210,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -230,16 +229,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_last_fact.total_cost
+    - last_fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - conversion_rate_percent_change
     - cost_per_click_percent_change
@@ -247,8 +246,7 @@
     - total_cost_change
     single_value_title: Per Conversion
     listen:
-      This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_last_fact.last_timeframe
+      Period: fact.period
     row: 0
     col: 12
     width: 6
@@ -256,65 +254,65 @@
   - title: Conversion Rate
     name: Conversion Rate
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
+    explore: combined_ad_group_date_fact
     type: single_value
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_cost
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
-        \ / ${combined_last_fact.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
-        \ / ${combined_last_fact.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
-        \ / ${combined_last_fact.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
-        \ / ${combined_last_fact.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -333,7 +331,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -352,16 +350,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_last_fact.total_cost
+    - last_fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - cost_per_click_percent_change
     - cost_per_conversion_percent_change
@@ -369,8 +367,7 @@
     - total_cost_change
     single_value_title: ''
     listen:
-      This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_last_fact.last_timeframe
+      Period: fact.period
     row: 0
     col: 18
     width: 6
@@ -378,65 +375,65 @@
   - title: Per Click
     name: Per Click
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
+    explore: combined_ad_group_date_fact
     type: single_value
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_cost
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
-        \ / ${combined_last_fact.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
-        \ / ${combined_last_fact.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
-        \ / ${combined_last_fact.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
-        \ / ${combined_last_fact.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -455,7 +452,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -474,16 +471,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_last_fact.total_cost
+    - last_fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_click_rate
+    - last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - conversion_rate_percent_change
     - cost_per_conversion_percent_change
@@ -491,8 +488,7 @@
     - total_cost_change
     single_value_title: ''
     listen:
-      This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_last_fact.last_timeframe
+      Period: fact.period
     row: 12
     col: 0
     width: 6
@@ -500,65 +496,65 @@
   - title: Click Rate
     name: Click Rate
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
+    explore: combined_ad_group_date_fact
     type: single_value
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_cost
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     limit: 500
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
-        \ / ${combined_last_fact.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
-        \ / ${combined_last_fact.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
-        \ / ${combined_last_fact.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
-        \ / ${combined_last_fact.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -577,7 +573,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -596,16 +592,16 @@
     series_types: {}
     hidden_fields:
     - fact.total_cost
-    - combined_last_fact.total_cost
+    - last_fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_conversion_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     - conversion_rate_percent_change
     - cost_per_click_percent_change
     - cost_per_conversion_percent_change
@@ -613,8 +609,7 @@
     - total_cost_change
     single_value_title: ''
     listen:
-      This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_last_fact.last_timeframe
+      Period: fact.period
     row: 15
     col: 0
     width: 6
@@ -622,7 +617,7 @@
   - title: Funnel
     name: Funnel
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
+    explore: combined_ad_group_date_fact
     type: looker_column
     fields:
     - fact.total_impressions
@@ -710,7 +705,7 @@
     show_dropoff: true
     series_colors: {}
     listen:
-      This Timeframe: fact.this_timeframe
+      Period: fact.period
     row: 12
     col: 16
     width: 8
@@ -718,7 +713,7 @@
   - title: Channels
     name: Channels
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
+    explore: combined_ad_group_date_fact
     type: table
     fields:
     - fact.channel
@@ -771,7 +766,7 @@
     series_labels:
       fact.total_cost: Spend
     listen:
-      This Timeframe: fact.this_timeframe
+      Period: fact.period
     row: 18
     col: 0
     width: 24
@@ -1101,66 +1096,66 @@
   - title: Spend
     name: Spend
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
+    explore: combined_ad_group_date_fact
     type: single_value
     fields:
     - fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_cost
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_cost
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     limit: 500
     column_limit: 50
     dynamic_fields:
     - table_calculation: total_cost_change
       label: Total Cost Change
-      expression: "${fact.total_cost} - ${combined_last_fact.total_cost}"
+      expression: "${fact.total_cost} - ${last_fact.total_cost}"
       value_format:
       value_format_name: usd_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_conversion_change
       label: Total Conversion Change
-      expression: "${fact.total_conversions} - ${combined_last_fact.total_conversions}"
+      expression: "${fact.total_conversions} - ${last_fact.total_conversions}"
       value_format:
       value_format_name: decimal_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_conversion_percent_change
       label: Cost Per Conversion Percent Change
-      expression: "(${fact.average_cost_per_conversion} - ${combined_last_fact.average_cost_per_conversion})\
-        \ / ${combined_last_fact.average_cost_per_conversion}"
+      expression: "(${fact.average_cost_per_conversion} - ${last_fact.average_cost_per_conversion})\
+        \ / ${last_fact.average_cost_per_conversion}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: cost_per_click_percent_change
       label: Cost Per Click Percent Change
-      expression: "(${fact.average_cost_per_click} - ${combined_last_fact.average_cost_per_click})\
-        \ / ${combined_last_fact.average_cost_per_click}"
+      expression: "(${fact.average_cost_per_click} - ${last_fact.average_cost_per_click})\
+        \ / ${last_fact.average_cost_per_click}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: conversion_rate_percent_change
       label: Conversion Rate Percent Change
-      expression: "(${fact.average_conversion_rate} - ${combined_last_fact.average_conversion_rate})\
-        \ / ${combined_last_fact.average_conversion_rate}"
+      expression: "(${fact.average_conversion_rate} - ${last_fact.average_conversion_rate})\
+        \ / ${last_fact.average_conversion_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
       _type_hint: number
     - table_calculation: click_through_rate_percent_change
       label: Click Through Rate Percent Change
-      expression: "(${fact.average_click_rate} - ${combined_last_fact.average_click_rate})\
-        \ / ${combined_last_fact.average_click_rate}"
+      expression: "(${fact.average_click_rate} - ${last_fact.average_click_rate})\
+        \ / ${last_fact.average_click_rate}"
       value_format:
       value_format_name: percent_0
       _kind_hint: measure
@@ -1179,7 +1174,7 @@
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
-    show_view_names: true
+    show_view_names: false
     limit_displayed_rows: false
     y_axis_combined: true
     show_y_axis_labels: true
@@ -1197,17 +1192,17 @@
     totals_color: "#808080"
     series_types: {}
     hidden_fields:
-    - combined_last_fact.total_cost
+    - last_fact.total_cost
     - fact.total_conversions
-    - combined_last_fact.total_conversions
-    - combined_last_fact.average_cost_per_conversion
+    - last_fact.total_conversions
+    - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - combined_last_fact.average_conversion_rate
+    - last_fact.average_conversion_rate
     - fact.average_click_rate
-    - combined_last_fact.average_click_rate
+    - last_fact.average_click_rate
     - fact.average_cost_per_click
-    - combined_last_fact.average_cost_per_click
+    - last_fact.average_cost_per_click
     - click_through_rate_percent_change
     - conversion_rate_percent_change
     - cost_per_click_percent_change
@@ -1215,8 +1210,7 @@
     - total_conversion_change
     single_value_title: Spend
     listen:
-      This Timeframe: fact.this_timeframe
-      Last Timeframe: combined_last_fact.last_timeframe
+      Period: fact.period
     row: 0
     col: 0
     width: 6
@@ -1420,23 +1414,13 @@
     width: 9
     height: 9
   filters:
-  - name: This Timeframe
-    title: This Timeframe
+  - name: Period
+    title: Period
     type: field_filter
-    default_value: this quarter
+    default_value: quarter
     model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
-    field: fact.this_timeframe
+    explore: combined_ad_group_date_fact
+    field: fact.period
     listens_to_filters: []
     allow_multiple_values: true
-    required: false
-  - name: Last Timeframe
-    title: Last Timeframe
-    type: field_filter
-    default_value: 1 quarter ago
-    model: looker_app_google_adwords
-    explore: combined_ad_group_fact_this_timeframe
-    field: combined_last_fact.last_timeframe
-    listens_to_filters: []
-    allow_multiple_values: true
-    required: false
+    required: true

@@ -5,7 +5,7 @@ view: date_base {
     group_label: "Event"
     label: ""
     type: time
-    datatype: timestamp
+    datatype: date
     timeframes: [
       raw,
       date,
@@ -14,11 +14,20 @@ view: date_base {
       quarter,
       year,
       day_of_week,
+      day_of_week_index,
       day_of_month,
       day_of_year
     ]
     convert_tz: no
     sql: ${_date} ;;
+  }
+
+  dimension: date_week_date {
+    group_label: "Event"
+    label: "Week Date"
+    hidden: yes
+    type: date
+    sql: DATE_TRUNC(${date_date}, WEEK) ;;
   }
 
   dimension: date_month_date {
@@ -37,6 +46,14 @@ view: date_base {
     sql: DATE_TRUNC(${date_date}, QUARTER) ;;
   }
 
+  dimension: date_year_date {
+    group_label: "Event"
+    label: "Year Date"
+    hidden: yes
+    type: date
+    sql: DATE_TRUNC(${date_date}, YEAR) ;;
+  }
+
   dimension: date_day_of_quarter {
     group_label: "Event"
     label: "Day of Quarter"
@@ -47,6 +64,12 @@ view: date_base {
           CAST(CONCAT(${date_quarter}, '-01') as DATE),
           day) + 1
        ;;
+  }
+
+  dimension: current_day_of_year {
+    hidden: yes
+    type:  number
+    sql: DATE_DIFF(CURRENT_DATE(), DATE_TRUNC(CURRENT_DATE(), YEAR), DAY) ;;
   }
 
   dimension: current_day_of_quarter {
@@ -67,6 +90,12 @@ view: date_base {
     sql: EXTRACT(DAYOFWEEK FROM TIMESTAMP(CURRENT_DATE()))  ;;
   }
 
+  dimension: less_than_current_day_of_year {
+    hidden: yes
+    type: yesno
+    sql: ${date_day_of_year} <= ${current_day_of_year} ;;
+  }
+
   dimension: less_than_current_day_of_quarter {
     hidden: yes
     type: yesno
@@ -83,24 +112,6 @@ view: date_base {
     hidden:  yes
     type: yesno
     sql: ${date_day_of_week_index} <= ${current_day_of_week} ;;
-  }
-
-  dimension: less_than_current_day_of_period {
-    hidden:  yes
-    type: yesno
-    sql: {% if period_passthrough._sql == "'1 week ago'" %} ${less_than_current_day_of_week}
-    {% elsif period_passthrough._sql == "'1 month ago'" %} ${less_than_current_day_of_month}
-    {% elsif period_passthrough._sql == "'1 quarter ago'" %} ${less_than_current_day_of_quarter}
-    {% endif %} ;;
-  }
-
-  parameter: period {
-    hidden: yes
-  }
-
-  dimension: period_passthrough {
-    hidden: yes
-    sql: {% parameter period %};;
   }
 
   dimension: date_last_week {
@@ -127,10 +138,34 @@ view: date_base {
     sql: DATE_ADD(${date_date}), INTERVAL -1 QUARTER) ;;
   }
 
+  dimension: date_next_week {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}), INTERVAL 1 WEEK) ;;
+  }
+
+  dimension: date_next_month {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}), INTERVAL 1 MONTH) ;;
+  }
+
   dimension: date_next_quarter {
     hidden: yes
     type: date
     sql: DATE_ADD(${date_date}), INTERVAL 1 QUARTER) ;;
+  }
+
+  dimension: date_next_year {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}), INTERVAL 1 YEAR) ;;
+  }
+
+  dimension: date_last_year {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}), INTERVAL -1 YEAR) ;;
   }
 
   dimension:  date_days_in_quarter {
@@ -139,6 +174,60 @@ view: date_base {
     sql: DATE_DIFF(${date_next_quarter},
            CAST(CONCAT(${date_quarter}, '-01') as DATE),
            day) ;;
+  }
+
+  dimension: date_days_prior {
+    hidden: yes
+    type: number
+    sql: DATE_DIFF(${date_date}, CURRENT_DATE(), DAY) ;;
+  }
+
+  dimension: date_day_of_7_days_prior {
+    hidden: yes
+    type: number
+    sql: ABS(MOD(${date_days_prior}, 7)) ;;
+  }
+
+  dimension: date_day_of_28_days_prior {
+    hidden: yes
+    type: number
+    sql: ABS(MOD(${date_days_prior}, 28)) ;;
+  }
+
+  dimension: date_day_of_91_days_prior {
+    hidden: yes
+    type: number
+    sql: ABS(MOD(${date_days_prior}, 91)) ;;
+  }
+
+  dimension: date_day_of_364_days_prior {
+    hidden: yes
+    type: number
+    sql: ABS(MOD(${date_days_prior}, 364)) ;;
+  }
+
+  dimension: date_date_7_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(7-${date_day_of_7_days_prior}, 7)) DAY) ;;
+  }
+
+  dimension: date_date_28_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(28-${date_day_of_28_days_prior}, 28)) DAY) ;;
+  }
+
+  dimension: date_date_91_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(91-${date_day_of_91_days_prior}, 91)) DAY) ;;
+  }
+
+  dimension: date_date_364_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(364-${date_day_of_364_days_prior}, 364)) DAY) ;;
   }
 
   measure: date_max_day_of_week_index {
