@@ -76,7 +76,8 @@
                 "type": "TimeFrame",
                 "filterStrings": {
                   "explore": "f[fact.date_date]=REPLACE&f[fact.period]=REPLACE",
-                  "dashboard": "Time Range=REPLACEs&Period=REPLACE"
+                  "dashboard": "Time Range=REPLACEs&Period=REPLACE",
+                  "singleValues": "f[fact.period]=REPLACE"
                 }
               },
               {
@@ -422,7 +423,8 @@
                       "type": "TimeFrame",
                       "filterStrings": {
                         "explore": "f[fact.date_date]=REPLACE&f[fact.period]=REPLACE",
-                        "dashboard": "Time Range=REPLACEs&Period=REPLACE"
+                        "dashboard": "Time Range=REPLACEs&Period=REPLACE",
+                        "singleValues": "f[fact.date_date]=REPLACE"
                       }
                     },
                     {
