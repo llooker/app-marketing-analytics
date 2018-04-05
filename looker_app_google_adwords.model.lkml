@@ -96,13 +96,14 @@ explore: ad_impressions {
 }
 
 explore: status_changes  {
-  hidden: yes
+#   hidden: yes
   join: campaign {
-    view_label: "Campaign"
+    view_label: "Campaigns"
     sql_on: ${status_changes.campaign_id} = ${campaign.campaign_id} AND
       ${status_changes.external_customer_id} = ${campaign.external_customer_id};;
     relationship: many_to_one
   }
+
   join: ad_group {
     view_label: "Ad Groups"
     sql_on: ${status_changes.ad_group_id} = ${ad_group.ad_group_id} AND
@@ -110,6 +111,7 @@ explore: status_changes  {
       ${status_changes.external_customer_id} = ${ad_group.external_customer_id};;
     relationship: many_to_one
   }
+
   join: ad {
     view_label: "Ads"
     sql_on: ${status_changes.creative_id} = ${ad.creative_id} AND
@@ -118,6 +120,7 @@ explore: status_changes  {
       ${status_changes.external_customer_id} = ${ad.external_customer_id};;
     relationship:  many_to_one
   }
+
   join: keyword {
     view_label: "Keywords"
     sql_on: ${status_changes.criterion_id} = ${keyword.criterion_id} AND

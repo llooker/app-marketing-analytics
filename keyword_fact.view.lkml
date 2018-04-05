@@ -1,5 +1,6 @@
 include: "ad_group_fact.view"
 include: "keyword.view"
+include: "recent_changes.view"
 
 explore: keyword_date_fact {
   hidden: yes
@@ -58,6 +59,15 @@ explore: keyword_date_fact {
       ${fact.external_customer_id} = ${keyword.external_customer_id} AND
       ${fact.date_date} = ${keyword.date_date}  ;;
     relationship: many_to_one
+  }
+  join: status_changes {
+    view_label: "Keywords"
+    sql_on: ${status_changes.criterion_id} = ${keyword.criterion_id} AND
+      ${status_changes.ad_group_id} = ${keyword.ad_group_id} AND
+      ${status_changes.campaign_id} = ${keyword.campaign_id} AND
+      ${status_changes.external_customer_id} = ${keyword.external_customer_id} AND
+      ${status_changes.date_date} = ${keyword.date_date}  ;;
+    relationship: one_to_many
   }
 }
 

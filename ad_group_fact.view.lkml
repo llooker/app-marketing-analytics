@@ -1,5 +1,6 @@
 include: "ad_group.view"
 include: "campaign_fact.view"
+include: "recent_changes.view"
 
 explore: ad_group_date_fact {
   hidden: yes
@@ -47,6 +48,12 @@ explore: ad_group_date_fact {
       ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
       ${fact.date_date} = ${ad_group.date_date}  ;;
     relationship: many_to_one
+  }
+  join: status_changes {
+    sql_on: ${status_changes.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${status_changes.campaign_id} = ${campaign.campaign_id} AND
+      ${status_changes.external_customer_id} = ${ad_group.external_customer_id};;
+    relationship: one_to_many
   }
 }
 
