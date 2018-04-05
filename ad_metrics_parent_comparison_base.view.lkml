@@ -190,6 +190,11 @@ view: ad_metrics_parent_comparison_base {
     group_label: "Parent Comparisons"
     value_format_name: decimal_2
   }
+  dimension: click_rate_or_cost_per_conversion_or_conversion_rate_bad {
+    type: yesno
+    sql: ${conversion_rate_bad} = true OR ${click_rate_bad} = true OR ${cost_per_conversion_bad} = true;;
+    group_label: "Parent Comparisons"
+  }
   measure: average_conversion_rate_delta_ratio {
     type: number
     sql: ${fact.average_conversion_rate} / NULLIF(${average_conversion_rate_delta},0) ;;
