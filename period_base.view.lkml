@@ -95,23 +95,23 @@ view: period_base {
     label_from_parameter: period
     group_label: "Event"
     sql: TIMESTAMP({% if fact.period._parameter_value contains "day" %}
-        {% if fact.period._parameter_value == "'7 day'" %}DATE_ADD(${date_date_7_days_prior}, INTERVAL 7 DAY)
-        {% elsif fact.period._parameter_value == "'28 day'" %}DATE_ADD(${date_date_28_days_prior}, INTERVAL 28 DAY)
-        {% elsif fact.period._parameter_value == "'91 day'" %}DATE_ADD(${date_date_91_days_prior}, INTERVAL 91 DAY)
-        {% elsif fact.period._parameter_value == "'364 day'" %}DATE_ADD(${date_date_364_days_prior}, INTERVAL 364 DAY)
+        {% if fact.period._parameter_value == "'7 day'" %}DATE_ADD(${date_period}, INTERVAL 7 DAY)
+        {% elsif fact.period._parameter_value == "'28 day'" %}DATE_ADD(${date_period}, INTERVAL 28 DAY)
+        {% elsif fact.period._parameter_value == "'91 day'" %}DATE_ADD(${date_period}, INTERVAL 91 DAY)
+        {% elsif fact.period._parameter_value == "'364 day'" %}DATE_ADD(${date_period}, INTERVAL 364 DAY)
         {% else %}${date_date}
         {% endif %}
-      {% elsif fact.period._parameter_value contains "week" %}DATE_ADD(${date_week_date}, INTERVAL 1 WEEK)
-      {% elsif fact.period._parameter_value contains "month" %}DATE_ADD(${date_month_date}, INTERVAL 1 MONTH)
-      {% elsif fact.period._parameter_value contains "quarter" %}DATE_ADD(${date_quarter_date}, INTERVAL 1 QUARTER)
-      {% elsif fact.period._parameter_value contains "year" %}DATE_ADD(${date_year_date}, INTERVAL 1 YEAR)
+      {% elsif fact.period._parameter_value contains "week" %}DATE_ADD(${date_period}, INTERVAL 1 WEEK)
+      {% elsif fact.period._parameter_value contains "month" %}DATE_ADD(${date_period}, INTERVAL 1 MONTH)
+      {% elsif fact.period._parameter_value contains "quarter" %}DATE_ADD(${date_period}, INTERVAL 1 QUARTER)
+      {% elsif fact.period._parameter_value contains "year" %}DATE_ADD(${date_period}, INTERVAL 1 YEAR)
       {% endif %}) ;;
     allow_fill: no
   }
   dimension: date_period_latest {
     type: yesno
     group_label: "Event"
-    sql: ${date_end_of_period} = CURRENT_DATE()  ;;
+    sql: ${date_period} <= CURRENT_DATE() AND ${date_end_of_period} >= CURRENT_DATE() ;;
   }
   dimension: date_period_dynamic_grain {
     hidden: yes
@@ -130,7 +130,7 @@ view: period_base {
     allow_fill: no
   }
   dimension: date_day_of_period {
-    hidden: yes
+    # hidden: yes
     type: number
     label: "{% if fact.period._parameter_value contains 'day' %}Day of Period
     {% elsif fact.period._parameter_value contains 'week' %}Day of Week
