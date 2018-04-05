@@ -130,7 +130,7 @@
     single_value_title: Spend
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 0
     col: 0
     width: 9
@@ -255,7 +255,7 @@
     single_value_title: ''
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 0
     col: 19
     width: 5
@@ -380,7 +380,7 @@
     single_value_title: Per Conversion
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 0
     col: 14
     width: 5
@@ -505,7 +505,7 @@
     single_value_title: ''
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 0
     col: 9
     width: 5
@@ -690,7 +690,7 @@
     column_spacing_ratio: 0
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 3
     col: 0
     width: 9
@@ -845,7 +845,7 @@
     - fact.total_clicks
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 3
     col: 9
     width: 15
@@ -945,7 +945,7 @@
     series_colors: {}
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 13
     col: 0
     width: 9
@@ -1071,7 +1071,7 @@
     single_value_title: ''
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 13
     col: 9
     width: 5
@@ -1196,7 +1196,7 @@
     single_value_title: ''
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 16
     col: 9
     width: 5
@@ -1349,7 +1349,7 @@
     y_axis_reversed: false
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 13
     col: 14
     width: 10
@@ -1410,7 +1410,7 @@
       fact.total_cost: Spend
     listen:
       Period: fact.period
-      Date: fact.date_date
+      Period Latest: fact.date_period_latest
     row: 19
     col: 0
     width: 24
@@ -1419,20 +1419,18 @@
   - name: Period
     title: Period
     type: field_filter
-    default_value: '28 day'
+    default_value: 28 day
     allow_multiple_values: true
-    required: false
+    required: true
     model: looker_app_google_adwords
     explore: period_fact
-    listens_to_filters: []
     field: fact.period
-  - name: Date
-    title: Date
+  - name: Period Latest
+    title: Period Latest
     type: field_filter
-    default_value: 28 days
+    default_value: 'Yes'
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
     explore: period_fact
-    listens_to_filters: []
-    field: fact.date_date
+    field: fact.date_period_latest
