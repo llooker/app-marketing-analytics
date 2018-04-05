@@ -74,11 +74,7 @@
                 "field": "fact.period",
                 "name": "Time Frame",
                 "type": "TimeFrame",
-                "filterStrings": {
-                  "explore": "f[fact.date_date]=REPLACE&f[fact.period]=REPLACE",
-                  "dashboard": "Time Range=REPLACEs&Period=REPLACE",
-                  "singleValues": "f[fact.period]=REPLACE"
-                }
+                "dashboardAlias": "Period"
               },
               {
                 "autoSuggest": {
@@ -420,12 +416,7 @@
                       "defaultValue": "28 day",
                       "field": "fact.period",
                       "name": "Time Frame",
-                      "type": "TimeFrame",
-                      "filterStrings": {
-                        "explore": "f[fact.date_date]=REPLACE&f[fact.period]=REPLACE",
-                        "dashboard": "Time Range=REPLACEs&Period=REPLACE",
-                        "singleValues": "f[fact.date_date]=REPLACE"
-                      }
+                      "type": "TimeFrame"
                     },
                     {
                       "field": "campaign.campaign_name",
@@ -474,11 +465,8 @@
                     {
                       "field": "fact.period",
                       "name": "Period",
-                      "type": "Period",
-                      "defaultValue": "quarter",
-                      "filterStrings": {
-                        "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
-                      }
+                      "type": "TimeFrame",
+                      "defaultValue": "28 day"
                     },
                     {
                       "field": "campaign.campaign_name",
@@ -530,10 +518,7 @@
                       "field": "fact.this_timeframe",
                       "name": "Time Frame",
                       "type": "TimeFrame",
-                      "defaultValue": "quarter",
-                      "filterStrings": {
-                        "explore": "f[fact.this_timeframe]=this REPLACE&f[last_fact.last_timeframe]=1 REPLACE ago&f[parent_fact.this_timeframe]=this REPLACE"
-                      }
+                      "defaultValue": "28 day"
                     },
                     {
                       "field": "campaign.campaign_name",
