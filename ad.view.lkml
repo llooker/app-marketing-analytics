@@ -296,7 +296,11 @@ view: ad {
 
   measure: count {
     type: count_distinct
-    sql: ${ad_group_id} ;;
+    sql: CONCAT(
+      CAST(${external_customer_id} AS STRING), "-",
+      CAST(${campaign_id} AS STRING), "-",
+      CAST(${ad_group_id} AS STRING), "-",
+      CAST(${creative_id} AS STRING)) ;;
     drill_fields: [detail*]
   }
 
