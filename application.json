@@ -141,6 +141,15 @@
           "descriptionSecondary": "",
           "name": "Optimizations",
           "permalink": "search-ads-optimizations",
+          "filters": [
+            {
+              "defaultValue": "28 day",
+              "field": "fact.period",
+              "name": "Time Frame",
+              "type": "TimeFrame",
+              "disabled": true
+            }
+          ],
           "sections": [
             {
               "description": "Increase your bids to take advantage for these well performing Ads, Keywords, and Ad Groups. They are ranking below the first position and have room to drive more conversions to you at a good price.",
