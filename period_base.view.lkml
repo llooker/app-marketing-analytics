@@ -1,36 +1,6 @@
 view: period_base {
   extension: required
 
-  filter: date_range {
-    hidden: yes
-    type: date
-    convert_tz: no
-    sql: ${in_date_range} ;;
-  }
-
-  dimension: date_start_date_range {
-    type: date_raw
-    sql: {% date_start date_range %} ;;
-  }
-
-  dimension: date_end_date_range {
-    type: date_raw
-    sql: {% date_end date_range %} ;;
-  }
-
-  dimension: date_range_difference {
-    hidden: yes
-    type: number
-    sql:  ;;
-#     expression: diff_days(${date_start_date_range}, ${date_end_date_range}) ;;
-  }
-
-  dimension: in_date_range {
-    hidden: yes
-    type: yesno
-    sql: {% condition date_range %}CAST(${fact.date_raw} AS TIMESTAMP){% endcondition %} ;;
-  }
-
   parameter: period {
     description: "Prior Period for Comparison"
     type: string
@@ -130,7 +100,7 @@ view: period_base {
     allow_fill: no
   }
   dimension: date_day_of_period {
-    # hidden: yes
+    hidden: yes
     type: number
     label: "{% if fact.period._parameter_value contains 'day' %}Day of Period
     {% elsif fact.period._parameter_value contains 'week' %}Day of Week
