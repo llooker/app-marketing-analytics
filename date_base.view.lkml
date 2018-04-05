@@ -185,49 +185,49 @@ view: date_base {
   dimension: date_day_of_7_days_prior {
     hidden: yes
     type: number
-    sql: ABS(MOD(${date_days_prior}, 7)) ;;
+    sql: MOD(MOD(${date_days_prior}, 7) + 7, 7) ;;
   }
 
   dimension: date_day_of_28_days_prior {
     hidden: yes
     type: number
-    sql: ABS(MOD(${date_days_prior}, 28)) ;;
+    sql: MOD(MOD(${date_days_prior}, 28) + 28, 28) ;;
   }
 
   dimension: date_day_of_91_days_prior {
     hidden: yes
     type: number
-    sql: ABS(MOD(${date_days_prior}, 91)) ;;
+    sql: MOD(MOD(${date_days_prior}, 91) + 91, 91) ;;
   }
 
   dimension: date_day_of_364_days_prior {
     hidden: yes
     type: number
-    sql: ABS(MOD(${date_days_prior}, 364)) ;;
+    sql: MOD(MOD(${date_days_prior}, 364) + 364, 364) ;;
   }
 
   dimension: date_date_7_days_prior {
     hidden: yes
     type: date
-    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(7-${date_day_of_7_days_prior}, 7)) DAY) ;;
+    sql: DATE_ADD(${date_date}, INTERVAL -${date_day_of_7_days_prior} DAY) ;;
   }
 
   dimension: date_date_28_days_prior {
     hidden: yes
     type: date
-    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(28-${date_day_of_28_days_prior}, 28)) DAY) ;;
+    sql: DATE_ADD(${date_date}, INTERVAL -${date_day_of_28_days_prior} DAY) ;;
   }
 
   dimension: date_date_91_days_prior {
     hidden: yes
     type: date
-    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(91-${date_day_of_91_days_prior}, 91)) DAY) ;;
+    sql: DATE_ADD(${date_date}, INTERVAL -${date_day_of_91_days_prior} DAY) ;;
   }
 
   dimension: date_date_364_days_prior {
     hidden: yes
     type: date
-    sql: DATE_ADD(${date_date}, INTERVAL -(MOD(364-${date_day_of_364_days_prior}, 364)) DAY) ;;
+    sql: DATE_ADD(${date_date}, INTERVAL -${date_day_of_364_days_prior} DAY) ;;
   }
 
   measure: date_max_day_of_week_index {
