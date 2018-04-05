@@ -109,4 +109,7 @@ view: keyword_date_fact {
     primary_key: yes
     sql: concat(CAST(${_date} as STRING), ${key_base}) ;;
   }
+  set: detail {
+    fields: [external_customer_id, campaign_id, ad_group_id, criterion_id]
+  }
 }

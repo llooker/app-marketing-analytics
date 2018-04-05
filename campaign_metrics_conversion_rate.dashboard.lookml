@@ -120,8 +120,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 4
     col: 0
     width: 24
@@ -200,8 +200,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 15
     col: 0
     width: 8
@@ -280,8 +280,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 15
     col: 8
     width: 8
@@ -405,8 +405,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 21
     col: 14
     width: 10
@@ -526,8 +526,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 21
     col: 0
     width: 14
@@ -649,8 +649,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 28
     col: 14
     width: 10
@@ -727,8 +727,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 15
     col: 16
     width: 8
@@ -832,8 +832,8 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 35
     col: 0
     width: 12
@@ -941,50 +941,9 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Time Range: fact.date_date
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 35
     col: 12
     width: 12
     height: 10
-  filters:
-  - name: Campaign
-    title: Campaign
-    type: field_filter
-    default_value: ''
-    allow_multiple_values: true
-    required: false
-    model: looker_app_google_adwords
-    explore: period_fact
-    listens_to_filters: []
-    field: campaign.campaign_name
-  - name: Ad Group
-    title: Ad Group
-    type: field_filter
-    default_value: ''
-    allow_multiple_values: true
-    required: false
-    model: looker_app_google_adwords
-    explore: period_fact
-    listens_to_filters: []
-    field: ad_group.ad_group_name
-  - name: Time Range
-    title: Time Range
-    type: field_filter
-    default_value: 28 days
-    allow_multiple_values: true
-    required: false
-    model: looker_app_google_adwords
-    explore: period_fact
-    listens_to_filters: []
-    field: fact.date_date
-  - name: Period
-    title: Period
-    type: field_filter
-    default_value: '28 day'
-    allow_multiple_values: true
-    required: true
-    model: looker_app_google_adwords
-    explore: period_fact
-    listens_to_filters: []
-    field: fact.period
