@@ -195,6 +195,17 @@ view: ad_metrics_parent_comparison_base {
     sql: ${conversion_rate_bad} = true OR ${click_rate_bad} = true OR ${cost_per_conversion_bad} = true;;
     group_label: "Parent Comparisons"
   }
+
+  measure: click_rate_or_cost_per_conversion_or_conversion_rate_count_bad {
+    type: count_distinct
+    sql: ${key_base} ;;
+    filters: {
+      field: click_rate_or_cost_per_conversion_or_conversion_rate_bad
+      value: "Yes"
+    }
+    group_label: "Parent Comparisons"
+  }
+
   measure: average_conversion_rate_delta_ratio {
     type: number
     sql: ${fact.average_conversion_rate} / NULLIF(${average_conversion_rate_delta},0) ;;
@@ -375,6 +386,16 @@ view: ad_metrics_parent_comparison_base {
   dimension: expected_conversions_bad {
     type: yesno
     sql: ${expected_conversions} > 2 AND ${fact.conversions} = 0 ;;
+    group_label: "Parent Comparisons"
+  }
+
+  measure: expected_conversions_count_bad {
+    type: count_distinct
+    sql: ${key_base} ;;
+    filters: {
+      field: expected_conversions_bad
+      value: "Yes"
+    }
     group_label: "Parent Comparisons"
   }
 
