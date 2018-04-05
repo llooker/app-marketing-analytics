@@ -129,12 +129,4 @@ view: period_base {
     sql: DATE_ADD(${date_period}, INTERVAL -{% if fact.period._parameter_value == "'7 day'" %}7{% elsif fact.period._parameter_value == "'28 day'" %}28{% elsif fact.period._parameter_value == "'91 day'" %}91{% elsif fact.period._parameter_value == "'364 day'" %}364{% else %}1{% endif %} {% if fact.period._parameter_value contains "day" %}day{% elsif fact.period._parameter_value contains "week" %}week{% elsif fact.period._parameter_value contains "month" %}month{% elsif fact.period._parameter_value contains "quarter" %}quarter{% elsif fact.period._parameter_value contains "year" %}year{% endif %}) ;;
     allow_fill: no
   }
-  dimension: less_than_current_day_of_period {
-    sql: {% if fact.period._parameter_value contains "day" %}1=1 --always less than day current day of period
-      {% elsif fact.period._parameter_value contains "week" %}${less_than_current_day_of_week}
-      {% elsif fact.period._parameter_value contains "month" %}${less_than_current_day_of_month}
-      {% elsif fact.period._parameter_value contains "quarter" %}${less_than_current_day_of_quarter}
-      {% elsif fact.period._parameter_value contains "year" %}${less_than_current_day_of_year}
-      {% endif %} ;;
-  }
 }
