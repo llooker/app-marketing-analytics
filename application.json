@@ -413,6 +413,7 @@
                   ],
                   "filters": [
                     {
+                      "defaultValue": "28 day",
                       "field": "fact.period",
                       "name": "Time Frame",
                       "type": "TimeFrame"
