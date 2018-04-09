@@ -267,6 +267,38 @@ view: status_changes {
     }
   }
 
+  measure: count_ad_changes {
+    type: count
+    filters: {
+      field: campaign_id
+      value: "not null"
+    }
+  }
+
+  measure: count_keyword_changes {
+    type: count
+    filters: {
+      field: criterion_id
+      value: "not null"
+    }
+  }
+
+  measure: count_campaign_changes {
+    type: count
+    filters: {
+      field: campaign_id
+      value: "not null"
+    }
+  }
+
+  measure: count_ad_group_changes {
+    type: count
+    filters: {
+      field: ad_group_id
+      value: "not null"
+    }
+  }
+
   measure: count {
     type: count_distinct
     sql: COALESCE(${creative_id}, ${ad_group_id}, ${campaign_id}, ${criterion_id}) ;;
