@@ -158,14 +158,17 @@ view: ad_impressions {
     case: {
       when: {
         sql: ${device} LIKE '%Desktop%' ;;
+#         expression: contains(${device}, 'Desktop') ;;
         label: "Desktop"
       }
       when: {
         sql: ${device} LIKE '%Mobile%' ;;
+#         expression: contains(${device}, 'Mobile') ;;
         label: "Mobile"
       }
       when: {
         sql: ${device} LIKE '%Tablet%' ;;
+#         expression: contains(${device}, 'Tablet') ;;
         label: "Tablet"
       }
       else: "Other"
