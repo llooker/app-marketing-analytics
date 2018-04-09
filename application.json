@@ -5,12 +5,12 @@
   ],
   "home": {
     "lookmlID": "looker_app_google_adwords::adwords_overview",
-    "name": "Adwords Overview"
+    "name": "AdWords Overview"
   },
   "name": "Marketing Analytics",
   "pillars": [
     {
-      "description": "These reports dive into your Adwords to find ways to increase the ROI of your marketing spend. Use Opportunities to find quick wins, refine your targets using the Performance trend reports, or discover which audiences are falling off your funnel.",
+      "description": "These reports dive into your AdWords to find ways to increase the ROI of your marketing spend. Use Opportunities to find quick wins, refine your targets using the Performance trend reports, or discover which audiences are falling off your funnel.",
       "enabled": true,
       "icon": "search",
       "name": "Search Ads",

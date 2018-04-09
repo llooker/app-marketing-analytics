@@ -709,7 +709,7 @@
     - fact.average_click_rate
     - fact.total_clicks
     sorts:
-    - fact.date_period_dynamic_grain desc
+    - fact.date_period_dynamic_grain
     limit: 500
     column_limit: 50
     stacking: ''
@@ -1215,7 +1215,7 @@
     - fact.average_conversion_rate
     - fact.total_conversions
     sorts:
-    - fact.date_period_dynamic_grain desc
+    - fact.date_period_dynamic_grain
     limit: 500
     column_limit: 50
     stacking: ''
