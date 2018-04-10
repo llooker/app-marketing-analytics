@@ -1,6 +1,7 @@
 include: "ad.view.lkml"
 include: "date_base.view"
 include: "keyword.view.lkml"
+include: "period_base.view"
 
 explore: ad_status {
   hidden: yes
@@ -118,7 +119,7 @@ view: campaign_status {
 
 
 view: status_changes {
-  extends: [date_base]
+  extends: [date_base, period_base]
   derived_table: {
     sql:
     SELECT
@@ -303,14 +304,14 @@ view: status_changes {
     type: count_distinct
     sql: COALESCE(${creative_id}, ${ad_group_id}, ${campaign_id}, ${criterion_id}) ;;
     description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
-    html:  {% if (status_changes.content_type._value == 'Ad') %}
-    <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad.creative,status_changes.date_date, status_changes.status_display&f[status_changes.date_date]={{_filters['status_changes.date_date']}}"> {{value}}  </a>
-    {% elsif (status_changes.content_type._value == 'Keyword') %}
-    <a href= "/explore/looker_app_google_adwords/status_changes?fields=keyword.criteria,status_changes.date_date, status_changes.status_display&f[status_changes.date_date]={{_filters['status_changes.date_date']}}"> {{value}} </a>
-     {% elsif (status_changes.content_type._value == 'Ad Group') %}
-    <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad_group.ad_group_name,status_changes.date_date, status_changes.status_display&f[status_changes.date_date]={{_filters['status_changes.date_date']}}"> {{value}}  </a>
-    {% elsif (status_changes.content_type._value == 'Campaign') %}
-    <a href= "/explore/looker_app_google_adwords/status_changes?fields=campaign.campaign_name,status_changes.date_date, status_changes.status_display&f[status_changes.date_date]={{_filters['status_changes.date_date']}}"> {{value}}  </a>
+    html:  {% if (fact.content_type._value == 'Ad') %}
+    <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad.creative,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    {% elsif (fact.content_type._value == 'Keyword') %}
+    <a href= "/explore/looker_app_google_adwords/status_changes?fields=keyword.criteria,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}} </a>
+     {% elsif (fact.content_type._value == 'Ad Group') %}
+    <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad_group.ad_group_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    {% elsif (fact.content_type._value == 'Campaign') %}
+    <a href= "/explore/looker_app_google_adwords/status_changes?fields=campaign.campaign_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% endif %} ;;
   }
 }
