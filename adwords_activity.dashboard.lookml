@@ -15,9 +15,9 @@
     explore: status_changes
     type: single_value
     fields:
-    - status_changes.count
+    - fact.count
     filters:
-      status_changes.content_type: Ad Group
+      fact.content_type: Ad Group
     limit: 500
     custom_color_enabled: true
     custom_color: "#8ac8ca"
@@ -60,25 +60,83 @@
     totals_color: "#808080"
     series_types: {}
     listen:
-      Date: status_changes.date_date
+      Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 0
     col: 20
     width: 4
     height: 4
+  - title: Campaign Changes
+    name: Campaign Changes
+    model: looker_app_google_adwords
+    explore: status_changes
+    type: single_value
+    fields:
+    - fact.count
+    filters:
+      fact.content_type: Campaign
+    limit: 500
+    custom_color_enabled: true
+    custom_color: "#d06180"
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: true
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    listen:
+      Period: fact.period
+      Period Latest: fact.date_period_latest
+    row: 4
+    col: 20
+    width: 4
+    height: 5
   - title: Changes Over Time
     name: Changes Over Time
     model: looker_app_google_adwords
     explore: status_changes
     type: looker_column
     fields:
-    - status_changes.count
-    - status_changes.date_date
-    - status_changes.content_type
+    - fact.count
+    - fact.date_date
+    - fact.content_type
     pivots:
-    - status_changes.content_type
+    - fact.content_type
     sorts:
-    - status_changes.date_date desc
-    - status_changes.content_type
+    - fact.date_date desc
+    - fact.content_type
     limit: 500
     stacking: normal
     show_value_labels: false
@@ -136,28 +194,29 @@
       series:
       - id: Ad
         name: Ad
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 81
+        __LINE_NUM: 138
       - id: Ad Group
         name: Ad Group
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 86
+        __LINE_NUM: 143
       - id: Campaign
         name: Campaign
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 91
+        __LINE_NUM: 148
       - id: Keyword
         name: Keyword
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 96
+        __LINE_NUM: 153
       __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-      __LINE_NUM: 69
+      __LINE_NUM: 126
     listen:
-      Date: status_changes.date_date
+      Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 0
     col: 0
     width: 20
@@ -168,9 +227,9 @@
     explore: status_changes
     type: single_value
     fields:
-    - status_changes.count
+    - fact.count
     filters:
-      status_changes.content_type: Ad
+      fact.content_type: Ad
     limit: 500
     custom_color_enabled: true
     custom_color: "#7869df"
@@ -213,79 +272,24 @@
     totals_color: "#808080"
     series_types: {}
     listen:
-      Date: status_changes.date_date
+      Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 9
     col: 0
     width: 6
     height: 5
-  - title: Campaign Changes
-    name: Campaign Changes
-    model: looker_app_google_adwords
-    explore: status_changes
-    type: single_value
-    fields:
-    - status_changes.count
-    filters:
-      status_changes.content_type: Campaign
-    limit: 500
-    custom_color_enabled: true
-    custom_color: "#d06180"
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    query_timezone: America/Los_Angeles
-    show_view_names: false
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    show_null_points: true
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    listen:
-      Date: status_changes.date_date
-    row: 4
-    col: 20
-    width: 4
-    height: 5
-  - title: Ad Changes
+  - title: Ad Changes Over Time
     name: Ad Changes Over Time
     model: looker_app_google_adwords
     explore: status_changes
     type: looker_line
     fields:
-    - status_changes.count
-    - status_changes.date_date
+    - fact.count
+    - fact.date_date
     filters:
-      status_changes.content_type: Ad
+      fact.content_type: Ad
     sorts:
-    - status_changes.date_date desc
+    - fact.date_date desc
     limit: 500
     stacking: normal
     show_value_labels: false
@@ -343,18 +347,157 @@
       unpinAxis: false
       valueFormat:
       series:
-      - id: status_changes.count
+      - id: fact.count
         name: Status Changes
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 176
+        __LINE_NUM: 350
       __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-      __LINE_NUM: 164
+      __LINE_NUM: 338
     listen:
-      Date: status_changes.date_date
+      Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 9
     col: 6
     width: 18
+    height: 5
+  - title: Keyword Changes Over Time
+    name: Keyword Changes Over Time
+    model: looker_app_google_adwords
+    explore: status_changes
+    type: looker_line
+    fields:
+    - fact.count
+    - fact.date_date
+    filters:
+      fact.content_type: Keyword
+    sorts:
+    - fact.date_date desc
+    limit: 500
+    stacking: normal
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: true
+    point_style: none
+    interpolation: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    query_timezone: America/Los_Angeles
+    series_types: {}
+    colors:
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    column_spacing_ratio:
+    column_group_spacing_ratio:
+    y_axes:
+    - label: "# of Changes"
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: true
+      showValues: true
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: fact.count
+        name: Status Changes
+        axisId: fact.count
+        __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
+        __LINE_NUM: 594
+      __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
+      __LINE_NUM: 582
+    listen:
+      Period: fact.period
+      Period Latest: fact.date_period_latest
+    row: 14
+    col: 6
+    width: 18
+    height: 5
+  - title: Keyword Changes
+    name: Keyword Changes
+    model: looker_app_google_adwords
+    explore: status_changes
+    type: single_value
+    fields:
+    - fact.count
+    filters:
+      fact.content_type: Keyword
+    limit: 500
+    custom_color_enabled: true
+    custom_color: "#6e98f9"
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: true
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    listen:
+      Period: fact.period
+      Period Latest: fact.date_period_latest
+    row: 14
+    col: 0
+    width: 6
     height: 5
   - title: 25 Most Recent Changes
     name: 25 Most Recent Changes
@@ -362,14 +505,14 @@
     explore: status_changes
     type: table
     fields:
-    - status_changes.date_date
+    - fact.date_date
     - campaign.campaign_name
     - ad_group.ad_group_name
-    - status_changes.content_type
-    - status_changes.change_type
-    - status_changes.status_display
+    - fact.content_type
+    - fact.change_type
+    - fact.status_display
     sorts:
-    - status_changes.date_date desc
+    - fact.date_date desc
     limit: 25
     show_view_names: false
     show_row_numbers: true
@@ -435,176 +578,51 @@
       series:
       - id: Ad
         name: Ad
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 558
+        __LINE_NUM: 441
       - id: Ad Group
         name: Ad Group
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 563
+        __LINE_NUM: 446
       - id: Campaign
         name: Campaign
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 568
+        __LINE_NUM: 451
       - id: Keyword
         name: Keyword
-        axisId: status_changes.count
+        axisId: fact.count
         __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 573
+        __LINE_NUM: 456
       __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-      __LINE_NUM: 546
+      __LINE_NUM: 429
     listen:
-      Date: status_changes.date_date
+      Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 19
     col: 0
     width: 24
     height: 13
-  - title: Keyword Changes
-    name: Keyword Changes
-    model: looker_app_google_adwords
-    explore: status_changes
-    type: single_value
-    fields:
-    - status_changes.count
-    filters:
-      status_changes.content_type: Keyword
-    limit: 500
-    custom_color_enabled: true
-    custom_color: "#6e98f9"
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    query_timezone: America/Los_Angeles
-    show_view_names: false
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    show_null_points: true
-    point_style: none
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    listen:
-      Date: status_changes.date_date
-    row: 14
-    col: 0
-    width: 6
-    height: 5
-  - title: Keyword Changes
-    name: Keyword Changes Over Time
-    model: looker_app_google_adwords
-    explore: status_changes
-    type: looker_line
-    fields:
-    - status_changes.count
-    - status_changes.date_date
-    filters:
-      status_changes.content_type: Keyword
-    sorts:
-    - status_changes.date_date desc
-    limit: 500
-    stacking: normal
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    show_null_points: true
-    point_style: none
-    interpolation: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    query_timezone: America/Los_Angeles
-    series_types: {}
-    colors:
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#d06180"
-    - "#dc9d4f"
-    - "#4bb86a"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
-    column_spacing_ratio:
-    column_group_spacing_ratio:
-    y_axes:
-    - label: "# of Changes"
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: status_changes.count
-        name: Status Changes
-        axisId: status_changes.count
-        __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-        __LINE_NUM: 254
-      __FILE: app_marketing_analytics/adwords_activity.dashboard.lookml
-      __LINE_NUM: 242
-    listen:
-      Date: status_changes.date_date
-    row: 14
-    col: 6
-    width: 18
-    height: 5
   filters:
-  - name: Date
-    title: Date
+  - name: Period
+    title: Period
     type: field_filter
-    default_value: 28 days
+    default_value: 28 day
     allow_multiple_values: true
     required: false
     model: looker_app_google_adwords
     explore: status_changes
     listens_to_filters: []
-    field: status_changes.date_date
+    field: fact.period
+  - name: Period Latest
+    title: Period Latest
+    type: field_filter
+    default_value: 'Yes'
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: status_changes
+    listens_to_filters: []
+    field: fact.date_period_latest

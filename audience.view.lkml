@@ -47,7 +47,6 @@ view: audience {
 
   dimension: cpm_bid {
     type: number
-    value_format_name: id
     sql: ${TABLE}.CpmBid ;;
   }
 
@@ -114,10 +113,6 @@ view: audience {
   dimension: user_list_name {
     type: string
     sql: ${TABLE}.UserListName ;;
-  }
-
-  dimension_group: date {
-    hidden: yes
   }
 
   measure: count {
