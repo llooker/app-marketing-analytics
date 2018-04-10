@@ -100,7 +100,6 @@ view: ad {
   dimension: creative_final_urls {
     hidden: yes
     type: string
-    sql: ${TABLE}.CreativeFinalUrls ;;
     group_label: "URLS"
   }
 
