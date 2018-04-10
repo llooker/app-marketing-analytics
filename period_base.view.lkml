@@ -2,44 +2,46 @@ view: period_base {
   extension: required
 
   filter: date_range {
-    # hidden: yes
+    hidden: yes
     type: date
     convert_tz: no
     sql: ${in_date_range} ;;
   }
 
   dimension: date_start_date_range {
+    hidden: yes
     type: date
     sql: {% date_start date_range %} ;;
   }
 
   dimension: date_end_date_range {
+    hidden: yes
     type: date
     sql: {% date_end date_range %} ;;
   }
 
   dimension: date_range_difference {
-    # hidden: yes
+    hidden: yes
     type: number
     sql: DATE_DIFF( ${date_end_date_range}, ${date_start_date_range}, day) ;;
 #     expression: diff_days(${date_end_date_range}, ${date_start_date_range}) ;;
   }
 
   dimension: in_date_range {
-    # hidden: yes
+    hidden: yes
     type: yesno
     sql: {% condition date_range %}CAST(${fact.date_raw} AS TIMESTAMP){% endcondition %} ;;
   }
 
   dimension: date_range_day_of_range_prior {
-    # hidden: yes
+    hidden: yes
     type: number
     sql: MOD(MOD(${date_days_prior}, ${date_range_difference}) + ${date_range_difference}, ${date_range_difference}) ;;
 #     expression: mod(mod(${date_days_prior},  ${date_range_difference}) +  ${date_range_difference},  ${date_range_difference}) ;;
   }
 
   dimension: date_range_days_prior {
-    # hidden: yes
+    hidden: yes
     type: date
     sql: DATE_ADD(${date_date}, INTERVAL -${date_range_day_of_range_prior} DAY) ;;
 #     expression: add_days(-1 * ${date_range_difference}, ${date_date}) ;;
