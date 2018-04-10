@@ -3,7 +3,7 @@ include: "ad_group_fact.view"
 include: "recent_changes.view"
 
 explore: ad_date_fact {
-  hidden: yes
+  extends: [ad_group_date_fact]
   from: ad_date_fact
   view_name: fact
   label: "Ad This Period"
@@ -30,27 +30,6 @@ explore: ad_date_fact {
     relationship: many_to_one
     fields: [parent_fact.google_ad_metrics_set*]
   }
-  join: customer {
-    view_label: "Customer"
-    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${fact.date_date} = ${customer.date_date} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    view_label: "Campaign"
-    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
-      ${fact.date_date} = ${campaign.date_date} ;;
-    relationship: many_to_one
-  }
-  join: ad_group {
-    view_label: "Ad Group"
-    sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${fact.campaign_id} = ${ad_group.campaign_id} AND
-      ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
-      ${fact.date_date} = ${ad_group.date_date}  ;;
-    relationship: many_to_one
-  }
   join: ad {
     view_label: "Ad"
     sql_on: ${fact.creative_id} = ${ad.creative_id} AND
@@ -70,34 +49,13 @@ explore: ad_date_fact {
 }
 
 view: ad_date_fact {
-  extends: [date_base, period_base, google_ad_metrics_base, ad_metrics_parent_comparison_base, ad_metrics_period_comparison_base, ]
+  extends: [ad_group_date_fact]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
-      column: _date { field: fact.date_date }
       column: creative_id { field: fact.creative_id }
-      column: ad_group_id { field: fact.ad_group_id }
-      column: campaign_id { field: fact.campaign_id }
-      column: external_customer_id { field: fact.external_customer_id }
-      column: averageposition {field: fact.weighted_average_position}
-      column: clicks {field: fact.total_clicks }
-      column: conversions {field: fact.total_conversions}
-      column: conversionvalue {field: fact.total_conversionvalue}
-      column: cost {field: fact.total_cost}
-      column: impressions { field: fact.total_impressions}
-      column: interactions {field: fact.total_interactions}
     }
-  }
-
-  dimension: external_customer_id {
-    hidden: yes
-  }
-  dimension: campaign_id {
-    hidden: yes
-  }
-  dimension: ad_group_id {
-    hidden: yes
   }
   dimension: creative_id {
     hidden: yes
@@ -108,10 +66,6 @@ view: ad_date_fact {
       CAST(${campaign_id} AS STRING), "-",
       CAST(${ad_group_id} AS STRING), "-",
       CAST(${creative_id} AS STRING)) ;;
-  }
-  dimension: _date {
-    hidden: yes
-    type: date_raw
   }
   dimension: primary_key {
     primary_key: yes

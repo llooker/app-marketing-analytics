@@ -17,6 +17,7 @@ explore: campaign_budget_date_fact {
   join: campaign {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
       ${fact.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
