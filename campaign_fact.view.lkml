@@ -2,6 +2,7 @@ include: "ad_metrics_parent_comparison_base.view"
 include: "ad_metrics_period_comparison_base.view"
 include: "account_fact.view"
 include: "campaign.view"
+include: "recent_changes.view"
 
 
 explore: campaign_date_fact {
@@ -40,6 +41,12 @@ explore: campaign_date_fact {
       ${fact.external_customer_id} = ${campaign.external_customer_id} AND
       ${fact.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
+  }
+  join: status_changes {
+    sql_on: ${status_changes.campaign_id} = ${campaign.campaign_id} AND
+      ${status_changes.external_customer_id} = ${campaign.external_customer_id}
+      ${status_changes.date_date} = ${campaign.date_date};;
+    relationship: one_to_many
   }
 }
 

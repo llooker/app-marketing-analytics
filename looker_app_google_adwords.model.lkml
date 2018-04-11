@@ -11,6 +11,7 @@ include: "campaign.view"
 include: "campaign_budget_date_fact.view"
 include: "campaign_fact.view"
 include: "customer.view"
+include: "geotargeting.view"
 include: "keyword.view"
 include: "keyword_fact.view"
 include: "period_fact.view"
@@ -93,37 +94,86 @@ explore: ad_impressions {
       ${fact.date_date} = ${customer.date_date} ;;
     relationship: many_to_one
   }
+
+  join: geo_country {
+    from: geotargeting
+    view_label: "Country"
+    fields: [country_code]
+    sql_on: ${fact.country_criteria_id} = ${geo_country.criteria_id} ;;
+    relationship: many_to_one
+  }
+
+  join: geo_us_state {
+    from: geotargeting
+    view_label: "US State"
+    fields: [state]
+    sql_on: ${fact.region_criteria_id} = ${geo_us_state.criteria_id} AND
+      ${geo_us_state.country_code} = "US" AND ${geo_us_state.target_type} = "State" ;;
+    relationship: many_to_one
+    type: inner
+  }
+
+  join: geo_region {
+    from: geotargeting
+    view_label: "Region"
+    fields: [name, country_code]
+    sql_on: ${fact.city_criteria_id} = ${geo_region.criteria_id} ;;
+    relationship: many_to_one
+  }
+
+  join: geo_metro {
+    from: geotargeting
+    view_label: "Metro"
+    fields: [name, country_code]
+    sql_on: ${fact.city_criteria_id} = ${geo_metro.criteria_id} ;;
+    relationship: many_to_one
+  }
+
+  join: geo_city {
+    from: geotargeting
+    view_label: "City"
+    fields: [name, country_code]
+    sql_on: ${fact.city_criteria_id} = ${geo_city.criteria_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 explore: status_changes  {
-  hidden: yes
+#   hidden: yes
+  from: status_changes
+  view_name: fact
+
   join: campaign {
-    view_label: "Campaign"
-    sql_on: ${status_changes.campaign_id} = ${campaign.campaign_id} AND
-      ${status_changes.external_customer_id} = ${campaign.external_customer_id};;
+    view_label: "Campaigns"
+    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${campaign.external_customer_id};;
     relationship: many_to_one
   }
+
   join: ad_group {
     view_label: "Ad Groups"
-    sql_on: ${status_changes.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${status_changes.campaign_id} = ${campaign.campaign_id} AND
-      ${status_changes.external_customer_id} = ${ad_group.external_customer_id};;
+    sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${ad_group.external_customer_id};;
     relationship: many_to_one
   }
+
   join: ad {
     view_label: "Ads"
-    sql_on: ${status_changes.creative_id} = ${ad.creative_id} AND
-      ${status_changes.ad_group_id} = ${ad.ad_group_id} AND
-      ${status_changes.campaign_id} = ${campaign.campaign_id} AND
-      ${status_changes.external_customer_id} = ${ad.external_customer_id};;
+    sql_on: ${fact.creative_id} = ${ad.creative_id} AND
+      ${fact.ad_group_id} = ${ad.ad_group_id} AND
+      ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${ad.external_customer_id};;
     relationship:  many_to_one
   }
+
   join: keyword {
     view_label: "Keywords"
-    sql_on: ${status_changes.criterion_id} = ${keyword.criterion_id} AND
-      ${status_changes.ad_group_id} = ${keyword.ad_group_id} AND
-      ${status_changes.campaign_id} = ${campaign.campaign_id} AND
-      ${status_changes.external_customer_id} = ${keyword.external_customer_id} ;;
+    sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
+      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
+      ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${keyword.external_customer_id} ;;
     relationship: many_to_one
   }
 }

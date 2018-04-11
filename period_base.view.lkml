@@ -1,6 +1,52 @@
 view: period_base {
   extension: required
 
+  filter: date_range {
+    hidden: yes
+    type: date
+    convert_tz: no
+    sql: ${in_date_range} ;;
+  }
+
+  dimension: date_start_date_range {
+    hidden: yes
+    type: date
+    sql: {% date_start date_range %} ;;
+  }
+
+  dimension: date_end_date_range {
+    hidden: yes
+    type: date
+    sql: {% date_end date_range %} ;;
+  }
+
+  dimension: date_range_difference {
+    hidden: yes
+    type: number
+    sql: DATE_DIFF( ${date_end_date_range}, ${date_start_date_range}, day) ;;
+#     expression: diff_days(${date_end_date_range}, ${date_start_date_range}) ;;
+  }
+
+  dimension: in_date_range {
+    hidden: yes
+    type: yesno
+    sql: {% condition date_range %}CAST(${fact.date_raw} AS TIMESTAMP){% endcondition %} ;;
+  }
+
+  dimension: date_range_day_of_range_prior {
+    hidden: yes
+    type: number
+    sql: MOD(MOD(${date_days_prior}, ${date_range_difference}) + ${date_range_difference}, ${date_range_difference}) ;;
+#     expression: mod(mod(${date_days_prior},  ${date_range_difference}) +  ${date_range_difference},  ${date_range_difference}) ;;
+  }
+
+  dimension: date_range_days_prior {
+    hidden: yes
+    type: date
+    sql: DATE_ADD(${date_date}, INTERVAL -${date_range_day_of_range_prior} DAY) ;;
+#     expression: add_days(-1 * ${date_range_difference}, ${date_date}) ;;
+  }
+
   parameter: period {
     description: "Prior Period for Comparison"
     type: string
@@ -82,6 +128,7 @@ view: period_base {
     type: yesno
     group_label: "Event"
     sql: ${date_period} <= CURRENT_DATE() AND ${date_end_of_period} >= CURRENT_DATE() ;;
+    # expression: ${date_period} <= now() AND ${date_end_of_period} >= now() ;;
   }
   dimension: date_period_dynamic_grain {
     hidden: yes
@@ -121,6 +168,8 @@ view: period_base {
       {% elsif fact.period._parameter_value contains "quarter" %}${date_day_of_quarter}
       {% elsif fact.period._parameter_value contains "year" %}${date_day_of_year}
       {% endif %} ;;
+    # html: {{ value | plus: 1 }} - {{ date_date }};;
+    # required_fields: [date_date]
   }
   dimension: date_last_period {
     group_label: "Event"
@@ -128,13 +177,5 @@ view: period_base {
     type: date
     sql: DATE_ADD(${date_period}, INTERVAL -{% if fact.period._parameter_value == "'7 day'" %}7{% elsif fact.period._parameter_value == "'28 day'" %}28{% elsif fact.period._parameter_value == "'91 day'" %}91{% elsif fact.period._parameter_value == "'364 day'" %}364{% else %}1{% endif %} {% if fact.period._parameter_value contains "day" %}day{% elsif fact.period._parameter_value contains "week" %}week{% elsif fact.period._parameter_value contains "month" %}month{% elsif fact.period._parameter_value contains "quarter" %}quarter{% elsif fact.period._parameter_value contains "year" %}year{% endif %}) ;;
     allow_fill: no
-  }
-  dimension: less_than_current_day_of_period {
-    sql: {% if fact.period._parameter_value contains "day" %}1=1 --always less than day current day of period
-      {% elsif fact.period._parameter_value contains "week" %}${less_than_current_day_of_week}
-      {% elsif fact.period._parameter_value contains "month" %}${less_than_current_day_of_month}
-      {% elsif fact.period._parameter_value contains "quarter" %}${less_than_current_day_of_quarter}
-      {% elsif fact.period._parameter_value contains "year" %}${less_than_current_day_of_year}
-      {% endif %} ;;
   }
 }

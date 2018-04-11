@@ -158,18 +158,51 @@ view: ad_impressions {
     case: {
       when: {
         sql: ${device} LIKE '%Desktop%' ;;
+#         expression: contains(${device}, 'Desktop') ;;
         label: "Desktop"
       }
       when: {
         sql: ${device} LIKE '%Mobile%' ;;
+#         expression: contains(${device}, 'Mobile') ;;
         label: "Mobile"
       }
       when: {
         sql: ${device} LIKE '%Tablet%' ;;
+#         expression: contains(${device}, 'Tablet') ;;
         label: "Tablet"
       }
       else: "Other"
     }
+  }
+
+  dimension: city_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.CityCriteriaId ;;
+  }
+
+  dimension: country_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.CountryCriteriaId ;;
+  }
+
+  dimension: metro_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.MetroCriteriaId ;;
+  }
+
+  dimension: most_specific_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.MostSpecificCriteriaId ;;
+  }
+
+  dimension: region_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.RegionCriteriaId ;;
   }
 
   measure: total_impressions {

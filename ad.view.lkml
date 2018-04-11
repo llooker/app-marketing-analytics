@@ -76,6 +76,7 @@ view: ad {
   dimension: creative_approval_status {
     type: string
     sql: REPLACE(${creative_approval_status_raw}, "ApprovalStatus_", "") ;;
+#     expression: replace(${creative_approval_status_raw}, "ApprovalStatus_", "") ;;
   }
 
   dimension: creative_destination_url {
@@ -254,6 +255,7 @@ view: ad {
   dimension: status {
     type: string
     sql: REPLACE(${status_raw}, "Status_", "") ;;
+    # expression: replace(${status_raw}, "Status_", "") ;;
   }
 
   dimension: trademarks {
@@ -279,6 +281,7 @@ view: ad {
       label: "Change Bid"
     }
     required_fields: [campaign.campaign_name, ad_group.ad_group_name]
+    # expression: substring(concat(${headline}, ${headline_part1}, ${headline_part2}), 0, 50)
   }
 
   dimension: display_headline {

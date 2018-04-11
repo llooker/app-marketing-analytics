@@ -15,7 +15,7 @@
     - fact.average_cost_per_click
     - fact.average_click_rate
     sorts:
-    - fact.date_period_dynamic_grain desc
+    - fact.date_period_dynamic_grain
     limit: 500
     column_limit: 50
     stacking: ''

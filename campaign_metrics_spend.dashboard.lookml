@@ -15,7 +15,7 @@
     - fact.percent_used_budget_tier
     sorts:
     - fact.percent_used_budget_tier
-    - fact.date_period_dynamic_grain desc
+    - fact.date_period_dynamic_grain
     limit: 500
     column_limit: 50
     label: Campaign Budget Utilization

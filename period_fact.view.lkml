@@ -131,6 +131,7 @@ view: period_fact {
   {% endif %} ;;
 
   dimension: key_base {
+    hidden: yes
     sql:
       CONCAT(
       CAST(${external_customer_id} AS STRING),
@@ -149,6 +150,7 @@ view: period_fact {
   }
   dimension: primary_key {
     primary_key: yes
+    hidden: yes
     sql: concat(CAST(${date_period} as STRING), ${date_day_of_period}, ${key_base}) ;;
   }
 }
