@@ -2,8 +2,8 @@
   extends: campaign_metrics_base
   title: Campaign Metrics - Conversion Rate
   elements:
-  - title: Conversion Rate vs Cost Per Conversion
-    name: Conversion Rate vs Cost Per Conversion
+  - title: Conversion Rate To Date
+    name: Conversion Rate To Date
     model: looker_app_google_adwords
     explore: period_fact
     type: looker_line
@@ -11,6 +11,9 @@
     - fact.date_period_dynamic_grain
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
+    - fact.total_conversions
+    - fact.average_cost_per_click
+    - fact.average_click_rate
     sorts:
     - fact.date_period_dynamic_grain
     limit: 500
@@ -113,7 +116,10 @@
     - "#ea9895"
     - "#f1e582"
     series_colors: {}
-    hidden_series: []
+    hidden_series:
+    - fact.total_conversions
+    - fact.average_cost_per_click
+    - fact.average_click_rate
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0

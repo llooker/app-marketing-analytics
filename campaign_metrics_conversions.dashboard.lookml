@@ -64,6 +64,7 @@
       fact.average_conversion_rate: line
       fact.average_click_rate: line
       fact.average_cost_per_click: line
+      fact.total_conversions: line
     show_dropoff: false
     y_axes:
     - label:
@@ -81,10 +82,10 @@
       - id: fact.average_cost_per_conversion
         name: Cost Per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 76
+        __LINE_NUM: 81
         axisId: fact.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 64
+      __LINE_NUM: 69
     - label:
       maxValue:
       minValue:
@@ -101,9 +102,9 @@
         name: Conversions
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 95
+        __LINE_NUM: 100
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 83
+      __LINE_NUM: 88
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
