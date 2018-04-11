@@ -175,6 +175,36 @@ view: ad_impressions {
     }
   }
 
+  dimension: city_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.CityCriteriaId ;;
+  }
+
+  dimension: country_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.CountryCriteriaId ;;
+  }
+
+  dimension: metro_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.MetroCriteriaId ;;
+  }
+
+  dimension: most_specific_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.MostSpecificCriteriaId ;;
+  }
+
+  dimension: region_criteria_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.RegionCriteriaId ;;
+  }
+
   measure: total_impressions {
   }
   measure: total_clicks {
