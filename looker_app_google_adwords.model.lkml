@@ -11,6 +11,7 @@ include: "campaign.view"
 include: "campaign_budget_date_fact.view"
 include: "campaign_fact.view"
 include: "customer.view"
+include: "geotargeting.view"
 include: "keyword.view"
 include: "keyword_fact.view"
 include: "period_fact.view"
@@ -93,6 +94,49 @@ explore: ad_impressions {
       ${fact.date_date} = ${customer.date_date} ;;
     relationship: many_to_one
   }
+
+  join: geo_country {
+    from: geotargeting
+    view_label: "Country"
+    fields: [country_code]
+    sql_on: ${fact.country_criteria_id} = ${geo_country.criteria_id} ;;
+    relationship: many_to_one
+  }
+
+  join: geo_us_state {
+    from: geotargeting
+    view_label: "US State"
+    fields: [state]
+    sql_on: ${fact.region_criteria_id} = ${geo_us_state.criteria_id} AND
+      ${geo_us_state.country_code} = "US" AND ${geo_us_state.target_type} = "State" ;;
+    relationship: many_to_one
+    type: inner
+  }
+
+  join: geo_region {
+    from: geotargeting
+    view_label: "Region"
+    fields: [name, country_code]
+    sql_on: ${fact.city_criteria_id} = ${geo_region.criteria_id} ;;
+    relationship: many_to_one
+  }
+
+  join: geo_metro {
+    from: geotargeting
+    view_label: "Metro"
+    fields: [name, country_code]
+    sql_on: ${fact.city_criteria_id} = ${geo_metro.criteria_id} ;;
+    relationship: many_to_one
+  }
+
+  join: geo_city {
+    from: geotargeting
+    view_label: "City"
+    fields: [name, country_code]
+    sql_on: ${fact.city_criteria_id} = ${geo_city.criteria_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 explore: status_changes  {
