@@ -229,6 +229,7 @@ explore: status_changes  {
 
   join: campaign_date_fact {
     view_label: "Campaigns"
+    type: inner
     sql_on:
       ${fact.campaign_id} = ${campaign_date_fact.campaign_id} AND
       ${fact.external_customer_id} = ${campaign_date_fact.external_customer_id} AND
@@ -246,6 +247,7 @@ explore: status_changes  {
 
   join: ad_group_date_fact {
     view_label: "Ad Groups"
+    type: inner
     sql_on:
       ${fact.ad_group_id} = ${ad_group_date_fact.ad_group_id} AND
       ${fact.campaign_id} = ${ad_group_date_fact.campaign_id} AND
@@ -265,6 +267,7 @@ explore: status_changes  {
 
   join: ad_date_fact {
     view_label: "Ads"
+    type: inner
     sql_on: ${fact.creative_id} = ${ad_date_fact.creative_id} AND
       ${fact.ad_group_id} = ${ad_date_fact.ad_group_id} AND
       ${fact.campaign_id} = ${ad_date_fact.campaign_id} AND
@@ -284,6 +287,7 @@ explore: status_changes  {
 
   join: keyword_date_fact {
     view_label: "Keywords"
+    type: inner
     sql_on: ${fact.criterion_id} = ${keyword_date_fact.criterion_id} AND
       ${fact.ad_group_id} = ${keyword_date_fact.ad_group_id} AND
       ${fact.campaign_id} = ${keyword_date_fact.campaign_id} AND
