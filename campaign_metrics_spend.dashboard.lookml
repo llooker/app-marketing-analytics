@@ -2,6 +2,115 @@
   extends: campaign_metrics_base
   title: Campaign Metrics - Spend
   elements:
+  - title: Spend To Date
+    name: Spend To Date
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: looker_area
+    fields:
+    - fact.date_day_of_period
+    - fact.total_cost
+    - fact.cumulative_spend
+    - last_fact.total_cost
+    - last_fact.cumulative_spend
+    sorts:
+    - fact.date_day_of_period
+    limit: 500
+    column_limit: 50
+    stacking: ''
+    show_value_labels: false
+    label_density: 1
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    show_null_points: false
+    point_style: none
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    ordering: none
+    show_null_labels: false
+    label: Average Cost per Conversion
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    series_types: {}
+    show_dropoff: false
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: left
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: fact.average_cost_per_conversion
+        name: Cost per Conversion
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 191
+        axisId: fact.average_cost_per_conversion
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 179
+    discontinuous_nulls: false
+    focus_on_hover: false
+    reference_lines: []
+    colors:
+    - "#4bb86a"
+    - "#8fe4a7"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#7869df"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    hidden_fields:
+    - fact.total_cost
+    - last_fact.total_cost
+    column_group_spacing_ratio: 0
+    column_spacing_ratio: 0
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Period: fact.period
+      Period Latest: fact.date_period_latest
+    row: 0
+    col: 0
+    width: 16
+    height: 11
   - title: Budget Utilization
     name: Budget Utilization
     model: looker_app_google_adwords
@@ -117,24 +226,22 @@
     col: 16
     width: 8
     height: 11
-  - title: Spend To Date
-    name: Spend To Date
+  - title: Spend by Device
+    name: Spend by Device
     model: looker_app_google_adwords
-    explore: period_fact
-    type: looker_area
+    explore: ad_impressions
+    type: looker_bar
     fields:
-    - fact.date_day_of_period
     - fact.total_cost
-    - fact.cumulative_spend
-    - last_fact.total_cost
-    - last_fact.cumulative_spend
+    - fact.device_type
+    fill_fields:
+    - fact.device_type
     sorts:
-    - fact.date_day_of_period
+    - fact.total_cost desc
     limit: 500
-    column_limit: 50
     stacking: ''
-    show_value_labels: false
-    label_density: 1
+    show_value_labels: true
+    label_density: 25
     legend_position: center
     x_axis_gridlines: false
     y_axis_gridlines: true
@@ -149,83 +256,134 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
-    show_null_points: false
-    point_style: none
-    interpolation: linear
+    ordering: none
+    show_null_labels: false
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    ordering: none
-    show_null_labels: false
-    label: Average Cost per Conversion
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
     series_types: {}
-    show_dropoff: false
+    label_color: []
+    x_axis_label: Device
     y_axes:
     - label: ''
       maxValue:
       minValue:
-      orientation: left
+      orientation: bottom
       showLabels: false
       showValues: false
       tickDensity: default
-      tickDensityCustom:
+      tickDensityCustom: 5
       type: linear
       unpinAxis: false
       valueFormat:
       series:
-      - id: fact.average_cost_per_conversion
-        name: Cost per Conversion
+      - id: fact.total_cost
+        name: Ad Stats Cost
+        axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 191
-        axisId: fact.average_cost_per_conversion
+        __LINE_NUM: 361
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 179
-    discontinuous_nulls: false
-    focus_on_hover: false
-    reference_lines: []
+      __LINE_NUM: 349
     colors:
-    - "#4bb86a"
-    - "#8fe4a7"
+    - "#d06180"
+    - "#7869df"
     - "#6e98f9"
     - "#8ac8ca"
-    - "#d06180"
     - "#dc9d4f"
-    - "#7869df"
+    - "#4bb86a"
     - "#a4a6a9"
     - "#a6b7ff"
     - "#afe8fd"
     - "#ea9895"
     - "#f1e582"
     series_colors: {}
-    hidden_fields:
-    - fact.total_cost
-    - last_fact.total_cost
-    column_group_spacing_ratio: 0
-    column_spacing_ratio: 0
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 0
+    row: 11
     col: 0
-    width: 16
-    height: 11
+    width: 8
+    height: 6
+  - title: Spend by Bid Strategy
+    name: Spend by Bid Strategy
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_bar
+    fields:
+    - fact.total_cost
+    - keyword.bidding_strategy_type
+    sorts:
+    - fact.total_cost desc
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    series_types: {}
+    label_color: []
+    x_axis_label: Bid Strategy
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: fact.total_cost
+        name: Ad Stats Cost
+        axisId: fact.total_cost
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 564
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 552
+    colors:
+    - "#dc9d4f"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Period: fact.period
+      Period Latest: fact.date_period_latest
+    row: 17
+    col: 0
+    width: 8
+    height: 6
   - title: Spend by Network
     name: Spend by Network
     model: looker_app_google_adwords
@@ -307,86 +465,58 @@
     col: 0
     width: 8
     height: 6
-  - title: Spend by Device
-    name: Spend by Device
+  - title: Spend By State
+    name: Spend By State
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: looker_bar
+    type: looker_map
     fields:
+    - geo_us_state.state
     - fact.total_cost
-    - fact.device_type
-    fill_fields:
-    - fact.device_type
+    filters:
+      fact.period: 28 day
+      ad_group.ad_group_name: ''
+      campaign.campaign_name: ''
     sorts:
     - fact.total_cost desc
     limit: 500
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
+    query_timezone: America/Los_Angeles
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: positron
+    map_position: custom
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_view_names: true
+    show_legend: true
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    map: auto
+    map_projection: ''
+    quantize_colors: false
     series_types: {}
-    label_color: []
-    x_axis_label: Device
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.total_cost
-        name: Ad Stats Cost
-        axisId: fact.total_cost
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 361
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 349
-    colors:
-    - "#d06180"
-    - "#7869df"
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#dc9d4f"
-    - "#4bb86a"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
+    map_latitude: 41.23703864665824
+    map_longitude: -93.0742393434048
+    map_zoom: 5
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
-    col: 0
-    width: 8
-    height: 6
+    col: 8
+    width: 16
+    height: 18
   - title: Spend by Day of Week
     name: Spend by Day of Week
     model: looker_app_google_adwords
@@ -511,84 +641,6 @@
     row: 29
     col: 14
     width: 10
-    height: 6
-  - title: Spend by Bid Strategy
-    name: Spend by Bid Strategy
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_bar
-    fields:
-    - fact.total_cost
-    - keyword.bidding_strategy_type
-    sorts:
-    - fact.total_cost desc
-    limit: 500
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    label_color: []
-    x_axis_label: Bid Strategy
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.total_cost
-        name: Ad Stats Cost
-        axisId: fact.total_cost
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 564
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 552
-    colors:
-    - "#dc9d4f"
-    - "#7869df"
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#d06180"
-    - "#4bb86a"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Period: fact.period
-      Period Latest: fact.date_period_latest
-    row: 17
-    col: 0
-    width: 8
     height: 6
   - title: Spend by Day of Week and Hour of Day
     name: Spend by Day of Week and Hour of Day
@@ -834,101 +886,6 @@
     col: 14
     width: 10
     height: 6
-  - title: Top Keywords by Spend
-    name: Top Keywords by Spend
-    model: looker_app_google_adwords
-    explore: period_fact
-    type: looker_column
-    fields:
-    - ad_group.ad_group_name
-    - campaign.campaign_name
-    - fact.total_cost
-    - keyword.criteria
-    sorts:
-    - fact.total_cost desc
-    limit: 50
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: true
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    query_timezone: America/Los_Angeles
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    series_types: {}
-    limit_displayed_rows_values:
-      show_hide: show
-      first_last: first
-      num_rows: '7'
-    hidden_fields:
-    - ad_group.ad_group_name
-    - campaign.campaign_name
-    colors:
-    - "#ea9895"
-    - "#7869df"
-    - "#6e98f9"
-    - "#8ac8ca"
-    - "#d06180"
-    - "#dc9d4f"
-    - "#4bb86a"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    series_colors: {}
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.total_cost
-        name: Cost
-        axisId: fact.total_cost
-        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 916
-      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 904
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Period: fact.period
-      Period Latest: fact.date_period_latest
-    row: 41
-    col: 12
-    width: 12
-    height: 14
   - title: Top Ads by Spend
     name: Top Ads by Spend
     model: looker_app_google_adwords
@@ -1025,6 +982,101 @@
     col: 0
     width: 12
     height: 7
+  - title: Top Keywords by Spend
+    name: Top Keywords by Spend
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: looker_column
+    fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    - fact.total_cost
+    - keyword.criteria
+    sorts:
+    - fact.total_cost desc
+    limit: 50
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: true
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    query_timezone: America/Los_Angeles
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '7'
+    hidden_fields:
+    - ad_group.ad_group_name
+    - campaign.campaign_name
+    colors:
+    - "#ea9895"
+    - "#7869df"
+    - "#6e98f9"
+    - "#8ac8ca"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: fact.total_cost
+        name: Cost
+        axisId: fact.total_cost
+        __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+        __LINE_NUM: 916
+      __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
+      __LINE_NUM: 904
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Period: fact.period
+      Period Latest: fact.date_period_latest
+    row: 41
+    col: 12
+    width: 12
+    height: 14
   - title: Top Landing Pages by Spend
     name: Top Landing Pages by Spend
     model: looker_app_google_adwords
@@ -1120,54 +1172,6 @@
     col: 0
     width: 12
     height: 7
-  - title: Spend By State
-    name: Spend By State
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_map
-    fields:
-    - geo_us_state.state
-    - fact.total_cost
-    filters:
-      fact.period: 28 day
-      ad_group.ad_group_name: ''
-      campaign.campaign_name: ''
-    sorts:
-    - fact.total_cost desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    map_plot_mode: points
-    heatmap_gridlines: false
-    heatmap_gridlines_empty: false
-    heatmap_opacity: 0.5
-    show_region_field: true
-    draw_map_labels_above_data: true
-    map_tile_provider: positron
-    map_position: custom
-    map_scale_indicator: 'off'
-    map_pannable: true
-    map_zoomable: true
-    map_marker_type: circle
-    map_marker_icon_name: default
-    map_marker_radius_mode: proportional_value
-    map_marker_units: meters
-    map_marker_proportional_scale_type: linear
-    map_marker_color_mode: fixed
-    show_view_names: true
-    show_legend: true
-    quantize_map_value_colors: false
-    reverse_map_value_colors: false
-    map: auto
-    map_projection: ''
-    quantize_colors: false
-    series_types: {}
-    map_latitude: 41.23703864665824
-    map_longitude: -93.0742393434048
-    map_zoom: 5
-    row: 11
-    col: 8
-    width: 16
-    height: 18
   filters:
   - name: Campaign
     title: Campaign
