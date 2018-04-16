@@ -220,24 +220,12 @@ view: ad_impressions {
       label: "By Keyword"
       url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,fact.average_click_rate&f[fact.date_date]=this quarter"
     }
-    html:  {% if (geo_us_state.state._in_query) %}
-    <a href= "/explore/looker_app_google_adwords/ad_impressions?fields=fact.average_click_rate,geo_metro.name&f[geo_us_state.state]={{geo_us_state.state._value}}"> {{rendered_value}}  </a>
-    {% else %} {{rendered_value}}
-    {% endif %};;
   }
   measure: average_conversion_rate {
   }
   measure: average_cost_per_click {
-    html:  {% if (geo_us_state.state._in_query) %}
-    <a href= "/explore/looker_app_google_adwords/ad_impressions?fields=fact.average_cost_per_click,geo_metro.name&f[geo_us_state.state]={{geo_us_state.state._value}}"> {{rendered_value}}  </a>
-    {% else %} {{rendered_value}}
-    {% endif %};;
   }
   measure: average_cost_per_conversion {
     drill_fields: [fact.date_date, campaign.campaign_name, fact.total_conversions]
-    html:  {% if (geo_us_state.state._in_query) %}
-    <a href= "/explore/looker_app_google_adwords/ad_impressions?fields=fact.average_cost_per_conversion,geo_metro.name&f[geo_us_state.state]={{geo_us_state.state._value}}"> {{rendered_value}}  </a>
-    {% else %} {{rendered_value}}
-    {% endif %};;
   }
 }

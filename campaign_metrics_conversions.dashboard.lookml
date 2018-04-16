@@ -289,7 +289,6 @@
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
-      Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
     col: 8
