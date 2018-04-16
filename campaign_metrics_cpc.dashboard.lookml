@@ -82,10 +82,10 @@
       - id: fact.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 81
+        __LINE_NUM: 82
         axisId: fact.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 69
+      __LINE_NUM: 70
     - label:
       maxValue:
       minValue:
@@ -102,9 +102,9 @@
         name: Cost per Click
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 100
+        __LINE_NUM: 101
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 88
+      __LINE_NUM: 89
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -138,7 +138,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 4
+    row: 0
     col: 0
     width: 24
     height: 10
@@ -198,9 +198,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 196
+        __LINE_NUM: 197
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 184
+      __LINE_NUM: 185
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -219,7 +219,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 15
+    row: 22
     col: 0
     width: 8
     height: 6
@@ -278,9 +278,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 275
+        __LINE_NUM: 277
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 263
+      __LINE_NUM: 265
     colors:
     - "#d06180"
     - "#7869df"
@@ -299,8 +299,8 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 15
-    col: 8
+    row: 10
+    col: 0
     width: 8
     height: 6
   - title: Cost Per Click by Bid Strategy
@@ -356,9 +356,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 353
+        __LINE_NUM: 355
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 341
+      __LINE_NUM: 343
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -377,8 +377,8 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 15
-    col: 16
+    row: 16
+    col: 0
     width: 8
     height: 6
   - title: Cost Per Click by Day of Week and Hour of Day
@@ -466,9 +466,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 463
+        __LINE_NUM: 465
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 451
+      __LINE_NUM: 453
     conditional_formatting:
     - type: high to low
       value:
@@ -481,14 +481,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 476
+        __LINE_NUM: 478
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.average_cost_per_click
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 471
+      __LINE_NUM: 473
     series_labels:
       fact.average_cost_per_click: "-"
     listen:
@@ -496,7 +496,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 21
+    row: 28
     col: 0
     width: 14
     height: 14
@@ -581,9 +581,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 576
+        __LINE_NUM: 580
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 564
+      __LINE_NUM: 568
     conditional_formatting:
     - type: high to low
       value:
@@ -596,13 +596,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 589
+        __LINE_NUM: 593
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 584
+      __LINE_NUM: 588
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -621,7 +621,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 21
+    row: 28
     col: 14
     width: 10
     height: 7
@@ -704,9 +704,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 699
+        __LINE_NUM: 703
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 687
+      __LINE_NUM: 691
     conditional_formatting:
     - type: high to low
       value:
@@ -719,13 +719,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 712
+        __LINE_NUM: 716
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 707
+      __LINE_NUM: 711
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -744,7 +744,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 28
+    row: 35
     col: 14
     width: 10
     height: 7
@@ -757,8 +757,8 @@
     - ad_group.ad_group_name
     - campaign.campaign_name
     - fact.average_cost_per_click_period_percent_change_abs
-    - fact.average_cost_per_click
     - last_fact.average_cost_per_click
+    - fact.average_cost_per_click
     filters:
       fact.cost_per_click_big_mover: 'Yes'
     sorts:
@@ -812,14 +812,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 1018
+        __LINE_NUM: 811
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 1023
+        __LINE_NUM: 816
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 1006
+      __LINE_NUM: 799
     series_colors: {}
     colors:
     - "#a6b7ff"
@@ -841,7 +841,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 42
     col: 0
     width: 8
     height: 10
@@ -855,8 +855,8 @@
     - ad_group.ad_group_name
     - campaign.campaign_name
     - fact.average_cost_per_click_period_percent_change_abs
-    - fact.average_cost_per_click
     - last_fact.average_cost_per_click
+    - fact.average_cost_per_click
     filters:
       fact.cost_per_click_big_mover: 'Yes'
     sorts:
@@ -911,14 +911,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 809
+        __LINE_NUM: 910
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 814
+        __LINE_NUM: 915
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 797
+      __LINE_NUM: 898
     series_colors: {}
     colors:
     - "#ea9895"
@@ -940,7 +940,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 42
     col: 8
     width: 8
     height: 10
@@ -954,8 +954,8 @@
     - ad_group.ad_group_name
     - campaign.campaign_name
     - fact.average_cost_per_click_period_percent_change_abs
-    - fact.average_cost_per_click
     - last_fact.average_cost_per_click
+    - fact.average_cost_per_click
     filters:
       fact.cost_per_click_big_mover: 'Yes'
     sorts:
@@ -1019,6 +1019,7 @@
     - "#ea989"
     series_colors:
       fact.cost_per_conversion_last_month: "#f1cc9a"
+      last_fact.average_cost_per_click: "#f1cc9a"
     y_axes:
     - label: ''
       maxValue:
@@ -1036,14 +1037,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 937
+        __LINE_NUM: 1036
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 942
+        __LINE_NUM: 1041
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 925
+      __LINE_NUM: 1024
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -1051,7 +1052,96 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 42
     col: 16
     width: 8
     height: 10
+  - title: Cost Per Click By State
+    name: Cost Per Click By State
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_map
+    fields:
+    - geo_us_state.state
+    - fact.average_cost_per_click
+    filters:
+      fact.period: 28 day
+      ad_group.ad_group_name: ''
+      campaign.campaign_name: ''
+    sorts:
+    - fact.average_cost_per_click desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: positron
+    map_position: custom
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_view_names: true
+    show_legend: true
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    map: auto
+    map_projection: ''
+    quantize_colors: false
+    series_types: {}
+    map_latitude: 39.883268781835994
+    map_longitude: -96.4422529935837
+    map_zoom: 5
+    row: 10
+    col: 8
+    width: 16
+    height: 18
+  filters:
+  - name: Campaign
+    title: Campaign
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: campaign.campaign_name
+  - name: Ad Group
+    title: Ad Group
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: ad_group.ad_group_name
+  - name: Period
+    title: Period
+    type: field_filter
+    default_value: 28 day
+    allow_multiple_values: true
+    required: true
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.period
+  - name: Period Latest
+    title: Period Latest
+    type: field_filter
+    default_value: 'Yes'
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.date_period_latest
