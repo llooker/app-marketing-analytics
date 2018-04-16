@@ -140,34 +140,14 @@ explore: ad_impressions {
 }
 
 explore: status_changes  {
+  hidden: yes
   from: status_changes
   view_name: fact
-  fields: [campaign.campaign_name,
-    campaign.campaign_id,
-    campaign.campaign_status,
-    campaign.bid_type,
-    campaign.bidding_strategy_name,
-    campaign.bidding_strategy_type,
-    campaign.count,
-    ad_group.ad_group_name,
-    ad_group.ad_group_id,
-    ad_group.ad_group_status,
-    ad_group.bid_type,
-    ad_group.target_cpa,
-    ad_group.target_cpa_bid_source,
-    ad_group.count,
-    ad_group.campaign_id,
-    ad.creative,
-    ad.ad_type,
-    ad.count,
-    ad.status,
-    ad.ad_group_id,
-    keyword.criteria,
-    keyword.bid_type,
-    keyword.bidding_strategy_name,
-    keyword.bidding_strategy_type,
-    keyword.status,
-    keyword.count,
+  fields: [
+    campaign.detail*,
+    ad_group.detail*,
+    ad.detail*,
+    keyword.detail*,
     fact.ad_group_id,
     fact.campaign_id,
     fact.creative_id,
@@ -218,7 +198,6 @@ explore: status_changes  {
     keyword_date_fact.average_cost_per_interaction,
     keyword_date_fact.average_interaction_rate
     ]
-#   hidden: yes
 
   join: campaign {
     view_label: "Campaigns"

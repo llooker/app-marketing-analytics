@@ -13,6 +13,7 @@ view: customer {
   dimension: account_descriptive_name {
     type: string
     sql: ${TABLE}.AccountDescriptiveName ;;
+    required_fields: [external_customer_id]
   }
 
   dimension: account_time_zone_id {
@@ -44,6 +45,7 @@ view: customer {
   dimension: primary_company_name {
     type: string
     sql: ${TABLE}.PrimaryCompanyName ;;
+    required_fields: [external_customer_id]
   }
 
   dimension_group: date {

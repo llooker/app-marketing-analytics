@@ -6,7 +6,7 @@ explore: ad_group {
   join: campaign {
     view_label: "Campaign"
     sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
-      ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad_group.external_customer_id} = ${campaign.external_customer_id} AND
       ${ad_group.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }
@@ -28,7 +28,6 @@ view: ad_group {
   }
 
   dimension: ad_group_id {
-    primary_key: yes
     sql: ${TABLE}.AdGroupId ;;
     hidden: yes
   }
@@ -56,12 +55,17 @@ view: ad_group {
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
       label: "Change Bid"
     }
-    required_fields: [campaign.campaign_name]
+    required_fields: [external_customer_id, campaign_id, ad_group_id]
   }
 
   dimension: ad_group_status {
     type: string
     sql: ${TABLE}.AdGroupStatus ;;
+  }
+
+  dimension: status_active {
+    type: yesno
+    sql: ${ad_group_status} == "ENABLED" ;;
   }
 
   dimension: ad_group_tablet_bid_modifier {
@@ -166,14 +170,35 @@ view: ad_group {
     hidden: yes
   }
 
+  dimension: primary_key {
+    primary_key: yes
+    sql: CONCAT(
+      CAST(${external_customer_id} AS STRING), "-",
+      CAST(${campaign_id} AS STRING), "-",
+      CAST(${ad_group_id} AS STRING)) ;;
+  }
+
   measure: count {
     type: count_distinct
-    sql: ${ad_group_id} ;;
-    drill_fields: [detail*]
+    sql: ${primary_key} ;;
+    drill_fields: [drill_detail*]
+  }
+
+  measure: count_active {
+    type: count_distinct
+    sql: ${primary_key} ;;
+    filters: {
+      field: status_active
+      value: "Yes"
+    }
+    drill_fields: [drill_detail*]
   }
 
   # ----- Detail ------
+  set: drill_detail {
+    fields: [ad_group_id, ad_group_name, ad_group_status, cpc_bid, count, count_active, ad.count, keyword.count]
+  }
   set: detail {
-    fields: [ad_group_id, ad_group_name, ad_group_status, cpc_bid, ad.count, keyword.count]
+    fields: [external_customer_id, campaign_id, count, count_active, status_active, drill_detail*]
   }
 }
