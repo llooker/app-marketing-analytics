@@ -115,6 +115,10 @@ view: ad_metrics_base {
     sql: ${total_conversions}*1.0 / NULLIF(${total_clicks},0) ;;
     value_format_name: percent_2
     drill_fields: [fact.date_date, campaign.campaign_name, average_conversion_rate]
+    html:  {% if (geo_us_state.state._in_query) %}
+    <a href= "/explore/looker_app_google_adwords/ad_impressions?fields=fact.average_conversion_rate,geo_metro.name&f[geo_us_state.state]={{geo_us_state.state._value}}"> {{rendered_value}}  </a>
+    {% else %} {{rendered_value}}
+    {% endif %};;
   }
 
   measure: cumulative_spend {
@@ -148,6 +152,10 @@ view: ad_metrics_base {
     type: sum
     sql: ${conversions} ;;
     value_format_name: decimal_0
+    html:  {% if (geo_us_state.state._in_query) %}
+    <a href= "/explore/looker_app_google_adwords/ad_impressions?fields=fact.total_conversions,geo_metro.name&f[geo_us_state.state]={{geo_us_state.state._value}}"> {{rendered_value}}  </a>
+    {% else %} {{rendered_value}}
+    {% endif %};;
   }
 
   measure: total_conversionvalue {
@@ -164,6 +172,10 @@ view: ad_metrics_base {
     type: sum
     sql: ${cost} ;;
     value_format_name: usd_0
+    html:  {% if (geo_us_state.state._in_query) %}
+    <a href= "/explore/looker_app_google_adwords/ad_impressions?fields=fact.total_cost,geo_metro.name&f[geo_us_state.state]={{geo_us_state.state._value}}"> {{rendered_value}}  </a>
+    {% else %} {{rendered_value}}
+    {% endif %};;
   }
 
   measure: total_impressions {

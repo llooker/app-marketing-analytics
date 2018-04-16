@@ -1,6 +1,7 @@
 include: "ad_group_fact.view"
 include: "keyword.view"
 include: "recent_changes.view"
+include: "period_fact.view"
 
 explore: keyword_date_fact {
   hidden: yes
@@ -68,6 +69,12 @@ explore: keyword_date_fact {
       ${status_changes.external_customer_id} = ${keyword.external_customer_id} AND
       ${status_changes.date_date} = ${keyword.date_date}  ;;
     relationship: one_to_many
+  }
+  join: geo_us_state {
+    fields: [state]
+    sql_on: 1=1 ;;
+    relationship: one_to_one
+    type: inner
   }
 }
 

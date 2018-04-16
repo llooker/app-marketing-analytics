@@ -40,6 +40,14 @@ datagroup: etl_datagroup {
 
 persist_with: etl_datagroup
 
+
+view: geo_metro {
+  extends: [geotargeting]
+  dimension: name {
+    label: "Zipcode"
+    type: zipcode
+  }
+}
 explore: ad_impressions {
   label: "Ad Impressions"
   view_label: "Ad Impressions"
@@ -122,10 +130,9 @@ explore: ad_impressions {
   }
 
   join: geo_metro {
-    from: geotargeting
     view_label: "Metro"
-    fields: [name, country_code]
-    sql_on: ${fact.city_criteria_id} = ${geo_metro.criteria_id} ;;
+    fields: [name, country_code, target_type]
+    sql_on: ${fact.most_specific_criteria_id} = ${geo_metro.criteria_id}  AND ${geo_metro.target_type} = "Postal Code" ;;
     relationship: many_to_one
   }
 
