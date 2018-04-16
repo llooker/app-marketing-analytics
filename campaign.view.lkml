@@ -104,13 +104,14 @@ view: campaign {
   }
 
   dimension: campaign_status {
+    hidden: yes
     type: string
     sql: REPLACE(${campaign_status_raw}, "Status_", "") ;;
   }
 
   dimension: status_active {
     type: yesno
-    sql: ${campaign_status} == "Active" ;;
+    sql: ${campaign_status} = "Active" ;;
   }
 
   dimension: campaign_tablet_bid_modifier {

@@ -251,6 +251,7 @@ view: ad {
   }
 
   dimension: status {
+    hidden: yes
     type: string
     sql: REPLACE(${status_raw}, "Status_", "") ;;
     # expression: replace(${status_raw}, "Status_", "") ;;
@@ -258,7 +259,7 @@ view: ad {
 
   dimension: status_active {
     type: yesno
-    sql: ${status} == "Enabled" ;;
+    sql: ${status} = "Enabled" ;;
   }
 
   dimension: trademarks {

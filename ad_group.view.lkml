@@ -59,13 +59,14 @@ view: ad_group {
   }
 
   dimension: ad_group_status {
+    hidden: yes
     type: string
     sql: ${TABLE}.AdGroupStatus ;;
   }
 
   dimension: status_active {
     type: yesno
-    sql: ${ad_group_status} == "ENABLED" ;;
+    sql: ${ad_group_status} = "ENABLED" ;;
   }
 
   dimension: ad_group_tablet_bid_modifier {

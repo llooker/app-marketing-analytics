@@ -214,13 +214,14 @@ view: keyword {
   }
 
   dimension: status {
+    hidden: yes
     type: string
     sql: REPLACE(${status_raw}, "Status_", "") ;;
   }
 
   dimension: status_active {
     type: yesno
-    sql: ${status} == "Active" ;;
+    sql: ${status} = "Active" ;;
   }
 
   dimension: system_serving_status_raw {
