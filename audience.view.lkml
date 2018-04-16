@@ -152,6 +152,7 @@ view: audience {
   }
 
   dimension: key_base {
+    hidden: yes
     sql: CONCAT(
       CAST(${external_customer_id} AS STRING), "-",
       CAST(${campaign_id} AS STRING), "-",
@@ -160,6 +161,7 @@ view: audience {
   }
 
   dimension: primary_key {
+    hidden: yes
     primary_key: yes
     sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
   }

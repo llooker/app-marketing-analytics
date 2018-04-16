@@ -1,7 +1,6 @@
 include: "ad_group.view"
 include: "campaign_fact.view"
 include: "recent_changes.view"
-include: "period_fact.view"
 
 explore: ad_group_date_fact {
   hidden: yes
@@ -55,12 +54,6 @@ explore: ad_group_date_fact {
       ${status_changes.campaign_id} = ${campaign.campaign_id} AND
       ${status_changes.external_customer_id} = ${ad_group.external_customer_id};;
     relationship: one_to_many
-  }
-  join: geo_us_state {
-    fields: [state]
-    sql_on: 1=1 ;;
-    relationship: one_to_one
-    type: inner
   }
 }
 

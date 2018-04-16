@@ -8,14 +8,6 @@ include: "campaign.view"
 include: "ad_group.view"
 include: "ad.view"
 include: "keyword.view"
-include: "geotargeting.view"
-
-view: geo_us_state {
-  extends: [geotargeting]
-  dimension: state {
-  hidden: yes
-  }
-}
 
 explore: period_fact {
   hidden: yes
@@ -100,12 +92,6 @@ explore: period_fact {
       {% endif %} ;;
     relationship: many_to_one
     fields: [parent_fact.google_ad_metrics_set*]
-  }
-  join: geo_us_state {
-    fields: [state]
-    sql_on: 1=1 ;;
-    relationship: one_to_one
-    type: inner
   }
 }
 
