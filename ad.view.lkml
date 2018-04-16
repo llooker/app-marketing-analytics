@@ -7,23 +7,22 @@ explore: ad {
   join: ad_group {
     view_label: "Ad Group"
     sql_on: ${ad.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${ad_group.campaign_id} = ${campaign.campaign_id} AND
-      ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad.campaign_id} = ${ad_group.campaign_id} AND
+      ${ad.external_customer_id} = ${ad_group.external_customer_id} AND
       ${ad.date_date} = ${ad_group.date_date};;
     relationship: many_to_one
-
   }
   join: campaign {
     view_label: "Campaign"
-    sql_on: ${ad_group.campaign_id} = ${campaign.campaign_id} AND
-      ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
-      ${ad_group.date_date} = ${campaign.date_date};;
+    sql_on: ${ad.campaign_id} = ${campaign.campaign_id} AND
+      ${ad.external_customer_id} = ${campaign.external_customer_id} AND
+      ${ad.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }
   join: customer {
     view_label: "Customer"
-    sql_on: ${ad_group.external_customer_id} = ${customer.external_customer_id} AND
-      ${ad_group.date_date} = ${customer.date_date} ;;
+    sql_on: ${ad.external_customer_id} = ${customer.external_customer_id} AND
+      ${ad.date_date} = ${customer.date_date} ;;
     relationship: many_to_one
   }
 }
@@ -121,7 +120,6 @@ view: ad {
   }
 
   dimension: creative_id {
-    primary_key: yes
     sql: ${TABLE}.CreativeId ;;
     hidden: yes
   }
@@ -253,9 +251,15 @@ view: ad {
   }
 
   dimension: status {
+    hidden: yes
     type: string
     sql: REPLACE(${status_raw}, "Status_", "") ;;
     # expression: replace(${status_raw}, "Status_", "") ;;
+  }
+
+  dimension: status_active {
+    type: yesno
+    sql: ${status} = "Enabled" ;;
   }
 
   dimension: trademarks {
@@ -280,7 +284,7 @@ view: ad {
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
       label: "Change Bid"
     }
-    required_fields: [campaign.campaign_name, ad_group.ad_group_name]
+    required_fields: [external_customer_id, campaign_id, ad_group_id, creative_id]
     # expression: substring(concat(${headline}, ${headline_part1}, ${headline_part2}), 0, 50)
   }
 
@@ -296,18 +300,39 @@ view: ad {
     sql: CONCAT(${campaign.campaign_name}, "_", ${ad_group.ad_group_name}, "_", ${ad.creative}) ;;
   }
 
-  measure: count {
-    type: count_distinct
+  dimension: key_base {
     sql: CONCAT(
       CAST(${external_customer_id} AS STRING), "-",
       CAST(${campaign_id} AS STRING), "-",
       CAST(${ad_group_id} AS STRING), "-",
       CAST(${creative_id} AS STRING)) ;;
-    drill_fields: [detail*]
   }
 
-  # ----- Detail ------
+  dimension: primary_key {
+    primary_key: yes
+    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
+  }
+
+  measure: count {
+    type: count_distinct
+    sql: ${key_base} ;;
+    drill_fields: [drill_detail*]
+  }
+
+  measure: count_active {
+    type: count_distinct
+    sql: ${key_base} ;;
+    filters: {
+      field: status_active
+      value: "Yes"
+    }
+    drill_fields: [drill_detail*]
+  }
+
+  set: drill_detail {
+    fields: [creative_id, creative, status, ad_type]
+  }
   set: detail {
-    fields: [creative_id, status, ad_type, creative]
+    fields: [external_customer_id, campaign_id, ad_group_id, count, count_active, status_active, drill_detail*]
   }
 }

@@ -62,7 +62,6 @@ view: campaign {
   }
 
   dimension: campaign_id {
-    primary_key: yes
     sql: ${TABLE}.CampaignId ;;
     hidden: yes
   }
@@ -95,6 +94,7 @@ view: campaign {
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
       label: "Change Budget"
     }
+    required_fields: [external_customer_id, campaign_id]
   }
 
   dimension: campaign_status_raw {
@@ -104,8 +104,14 @@ view: campaign {
   }
 
   dimension: campaign_status {
+    hidden: yes
     type: string
     sql: REPLACE(${campaign_status_raw}, "Status_", "") ;;
+  }
+
+  dimension: status_active {
+    type: yesno
+    sql: ${campaign_status} = "Active" ;;
   }
 
   dimension: campaign_tablet_bid_modifier {
@@ -208,10 +214,31 @@ view: campaign {
     hidden: yes
   }
 
+  dimension: key_base {
+    sql: CONCAT(
+      CAST(${external_customer_id} AS STRING), "-",
+      CAST(${campaign_id} AS STRING)) ;;
+  }
+
+  dimension: primary_key {
+    primary_key: yes
+    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
+  }
+
   measure: count {
     type: count_distinct
-    sql: ${campaign_id} ;;
-    drill_fields: [campaign_name, campaign_basic_fact.total_impressions, campaign_basic_fact.total_clicks, campaign_basic_fact.total_conversions, campaign_basic_fact.total_cost, campaign_basic_fact.average_click_rate, campaign_basic_fact.average_conversion_rate, campaign_basic_fact.average_cost_per_click, campaign_basic_fact.average_cost_per_conversion]
+    sql: ${key_base} ;;
+    drill_fields: [drill_detail*]
+  }
+
+  measure: count_active {
+    type: count_distinct
+    sql: ${key_base} ;;
+    filters: {
+      field: status_active
+      value: "Yes"
+    }
+    drill_fields: [drill_detail*]
   }
 
   measure: total_amount {
@@ -220,7 +247,11 @@ view: campaign {
   }
 
   # ----- Detail ------
-  set: detail {
+  set: drill_detail {
     fields: [campaign_id, campaign_name, campaign_status, ad_group.count, ad.count, keyword.count]
   }
+  set: detail {
+    fields: [external_customer_id, count, count_active, status_active, drill_detail*]
+  }
+
 }
