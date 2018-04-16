@@ -53,10 +53,12 @@ view: customer {
   }
 
   dimension: key_base {
+    hidden: yes
     sql: CAST(${external_customer_id} AS STRING) ;;
   }
 
   dimension: primary_key {
+    hidden: yes
     primary_key: yes
     sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
   }
