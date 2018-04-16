@@ -171,23 +171,27 @@ view: ad_group {
     hidden: yes
   }
 
-  dimension: primary_key {
-    primary_key: yes
+  dimension: key_base {
     sql: CONCAT(
       CAST(${external_customer_id} AS STRING), "-",
       CAST(${campaign_id} AS STRING), "-",
       CAST(${ad_group_id} AS STRING)) ;;
   }
 
+  dimension: primary_key {
+    primary_key: yes
+    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
+  }
+
   measure: count {
     type: count_distinct
-    sql: ${primary_key} ;;
+    sql: ${key_base} ;;
     drill_fields: [drill_detail*]
   }
 
   measure: count_active {
     type: count_distinct
-    sql: ${primary_key} ;;
+    sql: ${key_base} ;;
     filters: {
       field: status_active
       value: "Yes"

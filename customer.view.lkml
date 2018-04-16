@@ -48,18 +48,23 @@ view: customer {
     required_fields: [external_customer_id]
   }
 
-  dimension_group: date {
-    hidden: yes
+  dimension: key_base {
+    sql: CAST(${external_customer_id} AS STRING) ;;
+  }
+
+  dimension: primary_key {
+    primary_key: yes
+    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
   }
 
   measure: count {
     type: count_distinct
-    sql: ${external_customer_id} ;;
-    drill_fields: [detail*]
+    sql: ${key_base} ;;
+    drill_fields: [drill_detail*]
   }
 
   # ----- Detail ------
-  set: detail {
+  set: drill_detail {
     fields: [external_customer_id, primary_company_name]
   }
 }
