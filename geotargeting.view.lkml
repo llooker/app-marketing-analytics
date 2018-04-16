@@ -48,4 +48,15 @@ view: geotargeting {
     sql: IF(${is_us_state}, ${name}, NULL) ;;
   }
 
+  dimension: is_us_postal_code {
+    type: yesno
+    sql: ${country_code} = "US" AND ${target_type} = "Postal Code" ;;
+  }
+
+  dimension: postal_code {
+    map_layer_name: us_zipcode_tabulation_areas
+    type: string
+    sql: IF(${is_us_postal_code}, ${name}, NULL) ;;
+  }
+
 }
