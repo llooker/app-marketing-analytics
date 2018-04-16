@@ -2,6 +2,10 @@ include: "/app_marketing_analytics_adapter/customer.view"
 include: "date_base.view"
 include: "google_adwords_base.view"
 
+explore: customer {
+  hidden: yes
+}
+
 view: customer {
   extends: [date_base, google_adwords_base, customer_adapter]
 
@@ -63,7 +67,6 @@ view: customer {
     drill_fields: [drill_detail*]
   }
 
-  # ----- Detail ------
   set: drill_detail {
     fields: [external_customer_id, primary_company_name]
   }
