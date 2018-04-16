@@ -31,8 +31,8 @@ view: ad_metrics_base {
 
   dimension: click_rate {
     hidden: yes
-    label: "CTR"
-    description: "Click through rate."
+    label: "Click Through Rate"
+    description: "Percent of people that click on an ad."
     type: number
     sql: ${clicks}*1.0/nullif(${impressions},0) ;;
     value_format_name: percent_2
@@ -40,7 +40,7 @@ view: ad_metrics_base {
 
   dimension: cost_per_conversion {
     hidden: yes
-    label: "CPA"
+    label: "Cost per Conversion"
     description: "Cost per conversion."
     type: number
     sql: ${cost}*1.0 / NULLIF(${conversions},0) ;;
@@ -58,7 +58,7 @@ view: ad_metrics_base {
 
   dimension: cost_per_click {
     hidden: yes
-    label: "CPC"
+    label: "Cost per Click"
     description: "Average cost per ad click."
     type: number
     sql: ${cost}*1.0 / NULLIF(${clicks},0) ;;
@@ -111,7 +111,7 @@ view: ad_metrics_base {
   }
 
   measure: average_click_rate {
-    label: "CTR"
+    label: "Click Through Rate"
     description: "Percent of people that click on an ad."
     type: number
     sql: ${total_clicks}*1.0/nullif(${total_impressions},0) ;;
@@ -120,7 +120,7 @@ view: ad_metrics_base {
   }
 
   measure: average_cost_per_conversion {
-    label: "CPA"
+    label: "Cost per Conversion"
     description: "Cost per conversion."
     type: number
     sql: ${total_cost}*1.0 / NULLIF(${total_conversions},0) ;;
@@ -136,7 +136,7 @@ view: ad_metrics_base {
   }
 
   measure: average_cost_per_click {
-    label: "CPC"
+    label: "Cost per Click"
     description: "Average cost per ad click."
     type: number
     sql: ${total_cost}*1.0 / NULLIF(${total_clicks},0) ;;
