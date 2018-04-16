@@ -108,16 +108,37 @@ explore: ad_impressions {
     view_label: "US State"
     fields: [state]
     sql_on: ${fact.region_criteria_id} = ${geo_us_state.criteria_id} AND
-      ${geo_us_state.country_code} = "US" AND ${geo_us_state.target_type} = "State" ;;
+      ${geo_us_state.is_us_state} ;;
     relationship: many_to_one
     type: inner
+  }
+
+  join: geo_us_postal_code {
+    from: geotargeting
+    view_label: "US Postal Code"
+    fields: [postal_code]
+    sql_on: ${fact.most_specific_criteria_id} = ${geo_us_postal_code.criteria_id} AND
+      ${geo_us_postal_code.is_us_postal_code} ;;
+    relationship: many_to_one
+    type: inner
+  }
+
+  join: geo_us_postal_code_state {
+    from: geotargeting
+    view_label: "US Postal Code"
+    fields: [state]
+    sql_on: ${geo_us_postal_code.parent_id} = ${geo_us_postal_code_state.criteria_id} AND
+      ${geo_us_postal_code_state.is_us_state} ;;
+    relationship: many_to_one
+    type: inner
+    required_joins: [geo_us_postal_code]
   }
 
   join: geo_region {
     from: geotargeting
     view_label: "Region"
     fields: [name, country_code]
-    sql_on: ${fact.city_criteria_id} = ${geo_region.criteria_id} ;;
+    sql_on: ${fact.region_criteria_id} = ${geo_region.criteria_id} ;;
     relationship: many_to_one
   }
 
@@ -125,7 +146,7 @@ explore: ad_impressions {
     from: geotargeting
     view_label: "Metro"
     fields: [name, country_code]
-    sql_on: ${fact.city_criteria_id} = ${geo_metro.criteria_id} ;;
+    sql_on: ${fact.metro_criteria_id} = ${geo_metro.criteria_id} ;;
     relationship: many_to_one
   }
 
