@@ -28,21 +28,21 @@ explore: campaign_date_fact {
   }
   join: campaign {
     view_label: "Campaign"
-    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
+    sql_on: ${fact.external_customer_id} = ${campaign.external_customer_id} AND
+      ${fact.campaign_id} = ${campaign.campaign_id} AND
       ${fact.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
   join: status_changes {
-    sql_on: ${fact.campaign_id} = ${status_changes.campaign_id} AND
-      ${fact.external_customer_id} = ${status_changes.external_customer_id}
-      ${fact.date_date} = ${status_changes.date_date};;
+    sql_on: ${fact.external_customer_id} = ${status_changes.external_customer_id} AND
+      ${fact.campaign_id} = ${status_changes.campaign_id} AND
+      ${fact.date_date} = ${status_changes.date_date} ;;
     relationship: one_to_many
   }
 }
 
 view: campaign_date_fact {
-  extends: [account_date_fact, ad_metrics_parent_comparison_base]
+  extends: [account_date_fact, campaign_key_base, ad_metrics_parent_comparison_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
@@ -53,13 +53,7 @@ view: campaign_date_fact {
   dimension: campaign_id {
     hidden: yes
   }
-  dimension: key_base {
-    sql: CONCAT(
-      CAST(${external_customer_id} AS STRING), "-",
-      CAST(${campaign_id} AS STRING)) ;;
-  }
-  dimension: primary_key {
-    primary_key: yes
-    sql: ${key_base} ;;
+  set: detail {
+    fields: [external_customer_id, campaign_id]
   }
 }

@@ -1,7 +1,5 @@
 include: "/app_marketing_analytics_adapter/campaign.view"
 include: "customer.view"
-include: "date_base.view"
-include: "google_adwords_base.view"
 
 explore: campaign {
   hidden: yes
@@ -13,8 +11,22 @@ explore: campaign {
   }
 }
 
+view: campaign_key_base {
+  extends: [customer_key_base]
+  extension: required
+
+  dimension: campaign_key_base {
+    hidden: yes
+    sql: CONCAT(${account_key_base}, "-", CAST(${campaign_id} as STRING)) ;;
+  }
+  dimension: key_base {
+    hidden: yes
+    sql: ${campaign_key_base} ;;
+  }
+}
+
 view: campaign {
-  extends: [date_base, google_adwords_base, campaign_adapter]
+  extends: [campaign_key_base, date_base, google_adwords_base, campaign_adapter]
 
   dimension: advertising_channel_sub_type {
     type: string
@@ -212,19 +224,6 @@ view: campaign {
     type: string
     sql: ${TABLE}.UrlCustomParameters ;;
     hidden: yes
-  }
-
-  dimension: key_base {
-    hidden: yes
-    sql: CONCAT(
-      CAST(${external_customer_id} AS STRING), "-",
-      CAST(${campaign_id} AS STRING)) ;;
-  }
-
-  dimension: primary_key {
-    hidden: yes
-    primary_key: yes
-    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
   }
 
   measure: count {

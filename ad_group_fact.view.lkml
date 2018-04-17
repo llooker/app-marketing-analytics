@@ -37,15 +37,16 @@ explore: ad_group_date_fact {
     relationship: many_to_one
   }
   join: status_changes {
-    sql_on: ${fact.ad_group_id} = ${status_changes.ad_group_id} AND
+    sql_on: ${fact.external_customer_id} = ${status_changes.external_customer_id} AND
       ${fact.campaign_id} = ${status_changes.campaign_id} AND
-      ${fact.external_customer_id} = ${status_changes.external_customer_id};;
+      ${fact.ad_group_id} = ${status_changes.ad_group_id} AND
+      ${fact.date_date} = ${status_changes.date_date} ;;
     relationship: one_to_many
   }
 }
 
 view: ad_group_date_fact {
-  extends: [campaign_date_fact]
+  extends: [ad_group_key_base, campaign_date_fact]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
@@ -53,19 +54,8 @@ view: ad_group_date_fact {
       column: ad_group_id {field: fact.ad_group_id}
     }
   }
-
   dimension: ad_group_id {
     hidden: yes
-  }
-  dimension: key_base {
-    sql: CONCAT(
-      CAST(${external_customer_id} AS STRING), "-",
-      CAST(${campaign_id} AS STRING), "-",
-      CAST(${ad_group_id} AS STRING)) ;;
-  }
-  dimension: primary_key {
-    primary_key: yes
-    sql: concat(CAST(${_date} as STRING), ${key_base}) ;;
   }
   set: detail {
     fields: [external_customer_id, campaign_id, ad_group_id]

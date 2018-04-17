@@ -28,7 +28,7 @@ explore: account_date_fact {
 }
 
 view: account_date_fact {
-  extends: [date_base, period_base, google_ad_metrics_base]
+  extends: [customer_key_base, date_base, period_base, google_ad_metrics_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
@@ -48,16 +48,9 @@ view: account_date_fact {
   dimension: external_customer_id {
     hidden: yes
   }
-  dimension: key_base {
-    sql: CAST(${external_customer_id} as STRING) ;;
-  }
   dimension: _date {
     hidden: yes
     type: date_raw
-  }
-  dimension: primary_key {
-    primary_key: yes
-    sql: concat(CAST(${_date} as STRING), ${key_base}) ;;
   }
   set: detail {
     fields: [external_customer_id]
