@@ -11,7 +11,7 @@
 
 **(4) Usable / Shareable Dashboards** - create centralized dashboards for the entire team, and departmental or individual dashboards for each user, and rest easy knowing everyone is looking at the same information at all times. Then schedule the dashboard for emails or alerts, period-end reporting, anomaly detection, or whatever else serves your use-case.
 
-**(5) Expertise** - Leverage analytics expertise of Looker + AdWords product teams, who assembled this Block based on years of AdWords experience with industry-leading companies.
+**(5) Expertise** - Leverage analytics expertise of Looker + AdWords product teams, who assembled this Block based on years of AdWords experience with industry-leading companies
 
 
 ### Block Info
