@@ -108,16 +108,37 @@ explore: ad_impressions {
     view_label: "US State"
     fields: [state]
     sql_on: ${fact.region_criteria_id} = ${geo_us_state.criteria_id} AND
-      ${geo_us_state.country_code} = "US" AND ${geo_us_state.target_type} = "State" ;;
+      ${geo_us_state.is_us_state} ;;
     relationship: many_to_one
     type: inner
+  }
+
+  join: geo_us_postal_code {
+    from: geotargeting
+    view_label: "US Postal Code"
+    fields: [postal_code]
+    sql_on: ${fact.most_specific_criteria_id} = ${geo_us_postal_code.criteria_id} AND
+      ${geo_us_postal_code.is_us_postal_code} ;;
+    relationship: many_to_one
+    type: inner
+  }
+
+  join: geo_us_postal_code_state {
+    from: geotargeting
+    view_label: "US Postal Code"
+    fields: [state]
+    sql_on: ${geo_us_postal_code.parent_id} = ${geo_us_postal_code_state.criteria_id} AND
+      ${geo_us_postal_code_state.is_us_state} ;;
+    relationship: many_to_one
+    type: inner
+    required_joins: [geo_us_postal_code]
   }
 
   join: geo_region {
     from: geotargeting
     view_label: "Region"
     fields: [name, country_code]
-    sql_on: ${fact.city_criteria_id} = ${geo_region.criteria_id} ;;
+    sql_on: ${fact.region_criteria_id} = ${geo_region.criteria_id} ;;
     relationship: many_to_one
   }
 
@@ -125,7 +146,7 @@ explore: ad_impressions {
     from: geotargeting
     view_label: "Metro"
     fields: [name, country_code]
-    sql_on: ${fact.city_criteria_id} = ${geo_metro.criteria_id} ;;
+    sql_on: ${fact.metro_criteria_id} = ${geo_metro.criteria_id} ;;
     relationship: many_to_one
   }
 
@@ -140,9 +161,64 @@ explore: ad_impressions {
 }
 
 explore: status_changes  {
-#   hidden: yes
+  hidden: yes
   from: status_changes
   view_name: fact
+  fields: [
+    campaign.detail*,
+    ad_group.detail*,
+    ad.detail*,
+    keyword.detail*,
+    fact.ad_group_id,
+    fact.campaign_id,
+    fact.creative_id,
+    fact.criterion_id,
+    fact.change_type,
+    fact.content_type,
+    fact.status_lag,
+    fact.date_date,
+    fact.date_month,
+    fact.date_week,
+    fact.date_year,
+    fact.date_month_name,
+    fact.date_month_num,
+    fact.period,
+    fact.date_period_latest,
+    fact.count,
+    fact.status_display,
+    fact.count_ad_changes,
+    fact.count_keyword_changes,
+    fact.count_ad_group_changes,
+    fact.count_campaign_changes,
+    campaign_date_fact.total_cost,
+    campaign_date_fact.average_click_rate,
+    campaign_date_fact.average_cost_per_click,
+    campaign_date_fact.total_clicks,
+    campaign_date_fact.average_conversion_rate,
+    campaign_date_fact.average_cost_per_interaction,
+    campaign_date_fact.average_interaction_rate,
+    ad_group_date_fact.total_cost,
+    ad_group_date_fact.average_click_rate,
+    ad_group_date_fact.average_cost_per_click,
+    ad_group_date_fact.total_clicks,
+    ad_group_date_fact.average_conversion_rate,
+    ad_group_date_fact.average_cost_per_interaction,
+    ad_group_date_fact.average_interaction_rate,
+    ad_date_fact.total_cost,
+    ad_date_fact.average_click_rate,
+    ad_date_fact.average_cost_per_click,
+    ad_date_fact.average_conversion_rate,
+    ad_date_fact.total_clicks,
+    ad_date_fact.average_cost_per_interaction,
+    ad_date_fact.average_interaction_rate,
+    keyword_date_fact.total_cost,
+    keyword_date_fact.average_click_rate,
+    keyword_date_fact.average_cost_per_click,
+    keyword_date_fact.total_clicks,
+    keyword_date_fact.average_conversion_rate,
+    keyword_date_fact.average_cost_per_interaction,
+    keyword_date_fact.average_interaction_rate
+    ]
 
   join: campaign {
     view_label: "Campaigns"
@@ -151,29 +227,72 @@ explore: status_changes  {
     relationship: many_to_one
   }
 
+  join: campaign_date_fact {
+    view_label: "Campaigns"
+    type: inner
+    sql_on:
+      ${fact.campaign_id} = ${campaign_date_fact.campaign_id} AND
+      ${fact.external_customer_id} = ${campaign_date_fact.external_customer_id} AND
+      ${fact._date} = ${campaign_date_fact._date};;
+    relationship: one_to_one
+  }
+
   join: ad_group {
     view_label: "Ad Groups"
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.campaign_id} = ${ad_group.campaign_id} AND
       ${fact.external_customer_id} = ${ad_group.external_customer_id};;
     relationship: many_to_one
+  }
+
+  join: ad_group_date_fact {
+    view_label: "Ad Groups"
+    type: inner
+    sql_on:
+      ${fact.ad_group_id} = ${ad_group_date_fact.ad_group_id} AND
+      ${fact.campaign_id} = ${ad_group_date_fact.campaign_id} AND
+      ${fact.external_customer_id} = ${ad_group_date_fact.external_customer_id} AND
+      ${fact._date} = ${ad_group_date_fact._date};;
+    relationship: one_to_one
   }
 
   join: ad {
     view_label: "Ads"
     sql_on: ${fact.creative_id} = ${ad.creative_id} AND
       ${fact.ad_group_id} = ${ad.ad_group_id} AND
-      ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.campaign_id} = ${ad.campaign_id} AND
       ${fact.external_customer_id} = ${ad.external_customer_id};;
     relationship:  many_to_one
+  }
+
+  join: ad_date_fact {
+    view_label: "Ads"
+    type: inner
+    sql_on: ${fact.creative_id} = ${ad_date_fact.creative_id} AND
+      ${fact.ad_group_id} = ${ad_date_fact.ad_group_id} AND
+      ${fact.campaign_id} = ${ad_date_fact.campaign_id} AND
+      ${fact.external_customer_id} = ${ad_date_fact.external_customer_id} AND
+      ${fact._date} = ${ad_date_fact._date};;
+    relationship: one_to_one
   }
 
   join: keyword {
     view_label: "Keywords"
     sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
       ${fact.ad_group_id} = ${keyword.ad_group_id} AND
-      ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.campaign_id} = ${keyword.campaign_id} AND
       ${fact.external_customer_id} = ${keyword.external_customer_id} ;;
     relationship: many_to_one
+  }
+
+  join: keyword_date_fact {
+    view_label: "Keywords"
+    type: inner
+    sql_on: ${fact.criterion_id} = ${keyword_date_fact.criterion_id} AND
+      ${fact.ad_group_id} = ${keyword_date_fact.ad_group_id} AND
+      ${fact.campaign_id} = ${keyword_date_fact.campaign_id} AND
+      ${fact.external_customer_id} = ${keyword_date_fact.external_customer_id} AND
+      ${fact._date} = ${keyword_date_fact._date};;
+    relationship: one_to_one
   }
 }

@@ -134,14 +134,13 @@ view: period_base {
     hidden: yes
     type: date
     group_label: "Event"
-    label: "{% if fact.period._parameter_value contains 'year' or
-    fact.period._parameter_value contains 'quarter' %}Week{% elsif fact.period._parameter_value contains 'month'
-    or fact.period._parameter_value contains 'week'
-    or fact.period._parameter_value contains 'day' %}Date{% endif %}"
-    sql: {% if fact.period._parameter_value contains "year"
-        or fact.period._parameter_value contains "quarter"
-        or fact.period._parameter_value == "'364 day'"
-        or fact.period._parameter_value == "'91 day'"%}${date_week}
+    label: "{% if fact.period._parameter_value contains 'year'
+        or fact.period._parameter_value contains '364 day' %}Month{% elsif fact.period._parameter_value contains 'quarter'
+        or fact.period._parameter_value contains '91 day' %}Week{% else %}Date{% endif %}"
+    sql: {% if fact.period._parameter_value contains 'year'
+        or fact.period._parameter_value contains '364 day' %}${date_month_date}
+      {% elsif fact.period._parameter_value contains 'quarter'
+        or fact.period._parameter_value contains '91 day' %}${date_week}
       {% else %}${date_date}
       {% endif %} ;;
     allow_fill: no
