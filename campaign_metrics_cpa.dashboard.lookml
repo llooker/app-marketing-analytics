@@ -197,9 +197,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 277
+        __LINE_NUM: 196
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 265
+      __LINE_NUM: 184
     colors:
     - "#d06180"
     - "#7869df"
@@ -221,59 +221,7 @@
     row: 10
     col: 0
     width: 8
-    height: 6
-  - title: Cost Per Conversion By State
-    name: Cost Per Conversion By State
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_map
-    fields:
-    - geo_us_state.state
-    - fact.average_cost_per_conversion
-    filters:
-      fact.period: 28 day
-      ad_group.ad_group_name: ''
-      campaign.campaign_name: ''
-    sorts:
-    - fact.average_cost_per_conversion desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    map_plot_mode: points
-    heatmap_gridlines: false
-    heatmap_gridlines_empty: false
-    heatmap_opacity: 0.5
-    show_region_field: true
-    draw_map_labels_above_data: true
-    map_tile_provider: positron
-    map_position: custom
-    map_scale_indicator: 'off'
-    map_pannable: true
-    map_zoomable: true
-    map_marker_type: circle
-    map_marker_icon_name: default
-    map_marker_radius_mode: proportional_value
-    map_marker_units: meters
-    map_marker_proportional_scale_type: linear
-    map_marker_color_mode: fixed
-    show_view_names: true
-    show_legend: true
-    quantize_map_value_colors: false
-    reverse_map_value_colors: false
-    map: auto
-    map_projection: ''
-    quantize_colors: false
-    series_types: {}
-    map_latitude: 41.23703864665824
-    map_longitude: -93.0742393434048
-    map_zoom: 5
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Period Latest: fact.date_period_latest
-    row: 10
-    col: 8
-    width: 16
-    height: 18
+    height: 4
   - title: Cost Per Conversion by Bid Strategy
     name: Cost Per Conversion by Bid Strategy
     model: looker_app_google_adwords
@@ -327,9 +275,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 355
+        __LINE_NUM: 326
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 343
+      __LINE_NUM: 314
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -348,10 +296,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 16
+    row: 14
     col: 0
     width: 8
-    height: 6
+    height: 4
   - title: Cost Per Conversion by Hour of Day
     name: Cost Per Conversion by Hour of Day
     model: looker_app_google_adwords
@@ -431,9 +379,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 703
+        __LINE_NUM: 430
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 691
+      __LINE_NUM: 418
     conditional_formatting:
     - type: high to low
       value:
@@ -446,13 +394,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 716
+        __LINE_NUM: 443
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 711
+      __LINE_NUM: 438
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -471,7 +419,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 29
     col: 14
     width: 10
     height: 7
@@ -556,9 +504,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 580
+        __LINE_NUM: 555
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 568
+      __LINE_NUM: 543
     conditional_formatting:
     - type: high to low
       value:
@@ -571,13 +519,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 593
+        __LINE_NUM: 568
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 588
+      __LINE_NUM: 563
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -596,7 +544,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 28
+    row: 22
     col: 14
     width: 10
     height: 7
@@ -656,9 +604,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 197
+        __LINE_NUM: 655
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 185
+      __LINE_NUM: 643
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -677,10 +625,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 22
+    row: 18
     col: 0
     width: 8
-    height: 6
+    height: 4
   - title: Cost Per Conversion by Day of Week and Hour of Day
     name: Cost Per Conversion by Day of Week and Hour of Day
     model: looker_app_google_adwords
@@ -766,9 +714,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 465
+        __LINE_NUM: 765
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 453
+      __LINE_NUM: 753
     conditional_formatting:
     - type: high to low
       value:
@@ -781,14 +729,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 478
+        __LINE_NUM: 778
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 473
+      __LINE_NUM: 773
     series_labels:
       fact.average_cost_per_conversion: "-"
     listen:
@@ -796,7 +744,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 28
+    row: 22
     col: 0
     width: 14
     height: 14
@@ -889,14 +837,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 836
+        __LINE_NUM: 888
       - id: last_fact.average_cost_per_conversion
         name: Last Period Fact
         axisId: last_fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 841
+        __LINE_NUM: 893
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 824
+      __LINE_NUM: 876
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -904,7 +852,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 42
+    row: 36
     col: 0
     width: 8
     height: 9
@@ -1000,14 +948,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 1055
+        __LINE_NUM: 999
       - id: last_fact.average_cost_per_conversion
         name: Last Period Fact
         axisId: last_fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 1060
+        __LINE_NUM: 1004
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 1043
+      __LINE_NUM: 987
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -1015,7 +963,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 42
+    row: 36
     col: 16
     width: 8
     height: 9
@@ -1108,14 +1056,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 944
+        __LINE_NUM: 1107
       - id: last_fact.average_cost_per_conversion
         name: Last Period Fact
         axisId: last_fact.average_cost_per_conversion
         __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-        __LINE_NUM: 949
+        __LINE_NUM: 1112
       __FILE: app_marketing_analytics/campaign_metrics_cpa.dashboard.lookml
-      __LINE_NUM: 932
+      __LINE_NUM: 1095
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -1123,10 +1071,62 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 42
+    row: 36
     col: 8
     width: 8
     height: 9
+  - title: Cost Per Conversion By State
+    name: Cost Per Conversion By State
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_map
+    fields:
+    - geo_us_state.state
+    - fact.average_cost_per_conversion
+    filters:
+      fact.period: 28 day
+      ad_group.ad_group_name: ''
+      campaign.campaign_name: ''
+    sorts:
+    - fact.average_cost_per_conversion desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: positron
+    map_position: custom
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_view_names: true
+    show_legend: true
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    map: auto
+    map_projection: ''
+    quantize_colors: false
+    series_types: {}
+    map_latitude: 41.27780646738183
+    map_longitude: -93.076171875
+    map_zoom: 4
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Period Latest: fact.date_period_latest
+    row: 10
+    col: 8
+    width: 16
+    height: 12
   filters:
   - name: Campaign
     title: Campaign

@@ -197,9 +197,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 277
+        __LINE_NUM: 196
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 265
+      __LINE_NUM: 184
     colors:
     - "#d06180"
     - "#7869df"
@@ -221,59 +221,7 @@
     row: 10
     col: 0
     width: 8
-    height: 6
-  - title: Cost Per Click By State
-    name: Cost Per Click By State
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_map
-    fields:
-    - geo_us_state.state
-    - fact.average_cost_per_click
-    filters:
-      fact.period: 28 day
-      ad_group.ad_group_name: ''
-      campaign.campaign_name: ''
-    sorts:
-    - fact.average_cost_per_click desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    map_plot_mode: points
-    heatmap_gridlines: false
-    heatmap_gridlines_empty: false
-    heatmap_opacity: 0.5
-    show_region_field: true
-    draw_map_labels_above_data: true
-    map_tile_provider: positron
-    map_position: custom
-    map_scale_indicator: 'off'
-    map_pannable: true
-    map_zoomable: true
-    map_marker_type: circle
-    map_marker_icon_name: default
-    map_marker_radius_mode: proportional_value
-    map_marker_units: meters
-    map_marker_proportional_scale_type: linear
-    map_marker_color_mode: fixed
-    show_view_names: true
-    show_legend: true
-    quantize_map_value_colors: false
-    reverse_map_value_colors: false
-    map: auto
-    map_projection: ''
-    quantize_colors: false
-    series_types: {}
-    map_latitude: 39.883268781835994
-    map_longitude: -96.4422529935837
-    map_zoom: 5
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Period Latest: fact.date_period_latest
-    row: 10
-    col: 8
-    width: 16
-    height: 18
+    height: 4
   - title: Cost Per Click by Bid Strategy
     name: Cost Per Click by Bid Strategy
     model: looker_app_google_adwords
@@ -327,9 +275,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 355
+        __LINE_NUM: 326
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 343
+      __LINE_NUM: 314
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -348,10 +296,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 16
+    row: 14
     col: 0
     width: 8
-    height: 6
+    height: 4
   - title: Cost Per Click by Day of Week
     name: Cost Per Click by Day of Week
     model: looker_app_google_adwords
@@ -433,9 +381,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 580
+        __LINE_NUM: 432
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 568
+      __LINE_NUM: 420
     conditional_formatting:
     - type: high to low
       value:
@@ -448,13 +396,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 593
+        __LINE_NUM: 445
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 588
+      __LINE_NUM: 440
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -473,7 +421,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 28
+    row: 22
     col: 14
     width: 10
     height: 7
@@ -556,9 +504,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 703
+        __LINE_NUM: 555
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 691
+      __LINE_NUM: 543
     conditional_formatting:
     - type: high to low
       value:
@@ -571,13 +519,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 716
+        __LINE_NUM: 568
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 711
+      __LINE_NUM: 563
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -596,7 +544,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 29
     col: 14
     width: 10
     height: 7
@@ -685,9 +633,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 465
+        __LINE_NUM: 684
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 453
+      __LINE_NUM: 672
     conditional_formatting:
     - type: high to low
       value:
@@ -700,14 +648,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 478
+        __LINE_NUM: 697
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.average_cost_per_click
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 473
+      __LINE_NUM: 692
     series_labels:
       fact.average_cost_per_click: "-"
     listen:
@@ -715,7 +663,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 28
+    row: 22
     col: 0
     width: 14
     height: 14
@@ -775,9 +723,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 197
+        __LINE_NUM: 774
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 185
+      __LINE_NUM: 762
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -796,10 +744,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 22
+    row: 18
     col: 0
     width: 8
-    height: 6
+    height: 4
   - title: Ad Group Cost Per Click Change
     name: Ad Group Cost Per Click Change
     model: looker_app_google_adwords
@@ -864,14 +812,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 811
+        __LINE_NUM: 863
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 816
+        __LINE_NUM: 868
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 799
+      __LINE_NUM: 851
     series_colors: {}
     colors:
     - "#a6b7ff"
@@ -893,7 +841,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 42
+    row: 36
     col: 0
     width: 8
     height: 10
@@ -963,14 +911,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 910
+        __LINE_NUM: 962
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 915
+        __LINE_NUM: 967
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 898
+      __LINE_NUM: 950
     series_colors: {}
     colors:
     - "#ea9895"
@@ -992,7 +940,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 42
+    row: 36
     col: 8
     width: 8
     height: 10
@@ -1089,14 +1037,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 1036
+        __LINE_NUM: 1088
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 1041
+        __LINE_NUM: 1093
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 1024
+      __LINE_NUM: 1076
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -1104,10 +1052,62 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 42
+    row: 36
     col: 16
     width: 8
     height: 10
+  - title: Cost Per Click By State
+    name: Cost Per Click By State
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_map
+    fields:
+    - geo_us_state.state
+    - fact.average_cost_per_click
+    filters:
+      fact.period: 28 day
+      ad_group.ad_group_name: ''
+      campaign.campaign_name: ''
+    sorts:
+    - fact.average_cost_per_click desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: positron
+    map_position: custom
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_view_names: true
+    show_legend: true
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    map: auto
+    map_projection: ''
+    quantize_colors: false
+    series_types: {}
+    map_latitude: 39.842286020743394
+    map_longitude: -96.45996093750001
+    map_zoom: 4
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Period Latest: fact.date_period_latest
+    row: 10
+    col: 8
+    width: 16
+    height: 12
   filters:
   - name: Campaign
     title: Campaign
