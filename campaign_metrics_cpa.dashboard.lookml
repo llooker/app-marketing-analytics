@@ -142,8 +142,8 @@
     col: 0
     width: 24
     height: 10
-  - title: Cost Per Conversion versions by Network
-    name: Cost Per Conversion versions by Network
+  - title: Cost Per Conversion by Network
+    name: Cost Per Conversion by Network
     model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar

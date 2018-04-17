@@ -553,9 +553,6 @@
                   "description": "Ads that should be converting but are not. Consider pausing these ads to increase performance.",
                   "name": "Non Converting Ads",
                   "permalink": "non-converting-ad",
-                  "singleValueReference": {
-                    "key": "non_converting_ads"
-                  },
                   "variations": [
                     {
                       "description": "Ads that should be converting but are not. Consider pausing these ads to increase performance.",
@@ -569,9 +566,6 @@
                   "description": "Keywords that should be converting but are not. Consider pausing these keywords to increase performance.",
                   "name": "Non Converting Keywords",
                   "permalink": "non-converting-keyword",
-                  "singleValueReference": {
-                    "key": "non_converting_keywords"
-                  },
                   "variations": [
                     {
                       "description": "Keywords that should be converting but are not. Consider pausing these keywords to increase performance.",
@@ -585,9 +579,6 @@
                   "description": "Pause or lower the bid of these ads. They are performing much lower than your other ads.",
                   "name": "Ad Alerts",
                   "permalink": "alerts-ad",
-                  "singleValueReference": {
-                    "key": "ad_alerts"
-                  },
                   "variations": [
                     {
                       "description": "Pause or lower the bid of these ads. They are performing much lower than your other ads.",
@@ -601,9 +592,6 @@
                   "description": "Pause or lower the bid of these keywords. They are performing much lower than your other keywords.",
                   "name": "Keyword Alerts",
                   "permalink": "alerts-keyword",
-                  "singleValueReference": {
-                    "key": "keyword_alerts"
-                  },
                   "variations": [
                     {
                       "description": "Pause or lower the bid of these keywords. They are performing much lower than your other keywords.",
@@ -689,14 +677,6 @@
         },
         "ads_big_movers": {
           "field": "fact.cost_per_conversion_count_big_mover"
-        },
-        "ad_alerts": {
-          "field": "fact.click_rate_or_cost_per_conversion_or_conversion_rate_count_bad",
-          "inverseChange": true
-        },
-        "non_converting_ads": {
-          "field": "fact.expected_conversions_count_bad",
-          "inverseChange": true
         }
       },
       "model": "looker_app_google_adwords",
@@ -714,14 +694,6 @@
         },
         "keywords_big_movers": {
           "field": "fact.cost_per_conversion_count_big_mover"
-        },
-        "keyword_alerts": {
-          "field": "fact.click_rate_or_cost_per_conversion_or_conversion_rate_count_bad",
-          "inverseChange": true
-        },
-        "non_converting_keywords": {
-          "field": "fact.expected_conversions_count_bad",
-          "inverseChange": true
         }
       },
       "model": "looker_app_google_adwords",
