@@ -76,10 +76,10 @@
       - id: fact.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 191
+        __LINE_NUM: 76
         axisId: fact.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 179
+      __LINE_NUM: 64
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -190,34 +190,34 @@
         name: "[0.00%,20.00%)"
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 80
+        __LINE_NUM: 189
       - id: "[20.00%,40.00%)"
         name: "[20.00%,40.00%)"
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 85
+        __LINE_NUM: 194
       - id: "[40.00%,60.00%)"
         name: "[40.00%,60.00%)"
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 90
+        __LINE_NUM: 199
       - id: "[60.00%,80.00%)"
         name: "[60.00%,80.00%)"
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 95
+        __LINE_NUM: 204
       - id: "[80.00%,100.00%)"
         name: "[80.00%,100.00%)"
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 100
+        __LINE_NUM: 209
       - id: "[100.00%,inf)"
         name: "[100.00%,inf)"
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 105
+        __LINE_NUM: 214
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 68
+      __LINE_NUM: 177
     listen:
       Campaign: campaign.campaign_name
       Period: fact.period
@@ -281,9 +281,9 @@
         name: Ad Stats Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 361
+        __LINE_NUM: 280
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 349
+      __LINE_NUM: 268
     colors:
     - "#d06180"
     - "#7869df"
@@ -303,7 +303,7 @@
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
-    col: 0
+    col: 8
     width: 8
     height: 6
   - title: Spend by Bid Strategy
@@ -359,9 +359,9 @@
         name: Ad Stats Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 564
+        __LINE_NUM: 358
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 552
+      __LINE_NUM: 346
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -380,8 +380,8 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 17
-    col: 0
+    row: 11
+    col: 16
     width: 8
     height: 6
   - title: Spend by Network
@@ -440,9 +440,9 @@
         name: Ad Stats Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 281
+        __LINE_NUM: 439
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 269
+      __LINE_NUM: 427
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -461,62 +461,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 23
+    row: 11
     col: 0
     width: 8
     height: 6
-  - title: Spend By State
-    name: Spend By State
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_map
-    fields:
-    - geo_us_state.state
-    - fact.total_cost
-    filters:
-      fact.period: 28 day
-      ad_group.ad_group_name: ''
-      campaign.campaign_name: ''
-    sorts:
-    - fact.total_cost desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    map_plot_mode: points
-    heatmap_gridlines: false
-    heatmap_gridlines_empty: false
-    heatmap_opacity: 0.5
-    show_region_field: true
-    draw_map_labels_above_data: true
-    map_tile_provider: positron
-    map_position: custom
-    map_scale_indicator: 'off'
-    map_pannable: true
-    map_zoomable: true
-    map_marker_type: circle
-    map_marker_icon_name: default
-    map_marker_radius_mode: proportional_value
-    map_marker_units: meters
-    map_marker_proportional_scale_type: linear
-    map_marker_color_mode: fixed
-    show_view_names: true
-    show_legend: true
-    quantize_map_value_colors: false
-    reverse_map_value_colors: false
-    map: auto
-    map_projection: ''
-    quantize_colors: false
-    series_types: {}
-    map_latitude: 41.23703864665824
-    map_longitude: -93.0742393434048
-    map_zoom: 5
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Period Latest: fact.date_period_latest
-    row: 11
-    col: 8
-    width: 16
-    height: 18
   - title: Spend by Day of Week
     name: Spend by Day of Week
     model: looker_app_google_adwords
@@ -598,9 +546,9 @@
         name: Ad Stats Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 467
+        __LINE_NUM: 597
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 455
+      __LINE_NUM: 585
     conditional_formatting:
     - type: high to low
       value:
@@ -613,13 +561,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 480
+        __LINE_NUM: 610
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 475
+      __LINE_NUM: 605
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -638,7 +586,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 29
+    row: 17
     col: 14
     width: 10
     height: 6
@@ -727,9 +675,9 @@
         name: Ad Stats Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 674
+        __LINE_NUM: 726
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 662
+      __LINE_NUM: 714
     conditional_formatting:
     - type: high to low
       value:
@@ -742,14 +690,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 687
+        __LINE_NUM: 739
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.total_cost
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 682
+      __LINE_NUM: 734
     series_labels:
       fact.hour_of_day: Hour of Day
       fact.total_cost: "-"
@@ -759,7 +707,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 29
+    row: 17
     col: 0
     width: 14
     height: 12
@@ -842,9 +790,9 @@
         name: Ad Stats Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 789
+        __LINE_NUM: 841
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 777
+      __LINE_NUM: 829
     conditional_formatting:
     - type: high to low
       value:
@@ -857,13 +805,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 802
+        __LINE_NUM: 854
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 797
+      __LINE_NUM: 849
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -882,7 +830,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 23
     col: 14
     width: 10
     height: 6
@@ -955,9 +903,9 @@
         name: Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 997
+        __LINE_NUM: 954
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 985
+      __LINE_NUM: 942
     hide_legend: false
     colors:
     - "#a6b7ff"
@@ -978,7 +926,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 41
+    row: 29
     col: 0
     width: 12
     height: 7
@@ -1065,15 +1013,15 @@
         name: Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 916
+        __LINE_NUM: 1064
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 904
+      __LINE_NUM: 1052
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 41
+    row: 29
     col: 12
     width: 12
     height: 14
@@ -1160,15 +1108,15 @@
         name: Cost
         axisId: fact.total_cost
         __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-        __LINE_NUM: 1107
+        __LINE_NUM: 1159
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
-      __LINE_NUM: 1095
+      __LINE_NUM: 1147
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 48
+    row: 36
     col: 0
     width: 12
     height: 7

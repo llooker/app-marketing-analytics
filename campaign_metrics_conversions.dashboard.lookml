@@ -197,9 +197,9 @@
         name: Ad Stats Cost
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 935
+        __LINE_NUM: 196
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 923
+      __LINE_NUM: 184
     conditional_formatting:
     - type: high to low
       value:
@@ -212,13 +212,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 948
+        __LINE_NUM: 209
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 943
+      __LINE_NUM: 204
     colors:
     - "#d06180"
     - "#8ac8ca"
@@ -239,61 +239,9 @@
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
-    col: 0
+    col: 8
     width: 8
     height: 6
-  - title: Conversions By State
-    name: Conversions By State
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_map
-    fields:
-    - geo_us_state.state
-    - fact.total_conversions
-    filters:
-      fact.period: 28 day
-      ad_group.ad_group_name: ''
-      campaign.campaign_name: ''
-    sorts:
-    - fact.total_conversions desc
-    limit: 500
-    query_timezone: America/Los_Angeles
-    map_plot_mode: points
-    heatmap_gridlines: false
-    heatmap_gridlines_empty: false
-    heatmap_opacity: 0.5
-    show_region_field: true
-    draw_map_labels_above_data: true
-    map_tile_provider: positron
-    map_position: custom
-    map_scale_indicator: 'off'
-    map_pannable: true
-    map_zoomable: true
-    map_marker_type: circle
-    map_marker_icon_name: default
-    map_marker_radius_mode: proportional_value
-    map_marker_units: meters
-    map_marker_proportional_scale_type: linear
-    map_marker_color_mode: fixed
-    show_view_names: true
-    show_legend: true
-    quantize_map_value_colors: false
-    reverse_map_value_colors: false
-    map: auto
-    map_projection: ''
-    quantize_colors: false
-    series_types: {}
-    map_latitude: 41.23703864665824
-    map_longitude: -93.0742393434048
-    map_zoom: 5
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Period Latest: fact.date_period_latest
-    row: 11
-    col: 8
-    width: 16
-    height: 18
   - title: Conversions by Network
     name: Conversions by Network
     model: looker_app_google_adwords
@@ -350,9 +298,9 @@
         name: Ad Stats Cost
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 566
+        __LINE_NUM: 349
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 554
+      __LINE_NUM: 337
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -371,7 +319,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 23
+    row: 11
     col: 0
     width: 8
     height: 6
@@ -428,9 +376,9 @@
         name: Ad Stats Cost
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 1033
+        __LINE_NUM: 427
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 1021
+      __LINE_NUM: 415
     conditional_formatting:
     - type: high to low
       value:
@@ -443,13 +391,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 1046
+        __LINE_NUM: 440
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 1041
+      __LINE_NUM: 435
     colors:
     - "#dc9d4f"
     - "#8ac8ca"
@@ -468,8 +416,8 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 17
-    col: 0
+    row: 11
+    col: 16
     width: 8
     height: 6
   - title: Conversions by Day of Week
@@ -553,9 +501,9 @@
         name: Ad Stats Cost
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 222
+        __LINE_NUM: 552
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 210
+      __LINE_NUM: 540
     conditional_formatting:
     - type: high to low
       value:
@@ -568,13 +516,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 235
+        __LINE_NUM: 565
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 230
+      __LINE_NUM: 560
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -593,7 +541,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 29
+    row: 17
     col: 14
     width: 10
     height: 7
@@ -682,9 +630,9 @@
         name: Ad Stats Cost
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 474
+        __LINE_NUM: 681
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 462
+      __LINE_NUM: 669
     conditional_formatting:
     - type: high to low
       value:
@@ -697,14 +645,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 487
+        __LINE_NUM: 694
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.total_conversions
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 482
+      __LINE_NUM: 689
     series_labels:
       fact.hour_of_day: Hour of Day
       fact.total_conversions: "-"
@@ -714,7 +662,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 29
+    row: 17
     col: 0
     width: 14
     height: 14
@@ -797,9 +745,9 @@
         name: Ad Stats Cost
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 345
+        __LINE_NUM: 796
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 333
+      __LINE_NUM: 784
     conditional_formatting:
     - type: high to low
       value:
@@ -812,13 +760,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 358
+        __LINE_NUM: 809
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 353
+      __LINE_NUM: 804
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -837,7 +785,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 36
+    row: 24
     col: 14
     width: 10
     height: 7
@@ -911,9 +859,9 @@
         name: Conversions
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 661
+        __LINE_NUM: 910
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 649
+      __LINE_NUM: 898
     hide_legend: false
     colors:
     - "#a6b7ff"
@@ -934,7 +882,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 43
+    row: 31
     col: 0
     width: 12
     height: 7
@@ -1022,15 +970,15 @@
         name: Conversions
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 868
+        __LINE_NUM: 1021
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 856
+      __LINE_NUM: 1009
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 50
+    row: 38
     col: 0
     width: 12
     height: 7
@@ -1118,15 +1066,15 @@
         name: Conversions
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-        __LINE_NUM: 772
+        __LINE_NUM: 1117
       __FILE: app_marketing_analytics/campaign_metrics_conversions.dashboard.lookml
-      __LINE_NUM: 760
+      __LINE_NUM: 1105
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 43
+    row: 31
     col: 12
     width: 12
     height: 14
