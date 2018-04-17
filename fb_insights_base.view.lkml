@@ -1,19 +1,61 @@
 view: insights_base {
   extension: required
 
+  dimension: frequency {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.frequency ;;
+  }
+
+  dimension: reach {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.reach ;;
+  }
+
+  dimension: spend {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.spend ;;
+  }
+
+  dimension: impressions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.impressions ;;
+  }
+
+  dimension: clicks {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.clicks ;;
+  }
+
+  dimension: actions_dim {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_actions ;;
+  }
+
+  dimension: action_value {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_action_value ;;
+  }
+
+  measure: total_spend {
+    type: sum
+    sql: ${spend} ;;
+    label: "Spend"
+    description: "Total spend."
+    value_format_name: usd_0
+  }
+
   measure: total_impressions {
     type: sum
     sql: ${impressions} ;;
     label: "Impressions"
     description: "Total ad impressions."
-    value_format_name: decimal_0
-  }
-
-  measure: total_reach {
-    type: sum
-    sql: ${reach} ;;
-    label: "Reach"
-    description: "Total ad reach. This will count users that see multiple ads multiple times."
     value_format_name: decimal_0
   }
 
@@ -23,14 +65,6 @@ view: insights_base {
     label: "Clicks"
     description: "Total ad clicks."
     value_format_name: decimal_0
-  }
-
-  measure: total_spend {
-    type: sum
-    sql: ${spend} ;;
-    label: "Spend"
-    description: "Total spend."
-    value_format_name: usd_0
   }
 
   measure: total_actions {
@@ -71,14 +105,6 @@ view: insights_base {
     type: number
     sql: ${total_clicks}*1.0/nullif(${total_impressions},0) ;;
     value_format_name: percent_2
-  }
-
-  measure: average_frequency {
-    label: "Frequency"
-    description: "Average impressions per reach."
-    type: number
-    sql: ${total_impressions}*1.0 / NULLIF(${total_reach},0) ;;
-    value_format_name: decimal_2
   }
 
   dimension: account_id {
@@ -140,12 +166,6 @@ view: insights_base {
     hidden: yes
     type: number
     sql: ${TABLE}.canvas_avg_view_time ;;
-  }
-
-  dimension: clicks {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.clicks ;;
   }
 
   dimension: cost_per_inline_link_click {
@@ -234,18 +254,6 @@ view: insights_base {
     sql: ${TABLE}.date_stop ;;
   }
 
-  dimension: frequency {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.frequency ;;
-  }
-
-  dimension: impressions {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.impressions ;;
-  }
-
   dimension: inline_link_click_ctr {
     hidden: yes
     type: number
@@ -270,12 +278,6 @@ view: insights_base {
     sql: ${TABLE}.objective ;;
   }
 
-  dimension: reach {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.reach ;;
-  }
-
   dimension: social_clicks {
     hidden: yes
     type: number
@@ -292,24 +294,6 @@ view: insights_base {
     hidden: yes
     type: number
     sql: ${TABLE}.social_reach ;;
-  }
-
-  dimension: spend {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.spend ;;
-  }
-
-  dimension: action_value {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.total_action_value ;;
-  }
-
-  dimension: actions_dim {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.total_actions ;;
   }
 
   dimension: total_unique_actions {
