@@ -7,7 +7,7 @@ explore: customer {
   hidden: yes
 }
 
-view: customer_key_base {
+view: account_key_base {
   extends: [date_primary_key_base]
   extension: required
 
@@ -22,7 +22,7 @@ view: customer_key_base {
 }
 
 view: customer {
-  extends: [customer_key_base, date_base, google_adwords_base, customer_adapter]
+  extends: [account_key_base, date_base, google_adwords_base, customer_adapter]
 
   dimension: account_currency_code {
     type: string

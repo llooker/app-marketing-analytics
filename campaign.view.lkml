@@ -12,7 +12,7 @@ explore: campaign {
 }
 
 view: campaign_key_base {
-  extends: [customer_key_base]
+  extends: [account_key_base]
   extension: required
 
   dimension: campaign_key_base {

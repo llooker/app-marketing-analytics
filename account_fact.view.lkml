@@ -28,7 +28,7 @@ explore: account_date_fact {
 }
 
 view: account_date_fact {
-  extends: [customer_key_base, date_base, period_base, google_ad_metrics_base]
+  extends: [account_key_base, date_base, period_base, google_ad_metrics_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
