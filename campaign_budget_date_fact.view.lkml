@@ -17,6 +17,7 @@ explore: campaign_budget_date_fact {
   join: campaign {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
       ${fact.date_date} = ${campaign.date_date} ;;
     relationship: many_to_one
   }
@@ -27,10 +28,10 @@ view: campaign_budget_date_fact {
   derived_table: {
     datagroup_trigger: etl_datagroup
     explore_source: ad_impressions {
-      column: campaign_id { field: fact.campaign_id }
-      column: budget_id { field: campaign.budget_id }
       column: _date { field: fact.date_date}
       column: external_customer_id { field: fact.external_customer_id }
+      column: campaign_id { field: fact.campaign_id }
+      column: budget_id { field: campaign.budget_id }
       column: amount { field: campaign.total_amount }
       column: cost { field: fact.total_cost }
     }

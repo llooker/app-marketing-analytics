@@ -26,8 +26,20 @@ explore: keyword {
   }
 }
 
+view: keyword_key_base {
+  extends: [ad_group_key_base]
+  extension: required
+
+  dimension: ad_key_base {
+    sql: CONCAT(${ad_group_key_base}, "-", CAST(${criterion_id} as STRING)) ;;
+  }
+  dimension: key_base {
+    sql: ${ad_key_base} ;;
+  }
+}
+
 view: keyword {
-  extends: [date_base, google_adwords_base, keyword_adapter]
+  extends: [keyword_key_base, date_base, google_adwords_base, keyword_adapter]
 
   dimension: ad_group_id {
     sql: ${TABLE}.AdGroupId ;;
@@ -250,21 +262,6 @@ view: keyword {
     type: string
     sql: ${TABLE}.UrlCustomParameters ;;
     hidden:  yes
-  }
-
-  dimension: key_base {
-    hidden: yes
-    sql: CONCAT(
-      CAST(${external_customer_id} AS STRING), "-",
-      CAST(${campaign_id} AS STRING), "-",
-      CAST(${ad_group_id} AS STRING), "-",
-      CAST(${criterion_id} AS STRING)) ;;
-  }
-
-  dimension: primary_key {
-    hidden: yes
-    primary_key: yes
-    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
   }
 
   measure: count {
