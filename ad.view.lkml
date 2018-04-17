@@ -27,8 +27,20 @@ explore: ad {
   }
 }
 
+view: ad_key_base {
+  extends: [ad_group_key_base]
+  extension: required
+
+  dimension: ad_key_base {
+    sql: CONCAT(${ad_group_key_base}, "-", CAST(${creative_id} as STRING)) ;;
+  }
+  dimension: key_base {
+    sql: ${ad_key_base} ;;
+  }
+}
+
 view: ad {
-  extends: [date_base, google_adwords_base, ad_adapter]
+  extends: [ad_key_base, date_base, google_adwords_base, ad_adapter]
 
   dimension: ad_group_ad_disapproval_reasons {
     type: string
@@ -298,21 +310,6 @@ view: ad {
   dimension: campaign_ad_group_ad_combination {
     type: string
     sql: CONCAT(${campaign.campaign_name}, "_", ${ad_group.ad_group_name}, "_", ${ad.creative}) ;;
-  }
-
-  dimension: key_base {
-    hidden: yes
-    sql: CONCAT(
-      CAST(${external_customer_id} AS STRING), "-",
-      CAST(${campaign_id} AS STRING), "-",
-      CAST(${ad_group_id} AS STRING), "-",
-      CAST(${creative_id} AS STRING)) ;;
-  }
-
-  dimension: primary_key {
-    hidden: yes
-    primary_key: yes
-    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
   }
 
   measure: count {

@@ -18,8 +18,23 @@ explore: ad_group {
   }
 }
 
+view: ad_group_key_base {
+  extends: [campaign_key_base]
+  extension: required
+
+
+  dimension: ad_group_key_base {
+    hidden: yes
+    sql: CONCAT(${campaign_key_base}, "-", CAST(${ad_group_id} as STRING)) ;;
+  }
+  dimension: key_base {
+    hidden: yes
+    sql: ${ad_group_key_base} ;;
+  }
+}
+
 view: ad_group {
-  extends: [date_base, google_adwords_base, ad_group_adapter]
+  extends: [ad_group_key_base, date_base, google_adwords_base, ad_group_adapter]
 
   dimension: ad_group_desktop_bid_modifier {
     type: number
@@ -169,20 +184,6 @@ view: ad_group {
     type: string
     sql: ${TABLE}.UrlCustomParameters ;;
     hidden: yes
-  }
-
-  dimension: key_base {
-    hidden: yes
-    sql: CONCAT(
-      CAST(${external_customer_id} AS STRING), "-",
-      CAST(${campaign_id} AS STRING), "-",
-      CAST(${ad_group_id} AS STRING)) ;;
-  }
-
-  dimension: primary_key {
-    hidden: yes
-    primary_key: yes
-    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
   }
 
   measure: count {
