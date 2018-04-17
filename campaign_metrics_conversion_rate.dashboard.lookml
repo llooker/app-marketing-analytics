@@ -2,8 +2,8 @@
   extends: campaign_metrics_base
   title: Campaign Metrics - Conversion Rate
   elements:
-  - title: Conversion Rate vs Cost Per Conversion
-    name: Conversion Rate vs Cost Per Conversion
+  - title: Conversion Rate To Date
+    name: Conversion Rate To Date
     model: looker_app_google_adwords
     explore: period_fact
     type: looker_line
@@ -11,6 +11,9 @@
     - fact.date_period_dynamic_grain
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
+    - fact.total_conversions
+    - fact.average_cost_per_click
+    - fact.average_click_rate
     sorts:
     - fact.date_period_dynamic_grain
     limit: 500
@@ -74,10 +77,10 @@
       - id: fact.average_cost_per_conversion
         name: Cost per Conversion
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 74
+        __LINE_NUM: 77
         axisId: fact.average_cost_per_conversion
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 62
+      __LINE_NUM: 65
     - label:
       maxValue:
       minValue:
@@ -94,9 +97,9 @@
         name: Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 93
+        __LINE_NUM: 96
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 81
+      __LINE_NUM: 84
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
@@ -113,7 +116,10 @@
     - "#ea9895"
     - "#f1e582"
     series_colors: {}
-    hidden_series: []
+    hidden_series:
+    - fact.total_conversions
+    - fact.average_cost_per_click
+    - fact.average_click_rate
     hidden_fields: []
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
@@ -122,7 +128,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 4
+    row: 0
     col: 0
     width: 24
     height: 11
@@ -181,9 +187,9 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 180
+        __LINE_NUM: 186
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 168
+      __LINE_NUM: 174
     series_colors: {}
     colors:
     - "#8ac8ca"
@@ -202,7 +208,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 15
+    row: 23
     col: 0
     width: 8
     height: 6
@@ -261,9 +267,9 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 363
+        __LINE_NUM: 266
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 351
+      __LINE_NUM: 254
     colors:
     - "#d06180"
     - "#7869df"
@@ -282,8 +288,8 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 15
-    col: 8
+    row: 11
+    col: 0
     width: 8
     height: 6
   - title: Conversion Rate by Day of Week
@@ -367,9 +373,9 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 469
+        __LINE_NUM: 372
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 457
+      __LINE_NUM: 360
     conditional_formatting:
     - type: high to low
       value:
@@ -382,13 +388,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 482
+        __LINE_NUM: 385
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 477
+      __LINE_NUM: 380
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -407,7 +413,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 21
+    row: 29
     col: 14
     width: 10
     height: 7
@@ -496,9 +502,9 @@
         name: Ad Stats Cost
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 598
+        __LINE_NUM: 501
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 586
+      __LINE_NUM: 489
     conditional_formatting:
     - type: high to low
       value:
@@ -511,14 +517,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 611
+        __LINE_NUM: 514
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.average_conversion_rate
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 606
+      __LINE_NUM: 509
     series_labels:
       fact.hour_of_day: Hour of Day
       fact.average_conversion_rate: "-"
@@ -528,7 +534,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 21
+    row: 29
     col: 0
     width: 14
     height: 14
@@ -611,9 +617,9 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 713
+        __LINE_NUM: 616
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 701
+      __LINE_NUM: 604
     conditional_formatting:
     - type: high to low
       value:
@@ -626,13 +632,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 726
+        __LINE_NUM: 629
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 721
+      __LINE_NUM: 624
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -651,7 +657,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 28
+    row: 36
     col: 14
     width: 10
     height: 7
@@ -708,9 +714,9 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 810
+        __LINE_NUM: 713
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 798
+      __LINE_NUM: 701
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -729,8 +735,8 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 15
-    col: 16
+    row: 17
+    col: 0
     width: 8
     height: 6
   - title: Ad Group Conversion Rate Change
@@ -742,8 +748,8 @@
     - ad_group.ad_group_name
     - campaign.campaign_name
     - fact.average_conversion_rate_period_percent_change_abs
-    - fact.average_conversion_rate
     - last_fact.average_conversion_rate
+    - fact.average_conversion_rate
     filters:
       fact.conversion_rate_big_mover: 'Yes'
     sorts:
@@ -819,14 +825,14 @@
         name: Period Fact
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 291
+        __LINE_NUM: 824
       - id: last_fact.average_conversion_rate
         name: Last Period Fact
         axisId: last_fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 296
+        __LINE_NUM: 829
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 279
+      __LINE_NUM: 812
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -834,7 +840,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 43
     col: 0
     width: 12
     height: 10
@@ -848,8 +854,8 @@
     - ad_group.ad_group_name
     - campaign.campaign_name
     - fact.average_conversion_rate_period_percent_change_abs
-    - fact.average_conversion_rate
     - last_fact.average_conversion_rate
+    - fact.average_conversion_rate
     filters:
       fact.conversion_rate_big_mover: 'Yes'
     sorts:
@@ -928,14 +934,14 @@
         name: Period Fact
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 925
+        __LINE_NUM: 933
       - id: last_fact.average_conversion_rate
         name: Last Period Fact
         axisId: last_fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 930
+        __LINE_NUM: 938
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 913
+      __LINE_NUM: 921
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -943,7 +949,96 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 43
     col: 12
     width: 12
     height: 10
+  - title: Conversion Rate By State
+    name: Conversion Rate By State
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_map
+    fields:
+    - geo_us_state.state
+    - fact.average_conversion_rate
+    filters:
+      fact.period: 28 day
+      ad_group.ad_group_name: ''
+      campaign.campaign_name: ''
+    sorts:
+    - fact.average_conversion_rate desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: positron
+    map_position: custom
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_view_names: true
+    show_legend: true
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    map: auto
+    map_projection: ''
+    quantize_colors: false
+    series_types: {}
+    map_latitude: 41.23703864665824
+    map_longitude: -93.0742393434048
+    map_zoom: 5
+    row: 11
+    col: 8
+    width: 16
+    height: 18
+  filters:
+  - name: Campaign
+    title: Campaign
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: campaign.campaign_name
+  - name: Ad Group
+    title: Ad Group
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: ad_group.ad_group_name
+  - name: Period
+    title: Period
+    type: field_filter
+    default_value: 28 day
+    allow_multiple_values: true
+    required: true
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.period
+  - name: Period Latest
+    title: Period Latest
+    type: field_filter
+    default_value: 'Yes'
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.date_period_latest

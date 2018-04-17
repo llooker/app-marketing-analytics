@@ -6,15 +6,15 @@ explore: keyword {
   join: ad_group {
     view_label: "Ad Groups"
     sql_on: ${keyword.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${keyword.campaign_id} = ${campaign.campaign_id} AND
-      ${keyword.external_customer_id} = ${customer.external_customer_id} AND
+      ${keyword.campaign_id} = ${ad_group.campaign_id} AND
+      ${keyword.external_customer_id} = ${ad_group.external_customer_id} AND
       ${keyword.date_date} = ${ad_group.date_date} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${keyword.campaign_id} = ${campaign.campaign_id} AND
-      ${keyword.external_customer_id} = ${customer.external_customer_id} AND
+      ${keyword.external_customer_id} = ${campaign.external_customer_id} AND
       ${keyword.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }
@@ -99,6 +99,7 @@ view: keyword {
       label: "Google Search"
       url: "https://www.google.com/search?q={{ value | encode_uri}}"
     }
+    required_fields: [external_customer_id, campaign_id, ad_group_id, criterion_id]
   }
 
   dimension: campaign_ad_group_keyword_combination {
@@ -213,8 +214,14 @@ view: keyword {
   }
 
   dimension: status {
+    hidden: yes
     type: string
     sql: REPLACE(${status_raw}, "Status_", "") ;;
+  }
+
+  dimension: status_active {
+    type: yesno
+    sql: ${status} = "Active" ;;
   }
 
   dimension: system_serving_status_raw {
@@ -245,14 +252,41 @@ view: keyword {
     hidden:  yes
   }
 
-  measure: count {
-    type: count_distinct
-    sql: ${criterion_id} ;;
-    drill_fields: [detail*, ad_group.detail*]
+  dimension: key_base {
+    hidden: yes
+    sql: CONCAT(
+      CAST(${external_customer_id} AS STRING), "-",
+      CAST(${campaign_id} AS STRING), "-",
+      CAST(${ad_group_id} AS STRING), "-",
+      CAST(${criterion_id} AS STRING)) ;;
   }
 
-  # ----- Detail ------
-  set: detail {
+  dimension: primary_key {
+    hidden: yes
+    primary_key: yes
+    sql: CONCAT(CAST(${_date} AS STRING), "-", ${key_base}) ;;
+  }
+
+  measure: count {
+    type: count_distinct
+    sql: ${key_base} ;;
+    drill_fields: [drill_detail*]
+  }
+
+  measure: count_active {
+    type: count_distinct
+    sql: ${key_base} ;;
+    filters: {
+      field: status_active
+      value: "Yes"
+    }
+    drill_fields: [drill_detail*]
+  }
+
+  set: drill_detail {
     fields: [criterion_id, criteria, status, quality_score, post_click_quality_score, cpc_bid]
+  }
+  set: detail {
+    fields: [external_customer_id, campaign_id, ad_group_id, count, count_active, status_active, drill_detail*]
   }
 }
