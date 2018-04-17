@@ -1,3 +1,4 @@
+include: "fb_campaigns_adapter.view.lkml"
 include: "fb_stitch_base.view.lkml"
 
 explore: campaigns {
@@ -16,9 +17,7 @@ explore: campaigns {
 }
 
 view: campaigns {
-  extends: ["stitch_base"]
-
-  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.campaigns ;;
+  extends: ["fb_campaigns_adapter", "stitch_base"]
 
   dimension: id {
     primary_key: yes
@@ -27,9 +26,9 @@ view: campaigns {
   }
 
   dimension: account_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.account_id ;;
-    hidden: yes
   }
 
   dimension: ads {
@@ -72,6 +71,7 @@ view: campaigns {
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,

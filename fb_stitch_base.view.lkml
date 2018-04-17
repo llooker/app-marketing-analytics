@@ -20,6 +20,7 @@ view: stitch_base {
   }
 
   dimension_group: _sdc_received {
+    hidden: yes
     type: time
     timeframes: [
       raw,

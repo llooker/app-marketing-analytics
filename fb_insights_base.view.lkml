@@ -215,9 +215,11 @@ view: insights_base {
       year
     ]
     sql: ${TABLE}.date_start ;;
+    allow_fill: no
   }
 
   dimension_group: date_stop {
+    hidden:  yes
     label: "Stop"
     type: time
     timeframes: [
@@ -263,6 +265,7 @@ view: insights_base {
   }
 
   dimension: objective {
+    hidden: yes
     type: string
     sql: ${TABLE}.objective ;;
   }
@@ -428,21 +431,25 @@ view: insights_base {
 view: ads_insights__actions_website_base {
   extension: required
   dimension: action_destination {
+    hidden: yes
     type: string
     sql: ${TABLE}.action_destination ;;
   }
 
   dimension: action_target_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.action_target_id ;;
   }
 
   dimension: action_type {
+    hidden: yes
     type: string
     sql: ${TABLE}.action_type ;;
   }
 
   dimension: value {
+    hidden: yes
     type: number
     sql: ${TABLE}.value ;;
   }
@@ -452,31 +459,37 @@ view: ads_insights__actions_base {
   extends: [ads_insights__actions_website_base]
   extension: required
   dimension: _1d_click {
+    hidden: yes
     type: number
     sql: ${TABLE}._1d_click ;;
   }
 
   dimension: _1d_view {
+    hidden: yes
     type: number
     sql: ${TABLE}._1d_view ;;
   }
 
   dimension: _28d_click {
+    hidden: yes
     type: number
     sql: ${TABLE}._28d_click ;;
   }
 
   dimension: _28d_view {
+    hidden: yes
     type: number
     sql: ${TABLE}._28d_view ;;
   }
 
   dimension: _7d_click {
+    hidden: yes
     type: number
     sql: ${TABLE}._7d_click ;;
   }
 
   dimension: _7d_view {
+    hidden: yes
     type: number
     sql: ${TABLE}._7d_view ;;
   }

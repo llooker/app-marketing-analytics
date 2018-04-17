@@ -1,3 +1,4 @@
+include: "fb_adsets_adapter.view"
 include: "fb_campaigns.view"
 
 explore: adsets {
@@ -113,20 +114,19 @@ explore: adsets {
 
 
 view: adsets {
-  extends: ["stitch_base"]
-
-  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.adsets ;;
+  extends: ["fb_adsets_adapter", "stitch_base"]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
   }
 
   dimension: account_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.account_id ;;
-    hidden: yes
   }
 
   dimension: bid_info {
@@ -140,12 +140,13 @@ view: adsets {
   }
 
   dimension: campaign_id {
-    type: string
     hidden: yes
+    type: string
     sql: ${TABLE}.campaign_id ;;
   }
 
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -170,6 +171,7 @@ view: adsets {
   }
 
   dimension_group: end {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -199,6 +201,7 @@ view: adsets {
   }
 
   dimension_group: start {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -218,6 +221,7 @@ view: adsets {
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -254,6 +258,7 @@ view: adsets {
 
 view: adsets__bid_info {
   dimension: actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.actions ;;
   }
@@ -261,16 +266,19 @@ view: adsets__bid_info {
 
 view: adsets__targeting {
   dimension: age_max {
+    hidden: yes
     type: number
     sql: ${TABLE}.age_max ;;
   }
 
   dimension: age_min {
+    hidden: yes
     type: number
     sql: ${TABLE}.age_min ;;
   }
 
   dimension: audience_network_positions {
+    hidden: yes
     type: string
     sql: ${TABLE}.audience_network_positions ;;
   }
@@ -281,11 +289,13 @@ view: adsets__targeting {
   }
 
   dimension: device_platforms {
+    hidden: yes
     type: string
     sql: ${TABLE}.device_platforms ;;
   }
 
   dimension: facebook_positions {
+    hidden: yes
     type: string
     sql: ${TABLE}.facebook_positions ;;
   }
@@ -301,21 +311,25 @@ view: adsets__targeting {
   }
 
   dimension: instagram_positions {
+    hidden: yes
     type: string
     sql: ${TABLE}.instagram_positions ;;
   }
 
   dimension: messenger_positions {
+    hidden: yes
     type: string
     sql: ${TABLE}.messenger_positions ;;
   }
 
   dimension: publisher_platforms {
+    hidden: yes
     type: string
     sql: ${TABLE}.publisher_platforms ;;
   }
 
   dimension: targeting_optimization {
+    hidden: yes
     type: string
     sql: ${TABLE}.targeting_optimization ;;
   }
@@ -329,6 +343,7 @@ view: adsets__targeting__flexible_spec__work_positions {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -342,6 +357,7 @@ view: adsets__targeting__flexible_spec__friends_of_connections {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -355,6 +371,7 @@ view: adsets__targeting__flexible_spec__behaviors {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -368,6 +385,7 @@ view: adsets__targeting__flexible_spec__interests {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -381,6 +399,7 @@ view: adsets__targeting__flexible_spec__connections {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -394,6 +413,7 @@ view: adsets__targeting__flexible_spec__work_employers {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -401,17 +421,20 @@ view: adsets__targeting__flexible_spec__work_employers {
 
 view: adsets__targeting__geo_locations__regions {
   dimension: country {
+    hidden: yes
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
 
   dimension: key {
+    hidden: yes
     type: string
     sql: ${TABLE}.key ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -446,37 +469,44 @@ view: adsets__targeting__geo_locations {
 
 view: adsets__targeting__geo_locations__cities {
   dimension: country {
+    hidden: yes
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
 
   dimension: distance_unit {
+    hidden: yes
     type: string
     sql: ${TABLE}.distance_unit ;;
   }
 
   dimension: key {
+    hidden: yes
     type: string
     sql: ${TABLE}.key ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: radius {
+    hidden: yes
     type: number
     sql: ${TABLE}.radius ;;
   }
 
   dimension: region {
+    hidden: yes
     type: string
     sql: ${TABLE}.region ;;
   }
 
   dimension: region_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.region_id ;;
   }
@@ -484,6 +514,7 @@ view: adsets__targeting__geo_locations__cities {
 
 view: adsets__targeting__geo_locations__countries {
   dimension: country {
+    hidden: yes
     type: string
     map_layer_name: countries
     sql: ${TABLE} ;;
@@ -492,6 +523,7 @@ view: adsets__targeting__geo_locations__countries {
 
 view: adsets__targeting__geo_locations__location_types {
   dimension: location_type {
+    hidden: yes
     type: string
     sql: ${TABLE} ;;
   }
@@ -499,27 +531,32 @@ view: adsets__targeting__geo_locations__location_types {
 
 view: adsets__targeting__geo_locations__zips {
   dimension: country {
+    hidden: yes
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
 
   dimension: key {
+    hidden: yes
     type: string
     sql: ${TABLE}.key ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: primary_city_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.primary_city_id ;;
   }
 
   dimension: region_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.region_id ;;
   }
@@ -533,6 +570,7 @@ view: adsets__targeting__custom_audiences {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -540,16 +578,19 @@ view: adsets__targeting__custom_audiences {
 
 view: adsets__promoted_object {
   dimension: custom_event_type {
+    hidden: yes
     type: string
     sql: ${TABLE}.custom_event_type ;;
   }
 
   dimension: page_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.page_id ;;
   }
 
   dimension: pixel_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.pixel_id ;;
   }

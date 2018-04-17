@@ -1,3 +1,4 @@
+include: "fb_ads_adapter.view"
 include: "fb_adcreative.view"
 include: "fb_adsets.view"
 
@@ -149,11 +150,12 @@ explore: ads {
 }
 
 view: ads {
-  extends: ["stitch_base"]
+  extends: ["fb_adsets_adapter", "stitch_base"]
 
   sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.ads ;;
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -298,31 +300,37 @@ view: ads {
 
 view: ads__conversion_specs {
   dimension: action_type {
+    hidden: yes
     type: string
     sql: ${TABLE}.action_type ;;
   }
 
   dimension: conversion_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.conversion_id ;;
   }
 
   dimension: leadgen {
+    hidden: yes
     type: string
     sql: ${TABLE}.leadgen ;;
   }
 
   dimension: page {
+    hidden: yes
     type: string
     sql: ${TABLE}.page ;;
   }
 
   dimension: post {
+    hidden: yes
     type: string
     sql: ${TABLE}.post ;;
   }
 
   dimension: post_wall {
+    hidden: yes
     type: string
     sql: ${TABLE}.post_wall ;;
   }
@@ -330,6 +338,7 @@ view: ads__conversion_specs {
 
 view: ads__bid_info {
   dimension: actions {
+    hidden: yes
     type: number
     sql: ${TABLE}.actions ;;
   }
@@ -337,31 +346,37 @@ view: ads__bid_info {
 
 view: ads__recommendations {
   dimension: blame_field {
+    hidden: yes
     type: string
     sql: ${TABLE}.blame_field ;;
   }
 
   dimension: code {
+    hidden: yes
     type: number
     sql: ${TABLE}.code ;;
   }
 
   dimension: confidence {
+    hidden: yes
     type: string
     sql: ${TABLE}.confidence ;;
   }
 
   dimension: importance {
+    hidden: yes
     type: string
     sql: ${TABLE}.importance ;;
   }
 
   dimension: message {
+    hidden: yes
     type: string
     sql: ${TABLE}.message ;;
   }
 
   dimension: title {
+    hidden: yes
     type: string
     sql: ${TABLE}.title ;;
   }
@@ -369,16 +384,19 @@ view: ads__recommendations {
 
 view: ads__targeting {
   dimension: age_max {
+    hidden: yes
     type: number
     sql: ${TABLE}.age_max ;;
   }
 
   dimension: age_min {
+    hidden: yes
     type: number
     sql: ${TABLE}.age_min ;;
   }
 
   dimension: audience_network_positions {
+    hidden: yes
     type: string
     sql: ${TABLE}.audience_network_positions ;;
   }
@@ -389,11 +407,13 @@ view: ads__targeting {
   }
 
   dimension: device_platforms {
+    hidden: yes
     type: string
     sql: ${TABLE}.device_platforms ;;
   }
 
   dimension: facebook_positions {
+    hidden: yes
     type: string
     sql: ${TABLE}.facebook_positions ;;
   }
@@ -424,16 +444,19 @@ view: ads__targeting {
   }
 
   dimension: messenger_positions {
+    hidden: yes
     type: string
     sql: ${TABLE}.messenger_positions ;;
   }
 
   dimension: publisher_platforms {
+    hidden: yes
     type: string
     sql: ${TABLE}.publisher_platforms ;;
   }
 
   dimension: targeting_optimization {
+    hidden: yes
     type: string
     sql: ${TABLE}.targeting_optimization ;;
   }
@@ -447,6 +470,7 @@ view: ads__targeting__friends_of_connections {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -454,17 +478,20 @@ view: ads__targeting__friends_of_connections {
 
 view: ads__targeting__geo_locations__regions {
   dimension: country {
+    hidden: yes
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
 
   dimension: key {
+    hidden: yes
     type: string
     sql: ${TABLE}.key ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -499,37 +526,44 @@ view: ads__targeting__geo_locations {
 
 view: ads__targeting__geo_locations__cities {
   dimension: country {
+    hidden: yes
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
 
   dimension: distance_unit {
+    hidden: yes
     type: string
     sql: ${TABLE}.distance_unit ;;
   }
 
   dimension: key {
+    hidden: yes
     type: string
     sql: ${TABLE}.key ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: radius {
+    hidden: yes
     type: number
     sql: ${TABLE}.radius ;;
   }
 
   dimension: region {
+    hidden: yes
     type: string
     sql: ${TABLE}.region ;;
   }
 
   dimension: region_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.region_id ;;
   }
@@ -537,6 +571,7 @@ view: ads__targeting__geo_locations__cities {
 
 view: ads__targeting__geo_locations__countries {
   dimension: country {
+    hidden: yes
     type: string
     map_layer_name: countries
     sql: ${TABLE} ;;
@@ -545,6 +580,7 @@ view: ads__targeting__geo_locations__countries {
 
 view: ads__targeting__geo_locations__location_types {
   dimension: location_type {
+    hidden: yes
     type: string
     sql: ${TABLE} ;;
   }
@@ -552,27 +588,32 @@ view: ads__targeting__geo_locations__location_types {
 
 view: ads__targeting__geo_locations__zips {
   dimension: country {
+    hidden: yes
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
   }
 
   dimension: key {
+    hidden: yes
     type: string
     sql: ${TABLE}.key ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: primary_city_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.primary_city_id ;;
   }
 
   dimension: region_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.region_id ;;
   }
@@ -586,6 +627,7 @@ view: ads__targeting__custom_audiences {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -599,6 +641,7 @@ view: ads__targeting__flexible_spec__work_positions {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -612,6 +655,7 @@ view: ads__targeting__flexible_spec__friends_of_connections {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -625,6 +669,7 @@ view: ads__targeting__flexible_spec__behaviors {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -638,6 +683,7 @@ view: ads__targeting__flexible_spec__interests {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -651,6 +697,7 @@ view: ads__targeting__flexible_spec__connections {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -664,6 +711,7 @@ view: ads__targeting__flexible_spec__work_employers {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -677,6 +725,7 @@ view: ads__targeting__interests {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -684,26 +733,31 @@ view: ads__targeting__interests {
 
 view: ads__tracking_specs {
   dimension: action_type {
+    hidden: yes
     type: string
     sql: ${TABLE}.action_type ;;
   }
 
   dimension: fb_pixel {
+    hidden: yes
     type: string
     sql: ${TABLE}.fb_pixel ;;
   }
 
   dimension: page {
+    hidden: yes
     type: string
     sql: ${TABLE}.page ;;
   }
 
   dimension: post {
+    hidden: yes
     type: string
     sql: ${TABLE}.post ;;
   }
 
   dimension: post_wall {
+    hidden: yes
     type: string
     sql: ${TABLE}.post_wall ;;
   }

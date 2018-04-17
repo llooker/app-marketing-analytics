@@ -3,7 +3,7 @@ include: "period_fact.view"
 include: "date_base.view"
 include: "period_base.view"
 
-include: "fb_ads_insights_platform_and_device.view"
+include: "fb_ad_impressions.view"
 
 view: combined_ad_impressions_base {
   extends: [ad_metrics_base, date_base, period_base]
@@ -67,21 +67,21 @@ view: facebook_ad_impressions {
 
   derived_table: {
     # datagroup_trigger: facebook_etl_datagroup
-    explore_source: ads_insights_platform_and_device {
-      column: _date { field: ads_insights_platform_and_device.date_start_date}
-      column: account_name { field: ads_insights_platform_and_device.account_name }
-      column: account_id { field: ads_insights_platform_and_device.account_id }
-      column: campaign_name { field: ads_insights_platform_and_device.campaign_name }
-      column: campaign_id { field: ads_insights_platform_and_device.campaign_id }
-      column: ad_group_name { field: ads_insights_platform_and_device.adset_name }
-      column: ad_group_id { field: ads_insights_platform_and_device.adset_id }
-      column: device { field: ads_insights_platform_and_device.device_type }
-      column: cost { field: ads_insights_platform_and_device.total_spend }
-      column: impressions { field: ads_insights_platform_and_device.total_impressions }
-      column: clicks { field: ads_insights_platform_and_device.total_clicks }
+    explore_source: fb_ad_impressions {
+      column: _date { field: fact.date_start_date}
+      column: account_name { field: fact.account_name }
+      column: account_id { field: fact.account_id }
+      column: campaign_name { field: fact.campaign_name }
+      column: campaign_id { field: fact.campaign_id }
+      column: ad_group_name { field: fact.adset_name }
+      column: ad_group_id { field: fact.adset_id }
+      column: device { field: fact.device_type }
+      column: cost { field: fact.total_spend }
+      column: impressions { field: fact.total_impressions }
+      column: clicks { field: fact.total_clicks }
       # These aren't the correct mapping right now.
-      column: conversions { field: ads_insights_platform_and_device.total_actions }
-      column: conversionvalue { field: ads_insights_platform_and_device.total_action_value }
+      column: conversions { field: fact.total_actions }
+      column: conversionvalue { field: fact.total_action_value }
     }
   }
 }

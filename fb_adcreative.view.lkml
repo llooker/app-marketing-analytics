@@ -1,3 +1,4 @@
+include: "fb_adcreative_adapter.view"
 include: "fb_ads.view"
 include: "fb_adsets.view"
 
@@ -59,11 +60,10 @@ explore: adcreative {
 }
 
 view: adcreative {
-  extends: ["stitch_base"]
-
-  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.adcreative ;;
+  extends: ["fb_adcreative_adapter", "stitch_base"]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -170,6 +170,7 @@ view: adcreative {
 
 view: adcreative__object_story_spec {
   dimension: instagram_actor_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.instagram_actor_id ;;
   }
@@ -180,6 +181,7 @@ view: adcreative__object_story_spec {
   }
 
   dimension: page_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.page_id ;;
   }
@@ -192,6 +194,7 @@ view: adcreative__object_story_spec {
 
 view: adcreative__object_story_spec__video_data__call_to_action {
   dimension: type {
+    hidden: yes
     type: string
     sql: ${TABLE}.type ;;
   }
@@ -204,21 +207,25 @@ view: adcreative__object_story_spec__video_data__call_to_action {
 
 view: adcreative__object_story_spec__video_data__call_to_action__value {
   dimension: lead_gen_form_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.lead_gen_form_id ;;
   }
 
   dimension: link {
+    hidden: yes
     type: string
     sql: ${TABLE}.link ;;
   }
 
   dimension: link_caption {
+    hidden: yes
     type: string
     sql: ${TABLE}.link_caption ;;
   }
 
   dimension: link_format {
+    hidden: yes
     type: string
     sql: ${TABLE}.link_format ;;
   }
@@ -231,31 +238,37 @@ view: adcreative__object_story_spec__video_data {
   }
 
   dimension: image_hash {
+    hidden: yes
     type: string
     sql: ${TABLE}.image_hash ;;
   }
 
   dimension: image_url {
+    hidden: yes
     type: string
     sql: ${TABLE}.image_url ;;
   }
 
   dimension: link_description {
+    hidden: yes
     type: string
     sql: ${TABLE}.link_description ;;
   }
 
   dimension: message {
+    hidden: yes
     type: string
     sql: ${TABLE}.message ;;
   }
 
   dimension: title {
+    hidden: yes
     type: string
     sql: ${TABLE}.title ;;
   }
 
   dimension: video_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.video_id ;;
   }
@@ -263,6 +276,7 @@ view: adcreative__object_story_spec__video_data {
 
 view: adcreative__object_story_spec__link_data__call_to_action {
   dimension: type {
+    hidden: yes
     type: string
     sql: ${TABLE}.type ;;
   }
@@ -270,6 +284,7 @@ view: adcreative__object_story_spec__link_data__call_to_action {
 
 view: adcreative__object_story_spec__link_data {
   dimension: attachment_style {
+    hidden: yes
     type: string
     sql: ${TABLE}.attachment_style ;;
   }
@@ -280,6 +295,7 @@ view: adcreative__object_story_spec__link_data {
   }
 
   dimension: caption {
+    hidden: yes
     type: string
     sql: ${TABLE}.caption ;;
   }
@@ -290,26 +306,31 @@ view: adcreative__object_story_spec__link_data {
   }
 
   dimension: image_hash {
+    hidden: yes
     type: string
     sql: ${TABLE}.image_hash ;;
   }
 
   dimension: link {
+    hidden: yes
     type: string
     sql: ${TABLE}.link ;;
   }
 
   dimension: message {
+    hidden: yes
     type: string
     sql: ${TABLE}.message ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: picture {
+    hidden: yes
     type: string
     sql: ${TABLE}.picture ;;
   }
