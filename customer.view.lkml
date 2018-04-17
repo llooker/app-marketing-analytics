@@ -1,9 +1,28 @@
 include: "/app_marketing_analytics_adapter/customer.view"
 include: "date_base.view"
+include: "date_primary_key_base.view"
 include: "google_adwords_base.view"
 
+explore: customer {
+  hidden: yes
+}
+
+view: account_key_base {
+  extends: [date_primary_key_base]
+  extension: required
+
+  dimension: account_key_base {
+    hidden: yes
+    sql: CAST(${external_customer_id} AS STRING) ;;
+  }
+  dimension: key_base {
+    hidden: yes
+    sql: ${account_key_base} ;;
+  }
+}
+
 view: customer {
-  extends: [date_base, google_adwords_base, customer_adapter]
+  extends: [account_key_base, date_base, google_adwords_base, customer_adapter]
 
   dimension: account_currency_code {
     type: string
@@ -13,6 +32,7 @@ view: customer {
   dimension: account_descriptive_name {
     type: string
     sql: ${TABLE}.AccountDescriptiveName ;;
+    required_fields: [external_customer_id]
   }
 
   dimension: account_time_zone_id {
@@ -44,20 +64,16 @@ view: customer {
   dimension: primary_company_name {
     type: string
     sql: ${TABLE}.PrimaryCompanyName ;;
-  }
-
-  dimension_group: date {
-    hidden: yes
+    required_fields: [external_customer_id]
   }
 
   measure: count {
     type: count_distinct
-    sql: ${external_customer_id} ;;
-    drill_fields: [detail*]
+    sql: ${key_base} ;;
+    drill_fields: [drill_detail*]
   }
 
-  # ----- Detail ------
-  set: detail {
+  set: drill_detail {
     fields: [external_customer_id, primary_company_name]
   }
 }

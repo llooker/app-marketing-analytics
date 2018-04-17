@@ -1,7 +1,5 @@
 include: "/app_marketing_analytics_adapter/campaign.view"
 include: "customer.view"
-include: "date_base.view"
-include: "google_adwords_base.view"
 
 explore: campaign {
   hidden: yes
@@ -13,8 +11,22 @@ explore: campaign {
   }
 }
 
+view: campaign_key_base {
+  extends: [account_key_base]
+  extension: required
+
+  dimension: campaign_key_base {
+    hidden: yes
+    sql: CONCAT(${account_key_base}, "-", CAST(${campaign_id} as STRING)) ;;
+  }
+  dimension: key_base {
+    hidden: yes
+    sql: ${campaign_key_base} ;;
+  }
+}
+
 view: campaign {
-  extends: [date_base, google_adwords_base, campaign_adapter]
+  extends: [campaign_key_base, date_base, google_adwords_base, campaign_adapter]
 
   dimension: advertising_channel_sub_type {
     type: string
@@ -62,7 +74,6 @@ view: campaign {
   }
 
   dimension: campaign_id {
-    primary_key: yes
     sql: ${TABLE}.CampaignId ;;
     hidden: yes
   }
@@ -95,6 +106,7 @@ view: campaign {
       icon_url: "https://www.gstatic.com/awn/awsm/brt/awn_awsm_20171108_RC00/aw_blend/favicon.ico"
       label: "Change Budget"
     }
+    required_fields: [external_customer_id, campaign_id]
   }
 
   dimension: campaign_status_raw {
@@ -104,8 +116,14 @@ view: campaign {
   }
 
   dimension: campaign_status {
+    hidden: yes
     type: string
     sql: REPLACE(${campaign_status_raw}, "Status_", "") ;;
+  }
+
+  dimension: status_active {
+    type: yesno
+    sql: ${campaign_status} = "Active" ;;
   }
 
   dimension: campaign_tablet_bid_modifier {
@@ -210,8 +228,18 @@ view: campaign {
 
   measure: count {
     type: count_distinct
-    sql: ${campaign_id} ;;
-    drill_fields: [campaign_name, campaign_basic_fact.total_impressions, campaign_basic_fact.total_clicks, campaign_basic_fact.total_conversions, campaign_basic_fact.total_cost, campaign_basic_fact.average_click_rate, campaign_basic_fact.average_conversion_rate, campaign_basic_fact.average_cost_per_click, campaign_basic_fact.average_cost_per_conversion]
+    sql: ${key_base} ;;
+    drill_fields: [drill_detail*]
+  }
+
+  measure: count_active {
+    type: count_distinct
+    sql: ${key_base} ;;
+    filters: {
+      field: status_active
+      value: "Yes"
+    }
+    drill_fields: [drill_detail*]
   }
 
   measure: total_amount {
@@ -220,7 +248,11 @@ view: campaign {
   }
 
   # ----- Detail ------
-  set: detail {
+  set: drill_detail {
     fields: [campaign_id, campaign_name, campaign_status, ad_group.count, ad.count, keyword.count]
   }
+  set: detail {
+    fields: [external_customer_id, count, count_active, status_active, drill_detail*]
+  }
+
 }

@@ -132,7 +132,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 4
+    row: 0
     col: 0
     width: 24
     height: 10
@@ -213,9 +213,9 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 15
+    row: 20
     col: 0
-    width: 8
+    width: 10
     height: 6
   - title: Click Through Rate by Bid Strategy
     name: Click Through Rate by Bid Strategy
@@ -292,9 +292,9 @@
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 15
-    col: 16
-    width: 8
-    height: 6
+    col: 0
+    width: 10
+    height: 5
   - title: Click Through Rate by Day of Week and Hour of Day
     name: Click Through Rate by Day of Week and Hour of Day
     model: looker_app_google_adwords
@@ -410,7 +410,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 21
+    row: 26
     col: 0
     width: 14
     height: 14
@@ -469,9 +469,9 @@
         name: Ad Stats Cost
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 466
+        __LINE_NUM: 468
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 454
+      __LINE_NUM: 456
     colors:
     - "#d06180"
     - "#7869df"
@@ -490,10 +490,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 15
-    col: 8
-    width: 8
-    height: 6
+    row: 10
+    col: 0
+    width: 10
+    height: 5
   - title: Click Through Rate by Day of Week
     name: Click Through Rate by Day of Week
     model: looker_app_google_adwords
@@ -575,9 +575,9 @@
         name: Ad Stats Cost
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 572
+        __LINE_NUM: 574
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 560
+      __LINE_NUM: 562
     conditional_formatting:
     - type: high to low
       value:
@@ -590,13 +590,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 585
+        __LINE_NUM: 587
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 580
+      __LINE_NUM: 582
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -615,7 +615,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 21
+    row: 26
     col: 14
     width: 10
     height: 7
@@ -698,9 +698,9 @@
         name: Ad Stats Cost
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 695
+        __LINE_NUM: 697
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 683
+      __LINE_NUM: 685
     conditional_formatting:
     - type: high to low
       value:
@@ -713,13 +713,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 708
+        __LINE_NUM: 710
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 703
+      __LINE_NUM: 705
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -738,7 +738,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 28
+    row: 33
     col: 14
     width: 10
     height: 7
@@ -751,8 +751,8 @@
     - ad_group.ad_group_name
     - campaign.campaign_name
     - fact.average_click_rate_period_percent_change_abs
-    - fact.average_click_rate
     - last_fact.average_click_rate
+    - fact.average_click_rate
     filters:
       fact.click_rate_big_mover: 'Yes'
     sorts:
@@ -829,14 +829,14 @@
         name: Period Fact
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 826
+        __LINE_NUM: 828
       - id: last_fact.average_click_rate
         name: Last Period Fact
         axisId: last_fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 831
+        __LINE_NUM: 833
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 814
+      __LINE_NUM: 816
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -844,7 +844,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 40
     col: 0
     width: 12
     height: 10
@@ -858,8 +858,8 @@
     - ad_group.ad_group_name
     - campaign.campaign_name
     - fact.average_click_rate_period_percent_change_abs
-    - fact.average_click_rate
     - last_fact.average_click_rate
+    - fact.average_click_rate
     filters:
       fact.click_rate_big_mover: 'Yes'
     sorts:
@@ -937,14 +937,14 @@
         name: Period Fact
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 932
+        __LINE_NUM: 936
       - id: last_fact.average_click_rate
         name: Last Period Fact
         axisId: last_fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 937
+        __LINE_NUM: 941
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 920
+      __LINE_NUM: 924
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -952,7 +952,96 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 35
+    row: 40
     col: 12
     width: 12
     height: 10
+  - title: Click Through Rate by State
+    name: Click Through Rate by State
+    model: looker_app_google_adwords
+    explore: ad_impressions
+    type: looker_map
+    fields:
+    - fact.average_click_rate
+    - geo_us_state.state
+    filters:
+      fact.period: 28 day
+      ad_group.ad_group_name: ''
+      campaign.campaign_name: ''
+    sorts:
+    - fact.average_click_rate desc
+    limit: 500
+    query_timezone: America/Los_Angeles
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: false
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: positron
+    map_position: custom
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_view_names: true
+    show_legend: true
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    map: auto
+    map_projection: ''
+    quantize_colors: false
+    series_types: {}
+    map_latitude: 39.75179900770326
+    map_longitude: -95.69145172834398
+    map_zoom: 5
+    row: 10
+    col: 10
+    width: 14
+    height: 16
+  filters:
+  - name: Campaign
+    title: Campaign
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: campaign.campaign_name
+  - name: Ad Group
+    title: Ad Group
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: ad_group.ad_group_name
+  - name: Period
+    title: Period
+    type: field_filter
+    default_value: 28 day
+    allow_multiple_values: true
+    required: true
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.period
+  - name: Period Latest
+    title: Period Latest
+    type: field_filter
+    default_value: 'Yes'
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    listens_to_filters: []
+    field: fact.date_period_latest
