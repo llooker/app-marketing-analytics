@@ -295,9 +295,9 @@
         name: Ad Stats Cost
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 346
+        __LINE_NUM: 294
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 334
+      __LINE_NUM: 282
     conditional_formatting:
     - type: high to low
       value:
@@ -310,13 +310,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 359
+        __LINE_NUM: 307
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 354
+      __LINE_NUM: 302
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -395,9 +395,9 @@
         name: Ad Stats Cost
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 446
+        __LINE_NUM: 394
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 434
+      __LINE_NUM: 382
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -501,9 +501,9 @@
         name: Ad Stats Cost
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 552
+        __LINE_NUM: 500
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 540
+      __LINE_NUM: 488
     conditional_formatting:
     - type: high to low
       value:
@@ -516,13 +516,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 565
+        __LINE_NUM: 513
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 560
+      __LINE_NUM: 508
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -598,9 +598,9 @@
         name: Ad Stats Cost
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 649
+        __LINE_NUM: 597
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 637
+      __LINE_NUM: 585
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -708,9 +708,9 @@
         name: Ad Stats Cost
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 759
+        __LINE_NUM: 707
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 747
+      __LINE_NUM: 695
     conditional_formatting:
     - type: high to low
       value:
@@ -723,14 +723,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 772
+        __LINE_NUM: 720
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.average_click_rate
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 767
+      __LINE_NUM: 715
     series_labels:
       fact.average_click_rate: "-"
     listen:
@@ -831,14 +831,14 @@
         name: Period Fact
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 882
+        __LINE_NUM: 830
       - id: last_fact.average_click_rate
         name: Last Period Fact
         axisId: last_fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 887
+        __LINE_NUM: 835
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 870
+      __LINE_NUM: 818
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -937,14 +937,14 @@
         name: Period Fact
         axisId: fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 988
+        __LINE_NUM: 936
       - id: last_fact.average_click_rate
         name: Last Period Fact
         axisId: last_fact.average_click_rate
         __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-        __LINE_NUM: 993
+        __LINE_NUM: 941
       __FILE: app_marketing_analytics/campaign_metrics_ctr.dashboard.lookml
-      __LINE_NUM: 976
+      __LINE_NUM: 924
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -960,7 +960,7 @@
     name: Click Through Rate by State
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: looker_map
+    type: looker_geo_choropleth
     fields:
     - fact.average_click_rate
     - geo_us_state.state
@@ -971,6 +971,10 @@
     sorts:
     - fact.average_click_rate desc
     limit: 500
+    map: usa
+    map_projection: ''
+    show_view_names: true
+    quantize_colors: false
     query_timezone: America/Los_Angeles
     map_plot_mode: points
     heatmap_gridlines: false
@@ -989,17 +993,17 @@
     map_marker_units: meters
     map_marker_proportional_scale_type: linear
     map_marker_color_mode: fixed
-    show_view_names: true
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    map: auto
-    map_projection: ''
-    quantize_colors: false
     series_types: {}
     map_latitude: 39.707186656826565
     map_longitude: -95.75683593750001
     map_zoom: 4
+    colors:
+    - "#F36254"
+    - "#FCF758"
+    - "#4FBC89"
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name

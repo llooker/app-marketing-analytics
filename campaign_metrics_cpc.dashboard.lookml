@@ -275,9 +275,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 326
+        __LINE_NUM: 274
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 314
+      __LINE_NUM: 262
     colors:
     - "#dc9d4f"
     - "#7869df"
@@ -381,9 +381,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 432
+        __LINE_NUM: 380
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 420
+      __LINE_NUM: 368
     conditional_formatting:
     - type: high to low
       value:
@@ -396,13 +396,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 445
+        __LINE_NUM: 393
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 440
+      __LINE_NUM: 388
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -504,9 +504,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 555
+        __LINE_NUM: 503
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 543
+      __LINE_NUM: 491
     conditional_formatting:
     - type: high to low
       value:
@@ -519,13 +519,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 568
+        __LINE_NUM: 516
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 563
+      __LINE_NUM: 511
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -633,9 +633,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 684
+        __LINE_NUM: 632
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 672
+      __LINE_NUM: 620
     conditional_formatting:
     - type: high to low
       value:
@@ -648,14 +648,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 697
+        __LINE_NUM: 645
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.average_cost_per_click
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 692
+      __LINE_NUM: 640
     series_labels:
       fact.average_cost_per_click: "-"
     listen:
@@ -723,9 +723,9 @@
         name: Ad Stats Cost
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 774
+        __LINE_NUM: 722
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 762
+      __LINE_NUM: 710
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -812,14 +812,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 863
+        __LINE_NUM: 811
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 868
+        __LINE_NUM: 816
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 851
+      __LINE_NUM: 799
     series_colors: {}
     colors:
     - "#a6b7ff"
@@ -911,14 +911,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 962
+        __LINE_NUM: 910
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 967
+        __LINE_NUM: 915
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 950
+      __LINE_NUM: 898
     series_colors: {}
     colors:
     - "#ea9895"
@@ -1037,14 +1037,14 @@
         name: Period Fact
         axisId: fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 1088
+        __LINE_NUM: 1036
       - id: last_fact.average_cost_per_click
         name: Last Period Fact
         axisId: last_fact.average_cost_per_click
         __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 1093
+        __LINE_NUM: 1041
       __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 1076
+      __LINE_NUM: 1024
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -1060,7 +1060,7 @@
     name: Cost Per Click By State
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: looker_map
+    type: looker_geo_choropleth
     fields:
     - geo_us_state.state
     - fact.average_cost_per_click
@@ -1071,6 +1071,10 @@
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
+    map: usa
+    map_projection: ''
+    show_view_names: true
+    quantize_colors: false
     query_timezone: America/Los_Angeles
     map_plot_mode: points
     heatmap_gridlines: false
@@ -1089,17 +1093,17 @@
     map_marker_units: meters
     map_marker_proportional_scale_type: linear
     map_marker_color_mode: fixed
-    show_view_names: true
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    map: auto
-    map_projection: ''
-    quantize_colors: false
     series_types: {}
     map_latitude: 39.842286020743394
     map_longitude: -96.45996093750001
     map_zoom: 4
+    colors:
+    - "#F36254"
+    - "#FCF758"
+    - "#4FBC89"
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name

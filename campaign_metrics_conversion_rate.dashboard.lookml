@@ -714,9 +714,9 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 765
+        __LINE_NUM: 713
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 753
+      __LINE_NUM: 701
     series_colors: {}
     colors:
     - "#8ac8ca"
@@ -825,14 +825,14 @@
         name: Period Fact
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 876
+        __LINE_NUM: 824
       - id: last_fact.average_conversion_rate
         name: Last Period Fact
         axisId: last_fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 881
+        __LINE_NUM: 829
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 864
+      __LINE_NUM: 812
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -934,14 +934,14 @@
         name: Period Fact
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 985
+        __LINE_NUM: 933
       - id: last_fact.average_conversion_rate
         name: Last Period Fact
         axisId: last_fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 990
+        __LINE_NUM: 938
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 973
+      __LINE_NUM: 921
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
@@ -957,7 +957,7 @@
     name: Conversion Rate By State
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: looker_map
+    type: looker_geo_choropleth
     fields:
     - geo_us_state.state
     - fact.average_conversion_rate
@@ -968,6 +968,10 @@
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
+    map: usa
+    map_projection: ''
+    show_view_names: true
+    quantize_colors: false
     query_timezone: America/Los_Angeles
     map_plot_mode: points
     heatmap_gridlines: false
@@ -986,17 +990,17 @@
     map_marker_units: meters
     map_marker_proportional_scale_type: linear
     map_marker_color_mode: fixed
-    show_view_names: true
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    map: auto
-    map_projection: ''
-    quantize_colors: false
     series_types: {}
     map_latitude: 41.27780646738183
     map_longitude: -93.076171875
     map_zoom: 4
+    colors:
+    - "#F36254"
+    - "#FCF758"
+    - "#4FBC89"
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
