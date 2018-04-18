@@ -79,9 +79,8 @@ view: facebook_ad_impressions {
       column: cost { field: fact.total_spend }
       column: impressions { field: fact.total_impressions }
       column: clicks { field: fact.total_clicks }
-      # These aren't the correct mapping right now.
-      column: conversions { field: fact.total_actions }
-      column: conversionvalue { field: fact.total_action_value }
+      column: conversions { field: ads_insights__actions.total_offsite_conversion_value }
+      column: conversionvalue { field: fact.total_total_action_value }
     }
   }
 }

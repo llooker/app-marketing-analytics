@@ -1,9 +1,9 @@
 include: "fb_ad_impressions_adapter.view"
 include: "fb_insights_base.view"
 include: "fb_adcreative.view"
-include: "fb_ads.view"
 
 explore: fb_ad_impressions {
+  extends: [campaigns_nested_joins_base, adsets_nested_joins_base, ads_nested_joins_base, adcreative_nested_joins_base]
   hidden: yes
   from: fb_ad_impressions
   view_name: fact
@@ -35,67 +35,67 @@ explore: fb_ad_impressions {
   }
 
   join: ads_insights__video_30_sec_watched_actions {
-    view_label: "Ads Insights Age And Gender: Video 30 Sec Watched Actions"
+    view_label: "Ads Insights: Video 30 Sec Watched Actions"
     sql: LEFT JOIN UNNEST(${fact.video_30_sec_watched_actions}) as ads_insights__video_30_sec_watched_actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__video_p75_watched_actions {
-    view_label: "Ads Insights Age And Gender: Video P75 Watched Actions"
+    view_label: "Ads Insights: Video P75 Watched Actions"
     sql: LEFT JOIN UNNEST(${fact.video_p75_watched_actions}) as ads_insights__video_p75_watched_actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__video_p95_watched_actions {
-    view_label: "Ads Insights Age And Gender: Video P95 Watched Actions"
+    view_label: "Ads Insights: Video P95 Watched Actions"
     sql: LEFT JOIN UNNEST(${fact.video_p95_watched_actions}) as ads_insights__video_p95_watched_actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__actions {
-    view_label: "Ads Insights Age And Gender: Actions"
+    view_label: "Ads Insights: Actions"
     sql: LEFT JOIN UNNEST(${fact.actions}) as ads_insights__actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__website_ctr {
-    view_label: "Ads Insights Age And Gender: Website Ctr"
+    view_label: "Ads Insights: Website Ctr"
     sql: LEFT JOIN UNNEST(${fact.website_ctr}) as ads_insights__website_ctr ;;
     relationship: one_to_many
   }
 
   join: ads_insights__video_15_sec_watched_actions {
-    view_label: "Ads Insights Age And Gender: Video 15 Sec Watched Actions"
+    view_label: "Ads Insights: Video 15 Sec Watched Actions"
     sql: LEFT JOIN UNNEST(${fact.video_15_sec_watched_actions}) as ads_insights__video_15_sec_watched_actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__video_10_sec_watched_actions {
-    view_label: "Ads Insights Age And Gender: Video 10 Sec Watched Actions"
+    view_label: "Ads Insights: Video 10 Sec Watched Actions"
     sql: LEFT JOIN UNNEST(${fact.video_10_sec_watched_actions}) as ads_insights__video_10_sec_watched_actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__unique_actions {
-    view_label: "Ads Insights Age And Gender: Unique Actions"
+    view_label: "Ads Insights: Unique Actions"
     sql: LEFT JOIN UNNEST(${fact.unique_actions}) as ads_insights__unique_actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__video_p25_watched_actions {
-    view_label: "Ads Insights Age And Gender: Video P25 Watched Actions"
+    view_label: "Ads Insights: Video P25 Watched Actions"
     sql: LEFT JOIN UNNEST(${fact.video_p25_watched_actions}) as ads_insights__video_p25_watched_actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__video_p100_watched_actions {
-    view_label: "Ads Insights Age And Gender: Video P100 Watched Actions"
+    view_label: "Ads Insights: Video P100 Watched Actions"
     sql: LEFT JOIN UNNEST(${fact.video_p100_watched_actions}) as ads_insights__video_p100_watched_actions ;;
     relationship: one_to_many
   }
 
   join: ads_insights__video_p50_watched_actions {
-    view_label: "Ads Insights Age And Gender: Video P50 Watched Actions"
+    view_label: "Ads Insights: Video P50 Watched Actions"
     sql: LEFT JOIN UNNEST(${fact.video_p50_watched_actions}) as ads_insights__video_p50_watched_actions ;;
     relationship: one_to_many
   }
@@ -109,6 +109,24 @@ explore: fb_ad_impressions {
 
 view: fb_ad_impressions {
   extends: ["stitch_base", "insights_base", "fb_ad_impressions_adapter"]
+
+  dimension: primary_key {
+    hidden: yes
+    primary_key: yes
+    sql: CONCAT(CAST(${date_start_date} AS STRING)
+      ,"|", CAST(${account_id} AS STRING)
+      ,"|", CAST(${campaign_id} AS STRING)
+      ,"|", CAST(${adset_id} AS STRING)
+      ,"|", CAST(${ad_id} AS STRING)
+      {% if (fact.impression_device._in_query or fact.device_type._in_query or fact.platform_position._in_query or fact.publisher_platform._in_query) %}
+      ,"|", CAST(${impression_device} AS STRING),"|", CAST(${platform_position} AS STRING),"|", CAST(${publisher_platform} AS STRING)
+      {% elsif (fact.country._in_query) %}
+      ,"|", CAST(${country} AS STRING)
+      {% elsif (fact.age._in_query or fact.gender._in_query) %}
+      ,"|", CAST(${age} AS STRING),"|", CAST(${gender} AS STRING)
+      {% endif %}
+      ) ;;
+  }
 
   dimension: age {
     type: string
@@ -127,6 +145,7 @@ view: fb_ad_impressions {
   }
 
   dimension: impression_device {
+    hidden: yes
     type: string
     sql: ${TABLE}.impression_device ;;
   }

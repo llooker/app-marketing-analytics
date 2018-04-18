@@ -2,25 +2,8 @@ include: "fb_adcreative_adapter.view"
 include: "fb_ads.view"
 include: "fb_adsets.view"
 
-explore: adcreative {
-  hidden: yes
-  join: ads {
-    type: left_outer
-    sql_on: ${ads.creative_id} = ${adcreative.id} ;;
-    relationship: one_to_one
-  }
-
-  join: adsets {
-    type: left_outer
-    sql_on: ${ads.adset_id} = ${adsets.id} ;;
-    relationship: many_to_one
-  }
-
-  join: campaigns {
-    type: left_outer
-    sql_on: ${ads.campaign_id} = ${campaigns.id} ;;
-    relationship: many_to_one
-  }
+explore: adcreative_nested_joins_base {
+  extension: required
 
   join: adcreative__object_story_spec {
     view_label: "Adcreative: Object Story Spec"
@@ -56,6 +39,29 @@ explore: adcreative {
     view_label: "Adcreative: Object Story Spec Link Data"
     sql: LEFT JOIN UNNEST([${adcreative__object_story_spec.link_data}]) as adcreative__object_story_spec__link_data ;;
     relationship: one_to_one
+  }
+}
+
+explore: adcreative {
+  extends: [adcreative_nested_joins_base]
+  hidden: yes
+
+  join: ads {
+    type: left_outer
+    sql_on: ${ads.creative_id} = ${adcreative.id} ;;
+    relationship: one_to_one
+  }
+
+  join: adsets {
+    type: left_outer
+    sql_on: ${ads.adset_id} = ${adsets.id} ;;
+    relationship: many_to_one
+  }
+
+  join: campaigns {
+    type: left_outer
+    sql_on: ${ads.campaign_id} = ${campaigns.id} ;;
+    relationship: many_to_one
   }
 }
 
@@ -106,7 +112,7 @@ view: adcreative {
   dimension: image_url {
     type: string
     sql: ${TABLE}.image_url ;;
-    hidden: yes
+    html: "<img src='{{value}}' />" ;;
   }
 
   dimension: instagram_actor_id {
@@ -146,9 +152,15 @@ view: adcreative {
     sql: ${TABLE}.status ;;
   }
 
+  dimension: status_active {
+    type: yesno
+    sql: ${status} = "ACTIVE" ;;
+  }
+
   dimension: thumbnail_url {
     type: string
     sql: ${TABLE}.thumbnail_url ;;
+    html: "<img src='{{value}}' />" ;;
   }
 
   dimension: title {
@@ -301,6 +313,7 @@ view: adcreative__object_story_spec__link_data {
   }
 
   dimension: description {
+    hidden: yes
     type: string
     sql: ${TABLE}.description ;;
   }

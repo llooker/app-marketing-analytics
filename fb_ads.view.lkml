@@ -2,25 +2,8 @@ include: "fb_ads_adapter.view"
 include: "fb_adcreative.view"
 include: "fb_adsets.view"
 
-explore: ads {
-  hidden: yes
-  join: adcreative {
-    type: left_outer
-    sql_on: ${ads.creative_id} = ${adcreative.id} ;;
-    relationship: one_to_one
-  }
-
-  join: adsets {
-    type: left_outer
-    sql_on: ${ads.adset_id} = ${adsets.id} ;;
-    relationship: many_to_one
-  }
-
-  join: campaigns {
-    type: left_outer
-    sql_on: ${ads.campaign_id} = ${campaigns.id} ;;
-    relationship: many_to_one
-  }
+explore: ads_nested_joins_base {
+  extension: required
 
   join: ads__conversion_specs {
     view_label: "Ads: Conversion Specs"
@@ -149,10 +132,31 @@ explore: ads {
   }
 }
 
+explore: ads {
+  extends: [ads_nested_joins_base]
+  hidden: yes
+
+  join: adcreative {
+    type: left_outer
+    sql_on: ${ads.creative_id} = ${adcreative.id} ;;
+    relationship: one_to_one
+  }
+
+  join: adsets {
+    type: left_outer
+    sql_on: ${ads.adset_id} = ${adsets.id} ;;
+    relationship: many_to_one
+  }
+
+  join: campaigns {
+    type: left_outer
+    sql_on: ${ads.campaign_id} = ${campaigns.id} ;;
+    relationship: many_to_one
+  }
+}
+
 view: ads {
   extends: ["fb_adsets_adapter", "stitch_base"]
-
-  sql_table_name: {{ _user_attributes["facebook_ads_schema"] }}.ads ;;
 
   dimension: id {
     hidden: yes
@@ -249,6 +253,11 @@ view: ads {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+  }
+
+  dimension: status_active {
+    type: yesno
+    sql: ${status} = "ACTIVE" ;;
   }
 
   dimension: targeting {
@@ -434,6 +443,7 @@ view: ads__targeting {
   }
 
   dimension: instagram_positions {
+    hidden: yes
     type: string
     sql: ${TABLE}.instagram_positions ;;
   }
@@ -464,6 +474,7 @@ view: ads__targeting {
 
 view: ads__targeting__friends_of_connections {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -621,6 +632,7 @@ view: ads__targeting__geo_locations__zips {
 
 view: ads__targeting__custom_audiences {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -635,6 +647,7 @@ view: ads__targeting__custom_audiences {
 
 view: ads__targeting__flexible_spec__work_positions {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -649,6 +662,7 @@ view: ads__targeting__flexible_spec__work_positions {
 
 view: ads__targeting__flexible_spec__friends_of_connections {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -663,6 +677,7 @@ view: ads__targeting__flexible_spec__friends_of_connections {
 
 view: ads__targeting__flexible_spec__behaviors {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -677,6 +692,7 @@ view: ads__targeting__flexible_spec__behaviors {
 
 view: ads__targeting__flexible_spec__interests {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -691,6 +707,7 @@ view: ads__targeting__flexible_spec__interests {
 
 view: ads__targeting__flexible_spec__connections {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -705,6 +722,7 @@ view: ads__targeting__flexible_spec__connections {
 
 view: ads__targeting__flexible_spec__work_employers {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -719,6 +737,7 @@ view: ads__targeting__flexible_spec__work_employers {
 
 view: ads__targeting__interests {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;

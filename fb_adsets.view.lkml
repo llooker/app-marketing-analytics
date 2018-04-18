@@ -1,13 +1,8 @@
 include: "fb_adsets_adapter.view"
 include: "fb_campaigns.view"
 
-explore: adsets {
-  hidden: yes
-  join: campaigns {
-    type: left_outer
-    sql_on: ${adsets.campaign_id} = ${campaigns.id} ;;
-    relationship: many_to_one
-  }
+explore: adsets_nested_joins_base {
+  extension: required
 
   join: adsets__bid_info {
     view_label: "Adsets: Bid Info"
@@ -109,6 +104,17 @@ explore: adsets {
     view_label: "Adsets: Targeting Flexible Spec"
     sql: LEFT JOIN UNNEST([${adsets__targeting.flexible_spec}]) as adsets__targeting__flexible_spec ;;
     relationship: one_to_one
+  }
+}
+
+explore: adsets {
+  extends: [adsets_nested_joins_base]
+  hidden: yes
+
+  join: campaigns {
+    type: left_outer
+    sql_on: ${adsets.campaign_id} = ${campaigns.id} ;;
+    relationship: many_to_one
   }
 }
 
@@ -243,15 +249,9 @@ view: adsets {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      id,
       name,
       campaigns.name,
-      campaigns.id,
       ads.count,
-      ads_insights.count,
-      ads_insights_age_and_gender.count,
-      ads_insights_country.count,
-      ads_insights_platform_and_device.count
     ]
   }
 }
@@ -337,6 +337,7 @@ view: adsets__targeting {
 
 view: adsets__targeting__flexible_spec__work_positions {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -351,6 +352,7 @@ view: adsets__targeting__flexible_spec__work_positions {
 
 view: adsets__targeting__flexible_spec__friends_of_connections {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -365,6 +367,7 @@ view: adsets__targeting__flexible_spec__friends_of_connections {
 
 view: adsets__targeting__flexible_spec__behaviors {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -379,6 +382,7 @@ view: adsets__targeting__flexible_spec__behaviors {
 
 view: adsets__targeting__flexible_spec__interests {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -393,6 +397,7 @@ view: adsets__targeting__flexible_spec__interests {
 
 view: adsets__targeting__flexible_spec__connections {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -407,6 +412,7 @@ view: adsets__targeting__flexible_spec__connections {
 
 view: adsets__targeting__flexible_spec__work_employers {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -564,6 +570,7 @@ view: adsets__targeting__geo_locations__zips {
 
 view: adsets__targeting__custom_audiences {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;

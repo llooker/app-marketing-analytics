@@ -6,7 +6,7 @@ view: fb_ad_impressions_adapter {
   {% elsif (fact.country._in_query) %}
     facebook_ads.ads_insights_country
   {% elsif (fact.age._in_query or fact.gender._in_query) %}
-    facebook_ads.fb_ad_impressions
+    facebook_ads.ads_insights_age_and_gender
   {% else %}
     facebook_ads.ads_insights
   {% endif %} ;;

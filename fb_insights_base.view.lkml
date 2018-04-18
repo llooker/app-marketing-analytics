@@ -31,13 +31,13 @@ view: insights_base {
     sql: ${TABLE}.clicks ;;
   }
 
-  dimension: actions_dim {
+  dimension: total_actions {
     hidden: yes
     type: number
     sql: ${TABLE}.total_actions ;;
   }
 
-  dimension: action_value {
+  dimension: total_action_value {
     hidden: yes
     type: number
     sql: ${TABLE}.total_action_value ;;
@@ -67,17 +67,9 @@ view: insights_base {
     value_format_name: decimal_0
   }
 
-  measure: total_actions {
+  measure: total_total_action_value {
     type: sum
-    sql: 0 ;; #${actions_dim} ;;
-    label: "Actions"
-    description: "Total actions."
-    value_format_name: decimal_0
-  }
-
-  measure: total_action_value {
-    type: sum
-    sql: ${action_value} ;;
+    sql: ${total_action_value} ;;
     label: "Action Value"
     description: "Total action value."
     value_format_name: usd_0
@@ -388,26 +380,13 @@ view: insights_base {
     sql: ${TABLE}.website_ctr ;;
   }
 
-  measure: count {
-    hidden: yes
-    type: count
-    drill_fields: [detail*]
-  }
-
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      adset_name,
-      campaign_name,
       account_name,
-      ad_name,
-      campaigns.name,
-      campaigns.id,
-      ads.name,
-      ads.source_ad_id,
-      adsets.created_time,
-      adsets.name,
-      adsets.id
+      campaign_name,
+      adsets_name,
+      ad_name
     ]
   }
 }
@@ -427,7 +406,6 @@ view: ads_insights__actions_website_base {
   }
 
   dimension: action_type {
-    hidden: yes
     type: string
     sql: ${TABLE}.action_type ;;
   }
@@ -436,6 +414,20 @@ view: ads_insights__actions_website_base {
     hidden: yes
     type: number
     sql: ${TABLE}.value ;;
+  }
+
+  measure: total_value {
+    type: sum
+    sql: ${value} ;;
+  }
+
+  measure: total_offsite_conversion_value {
+    type: sum
+    sql: ${value} ;;
+    filters: {
+      field: action_type
+      value: "offsite_conversion%"
+    }
   }
 }
 

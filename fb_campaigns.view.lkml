@@ -1,8 +1,9 @@
 include: "fb_campaigns_adapter.view.lkml"
 include: "fb_stitch_base.view.lkml"
 
-explore: campaigns {
-  hidden: yes
+explore: campaigns_nested_joins_base {
+  extension: required
+
   join: campaigns__ads__data {
     view_label: "Campaigns: Ads Data"
     sql: LEFT JOIN UNNEST(${campaigns__ads.data}) as campaigns__ads__data ;;
@@ -14,6 +15,11 @@ explore: campaigns {
     sql: LEFT JOIN UNNEST([${campaigns.ads}]) as campaigns__ads ;;
     relationship: one_to_one
   }
+}
+
+explore: campaigns {
+  extends: [campaigns_nested_joins_base]
+  hidden: yes
 }
 
 view: campaigns {
@@ -93,13 +99,8 @@ view: campaigns {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      id,
       name,
       ads.count,
-      ads_insights.count,
-      ads_insights_age_and_gender.count,
-      ads_insights_country.count,
-      ads_insights_platform_and_device.count,
       adsets.count
     ]
   }
@@ -107,6 +108,7 @@ view: campaigns {
 
 view: campaigns__ads__data {
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
