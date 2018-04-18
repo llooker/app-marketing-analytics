@@ -132,86 +132,6 @@
     col: 0
     width: 24
     height: 11
-  - title: Conversion Rate by Network
-    name: Conversion Rate by Network
-    model: looker_app_google_adwords
-    explore: ad_impressions
-    type: looker_bar
-    fields:
-    - fact.ad_network_type
-    - fact.average_conversion_rate
-    fill_fields:
-    - fact.ad_network_type
-    sorts:
-    - fact.ad_network_type
-    limit: 500
-    stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    label_color: []
-    x_axis_label: Network
-    y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: bottom
-      showLabels: false
-      showValues: false
-      tickDensity: default
-      tickDensityCustom:
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.average_conversion_rate
-        name: Ad Stats Conversion Rate
-        axisId: fact.average_conversion_rate
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 186
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 174
-    series_colors: {}
-    colors:
-    - "#8ac8ca"
-    - "#7869df"
-    - "#6e98f9"
-    - "#d06180"
-    - "#dc9d4f"
-    - "#4bb86a"
-    - "#a4a6a9"
-    - "#a6b7ff"
-    - "#afe8fd"
-    - "#ea9895"
-    - "#f1e582"
-    listen:
-      Campaign: campaign.campaign_name
-      Ad Group: ad_group.ad_group_name
-      Period: fact.period
-      Period Latest: fact.date_period_latest
-    row: 23
-    col: 0
-    width: 8
-    height: 6
   - title: Conversion Rate by Device
     name: Conversion Rate by Device
     model: looker_app_google_adwords
@@ -267,9 +187,9 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 266
+        __LINE_NUM: 186
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 254
+      __LINE_NUM: 174
     colors:
     - "#d06180"
     - "#7869df"
@@ -291,19 +211,17 @@
     row: 11
     col: 0
     width: 8
-    height: 6
-  - title: Conversion Rate by Day of Week
-    name: Conversion Rate by Day of Week
+    height: 4
+  - title: Conversion Rate by Bid Strategy
+    name: Conversion Rate by Bid Strategy
     model: looker_app_google_adwords
-    explore: period_fact
+    explore: ad_impressions
     type: looker_bar
     fields:
-    - fact.date_day_of_week
+    - keyword.bidding_strategy_type
     - fact.average_conversion_rate
-    fill_fields:
-    - fact.date_day_of_week
     sorts:
-    - fact.date_day_of_week
+    - fact.average_conversion_rate desc
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -327,35 +245,9 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    enable_conditional_formatting: true
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    leftAxisLabelVisible: false
-    leftAxisLabel: ''
-    rightAxisLabelVisible: false
-    rightAxisLabel: ''
-    barColors:
-    - red
-    - blue
-    smoothedBars: false
-    orientation: automatic
-    labelPosition: left
-    percentType: total
-    percentPosition: inline
-    valuePosition: right
-    labelColorEnabled: false
-    labelColor: "#FFF"
-    groupBars: true
-    labelSize: 10pt
-    showLegend: true
     series_types: {}
     label_color: []
-    x_axis_label: ''
+    x_axis_label: Bid Strategy
     y_axes:
     - label: ''
       maxValue:
@@ -373,34 +265,15 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 372
+        __LINE_NUM: 264
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 360
-    conditional_formatting:
-    - type: high to low
-      value:
-      background_color:
-      font_color:
-      palette:
-        name: Red to Yellow to Green
-        colors:
-        - "#F36254"
-        - "#FCF758"
-        - "#4FBC89"
-        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 385
-      bold: false
-      italic: false
-      strikethrough: false
-      fields:
-      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 380
+      __LINE_NUM: 252
     colors:
-    - "#8ac8ca"
+    - "#dc9d4f"
     - "#7869df"
     - "#6e98f9"
+    - "#8ac8ca"
     - "#d06180"
-    - "#dc9d4f"
     - "#4bb86a"
     - "#a4a6a9"
     - "#a6b7ff"
@@ -413,10 +286,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 29
-    col: 14
-    width: 10
-    height: 7
+    row: 15
+    col: 0
+    width: 8
+    height: 4
   - title: Conversion Rate by Day of Week and Hour of Day
     name: Conversion Rate by Day of Week and Hour of Day
     model: looker_app_google_adwords
@@ -502,9 +375,9 @@
         name: Ad Stats Cost
         axisId: fact.total_conversions
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 501
+        __LINE_NUM: 374
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 489
+      __LINE_NUM: 362
     conditional_formatting:
     - type: high to low
       value:
@@ -517,14 +390,14 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 514
+        __LINE_NUM: 387
       bold: false
       italic: false
       strikethrough: false
       fields:
       - fact.average_conversion_rate
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 509
+      __LINE_NUM: 382
     series_labels:
       fact.hour_of_day: Hour of Day
       fact.average_conversion_rate: "-"
@@ -534,10 +407,135 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 29
+    row: 23
     col: 0
     width: 14
     height: 14
+  - title: Conversion Rate by Day of Week
+    name: Conversion Rate by Day of Week
+    model: looker_app_google_adwords
+    explore: period_fact
+    type: looker_bar
+    fields:
+    - fact.date_day_of_week
+    - fact.average_conversion_rate
+    fill_fields:
+    - fact.date_day_of_week
+    sorts:
+    - fact.date_day_of_week
+    limit: 500
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    leftAxisLabelVisible: false
+    leftAxisLabel: ''
+    rightAxisLabelVisible: false
+    rightAxisLabel: ''
+    barColors:
+    - red
+    - blue
+    smoothedBars: false
+    orientation: automatic
+    labelPosition: left
+    percentType: total
+    percentPosition: inline
+    valuePosition: right
+    labelColorEnabled: false
+    labelColor: "#FFF"
+    groupBars: true
+    labelSize: 10pt
+    showLegend: true
+    series_types: {}
+    label_color: []
+    x_axis_label: ''
+    y_axes:
+    - label: ''
+      maxValue:
+      minValue:
+      orientation: bottom
+      showLabels: false
+      showValues: false
+      tickDensity: default
+      tickDensityCustom:
+      type: linear
+      unpinAxis: false
+      valueFormat:
+      series:
+      - id: fact.average_conversion_rate
+        name: Ad Stats Conversion Rate
+        axisId: fact.average_conversion_rate
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 491
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 479
+    conditional_formatting:
+    - type: high to low
+      value:
+      background_color:
+      font_color:
+      palette:
+        name: Red to Yellow to Green
+        colors:
+        - "#F36254"
+        - "#FCF758"
+        - "#4FBC89"
+        __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 504
+      bold: false
+      italic: false
+      strikethrough: false
+      fields:
+      __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 499
+    colors:
+    - "#8ac8ca"
+    - "#7869df"
+    - "#6e98f9"
+    - "#d06180"
+    - "#dc9d4f"
+    - "#4bb86a"
+    - "#a4a6a9"
+    - "#a6b7ff"
+    - "#afe8fd"
+    - "#ea9895"
+    - "#f1e582"
+    series_colors: {}
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Period: fact.period
+      Period Latest: fact.date_period_latest
+    row: 23
+    col: 14
+    width: 10
+    height: 7
   - title: Conversion Rate by Hour of Day
     name: Conversion Rate by Hour of Day
     model: looker_app_google_adwords
@@ -617,9 +615,9 @@
         name: Ad Stats Conversion Rate
         axisId: fact.average_conversion_rate
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 616
+        __LINE_NUM: 614
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 604
+      __LINE_NUM: 602
     conditional_formatting:
     - type: high to low
       value:
@@ -632,13 +630,13 @@
         - "#FCF758"
         - "#4FBC89"
         __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-        __LINE_NUM: 629
+        __LINE_NUM: 627
       bold: false
       italic: false
       strikethrough: false
       fields:
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
-      __LINE_NUM: 624
+      __LINE_NUM: 622
     colors:
     - "#8ac8ca"
     - "#7869df"
@@ -657,20 +655,22 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 36
+    row: 30
     col: 14
     width: 10
     height: 7
-  - title: Conversion Rate by Bid Strategy
-    name: Conversion Rate by Bid Strategy
+  - title: Conversion Rate by Network
+    name: Conversion Rate by Network
     model: looker_app_google_adwords
     explore: ad_impressions
     type: looker_bar
     fields:
-    - keyword.bidding_strategy_type
+    - fact.ad_network_type
     - fact.average_conversion_rate
+    fill_fields:
+    - fact.ad_network_type
     sorts:
-    - fact.average_conversion_rate desc
+    - fact.ad_network_type
     limit: 500
     stacking: ''
     show_value_labels: true
@@ -696,7 +696,7 @@
     totals_color: "#808080"
     series_types: {}
     label_color: []
-    x_axis_label: Bid Strategy
+    x_axis_label: Network
     y_axes:
     - label: ''
       maxValue:
@@ -717,28 +717,28 @@
         __LINE_NUM: 713
       __FILE: app_marketing_analytics/campaign_metrics_conversion_rate.dashboard.lookml
       __LINE_NUM: 701
+    series_colors: {}
     colors:
-    - "#dc9d4f"
+    - "#8ac8ca"
     - "#7869df"
     - "#6e98f9"
-    - "#8ac8ca"
     - "#d06180"
+    - "#dc9d4f"
     - "#4bb86a"
     - "#a4a6a9"
     - "#a6b7ff"
     - "#afe8fd"
     - "#ea9895"
     - "#f1e582"
-    series_colors: {}
     listen:
       Campaign: campaign.campaign_name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 17
+    row: 19
     col: 0
     width: 8
-    height: 6
+    height: 4
   - title: Ad Group Conversion Rate Change
     name: Ad Group Conversion Rate Change
     model: looker_app_google_adwords
@@ -840,7 +840,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 43
+    row: 37
     col: 0
     width: 12
     height: 10
@@ -949,7 +949,7 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 43
+    row: 37
     col: 12
     width: 12
     height: 10
@@ -968,7 +968,6 @@
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
-    query_timezone: America/Los_Angeles
     map_plot_mode: points
     heatmap_gridlines: false
     heatmap_gridlines_empty: false
@@ -990,17 +989,26 @@
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
-    map: auto
+    map: usa
     map_projection: ''
     quantize_colors: false
+    query_timezone: America/Los_Angeles
     series_types: {}
-    map_latitude: 41.23703864665824
-    map_longitude: -93.0742393434048
-    map_zoom: 5
+    map_latitude: 41.27780646738183
+    map_longitude: -93.076171875
+    map_zoom: 4
+    colors:
+    - "#F36254"
+    - "#FCF758"
+    - "#4FBC89"
+    listen:
+      Campaign: campaign.campaign_name
+      Ad Group: ad_group.ad_group_name
+      Period Latest: fact.date_period_latest
     row: 11
     col: 8
     width: 16
-    height: 18
+    height: 12
   filters:
   - name: Campaign
     title: Campaign
