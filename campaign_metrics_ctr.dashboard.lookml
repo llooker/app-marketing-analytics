@@ -960,7 +960,7 @@
     name: Click Through Rate by State
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: looker_geo_choropleth
+    type: looker_map
     fields:
     - fact.average_click_rate
     - geo_us_state.state
@@ -971,11 +971,6 @@
     sorts:
     - fact.average_click_rate desc
     limit: 500
-    map: usa
-    map_projection: ''
-    show_view_names: true
-    quantize_colors: false
-    query_timezone: America/Los_Angeles
     map_plot_mode: points
     heatmap_gridlines: false
     heatmap_gridlines_empty: false
@@ -993,9 +988,14 @@
     map_marker_units: meters
     map_marker_proportional_scale_type: linear
     map_marker_color_mode: fixed
+    show_view_names: true
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
+    map: usa
+    map_projection: ''
+    quantize_colors: false
+    query_timezone: America/Los_Angeles
     series_types: {}
     map_latitude: 39.707186656826565
     map_longitude: -95.75683593750001

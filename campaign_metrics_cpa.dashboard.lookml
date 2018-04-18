@@ -1079,7 +1079,7 @@
     name: Cost Per Conversion By State
     model: looker_app_google_adwords
     explore: ad_impressions
-    type: looker_geo_choropleth
+    type: looker_map
     fields:
     - geo_us_state.state
     - fact.average_cost_per_conversion
@@ -1090,11 +1090,6 @@
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
-    map: usa
-    map_projection: ''
-    show_view_names: true
-    quantize_colors: false
-    query_timezone: America/Los_Angeles
     map_plot_mode: points
     heatmap_gridlines: false
     heatmap_gridlines_empty: false
@@ -1112,9 +1107,14 @@
     map_marker_units: meters
     map_marker_proportional_scale_type: linear
     map_marker_color_mode: fixed
+    show_view_names: true
     show_legend: true
     quantize_map_value_colors: false
     reverse_map_value_colors: false
+    map: usa
+    map_projection: ''
+    quantize_colors: false
+    query_timezone: America/Los_Angeles
     series_types: {}
     map_latitude: 41.27780646738183
     map_longitude: -93.076171875
