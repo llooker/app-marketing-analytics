@@ -1,6 +1,8 @@
 {
   "home": {
     "name": "AdWords Overview",
+    "type": "dashboardCollection",
+    "permalink": "overview",
     "dashboardCollection": {
       "dashboards": [
         {
@@ -8,24 +10,24 @@
           "name": "Default",
           "permalink": ""
         }
-      ],
-      "filters": [
-        {
-          "defaultValue": "28 day",
-          "field": "fact.period",
-          "name": "Time Frame",
-          "type": "TimeFrame",
-          "dashboardAlias": "Period"
-        }
       ]
-    }
+    },
+    "filters": [
+      {
+        "defaultValue": "28 day",
+        "field": "fact.period",
+        "name": "Time Frame",
+        "type": "TimeFrame",
+        "dashboardAlias": "Period"
+      }
+    ]
   },
   "name": "Marketing Analytics",
   "pillars": [
     {
       "description": "These reports dive into your AdWords to find ways to increase the ROI of your marketing spend. Use Opportunities to find quick wins, refine your targets using the Performance trend reports, or discover which audiences are falling off your funnel.",
       "enabled": true,
-      "icon": "search",
+      "icon": "marketing-analytics/search",
       "name": "Search Ads",
       "pages": [
         {
@@ -80,41 +82,10 @@
                 }
               }
             ],
-            "defaultDashboard": "cost_per_conversion",
-            "filters": [
-              {
-                "defaultValue": "28 day",
-                "field": "fact.period",
-                "name": "Time Frame",
-                "type": "TimeFrame",
-                "dashboardAlias": "Period"
-              },
-              {
-                "autoSuggest": {
-                  "model": "looker_app_google_adwords",
-                  "view": "ad_impressions"
-                },
-                "facetedBy": [],
-                "field": "campaign.campaign_name",
-                "dashboardAlias": "Campaign",
-                "name": "Campaign",
-                "type": "Select"
-              },
-              {
-                "autoSuggest": {
-                  "model": "looker_app_google_adwords",
-                  "view": "ad_impressions"
-                },
-                "facetedBy": [
-                  "campaign.campaign_name"
-                ],
-                "field": "ad_group.ad_group_name",
-                "dashboardAlias": "Ad Group",
-                "name": "Ad Group",
-                "type": "Select"
-              }
-            ],
-            "singleValuesSource": {
+            "defaultDashboard": "cost_per_conversion"
+          },
+          "singleValuesSources": [
+            {
               "model": "looker_app_google_adwords",
               "view": "ad_group_date_fact",
               "params": "&sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period",
@@ -142,7 +113,39 @@
                 }
               }
             }
-          },
+          ],
+          "filters": [
+            {
+              "defaultValue": "28 day",
+              "field": "fact.period",
+              "name": "Time Frame",
+              "type": "TimeFrame",
+              "dashboardAlias": "Period"
+            },
+            {
+              "autoSuggest": {
+                "model": "looker_app_google_adwords",
+                "view": "ad_impressions"
+              },
+              "field": "campaign.campaign_name",
+              "dashboardAlias": "Campaign",
+              "name": "Campaign",
+              "type": "Select"
+            },
+            {
+              "autoSuggest": {
+                "model": "looker_app_google_adwords",
+                "view": "ad_impressions"
+              },
+              "facetedBy": [
+                "campaign.campaign_name"
+              ],
+              "field": "ad_group.ad_group_name",
+              "dashboardAlias": "Ad Group",
+              "name": "Ad Group",
+              "type": "Select"
+            }
+          ],
           "name": "Campaigns",
           "permalink": "campaigns",
           "type": "dashboardCollection"
@@ -158,8 +161,97 @@
               "defaultValue": "28 day",
               "field": "fact.period",
               "name": "Time Frame",
-              "type": "TimeFrame",
-              "disabled": true
+              "type": "TimeFrame"
+            },
+            {
+              "autoSuggest": {
+                "model": "looker_app_google_adwords",
+                "view": "ad_impressions"
+              },
+              "field": "campaign.campaign_name",
+              "name": "Campaign",
+              "type": "Select"
+            },
+            {
+              "autoSuggest": {
+                "model": "looker_app_google_adwords",
+                "view": "ad_impressions"
+              },
+              "field": "ad_group.ad_group_name",
+              "name": "Ad Group",
+              "type": "Select",
+              "facetedBy": [
+                "campaign.campaign_name"
+              ]
+            }
+          ],
+          "singleValuesSources": [
+            {
+              "fields": {
+                "ads_opportunities": {
+                  "field": "fact.cost_per_conversion_count_good"
+                },
+                "ads_underpeforming": {
+                  "field": "fact.cost_per_conversion_count_bad",
+                  "inverseChange": true
+                },
+                "ads_big_movers": {
+                  "field": "fact.cost_per_conversion_count_big_mover"
+                },
+                "ad_alerts": {
+                  "field": "fact.click_rate_or_cost_per_conversion_or_conversion_rate_count_bad",
+                  "inverseChange": true
+                },
+                "non_converting_ads": {
+                  "field": "fact.expected_conversions_count_bad",
+                  "inverseChange": true
+                }
+              },
+              "model": "looker_app_google_adwords",
+              "params": "sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
+              "view": "ad_date_fact"
+            },
+            {
+              "fields": {
+                "keywords_opportunities": {
+                  "field": "fact.cost_per_conversion_count_good"
+                },
+                "keywords_underpeforming": {
+                  "field": "fact.cost_per_conversion_count_bad",
+                  "inverseChange": true
+                },
+                "keywords_big_movers": {
+                  "field": "fact.cost_per_conversion_count_big_mover"
+                },
+                "keyword_alerts": {
+                  "field": "fact.click_rate_or_cost_per_conversion_or_conversion_rate_count_bad",
+                  "inverseChange": true
+                },
+                "non_converting_keywords": {
+                  "field": "fact.expected_conversions_count_bad",
+                  "inverseChange": true
+                }
+              },
+              "model": "looker_app_google_adwords",
+              "params": "sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[ad_group.ad_group_status]=ENABLED&f[keyword.status]=Active&f[campaign.campaign_status]=Active",
+              "view": "keyword_date_fact"
+            },
+            {
+              "fields": {
+                "ad_groups_opportunities": {
+                  "field": "fact.cost_per_conversion_count_good"
+                },
+                "ad_groups_underpeforming": {
+                  "field": "fact.cost_per_conversion_count_bad",
+                  "inverseChange": true
+                },
+                "ad_groups_big_movers": {
+                  "field": "fact.cost_per_conversion_count_big_mover"
+                }
+              },
+              "model": "looker_app_google_adwords",
+              "params": "sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[ad_group.ad_group_status]=ENABLED&f[campaign.campaign_status]=Active",
+              "view": "ad_group_date_fact"
             }
           ],
           "sections": [
@@ -175,6 +267,7 @@
                   "singleValueReference": {
                     "key": "ads_opportunities"
                   },
+                  "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "variations": [
                     {
                       "description": "",
@@ -203,6 +296,7 @@
                   "singleValueReference": {
                     "key": "keywords_opportunities"
                   },
+                  "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "variations": [
                     {
                       "description": "",
@@ -231,6 +325,7 @@
                   "singleValueReference": {
                     "key": "ad_groups_opportunities"
                   },
+                  "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "variations": [
                     {
                       "description": "",
@@ -266,6 +361,7 @@
                   "singleValueReference": {
                     "key": "ads_big_movers"
                   },
+                  "excludeFilters": [ "fact.period" ],
                   "variations": [
                     {
                       "description": "",
@@ -285,24 +381,6 @@
                       "name": "By Click Through Rate",
                       "permalink": "ad-big-movers-ads-ctr"
                     }
-                  ],
-                  "filters": [
-                    {
-                      "field": "campaign.campaign_name",
-                      "name": "Campaign",
-                      "type": "Select",
-                      "facetedBy": [
-                        ""
-                      ]
-                    },
-                    {
-                      "field": "ad_group.ad_group_name",
-                      "name": "Ad Group",
-                      "type": "Select",
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ]
-                    }
                   ]
                 },
                 {
@@ -312,6 +390,7 @@
                   "singleValueReference": {
                     "key": "keywords_big_movers"
                   },
+                  "excludeFilters": [ "fact.period" ],
                   "variations": [
                     {
                       "description": "",
@@ -331,24 +410,6 @@
                       "name": "By Click Through Rate",
                       "permalink": "keyword-big-movers-ctr"
                     }
-                  ],
-                  "filters": [
-                    {
-                      "field": "campaign.campaign_name",
-                      "name": "Campaign",
-                      "type": "Select",
-                      "facetedBy": [
-                        ""
-                      ]
-                    },
-                    {
-                      "field": "ad_group.ad_group_name",
-                      "name": "Ad Group",
-                      "type": "Select",
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ]
-                    }
                   ]
                 },
                 {
@@ -358,6 +419,7 @@
                   "singleValueReference": {
                     "key": "ad_groups_big_movers"
                   },
+                  "excludeFilters": [ "fact.period", "ad_group.ad_group_name" ],
                   "variations": [
                     {
                       "description": "",
@@ -376,16 +438,6 @@
                       "exploreParams": "looker_app_google_adwords/ad_group_date_fact?fields=ad_group.ad_group_name,campaign.campaign_name,last_fact.average_click_rate,fact.average_click_rate,fact.average_click_rate_period_percent_change_abs&f[ad_group.ad_group_status]=ENABLED&f[campaign.campaign_status]=Active&f[campaign.campaign_name]=&f[fact.period]=28+day&f[fact.date_period_latest]=Yes&f[fact.click_rate_big_mover]=Yes&sorts=last_fact.average_click_rate+desc&vis=%7B%22stacking%22%3A%22%22%2C%22show_value_labels%22%3Atrue%2C%22label_density%22%3A25%2C%22legend_position%22%3A%22center%22%2C%22x_axis_gridlines%22%3Afalse%2C%22y_axis_gridlines%22%3Atrue%2C%22show_view_names%22%3Atrue%2C%22limit_displayed_rows%22%3Afalse%2C%22y_axis_combined%22%3Atrue%2C%22show_y_axis_labels%22%3Atrue%2C%22show_y_axis_ticks%22%3Atrue%2C%22y_axis_tick_density%22%3A%22default%22%2C%22y_axis_tick_density_custom%22%3A5%2C%22show_x_axis_label%22%3Atrue%2C%22show_x_axis_ticks%22%3Atrue%2C%22x_axis_scale%22%3A%22auto%22%2C%22y_axis_scale_mode%22%3A%22linear%22%2C%22ordering%22%3A%22none%22%2C%22show_null_labels%22%3Afalse%2C%22show_totals_labels%22%3Afalse%2C%22show_silhouette%22%3Afalse%2C%22totals_color%22%3A%22%23808080%22%2C%22type%22%3A%22looker_bar%22%2C%22show_row_numbers%22%3Atrue%2C%22truncate_column_names%22%3Afalse%2C%22hide_totals%22%3Afalse%2C%22hide_row_totals%22%3Afalse%2C%22table_theme%22%3A%22editable%22%2C%22enable_conditional_formatting%22%3Afalse%2C%22conditional_formatting_include_totals%22%3Afalse%2C%22conditional_formatting_include_nulls%22%3Afalse%2C%22hidden_fields%22%3A%5B%22fact.average_click_rate_period_percent_change_abs%22%5D%2C%22series_types%22%3A%7B%7D%2C%22colors%22%3A%5B%22%23a6b7ff%22%2C%22%237869df%22%2C%22%236e98f9%22%2C%22%238ac8ca%22%2C%22%23dc9d4f%22%2C%22%23dc9d4f%22%2C%22%23ea9895%22%2C%22%23d06180%22%2C%22%23dc9d4f%22%2C%22%234bb86a%22%2C%22%23a4a6a9%22%2C%22%23a6b7ff%22%2C%22%23afe8fd%22%2C%22%23ea989%22%5D%2C%22series_colors%22%3A%7B%7D%2C%22y_axes%22%3A%5B%7B%22label%22%3A%22%22%2C%22maxValue%22%3Anull%2C%22minValue%22%3Anull%2C%22orientation%22%3A%22bottom%22%2C%22showLabels%22%3Afalse%2C%22showValues%22%3Afalse%2C%22tickDensity%22%3A%22default%22%2C%22tickDensityCustom%22%3A5%2C%22type%22%3A%22linear%22%2C%22unpinAxis%22%3Afalse%2C%22valueFormat%22%3Anull%2C%22series%22%3A%5B%7B%22id%22%3A%22last_fact.average_click_rate%22%2C%22name%22%3A%22Last+Fact+Conversion+Rate%22%2C%22axisId%22%3A%22last_fact.average_click_rate%22%7D%2C%7B%22id%22%3A%22fact.average_click_rate%22%2C%22name%22%3A%22Fact+Conversion+Rate%22%2C%22axisId%22%3A%22fact.average_click_rate%22%7D%5D%7D%5D%2C%22series_labels%22%3A%7B%22last_fact.average_click_rate%22%3A%22Last+Period+Conversion+Rate%22%2C%22fact.average_click_rate%22%3A%22This+Period+Conversion+Rate%22%7D%7D&filter_config=%7B%22ad_group.ad_group_status%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22ENABLED%22%7D%2C%7B%7D%5D%2C%22id%22%3A3%2C%22error%22%3Afalse%7D%5D%2C%22campaign.campaign_status%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22Active%22%7D%2C%7B%7D%5D%2C%22id%22%3A4%2C%22error%22%3Afalse%7D%5D%2C%22campaign.campaign_name%22%3A%5B%7B%22type%22%3A%22%3D%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22%22%7D%2C%7B%7D%5D%2C%22id%22%3A13%2C%22error%22%3Afalse%7D%5D%2C%22fact.period%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%2228+day%22%7D%2C%7B%7D%5D%2C%22id%22%3A14%2C%22error%22%3Afalse%7D%5D%2C%22fact.date_period_latest%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22Yes%22%7D%2C%7B%7D%5D%2C%22id%22%3A15%2C%22error%22%3Afalse%7D%5D%2C%22fact.click_rate_big_mover%22%3A%5B%7B%22type%22%3A%22is%22%2C%22values%22%3A%5B%7B%22constant%22%3A%22Yes%22%7D%2C%7B%7D%5D%2C%22id%22%3A16%2C%22error%22%3Afalse%7D%5D%7D&dynamic_fields=%5B%5D",
                       "name": "By Click Through Rate",
                       "permalink": "ad-group-movers-ctr"
-                    }
-                  ],
-                  "filters": [
-                    {
-                      "field": "campaign.campaign_name",
-                      "name": "Campaign",
-                      "type": "Select",
-                      "facetedBy": [
-                        ""
-                      ]
                     }
                   ]
                 }
@@ -422,28 +474,6 @@
                       "name": "by Click Through Rate",
                       "permalink": "worst-ads-by-click-rate"
                     }
-                  ],
-                  "filters": [
-                    {
-                      "field": "fact.period",
-                      "name": "Time Frame",
-                      "type": "TimeFrame",
-                      "defaultValue": "28 day"
-                    },
-                    {
-                      "field": "campaign.campaign_name",
-                      "name": "Campaign",
-                      "type": "Select",
-                      "facetedBy": []
-                    },
-                    {
-                      "field": "ad_group.ad_group_name",
-                      "name": "Ad Group",
-                      "type": "Select",
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ]
-                    }
                   ]
                 },
                 {
@@ -472,34 +502,11 @@
                       "name": "by Click Through Rate",
                       "permalink": "worst-kw-by-ctr"
                     }
-                  ],
-                  "filters": [
-                    {
-                      "field": "fact.period",
-                      "name": "Period",
-                      "type": "TimeFrame",
-                      "defaultValue": "28 day"
-                    },
-                    {
-                      "field": "campaign.campaign_name",
-                      "name": "Campaign",
-                      "type": "Select",
-                      "facetedBy": [
-                        ""
-                      ]
-                    },
-                    {
-                      "field": "ad_group.ad_group_name",
-                      "name": "Ad Group",
-                      "type": "Select",
-                      "facetedBy": [
-                        "campaign.campaign_name"
-                      ]
-                    }
                   ]
                 },
                 {
                   "description": "Quickly find the ad groups that need to be paused or have their bid lowered.",
+                  "excludeFilters": [ "ad_group.ad_group_name" ],
                   "name": "Underperforming Ad Groups",
                   "permalink": "underperforming-ad-groups",
                   "singleValueReference": {
@@ -524,22 +531,6 @@
                       "name": "by Click Through Rate",
                       "permalink": "worst-ad-groups-by-click-rate"
                     }
-                  ],
-                  "filters": [
-                    {
-                      "field": "fact.period",
-                      "name": "Period",
-                      "type": "TimeFrame",
-                      "defaultValue": "28 day"
-                    },
-                    {
-                      "field": "campaign.campaign_name",
-                      "name": "Campaign",
-                      "type": "Select",
-                      "facetedBy": [
-                        ""
-                      ]
-                    }
                   ]
                 }
               ]
@@ -551,6 +542,7 @@
               "reports": [
                 {
                   "description": "Ads that should be converting but are not. Consider pausing these ads to increase performance.",
+                  "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "name": "Non Converting Ads",
                   "permalink": "non-converting-ad",
                   "variations": [
@@ -564,6 +556,7 @@
                 },
                 {
                   "description": "Keywords that should be converting but are not. Consider pausing these keywords to increase performance.",
+                  "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "name": "Non Converting Keywords",
                   "permalink": "non-converting-keyword",
                   "variations": [
@@ -577,6 +570,7 @@
                 },
                 {
                   "description": "Pause or lower the bid of these ads. They are performing much lower than your other ads.",
+                  "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "name": "Ad Alerts",
                   "permalink": "alerts-ad",
                   "variations": [
@@ -590,6 +584,7 @@
                 },
                 {
                   "description": "Pause or lower the bid of these keywords. They are performing much lower than your other keywords.",
+                  "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "name": "Keyword Alerts",
                   "permalink": "alerts-keyword",
                   "variations": [
@@ -617,18 +612,18 @@
                 "name": "Default",
                 "permalink": ""
               }
-            ],
-            "filters": [
-              {
-                "disabled": true,
-                "defaultValue": "28 day",
-                "field": "fact.period",
-                "name": "Time Frame",
-                "type": "TimeFrame",
-                "dashboardAlias": "Period"
-              }
             ]
-          }
+          },
+          "filters": [
+            {
+              "disabled": true,
+              "defaultValue": "28 day",
+              "field": "fact.period",
+              "name": "Time Frame",
+              "type": "TimeFrame",
+              "dashboardAlias": "Period"
+            }
+          ]
         }
       ],
       "permalink": "search"
@@ -636,7 +631,7 @@
     {
       "description": "",
       "enabled": false,
-      "icon": "social",
+      "icon": "marketing-analytics/social",
       "name": "Social",
       "pages": [
         {
@@ -659,63 +654,10 @@
     {
       "description": "",
       "enabled": false,
-      "icon": "display",
+      "icon": "marketing-analytics/display",
       "name": "Display",
       "pages": [],
       "permalink": "display"
-    }
-  ],
-  "singleValuesSources": [
-    {
-      "fields": {
-        "ads_opportunities": {
-          "field": "fact.cost_per_conversion_count_good"
-        },
-        "ads_underpeforming": {
-          "field": "fact.cost_per_conversion_count_bad",
-          "inverseChange": true
-        },
-        "ads_big_movers": {
-          "field": "fact.cost_per_conversion_count_big_mover"
-        }
-      },
-      "model": "looker_app_google_adwords",
-      "params": "sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[fact.period]=28 day&f[ad_group.ad_group_status]=ENABLED&f[ad.status]=Enabled&f[campaign.campaign_status]=Active",
-      "view": "ad_date_fact"
-    },
-    {
-      "fields": {
-        "keywords_opportunities": {
-          "field": "fact.cost_per_conversion_count_good"
-        },
-        "keywords_underpeforming": {
-          "field": "fact.cost_per_conversion_count_bad",
-          "inverseChange": true
-        },
-        "keywords_big_movers": {
-          "field": "fact.cost_per_conversion_count_big_mover"
-        }
-      },
-      "model": "looker_app_google_adwords",
-      "params": "sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[fact.period]=28 day&f[ad_group.ad_group_status]=ENABLED&f[keyword.status]=Active&f[campaign.campaign_status]=Active",
-      "view": "keyword_date_fact"
-    },
-    {
-      "fields": {
-        "ad_groups_opportunities": {
-          "field": "fact.cost_per_conversion_count_good"
-        },
-        "ad_groups_underpeforming": {
-          "field": "fact.cost_per_conversion_count_bad",
-          "inverseChange": true
-        },
-        "ad_groups_big_movers": {
-          "field": "fact.cost_per_conversion_count_big_mover"
-        }
-      },
-      "model": "looker_app_google_adwords",
-      "params": "sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[fact.period]=28 day&f[ad_group.ad_group_status]=ENABLED&f[campaign.campaign_status]=Active",
-      "view": "ad_group_date_fact"
     }
   ]
 }
