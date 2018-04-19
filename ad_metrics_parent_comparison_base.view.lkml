@@ -336,7 +336,7 @@ view: ad_metrics_parent_comparison_base {
 
   dimension: cost_per_conversion_good {
     type: yesno
-    sql: (${cost_per_conversion_delta_ratio} < 1 AND ${conversions_delta} != 0) AND ${conversion_rate_significant};;
+    sql: (${cost_per_conversion_delta_ratio} < 1 AND ${conversions_delta} != 0) AND ${conversion_rate_significant} = true;;
     group_label: "Parent Comparisons"
   }
 
