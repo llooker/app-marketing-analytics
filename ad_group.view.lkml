@@ -22,7 +22,6 @@ view: ad_group_key_base {
   extends: [campaign_key_base]
   extension: required
 
-
   dimension: ad_group_key_base {
     hidden: yes
     sql: CONCAT(${campaign_key_base}, "-", CAST(${ad_group_id} as STRING)) ;;
