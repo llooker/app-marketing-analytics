@@ -76,11 +76,11 @@ view: facebook_ad_impressions {
       column: ad_group_name { field: fact.adset_name }
       column: ad_group_id { field: fact.adset_id }
       column: device { field: fact.device_type }
-      column: cost { field: fact.total_spend }
+      column: cost { field: fact.total_cost }
       column: impressions { field: fact.total_impressions }
       column: clicks { field: fact.total_clicks }
-      column: conversions { field: ads_insights__actions.total_offsite_conversion_value }
-      column: conversionvalue { field: fact.total_total_action_value }
+      column: conversions { field: fact.total_conversions }
+      column: conversionvalue { field: fact.total_conversionvalue }
     }
   }
 }

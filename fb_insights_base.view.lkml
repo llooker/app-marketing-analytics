@@ -43,66 +43,10 @@ view: insights_base {
     sql: ${TABLE}.total_action_value ;;
   }
 
-  measure: total_spend {
-    type: sum
-    sql: ${spend} ;;
-    label: "Spend"
-    description: "Total spend."
-    value_format_name: usd_0
-  }
-
-  measure: total_impressions {
-    type: sum
-    sql: ${impressions} ;;
-    label: "Impressions"
-    description: "Total ad impressions."
-    value_format_name: decimal_0
-  }
-
-  measure: total_clicks {
-    type: sum
-    sql: ${clicks} ;;
-    label: "Clicks"
-    description: "Total ad clicks."
-    value_format_name: decimal_0
-  }
-
-  measure: total_total_action_value {
-    type: sum
-    sql: ${total_action_value} ;;
-    label: "Action Value"
-    description: "Total action value."
-    value_format_name: usd_0
-  }
-
-  measure: average_cost_per_impression {
-    label: "CPM"
-    description: "Average cost per 1000 ad impressions viewed."
-    type: number
-    sql: ${total_spend}*1000.0 / NULLIF(${total_impressions},0) ;;
-    value_format_name: usd
-  }
-
-  measure: average_cost_per_click {
-    label: "CPC"
-    description: "Average cost per ad click."
-    type: number
-    sql: ${total_spend}*1.0 / NULLIF(${total_clicks},0) ;;
-    value_format_name: usd
-  }
-
-  measure: average_click_rate {
-    label: "CTR"
-    description: "Percent of people that click on an ad."
-    type: number
-    sql: ${total_clicks}*1.0/nullif(${total_impressions},0) ;;
-    value_format_name: percent_2
-  }
-
   dimension: account_id {
+#     hidden:  yes
     type: string
     sql: ${TABLE}.account_id ;;
-    hidden:  yes
   }
 
   dimension: account_name {
@@ -116,9 +60,9 @@ view: insights_base {
   }
 
   dimension: ad_id {
+#     hidden:  yes
     type: string
     sql: ${TABLE}.ad_id ;;
-    hidden:  yes
   }
 
   dimension: ad_name {
@@ -127,9 +71,9 @@ view: insights_base {
   }
 
   dimension: adset_id {
+#     hidden:  yes
     type: string
     sql: ${TABLE}.adset_id ;;
-    hidden:  yes
   }
 
   dimension: adset_name {
@@ -138,9 +82,9 @@ view: insights_base {
   }
 
   dimension: campaign_id {
+#     hidden:  yes
     type: string
     sql: ${TABLE}.campaign_id ;;
-    hidden:  yes
   }
 
   dimension: campaign_name {
@@ -214,7 +158,14 @@ view: insights_base {
     sql: ${TABLE}.ctr ;;
   }
 
+  dimension: _date {
+    hidden: yes
+    type: date_raw
+    sql: ${TABLE}.date_start ;;
+  }
+
   dimension_group: date_start {
+    hidden: yes
     type: time
     label: "Start"
     timeframes: [
@@ -394,13 +345,14 @@ view: insights_base {
 view: ads_insights__actions_website_base {
   extension: required
   dimension: action_destination {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.action_destination ;;
   }
 
   dimension: action_target_id {
-    hidden: yes
+    # hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}.action_target_id ;;
   }
@@ -411,23 +363,15 @@ view: ads_insights__actions_website_base {
   }
 
   dimension: value {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.value ;;
   }
 
-  measure: total_value {
-    type: sum
-    sql: ${value} ;;
-  }
-
-  measure: total_offsite_conversion_value {
-    type: sum
-    sql: ${value} ;;
-    filters: {
-      field: action_type
-      value: "offsite_conversion%"
-    }
+  dimension: offsite_conversion_value {
+    hidden: yes
+    type: number
+    sql: CASE WHEN (${action_type} = 'offsite_conversion') THEN ${value} ELSE NULL END ;;
   }
 }
 

@@ -1,38 +1,12 @@
+include: "date_base.view"
+include: "fb_adcreative.view"
+include: "fb_ad_transformations_base.view"
 include: "fb_ad_impressions_adapter.view"
 include: "fb_insights_base.view"
-include: "fb_adcreative.view"
+include: "period_base.view"
 
-explore: fb_ad_impressions {
-  extends: [campaigns_nested_joins_base, adsets_nested_joins_base, ads_nested_joins_base, adcreative_nested_joins_base]
-  hidden: yes
-  from: fb_ad_impressions
-  view_name: fact
-  label: "Ad Impressions"
-  view_label: "Ad Impressions"
-
-  join: campaigns {
-    type: left_outer
-    sql_on: ${fact.campaign_id} = ${campaigns.id} ;;
-    relationship: many_to_one
-  }
-
-  join: ads {
-    type: left_outer
-    sql_on: ${fact.ad_id} = ${ads.id} ;;
-    relationship: many_to_one
-  }
-
-  join: adcreative {
-    type: left_outer
-    sql_on: ${ads.creative_id} = ${adcreative.id} ;;
-    relationship: one_to_one
-  }
-
-  join: adsets {
-    type: left_outer
-    sql_on: ${fact.adset_id} = ${adsets.id} ;;
-    relationship: many_to_one
-  }
+explore: fb_ad_impressions_nested_joins_base {
+  extension: required
 
   join: ads_insights__video_30_sec_watched_actions {
     view_label: "Ads Insights: Video 30 Sec Watched Actions"
@@ -107,13 +81,46 @@ explore: fb_ad_impressions {
   }
 }
 
+explore: fb_ad_impressions {
+  extends: [fb_ad_impressions_nested_joins_base, campaigns_nested_joins_base, adsets_nested_joins_base, ads_nested_joins_base, adcreative_nested_joins_base]
+  hidden: yes
+  from: fb_ad_impressions
+  view_name: fact
+  label: "Ad Impressions"
+  view_label: "Ad Impressions"
+
+  join: campaigns {
+    type: left_outer
+    sql_on: ${fact.campaign_id} = ${campaigns.id} ;;
+    relationship: many_to_one
+  }
+
+  join: ads {
+    type: left_outer
+    sql_on: ${fact.ad_id} = ${ads.id} ;;
+    relationship: many_to_one
+  }
+
+  join: adcreative {
+    type: left_outer
+    sql_on: ${ads.creative_id} = ${adcreative.id} ;;
+    relationship: one_to_one
+  }
+
+  join: adsets {
+    type: left_outer
+    sql_on: ${fact.adset_id} = ${adsets.id} ;;
+    relationship: many_to_one
+  }
+}
+
 view: fb_ad_impressions {
-  extends: ["stitch_base", "insights_base", "fb_ad_impressions_adapter"]
+  extends: ["stitch_base", "insights_base", "date_base", "period_base", "fb_ad_transformations_base", "fb_ad_impressions_adapter"]
 
   dimension: primary_key {
     hidden: yes
     primary_key: yes
-    sql: CONCAT(CAST(${date_start_date} AS STRING)
+    sql: CONCAT(CAST(${date_date} AS STRING)
       ,"|", CAST(${account_id} AS STRING)
       ,"|", CAST(${campaign_id} AS STRING)
       ,"|", CAST(${adset_id} AS STRING)
