@@ -76,9 +76,9 @@ view: adcreative {
   }
 
   dimension: account_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.account_id ;;
-    hidden: yes
   }
 
   dimension: body {
@@ -92,21 +92,21 @@ view: adcreative {
   }
 
   dimension: effective_instagram_story_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.effective_instagram_story_id ;;
-    hidden: yes
   }
 
   dimension: effective_object_story_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.effective_object_story_id ;;
-    hidden: yes
   }
 
   dimension: image_hash {
+    hidden: yes
     type: string
     sql: ${TABLE}.image_hash ;;
-    hidden: yes
   }
 
   dimension: image_url {
@@ -132,9 +132,9 @@ view: adcreative {
   }
 
   dimension: object_story_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.object_story_id ;;
-    hidden: yes
   }
 
   dimension: object_story_spec {

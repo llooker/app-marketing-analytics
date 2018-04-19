@@ -26,6 +26,7 @@ view: campaigns {
   extends: ["fb_campaigns_adapter", "stitch_base"]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
