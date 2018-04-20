@@ -967,8 +967,8 @@
     col: 16
     width: 8
     height: 9
-  - title: Keyword CPA Change
-    name: Keyword CPA Change
+  - title: Keyword Cost Per Conversion Change
+    name: Keyword Cost Per Conversion Change
     model: looker_app_google_adwords
     explore: period_fact
     type: looker_bar
