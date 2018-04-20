@@ -317,9 +317,14 @@ view: ad_metrics_parent_comparison_base {
     group_label: "Parent Comparisons"
   }
 
+  dimension: cost_per_conversion_better {
+    type: yesno
+    sql:  ${fact.cost_per_conversion} > ${parent_fact.cost_per_conversion} ;;
+    group_label: "Parent Comparisons"
+  }
   dimension: cost_per_conversion_good {
     type: yesno
-    sql: ${cost_per_conversion_delta_ratio} < .8 AND ${average_position} > 1 ;;
+    sql: ${cost_per_conversion_better} AND ${conversion_rate_significant} ;;
     group_label: "Parent Comparisons"
   }
 
@@ -367,7 +372,7 @@ view: ad_metrics_parent_comparison_base {
 
   dimension: cost_per_conversion_bad {
     type: yesno
-    sql: ${cost_per_conversion_delta_ratio} > 1.2 ;;
+    sql: (NOT ${cost_per_conversion_better} OR ${conversions} = 0) AND ${conversion_rate_significant} ;;
     group_label: "Parent Comparisons"
   }
 
