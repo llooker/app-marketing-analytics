@@ -33,9 +33,9 @@ explore: keyword_date_fact {
   join: keyword {
     view_label: "Keyword"
     sql_on: ${fact.external_customer_id} = ${keyword.external_customer_id} AND
-      ${fact.campaign_id} = ${last_fact.campaign_id} AND
-      ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
-      ${fact.criterion_id} = ${last_fact.criterion_id} AND
+      ${fact.campaign_id} = ${keyword.campaign_id} AND
+      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
+      ${fact.criterion_id} = ${keyword.criterion_id} AND
       ${fact.date_date} = ${keyword.date_date} ;;
     relationship: many_to_one
   }
