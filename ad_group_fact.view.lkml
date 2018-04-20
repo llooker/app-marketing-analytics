@@ -46,7 +46,7 @@ explore: ad_group_date_fact {
 }
 
 view: ad_group_date_fact {
-  extends: [ad_group_key_base, campaign_date_fact]
+  extends: [campaign_date_fact, ad_group_key_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup

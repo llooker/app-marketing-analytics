@@ -50,7 +50,7 @@ explore: ad_date_fact {
 }
 
 view: ad_date_fact {
-  extends: [ad_key_base, ad_group_date_fact]
+  extends: [ad_group_date_fact, ad_key_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
@@ -63,5 +63,11 @@ view: ad_date_fact {
   }
   set: detail {
     fields: [external_customer_id, campaign_id, ad_group_id, creative_id]
+  }
+  dimension: ad_key_base {
+    hidden: no
+  }
+  dimension: key_base {
+    hidden: no
   }
 }
