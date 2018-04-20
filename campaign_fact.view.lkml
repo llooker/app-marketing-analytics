@@ -42,7 +42,7 @@ explore: campaign_date_fact {
 }
 
 view: campaign_date_fact {
-  extends: [account_date_fact, campaign_key_base, ad_metrics_parent_comparison_base]
+  extends: [ad_metrics_parent_comparison_base, account_date_fact, campaign_key_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
