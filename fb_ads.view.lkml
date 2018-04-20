@@ -156,7 +156,7 @@ explore: ads {
 }
 
 view: ads {
-  extends: ["fb_adsets_adapter", "stitch_base"]
+  extends: ["stitch_base", "fb_ads_adapter"]
 
   dimension: id {
     hidden: yes
