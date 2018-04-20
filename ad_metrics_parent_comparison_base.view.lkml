@@ -371,6 +371,7 @@ view: ad_metrics_parent_comparison_base {
     sql:  ${fact.cost_per_conversion} > ${parent_fact.cost_per_conversion} ;;
     group_label: "Parent Comparisons"
   }
+
   dimension: cost_per_conversion_good {
     hidden: yes
     type: yesno
