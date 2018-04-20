@@ -2,10 +2,10 @@
   title: AdWords Overview
   layout: newspaper
   embed_style:
-    background_color: "#F6F6F7"
-    show_title: true
-    title_color: "#3a4245"
+    show_title: false
     show_filters_bar: false
+    background_color: "#ffffff"
+    title_color: "#3a4245"
     tile_text_color: "#3a4245"
     text_tile_text_color: ''
   elements:
