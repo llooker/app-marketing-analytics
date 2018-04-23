@@ -1,10 +1,13 @@
+include: "fb_config.view"
+
 view: fb_ad_impressions_adapter {
   extension: required
+  extends: [fb_config]
   sql_table_name:
   {% if (fact.impression_device._in_query or fact.device_type._in_query or fact.platform_position._in_query or fact.publisher_platform._in_query) %}
  (
   SELECT facebook_ads_ads_insights_platform_and_device.*
-  FROM facebook_ads.ads_insights_platform_and_device AS facebook_ads_ads_insights_platform_and_device
+  FROM {{ fact.facebook_ads_schema._sql }}.ads_insights_platform_and_device AS facebook_ads_ads_insights_platform_and_device
   INNER JOIN (
     SELECT
         MAX(_sdc_sequence) AS seq
@@ -15,7 +18,7 @@ view: fb_ad_impressions_adapter {
         , publisher_platform
         , platform_position
         , impression_device
-    FROM facebook_ads.ads_insights_platform_and_device
+    FROM {{ fact.facebook_ads_schema._sql }}.ads_insights_platform_and_device
     GROUP BY ad_id, adset_id, campaign_id, date_start, publisher_platform, platform_position, impression_device
   ) AS max_ads_insights_platform_and_device
   ON facebook_ads_ads_insights_platform_and_device.ad_id = max_ads_insights_platform_and_device.ad_id
@@ -30,7 +33,7 @@ view: fb_ad_impressions_adapter {
   {% elsif (fact.country._in_query) %}
 (
   SELECT facebook_ads_ads_insights_country.*
-  FROM facebook_ads.ads_insights_country AS facebook_ads_ads_insights_country
+  FROM {{ fact.facebook_ads_schema._sql }}.ads_insights_country AS facebook_ads_ads_insights_country
   INNER JOIN (
     SELECT
         MAX(_sdc_sequence) AS seq
@@ -39,7 +42,7 @@ view: fb_ad_impressions_adapter {
         , campaign_id
         , date_start
         , country
-    FROM facebook_ads.ads_insights_country
+    FROM {{ fact.facebook_ads_schema._sql }}.ads_insights_country
     GROUP BY ad_id, adset_id, campaign_id, date_start, country
   ) AS max_ads_insights_country
   ON facebook_ads_ads_insights_country.ad_id = max_ads_insights_country.ad_id
@@ -52,7 +55,7 @@ view: fb_ad_impressions_adapter {
   {% elsif (fact.age._in_query or fact.gender._in_query) %}
 (
   SELECT facebook_ads_ads_insights_age_and_gender.*
-  FROM facebook_ads.ads_insights_age_and_gender AS facebook_ads_ads_insights_age_and_gender
+  FROM {{ fact.facebook_ads_schema._sql }}.ads_insights_age_and_gender AS facebook_ads_ads_insights_age_and_gender
   INNER JOIN (
     SELECT
         MAX(_sdc_sequence) AS seq
@@ -62,7 +65,7 @@ view: fb_ad_impressions_adapter {
         , date_start
         , age
         , gender
-    FROM facebook_ads.ads_insights_age_and_gender
+    FROM {{ fact.facebook_ads_schema._sql }}.ads_insights_age_and_gender
     GROUP BY ad_id, adset_id, campaign_id, date_start, age, gender
   ) AS max_ads_insights_age_and_gender
   ON facebook_ads_ads_insights_age_and_gender.ad_id = max_ads_insights_age_and_gender.ad_id
@@ -76,7 +79,7 @@ view: fb_ad_impressions_adapter {
   {% else %}
 (
   SELECT facebook_ads_ads_insights.*
-  FROM facebook_ads.ads_insights AS facebook_ads_ads_insights
+  FROM {{ fact.facebook_ads_schema._sql }}.ads_insights AS facebook_ads_ads_insights
   INNER JOIN (
     SELECT
         MAX(_sdc_sequence) AS seq
@@ -84,7 +87,7 @@ view: fb_ad_impressions_adapter {
         , adset_id
         , campaign_id
         , date_start
-    FROM facebook_ads.ads_insights
+    FROM {{ fact.facebook_ads_schema._sql }}.ads_insights
     GROUP BY ad_id, adset_id, campaign_id, date_start
   ) AS max_ads_insights
   ON facebook_ads_ads_insights.ad_id = max_ads_insights.ad_id
