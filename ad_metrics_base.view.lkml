@@ -1,32 +1,34 @@
-include: "/app_marketing_analytics_adapter/ad_metrics_base.view"
-
 view: ad_metrics_base {
   extension: required
-  extends: [ad_metrics_base_adapter]
 
   dimension: clicks {
     hidden: yes
     type: number
+    sql: ${TABLE}.clicks ;;
   }
 
   dimension: conversions {
     hidden: yes
     type: number
+    sql: ${TABLE}.conversions ;;
   }
 
   dimension: conversionvalue {
     hidden: yes
     type: number
+    sql: ${TABLE}.conversionvalue ;;
   }
 
   dimension: cost {
     hidden: yes
     type: number
+    sql: ${TABLE}.cost ;;
   }
 
   dimension: impressions {
     hidden: yes
     type: number
+    sql: ${TABLE}.impressions ;;
   }
 
   dimension: click_rate {
