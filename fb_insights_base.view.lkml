@@ -161,7 +161,7 @@ view: insights_base {
   dimension: _date {
     hidden: yes
     type: date_raw
-    sql: ${TABLE}.date_start ;;
+    sql: CAST(${TABLE}.date_start AS DATE) ;;
   }
 
   dimension_group: date_start {
