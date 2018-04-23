@@ -49,42 +49,42 @@ explore: ad_impressions {
   join: keyword {
     view_label: "Keyword"
     sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
-      ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
+      ${fact.campaign_id} = ${keyword.campaign_id} AND
+      ${fact.external_customer_id} = ${keyword.external_customer_id} AND
       ${fact.date_date} = ${keyword.date_date} ;;
     relationship: many_to_one
   }
   join: audience {
     view_label: "Audience"
     sql_on: ${fact.audience_criterion_id} = ${audience.criterion_id} AND
-      ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${fact.ad_group_id} = ${audience.ad_group_id} AND
+      ${fact.campaign_id} = ${audience.campaign_id} AND
+      ${fact.external_customer_id} = ${audience.external_customer_id} AND
       ${fact.date_date} = ${audience.date_date} ;;
     relationship: many_to_one
   }
   join: ad {
     view_label: "Ads"
-    sql_on: ${ad.creative_id} = ${fact.creative_id} AND
-      ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${customer.external_customer_id} AND
+    sql_on: ${fact.creative_id} = ${ad.creative_id} AND
+      ${fact.ad_group_id} = ${ad.ad_group_id} AND
+      ${fact.campaign_id} = ${ad.campaign_id} AND
+      ${fact.external_customer_id} = ${ad.external_customer_id} AND
       ${fact.date_date} = ${ad.date_date} ;;
     relationship:  many_to_one
   }
   join: ad_group {
     view_label: "Ad Groups"
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${fact.campaign_id} = ${ad_group.campaign_id} AND
+      ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
       ${fact.date_date} = ${ad_group.date_date} ;;
     relationship: many_to_one
   }
   join: campaign {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${customer.external_customer_id} AND
+      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
       ${fact.date_date} = ${campaign.date_date};;
     relationship: many_to_one
   }
