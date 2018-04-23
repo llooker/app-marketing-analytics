@@ -169,7 +169,6 @@ view: ad_metrics_base {
   }
 
   measure: average_value_per_cost {
-    hidden: yes
     label: "ROAS"
     description: "Average Return on Ad Spend."
     type: number
