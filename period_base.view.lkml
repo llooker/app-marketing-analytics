@@ -146,7 +146,7 @@ view: period_base {
     allow_fill: no
   }
   dimension: date_day_of_period {
-    hidden: no
+    hidden: yes
     type: number
     label: "{% if fact.period._parameter_value contains 'day' %}Day of Period
     {% elsif fact.period._parameter_value contains 'week' %}Day of Week
