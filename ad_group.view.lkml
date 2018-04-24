@@ -55,7 +55,7 @@ view: ad_group {
   dimension: ad_group_name {
     type: string
     link: {
-      label: "View on Adwords"
+      label: "View on AdWords"
       icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
       url: "https://adwords.google.com/aw/ads?campaignId={{ campaign_id._value }}&adGroupId={{ ad_group_id._value }}"
     }

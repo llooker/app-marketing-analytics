@@ -92,7 +92,7 @@ view: campaign {
       icon_url: "http://www.looker.com/favicon.ico"
     }
     link: {
-      label: "View on Adwords"
+      label: "View on AdWords"
       icon_url: "https://www.google.com/s2/favicons?domain=www.adwords.google.com"
       url: "https://adwords.google.com/aw/adgroups?campaignId={{ campaign_id._value | encode_uri }}"
     }
