@@ -1,4 +1,5 @@
 connection: "looker_app"
+label: "Facebook Ads"
 
 # include all the views
 include: "fb_*.view"
