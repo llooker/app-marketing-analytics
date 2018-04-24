@@ -55,9 +55,7 @@ view: fb_account_date_fact {
   dimension: account_id {
     hidden: yes
   }
-  dimension: account_name {
-    hidden: yes
-  }
+  dimension: account_name {}
   dimension: _date {
     hidden: yes
     type: date_raw
