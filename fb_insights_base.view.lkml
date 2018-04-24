@@ -44,7 +44,7 @@ view: insights_base {
   }
 
   dimension: account_id {
-#     hidden:  yes
+    hidden:  yes
     type: string
     sql: ${TABLE}.account_id ;;
   }
@@ -60,7 +60,7 @@ view: insights_base {
   }
 
   dimension: ad_id {
-#     hidden:  yes
+    hidden:  yes
     type: string
     sql: ${TABLE}.ad_id ;;
   }
@@ -71,7 +71,7 @@ view: insights_base {
   }
 
   dimension: adset_id {
-#     hidden:  yes
+    hidden:  yes
     type: string
     sql: ${TABLE}.adset_id ;;
   }
@@ -82,7 +82,7 @@ view: insights_base {
   }
 
   dimension: campaign_id {
-#     hidden:  yes
+    hidden:  yes
     type: string
     sql: ${TABLE}.campaign_id ;;
   }

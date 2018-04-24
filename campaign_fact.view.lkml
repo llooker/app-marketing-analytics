@@ -1,5 +1,4 @@
 include: "ad_metrics_parent_comparison_base.view"
-include: "ad_metrics_period_comparison_base.view"
 include: "account_fact.view"
 include: "campaign.view"
 include: "recent_changes.view"
