@@ -7,11 +7,11 @@ explore: combined_ad_group_date_fact {
   from: combined_ad_group_date_fact
   view_name: fact
   label: "Combined Ad Group Date Fact"
-  view_label: "Combined Ad Group Date Fact"
+  view_label: "This Period"
 
   join: last_fact {
     from: combined_ad_group_date_fact
-    view_label: "Last Period Ad Group Fact"
+    view_label: "Prior Period"
     sql_on: ${fact.account_id} = ${last_fact.account_id} AND
       ${fact.campaign_id} = ${last_fact.campaign_id} AND
       ${fact.ad_group_id} = ${last_fact.ad_group_id} AND
