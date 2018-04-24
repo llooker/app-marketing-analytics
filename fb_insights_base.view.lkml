@@ -345,25 +345,26 @@ view: insights_base {
 view: ads_insights__actions_website_base {
   extension: required
   dimension: action_destination {
-    # hidden: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.action_destination ;;
   }
 
   dimension: action_target_id {
-    # hidden: yes
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.action_target_id ;;
   }
 
   dimension: action_type {
+    hidden: yes
     type: string
     sql: ${TABLE}.action_type ;;
   }
 
   dimension: value {
-    # hidden: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.value ;;
   }

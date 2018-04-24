@@ -110,6 +110,7 @@ view: adcreative {
   }
 
   dimension: image_url {
+    hidden: yes
     type: string
     sql: ${TABLE}.image_url ;;
     html: "<img src='{{value}}' />" ;;
@@ -122,6 +123,7 @@ view: adcreative {
   }
 
   dimension: instagram_permalink_url {
+    hidden: yes
     type: string
     sql: ${TABLE}.instagram_permalink_url ;;
   }

@@ -171,6 +171,11 @@ view: adsets {
     sql: ${TABLE}.daily_budget ;;
   }
 
+  measure: total_daily_budget {
+    type: sum
+    sql: ${daily_budget} ;;
+  }
+
   dimension: effective_status {
     type: string
     sql: ${TABLE}.effective_status ;;
