@@ -89,7 +89,6 @@ view: criteria_base {
   }
 
   dimension: criteria {
-    hidden:  yes
     type: string
     sql: ${TABLE}.Criteria ;;
   }

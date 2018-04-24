@@ -12,8 +12,8 @@ explore: parental_status {
 view: parental_status {
   extends: [criteria_base, parental_status_adapter]
 
-  dimension: parental_status {
-    sql: ${criteria} ;;
+  dimension: criteria {
+    label: "Parental Status"
   }
 
 }

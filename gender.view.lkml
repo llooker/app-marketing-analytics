@@ -12,8 +12,8 @@ explore: gender {
 view: gender {
   extends: [criteria_base, gender_adapter]
 
-  dimension: gender {
-    sql: ${criteria} ;;
+  dimension: criteria {
+    label: "Gender"
   }
 
 }

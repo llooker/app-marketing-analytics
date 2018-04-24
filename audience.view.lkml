@@ -12,13 +12,12 @@ explore: audience {
 view: audience {
   extends: [criteria_base, audience_adapter]
 
-  dimension: audience {
-    sql: ${criteria} ;;
+  dimension: criteria {
+    label: "Audience"
   }
 
   dimension: user_list_name {
     type: string
     sql: ${TABLE}.UserListName ;;
-#     hidden:  yes
   }
 }

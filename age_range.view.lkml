@@ -12,8 +12,8 @@ explore: age_range {
 view: age_range {
   extends: [criteria_base, age_range_adapter]
 
-  dimension: age_range {
-    sql: ${criteria} ;;
+  dimension: criteria {
+    label: "Age Range"
   }
 
 }
