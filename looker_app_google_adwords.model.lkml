@@ -1,4 +1,5 @@
 connection: "looker_app"
+label: "Google AdWords"
 
 # include all the views
 include: "account_fact.view"
