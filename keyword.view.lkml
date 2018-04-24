@@ -31,6 +31,7 @@ view: keyword_key_base {
   extension: required
 
   dimension: ad_key_base {
+    hidden: yes
     sql: CONCAT(${ad_group_key_base}, "-", CAST(${criterion_id} as STRING)) ;;
   }
   dimension: key_base {
