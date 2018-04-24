@@ -1,29 +1,21 @@
 view: stitch_base {
   extension: required
 
-  dimension_group: _sdc_batched {
+  dimension: _sdc_batched {
     hidden: yes
-    type: time
-    timeframes: [
-      raw,
-    ]
+    type: date_time
     sql: ${TABLE}._sdc_batched_at ;;
   }
 
-  dimension_group: _sdc_extracted {
+  dimension: _sdc_extracted {
     hidden: yes
-    type: time
-    timeframes: [
-      raw,
-    ]
+    type: date_time
     sql: ${TABLE}._sdc_extracted_at ;;
   }
 
-  dimension_group: _sdc_received {
-    type: time
-    timeframes: [
-      raw,
-    ]
+  dimension: _sdc_received {
+    hidden: yes
+    type: date_time
     sql: ${TABLE}._sdc_received_at ;;
   }
 

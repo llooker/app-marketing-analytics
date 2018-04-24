@@ -126,6 +126,7 @@
     single_value_title: ''
     listen:
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 0
     col: 6
     width: 6
@@ -247,6 +248,7 @@
     single_value_title: Per Conversion
     listen:
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 0
     col: 12
     width: 6
@@ -368,6 +370,7 @@
     single_value_title: ''
     listen:
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 0
     col: 18
     width: 6
@@ -610,6 +613,7 @@
     single_value_title: ''
     listen:
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 15
     col: 0
     width: 6
@@ -706,6 +710,7 @@
     series_colors: {}
     listen:
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 12
     col: 16
     width: 8
@@ -767,6 +772,7 @@
       fact.total_cost: Spend
     listen:
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 18
     col: 0
     width: 24
@@ -777,7 +783,7 @@
     explore: combined_ad_group_date_fact
     type: looker_area
     fields:
-    - fact.date_week
+    - fact.date_period_dynamic_grain
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
     - fact.total_conversions
@@ -785,7 +791,7 @@
     - fact.average_click_rate
     - fact.total_clicks
     sorts:
-    - fact.date_week desc
+    - fact.date_period_dynamic_grain
     limit: 500
     column_limit: 50
     stacking: ''
@@ -896,16 +902,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 899
     colors:
     - "#7869df"
     - "#6e98f9"
@@ -929,6 +925,9 @@
     - fact.average_cost_per_click
     - fact.average_click_rate
     - fact.total_clicks
+    listen:
+      Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 3
     col: 9
     width: 15
@@ -939,7 +938,7 @@
     explore: combined_ad_group_date_fact
     type: looker_line
     fields:
-    - fact.date_week
+    - fact.date_period_dynamic_grain
     - fact.average_cost_per_click
     - fact.average_click_rate
     - fact.total_clicks
@@ -947,7 +946,7 @@
     - fact.average_conversion_rate
     - fact.total_conversions
     sorts:
-    - fact.date_week desc
+    - fact.date_period_dynamic_grain
     limit: 500
     column_limit: 50
     stacking: ''
@@ -1055,16 +1054,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1054
     colors:
     - "#d06180"
     - "#dc9d4f"
@@ -1089,6 +1078,9 @@
     - fact.average_conversion_rate
     - fact.total_conversions
     y_axis_reversed: false
+    listen:
+      Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 12
     col: 6
     width: 10
@@ -1211,6 +1203,7 @@
     single_value_title: Spend
     listen:
       Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 0
     col: 0
     width: 6
@@ -1221,17 +1214,13 @@
     explore: combined_ad_group_date_fact
     type: looker_area
     fields:
-    - fact.date_day_of_quarter
-    - fact.date_quarter
+    - fact.date_day_of_period
     - fact.total_cost
     - fact.cumulative_spend
-    pivots:
-    - fact.date_quarter
-    filters:
-      fact.date_date: 2 quarters
+    - last_fact.total_cost
+    - last_fact.cumulative_spend
     sorts:
-    - fact.date_quarter desc
-    - fact.date_day_of_quarter
+    - fact.date_day_of_period
     limit: 500
     column_limit: 50
     stacking: ''
@@ -1376,16 +1365,6 @@
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
-    trend_lines:
-    - color: "#000000"
-      label_position: right
-      period: 7
-      regression_type: linear
-      series_index: 1
-      show_label: false
-      label_type: string
-      __FILE: app_marketing_analytics/adwords_overview.dashboard.lookml
-      __LINE_NUM: 1260
     colors:
     - "#4bb86a"
     - "#8fe4a7"
@@ -1404,11 +1383,14 @@
     - fact.average_cost_per_conversion
     series_labels:
       fact.total_cost: Spend
-      fact.total_clicks: Clicks
     hidden_fields:
     - fact.total_cost
+    - last_fact.total_cost
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
+    listen:
+      Period: fact.period
+      Period Latest: fact.date_period_latest
     row: 3
     col: 0
     width: 9
@@ -1417,10 +1399,18 @@
   - name: Period
     title: Period
     type: field_filter
-    default_value: quarter
-    model: looker_app_google_adwords
-    explore: combined_ad_group_date_fact
-    field: fact.period
-    listens_to_filters: []
+    default_value: 28 day
     allow_multiple_values: true
     required: true
+    model: looker_app_google_adwords
+    explore: period_fact
+    field: fact.period
+  - name: Period Latest
+    title: Period Latest
+    type: field_filter
+    default_value: 'Yes'
+    allow_multiple_values: true
+    required: false
+    model: looker_app_google_adwords
+    explore: period_fact
+    field: fact.date_period_latest
