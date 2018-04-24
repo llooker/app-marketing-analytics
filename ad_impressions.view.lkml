@@ -18,6 +18,31 @@ view: ad_impressions {
     sql: ${TABLE}.CriterionId ;;
   }
 
+  dimension: age_range_criterion_id {
+    hidden: yes
+    sql: ${TABLE}.CriterionId ;;
+  }
+
+  dimension: gender_criterion_id {
+    hidden: yes
+    sql: ${TABLE}.CriterionId ;;
+  }
+
+  dimension: parental_status_criterion_id {
+    hidden: yes
+    sql: ${TABLE}.CriterionId ;;
+  }
+
+  dimension: video_id {
+    hidden: yes
+    sql: ${TABLE}.VideoId ;;
+  }
+
+  dimension: video_channel_id {
+    hidden: yes
+    sql: ${TABLE}.VideoChannelId ;;
+  }
+
   dimension: active_view_impressions {
     hidden: yes
     type: number
