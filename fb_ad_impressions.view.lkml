@@ -140,9 +140,29 @@ view: fb_ad_impressions {
     sql: ${TABLE}.age ;;
   }
 
-  dimension: gender {
+  dimension: gender_raw {
     type: string
     sql: ${TABLE}.gender ;;
+    hidden: yes
+  }
+
+  dimension: gender {
+    type: string
+    case: {
+      when: {
+        sql: ${gender_raw} = 'male' ;;
+        label: "Male"
+      }
+      when: {
+        sql: ${gender_raw} = 'female' ;;
+        label: "Female"
+      }
+      when: {
+        sql: ${gender_raw} = 'unknown';;
+        label: "Unknown"
+      }
+      else: "Other"
+    }
   }
 
   dimension: country {
@@ -181,9 +201,29 @@ view: fb_ad_impressions {
     sql: ${TABLE}.platform_position ;;
   }
 
-  dimension: publisher_platform {
+  dimension: publisher_platform_raw {
     type: string
     sql: ${TABLE}.publisher_platform ;;
+    hidden: yes
+  }
+
+  dimension: publisher_platform {
+    type: string
+    case: {
+      when: {
+        sql: ${publisher_platform_raw} = 'facebook' ;;
+        label: "Facebook"
+      }
+      when: {
+        sql: ${publisher_platform_raw} = 'instagram' ;;
+        label: "Instagram"
+      }
+      when: {
+        sql: ${publisher_platform_raw} = 'audience_network';;
+        label: "Audience Network"
+      }
+      else: "Other"
+    }
   }
 
   dimension: call_to_action_clicks {
