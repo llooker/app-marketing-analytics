@@ -4,20 +4,24 @@ label: "Google AdWords"
 # include all the views
 include: "account_fact.view"
 include: "ad.view"
+include: "ad_impressions.view"
 include: "ad_fact.view"
 include: "ad_group.view"
 include: "ad_group_fact.view"
+include: "age_range.view"
 include: "audience.view"
 include: "campaign.view"
 include: "campaign_budget_date_fact.view"
 include: "campaign_fact.view"
 include: "customer.view"
+include: "gender.view"
 include: "geotargeting.view"
 include: "keyword.view"
 include: "keyword_fact.view"
+include: "parental_status.view"
 include: "period_fact.view"
-include: "ad_impressions.view"
 include: "recent_changes.view"
+include: "video.view"
 
 include: "combined_ad_impressions.view"
 include: "combined_ad_group_fact.view"
@@ -63,6 +67,42 @@ explore: ad_impressions {
       ${fact.campaign_id} = ${audience.campaign_id} AND
       ${fact.external_customer_id} = ${audience.external_customer_id} AND
       ${fact.date_date} = ${audience.date_date} ;;
+    relationship: many_to_one
+  }
+  join: age_range {
+    view_label: "Age Range"
+    sql_on: ${fact.age_range_criterion_id} = ${age_range.criterion_id} AND
+      ${fact.ad_group_id} = ${age_range.ad_group_id} AND
+      ${fact.campaign_id} = ${age_range.campaign_id} AND
+      ${fact.external_customer_id} = ${age_range.external_customer_id} AND
+      ${fact.date_date} = ${age_range.date_date} ;;
+    relationship: many_to_one
+  }
+  join: gender {
+    view_label: "Gender"
+    sql_on: ${fact.gender_criterion_id} = ${gender.criterion_id} AND
+      ${fact.ad_group_id} = ${gender.ad_group_id} AND
+      ${fact.campaign_id} = ${gender.campaign_id} AND
+      ${fact.external_customer_id} = ${gender.external_customer_id} AND
+      ${fact.date_date} = ${gender.date_date} ;;
+    relationship: many_to_one
+  }
+  join: parental_status {
+    view_label: "Parental Status"
+    sql_on: ${fact.parental_status_criterion_id} = ${parental_status.criterion_id} AND
+      ${fact.ad_group_id} = ${parental_status.ad_group_id} AND
+      ${fact.campaign_id} = ${parental_status.campaign_id} AND
+      ${fact.external_customer_id} = ${parental_status.external_customer_id} AND
+      ${fact.date_date} = ${parental_status.date_date} ;;
+    relationship: many_to_one
+  }
+  join: video {
+    view_label: "Video"
+    sql_on: ${fact.video_id} = ${video.video_id} AND
+      ${fact.ad_group_id} = ${video.ad_group_id} AND
+      ${fact.campaign_id} = ${video.campaign_id} AND
+      ${fact.external_customer_id} = ${video.external_customer_id} AND
+      ${fact.date_date} = ${video.date_date} ;;
     relationship: many_to_one
   }
   join: ad {
