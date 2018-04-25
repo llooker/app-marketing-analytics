@@ -97,11 +97,17 @@
     dimension: primary_key {
       hidden: yes
       primary_key: yes
-      sql: CONCAT(CAST(${date_date} AS STRING)
-              ,"|", CAST(${account_id} AS STRING)
-              ,"|", CAST(${campaign_id} AS STRING)
-              ,"|", CAST(${adset_id} AS STRING)
-              ,"|", CAST(${ad_id} AS STRING)
-              ) ;;
+      sql:  CONCAT(
+              CAST(${account_id} AS STRING),
+              {% if (campaigns._in_query or fact.campaign_id._in_query or adsets._in_query or fact.adset_id._in_query or ads._in_query or fact.ad_id._in_query %}
+              "-", CAST(${campaign_id} AS STRING),
+              {% endif %}
+              {% if (adsets._in_query or fact.adset_id._in_query or ads._in_query or fact.ad_id._in_query %}
+              "-", CAST(${adset_id} AS STRING),
+              {% endif %}
+              {% if (ads._in_query or fact.ad_id._in_query) %}
+              "-", CAST(${ad_id} AS STRING)
+              {% endif %}
+            );;
     }
-    }
+  }
