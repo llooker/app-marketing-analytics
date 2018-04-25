@@ -1,8 +1,6 @@
-  include: "fb_insights_base.view"
   include: "date_base.view"
   include: "fb_ad_metrics_base.view"
   include: "period_base.view"
-  include: "customer.view"
   include: "fb_campaigns.view"
   include: "fb_adsets.view"
   include: "fb_ads.view"
@@ -15,24 +13,28 @@
     view_label: "This Period"
 
     join: campaigns {
+      view_label: "FB Campaigns"
       type: left_outer
       sql_on: ${fact.campaign_id} = ${campaigns.id} ;;
       relationship: many_to_one
     }
 
     join: ads {
+      view_label: "FB Ads"
       type: left_outer
       sql_on: ${fact.ad_id} = ${ads.id} ;;
       relationship: many_to_one
     }
 
     join: adcreative {
+      view_label: "FB Ad Creatives"
       type: left_outer
       sql_on: ${ads.creative_id} = ${adcreative.id} ;;
       relationship: one_to_one
     }
 
     join: adsets {
+      view_label: "FB Adsets"
       type: left_outer
       sql_on: ${fact.adset_id} = ${adsets.id} ;;
       relationship: many_to_one
