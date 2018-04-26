@@ -4,6 +4,7 @@
   include: "fb_campaigns.view"
   include: "fb_adsets.view"
   include: "fb_ads.view"
+  include: "ad_metrics_period_comparison_base.view"
 
   explore: fb_period_fact {
     hidden: yes
@@ -62,7 +63,7 @@
 
 
   view: fb_period_fact {
-    extends: [date_base, period_base, fb_ad_metrics_base]
+    extends: [date_base, period_base, ad_metrics_period_comparison_base, fb_ad_metrics_base]
 
     dimension: account_id {
       hidden: yes
@@ -94,20 +95,25 @@
         ${fb_account_date_fact.SQL_TABLE_NAME}
       {% endif %} ;;
 
-    dimension: primary_key {
+    dimension: key_base {
       hidden: yes
+      sql:
+        CONCAT(
+          CAST(${account_id} AS STRING),
+        {% if (campaigns._in_query or fact.campaign_id._in_query or adsets._in_query or fact.adset_id._in_query or ads._in_query or fact.ad_id._in_query %}
+          "-", CAST(${campaign_id} AS STRING),
+        {% endif %}
+        {% if (adsets._in_query or fact.adset_id._in_query or ads._in_query or fact.ad_id._in_query %}
+          "-", CAST(${adset_id} AS STRING),
+        {% endif %}
+        {% if (ads._in_query or fact.adset_id._in_query) %}
+          "-", CAST(${ad_id} AS STRING)
+        {% endif %}
+        ) ;;
+    }
+    dimension: primary_key {
       primary_key: yes
-      sql:  CONCAT(
-              CAST(${account_id} AS STRING),
-              {% if (campaigns._in_query or fact.campaign_id._in_query or adsets._in_query or fact.adset_id._in_query or ads._in_query or fact.ad_id._in_query %}
-              "-", CAST(${campaign_id} AS STRING),
-              {% endif %}
-              {% if (adsets._in_query or fact.adset_id._in_query or ads._in_query or fact.ad_id._in_query %}
-              "-", CAST(${adset_id} AS STRING),
-              {% endif %}
-              {% if (ads._in_query or fact.ad_id._in_query) %}
-              "-", CAST(${ad_id} AS STRING)
-              {% endif %}
-            );;
+      hidden: yes
+      sql: concat(CAST(${date_period} as STRING), ${date_day_of_period}, ${key_base}) ;;
     }
   }
