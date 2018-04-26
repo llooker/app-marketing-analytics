@@ -90,8 +90,8 @@ view: ad_metrics_period_comparison_base {
       (${last_fact.click_rate})
     ) /
     NULLIF(SQRT(
-      (${fact.clicks} + ${last_fact.clicks}) / (${fact.impressions} + ${last_fact.impressions}) *
-      (1 - (${fact.clicks} + ${last_fact.clicks}) / (${fact.impressions} + ${last_fact.impressions})) *
+      (${fact.clicks} + ${last_fact.clicks}) / NULLIF((${fact.impressions} + ${last_fact.impressions}),0) *
+      (1 - (${fact.clicks} + ${last_fact.clicks}) / NULLIF((${fact.impressions} + ${last_fact.impressions}),0)) *
       ((1 / NULLIF(${fact.impressions},0)) + (1 / NULLIF(${last_fact.impressions},0)))
     ),0) ;;
     group_label: "Period Comparisons"
@@ -119,8 +119,8 @@ view: ad_metrics_period_comparison_base {
       (${last_fact.conversion_rate})
     ) /
     NULLIF(SQRT(
-      (${fact.conversions} + ${last_fact.conversions}) / (${fact.clicks} + ${last_fact.clicks}) *
-      (1 - (${fact.conversions} + ${last_fact.conversions}) / (${fact.clicks} + ${last_fact.clicks})) *
+      (${fact.conversions} + ${last_fact.conversions}) / NULLIF((${fact.clicks} + ${last_fact.clicks}),0) *
+      (1 - (${fact.conversions} + ${last_fact.conversions}) / NULLIF((${fact.clicks} + ${last_fact.clicks}),0)) *
       ((1 / NULLIF(${fact.clicks},0)) + (1 / NULLIF(${last_fact.clicks},0)))
     ),0) ;;
     group_label: "Period Comparisons"
