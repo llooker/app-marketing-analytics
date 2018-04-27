@@ -268,7 +268,8 @@ view: ad_metrics_base {
       average_cost_per_click,
       average_cost_per_conversion,
       cumulative_conversions,
-      cumulative_spend
+      cumulative_spend,
+      average_value_per_cost
     ]
   }
 
