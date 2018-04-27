@@ -211,6 +211,21 @@ view: ad_metrics_period_comparison_base {
     group_label: "Period Comparisons"
     value_format_name: percent_1
   }
+
+  measure: average_value_per_cost_period_percent_change {
+    hidden: yes
+    type: number
+    sql: (${fact.average_value_per_cost} - ${last_fact.average_value_per_cost}) / NULLIF(${last_fact.average_value_per_cost}, 0) ;;
+    group_label: "Period Comparisons"
+    value_format_name: percent_1
+  }
+  measure: average_value_per_cost_percent_change_abs {
+    hidden: yes
+    type: number
+    sql: abs(${fact.average_value_per_cost_period_percent_change}) ;;
+    group_label: "Period Comparisons"
+    value_format_name: percent_1
+  }
   measure: average_cost_per_conversion_period_percent_change {
     hidden: yes
     type: number
