@@ -423,7 +423,7 @@
     row: 22
     col: 14
     width: 10
-    height: 7
+    height: 6
   - title: Return On Ad Spend by Hour of Day
     name: Return On Ad Spend by Hour of Day
     model: looker_app_google_adwords
@@ -543,10 +543,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 29
+    row: 28
     col: 14
     width: 10
-    height: 7
+    height: 6
   - title: Return On Ad Spend by Day of Week and Hour of Day
     name: Return On Ad Spend by Day of Week and Hour of Day
     model: looker_app_google_adwords
@@ -664,7 +664,7 @@
     row: 22
     col: 0
     width: 14
-    height: 14
+    height: 12
   - title: Return On Ad Spend by Network
     name: Return On Ad Spend by Network
     model: looker_app_google_adwords
@@ -838,10 +838,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 36
+    row: 34
     col: 0
     width: 8
-    height: 10
+    height: 9
   - title: Keyword Return On Ad Spend Change
     name: Keyword Return On Ad Spend Change
     model: looker_app_google_adwords
@@ -937,10 +937,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 36
+    row: 34
     col: 8
     width: 8
-    height: 10
+    height: 9
   - title: Ad Return On Ad Spend Change
     name: Ad Return On Ad Spend Change
     model: looker_app_google_adwords
@@ -1047,10 +1047,10 @@
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
-    row: 36
+    row: 34
     col: 16
     width: 8
-    height: 10
+    height: 9
   - title: Return On Ad Spend By State
     name: Return On Ad Spend By State
     model: looker_app_google_adwords
