@@ -752,7 +752,6 @@
     - fact.average_conversion_rate
     filters:
       fact.conversion_rate_big_mover: 'Yes'
-      fact.conversion_rate_period_significant: 'Yes'
     sorts:
     - fact.average_conversion_rate_period_percent_change_abs desc
     limit: 50
@@ -859,7 +858,6 @@
     - fact.average_conversion_rate
     filters:
       fact.conversion_rate_big_mover: 'Yes'
-      fact.conversion_rate_period_significant: 'Yes'
     sorts:
     - fact.average_conversion_rate_period_percent_change_abs desc
     limit: 50

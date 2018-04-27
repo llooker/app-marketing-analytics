@@ -333,14 +333,14 @@ view: ad_metrics_period_comparison_base {
   dimension: conversion_rate_big_mover {
     hidden: yes
     type: yesno
-    sql: ${conversion_rate_period_percent_change_abs} > .2 ;;
+    sql: ${conversion_rate_period_percent_change_abs} > .2 AND ${conversion_rate_period_significant};;
     group_label: "Period Comparisons"
   }
 
   dimension: click_rate_big_mover {
     hidden: yes
     type: yesno
-    sql: ${click_rate_period_percent_change_abs} > .2 ;;
+    sql: ${click_rate_period_percent_change_abs} > .2 AND ${click_rate_period_significant};;
     group_label: "Period Comparisons"
   }
 

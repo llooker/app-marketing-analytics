@@ -756,7 +756,6 @@
     - fact.average_click_rate
     filters:
       fact.click_rate_big_mover: 'Yes'
-      fact.click_rate_period_significant: 'Yes'
     sorts:
     - fact.average_click_rate_period_percent_change_abs desc
     limit: 50
@@ -864,7 +863,6 @@
     - fact.average_click_rate
     filters:
       fact.click_rate_big_mover: 'Yes'
-      fact.click_rate_period_significant: 'Yes'
     sorts:
     - fact.average_click_rate_period_percent_change_abs desc
     limit: 50
