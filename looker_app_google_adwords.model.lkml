@@ -37,6 +37,7 @@ include: "campaign_metrics_cpc.dashboard"
 include: "campaign_metrics_ctr.dashboard"
 include: "campaign_metrics_spend.dashboard"
 include: "combined_overview.dashboard"
+include: "campaign_metrics_roas.dashboard"
 
 datagroup: etl_datagroup {
   sql_trigger: SELECT MAX(CONCAT(CAST(_DATA_DATE as STRING), format(" %02d", HourOfDay))) FROM adwords_v201609.HourlyAccountStats_6747157124 ;;
