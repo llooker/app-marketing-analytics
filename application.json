@@ -596,28 +596,153 @@
       "permalink": "search"
     },
     {
+      "permalink": "social",
       "description": "",
       "enabled": false,
       "icon": "marketing-analytics/social",
       "name": "Social",
       "pages": [
         {
-          "name": "Facebook",
+          "name": "Facebook Overview",
           "permalink": "overview",
           "type": "dashboardCollection",
           "dashboardCollection": {
             "dashboards": [
               {
-                "lookmlID": "looker_app_facebook_ads::social_overview",
+                "lookmlID": "looker_app_facebook_ads::facebook_overview",
                 "name": "Default",
                 "permalink": ""
               }
             ]
           }
-        }
-      ],
-      "permalink": "social"
-    },
+        },
+       { "permalink": "facebook",
+        "type": "dashboardCollection",
+        "dashboardCollection": {
+                    "dashboards": [
+                      {
+                        "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_spend",
+                        "name": "Spend",
+                        "permalink": "spend",
+                        "singleValueReference": {
+                        "key": "spend"
+                      }
+                    },
+                    {
+                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_conversions",
+                      "name": "Conversions",
+                      "permalink": "conversions",
+                      "singleValueReference": {
+                        "key": "conversions"
+                      }
+                    },
+                    {
+                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_cpa",
+                      "name": "Cost Per Conversion",
+                      "permalink": "cost_per_conversion",
+                      "singleValueReference": {
+                        "key": "cost_per_conversion"
+                      }
+                    },
+                    {
+                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_conversion_rate",
+                      "name": "Conversion Rate",
+                      "permalink": "conversion_rate",
+                      "singleValueReference": {
+                        "key": "conversion_rate"
+                      }
+                    },
+                    {
+                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_cost_per_click",
+                      "name": "Cost Per Click",
+                      "permalink": "cost_per_click",
+                      "singleValueReference": {
+                        "key": "cost_per_click"
+                      }
+                    },
+                    {
+                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_ctr",
+                      "name": "Click Through Rate",
+                      "permalink": "click_through_rate",
+                      "singleValueReference": {
+                        "key": "click_through_rate"
+                      }
+                    }
+                  ],
+                  "defaultDashboard": "cost_per_conversion"
+                },
+            "singleValuesSources": [
+                  {
+                    "model": "looker_app_facebook_ads",
+                    "view": "fb_adset_date_fact",
+                    "params": "&sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period",
+                    "fields": {
+                      "spend": {
+                        "inverseChange": true,
+                        "field": "fact.total_cost"
+                      },
+                      "conversions": {
+                        "field": "fact.total_conversions"
+                      },
+                      "cost_per_conversion": {
+                        "inverseChange": true,
+                        "field": "fact.average_cost_per_conversion"
+                      },
+                      "conversion_rate": {
+                        "field": "fact.average_conversion_rate"
+                      },
+                      "cost_per_click": {
+                        "inverseChange": true,
+                        "field": "fact.average_cost_per_click"
+                      },
+                      "click_through_rate": {
+                        "field": "fact.average_click_rate"
+                      },
+                      "return_on_ad_spend": {
+                        "field": "fact.average_value_per_cost"
+                      }
+                    }
+                  }
+                ],
+              "filters": [
+                {
+                  "defaultValue": "28 day",
+                  "field": "fact.period",
+                  "name": "Time Frame",
+                  "type": "TimeFrame",
+                  "dashboardAlias": "Period"
+                },
+                {
+                  "autoSuggest": {
+                    "model": "looker_app_facebook_ads",
+                    "view": "fb_ad_impressions"
+                  },
+                  "field": "campaigns.name",
+                  "dashboardAlias": "Campaign",
+                  "name": "Campaign",
+                  "type": "Select"
+                },
+                {
+                  "autoSuggest": {
+                    "model": "looker_app_facebook_ads",
+                    "view": "fb_ad_impressions"
+                  },
+                  "facetedBy": [
+                    "campaigns.name"
+                  ],
+                  "field": "adsets.name",
+                  "dashboardAlias": "Adset",
+                  "name": "Adset",
+                  "type": "Select"
+                }
+            ],
+          "name": "Facebook Campaigns",
+          "permalink": "fb_campaigns",
+          "type": "dashboardCollection"
+          }
+          ]
+        },
+
     {
       "description": "",
       "enabled": false,
@@ -626,5 +751,5 @@
       "pages": [],
       "permalink": "display"
     }
-  ]
+    ]
 }
