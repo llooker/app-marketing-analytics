@@ -80,6 +80,14 @@
                 "singleValueReference": {
                   "key": "click_through_rate"
                 }
+              },
+              {
+                "lookmlID": "looker_app_google_adwords::campaign_metrics_roas",
+                "name": "Return On Ad Spend",
+                "permalink": "return_on_ad_spend",
+                "singleValueReference": {
+                  "key": "return_on_ad_spend"
+                }
               }
             ],
             "defaultDashboard": "cost_per_conversion"
@@ -110,6 +118,9 @@
                 },
                 "click_through_rate": {
                   "field": "fact.average_click_rate"
+                },
+                "return_on_ad_spend": {
+                  "field": "fact.average_value_per_cost"
                 }
               }
             }
