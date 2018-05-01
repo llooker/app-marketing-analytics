@@ -31,7 +31,7 @@
   - name: Period
     title: Period
     type: field_filter
-    default_value: day
+    default_value: 28 day
     allow_multiple_values: true
     required: false
     model: looker_app_facebook_ads

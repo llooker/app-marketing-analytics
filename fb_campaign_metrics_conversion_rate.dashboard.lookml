@@ -40,7 +40,7 @@
     y_axis_tick_density_custom: 5
     show_x_axis_label: false
     show_x_axis_ticks: true
-    x_axis_scale: auto
+    x_axis_scale: time
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
@@ -96,6 +96,10 @@
       - id: fact.average_click_rate
         name: Click Through Rate
         axisId: fact.average_click_rate
+        __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 96
+      __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 84
     - label:
       maxValue:
       minValue:
@@ -111,6 +115,10 @@
       - id: fact.total_conversions
         name: Conversions
         axisId: fact.total_conversions
+        __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 111
+      __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 99
     - label:
       maxValue:
       minValue:
@@ -126,6 +134,10 @@
       - id: fact.average_cost_per_conversion
         name: Cost per Conversion
         axisId: fact.average_cost_per_conversion
+        __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 126
+      __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 114
     - label:
       maxValue:
       minValue:
@@ -141,6 +153,10 @@
       - id: fact.average_conversion_rate
         name: Conversion Rate
         axisId: fact.average_conversion_rate
+        __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 141
+      __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 129
     - label:
       maxValue:
       minValue:
@@ -156,6 +172,10 @@
       - id: fact.average_cost_per_click
         name: Cost per Click
         axisId: fact.average_cost_per_click
+        __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+        __LINE_NUM: 156
+      __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
+      __LINE_NUM: 144
     listen:
       Campaign: campaigns.name
       Adset: adsets.name
