@@ -1,4 +1,6 @@
 include: "fb_campaign_fact.view"
+include: "fb_campaigns.view"
+include: "fb_adsets.view"
 
 explore: fb_adset_date_fact {
   hidden: yes
@@ -16,6 +18,17 @@ explore: fb_adset_date_fact {
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;
     relationship: one_to_one
     fields: [last_fact.fb_ad_metrics_set*]
+  }
+  join: campaigns {
+    type: left_outer
+    sql_on: ${fact.campaign_id} = ${campaigns.id} ;;
+    relationship: many_to_one
+  }
+
+  join: adsets {
+    type: left_outer
+    sql_on: ${fact.adset_id} = ${adsets.id} ;;
+    relationship: many_to_one
   }
   join: parent_fact {
     view_label: "Campaign This Period"
