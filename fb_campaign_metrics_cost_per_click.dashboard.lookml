@@ -670,7 +670,7 @@
     - fact.gender
     - fact.average_cost_per_click
     pivots:
-    - fact.age
+    - fact.gender
     fill_fields:
     - fact.gender
     filters:
@@ -744,6 +744,10 @@
       - id: fact.total_cost
         name: Cost
         axisId: fact.total_cost
+        __FILE: app_marketing_analytics/fb_campaign_metrics_cost_per_click.dashboard.lookml
+        __LINE_NUM: 744
+      __FILE: app_marketing_analytics/fb_campaign_metrics_cost_per_click.dashboard.lookml
+      __LINE_NUM: 732
     conditional_formatting:
     - type: low to high
       value:
@@ -755,10 +759,14 @@
         - "#F36254"
         - "#FCF758"
         - "#4FBC89"
+        __FILE: app_marketing_analytics/fb_campaign_metrics_cost_per_click.dashboard.lookml
+        __LINE_NUM: 753
       bold: false
       italic: false
       strikethrough: false
       fields:
+      __FILE: app_marketing_analytics/fb_campaign_metrics_cost_per_click.dashboard.lookml
+      __LINE_NUM: 748
     listen:
       Campaign: fact.campaign_name
       Adset: fact.adset_name
