@@ -2,6 +2,12 @@
   "dependencies": [
     "app_marketing_analytics_adapter"
   ],
+  "exploreConfig": {
+    "data": true,
+    "filters": true,
+    "sidebar": true,
+    "visualization": true
+  },
   "home": {
     "name": "AdWords Overview",
     "type": "dashboardCollection",
