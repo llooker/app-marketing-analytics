@@ -52,4 +52,15 @@ view: google_ad_metrics_base {
     drill_fields: [external_customer_id, total_impressions]
     value_format_name: decimal_0
   }
+
+  measure: total_impressions {
+  }
+  measure: total_clicks {
+  }
+  measure: total_conversions {
+    drill_fields: [fact.date_date, campaign.campaign_name, fact.total_conversions]
+  }
+  measure: total_cost {
+    drill_fields: [fact.date_date, campaign.campaign_name, fact.total_cost]
+  }
 }

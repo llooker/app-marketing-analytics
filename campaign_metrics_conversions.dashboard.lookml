@@ -145,7 +145,7 @@
   - title: Conversions by Device
     name: Conversions by Device
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.total_conversions
@@ -245,7 +245,7 @@
   - title: Conversions by Network
     name: Conversions by Network
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.ad_network_type
@@ -326,7 +326,7 @@
   - title: Conversions by Bid Strategy
     name: Conversions by Bid Strategy
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_keyword
     type: looker_bar
     fields:
     - fact.total_conversions
@@ -548,7 +548,7 @@
   - title: Conversions by Day of Week and Hour of Day
     name: Conversions by Day of Week and Hour of Day
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group_hour
     type: table
     fields:
     - fact.total_conversions
@@ -669,7 +669,7 @@
   - title: Conversions by Hour of Day
     name: Conversions by Hour of Day
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
     - fact.total_conversions

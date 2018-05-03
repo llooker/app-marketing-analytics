@@ -229,7 +229,7 @@
   - title: Spend by Device
     name: Spend by Device
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.total_cost
@@ -309,7 +309,7 @@
   - title: Spend by Bid Strategy
     name: Spend by Bid Strategy
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_keyword
     type: looker_bar
     fields:
     - fact.total_cost
@@ -387,7 +387,7 @@
   - title: Spend by Network
     name: Spend by Network
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.ad_network_type
@@ -593,7 +593,7 @@
   - title: Spend by Day of Week and Hour of Day
     name: Spend by Day of Week and Hour of Day
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group_hour
     type: table
     fields:
     - fact.total_cost
@@ -714,7 +714,7 @@
   - title: Spend by Hour of Day
     name: Spend by Hour of Day
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
     - fact.total_cost

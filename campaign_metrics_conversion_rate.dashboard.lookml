@@ -135,7 +135,7 @@
   - title: Conversion Rate by Device
     name: Conversion Rate by Device
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.device_type
@@ -215,7 +215,7 @@
   - title: Conversion Rate by Bid Strategy
     name: Conversion Rate by Bid Strategy
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_keyword
     type: looker_bar
     fields:
     - keyword.bidding_strategy_type
@@ -293,7 +293,7 @@
   - title: Conversion Rate by Day of Week and Hour of Day
     name: Conversion Rate by Day of Week and Hour of Day
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group_hour
     type: table
     fields:
     - fact.hour_of_day
@@ -539,7 +539,7 @@
   - title: Conversion Rate by Hour of Day
     name: Conversion Rate by Hour of Day
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
     - fact.hour_of_day
@@ -662,7 +662,7 @@
   - title: Conversion Rate by Network
     name: Conversion Rate by Network
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.ad_network_type
@@ -956,7 +956,7 @@
   - title: Conversion Rate By State
     name: Conversion Rate By State
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_geo
     type: looker_map
     fields:
     - geo_us_state.state

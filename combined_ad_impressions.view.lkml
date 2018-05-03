@@ -1,9 +1,8 @@
+include: "ad_impressions.view"
 include: "ad_metrics_base.view"
-include: "period_fact.view"
 include: "date_base.view"
-include: "period_base.view"
-
 include: "fb_ad_impressions.view"
+include: "period_base.view"
 
 view: combined_ad_impressions_base {
   extends: [ad_metrics_base, date_base, period_base]
@@ -37,7 +36,7 @@ view: google_adwords_ad_impressions {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: ad_impressions {
+    explore_source: ad_impressions_ad_group {
       column: _date { field: fact.date_date}
       column: account_name { field: customer.account_descriptive_name }
       column: account_id { field: fact.external_customer_id_string }

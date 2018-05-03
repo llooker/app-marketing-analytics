@@ -145,7 +145,7 @@
   - title: Cost Per Conversion by Device
     name: Cost Per Conversion by Device
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.average_cost_per_conversion
@@ -225,7 +225,7 @@
   - title: Cost Per Conversion by Bid Strategy
     name: Cost Per Conversion by Bid Strategy
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_keyword
     type: looker_bar
     fields:
     - fact.average_cost_per_conversion
@@ -303,7 +303,7 @@
   - title: Cost Per Conversion by Hour of Day
     name: Cost Per Conversion by Hour of Day
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
     - fact.average_cost_per_conversion
@@ -551,7 +551,7 @@
   - title: Cost Per Conversion versions by Network
     name: Cost Per Conversion versions by Network
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.ad_network_type
@@ -632,7 +632,7 @@
   - title: Cost Per Conversion by Day of Week and Hour of Day
     name: Cost Per Conversion by Day of Week and Hour of Day
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_ad_group_hour
     type: table
     fields:
     - fact.average_cost_per_conversion
@@ -1078,7 +1078,7 @@
   - title: Cost Per Conversion By State
     name: Cost Per Conversion By State
     model: marketing_analytics
-    explore: ad_impressions
+    explore: ad_impressions_geo
     type: looker_map
     fields:
     - geo_us_state.state

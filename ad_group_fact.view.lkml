@@ -1,4 +1,5 @@
-include: "ad_group.view"
+include: "/ama_adwords_adapter/ad_group.view"
+
 include: "campaign_fact.view"
 include: "recent_changes.view"
 
@@ -27,11 +28,12 @@ explore: ad_group_date_fact {
     relationship: many_to_one
   }
   join: ad_group {
+    from: ad_group_adapter
     view_label: "Ad Group"
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
       ${fact.campaign_id} = ${ad_group.campaign_id} AND
       ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
-      ${fact.date_date} = ${ad_group.date_date}  ;;
+      ${fact._date} = ${ad_group._date}  ;;
     relationship: many_to_one
   }
   join: status_changes {
@@ -43,13 +45,37 @@ explore: ad_group_date_fact {
   }
 }
 
+view: ad_group_key_base {
+  extends: [campaign_key_base]
+  extension: required
+
+  dimension: ad_group_key_base {
+    hidden: yes
+    sql: CONCAT(${campaign_key_base}, "-", CAST(${ad_group_id} as STRING)) ;;
+  }
+  dimension: key_base {
+    hidden: yes
+    sql: ${ad_group_key_base} ;;
+  }
+}
+
 view: ad_group_date_fact {
   extends: [campaign_date_fact, ad_group_key_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: ad_impressions {
+    explore_source: ad_impressions_ad_group {
+      column: _date { field: fact.date_date }
+      column: external_customer_id { field: fact.external_customer_id }
+      column: campaign_id {field: fact.campaign_id}
       column: ad_group_id {field: fact.ad_group_id}
+      column: averageposition {field: fact.weighted_average_position}
+      column: clicks {field: fact.total_clicks }
+      column: conversions {field: fact.total_conversions}
+      column: conversionvalue {field: fact.total_conversionvalue}
+      column: cost {field: fact.total_cost}
+      column: impressions { field: fact.total_impressions}
+      column: interactions {field: fact.total_interactions}
     }
   }
   dimension: ad_group_id {
