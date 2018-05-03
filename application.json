@@ -145,7 +145,7 @@
             {
               "autoSuggest": {
                 "model": "marketing_analytics",
-                "view": "ad_impressions"
+                "view": "ad_impressions_ad_group"
               },
               "field": "campaign.campaign_name",
               "dashboardAlias": "Campaign",
@@ -155,7 +155,7 @@
             {
               "autoSuggest": {
                 "model": "marketing_analytics",
-                "view": "ad_impressions"
+                "view": "ad_impressions_ad_group"
               },
               "facetedBy": [
                 "campaign.campaign_name"
@@ -186,7 +186,7 @@
             {
               "autoSuggest": {
                 "model": "marketing_analytics",
-                "view": "ad_impressions"
+                "view": "ad_impressions_ad_group"
               },
               "field": "campaign.campaign_name",
               "name": "Campaign",
@@ -195,7 +195,7 @@
             {
               "autoSuggest": {
                 "model": "marketing_analytics",
-                "view": "ad_impressions"
+                "view": "ad_impressions_ad_group"
               },
               "field": "ad_group.ad_group_name",
               "name": "Ad Group",
