@@ -1,7 +1,8 @@
 include: "ad_metrics_period_comparison_base.view"
-include: "fb_ad_metrics_base.view"
 include: "date_base.view"
 include: "date_primary_key_base.view"
+include: "fb_ad_metrics_base.view"
+include: "fb_ad_impressions.view"
 include: "period_base.view"
 
 explore: fb_account_date_fact {
@@ -17,7 +18,6 @@ explore: fb_account_date_fact {
       ${fact.date_last_period} = ${last_fact.date_period} AND
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;
     relationship: one_to_one
-    fields: [last_fact.fb_ad_metrics_set*]
   }
 }
 
@@ -27,7 +27,7 @@ view: fb_account_key_base {
 
   dimension: account_key_base {
     hidden: yes
-    sql: CAST(${account_id} AS STRING) ;;
+    sql: ${account_id} ;;
   }
   dimension: key_base {
     hidden: yes
@@ -39,8 +39,6 @@ view: fb_account_date_fact {
   extends: [date_base, period_base, fb_ad_metrics_base, fb_account_key_base, ad_metrics_period_comparison_base]
 
   derived_table: {
-#     datagroup_trigger: etl_datagroup
-#     partition_keys: ["_date"]
     explore_source: fb_ad_impressions {
       column: _date { field: fact.date_date }
       column: account_id { field: fact.account_id }
@@ -55,12 +53,11 @@ view: fb_account_date_fact {
   dimension: account_id {
     hidden: yes
   }
-  dimension: account_name {}
+  dimension: account_name {
+#     required_fields: [account_id]
+  }
   dimension: _date {
     hidden: yes
     type: date_raw
-  }
-  set: detail {
-    fields: [account_id]
   }
 }

@@ -17,7 +17,6 @@ explore: ad_group_date_fact {
       ${fact.date_last_period} = ${last_fact.date_period} AND
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;
     relationship: one_to_one
-    fields: [last_fact.google_ad_metrics_set*, last_fact.ad_metrics_parent_comparison_measures_set*]
   }
   join: parent_fact {
     from: campaign_date_fact
@@ -26,7 +25,6 @@ explore: ad_group_date_fact {
       ${fact.campaign_id} = ${parent_fact.campaign_id} AND
       ${fact.date_date} = ${parent_fact.date_date} ;;
     relationship: many_to_one
-    fields: [parent_fact.google_ad_metrics_set*]
   }
   join: ad_group {
     view_label: "Ad Group"

@@ -32,7 +32,7 @@ view: google_ad_metrics_base {
     value_format_name: usd
     link: {
       label: "By Keyword"
-      url: "/explore/looker_app_google_adwords/ad_impressions?fields=keyword.criteria,fact.average_cost_per_interaction&f[fact.date_date]=this quarter"
+      url: "/explore/marketing_analytics/ad_impressions?fields=keyword.criteria,fact.average_cost_per_interaction&f[fact.date_date]=this quarter"
     }
   }
 
@@ -52,17 +52,4 @@ view: google_ad_metrics_base {
     drill_fields: [external_customer_id, total_impressions]
     value_format_name: decimal_0
   }
-
-  set: google_ad_metrics_set {
-    fields: [
-      interactions,
-      average_position,
-      average_interaction_rate,
-      average_cost_per_interaction,
-      total_interactions,
-      weighted_average_position,
-      ad_metrics_set*
-    ]
-  }
-
 }

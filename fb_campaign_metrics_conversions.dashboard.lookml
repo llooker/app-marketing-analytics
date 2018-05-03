@@ -5,15 +5,12 @@
   elements:
   - title: Conversions By Gender
     name: Conversions By Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.gender
     - fact.total_conversions
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -74,8 +71,8 @@
         name: Conversions
         axisId: fact.total_conversions
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 17
@@ -84,15 +81,12 @@
     height: 5
   - title: Conversions By Age
     name: Conversions By Age
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.age
     - fact.total_conversions
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -153,8 +147,8 @@
         name: Conversions
         axisId: fact.total_conversions
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
@@ -163,7 +157,7 @@
     height: 6
   - title: Conversions By Day Of Week
     name: Conversions By Day Of Week
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -171,9 +165,6 @@
     - fact.total_conversions
     fill_fields:
     - fact.date_day_of_week
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_day_of_week
     limit: 500
@@ -234,8 +225,8 @@
         name: Conversions
         axisId: fact.total_conversions
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 28
@@ -244,17 +235,14 @@
     height: 6
   - title: Conversions By Device
     name: Conversions By Device
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.device_type
     - fact.total_conversions
     fill_fields:
     - fact.device_type
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -315,8 +303,8 @@
         name: Conversions
         axisId: fact.total_conversions
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 23
@@ -325,15 +313,12 @@
     height: 5
   - title: Conversions By Platform
     name: Conversions By Platform
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.publisher_platform
     - fact.total_conversions
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -394,8 +379,8 @@
         name: Conversions
         axisId: fact.total_conversions
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 23
@@ -404,7 +389,7 @@
     height: 5
   - title: Conversions To Date
     name: Conversions To Date
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -416,9 +401,6 @@
     - fact.average_click_rate
     fill_fields:
     - fact.date_date
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_date desc
     limit: 500
@@ -556,8 +538,8 @@
         name: Click Through Rate
         axisId: fact.average_click_rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -566,15 +548,12 @@
     height: 11
   - title: Conversions By Country
     name: Conversions By Country
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_country
     type: looker_geo_choropleth
     fields:
     - fact.country
     - fact.total_conversions
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -656,8 +635,8 @@
         name: Cost
         axisId: fact.total_cost
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
@@ -666,7 +645,7 @@
     height: 12
   - title: Top Ads By Conversions
     name: Top Ads By Conversions
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -674,9 +653,6 @@
     - fact.adset_name
     - fact.campaign_name
     - fact.total_conversions
-    filters:
-      fact.adset_name: ''
-      fact.campaign_name: ''
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -738,8 +714,8 @@
         name: Conversions
         axisId: fact.total_conversions
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 28
@@ -748,8 +724,8 @@
     height: 6
   - title: Conversions By Age & Gender
     name: Conversions By Age & Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: table
     fields:
     - fact.age
@@ -759,11 +735,6 @@
     - fact.gender
     fill_fields:
     - fact.gender
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
-      fact.campaign_name: ''
-      fact.adset_name: ''
     sorts:
     - fact.gender
     - fact.age 0
@@ -848,8 +819,8 @@
       strikethrough: false
       fields:
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 22

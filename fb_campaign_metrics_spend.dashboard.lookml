@@ -5,7 +5,7 @@
   elements:
   - title: Spend By Day of Week
     name: Spend By Day of Week
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -13,9 +13,6 @@
     - fact.total_cost
     fill_fields:
     - fact.date_day_of_week
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_day_of_week
     limit: 500
@@ -85,7 +82,7 @@
     height: 5
   - title: Top Ads by Spend
     name: Top Ads by Spend
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -93,9 +90,6 @@
     - fact.ad_name
     - fact.adset_name
     - fact.campaign_name
-    filters:
-      fact.adset_name: ''
-      fact.campaign_name: ''
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -166,17 +160,14 @@
     height: 6
   - title: Spend By Device
     name: Spend By Device
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.total_cost
     - fact.device_type
     fill_fields:
     - fact.device_type
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -246,15 +237,12 @@
     height: 5
   - title: Spend By Platform
     name: Spend By Platform
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.total_cost
     - fact.publisher_platform
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -324,15 +312,12 @@
     height: 5
   - title: Spend By Gender
     name: Spend By Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.gender
     - fact.total_cost
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -403,7 +388,7 @@
     height: 5
   - title: Spend To Date
     name: Spend To Date
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_area
     fields:
@@ -431,7 +416,7 @@
     y_axis_tick_density_custom: 5
     show_x_axis_label: false
     show_x_axis_ticks: true
-    x_axis_scale: time
+    x_axis_scale: auto
     y_axis_scale_mode: linear
     x_axis_reversed: false
     y_axis_reversed: false
@@ -463,8 +448,8 @@
       fact.cumulative_spend: This Period
       last_fact.cumulative_spend: Prior Period
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -473,15 +458,12 @@
     height: 10
   - title: Spend By Age
     name: Spend By Age
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.total_cost
     - fact.age
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -552,8 +534,8 @@
     height: 5
   - title: Spend By Age & Gender
     name: Spend By Age & Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: table
     fields:
     - fact.age
@@ -563,9 +545,6 @@
     - fact.gender
     fill_fields:
     - fact.gender
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.gender
     - fact.age 0

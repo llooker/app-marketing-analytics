@@ -316,7 +316,6 @@ view: ad {
   measure: count {
     type: count_distinct
     sql: ${key_base} ;;
-    drill_fields: [drill_detail*]
   }
 
   measure: count_active {
@@ -326,13 +325,5 @@ view: ad {
       field: status_active
       value: "Yes"
     }
-    drill_fields: [drill_detail*]
-  }
-
-  set: drill_detail {
-    fields: [creative_id, creative, status, ad_type]
-  }
-  set: detail {
-    fields: [external_customer_id, campaign_id, ad_group_id, count, count_active, status_active, drill_detail*]
   }
 }

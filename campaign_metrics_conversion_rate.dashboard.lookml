@@ -4,7 +4,7 @@
   elements:
   - title: Conversion Rate To Date
     name: Conversion Rate To Date
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_line
     fields:
@@ -134,7 +134,7 @@
     height: 11
   - title: Conversion Rate by Device
     name: Conversion Rate by Device
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -214,7 +214,7 @@
     height: 4
   - title: Conversion Rate by Bid Strategy
     name: Conversion Rate by Bid Strategy
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -292,7 +292,7 @@
     height: 4
   - title: Conversion Rate by Day of Week and Hour of Day
     name: Conversion Rate by Day of Week and Hour of Day
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: table
     fields:
@@ -413,7 +413,7 @@
     height: 14
   - title: Conversion Rate by Day of Week
     name: Conversion Rate by Day of Week
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -538,7 +538,7 @@
     height: 7
   - title: Conversion Rate by Hour of Day
     name: Conversion Rate by Hour of Day
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_column
     fields:
@@ -661,7 +661,7 @@
     height: 7
   - title: Conversion Rate by Network
     name: Conversion Rate by Network
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -741,7 +741,7 @@
     height: 4
   - title: Ad Group Conversion Rate Change
     name: Ad Group Conversion Rate Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -846,7 +846,7 @@
     height: 10
   - title: Keyword Conversion Rate Changes
     name: Keyword Conversion Rate Changes
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -955,7 +955,7 @@
     height: 10
   - title: Conversion Rate By State
     name: Conversion Rate By State
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_map
     fields:
@@ -1016,7 +1016,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: campaign.campaign_name
@@ -1026,7 +1026,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: ad_group.ad_group_name
@@ -1036,7 +1036,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: fact.period
@@ -1046,7 +1046,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: fact.date_period_latest

@@ -4,7 +4,7 @@
   elements:
   - title: Click Through Rate To Date
     name: Click Through Rate To Date
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_column
     fields:
@@ -138,7 +138,7 @@
     height: 10
   - title: Click Through Rate by Device
     name: Click Through Rate by Device
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -218,7 +218,7 @@
     height: 4
   - title: Click Through Rate by Hour of Day
     name: Click Through Rate by Hour of Day
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_column
     fields:
@@ -341,7 +341,7 @@
     height: 7
   - title: Click Through Rate by Network
     name: Click Through Rate by Network
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -422,7 +422,7 @@
     height: 4
   - title: Click Through Rate by Day of Week
     name: Click Through Rate by Day of Week
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -547,7 +547,7 @@
     height: 7
   - title: Click Through Rate by Bid Strategy
     name: Click Through Rate by Bid Strategy
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_bar
     fields:
@@ -625,7 +625,7 @@
     height: 4
   - title: Click Through Rate by Day of Week and Hour of Day
     name: Click Through Rate by Day of Week and Hour of Day
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: table
     fields:
@@ -744,7 +744,7 @@
     height: 14
   - title: Ad Click Through Rate Change
     name: Ad Click Through Rate Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -852,7 +852,7 @@
     height: 10
   - title: Ad Group Click Through Rate Change
     name: Ad Group Click Through Rate Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -958,7 +958,7 @@
     height: 10
   - title: Click Through Rate by State
     name: Click Through Rate by State
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: ad_impressions
     type: looker_map
     fields:
@@ -1019,7 +1019,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: campaign.campaign_name
@@ -1029,7 +1029,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: ad_group.ad_group_name
@@ -1039,7 +1039,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: fact.period
@@ -1049,7 +1049,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: fact.date_period_latest

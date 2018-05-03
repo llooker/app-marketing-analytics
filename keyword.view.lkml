@@ -268,7 +268,6 @@ view: keyword {
   measure: count {
     type: count_distinct
     sql: ${key_base} ;;
-    drill_fields: [drill_detail*]
   }
 
   measure: count_active {
@@ -278,13 +277,5 @@ view: keyword {
       field: status_active
       value: "Yes"
     }
-    drill_fields: [drill_detail*]
-  }
-
-  set: drill_detail {
-    fields: [criterion_id, criteria, status, quality_score, post_click_quality_score, cpc_bid]
-  }
-  set: detail {
-    fields: [external_customer_id, campaign_id, ad_group_id, count, count_active, status_active, drill_detail*]
   }
 }

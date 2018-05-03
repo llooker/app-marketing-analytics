@@ -18,7 +18,6 @@ explore: keyword_date_fact {
       ${fact.date_last_period} = ${last_fact.date_period} AND
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;
     relationship: one_to_one
-    fields: [last_fact.google_ad_metrics_set*, last_fact.ad_metrics_parent_comparison_measures_set*]
   }
   join: parent_fact {
     from: ad_group_date_fact
@@ -28,7 +27,6 @@ explore: keyword_date_fact {
       ${fact.ad_group_id} = ${parent_fact.ad_group_id} AND
       ${fact.date_date} = ${parent_fact.date_date} ;;
     relationship: one_to_one
-    fields: [parent_fact.google_ad_metrics_set*]
   }
   join: keyword {
     view_label: "Keyword"

@@ -88,7 +88,7 @@ view: campaign {
     type: string
     link: {
       label: "Campaign Dashboard"
-      url: "/dashboards/looker_app_google_adwords::campaign_metrics_cost_per_conversion?Campaign={{ value | encode_uri }}"
+      url: "/dashboards/marketing_analytics::campaign_metrics_cost_per_conversion?Campaign={{ value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
     link: {
@@ -229,7 +229,6 @@ view: campaign {
   measure: count {
     type: count_distinct
     sql: ${key_base} ;;
-    drill_fields: [drill_detail*]
   }
 
   measure: count_active {
@@ -239,20 +238,11 @@ view: campaign {
       field: status_active
       value: "Yes"
     }
-    drill_fields: [drill_detail*]
   }
 
   measure: total_amount {
     type: sum
     sql: ${amount} ;;
-  }
-
-  # ----- Detail ------
-  set: drill_detail {
-    fields: [campaign_id, campaign_name, campaign_status, ad_group.count, ad.count, keyword.count]
-  }
-  set: detail {
-    fields: [external_customer_id, count, count_active, status_active, drill_detail*]
   }
 
 }

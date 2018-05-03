@@ -23,7 +23,6 @@ explore: campaign_date_fact {
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.date_date} = ${parent_fact.date_date};;
     relationship: many_to_one
-    fields: [parent_fact.google_ad_metrics_set*]
   }
   join: campaign {
     view_label: "Campaign"
