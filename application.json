@@ -1,6 +1,7 @@
 {
   "dependencies": [
-    "app_marketing_analytics_adapter"
+    "ama_adwords_adapter",
+    "ama_fb_adapter"
   ],
   "exploreConfig": {
     "data": true,
