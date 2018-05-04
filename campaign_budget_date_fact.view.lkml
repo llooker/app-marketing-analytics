@@ -1,4 +1,5 @@
-include: "campaign.view"
+include: "/ama_adwords_adapter/campaign.view"
+
 include: "date_base.view"
 include: "period_base.view"
 
@@ -9,16 +10,18 @@ explore: campaign_budget_date_fact {
   from: campaign_budget_date_fact
   view_name: fact
   join: customer {
+    from: customer_adapter
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${fact.date_date} = ${customer.date_date} ;;
+      ${fact._date} = ${customer._date} ;;
     relationship: many_to_one
   }
   join: campaign {
+    from: campaign_adapter
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
       ${fact.external_customer_id} = ${campaign.external_customer_id} AND
-      ${fact.date_date} = ${campaign.date_date} ;;
+      ${fact._date} = ${campaign._date} ;;
     relationship: many_to_one
   }
 }
@@ -27,12 +30,12 @@ view: campaign_budget_date_fact {
   extends: [date_base, period_base]
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: ad_impressions {
+    explore_source: ad_impressions_campaign {
       column: _date { field: fact.date_date}
       column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id { field: fact.campaign_id }
       column: budget_id { field: campaign.budget_id }
-      column: amount { field: campaign.total_amount }
+      column: amount { field: campaign.amount }
       column: cost { field: fact.total_cost }
     }
   }

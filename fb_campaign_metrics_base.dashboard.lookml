@@ -14,27 +14,27 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     listens_to_filters: []
-    field: campaigns.name
+    field: campaign.name
   - name: Adset
     title: Adset
     type: field_filter
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     listens_to_filters: []
-    field: adsets.name
+    field: adset.name
   - name: Period
     title: Period
     type: field_filter
     default_value: 28 day
     allow_multiple_values: true
     required: false
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     listens_to_filters: []
     field: fact.period
@@ -44,7 +44,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     listens_to_filters: []
     field: fact.date_period_latest

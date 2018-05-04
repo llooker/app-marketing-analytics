@@ -19,7 +19,6 @@ explore: fb_ad_date_fact {
       ${fact.date_last_period} = ${last_fact.date_period} AND
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;
     relationship: one_to_one
-    fields: [last_fact.fb_ad_metrics_set*]
   }
   join: campaigns {
     type: left_outer
@@ -46,7 +45,6 @@ explore: fb_ad_date_fact {
       ${fact.adset_id} = ${parent_fact.adset_id} AND
       ${fact.date_date} = ${parent_fact.date_date};;
     relationship: many_to_one
-    fields: [parent_fact.ad_metrics_set*]
   }
 }
 
@@ -76,8 +74,7 @@ view: fb_ad_date_fact {
   dimension: ad_id {
     hidden: yes
   }
-  dimension: ad_name {}
-  set: detail {
-    fields: [account_id, campaign_id, adset_id, ad_id]
+  dimension: ad_name {
+#     required_fields: [account_id, campaign_id, adset_id, ad_id]
   }
 }

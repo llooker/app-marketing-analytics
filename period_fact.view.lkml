@@ -1,13 +1,11 @@
+include: "/ama_adwords_adapter/ad.view"
+include: "/ama_adwords_adapter/keyword.view"
+
 include: "ad_metrics_parent_comparison_base.view"
 include: "ad_metrics_period_comparison_base.view"
 include: "date_base.view"
 include: "google_ad_metrics_base.view"
 include: "period_base.view"
-include: "customer.view"
-include: "campaign.view"
-include: "ad_group.view"
-include: "ad.view"
-include: "keyword.view"
 
 explore: period_fact {
   hidden: yes
@@ -17,42 +15,47 @@ explore: period_fact {
   view_label: "This Period"
 
   join: customer {
+    from: customer_adapter
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${fact.date_date} = ${customer.date_date} ;;
+      ${fact._date} = ${customer._date} ;;
     relationship: many_to_one
   }
   join: campaign {
+    from: campaign_adapter
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
       ${fact.external_customer_id} = ${campaign.external_customer_id} AND
-      ${fact.date_date} = ${campaign.date_date} ;;
+      ${fact._date} = ${campaign._date} ;;
     relationship: many_to_one
   }
   join: ad_group {
+    from: ad_group_adapter
     view_label: "Ad Group"
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
       ${fact.campaign_id} = ${ad_group.campaign_id} AND
       ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
-      ${fact.date_date} = ${ad_group.date_date}  ;;
+      ${fact._date} = ${ad_group._date}  ;;
     relationship: many_to_one
   }
   join: ad {
+    from: ad_adapter
     view_label: "Ad"
     sql_on: ${fact.creative_id} = ${ad.creative_id} AND
       ${fact.ad_group_id} = ${ad.ad_group_id} AND
       ${fact.campaign_id} = ${ad.campaign_id} AND
       ${fact.external_customer_id} = ${ad.external_customer_id} AND
-      ${fact.date_date} = ${ad.date_date}  ;;
+      ${fact._date} = ${ad._date}  ;;
     relationship: many_to_one
   }
   join: keyword {
+    from: keyword_adapter
     view_label: "Keyword"
     sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
       ${fact.ad_group_id} = ${keyword.ad_group_id} AND
       ${fact.campaign_id} = ${keyword.campaign_id} AND
       ${fact.external_customer_id} = ${keyword.external_customer_id} AND
-      ${fact.date_date} = ${keyword.date_date}  ;;
+      ${fact._date} = ${keyword._date}  ;;
     relationship: many_to_one
   }
 
@@ -73,7 +76,6 @@ explore: period_fact {
       {% endif %}
       AND ${fact.external_customer_id} = ${last_fact.external_customer_id} ;;
     relationship: one_to_one
-    fields: [last_fact.google_ad_metrics_set*, last_fact.ad_metrics_parent_comparison_measures_set*]
   }
   join: parent_fact {
     from: period_fact
@@ -91,7 +93,6 @@ explore: period_fact {
         AND ${fact.external_customer_id} = ${parent_fact.external_customer_id}
       {% endif %} ;;
     relationship: many_to_one
-    fields: [parent_fact.google_ad_metrics_set*]
   }
 }
 

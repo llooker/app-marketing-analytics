@@ -11,7 +11,7 @@
   elements:
   - title: Spend
     name: Spend
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: single_value
     fields:
@@ -137,7 +137,7 @@
     height: 3
   - title: Conversion Rate
     name: Conversion Rate
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: single_value
     fields:
@@ -262,7 +262,7 @@
     height: 3
   - title: Cost Per Conversion
     name: Cost Per Conversion
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: single_value
     fields:
@@ -387,7 +387,7 @@
     height: 3
   - title: Conversions
     name: Conversions
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: single_value
     fields:
@@ -512,7 +512,7 @@
     height: 3
   - title: Spend To Date
     name: Spend To Date
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_area
     fields:
@@ -697,7 +697,7 @@
     height: 10
   - title: Conversion Trend
     name: Conversion Trend
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_area
     fields:
@@ -852,7 +852,7 @@
     height: 10
   - title: Funnel
     name: Funnel
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_column
     fields:
@@ -952,7 +952,7 @@
     height: 6
   - title: Click Rate
     name: Click Rate
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: single_value
     fields:
@@ -1078,7 +1078,7 @@
     height: 3
   - title: Per Click
     name: Per Click
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: single_value
     fields:
@@ -1203,7 +1203,7 @@
     height: 3
   - title: Click Trend
     name: Click Trend
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_line
     fields:
@@ -1356,7 +1356,7 @@
     height: 6
   - title: Campaigns
     name: Campaigns
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: table
     fields:
@@ -1422,7 +1422,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     field: fact.period
   - name: Period Latest
@@ -1431,6 +1431,6 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     field: fact.date_period_latest

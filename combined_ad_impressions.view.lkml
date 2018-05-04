@@ -1,9 +1,8 @@
+include: "ad_impressions.view"
 include: "ad_metrics_base.view"
-include: "period_fact.view"
 include: "date_base.view"
-include: "period_base.view"
-
 include: "fb_ad_impressions.view"
+include: "period_base.view"
 
 view: combined_ad_impressions_base {
   extends: [ad_metrics_base, date_base, period_base]
@@ -24,7 +23,6 @@ view: combined_ad_impressions_base {
   dimension: ad_group_id {
     hidden: yes
   }
-  dimension: device {}
 }
 
 explore: google_adwords_ad_impressions {
@@ -38,7 +36,7 @@ view: google_adwords_ad_impressions {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: ad_impressions {
+    explore_source: ad_impressions_ad_group {
       column: _date { field: fact.date_date}
       column: account_name { field: customer.account_descriptive_name }
       column: account_id { field: fact.external_customer_id_string }
@@ -46,7 +44,6 @@ view: google_adwords_ad_impressions {
       column: campaign_id { field: fact.campaign_id_string }
       column: ad_group_name { field: ad_group.ad_group_name }
       column: ad_group_id { field: fact.ad_group_id_string }
-      column: device {field: fact.device_type }
       column: cost { field: fact.total_cost }
       column: impressions { field: fact.total_impressions }
       column: clicks { field: fact.total_clicks }
@@ -75,7 +72,6 @@ view: facebook_ad_impressions {
       column: campaign_id { field: fact.campaign_id }
       column: ad_group_name { field: fact.adset_name }
       column: ad_group_id { field: fact.adset_id }
-      column: device { field: fact.device_type }
       column: cost { field: fact.total_cost }
       column: impressions { field: fact.total_impressions }
       column: clicks { field: fact.total_clicks }
@@ -103,7 +99,6 @@ view: combined_ad_impressions {
           google_adwords_ad_impressions.ad_group_name AS ad_group_name,
           google_adwords_ad_impressions.campaign_id AS campaign_id,
           google_adwords_ad_impressions.campaign_name AS campaign_name,
-          google_adwords_ad_impressions.device AS device,
           google_adwords_ad_impressions._date AS _date,
           google_adwords_ad_impressions.Impressions AS impressions,
           google_adwords_ad_impressions.Cost AS cost,
@@ -120,7 +115,6 @@ view: combined_ad_impressions {
           facebook_ad_impressions.ad_group_name AS ad_group_name,
           facebook_ad_impressions.campaign_id AS campaign_id,
           facebook_ad_impressions.campaign_name AS campaign_name,
-          facebook_ad_impressions.device AS device,
           facebook_ad_impressions._date AS _date,
           facebook_ad_impressions.Impressions AS impressions,
           facebook_ad_impressions.Cost AS cost,

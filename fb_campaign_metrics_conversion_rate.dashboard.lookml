@@ -5,7 +5,7 @@
   elements:
   - title: Conversion Rate To Date
     name: Conversion Rate To Date
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -17,9 +17,6 @@
     - fact.average_click_rate
     fill_fields:
     - fact.date_date
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_date desc
     limit: 500
@@ -177,8 +174,8 @@
       __FILE: app_marketing_analytics/fb_campaign_metrics_conversion_rate.dashboard.lookml
       __LINE_NUM: 144
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -187,15 +184,12 @@
     height: 11
   - title: Conversion Rate By Country
     name: Conversion Rate By Country
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_country
     type: looker_geo_choropleth
     fields:
     - fact.country
     - fact.average_conversion_rate
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -277,8 +271,8 @@
         name: Cost
         axisId: fact.total_cost
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
@@ -287,8 +281,8 @@
     height: 13
   - title: Conversion Rate By Age & Gender
     name: Conversion Rate By Age & Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: table
     fields:
     - fact.age
@@ -298,9 +292,6 @@
     - fact.gender
     fill_fields:
     - fact.gender
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.gender
     - fact.age 0
@@ -385,8 +376,8 @@
       strikethrough: false
       fields:
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 23
@@ -395,15 +386,12 @@
     height: 6
   - title: Conversion Rate By Gender
     name: Conversion Rate By Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.gender
     - fact.average_conversion_rate
-    filters:
-      campaigns.name: ''
-      adsets.name: ''
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -464,8 +452,8 @@
         name: Conversion Rate
         axisId: fact.average_conversion_rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
@@ -474,15 +462,12 @@
     height: 6
   - title: Conversion Rate By Age
     name: Conversion Rate By Age
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.age
     - fact.average_conversion_rate
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -543,8 +528,8 @@
         name: Conversion Rate
         axisId: fact.average_conversion_rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 17
@@ -553,7 +538,7 @@
     height: 6
   - title: Conversion Rate By Day Of Week
     name: Conversion Rate By Day Of Week
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -561,9 +546,6 @@
     - fact.average_conversion_rate
     fill_fields:
     - fact.date_day_of_week
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_day_of_week
     limit: 500
@@ -624,8 +606,8 @@
         name: Conversion Rate
         axisId: fact.average_conversion_rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 29
@@ -634,17 +616,14 @@
     height: 6
   - title: Conversion Rate By Device
     name: Conversion Rate By Device
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.device_type
     - fact.average_conversion_rate
     fill_fields:
     - fact.device_type
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -705,8 +684,8 @@
         name: Conversion Rate
         axisId: fact.average_conversion_rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 24
@@ -715,15 +694,12 @@
     height: 5
   - title: Conversion Rate By Platform
     name: Conversion Rate By Platform
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.publisher_platform
     - fact.average_conversion_rate
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -784,8 +760,8 @@
         name: Conversion Rate
         axisId: fact.average_conversion_rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 24
@@ -794,19 +770,16 @@
     height: 5
   - title: Ad Conversion Rate Change
     name: Ad Conversion Rate Change
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_bar
     fields:
-    - ads.name
-    - adsets.name
-    - campaigns.name
+    - ad.name
+    - adset.name
+    - campaign.name
     - fact.average_conversion_rate_period_percent_change_abs
     - last_fact.average_conversion_rate
     - fact.average_conversion_rate
-    filters:
-      fact.period: 28 day
-      fact.date_period_latest: 'Yes'
     sorts:
     - fact.average_conversion_rate_period_percent_change_abs desc
     limit: 50
@@ -844,8 +817,8 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - adsets.name
-    - campaigns.name
+    - adset.name
+    - campaign.name
     - fact.average_conversion_rate_period_percent_change_abs
     series_types: {}
     colors:
@@ -892,18 +865,15 @@
     height: 6
   - title: Adset Conversion Rate Change
     name: Adset Conversion Rate Change
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_bar
     fields:
-    - adsets.name
-    - campaigns.name
+    - adset.name
+    - campaign.name
     - fact.average_conversion_rate_period_percent_change_abs
     - last_fact.average_conversion_rate
     - fact.average_conversion_rate
-    filters:
-      fact.period: 28 day
-      fact.date_period_latest: 'Yes'
     sorts:
     - fact.average_conversion_rate_period_percent_change_abs desc
     limit: 50
@@ -941,7 +911,7 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - campaigns.name
+    - campaign.name
     - fact.average_conversion_rate_period_percent_change_abs
     series_types: {}
     colors:

@@ -4,7 +4,7 @@
   elements:
   - title: Cost Per Conversion To Date
     name: Cost Per Conversion To Date
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_column
     fields:
@@ -144,8 +144,8 @@
     height: 10
   - title: Cost Per Conversion by Device
     name: Cost Per Conversion by Device
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.average_cost_per_conversion
@@ -224,8 +224,8 @@
     height: 4
   - title: Cost Per Conversion by Bid Strategy
     name: Cost Per Conversion by Bid Strategy
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_keyword
     type: looker_bar
     fields:
     - fact.average_cost_per_conversion
@@ -302,8 +302,8 @@
     height: 4
   - title: Cost Per Conversion by Hour of Day
     name: Cost Per Conversion by Hour of Day
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
     - fact.average_cost_per_conversion
@@ -425,7 +425,7 @@
     height: 7
   - title: Cost Per Conversion by Day of Week
     name: Cost Per Conversion by Day of Week
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -550,8 +550,8 @@
     height: 7
   - title: Cost Per Conversion versions by Network
     name: Cost Per Conversion versions by Network
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.ad_network_type
@@ -631,8 +631,8 @@
     height: 4
   - title: Cost Per Conversion by Day of Week and Hour of Day
     name: Cost Per Conversion by Day of Week and Hour of Day
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_ad_group_hour
     type: table
     fields:
     - fact.average_cost_per_conversion
@@ -750,7 +750,7 @@
     height: 14
   - title: Ad Group Cost Per Conversion Change
     name: Ad Group Cost Per Conversion Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -858,7 +858,7 @@
     height: 9
   - title: Ad Cost Per Conversion Change
     name: Ad Cost Per Conversion Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -969,7 +969,7 @@
     height: 9
   - title: Keyword Cost Per Conversion Change
     name: Keyword Cost Per Conversion Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -1077,8 +1077,8 @@
     height: 9
   - title: Cost Per Conversion By State
     name: Cost Per Conversion By State
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_geo
     type: looker_map
     fields:
     - geo_us_state.state
@@ -1138,7 +1138,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: campaign.campaign_name
@@ -1148,7 +1148,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: ad_group.ad_group_name
@@ -1158,7 +1158,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: fact.period
@@ -1168,7 +1168,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: fact.date_period_latest

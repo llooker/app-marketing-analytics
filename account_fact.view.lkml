@@ -1,6 +1,7 @@
+include: "/ama_adwords_adapter/customer.view"
+
 include: "ad_metrics_period_comparison_base.view"
 include: "google_ad_metrics_base.view"
-include: "customer.view"
 include: "date_base.view"
 include: "period_base.view"
 
@@ -17,13 +18,27 @@ explore: account_date_fact {
       ${fact.date_last_period} = ${last_fact.date_period} AND
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;
     relationship: one_to_one
-    fields: [last_fact.google_ad_metrics_set*]
   }
   join: customer {
+    from: customer_adapter
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${fact.date_date} = ${customer.date_date} ;;
+      ${fact._date} = ${customer._date} ;;
     relationship: many_to_one
+  }
+}
+
+view: account_key_base {
+  extends: [date_primary_key_base]
+  extension: required
+
+  dimension: account_key_base {
+    hidden: yes
+    sql: CAST(${external_customer_id} AS STRING) ;;
+  }
+  dimension: key_base {
+    hidden: yes
+    sql: ${account_key_base} ;;
   }
 }
 
@@ -32,7 +47,6 @@ view: account_date_fact {
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-#     partition_keys: ["_date"]
     explore_source: ad_impressions {
       column: _date { field: fact.date_date }
       column: external_customer_id { field: fact.external_customer_id }

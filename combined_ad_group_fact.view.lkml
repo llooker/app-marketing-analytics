@@ -18,7 +18,6 @@ explore: combined_ad_group_date_fact {
       ${fact.date_last_period} = ${last_fact.date_period} AND
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;
     relationship: one_to_one
-    fields: [last_fact.ad_metrics_set*]
   }
 
   # TODO make these depend on channel
