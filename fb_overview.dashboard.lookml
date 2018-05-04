@@ -4,16 +4,13 @@
   elements:
   - title: Click Rate
     name: Click Rate
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: single_value
     fields:
     - fact.date_period
     - fact.average_click_rate
     - last_fact.average_click_rate
-    filters:
-      campaigns.name: ''
-      adsets.name: ''
     sorts:
     - fact.date_period
     limit: 1
@@ -90,8 +87,8 @@
       last_fact.cumulative_spend: Prior Period
     single_value_title: Click Rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 13
@@ -100,16 +97,13 @@
     height: 3
   - title: Cost Per Click
     name: Cost Per Click
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: single_value
     fields:
     - fact.date_period
     - fact.average_cost_per_click
     - last_fact.average_cost_per_click
-    filters:
-      campaigns.name: ''
-      adsets.name: ''
     sorts:
     - fact.date_period
     limit: 1
@@ -186,8 +180,8 @@
       last_fact.cumulative_spend: Prior Period
     single_value_title: Per Click
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 16
@@ -196,7 +190,7 @@
     height: 3
   - title: Click Trend
     name: Click Trend
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -205,9 +199,6 @@
     - fact.average_click_rate
     fill_fields:
     - fact.date_date
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_date desc
     limit: 500
@@ -362,8 +353,8 @@
       __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
       __LINE_NUM: 1347
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 13
@@ -372,7 +363,7 @@
     height: 6
   - title: Campaigns
     name: Campaigns
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: table
     fields:
@@ -380,12 +371,9 @@
     - fact.total_conversions
     - fact.average_cost_per_conversion
     - fact.average_conversion_rate
-    - campaigns.name
+    - campaign.name
     - fact.average_cost_per_click
     - fact.average_click_rate
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_cost desc
     limit: 10
@@ -545,8 +533,8 @@
     column_group_spacing_ratio:
     show_dropoff: true
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 19
@@ -555,7 +543,7 @@
     height: 6
   - title: Spend
     name: Spend
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: single_value
     fields:
@@ -636,8 +624,8 @@
       fact.cumulative_spend: This Period
       last_fact.cumulative_spend: Prior Period
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -646,7 +634,7 @@
     height: 3
   - title: Conversions
     name: Conversions
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: single_value
     fields:
@@ -727,8 +715,8 @@
       fact.cumulative_spend: This Period
       last_fact.cumulative_spend: Prior Period
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -737,7 +725,7 @@
     height: 3
   - title: Cost Per Conversion
     name: Cost Per Conversion
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: single_value
     fields:
@@ -820,8 +808,8 @@
       last_fact.cumulative_spend: Prior Period
     single_value_title: Per Conversion
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -830,7 +818,7 @@
     height: 3
   - title: Conversion Rate
     name: Conversion Rate
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: single_value
     fields:
@@ -913,8 +901,8 @@
       last_fact.cumulative_spend: Prior Period
     single_value_title: Conversion Rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -923,7 +911,7 @@
     height: 3
   - title: Conversion Trend
     name: Conversion Trend
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -1090,8 +1078,8 @@
       __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
       __LINE_NUM: 1171
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 3
@@ -1100,7 +1088,7 @@
     height: 10
   - title: Spend To Date
     name: Spend To Date
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_area
     fields:
@@ -1160,8 +1148,8 @@
       fact.cumulative_spend: This Period
       last_fact.cumulative_spend: Prior Period
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 3
@@ -1170,7 +1158,7 @@
     height: 10
   - title: Funnel
     name: Funnel
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -1336,8 +1324,8 @@
     column_group_spacing_ratio:
     show_dropoff: true
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 13
@@ -1351,27 +1339,27 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     listens_to_filters: []
-    field: campaigns.name
+    field: campaign.name
   - name: Adset
     title: Adset
     type: field_filter
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     listens_to_filters: []
-    field: adsets.name
+    field: adset.name
   - name: Period
     title: Period
     type: field_filter
     default_value: 28 day
     allow_multiple_values: true
     required: false
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     listens_to_filters: []
     field: fact.period
@@ -1381,7 +1369,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     listens_to_filters: []
     field: fact.date_period_latest

@@ -5,15 +5,12 @@
   elements:
   - title: Cost Per Click By Age
     name: Cost Per Click By Age
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.age
     - fact.average_cost_per_click
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -84,7 +81,7 @@
     height: 6
   - title: Cost Per Click To Date
     name: Cost Per Click To Date
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -96,9 +93,6 @@
     - fact.average_click_rate
     fill_fields:
     - fact.date_date
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_date desc
     limit: 500
@@ -234,8 +228,8 @@
         name: Click Through Rate
         axisId: fact.average_click_rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -244,15 +238,12 @@
     height: 11
   - title: Cost Per Click By Country
     name: Cost Per Click By Country
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_country
     type: looker_geo_choropleth
     fields:
     - fact.total_cost
     - fact.country
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -344,15 +335,12 @@
     height: 12
   - title: Cost Per Click By Platform
     name: Cost Per Click By Platform
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.publisher_platform
     - fact.average_cost_per_click
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -422,7 +410,7 @@
     height: 5
   - title: Cost Per Click by Day of Week
     name: Cost Per Click by Day of Week
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -430,9 +418,6 @@
     - fact.average_cost_per_click
     fill_fields:
     - fact.date_day_of_week
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_day_of_week
     limit: 500
@@ -503,17 +488,14 @@
     height: 6
   - title: Cost Per Click By Device
     name: Cost Per Click By Device
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.average_cost_per_click
     - fact.device_type
     fill_fields:
     - fact.device_type
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -583,15 +565,12 @@
     height: 5
   - title: Cost Per Click By Gender
     name: Cost Per Click By Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.average_cost_per_click
     - fact.gender
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -662,8 +641,8 @@
     height: 5
   - title: Cost Per Click By Age & Gender
     name: Cost Per Click By Age & Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: table
     fields:
     - fact.age
@@ -673,9 +652,6 @@
     - fact.age
     fill_fields:
     - fact.gender
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.gender
     - fact.age 0
@@ -770,17 +746,16 @@
     height: 6
   - title: Ad Cost Per Click Change
     name: Ad Cost Per Click Change
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_bar
     fields:
-    - ads.name
-    - adsets.name
-    - campaigns.name
+    - ad.name
+    - adset.name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     - last_fact.average_cost_per_click
     - fact.average_cost_per_click
-    filters:
     sorts:
     - fact.average_cost_per_click_period_percent_change_abs desc
     limit: 50
@@ -818,8 +793,8 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - adsets.name
-    - campaigns.name
+    - adset.name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     series_types: {}
     colors:
@@ -863,8 +838,8 @@
         name: This Period
         axisId: fact.average_cost_per_click
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 28
@@ -873,17 +848,16 @@
     height: 6
   - title: Adset Cost Per Click Change
     name: Adset Cost Per Click Change
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_bar
     fields:
-    - adsets.name
-    - campaigns.name
+    - adset.name
+    - campaign.name
     - fact.date_period
     - fact.average_cost_per_click_period_percent_change_abs
     - last_fact.average_cost_per_click
     - fact.average_cost_per_click
-    filters:
     sorts:
     - fact.average_cost_per_click_period_percent_change_abs desc
     limit: 50
@@ -921,7 +895,7 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - campaigns.name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     series_types: {}
     colors:
@@ -967,8 +941,8 @@
         name: This Period
         axisId: fact.average_cost_per_click
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 28

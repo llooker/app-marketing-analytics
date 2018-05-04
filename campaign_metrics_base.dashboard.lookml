@@ -14,7 +14,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     field: campaign.campaign_name
   - name: Ad Group
@@ -23,7 +23,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     field: ad_group.ad_group_name
   - name: Period
@@ -32,7 +32,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     field: fact.period
   - name: Period Latest
@@ -41,6 +41,6 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     field: fact.date_period_latest

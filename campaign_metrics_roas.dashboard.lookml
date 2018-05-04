@@ -4,7 +4,7 @@
   elements:
   - title: Return On Ad Spend To Date
     name: Return On Ad Spend To Date
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_column
     fields:
@@ -147,8 +147,8 @@
     height: 10
   - title: Return On Ad Spend by Device
     name: Return On Ad Spend by Device
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.device_type
@@ -225,8 +225,8 @@
     height: 4
   - title: Return On Ad Spend by Bid Strategy
     name: Return On Ad Spend by Bid Strategy
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_keyword
     type: looker_bar
     fields:
     - keyword.bidding_strategy_type
@@ -301,7 +301,7 @@
     height: 4
   - title: Return On Ad Spend by Day of Week
     name: Return On Ad Spend by Day of Week
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -426,8 +426,8 @@
     height: 6
   - title: Return On Ad Spend by Hour of Day
     name: Return On Ad Spend by Hour of Day
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
     - fact.hour_of_day
@@ -549,8 +549,8 @@
     height: 6
   - title: Return On Ad Spend by Day of Week and Hour of Day
     name: Return On Ad Spend by Day of Week and Hour of Day
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_ad_group_hour
     type: table
     fields:
     - fact.hour_of_day
@@ -667,8 +667,8 @@
     height: 12
   - title: Return On Ad Spend by Network
     name: Return On Ad Spend by Network
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.ad_network_type
@@ -747,7 +747,7 @@
     height: 4
   - title: Ad Group Return On Ad Spend Change
     name: Ad Group Return On Ad Spend Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -844,7 +844,7 @@
     height: 9
   - title: Keyword Return On Ad Spend Change
     name: Keyword Return On Ad Spend Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -943,7 +943,7 @@
     height: 9
   - title: Ad Return On Ad Spend Change
     name: Ad Return On Ad Spend Change
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     type: looker_bar
     fields:
@@ -1053,8 +1053,8 @@
     height: 9
   - title: Return On Ad Spend By State
     name: Return On Ad Spend By State
-    model: looker_app_google_adwords
-    explore: ad_impressions
+    model: marketing_analytics
+    explore: ad_impressions_geo
     type: looker_map
     fields:
     - geo_us_state.state
@@ -1112,7 +1112,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: campaign.campaign_name
@@ -1122,7 +1122,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: ad_group.ad_group_name
@@ -1132,7 +1132,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: fact.period
@@ -1142,7 +1142,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: looker_app_google_adwords
+    model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
     field: fact.date_period_latest

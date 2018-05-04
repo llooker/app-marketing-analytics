@@ -1,6 +1,7 @@
+include: "/ama_adwords_adapter/campaign.view"
+
 include: "ad_metrics_parent_comparison_base.view"
 include: "account_fact.view"
-include: "campaign.view"
 include: "recent_changes.view"
 
 explore: campaign_date_fact {
@@ -23,13 +24,13 @@ explore: campaign_date_fact {
     sql_on: ${fact.external_customer_id} = ${parent_fact.external_customer_id} AND
       ${fact.date_date} = ${parent_fact.date_date};;
     relationship: many_to_one
-    fields: [parent_fact.google_ad_metrics_set*]
   }
   join: campaign {
+    from: campaign_adapter
     view_label: "Campaign"
     sql_on: ${fact.external_customer_id} = ${campaign.external_customer_id} AND
       ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.date_date} = ${campaign.date_date} ;;
+      ${fact._date} = ${campaign._date} ;;
     relationship: many_to_one
   }
   join: status_changes {
@@ -40,13 +41,36 @@ explore: campaign_date_fact {
   }
 }
 
+view: campaign_key_base {
+  extends: [account_key_base]
+  extension: required
+
+  dimension: campaign_key_base {
+    hidden: yes
+    sql: CONCAT(${account_key_base}, "-", CAST(${campaign_id} as STRING)) ;;
+  }
+  dimension: key_base {
+    hidden: yes
+    sql: ${campaign_key_base} ;;
+  }
+}
+
 view: campaign_date_fact {
   extends: [ad_metrics_parent_comparison_base, account_date_fact, campaign_key_base]
 
   derived_table: {
     datagroup_trigger: etl_datagroup
-    explore_source: ad_impressions {
+    explore_source: ad_impressions_campaign {
+      column: _date { field: fact.date_date }
+      column: external_customer_id { field: fact.external_customer_id }
       column: campaign_id {field: fact.campaign_id}
+      column: averageposition {field: fact.weighted_average_position}
+      column: clicks {field: fact.total_clicks }
+      column: conversions {field: fact.total_conversions}
+      column: conversionvalue {field: fact.total_conversionvalue}
+      column: cost {field: fact.total_cost}
+      column: impressions { field: fact.total_impressions}
+      column: interactions {field: fact.total_interactions}
     }
   }
   dimension: campaign_id {

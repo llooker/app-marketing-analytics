@@ -7,7 +7,6 @@ view: fb_ad_metrics_base {
   dimension: frequency {
     hidden: yes
     type: number
-    sql: ${TABLE}.frequency ;;
     value_format_name: decimal_1
   }
 
@@ -19,11 +18,4 @@ view: fb_ad_metrics_base {
 #     expression: sum(${frequency}*${impressions}) / NULLIF(${total_impressions},0) ;;
     value_format_name: decimal_1
   }
-
-  set: fb_ad_metrics_set {
-    fields: [
-      ad_metrics_set*
-    ]
-  }
-
 }

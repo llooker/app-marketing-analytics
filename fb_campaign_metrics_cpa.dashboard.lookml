@@ -5,7 +5,7 @@
   elements:
   - title: Cost Per Conversion To Date
     name: Cost Per Conversion To Date
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -17,9 +17,6 @@
     - fact.average_click_rate
     fill_fields:
     - fact.date_date
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_date desc
     limit: 500
@@ -157,8 +154,8 @@
         name: Click Through Rate
         axisId: fact.average_click_rate
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -167,17 +164,12 @@
     height: 11
   - title: Cost Per Conversion By Age
     name: Cost Per Conversion By Age
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.age
     - fact.average_cost_per_conversion
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
-      fact.campaign_name: ''
-      fact.adset_name: ''
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -238,8 +230,8 @@
         name: Cost per Conversion
         axisId: fact.average_cost_per_conversion
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
@@ -248,15 +240,12 @@
     height: 6
   - title: Cost Per Conversion By Country
     name: Cost Per Conversion By Country
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_country
     type: looker_geo_choropleth
     fields:
     - fact.country
     - fact.average_cost_per_conversion
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -338,8 +327,8 @@
         name: Cost
         axisId: fact.total_cost
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 11
@@ -348,17 +337,12 @@
     height: 13
   - title: Cost Per Conversion By Gender
     name: Cost Per Conversion By Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
     - fact.gender
     - fact.average_cost_per_conversion
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
-      fact.campaign_name: ''
-      fact.adset_name: ''
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -419,8 +403,8 @@
         name: Cost per Conversion
         axisId: fact.average_cost_per_conversion
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 17
@@ -429,8 +413,8 @@
     height: 6
   - title: Cost Per Conversion By Age & Gender
     name: Cost Per Conversion By Age & Gender
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_age_and_gender
     type: table
     fields:
     - fact.age
@@ -440,11 +424,6 @@
     - fact.gender
     fill_fields:
     - fact.gender
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
-      fact.campaign_name: ''
-      fact.adset_name: ''
     sorts:
     - fact.gender
     - fact.age 0
@@ -529,8 +508,8 @@
       strikethrough: false
       fields:
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 23
@@ -539,19 +518,14 @@
     height: 6
   - title: Cost Per Conversion By Device
     name: Cost Per Conversion By Device
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.device_type
     - fact.average_cost_per_conversion
     fill_fields:
     - fact.device_type
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
-      fact.campaign_name: ''
-      fact.adset_name: ''
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -612,8 +586,8 @@
         name: Cost per Conversion
         axisId: fact.average_cost_per_conversion
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 24
@@ -622,15 +596,12 @@
     height: 5
   - title: Cost Per Conversion By Platform
     name: Cost Per Conversion By Platform
-    model: looker_app_facebook_ads
-    explore: fb_ad_impressions
+    model: marketing_analytics
+    explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
     - fact.publisher_platform
     - fact.average_cost_per_conversion
-    filters:
-      fact.campaign_name: ''
-      fact.adset_name: ''
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -691,8 +662,8 @@
         name: Cost per Conversion
         axisId: fact.average_cost_per_conversion
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 24
@@ -701,7 +672,7 @@
     height: 5
   - title: Cost Per Conversion By Day Of Week
     name: Cost Per Conversion By Day Of Week
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -709,9 +680,6 @@
     - fact.average_cost_per_conversion
     fill_fields:
     - fact.date_day_of_week
-    filters:
-      adsets.name: ''
-      campaigns.name: ''
     sorts:
     - fact.date_day_of_week
     limit: 500
@@ -772,8 +740,8 @@
         name: Cost per Conversion
         axisId: fact.average_cost_per_conversion
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 29
@@ -782,16 +750,15 @@
     height: 6
   - title: Adset Cost Per Conversion Change
     name: Adset Cost Per Conversion Change
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_bar
     fields:
-    - adsets.name
-    - campaigns.name
+    - adset.name
+    - campaign.name
     - fact.average_cost_per_conversion_period_percent_change_abs
     - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
-    filters:
     sorts:
     - fact.average_cost_per_conversion_period_percent_change_abs desc
     limit: 50
@@ -829,7 +796,7 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - campaigns.name
+    - campaign.name
     - fact.average_cost_per_conversion_period_percent_change_abs
     series_types: {}
     colors:
@@ -873,8 +840,8 @@
         name: This Period
         axisId: fact.average_cost_per_conversion
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 29
@@ -883,17 +850,16 @@
     height: 6
   - title: Ad Cost Per Conversion Change
     name: Ad Cost Per Conversion Change
-    model: looker_app_facebook_ads
+    model: marketing_analytics
     explore: fb_period_fact
     type: looker_bar
     fields:
-    - ads.name
-    - adsets.name
-    - campaigns.name
+    - ad.name
+    - adset.name
+    - campaign.name
     - fact.average_cost_per_conversion_period_percent_change_abs
     - last_fact.average_cost_per_conversion
     - fact.average_cost_per_conversion
-    filters:
     sorts:
     - fact.average_cost_per_conversion_period_percent_change_abs desc
     limit: 50
@@ -931,8 +897,8 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - adsets.name
-    - campaigns.name
+    - adset.name
+    - campaign.name
     - fact.average_cost_per_conversion_period_percent_change_abs
     series_types: {}
     colors:
@@ -976,8 +942,8 @@
         name: This Period Cost per Conversion
         axisId: fact.average_cost_per_conversion
     listen:
-      Campaign: campaigns.name
-      Adset: adsets.name
+      Campaign: campaign.name
+      Adset: adset.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 29
