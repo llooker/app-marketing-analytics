@@ -631,7 +631,7 @@
         "dashboardCollection": {
                     "dashboards": [
                       {
-                        "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_spend",
+                        "lookmlID": "marketing_analytics::fb_campaign_metrics_spend",
                         "name": "Spend",
                         "permalink": "spend",
                         "singleValueReference": {
@@ -639,7 +639,7 @@
                       }
                     },
                     {
-                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_conversions",
+                      "lookmlID": "marketing_analytics::fb_campaign_metrics_conversions",
                       "name": "Conversions",
                       "permalink": "conversions",
                       "singleValueReference": {
@@ -647,7 +647,7 @@
                       }
                     },
                     {
-                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_cpa",
+                      "lookmlID": "marketing_analytics::fb_campaign_metrics_cpa",
                       "name": "Cost Per Conversion",
                       "permalink": "cost_per_conversion",
                       "singleValueReference": {
@@ -655,7 +655,7 @@
                       }
                     },
                     {
-                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_conversion_rate",
+                      "lookmlID": "marketing_analytics::fb_campaign_metrics_conversion_rate",
                       "name": "Conversion Rate",
                       "permalink": "conversion_rate",
                       "singleValueReference": {
@@ -663,7 +663,7 @@
                       }
                     },
                     {
-                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_cost_per_click",
+                      "lookmlID": "marketing_analytics::fb_campaign_metrics_cost_per_click",
                       "name": "Cost Per Click",
                       "permalink": "cost_per_click",
                       "singleValueReference": {
@@ -671,7 +671,7 @@
                       }
                     },
                     {
-                      "lookmlID": "looker_app_facebook_ads::fb_campaign_metrics_ctr",
+                      "lookmlID": "marketing_analytics::fb_campaign_metrics_ctr",
                       "name": "Click Through Rate",
                       "permalink": "click_through_rate",
                       "singleValueReference": {
@@ -683,7 +683,7 @@
                 },
             "singleValuesSources": [
                   {
-                    "model": "looker_app_facebook_ads",
+                    "model": "marketing_analytics",
                     "view": "fb_adset_date_fact",
                     "params": "&sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period",
                     "fields": {
@@ -724,7 +724,7 @@
                 },
                 {
                   "autoSuggest": {
-                    "model": "looker_app_facebook_ads",
+                    "model": "marketing_analytics",
                     "view": "fb_ad_impressions"
                   },
                   "field": "campaigns.name",
@@ -734,7 +734,7 @@
                 },
                 {
                   "autoSuggest": {
-                    "model": "looker_app_facebook_ads",
+                    "model": "marketing_analytics",
                     "view": "fb_ad_impressions"
                   },
                   "facetedBy": [
@@ -766,7 +766,7 @@
             },
             {
               "autoSuggest": {
-                "model": "looker_app_facebook_ads",
+                "model": "marketing_analytics",
                 "view": "fb_ad_impressions"
               },
               "field": "campaigns.name",
@@ -775,7 +775,7 @@
             },
             {
               "autoSuggest": {
-                "model": "looker_app_facebook_ads",
+                "model": "marketing_analytics",
                 "view": "fb_ad_impressions"
               },
               "field": "adsets.aname",
@@ -800,7 +800,7 @@
                   "field": "fact.cost_per_conversion_count_big_mover"
                 }
               },
-              "model": "looker_app_facebook_ads",
+              "model": "marketing_analytics",
               "params": "sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[adsets.effective_status]=ACTIVE&f[ads.status]=ACTIVE&f[camapigns.effective_status]=ACTIVE",
               "view": "fb_ad_date_fact"
             },
@@ -817,7 +817,7 @@
                   "field": "fact.cost_per_conversion_count_big_mover"
                 }
               },
-              "model": "looker_app_facebook_ads",
+              "model": "marketing_analytics",
               "params": "sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[adsets.effective_status]=ACTIVE&f[camapigns.effective_status]=ACTIVE",
               "view": "fb_adset_date_fact"
             }
