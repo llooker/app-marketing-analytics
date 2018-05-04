@@ -649,7 +649,7 @@
     - fact.gender
     - fact.average_cost_per_click
     pivots:
-    - fact.age
+    - fact.gender
     fill_fields:
     - fact.gender
     sorts:
