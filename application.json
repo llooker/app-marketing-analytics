@@ -44,6 +44,15 @@
           "dashboardCollection": {
             "dashboards": [
               {
+                "lookmlID": "marketing_analytics::campaign_metrics_roas",
+                "name": "Return On Ad Spend",
+                "permalink": "return_on_ad_spend",
+                "singleValueReference": {
+                  "key": "return_on_ad_spend"
+                },
+                "zeroHide": true
+              },
+              {
                 "lookmlID": "marketing_analytics::campaign_metrics_spend",
                 "name": "Spend",
                 "permalink": "spend",
@@ -89,14 +98,6 @@
                 "permalink": "click_through_rate",
                 "singleValueReference": {
                   "key": "click_through_rate"
-                }
-              },
-              {
-                "lookmlID": "marketing_analytics::campaign_metrics_roas",
-                "name": "Return On Ad Spend",
-                "permalink": "return_on_ad_spend",
-                "singleValueReference": {
-                  "key": "return_on_ad_spend"
                 }
               }
             ],

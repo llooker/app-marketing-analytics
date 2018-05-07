@@ -16,6 +16,20 @@ explore: fb_adset_date_fact {
       ${fact.date_day_of_period} = ${last_fact.date_day_of_period} ;;
     relationship: one_to_one
   }
+  join: campaign {
+    from: campaign_fb_adapter
+    view_label: "Campaign"
+    type: left_outer
+    sql_on: ${fact.campaign_id} = ${campaign.id} ;;
+    relationship: many_to_one
+  }
+  join: adset {
+    from: adset_fb_adapter
+    view_label: "Adset"
+    type: left_outer
+    sql_on: ${fact.adset_id} = ${adset.id} ;;
+    relationship: many_to_one
+  }
   join: parent_fact {
     view_label: "Campaign This Period"
     from: fb_campaign_date_fact
