@@ -147,7 +147,7 @@ view: ad_metrics_base {
   }
 
   measure: average_value_per_click {
-    label: "Value per Conversion"
+    label: "Value per Click"
     description: "Average value per ad click."
     type: number
     sql: ${total_conversionvalue}*1.0 / NULLIF(${total_clicks},0) ;;
@@ -268,7 +268,8 @@ view: ad_metrics_base {
       average_cost_per_click,
       average_cost_per_conversion,
       cumulative_conversions,
-      cumulative_spend
+      cumulative_spend,
+      average_value_per_cost
     ]
   }
 

@@ -1,20 +1,22 @@
-include: "ad.view.lkml"
+include: "/ama_adwords_adapter/ad.view"
+include: "/ama_adwords_adapter/keyword.view"
+
 include: "date_base.view"
-include: "keyword.view.lkml"
 include: "period_base.view"
 
 explore: ad_status {
   hidden: yes
 }
+
 view: ad_status {
   derived_table: {
-    explore_source: ad {
-      column: _date {}
-      column: external_customer_id {}
-      column: campaign_id {}
-      column: ad_group_id {}
-      column: creative_id {}
-      column: status {}
+    explore_source: ad_adapter {
+      column: _date { field: ad._date }
+      column: external_customer_id { field: ad.external_customer_id }
+      column: campaign_id { field: ad.campaign_id }
+      column: ad_group_id { field: ad.ad_group_id }
+      column: creative_id { field: ad.creative_id }
+      column: status { field: ad.status }
       derived_column: status_lag {
         sql: LAG(status, 1, "Not Present") OVER (PARTITION BY external_customer_id, campaign_id, ad_group_id, creative_id ORDER BY _date ASC) ;;
       }
@@ -36,15 +38,16 @@ view: ad_status {
 explore: keyword_status {
   hidden: yes
 }
+
 view: keyword_status {
   derived_table: {
-    explore_source: keyword {
-      column: _date {}
-      column: external_customer_id {}
-      column: campaign_id {}
-      column: ad_group_id {}
-      column: criterion_id {}
-      column: status {}
+    explore_source: keyword_adapter {
+      column: _date { field: keyword._date }
+      column: external_customer_id { field: keyword.external_customer_id }
+      column: campaign_id { field: keyword.campaign_id }
+      column: ad_group_id { field: keyword.ad_group_id }
+      column: criterion_id { field: keyword.criterion_id }
+      column: status { field: keyword.status }
       derived_column: status_lag {
         sql: LAG(status, 1, "Not Present") OVER (PARTITION BY external_customer_id, campaign_id, ad_group_id, criterion_id ORDER BY _date ASC) ;;
       }
@@ -66,13 +69,14 @@ view: keyword_status {
 explore: ad_group_status {
   hidden: yes
 }
+
 view: ad_group_status {
   derived_table: {
-    explore_source: ad_group {
-      column: _date {}
-      column: external_customer_id {}
-      column: campaign_id {}
-      column: ad_group_id {}
+    explore_source: ad_group_adapter {
+      column: _date { field: ad_group._date }
+      column: external_customer_id { field: ad_group.external_customer_id }
+      column: campaign_id { field: ad_group.campaign_id }
+      column: ad_group_id { field: ad_group.ad_group_id }
       column: status { field: ad_group.ad_group_status }
       derived_column: status_lag {
         sql: LAG(status, 1, "Not Present") OVER (PARTITION BY external_customer_id, campaign_id, ad_group_id ORDER BY _date ASC) ;;
@@ -94,12 +98,13 @@ view: ad_group_status {
 explore: campaign_status {
   hidden: yes
 }
+
 view: campaign_status {
   derived_table: {
-    explore_source: campaign {
-      column: _date {}
-      column: external_customer_id {}
-      column: campaign_id {}
+    explore_source: campaign_adapter {
+      column: _date { field: campaign._date }
+      column: external_customer_id { field: campaign.external_customer_id }
+      column: campaign_id { field: campaign.campaign_id }
       column: status { field: campaign.campaign_status }
       derived_column: status_lag {
         sql: LAG(status, 1, "Not Present") OVER (PARTITION BY external_customer_id, campaign_id ORDER BY _date ASC) ;;
@@ -117,6 +122,50 @@ view: campaign_status {
   }
 }
 
+
+explore: status_changes  {
+  hidden: yes
+  from: status_changes
+  view_name: fact
+
+  join: campaign {
+    from: campaign_adapter
+    view_label: "Campaigns"
+    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
+      ${fact.external_customer_id} = ${campaign.external_customer_id};;
+    relationship: many_to_one
+  }
+
+  join: ad_group {
+    from: ad_group_adapter
+    view_label: "Ad Groups"
+    sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
+      ${fact.campaign_id} = ${ad_group.campaign_id} AND
+      ${fact.external_customer_id} = ${ad_group.external_customer_id};;
+    relationship: many_to_one
+  }
+
+  join: ad {
+    from: ad_adapter
+    view_label: "Ads"
+    sql_on: ${fact.creative_id} = ${ad.creative_id} AND
+      ${fact.ad_group_id} = ${ad.ad_group_id} AND
+      ${fact.campaign_id} = ${ad.campaign_id} AND
+      ${fact.external_customer_id} = ${ad.external_customer_id};;
+    relationship:  many_to_one
+  }
+
+  join: keyword {
+    from: keyword_adapter
+    view_label: "Keywords"
+    sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
+      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
+      ${fact.campaign_id} = ${keyword.campaign_id} AND
+      ${fact.external_customer_id} = ${keyword.external_customer_id} ;;
+    relationship: many_to_one
+  }
+
+}
 
 view: status_changes {
   extends: [date_base, period_base]
@@ -305,13 +354,13 @@ view: status_changes {
     sql: COALESCE(${creative_id}, ${ad_group_id}, ${campaign_id}, ${criterion_id}) ;;
     description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
     html:  {% if (fact.content_type._value == 'Ad') %}
-    <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad.creative,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/explore/marketing_analytics/status_changes?fields=ad.creative,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% elsif (fact.content_type._value == 'Keyword') %}
-    <a href= "/explore/looker_app_google_adwords/status_changes?fields=keyword.criteria,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}} </a>
+    <a href= "/explore/marketing_analytics/status_changes?fields=keyword.criteria,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}} </a>
      {% elsif (fact.content_type._value == 'Ad Group') %}
-    <a href= "/explore/looker_app_google_adwords/status_changes?fields=ad_group.ad_group_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/explore/marketing_analytics/status_changes?fields=ad_group.ad_group_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% elsif (fact.content_type._value == 'Campaign') %}
-    <a href= "/explore/looker_app_google_adwords/status_changes?fields=campaign.campaign_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/explore/marketing_analytics/status_changes?fields=campaign.campaign_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% endif %} ;;
   }
 }

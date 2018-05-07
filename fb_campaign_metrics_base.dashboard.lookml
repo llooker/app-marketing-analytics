@@ -1,6 +1,6 @@
-- dashboard: campaign_metrics_base
+- dashboard: fb_campaign_metrics_base
   extension: required
-  title: Campaign Metrics Base
+  title: FB Campaign Metrics Base
   layout: newspaper
   embed_style:
     background_color: "#ffffff"
@@ -15,25 +15,28 @@
     allow_multiple_values: true
     required: false
     model: marketing_analytics
-    explore: period_fact
-    field: campaign.campaign_name
-  - name: Ad Group
-    title: Ad Group
+    explore: fb_ad_impressions
+    listens_to_filters: []
+    field: campaign.name
+  - name: Adset
+    title: Adset
     type: field_filter
     default_value: ''
     allow_multiple_values: true
     required: false
     model: marketing_analytics
-    explore: period_fact
-    field: ad_group.ad_group_name
+    explore: fb_ad_impressions
+    listens_to_filters: []
+    field: adset.name
   - name: Period
     title: Period
     type: field_filter
     default_value: 28 day
     allow_multiple_values: true
-    required: true
+    required: false
     model: marketing_analytics
-    explore: period_fact
+    explore: fb_ad_impressions
+    listens_to_filters: []
     field: fact.period
   - name: Period Latest
     title: Period Latest
@@ -42,5 +45,6 @@
     allow_multiple_values: true
     required: false
     model: marketing_analytics
-    explore: period_fact
+    explore: fb_ad_impressions
+    listens_to_filters: []
     field: fact.date_period_latest
