@@ -23,6 +23,13 @@ explore: fb_campaign_date_fact {
       ${fact.date_date} = ${parent_fact.date_date};;
     relationship: many_to_one
   }
+  join: campaign {
+    from: campaign_fb_adapter
+    view_label: "Campaign"
+    type: left_outer
+    sql_on: ${fact.campaign_id} = ${campaign.id} ;;
+    relationship: many_to_one
+  }
 }
 
 view: fb_campaign_key_base {
