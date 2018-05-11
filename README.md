@@ -1,6 +1,6 @@
-# Looker
+# Marketing Analytics by Looker
 
-### Using as an App with the App Host
+### Using as an App
 
 To use as an app, you first need to add a Google adapter in a project named `ama_adwords_adapter` and a Facebook adapter in a project named `ama_fb_adapter` as specified in the manifest.lkml.
 
