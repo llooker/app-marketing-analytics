@@ -639,8 +639,8 @@
     col: 0
     width: 8
     height: 5
-  - title: Cost Per Click By Age & Gender
-    name: Cost Per Click By Age & Gender
+  - title: Cost Per Click By Demographics
+    name: Cost Per Click By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table
