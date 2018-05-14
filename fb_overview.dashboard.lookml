@@ -574,7 +574,7 @@
     show_single_value_title: true
     show_comparison: true
     comparison_type: change
-    comparison_reverse_colors: false
+    comparison_reverse_colors: true
     show_comparison_label: false
     show_view_names: true
     show_row_numbers: true
