@@ -1,6 +1,13 @@
 - dashboard: facebook_overview
   title: Facebook Overview
   layout: newspaper
+  embed_style:
+    show_title: false
+    show_filters_bar: false
+    background_color: "#ffffff"
+    title_color: "#3a4245"
+    tile_text_color: "#3a4245"
+    text_tile_text_color: ''
   elements:
   - title: Click Rate
     name: Click Rate

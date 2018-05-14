@@ -89,10 +89,4 @@ view: ad_date_fact {
   set: detail {
     fields: [external_customer_id, campaign_id, ad_group_id, creative_id]
   }
-  dimension: ad_key_base {
-    hidden: no
-  }
-  dimension: key_base {
-    hidden: no
-  }
 }
