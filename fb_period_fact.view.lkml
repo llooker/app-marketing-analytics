@@ -10,6 +10,7 @@ include: "fb_ad_metrics_base.view"
 include: "period_base.view"
 
 explore: fb_period_fact {
+  persist_with: facebook_ads_etl_datagroup
   hidden: yes
   from: fb_period_fact
   view_name: fact

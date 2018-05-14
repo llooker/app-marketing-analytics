@@ -8,6 +8,7 @@ include: "google_ad_metrics_base.view"
 include: "period_base.view"
 
 explore: period_fact {
+  persist_with: adwords_etl_datagroup
   hidden: yes
   from: period_fact
   view_name: fact

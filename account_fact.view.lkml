@@ -6,6 +6,7 @@ include: "date_base.view"
 include: "period_base.view"
 
 explore: account_date_fact {
+  persist_with: adwords_etl_datagroup
   hidden: yes
   from: account_date_fact
   view_name: fact
@@ -46,7 +47,7 @@ view: account_date_fact {
   extends: [date_base, period_base, google_ad_metrics_base, ad_metrics_period_comparison_base, account_key_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
+    datagroup_trigger: adwords_etl_datagroup
     explore_source: ad_impressions {
       column: _date { field: fact.date_date }
       column: external_customer_id { field: fact.external_customer_id }
