@@ -565,8 +565,8 @@
     col: 17
     width: 7
     height: 5
-  - title: Click Through Rate By Age & Gender
-    name: Click Through Rate By Age & Gender
+  - title: Click Through Rate By Demographics
+    name: Click Through Rate By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table

@@ -279,8 +279,8 @@
     col: 8
     width: 16
     height: 13
-  - title: Conversion Rate By Age & Gender
-    name: Conversion Rate By Age & Gender
+  - title: Conversion Rate By Demographics
+    name: Conversion Rate By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table
