@@ -548,8 +548,8 @@
     col: 14
     width: 10
     height: 7
-  - title: Cost Per Conversion versions by Network
-    name: Cost Per Conversion versions by Network
+  - title: Cost Per Conversion by Network
+    name: Cost Per Conversion by Network
     model: marketing_analytics
     explore: ad_impressions_ad_group
     type: looker_bar
