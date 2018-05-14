@@ -532,8 +532,8 @@
     col: 0
     width: 8
     height: 5
-  - title: Spend By Age & Gender
-    name: Spend By Age & Gender
+  - title: Spend By Demographics
+    name: Spend By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table

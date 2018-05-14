@@ -411,8 +411,8 @@
     col: 0
     width: 9
     height: 6
-  - title: Cost Per Conversion By Age & Gender
-    name: Cost Per Conversion By Age & Gender
+  - title: Cost Per Conversion By Demographics
+    name: Cost Per Conversion By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table

@@ -722,8 +722,8 @@
     col: 9
     width: 15
     height: 6
-  - title: Conversions By Age & Gender
-    name: Conversions By Age & Gender
+  - title: Conversions By Demographics
+    name: Conversions By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table
