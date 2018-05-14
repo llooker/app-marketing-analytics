@@ -4,6 +4,7 @@ include: "campaign_fact.view"
 include: "recent_changes.view"
 
 explore: ad_group_date_fact {
+  persist_with: adwords_etl_datagroup
   extends: [campaign_date_fact]
   from: ad_group_date_fact
   view_name: fact
@@ -63,7 +64,7 @@ view: ad_group_date_fact {
   extends: [campaign_date_fact, ad_group_key_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
+    datagroup_trigger: adwords_etl_datagroup
     explore_source: ad_impressions_ad_group {
       column: _date { field: fact.date_date }
       column: external_customer_id { field: fact.external_customer_id }

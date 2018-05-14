@@ -1,6 +1,7 @@
 include: "fb_adset_fact.view"
 
 explore: fb_ad_date_fact {
+  persist_with: facebook_ads_etl_datagroup
   hidden: yes
   from: fb_ad_date_fact
   view_name: fact
@@ -69,6 +70,7 @@ view: fb_ad_date_fact {
   extends: [fb_adset_date_fact, fb_ad_key_base]
 
   derived_table: {
+    datagroup_trigger: facebook_ads_etl_datagroup
     explore_source: fb_ad_impressions {
       column: ad_id { field: fact.ad_id }
       column: ad_name { field: fact.ad_name }

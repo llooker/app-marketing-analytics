@@ -3,6 +3,8 @@ include: "date_base.view"
 include: "period_base.view"
 
 explore: combined_ad_group_date_fact {
+  # We want a combined trigger that fires if either etl updates. Should be a concatentation of both triggers.
+  # persist_with: adwords_etl_datagroup, facebook_ads_etl_datagroup
   hidden: yes
   from: combined_ad_group_date_fact
   view_name: fact
@@ -58,8 +60,8 @@ view: combined_ad_group_date_fact {
   extends: [ad_metrics_base, date_base, period_base]
 
   derived_table: {
-#     datagroup_trigger: etl_datagroup
-#     partition_keys: ["_date"]
+    # We want a combined trigger that fires if either etl updates. Should be a concatentation of both triggers.
+    # datagroup_trigger: adwords_etl_datagroup, facebook_ads_etl_datagroup
     explore_source: combined_ad_impressions {
       column: _date { field: fact.date_date }
       column: channel { field: fact.channel }
