@@ -166,8 +166,8 @@
     fields:
     - fact.total_cost
     - fact.device_type
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.total_cost: ">0"
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -243,6 +243,8 @@
     fields:
     - fact.total_cost
     - fact.publisher_platform
+    filters:
+     fact.total_cost: ">0"
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -318,6 +320,8 @@
     fields:
     - fact.gender
     - fact.total_cost
+    filters:
+     fact.total_cost: ">0"
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -542,8 +546,6 @@
     - fact.gender
     - fact.total_cost
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender
