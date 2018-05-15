@@ -341,6 +341,8 @@
     fields:
     - fact.publisher_platform
     - fact.average_cost_per_click
+    filters:
+     fact.average_cost_per_click: ">0"
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -494,8 +496,8 @@
     fields:
     - fact.average_cost_per_click
     - fact.device_type
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_cost_per_click: ">0"
     sorts:
     - fact.average_cost_per_click desc
     limit: 500

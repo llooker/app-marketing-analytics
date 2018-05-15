@@ -241,8 +241,8 @@
     fields:
     - fact.device_type
     - fact.total_conversions
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.total_conversions: ">0"
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -319,6 +319,8 @@
     fields:
     - fact.publisher_platform
     - fact.total_conversions
+    filters:
+     fact.total_conversions: ">0"
     sorts:
     - fact.total_conversions desc
     limit: 500

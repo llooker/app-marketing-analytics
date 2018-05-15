@@ -524,8 +524,8 @@
     fields:
     - fact.device_type
     - fact.average_cost_per_conversion
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -602,6 +602,8 @@
     fields:
     - fact.publisher_platform
     - fact.average_cost_per_conversion
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500

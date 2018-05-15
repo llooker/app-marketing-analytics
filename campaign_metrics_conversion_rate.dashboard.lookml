@@ -140,8 +140,8 @@
     fields:
     - fact.device_type
     - fact.average_conversion_rate
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_conversion_rate: ">0"
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -220,6 +220,8 @@
     fields:
     - keyword.bidding_strategy_type
     - fact.average_conversion_rate
+    filters:
+     fact.average_conversion_rate: ">0"
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -667,8 +669,8 @@
     fields:
     - fact.ad_network_type
     - fact.average_conversion_rate
-    fill_fields:
-    - fact.ad_network_type
+    filters:
+     fact.average_conversion_rate: ">0"
     sorts:
     - fact.ad_network_type
     limit: 500

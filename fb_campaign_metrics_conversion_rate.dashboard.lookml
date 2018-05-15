@@ -622,8 +622,8 @@
     fields:
     - fact.device_type
     - fact.average_conversion_rate
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_conversion_rate: ">0"
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -700,6 +700,8 @@
     fields:
     - fact.publisher_platform
     - fact.average_conversion_rate
+    filters:
+     fact.average_conversion_rate: ">0"
     sorts:
     - fact.average_conversion_rate desc
     limit: 500

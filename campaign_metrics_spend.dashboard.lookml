@@ -234,8 +234,8 @@
     fields:
     - fact.total_cost
     - fact.device_type
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.total_cost: ">0"
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -314,6 +314,8 @@
     fields:
     - fact.total_cost
     - keyword.bidding_strategy_type
+    filters:
+     fact.total_cost: ">0"
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -392,8 +394,8 @@
     fields:
     - fact.ad_network_type
     - fact.total_cost
-    fill_fields:
-    - fact.ad_network_type
+    filters:
+     fact.total_cost: ">0"
     sorts:
     - fact.total_cost desc
     - fact.ad_network_type
