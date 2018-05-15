@@ -343,6 +343,8 @@
     fields:
     - fact.gender
     - fact.average_cost_per_conversion
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -421,8 +423,6 @@
     - fact.gender
     - fact.average_cost_per_conversion
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender

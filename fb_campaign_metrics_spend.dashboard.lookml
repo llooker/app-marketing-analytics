@@ -320,6 +320,8 @@
     fields:
     - fact.gender
     - fact.total_cost
+    filters:
+     fact.total_cost: ">0"
     sorts:
     - fact.total_cost desc
     limit: 500
@@ -544,8 +546,6 @@
     - fact.gender
     - fact.total_cost
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender

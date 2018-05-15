@@ -11,6 +11,8 @@
     fields:
     - fact.gender
     - fact.total_conversions
+    filters:
+     fact.total_conversions: ">0"
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -734,8 +736,6 @@
     - fact.gender
     - fact.total_conversions
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender

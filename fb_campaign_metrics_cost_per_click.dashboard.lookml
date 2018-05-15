@@ -573,6 +573,8 @@
     fields:
     - fact.average_cost_per_click
     - fact.gender
+    filters:
+     fact.average_cost_per_click: ">0"
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -651,8 +653,6 @@
     - fact.gender
     - fact.average_cost_per_click
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender
