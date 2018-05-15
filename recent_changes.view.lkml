@@ -359,13 +359,13 @@ view: status_changes {
     sql: COALESCE(${creative_id}, ${ad_group_id}, ${campaign_id}, ${criterion_id}) ;;
     description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
     html:  {% if (fact.content_type._value == 'Ad') %}
-    <a href= "/explore/marketing_analytics/status_changes?fields=ad.creative,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=ad.creative,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% elsif (fact.content_type._value == 'Keyword') %}
-    <a href= "/explore/marketing_analytics/status_changes?fields=keyword.criteria,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}} </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=keyword.criteria,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}} </a>
      {% elsif (fact.content_type._value == 'Ad Group') %}
-    <a href= "/explore/marketing_analytics/status_changes?fields=ad_group.ad_group_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=ad_group.ad_group_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% elsif (fact.content_type._value == 'Campaign') %}
-    <a href= "/explore/marketing_analytics/status_changes?fields=campaign.campaign_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=campaign.campaign_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% endif %} ;;
   }
 }
