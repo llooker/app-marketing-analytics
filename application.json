@@ -92,58 +92,44 @@
                 "lookmlID": "marketing_analytics::campaign_metrics_roas",
                 "name": "Return On Ad Spend",
                 "permalink": "return_on_ad_spend",
-                "singleValueReference": {
-                  "key": "return_on_ad_spend"
-                },
+                "singleValueReference": "return_on_ad_spend",
                 "zeroHide": true
               },
               {
                 "lookmlID": "marketing_analytics::campaign_metrics_spend",
                 "name": "Spend",
                 "permalink": "spend",
-                "singleValueReference": {
-                  "key": "spend"
-                }
+                "singleValueReference": "spend"
               },
               {
                 "lookmlID": "marketing_analytics::campaign_metrics_conversions",
                 "name": "Conversions",
                 "permalink": "conversions",
-                "singleValueReference": {
-                  "key": "conversions"
-                }
+                "singleValueReference": "conversions"
               },
               {
                 "lookmlID": "marketing_analytics::campaign_metrics_cost_per_conversion",
                 "name": "Cost Per Conversion",
                 "permalink": "cost_per_conversion",
-                "singleValueReference": {
-                  "key": "cost_per_conversion"
-                }
+                "singleValueReference": "cost_per_conversion"
               },
               {
                 "lookmlID": "marketing_analytics::campaign_metrics_conversion_rate",
                 "name": "Conversion Rate",
                 "permalink": "conversion_rate",
-                "singleValueReference": {
-                  "key": "conversion_rate"
-                }
+                "singleValueReference": "conversion_rate"
               },
               {
                 "lookmlID": "marketing_analytics::campaign_metrics_cost_per_click",
                 "name": "Cost Per Click",
                 "permalink": "cost_per_click",
-                "singleValueReference": {
-                  "key": "cost_per_click"
-                }
+                "singleValueReference": "cost_per_click"
               },
               {
                 "lookmlID": "marketing_analytics::campaign_metrics_click_through_rate",
                 "name": "Click Through Rate",
                 "permalink": "click_through_rate",
-                "singleValueReference": {
-                  "key": "click_through_rate"
-                }
+                "singleValueReference": "click_through_rate"
               }
             ],
             "defaultDashboard": "cost_per_conversion"
@@ -310,9 +296,7 @@
                   "description": "Increase the bid on these Ads to drive more conversions.",
                   "name": "Ad Opportunities",
                   "permalink": "opportunities_ads",
-                  "singleValueReference": {
-                    "key": "opportunities_ads"
-                  },
+                  "singleValueReference": "opportunities_ads",
                   "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "variations": [
                     {
@@ -339,9 +323,7 @@
                   "description": "Increase the bid on these Keywords to drive more conversions.",
                   "name": "Keyword Opportunities",
                   "permalink": "opportunities_keywords",
-                  "singleValueReference": {
-                    "key": "opportunities_keywords"
-                  },
+                  "singleValueReference": "opportunities_keywords",
                   "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "variations": [
                     {
@@ -368,9 +350,7 @@
                   "description": "Increase the bid on these Ad Groups to drive more conversions.",
                   "name": "Ad Group Opportunities",
                   "permalink": "opportunities_ad_groups",
-                  "singleValueReference": {
-                    "key": "opportunities_ad_groups"
-                  },
+                  "singleValueReference": "opportunities_ad_groups",
                   "excludeFilters": [ "fact.period", "campaign.campaign_name", "ad_group.ad_group_name" ],
                   "variations": [
                     {
@@ -404,9 +384,7 @@
                   "description": "Ads that have had recent big performance changes.",
                   "name": "Ad Performance Changes",
                   "permalink": "big_movers_ads",
-                  "singleValueReference": {
-                    "key": "big_movers_ads"
-                  },
+                  "singleValueReference": "big_movers_ads",
                   "excludeFilters": [ "fact.period" ],
                   "variations": [
                     {
@@ -433,9 +411,7 @@
                   "description": "Keywords that have had recent big performance changes.",
                   "name": "Keyword Performance Changes",
                   "permalink": "big_movers_keywords",
-                  "singleValueReference": {
-                    "key": "big_movers_keywords"
-                  },
+                  "singleValueReference": "big_movers_keywords",
                   "excludeFilters": [ "fact.period" ],
                   "variations": [
                     {
@@ -462,9 +438,7 @@
                   "description": "Ad Groups that have had recent big performance changes.",
                   "name": "Ad Group Performance Changes",
                   "permalink": "big_movers_ad_groups",
-                  "singleValueReference": {
-                    "key": "big_movers_ad_groups"
-                  },
+                  "singleValueReference": "big_movers_ad_groups",
                   "excludeFilters": [ "fact.period", "ad_group.ad_group_name" ],
                   "variations": [
                     {
@@ -498,9 +472,7 @@
                   "description": "Quickly find the ads that need to be paused or have their bid lowered.",
                   "name": "Underperforming Ads",
                   "permalink": "underperforming_ads",
-                  "singleValueReference": {
-                    "key": "underperforming_ads"
-                  },
+                  "singleValueReference": "underperforming_ads",
                   "variations": [
                     {
                       "description": "",
@@ -526,9 +498,7 @@
                   "description": "Quickly find the keywords that need to be paused or have their bid lowered.",
                   "name": "Underperforming Keywords",
                   "permalink": "underperforming_keywords",
-                  "singleValueReference": {
-                    "key": "underperforming_keywords"
-                  },
+                  "singleValueReference": "underperforming_keywords",
                   "variations": [
                     {
                       "description": "",
@@ -555,9 +525,7 @@
                   "excludeFilters": [ "ad_group.ad_group_name" ],
                   "name": "Underperforming Ad Groups",
                   "permalink": "underperforming_ad_groups",
-                  "singleValueReference": {
-                    "key": "underperforming_ad_groups"
-                  },
+                  "singleValueReference": "underperforming_ad_groups",
                   "variations": [
                     {
                       "description": "",
@@ -675,49 +643,37 @@
                         "lookmlID": "marketing_analytics::fb_campaign_metrics_spend",
                         "name": "Spend",
                         "permalink": "spend",
-                        "singleValueReference": {
-                        "key": "spend"
-                      }
+                        "singleValueReference": "spend"
                     },
                     {
                       "lookmlID": "marketing_analytics::fb_campaign_metrics_conversions",
                       "name": "Conversions",
                       "permalink": "conversions",
-                      "singleValueReference": {
-                        "key": "conversions"
-                      }
+                      "singleValueReference": "conversions"
                     },
                     {
                       "lookmlID": "marketing_analytics::fb_campaign_metrics_cpa",
                       "name": "Cost Per Conversion",
                       "permalink": "cost_per_conversion",
-                      "singleValueReference": {
-                        "key": "cost_per_conversion"
-                      }
+                      "singleValueReference": "cost_per_conversion"
                     },
                     {
                       "lookmlID": "marketing_analytics::fb_campaign_metrics_conversion_rate",
                       "name": "Conversion Rate",
                       "permalink": "conversion_rate",
-                      "singleValueReference": {
-                        "key": "conversion_rate"
-                      }
+                      "singleValueReference": "conversion_rate"
                     },
                     {
                       "lookmlID": "marketing_analytics::fb_campaign_metrics_cost_per_click",
                       "name": "Cost Per Click",
                       "permalink": "cost_per_click",
-                      "singleValueReference": {
-                        "key": "cost_per_click"
-                      }
+                      "singleValueReference": "cost_per_click"
                     },
                     {
                       "lookmlID": "marketing_analytics::fb_campaign_metrics_ctr",
                       "name": "Click Through Rate",
                       "permalink": "click_through_rate",
-                      "singleValueReference": {
-                        "key": "click_through_rate"
-                      }
+                      "singleValueReference": "click_through_rate"
                     }
                   ],
                   "defaultDashboard": "cost_per_conversion"
@@ -873,9 +829,7 @@
               "description": "Increase the bid on these Ads to drive more conversions.",
               "name": "Ad Opportunities",
               "permalink": "fb_opportunities_ads",
-              "singleValueReference": {
-                "key": "fb_opportunities_ads"
-              },
+              "singleValueReference": "fb_opportunities_ads",
               "excludeFilters": [ "fact.period", "campaign.name", "adset.name" ],
               "variations": [
                 {
@@ -902,9 +856,7 @@
               "description": "Increase the bid on these Ad Sets to drive more conversions.",
               "name": "Ad Set Opportunities",
               "permalink": "fb_opportunities_asets",
-              "singleValueReference": {
-                "key": "fb_opportunities_adsets"
-              },
+              "singleValueReference": "fb_opportunities_adsets",
               "excludeFilters": [ "fact.period", "campaign.name", "adset.name" ],
               "variations": [
                 {
@@ -938,9 +890,7 @@
               "description": "Ads that have had recent big performance changes.",
               "name": "Ad Performance Changes",
               "permalink": "fb_big_movers_ads",
-              "singleValueReference": {
-                "key": "fb_big_movers_ads"
-              },
+              "singleValueReference": "fb_big_movers_ads",
               "excludeFilters": [ "fact.period" ],
               "variations": [
                 {
@@ -967,9 +917,7 @@
               "description": "Ad Sets that have had recent big performance changes.",
               "name": "Ad Set Performance Changes",
               "permalink": "fb_big_movers_adsets",
-              "singleValueReference": {
-                "key": "fb_big_movers_adsets"
-              },
+              "singleValueReference": "fb_big_movers_adsets",
               "excludeFilters": [ "fact.period", "adset.name" ],
               "variations": [
                 {
@@ -1003,9 +951,7 @@
               "description": "Quickly find the ads that need to be paused or have their bid lowered.",
               "name": "Underperforming Ads",
               "permalink": "fb_underperforming_ads",
-              "singleValueReference": {
-                "key": "fb_underperforming_ads"
-              },
+              "singleValueReference": "fb_underperforming_ads",
               "variations": [
                 {
                   "description": "",
@@ -1032,9 +978,7 @@
               "excludeFilters": [ "adset.name" ],
               "name": "Underperforming Ad Sets",
               "permalink": "underperforming_adsets",
-              "singleValueReference": {
-                "key": "fb_underperforming_adsets"
-              },
+              "singleValueReference": "fb_underperforming_adsets",
               "variations": [
                 {
                   "description": "",

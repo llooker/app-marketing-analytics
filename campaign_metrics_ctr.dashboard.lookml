@@ -144,8 +144,8 @@
     fields:
     - fact.average_click_rate
     - fact.device_type
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     limit: 500
@@ -347,8 +347,8 @@
     fields:
     - fact.ad_network_type
     - fact.average_click_rate
-    fill_fields:
-    - fact.ad_network_type
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     - fact.ad_network_type
@@ -553,6 +553,8 @@
     fields:
     - fact.average_click_rate
     - keyword.bidding_strategy_type
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     limit: 500

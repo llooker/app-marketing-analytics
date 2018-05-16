@@ -343,6 +343,8 @@
     fields:
     - fact.gender
     - fact.average_click_rate
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     limit: 500
@@ -419,8 +421,8 @@
     fields:
     - fact.device_type
     - fact.average_click_rate
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     limit: 500
@@ -497,6 +499,8 @@
     fields:
     - fact.publisher_platform
     - fact.average_click_rate
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     limit: 500
@@ -575,8 +579,6 @@
     - fact.average_click_rate
     - fact.gender
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender
