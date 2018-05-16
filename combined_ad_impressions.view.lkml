@@ -84,8 +84,7 @@ view: facebook_ad_impressions {
 }
 
 explore: combined_ad_impressions {
-  # Want to persist with facebook or adwords etl datagroup.
-  # persist_with: adwords_etl_datagroup, facebook_ads_etl_datagroup
+  persist_with: ama_etl_datagroup
   hidden: yes
   from: combined_ad_impressions
   view_name: fact
@@ -94,6 +93,7 @@ view: combined_ad_impressions {
   extends: [combined_ad_impressions_base]
 
   derived_table: {
+    datagroup_trigger: ama_etl_datagroup
     sql:
       SELECT
          "Google AdWords" as channel,
