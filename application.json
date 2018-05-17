@@ -1,8 +1,4 @@
 {
-  "dependencies": [
-    "ama_adwords_adapter",
-    "ama_fb_adapter"
-  ],
   "exploreConfig": {
     "data": true,
     "filters": true,
@@ -78,7 +74,7 @@
     }
   ],
   "name": "Marketing Analytics",
-  "pillars": [
+  "modules": [
     {
       "description": "These reports dive into your AdWords to find ways to increase the ROI of your marketing spend. Use Opportunities to find quick wins, refine your targets using the Performance trend reports, or discover which audiences are falling off your funnel.",
       "enabled": true,
