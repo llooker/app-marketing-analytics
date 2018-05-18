@@ -1,0 +1,87 @@
+{
+  "configProject": "app_marketing_analytics_config",
+  "projects": {
+    "ama_adwords_adapter": [
+      "google-bqdts"
+    ],
+    "ama_fb_adapter": [
+      "stitchdata",
+      "fivetran"
+    ]
+  },
+  "steps": [
+    {
+      "name": "Install Google Adwords BigQuery Adapter",
+      "actions": ["createProject"],
+      "data": {
+        "project": "ama_adwords_adapter"
+      }
+    },
+    {
+      "name": "Create Config Project",
+      "actions": ["createBareProject"],
+      "data": {
+        "project": "app_marketing_analytics_config"
+      }
+    },
+    {
+      "name": "Add Self to Embed Domain Whitelist",
+      "actions": [ "embedDomainWhiteList" ]
+    },
+    {
+      "name": "Activate Project Import Feature",
+      "actions": [ "enableLabsFeature" ],
+      "data": {
+        "featureName": "project_import"
+      }
+    },
+    {
+      "name": "Google AdWords",
+      "actions": [ "writeConfigView", "enableAppSection" ],
+      "data": {
+        "section": "search",
+        "fields": [
+          {
+            "name": "adwords_schema",
+            "label": "Schema Name",
+            "type": "text"
+          },
+          {
+            "name": "adwords_customer_id",
+            "label": "Customer ID",
+            "type": "text"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Install Facebook Adapter",
+      "actions": [ "writeConfigView", "createProject", "enableAppSection" ],
+      "optional": true,
+      "data": {
+        "project": "ama_fb_adapter",
+        "section": "social",
+        "fields": [
+          {
+            "name": "facebook_etl",
+            "label": "ETL Provider",
+            "type": "chooseProjectSource"
+          },
+          {
+            "name": "facebook_schema",
+            "label": "Schema (Database) Name",
+            "type": "text"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Test Database Connection",
+      "actions": [ "testDbConnection" ]
+    },
+    {
+      "name": "Test Model Configuration",
+      "actions": [ "testModelConfig" ]
+    }
+  ]
+}
