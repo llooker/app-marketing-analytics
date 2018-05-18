@@ -1,5 +1,4 @@
 {
-  "requirementsFile": "requirements.json",
   "exploreConfig": {
     "data": true,
     "filters": true,
