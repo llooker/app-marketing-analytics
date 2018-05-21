@@ -9,6 +9,39 @@
       "fivetran"
     ]
   },
+  "vendors": [
+    {
+      "id": "google-adwords",
+      "name": "Google Adwords",
+      "url": "https://adwords.google.com/home"
+    },
+    {
+      "id": "google-bqdts",
+      "name": "Google BigQuery Data Transfer Service",
+      "url": "https://cloud.google.com/bigquery",
+      "gitUrl": "https://github.com/looker/ama_adwords_bqdts_adapter.git"
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook Ads",
+      "url": "https://www.facebook.com/business/products/ads",
+      "optional": true
+    },
+    {
+      "id": "stitchdata",
+      "name": "Facebook Ads ETL by Stitch",
+      "url": "https://www.stitchdata.com/integrations/facebook-ads",
+      "gitUrl": "https://github.com/looker/ama_fb_stitch_adapter.git",
+      "optional": true
+    },
+    {
+      "id": "fivetran",
+      "name": "Facebook Ad Insights by Fivetran",
+      "url": "https://fivetran.com/directory/facebook_ads_insights",
+      "gitUrl": "https://github.com/looker/ama_fb_fivetran_adapter.git",
+      "optional": true
+    }
+  ],
   "steps": [
     {
       "name": "Install Google Adwords BigQuery Adapter",
@@ -32,7 +65,7 @@
       "name": "Activate Project Import Feature",
       "actions": [ "enableLabsFeature" ],
       "data": {
-        "featureName": "project_import"
+        "feature": "project_import"
       }
     },
     {
@@ -40,6 +73,7 @@
       "actions": [ "writeConfigView", "enableAppSection" ],
       "data": {
         "section": "search",
+        "config": "someFile.lookml.view",
         "fields": [
           {
             "name": "adwords_schema",
