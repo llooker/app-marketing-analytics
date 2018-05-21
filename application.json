@@ -1,4 +1,6 @@
 {
+  "requirementsFile": "requirements.json",
+  "description": "Manage your digital advertising spend with Looker",
   "exploreConfig": {
     "data": true,
     "filters": true,
