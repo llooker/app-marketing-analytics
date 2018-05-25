@@ -1,5 +1,4 @@
 include: "/ama_adwords_adapter/ad_impressions.view"
-include: "/app_marketing_analytics_config/config.model"
 
 include: "date_base.view"
 include: "period_base.view"
