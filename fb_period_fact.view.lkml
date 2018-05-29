@@ -2,7 +2,6 @@ include: "/ama_fb_adapter/account.view"
 include: "/ama_fb_adapter/campaign.view"
 include: "/ama_fb_adapter/adset.view"
 include: "/ama_fb_adapter/ad.view"
-include: "/ama_fb_adapter/adcreative.view"
 
 include: "ad_metrics_period_comparison_base.view"
 include: "date_base.view"
@@ -49,14 +48,6 @@ explore: fb_period_fact {
     relationship: many_to_one
   }
 
-  join: adcreative {
-    from: adcreative_fb_adapter
-    view_label: "Ad Creative"
-    type: left_outer
-    sql_on: ${ad.creative_id} = ${adcreative.id} ;;
-    relationship: one_to_one
-  }
-
   join: last_fact {
     from: fb_period_fact
     view_label: "Prior Period"
@@ -89,28 +80,28 @@ view: fb_period_fact {
       ${fb_account_date_fact.SQL_TABLE_NAME}
     {% endif %} ;;
 
-  dimension: account_id {
-    hidden: yes
-  }
-  dimension: campaign_id {
-    hidden: yes
-  }
-  dimension: adset_id {
-    hidden: yes
-  }
-  dimension: ad_id {
-    hidden: yes
-  }
-  dimension: criterion_id {
-    hidden: yes
-  }
-  dimension: _date {
-    type: date_raw
-  }
+    dimension: account_id {
+      hidden: yes
+    }
+    dimension: campaign_id {
+      hidden: yes
+    }
+    dimension: adset_id {
+      hidden: yes
+    }
+    dimension: ad_id {
+      hidden: yes
+    }
+    dimension: criterion_id {
+      hidden: yes
+    }
+    dimension: _date {
+      type: date_raw
+    }
 
-  dimension: key_base {
-    hidden: yes
-    sql:
+    dimension: key_base {
+      hidden: yes
+      sql:
       CONCAT(
         CAST(${account_id} AS STRING),
       {% if (campaign._in_query or fact.campaign_id._in_query or adset._in_query or fact.adset_id._in_query or ad._in_query or fact.ad_id._in_query %}
@@ -123,14 +114,14 @@ view: fb_period_fact {
         "-", CAST(${ad_id} AS STRING)
       {% endif %}
       ) ;;
-  }
+    }
 
-  dimension: primary_key {
-    primary_key: yes
-    hidden: yes
-    sql: concat(CAST(${date_period} AS STRING)
-      , "|", ${date_day_of_period},
-      , "|", ${key_base}
-    ) ;;
+    dimension: primary_key {
+      primary_key: yes
+      hidden: yes
+      sql: concat(CAST(${date_period} AS STRING)
+              , "|", ${date_day_of_period},
+              , "|", ${key_base}
+            ) ;;
+    }
   }
-}

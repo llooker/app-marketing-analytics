@@ -241,7 +241,7 @@
   - title: Cost Per Conversion By Country
     name: Cost Per Conversion By Country
     model: marketing_analytics
-    explore: fb_ad_impressions_country
+    explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
     - fact.country
