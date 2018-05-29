@@ -103,6 +103,20 @@ view: ad_metrics_parent_comparison_base {
     group_label: "Parent Comparisons"
     value_format_name: usd
   }
+  dimension: value_per_cost_delta {
+    hidden: yes
+    type: number
+    sql: ${fact.conversionvalue_delta}*1.0 / NULLIF(${fact.cost_delta},0) ;;
+    group_label: "Parent Comparisons"
+    value_format_name: decimal_1
+  }
+  measure: average_value_per_cost_delta {
+    hidden: yes
+    type: number
+    sql: ${fact.total_conversionvalue_delta}*1.0 / NULLIF(${fact.total_cost_delta},0) ;;
+    group_label: "Parent Comparisons"
+    value_format_name: usd
+  }
   dimension: cost_per_click_delta {
     hidden: yes
     type: number
@@ -124,6 +138,20 @@ view: ad_metrics_parent_comparison_base {
     sql: ${fact.cost_delta}*1.0 / NULLIF(${fact.impressions_delta},0) ;;
     group_label: "Parent Comparisons"
     value_format_name: usd
+  }
+  dimension: value_per_cost_delta_ratio {
+    hidden: yes
+    type: number
+    sql: ${fact.value_per_cost} / NULLIF(${fact.value_per_cost_delta},0) ;;
+    group_label: "Parent Comparisons"
+    value_format_name: decimal_2
+  }
+  measure: average_value_per_cost_delta_ratio {
+    hidden: yes
+    type: number
+    sql: ${fact.average_value_per_cost} / NULLIF(${fact.average_value_per_cost_delta},0) ;;
+    group_label: "Parent Comparisons"
+    value_format_name: decimal_2
   }
   measure: average_cost_per_impression_delta {
     hidden: yes
@@ -379,6 +407,20 @@ view: ad_metrics_parent_comparison_base {
     group_label: "Parent Comparisons"
   }
 
+  dimension: value_per_cost_better {
+    hidden: yes
+    type: yesno
+    sql:  ${fact.value_per_cost} < ${parent_fact.value_per_cost} ;;
+    group_label: "Parent Comparisons"
+  }
+
+  dimension: value_per_cost_good {
+    hidden: yes
+    type: yesno
+    sql: ${value_per_cost_better} AND ${conversion_rate_significant} ;;
+    group_label: "Parent Comparisons"
+  }
+
   dimension: conversion_rate_good {
     hidden: yes
     type: yesno
@@ -444,6 +486,12 @@ view: ad_metrics_parent_comparison_base {
     hidden: yes
     type: yesno
     sql: NOT ${click_rate_better} AND ${click_rate_significant} ;;
+    group_label: "Parent Comparisons"
+  }
+  dimension: value_per_cost_bad {
+    hidden: yes
+    type: yesno
+    sql: NOT ${value_per_cost_better} AND ${conversion_rate_significant} ;;
     group_label: "Parent Comparisons"
   }
 
