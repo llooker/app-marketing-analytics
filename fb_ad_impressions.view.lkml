@@ -9,8 +9,9 @@ explore: fb_ad_impressions {
   extends: [ad_impressions_fb_adapter]
   from: fb_ad_impressions
   view_name: fact
+  group_label: "Facebook Ads (Marketing Analytics)"
   label: "Facebook Ad Impressions"
-  view_label: "Facebook Ad Impressions"
+  view_label: "Impressions"
 }
 
 view: fb_ad_impressions {
@@ -22,8 +23,9 @@ explore: fb_ad_impressions_age_and_gender {
   extends: [ad_impressions_age_and_gender_fb_adapter]
   from: fb_ad_impressions_age_and_gender
   view_name: fact
-  label: "Facebook Ad Impressions"
-  view_label: "Facebook Ad Impressions"
+  group_label: "Facebook Ads (Marketing Analytics)"
+  label: "Facebook Ad Impressions by Age & Gender"
+  view_label: "Impressions by Age & Gender"
 }
 
 view: fb_ad_impressions_age_and_gender {
@@ -35,8 +37,9 @@ explore: fb_ad_impressions_country {
   extends: [ad_impressions_country_fb_adapter]
   from: fb_ad_impressions_country
   view_name: fact
-  label: "Facebook Ad Impressions"
-  view_label: "Facebook Ad Impressions"
+  group_label: "Facebook Ads (Marketing Analytics)"
+  label: "Facebook Ad Impressions by Country"
+  view_label: "Impressions by Country"
 }
 
 view: fb_ad_impressions_country {
@@ -48,8 +51,9 @@ explore: fb_ad_impressions_platform_and_device {
   extends: [ad_impressions_platform_and_device_fb_adapter]
   from: fb_ad_impressions_platform_and_device
   view_name: fact
-  label: "Facebook Ad Impressions"
-  view_label: "Facebook Ad Impressions"
+  group_label: "Facebook Ads (Marketing Analytics)"
+  label: "Facebook Ad Impressions by Platform & Device"
+  view_label: "Impressions by Platform & Device"
 }
 
 view: fb_ad_impressions_platform_and_device {
