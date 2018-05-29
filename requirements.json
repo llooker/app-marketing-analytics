@@ -44,78 +44,148 @@
   ],
   "steps": [
     {
-      "name": "Install Google Adwords BigQuery Adapter",
-      "actions": ["createProject"],
-      "data": {
-        "project": "ama_adwords_adapter"
-      }
-    },
-    {
-      "name": "Create Config Project",
-      "actions": ["createBareProject"],
-      "data": {
-        "project": "app_marketing_analytics_config"
-      }
-    },
-    {
-      "name": "Add Self to Embed Domain Whitelist",
-      "actions": [ "embedDomainWhiteList" ]
-    },
-    {
-      "name": "Activate Project Import Feature",
-      "actions": [ "enableLabsFeature" ],
-      "data": {
-        "feature": "project_import"
-      }
-    },
-    {
-      "name": "Google AdWords",
-      "actions": [ "writeConfigView", "enableAppSection" ],
-      "data": {
-        "section": "search",
-        "config": "someFile.lookml.view",
-        "fields": [
-          {
-            "name": "adwords_schema",
-            "label": "Schema Name",
-            "type": "text"
-          },
-          {
-            "name": "adwords_customer_id",
-            "label": "Customer ID",
-            "type": "text"
+      "name": "Looker Instance Settings",
+      "actions": [
+        {
+          "id": "embedDomainWhiteList",
+          "type": "embedDomainWhiteList"
+        },
+        {
+          "id": "enableLabsFeature:project_import",
+          "type": "enableLabsFeature",
+          "data": {
+            "feature": "project_import"
           }
-        ]
-      }
+        }
+      ]
     },
     {
-      "name": "Install Facebook Adapter",
-      "actions": [ "writeConfigView", "createProject", "enableAppSection" ],
+      "name": "Setup Projects",
+      "actions": [
+        {
+          "id": "createProject:ama_adwords_adapter",
+          "type": "createProject",
+          "data": {
+            "project": "ama_adwords_adapter"
+          }
+        },
+        {
+          "id": "createProject",
+          "type": "createProject",
+          "data": {
+            "project": "app_marketing_analytics_config"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Database Connection",
+      "actions": [
+        {
+          "id": "writeConfigModel:db-connection",
+          "type": "writeConfigModel",
+          "data": {
+            "config": "someFile.lookml.model"
+          }
+        }
+      ],
+      "fields": [
+        {
+          "name": "connection_name",
+          "label": "Database Connection",
+          "type": "chooseDatabaseConnection"
+        }
+      ]
+    },
+    {
+      "name": "Google AdWords Settings",
+      "actions": [
+        {
+          "id": "writeConfigView:adwords",
+          "type": "writeConfigView",
+          "data": {
+            "config": "someFile.lookml.view"
+          }
+        },
+        {
+          "id": "enableAppSection:adwords",
+          "type": "enableAppSection",
+          "data": {
+            "section": "search"
+          }
+        }
+      ],
+      "instructions": "Narwhal activated charcoal butcher tote bag hella tbh chillwave offal, neutra kombucha wolf. Subway tile cornhole raw denim master cleanse wayfarers.",
+      "fields": [
+        {
+          "name": "adwords_schema",
+          "label": "Schema Name",
+          "type": "text"
+        },
+        {
+          "name": "adwords_customer_id",
+          "label": "Customer ID",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "Facebook Ads Settings",
+      "actions": [
+        {
+          "id": "writeConfigView:facebook",
+          "type": "writeConfigView",
+          "data": {
+            "config": "someFile.lookml.view"
+          }
+        },
+        {
+          "id": "enableAppSection:facebook",
+          "type": "enableAppSection",
+          "data": {
+            "section": "social"
+          }
+        },
+        {
+          "id": "createProject:facebook",
+          "type": "createProject",
+          "data": {
+            "project": "ama_fb_adapter"
+          }
+        }
+      ],
       "optional": true,
-      "data": {
-        "project": "ama_fb_adapter",
-        "section": "social",
-        "fields": [
-          {
-            "name": "facebook_etl",
-            "label": "ETL Provider",
-            "type": "chooseProjectSource"
-          },
-          {
-            "name": "facebook_schema",
-            "label": "Schema (Database) Name",
-            "type": "text"
-          }
-        ]
-      }
+      "fields": [
+        {
+          "name": "facebook_etl",
+          "label": "ETL Provider",
+          "project": "ama_fb_adapter",
+          "type": "chooseProjectSource"
+        },
+        {
+          "name": "facebook_schema",
+          "label": "Schema (Database) Name",
+          "type": "text"
+        }
+      ]
     },
     {
-      "name": "Test Database Connection",
-      "actions": [ "testDbConnection" ]
-    },
-    {
-      "name": "Test Model Configuration",
-      "actions": [ "testModelConfig" ]
+      "name": "Test Configuration",
+      "test": true,
+      "actions": [
+        {
+          "id": "testDbConnection",
+          "type": "testDbConnection"
+        },
+        {
+          "id": "testModelConfig-adwords",
+          "type": "testConfig"
+        },
+        {
+          "id": "testModelConfig-facebook",
+          "type": "testConfig"
+        }
+      ]
     }
   ]
 }
