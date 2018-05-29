@@ -32,18 +32,18 @@ view: fb_ad_impressions_age_and_gender {
   extends: [date_base, period_base, fb_ad_metrics_base, ad_impressions_age_and_gender_fb_adapter]
 }
 
-explore: fb_ad_impressions_country {
+explore: fb_ad_impressions_geo {
   persist_with: facebook_ads_etl_datagroup
-  extends: [ad_impressions_country_fb_adapter]
-  from: fb_ad_impressions_country
+  extends: [ad_impressions_geo_fb_adapter]
+  from: fb_ad_impressions_geo
   view_name: fact
   group_label: "Facebook Ads (Marketing Analytics)"
   label: "Facebook Ad Impressions by Country"
   view_label: "Impressions by Country"
 }
 
-view: fb_ad_impressions_country {
-  extends: [date_base, period_base, fb_ad_metrics_base, ad_impressions_country_fb_adapter]
+view: fb_ad_impressions_geo {
+  extends: [date_base, period_base, fb_ad_metrics_base, ad_impressions_geo_fb_adapter]
 }
 
 explore: fb_ad_impressions_platform_and_device {

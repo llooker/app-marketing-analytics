@@ -67,7 +67,7 @@ view: facebook_ad_impressions {
   derived_table: {
     datagroup_trigger: facebook_ads_etl_datagroup
     explore_source: fb_ad_impressions {
-      column: _date { field: fact.date_start_date}
+      column: _date { field: fact.date_date}
       column: account_name { field: fact.account_name }
       column: account_id { field: fact.account_id }
       column: campaign_name { field: fact.campaign_name }
