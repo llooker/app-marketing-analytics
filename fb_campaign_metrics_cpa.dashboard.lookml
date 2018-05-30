@@ -241,7 +241,7 @@
   - title: Cost Per Conversion By Country
     name: Cost Per Conversion By Country
     model: marketing_analytics
-    explore: fb_ad_impressions_country
+    explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
     - fact.country
@@ -343,6 +343,8 @@
     fields:
     - fact.gender
     - fact.average_cost_per_conversion
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -411,8 +413,8 @@
     col: 0
     width: 9
     height: 6
-  - title: Cost Per Conversion By Age & Gender
-    name: Cost Per Conversion By Age & Gender
+  - title: Cost Per Conversion By Demographics
+    name: Cost Per Conversion By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table
@@ -421,8 +423,6 @@
     - fact.gender
     - fact.average_cost_per_conversion
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender
@@ -524,8 +524,8 @@
     fields:
     - fact.device_type
     - fact.average_cost_per_conversion
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -602,6 +602,8 @@
     fields:
     - fact.publisher_platform
     - fact.average_cost_per_conversion
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500

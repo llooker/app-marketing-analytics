@@ -150,8 +150,8 @@
     fields:
     - fact.average_cost_per_conversion
     - fact.device_type
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -230,6 +230,8 @@
     fields:
     - fact.average_cost_per_conversion
     - keyword.bidding_strategy_type
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     limit: 500
@@ -548,16 +550,16 @@
     col: 14
     width: 10
     height: 7
-  - title: Cost Per Conversion versions by Network
-    name: Cost Per Conversion versions by Network
+  - title: Cost Per Conversion by Network
+    name: Cost Per Conversion by Network
     model: marketing_analytics
     explore: ad_impressions_ad_group
     type: looker_bar
     fields:
     - fact.ad_network_type
     - fact.average_cost_per_conversion
-    fill_fields:
-    - fact.ad_network_type
+    filters:
+     fact.average_cost_per_conversion: ">0"
     sorts:
     - fact.average_cost_per_conversion desc
     - fact.ad_network_type

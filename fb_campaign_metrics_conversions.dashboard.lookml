@@ -11,6 +11,8 @@
     fields:
     - fact.gender
     - fact.total_conversions
+    filters:
+     fact.total_conversions: ">0"
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -241,8 +243,8 @@
     fields:
     - fact.device_type
     - fact.total_conversions
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.total_conversions: ">0"
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -319,6 +321,8 @@
     fields:
     - fact.publisher_platform
     - fact.total_conversions
+    filters:
+     fact.total_conversions: ">0"
     sorts:
     - fact.total_conversions desc
     limit: 500
@@ -549,7 +553,7 @@
   - title: Conversions By Country
     name: Conversions By Country
     model: marketing_analytics
-    explore: fb_ad_impressions_country
+    explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
     - fact.country
@@ -722,8 +726,8 @@
     col: 9
     width: 15
     height: 6
-  - title: Conversions By Age & Gender
-    name: Conversions By Age & Gender
+  - title: Conversions By Demographics
+    name: Conversions By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table
@@ -732,8 +736,6 @@
     - fact.gender
     - fact.total_conversions
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender

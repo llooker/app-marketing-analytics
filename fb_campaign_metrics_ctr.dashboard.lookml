@@ -241,7 +241,7 @@
   - title: Click Through Rate By Country
     name: Click Through Rate By Country
     model: marketing_analytics
-    explore: fb_ad_impressions_country
+    explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
     - fact.country
@@ -343,6 +343,8 @@
     fields:
     - fact.gender
     - fact.average_click_rate
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     limit: 500
@@ -419,8 +421,8 @@
     fields:
     - fact.device_type
     - fact.average_click_rate
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     limit: 500
@@ -497,6 +499,8 @@
     fields:
     - fact.publisher_platform
     - fact.average_click_rate
+    filters:
+     fact.average_click_rate: ">0"
     sorts:
     - fact.average_click_rate desc
     limit: 500
@@ -565,8 +569,8 @@
     col: 17
     width: 7
     height: 5
-  - title: Click Through Rate By Age & Gender
-    name: Click Through Rate By Age & Gender
+  - title: Click Through Rate By Demographics
+    name: Click Through Rate By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table
@@ -575,8 +579,6 @@
     - fact.average_click_rate
     - fact.gender
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender

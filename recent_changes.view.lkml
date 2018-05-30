@@ -10,6 +10,7 @@ explore: ad_status {
 
 view: ad_status {
   derived_table: {
+    datagroup_trigger: adwords_etl_datagroup
     explore_source: ad_adapter {
       column: _date { field: ad._date }
       column: external_customer_id { field: ad.external_customer_id }
@@ -41,6 +42,7 @@ explore: keyword_status {
 
 view: keyword_status {
   derived_table: {
+    datagroup_trigger: adwords_etl_datagroup
     explore_source: keyword_adapter {
       column: _date { field: keyword._date }
       column: external_customer_id { field: keyword.external_customer_id }
@@ -72,6 +74,7 @@ explore: ad_group_status {
 
 view: ad_group_status {
   derived_table: {
+    datagroup_trigger: adwords_etl_datagroup
     explore_source: ad_group_adapter {
       column: _date { field: ad_group._date }
       column: external_customer_id { field: ad_group.external_customer_id }
@@ -101,6 +104,7 @@ explore: campaign_status {
 
 view: campaign_status {
   derived_table: {
+    datagroup_trigger: adwords_etl_datagroup
     explore_source: campaign_adapter {
       column: _date { field: campaign._date }
       column: external_customer_id { field: campaign.external_customer_id }
@@ -170,6 +174,7 @@ explore: status_changes  {
 view: status_changes {
   extends: [date_base, period_base]
   derived_table: {
+    datagroup_trigger: adwords_etl_datagroup
     sql:
     SELECT
       ad_status._date AS _date,
@@ -354,13 +359,13 @@ view: status_changes {
     sql: COALESCE(${creative_id}, ${ad_group_id}, ${campaign_id}, ${criterion_id}) ;;
     description: "The number of Ads, Ad Groups, Keywords and Campaigns that changed status"
     html:  {% if (fact.content_type._value == 'Ad') %}
-    <a href= "/explore/marketing_analytics/status_changes?fields=ad.creative,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=ad.creative,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% elsif (fact.content_type._value == 'Keyword') %}
-    <a href= "/explore/marketing_analytics/status_changes?fields=keyword.criteria,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}} </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=keyword.criteria,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}} </a>
      {% elsif (fact.content_type._value == 'Ad Group') %}
-    <a href= "/explore/marketing_analytics/status_changes?fields=ad_group.ad_group_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=ad_group.ad_group_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% elsif (fact.content_type._value == 'Campaign') %}
-    <a href= "/explore/marketing_analytics/status_changes?fields=campaign.campaign_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=campaign.campaign_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.date_date']}}"> {{value}}  </a>
     {% endif %} ;;
   }
 }

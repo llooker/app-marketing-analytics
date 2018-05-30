@@ -239,7 +239,7 @@
   - title: Cost Per Click By Country
     name: Cost Per Click By Country
     model: marketing_analytics
-    explore: fb_ad_impressions_country
+    explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
     - fact.total_cost
@@ -341,6 +341,8 @@
     fields:
     - fact.publisher_platform
     - fact.average_cost_per_click
+    filters:
+     fact.average_cost_per_click: ">0"
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -494,8 +496,8 @@
     fields:
     - fact.average_cost_per_click
     - fact.device_type
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_cost_per_click: ">0"
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -571,6 +573,8 @@
     fields:
     - fact.average_cost_per_click
     - fact.gender
+    filters:
+     fact.average_cost_per_click: ">0"
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -639,8 +643,8 @@
     col: 0
     width: 8
     height: 5
-  - title: Cost Per Click By Age & Gender
-    name: Cost Per Click By Age & Gender
+  - title: Cost Per Click By Demographics
+    name: Cost Per Click By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table
@@ -649,8 +653,6 @@
     - fact.gender
     - fact.average_cost_per_click
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender

@@ -185,7 +185,7 @@
   - title: Conversion Rate By Country
     name: Conversion Rate By Country
     model: marketing_analytics
-    explore: fb_ad_impressions_country
+    explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
     - fact.country
@@ -279,8 +279,8 @@
     col: 8
     width: 16
     height: 13
-  - title: Conversion Rate By Age & Gender
-    name: Conversion Rate By Age & Gender
+  - title: Conversion Rate By Demographics
+    name: Conversion Rate By Demographics
     model: marketing_analytics
     explore: fb_ad_impressions_age_and_gender
     type: table
@@ -289,8 +289,6 @@
     - fact.gender
     - fact.average_conversion_rate
     pivots:
-    - fact.gender
-    fill_fields:
     - fact.gender
     sorts:
     - fact.gender
@@ -392,6 +390,8 @@
     fields:
     - fact.gender
     - fact.average_conversion_rate
+    filters:
+     fact.average_conversion_rate: ">0"
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -622,8 +622,8 @@
     fields:
     - fact.device_type
     - fact.average_conversion_rate
-    fill_fields:
-    - fact.device_type
+    filters:
+     fact.average_conversion_rate: ">0"
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -700,6 +700,8 @@
     fields:
     - fact.publisher_platform
     - fact.average_conversion_rate
+    filters:
+     fact.average_conversion_rate: ">0"
     sorts:
     - fact.average_conversion_rate desc
     limit: 500

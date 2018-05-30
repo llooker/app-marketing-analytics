@@ -26,6 +26,7 @@ view: combined_ad_impressions_base {
 }
 
 explore: google_adwords_ad_impressions {
+  persist_with: adwords_etl_datagroup
   hidden: yes
   from: google_adwords_ad_impressions
   view_name: fact
@@ -35,7 +36,7 @@ view: google_adwords_ad_impressions {
   extends: [combined_ad_impressions_base]
 
   derived_table: {
-    datagroup_trigger: etl_datagroup
+    datagroup_trigger: adwords_etl_datagroup
     explore_source: ad_impressions_ad_group {
       column: _date { field: fact.date_date}
       column: account_name { field: customer.account_descriptive_name }
@@ -54,6 +55,7 @@ view: google_adwords_ad_impressions {
 }
 
 explore: facebook_ad_impressions {
+  persist_with: facebook_ads_etl_datagroup
   hidden: yes
   from: facebook_ad_impressions
   view_name: fact
@@ -63,9 +65,9 @@ view: facebook_ad_impressions {
   extends: [combined_ad_impressions_base]
 
   derived_table: {
-    # datagroup_trigger: facebook_etl_datagroup
+    datagroup_trigger: facebook_ads_etl_datagroup
     explore_source: fb_ad_impressions {
-      column: _date { field: fact.date_start_date}
+      column: _date { field: fact.date_date}
       column: account_name { field: fact.account_name }
       column: account_id { field: fact.account_id }
       column: campaign_name { field: fact.campaign_name }
@@ -82,6 +84,7 @@ view: facebook_ad_impressions {
 }
 
 explore: combined_ad_impressions {
+  persist_with: ama_etl_datagroup
   hidden: yes
   from: combined_ad_impressions
   view_name: fact
@@ -90,6 +93,7 @@ view: combined_ad_impressions {
   extends: [combined_ad_impressions_base]
 
   derived_table: {
+    datagroup_trigger: ama_etl_datagroup
     sql:
       SELECT
          "Google AdWords" as channel,

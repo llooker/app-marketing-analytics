@@ -4,6 +4,7 @@ include: "date_base.view"
 include: "period_base.view"
 
 explore: campaign_budget_date_fact {
+  persist_with: adwords_etl_datagroup
   hidden: yes
   label: "Campaign Budget Date Fact"
   view_label: "Campaign Budget Date Fact"
@@ -29,7 +30,7 @@ explore: campaign_budget_date_fact {
 view: campaign_budget_date_fact {
   extends: [date_base, period_base]
   derived_table: {
-    datagroup_trigger: etl_datagroup
+    datagroup_trigger: adwords_etl_datagroup
     explore_source: ad_impressions_campaign {
       column: _date { field: fact.date_date}
       column: external_customer_id { field: fact.external_customer_id }

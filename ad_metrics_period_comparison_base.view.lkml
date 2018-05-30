@@ -39,6 +39,20 @@ view: ad_metrics_period_comparison_base {
     group_label: "Period Comparisons"
     value_format_name: percent_1
   }
+  dimension: value_per_cost_period_percent_change {
+    hidden: yes
+    type: number
+    sql: (${fact.value_per_cost} - ${last_fact.value_per_cost}) / NULLIF(${last_fact.value_per_cost}, 0) ;;
+    group_label: "Period Comparisons"
+    value_format_name: percent_1
+  }
+  dimension:  value_per_cost_period_percent_change_abs {
+    hidden: yes
+    type: number
+    sql: abs(${fact.value_per_cost_period_percent_change}) ;;
+    group_label: "Period Comparisons"
+    value_format_name: percent_1
+  }
   dimension: conversion_rate_period_percent_change {
     hidden: yes
     type: number
@@ -327,6 +341,12 @@ view: ad_metrics_period_comparison_base {
     hidden: yes
     type: yesno
     sql: ${cost_per_conversion_period_percent_change_abs} > .2 ;;
+    group_label: "Period Comparisons"
+  }
+  dimension: value_per_cost_big_mover {
+    hidden: yes
+    type: yesno
+    sql: ${value_per_cost_period_percent_change_abs} > .2 ;;
     group_label: "Period Comparisons"
   }
 

@@ -8,17 +8,19 @@ include: "google_ad_metrics_base.view"
 include: "period_base.view"
 
 explore: period_fact {
+  persist_with: adwords_etl_datagroup
   hidden: yes
   from: period_fact
   view_name: fact
   label: "This Period"
   view_label: "This Period"
 
+  # TODO move this join logic into adapter to be extended.
   join: customer {
     from: customer_adapter
     view_label: "Customer"
     sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${fact._date} = ${customer._date} ;;
+      ${customer.latest} ;;
     relationship: many_to_one
   }
   join: campaign {
@@ -26,7 +28,7 @@ explore: period_fact {
     view_label: "Campaign"
     sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
       ${fact.external_customer_id} = ${campaign.external_customer_id} AND
-      ${fact._date} = ${campaign._date} ;;
+      ${campaign.latest} ;;
     relationship: many_to_one
   }
   join: ad_group {
@@ -35,7 +37,7 @@ explore: period_fact {
     sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
       ${fact.campaign_id} = ${ad_group.campaign_id} AND
       ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
-      ${fact._date} = ${ad_group._date}  ;;
+      ${ad_group.latest}  ;;
     relationship: many_to_one
   }
   join: ad {
@@ -45,7 +47,7 @@ explore: period_fact {
       ${fact.ad_group_id} = ${ad.ad_group_id} AND
       ${fact.campaign_id} = ${ad.campaign_id} AND
       ${fact.external_customer_id} = ${ad.external_customer_id} AND
-      ${fact._date} = ${ad._date}  ;;
+      ${ad.latest}  ;;
     relationship: many_to_one
   }
   join: keyword {
@@ -55,7 +57,7 @@ explore: period_fact {
       ${fact.ad_group_id} = ${keyword.ad_group_id} AND
       ${fact.campaign_id} = ${keyword.campaign_id} AND
       ${fact.external_customer_id} = ${keyword.external_customer_id} AND
-      ${fact._date} = ${keyword._date}  ;;
+      ${keyword.latest}  ;;
     relationship: many_to_one
   }
 

@@ -2,6 +2,7 @@ include: "ad_metrics_parent_comparison_base.view"
 include: "fb_account_fact.view"
 
 explore: fb_campaign_date_fact {
+  persist_with: facebook_ads_etl_datagroup
   hidden: yes
   from: fb_campaign_date_fact
   view_name: fact
@@ -50,6 +51,7 @@ view: fb_campaign_date_fact {
   extends: [ad_metrics_parent_comparison_base, fb_account_date_fact, fb_campaign_key_base]
 
   derived_table: {
+    datagroup_trigger: facebook_ads_etl_datagroup
     explore_source: fb_ad_impressions {
       column: campaign_id { field: fact.campaign_id }
       column: campaign_name { field: fact.campaign_name }
