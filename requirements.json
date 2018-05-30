@@ -1,4 +1,5 @@
 {
+  "disableSetup": true,
   "configProject": "app_marketing_analytics_config",
   "projects": {
     "ama_adwords_adapter": [
