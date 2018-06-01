@@ -6,7 +6,7 @@
     name: Return On Ad Spend To Date
     model: marketing_analytics
     explore: period_fact
-    type: looker_column
+    type: looker_area
     fields:
     - fact.date_period_dynamic_grain
     - fact.total_conversions
@@ -36,14 +36,16 @@
     show_x_axis_ticks: true
     x_axis_scale: auto
     y_axis_scale_mode: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
+    x_axis_reversed: false
+    y_axis_reversed: false
     show_null_points: false
     point_style: none
     interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    ordering: none
+    show_null_labels: false
     label: Average Cost per Conversion
     leftAxisLabelVisible: false
     leftAxisLabel: ''
@@ -60,12 +62,7 @@
     valuePosition: right
     labelColorEnabled: false
     labelColor: "#FFF"
-    series_types:
-      fact.total_conversions: line
-      fact.average_cost_per_conversion: line
-      fact.average_conversion_rate: line
-      fact.average_click_rate: line
-      fact.average_cost_per_click: line
+    series_types: {}
     show_dropoff: false
     y_axes:
     - label:
@@ -82,11 +79,11 @@
       series:
       - id: fact.average_cost_per_conversion
         name: Cost per Conversion
-        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 82
+        __FILE: app_marketing_analytics/campaign_metrics_roas.dashboard.lookml
+        __LINE_NUM: 83
         axisId: fact.average_cost_per_conversion
-      __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 70
+      __FILE: app_marketing_analytics/campaign_metrics_roas.dashboard.lookml
+      __LINE_NUM: 71
     - label:
       maxValue:
       minValue:
@@ -102,10 +99,10 @@
       - id: fact.average_cost_per_click
         name: Cost per Click
         axisId: fact.average_cost_per_click
-        __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-        __LINE_NUM: 101
-      __FILE: app_marketing_analytics/campaign_metrics_cpc.dashboard.lookml
-      __LINE_NUM: 89
+        __FILE: app_marketing_analytics/campaign_metrics_roas.dashboard.lookml
+        __LINE_NUM: 102
+      __FILE: app_marketing_analytics/campaign_metrics_roas.dashboard.lookml
+      __LINE_NUM: 90
     discontinuous_nulls: false
     focus_on_hover: false
     reference_lines: []
