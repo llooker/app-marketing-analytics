@@ -135,13 +135,13 @@ view: period_base {
     type: date
     group_label: "Event"
     label: "{% if fact.period._parameter_value contains 'year'
-        or fact.period._parameter_value contains '364 day' %}Month{% elsif fact.period._parameter_value contains 'quarter'
-        or fact.period._parameter_value contains '91 day' %}Week{% else %}Date{% endif %}"
+       # or fact.period._parameter_value contains '364 day' %}Month{% elsif fact.period._parameter_value contains 'quarter'
+        #or fact.period._parameter_value contains '91 day' %}Week{% else %}Date{% endif %}"
     sql: {% if fact.period._parameter_value contains 'year'
         or fact.period._parameter_value contains '364 day' %}${date_month_date}
       {% elsif fact.period._parameter_value contains 'quarter'
         or fact.period._parameter_value contains '91 day' %}${date_week}
-      {% else %}${date_date}
+      {% else %} ${date_raw}
       {% endif %} ;;
     allow_fill: no
   }
