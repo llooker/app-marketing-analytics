@@ -54,13 +54,13 @@ view: fb_campaign_date_fact {
     datagroup_trigger: facebook_ads_etl_datagroup
     explore_source: fb_ad_impressions {
       column: campaign_id { field: fact.campaign_id }
-      column: campaign_name { field: fact.campaign_name }
+      column: name { field: fact.campaign_name }
     }
   }
   dimension: campaign_id {
     hidden: yes
   }
-  dimension: campaign_name {
+  dimension: name {
     required_fields: [account_id, campaign_id]
   }
 }

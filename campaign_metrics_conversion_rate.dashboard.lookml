@@ -124,7 +124,7 @@
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -204,7 +204,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -284,7 +284,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -405,7 +405,7 @@
       fact.average_conversion_rate: "-"
       fact.date_day_of_week: Day of Week
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -530,7 +530,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -653,7 +653,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -733,7 +733,7 @@
     - "#ea9895"
     - "#f1e582"
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -748,7 +748,7 @@
     type: looker_bar
     fields:
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_conversion_rate_period_percent_change_abs
     - last_fact.average_conversion_rate
     - fact.average_conversion_rate
@@ -789,7 +789,7 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     hidden_fields:
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_conversion_rate_period_percent_change_abs
     series_types: {}
     colors:
@@ -838,7 +838,7 @@
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -854,7 +854,7 @@
     fields:
     - keyword.criteria
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_conversion_rate_period_percent_change_abs
     - last_fact.average_conversion_rate
     - fact.average_conversion_rate
@@ -897,7 +897,7 @@
     hidden_fields:
     - ad_group.ad_group_name
     - fact.average_conversion_rate_period_percent_change_abs
-    - campaign.campaign_name
+    - campaign.name
     series_types: {}
     limit_displayed_rows_values:
       show_hide: show
@@ -947,7 +947,7 @@
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -966,7 +966,7 @@
     filters:
       fact.period: 28 day
       ad_group.ad_group_name: ''
-      campaign.campaign_name: ''
+      campaign.name: ''
     sorts:
     - fact.average_conversion_rate desc
     limit: 500
@@ -1004,7 +1004,7 @@
     - "#FCF758"
     - "#4FBC89"
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period Latest: fact.date_period_latest
     row: 11
@@ -1021,7 +1021,7 @@
     model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
-    field: campaign.campaign_name
+    field: campaign.name
   - name: Ad Group
     title: Ad Group
     type: field_filter
