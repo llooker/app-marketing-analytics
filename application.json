@@ -714,7 +714,37 @@
                 "permalink": ""
               }
             ]
+          },
+          "filters": [
+          {
+            "defaultValue": "28 day",
+            "field": "fact.period",
+            "name": "Time Frame",
+            "type": "TimeFrame",
+            "dashboardAlias": "Period"
+          },
+          {
+            "autoSuggest": {
+              "model": "marketing_analytics",
+              "view": "fb_ad_impressions"
+            },
+            "field": "campaign.name",
+            "name": "Campaign",
+            "type": "Select"
+          },
+          {
+            "autoSuggest": {
+              "model": "marketing_analytics",
+              "view": "fb_ad_impressions"
+            },
+            "field": "adset.aname",
+            "name": "Adset",
+            "type": "Select",
+            "facetedBy": [
+              "campaign.name"
+            ]
           }
+          ]
         },
         {
           "permalink": "fb_campaigns",
