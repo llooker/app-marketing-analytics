@@ -365,7 +365,7 @@ view: status_changes {
      {% elsif (fact.content_type._value == 'Ad Group') %}
     <a href= "/embed/explore/marketing_analytics/status_changes?fields=ad_group.ad_group_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.period']}}"> {{value}}  </a>
     {% elsif (fact.content_type._value == 'Campaign') %}
-    <a href= "/embed/explore/marketing_analytics/status_changes?fields=campaign.campaign_name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.period']}}"> {{value}}  </a>
+    <a href= "/embed/explore/marketing_analytics/status_changes?fields=campaign.name,fact.date_date, fact.status_display&f[fact.date_date]={{_filters['fact.period']}}"> {{value}}  </a>
     {% endif %} ;;
   }
 }

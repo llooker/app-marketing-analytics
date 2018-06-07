@@ -134,7 +134,7 @@
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -214,7 +214,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -294,7 +294,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -419,7 +419,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -542,7 +542,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -661,7 +661,7 @@
     series_labels:
       fact.average_cost_per_click: "-"
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -742,7 +742,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -757,7 +757,7 @@
     type: looker_bar
     fields:
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     - last_fact.average_cost_per_click
     - fact.average_cost_per_click
@@ -791,7 +791,7 @@
     totals_color: "#808080"
     series_types: {}
     hidden_fields:
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     limit_displayed_rows_values:
       show_hide: show
@@ -839,7 +839,7 @@
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -855,7 +855,7 @@
     fields:
     - keyword.criteria
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     - last_fact.average_cost_per_click
     - fact.average_cost_per_click
@@ -889,7 +889,7 @@
     totals_color: "#808080"
     series_types: {}
     hidden_fields:
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     - ad_group.ad_group_name
     limit_displayed_rows_values:
@@ -938,7 +938,7 @@
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -954,7 +954,7 @@
     fields:
     - ad.creative
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     - last_fact.average_cost_per_click
     - fact.average_cost_per_click
@@ -997,7 +997,7 @@
     conditional_formatting_include_nulls: false
     hidden_fields:
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.average_cost_per_click_period_percent_change_abs
     series_types: {}
     limit_displayed_rows_values:
@@ -1050,7 +1050,7 @@
     x_axis_reversed: false
     y_axis_reversed: false
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -1069,7 +1069,7 @@
     filters:
       fact.period: 28 day
       ad_group.ad_group_name: ''
-      campaign.campaign_name: ''
+      campaign.name: ''
     sorts:
     - fact.average_cost_per_click desc
     limit: 500
@@ -1107,7 +1107,7 @@
     - "#FCF758"
     - "#4FBC89"
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period Latest: fact.date_period_latest
     row: 10
@@ -1124,7 +1124,7 @@
     model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
-    field: campaign.campaign_name
+    field: campaign.name
   - name: Ad Group
     title: Ad Group
     type: field_filter

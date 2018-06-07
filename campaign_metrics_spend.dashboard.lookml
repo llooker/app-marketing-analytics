@@ -103,7 +103,7 @@
     column_group_spacing_ratio: 0
     column_spacing_ratio: 0
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -219,7 +219,7 @@
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
       __LINE_NUM: 177
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Period: fact.period
       Period Latest: fact.date_period_latest
     row: 0
@@ -298,7 +298,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -378,7 +378,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -459,7 +459,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -584,7 +584,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -705,7 +705,7 @@
       fact.total_cost: "-"
       fact.date_day_of_week: Day of Week
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -828,7 +828,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -844,7 +844,7 @@
     fields:
     - ad.creative
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.total_cost
     sorts:
     - fact.total_cost desc
@@ -886,7 +886,7 @@
       first_last: first
       num_rows: '7'
     hidden_fields:
-    - campaign.campaign_name
+    - campaign.name
     - ad_group.ad_group_name
     y_axes:
     - label: ''
@@ -924,7 +924,7 @@
     - "#f1e582"
     series_colors: {}
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -939,7 +939,7 @@
     type: looker_column
     fields:
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.total_cost
     - keyword.criteria
     sorts:
@@ -983,7 +983,7 @@
       num_rows: '7'
     hidden_fields:
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     colors:
     - "#ea9895"
     - "#7869df"
@@ -1019,7 +1019,7 @@
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
       __LINE_NUM: 1052
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -1035,7 +1035,7 @@
     fields:
     - ad.creative_final_urls_domain_path
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     - fact.total_cost
     sorts:
     - fact.total_cost desc
@@ -1078,7 +1078,7 @@
       num_rows: '7'
     hidden_fields:
     - ad_group.ad_group_name
-    - campaign.campaign_name
+    - campaign.name
     colors:
     - "#f1e582"
     - "#7869df"
@@ -1114,7 +1114,7 @@
       __FILE: app_marketing_analytics/campaign_metrics_spend.dashboard.lookml
       __LINE_NUM: 1147
     listen:
-      Campaign: campaign.campaign_name
+      Campaign: campaign.name
       Ad Group: ad_group.ad_group_name
       Period: fact.period
       Period Latest: fact.date_period_latest
@@ -1132,7 +1132,7 @@
     model: marketing_analytics
     explore: period_fact
     listens_to_filters: []
-    field: campaign.campaign_name
+    field: campaign.name
   - name: Ad Group
     title: Ad Group
     type: field_filter

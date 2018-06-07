@@ -58,9 +58,9 @@ view: google_ad_metrics_base {
   measure: total_clicks {
   }
   measure: total_conversions {
-    drill_fields: [fact.date_date, campaign.campaign_name, fact.total_conversions]
+    drill_fields: [fact.date_date, campaign.name, fact.total_conversions]
   }
   measure: total_cost {
-    drill_fields: [fact.date_date, campaign.campaign_name, fact.total_cost]
+    drill_fields: [fact.date_date, campaign.name, fact.total_cost]
   }
 }

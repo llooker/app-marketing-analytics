@@ -41,7 +41,7 @@ view: google_adwords_ad_impressions {
       column: _date { field: fact.date_date}
       column: account_name { field: customer.account_descriptive_name }
       column: account_id { field: fact.external_customer_id_string }
-      column: campaign_name { field: campaign.campaign_name }
+      column: campaign_name { field: campaign.name }
       column: campaign_id { field: fact.campaign_id_string }
       column: ad_group_name { field: ad_group.ad_group_name }
       column: ad_group_id { field: fact.ad_group_id_string }

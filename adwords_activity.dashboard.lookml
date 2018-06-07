@@ -506,7 +506,7 @@
     type: table
     fields:
     - fact.date_date
-    - campaign.campaign_name
+    - campaign.name
     - ad_group.ad_group_name
     - fact.content_type
     - fact.change_type
