@@ -137,23 +137,23 @@ view: period_fact {
     hidden: yes
     sql:
       CONCAT(
-      CAST(${external_customer_id} AS STRING),
-    {% if (campaign._in_query or fact.campaign_id._in_query or ad_group._in_query or fact.ad_group_id._in_query or ad._in_query or fact.creative_id._in_query or keyword._in_query or fact.criterion_id._in_query %}
-      "-", CAST(${campaign_id} AS STRING),
+      CAST(${external_customer_id} AS STRING)
+    {% if (campaign._in_query or fact.campaign_id._in_query or ad_group._in_query or fact.ad_group_id._in_query or ad._in_query or fact.creative_id._in_query or keyword._in_query or fact.criterion_id._in_query) %}
+      ,"-", CAST(${campaign_id} AS STRING)
     {% endif %}
-    {% if (ad_group._in_query or fact.ad_group_id._in_query or ad._in_query or fact.creative_id._in_query or keyword._in_query or fact.criterion_id._in_query %}
-      "-", CAST(${ad_group_id} AS STRING),
+    {% if (ad_group._in_query or fact.ad_group_id._in_query or ad._in_query or fact.creative_id._in_query or keyword._in_query or fact.criterion_id._in_query) %}
+      ,"-", CAST(${ad_group_id} AS STRING)
     {% endif %}
     {% if (ad._in_query or fact.creative_id._in_query) %}
-      "-", CAST(${creative_id} AS STRING)
+      ,"-", CAST(${creative_id} AS STRING)
     {% elsif (keyword._in_query or fact.criterion_id._in_query) %}
-      "-", CAST(${criterion_id} AS STRING)
+      ,"-", CAST(${criterion_id} AS STRING)
     {% endif %}
     ) ;;
   }
   dimension: primary_key {
     primary_key: yes
     hidden: yes
-    sql: concat(CAST(${date_period} as STRING), ${date_day_of_period}, ${key_base}) ;;
+    sql: concat(CAST(${date_period} as STRING), CAST(${date_day_of_period} as STRING), ${key_base}) ;;
   }
 }

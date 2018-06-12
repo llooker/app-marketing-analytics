@@ -1169,17 +1169,11 @@
     explore: fb_period_fact
     type: looker_column
     fields:
-    - fact.date_date
     - fact.total_impressions
     - fact.total_clicks
     - fact.total_conversions
-    fill_fields:
-    - fact.date_date
-    sorts:
-    - fact.date_date
     limit: 1
     column_limit: 50
-    query_timezone: America/Los_Angeles
     stacking: ''
     show_value_labels: false
     label_density: 25
@@ -1204,16 +1198,20 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    query_timezone: America/Los_Angeles
     show_null_points: true
     point_style: none
     interpolation: linear
     hidden_fields: []
-    series_types:
-      fact.average_cost_per_click: line
-      fact.average_click_rate: line
-      fact.average_conversion_rate: line
-      fact.average_cost_per_conversion: line
-      fact.total_conversions: line
+    series_types: {}
     colors:
     - "#d06180"
     - "#a4a6a9"
@@ -1232,101 +1230,27 @@
       last_fact.cumulative_spend: Prior Period
     hidden_series: []
     y_axes:
-    - label: ''
-      maxValue:
-      minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.average_cost_per_click
-        name: Cost per Click
-        axisId: fact.average_cost_per_click
-        __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-        __LINE_NUM: 641
-      __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-      __LINE_NUM: 629
     - label:
-      maxValue:
-      minValue:
       orientation: left
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
       series:
       - id: fact.total_conversions
         name: Conversions
         axisId: fact.total_conversions
-        __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-        __LINE_NUM: 660
-      __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-      __LINE_NUM: 648
-    - label:
-      maxValue:
-      minValue:
-      orientation: left
+      - id: fact.total_impressions
+        name: Impressions
+        axisId: fact.total_impressions
+      - id: fact.total_clicks
+        name: Clicks
+        axisId: fact.total_clicks
       showLabels: true
       showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.average_cost_per_conversion
-        name: Cost per Conversion
-        axisId: fact.average_cost_per_conversion
-        __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-        __LINE_NUM: 679
-      __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-      __LINE_NUM: 667
-    - label:
       maxValue:
       minValue:
-      orientation: left
-      showLabels: true
-      showValues: true
+      valueFormat:
+      unpinAxis: false
       tickDensity: default
       tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.average_conversion_rate
-        name: Conversion Rate
-        axisId: fact.average_conversion_rate
-        __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-        __LINE_NUM: 698
-      __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-      __LINE_NUM: 686
-    - label:
-      maxValue:
-      minValue:
-      orientation: right
-      showLabels: true
-      showValues: true
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-      unpinAxis: false
-      valueFormat:
-      series:
-      - id: fact.average_click_rate
-        name: Click Through Rate
-        axisId: fact.average_click_rate
-        __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-        __LINE_NUM: 717
-      __FILE: app_marketing_analytics/fb_overview.dashboard.lookml
-      __LINE_NUM: 705
+      type: log
     column_spacing_ratio:
     column_group_spacing_ratio:
     show_dropoff: true

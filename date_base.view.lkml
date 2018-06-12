@@ -19,7 +19,7 @@ view: date_base {
       day_of_year
     ]
     convert_tz: no
-    sql: ${_date} ;;
+    sql: (CAST(${_date} AS TIMESTAMP)) ;;
   }
 
   dimension: date_week_date {

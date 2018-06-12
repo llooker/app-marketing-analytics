@@ -16,7 +16,7 @@
     required: false
     model: marketing_analytics
     explore: period_fact
-    field: campaign.campaign_name
+    field: campaign.name
   - name: Ad Group
     title: Ad Group
     type: field_filter
