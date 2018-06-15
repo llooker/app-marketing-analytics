@@ -115,7 +115,7 @@ view: period_base {
         {% elsif fact.period._parameter_value == "'28 day'" %}DATE_ADD(${date_period}, INTERVAL 28 DAY)
         {% elsif fact.period._parameter_value == "'91 day'" %}DATE_ADD(${date_period}, INTERVAL 91 DAY)
         {% elsif fact.period._parameter_value == "'364 day'" %}DATE_ADD(${date_period}, INTERVAL 364 DAY)
-        {% else %}${date_date}
+        {% else %}DATE_ADD(${date_date}, INTERVAL 1 DAY)
         {% endif %}
       {% elsif fact.period._parameter_value contains "week" %}DATE_ADD(${date_period}, INTERVAL 1 WEEK)
       {% elsif fact.period._parameter_value contains "month" %}DATE_ADD(${date_period}, INTERVAL 1 MONTH)
@@ -127,7 +127,7 @@ view: period_base {
   dimension: date_period_latest {
     type: yesno
     group_label: "Event"
-    sql: ${date_period} <= CURRENT_DATE() AND ${date_end_of_period} >= CURRENT_DATE() ;;
+    sql: ${date_period} < CURRENT_DATE() AND ${date_end_of_period} >= CURRENT_DATE() ;;
     # expression: ${date_period} <= now() AND ${date_end_of_period} >= now() ;;
   }
   dimension: date_period_dynamic_grain {
