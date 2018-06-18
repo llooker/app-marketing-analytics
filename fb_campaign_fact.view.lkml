@@ -62,5 +62,6 @@ view: fb_campaign_date_fact {
   }
   dimension: name {
     required_fields: [account_id, campaign_id]
+    label: "Campaign Name"
   }
 }
