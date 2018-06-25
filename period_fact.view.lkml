@@ -8,58 +8,13 @@ include: "google_ad_metrics_base.view"
 include: "period_base.view"
 
 explore: period_fact {
+  extends: [customer_join, campaign_join, ad_group_join, keyword_join, ad_join]
   persist_with: adwords_etl_datagroup
   hidden: yes
   from: period_fact
   view_name: fact
   label: "This Period"
   view_label: "This Period"
-
-  # TODO move this join logic into adapter to be extended.
-  join: customer {
-    from: customer_adapter
-    view_label: "Customer"
-    sql_on: ${fact.external_customer_id} = ${customer.external_customer_id} AND
-      ${customer.latest} ;;
-    relationship: many_to_one
-  }
-  join: campaign {
-    from: campaign_adapter
-    view_label: "Campaign"
-    sql_on: ${fact.campaign_id} = ${campaign.campaign_id} AND
-      ${fact.external_customer_id} = ${campaign.external_customer_id} AND
-      ${campaign.latest} ;;
-    relationship: many_to_one
-  }
-  join: ad_group {
-    from: ad_group_adapter
-    view_label: "Ad Group"
-    sql_on: ${fact.ad_group_id} = ${ad_group.ad_group_id} AND
-      ${fact.campaign_id} = ${ad_group.campaign_id} AND
-      ${fact.external_customer_id} = ${ad_group.external_customer_id} AND
-      ${ad_group.latest}  ;;
-    relationship: many_to_one
-  }
-  join: ad {
-    from: ad_adapter
-    view_label: "Ad"
-    sql_on: ${fact.creative_id} = ${ad.creative_id} AND
-      ${fact.ad_group_id} = ${ad.ad_group_id} AND
-      ${fact.campaign_id} = ${ad.campaign_id} AND
-      ${fact.external_customer_id} = ${ad.external_customer_id} AND
-      ${ad.latest}  ;;
-    relationship: many_to_one
-  }
-  join: keyword {
-    from: keyword_adapter
-    view_label: "Keyword"
-    sql_on: ${fact.criterion_id} = ${keyword.criterion_id} AND
-      ${fact.ad_group_id} = ${keyword.ad_group_id} AND
-      ${fact.campaign_id} = ${keyword.campaign_id} AND
-      ${fact.external_customer_id} = ${keyword.external_customer_id} AND
-      ${keyword.latest}  ;;
-    relationship: many_to_one
-  }
 
   join: last_fact {
     from: period_fact
