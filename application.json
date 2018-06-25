@@ -157,7 +157,7 @@
             {
               "model": "marketing_analytics",
               "view": "ad_group_date_fact",
-              "params": "&sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period",
+              "params": "&sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[fact.date_period_before_latest]=Yes",
               "fields": {
                 "spend": {
                   "inverseChange": true,
@@ -814,7 +814,7 @@
             {
               "model": "marketing_analytics",
               "view": "fb_adset_date_fact",
-              "params": "&sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period",
+              "params": "&sorts=fact.date_period+desc&fields=fact.date_period,fact.date_end_of_period&f[fact.date_period_before_latest]=Yes",
               "fields": {
                 "spend": {
                   "inverseChange": true,
