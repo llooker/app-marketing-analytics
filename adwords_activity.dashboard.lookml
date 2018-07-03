@@ -11,7 +11,7 @@
   elements:
   - title: Ad Group Changes
     name: Ad Group Changes
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     type: single_value
     fields:
@@ -68,7 +68,7 @@
     height: 4
   - title: Campaign Changes
     name: Campaign Changes
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     type: single_value
     fields:
@@ -125,7 +125,7 @@
     height: 5
   - title: Changes Over Time
     name: Changes Over Time
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     type: looker_column
     fields:
@@ -223,7 +223,7 @@
     height: 9
   - title: Ad Changes
     name: Ad Changes
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     type: single_value
     fields:
@@ -280,7 +280,7 @@
     height: 5
   - title: Ad Changes Over Time
     name: Ad Changes Over Time
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     type: looker_line
     fields:
@@ -363,7 +363,7 @@
     height: 5
   - title: Keyword Changes Over Time
     name: Keyword Changes Over Time
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     type: looker_line
     fields:
@@ -444,7 +444,7 @@
     height: 5
   - title: Keyword Changes
     name: Keyword Changes
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     type: single_value
     fields:
@@ -501,7 +501,7 @@
     height: 5
   - title: 25 Most Recent Changes
     name: 25 Most Recent Changes
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     type: table
     fields:
@@ -612,7 +612,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     listens_to_filters: []
     field: fact.period
@@ -622,7 +622,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: status_changes
     listens_to_filters: []
     field: fact.date_period_latest

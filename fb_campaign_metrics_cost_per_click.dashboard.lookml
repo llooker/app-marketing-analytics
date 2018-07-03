@@ -5,7 +5,7 @@
   elements:
   - title: Cost Per Click By Age
     name: Cost Per Click By Age
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -81,7 +81,7 @@
     height: 6
   - title: Cost Per Click To Date
     name: Cost Per Click To Date
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -238,7 +238,7 @@
     height: 11
   - title: Cost Per Click By Country
     name: Cost Per Click By Country
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
@@ -335,7 +335,7 @@
     height: 12
   - title: Cost Per Click By Platform
     name: Cost Per Click By Platform
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -412,7 +412,7 @@
     height: 5
   - title: Cost Per Click by Day of Week
     name: Cost Per Click by Day of Week
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -490,7 +490,7 @@
     height: 6
   - title: Cost Per Click By Device
     name: Cost Per Click By Device
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -567,7 +567,7 @@
     height: 5
   - title: Cost Per Click By Gender
     name: Cost Per Click By Gender
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -645,7 +645,7 @@
     height: 5
   - title: Cost Per Click By Demographics
     name: Cost Per Click By Demographics
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: table
     fields:
@@ -756,7 +756,7 @@
     height: 6
   - title: Ad Cost Per Click Change
     name: Ad Cost Per Click Change
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_bar
     fields:
@@ -858,7 +858,7 @@
     height: 6
   - title: Adset Cost Per Click Change
     name: Adset Cost Per Click Change
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_bar
     fields:

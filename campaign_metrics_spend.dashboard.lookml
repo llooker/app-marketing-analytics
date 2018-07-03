@@ -4,7 +4,7 @@
   elements:
   - title: Spend To Date
     name: Spend To Date
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_area
     fields:
@@ -113,7 +113,7 @@
     height: 11
   - title: Budget Utilization
     name: Budget Utilization
-    model: marketing_analytics
+    model: marketing
     explore: campaign_budget_date_fact
     type: looker_column
     fields:
@@ -228,7 +228,7 @@
     height: 11
   - title: Spend by Device
     name: Spend by Device
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group
     type: looker_bar
     fields:
@@ -308,7 +308,7 @@
     height: 6
   - title: Spend by Bid Strategy
     name: Spend by Bid Strategy
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_keyword
     type: looker_bar
     fields:
@@ -388,7 +388,7 @@
     height: 6
   - title: Spend by Network
     name: Spend by Network
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group
     type: looker_bar
     fields:
@@ -469,7 +469,7 @@
     height: 6
   - title: Spend by Day of Week
     name: Spend by Day of Week
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -594,7 +594,7 @@
     height: 6
   - title: Spend by Day of Week and Hour of Day
     name: Spend by Day of Week and Hour of Day
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group_hour
     type: table
     fields:
@@ -715,7 +715,7 @@
     height: 12
   - title: Spend by Hour of Day
     name: Spend by Hour of Day
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
@@ -838,7 +838,7 @@
     height: 6
   - title: Top Ads by Spend
     name: Top Ads by Spend
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -934,7 +934,7 @@
     height: 7
   - title: Top Keywords by Spend
     name: Top Keywords by Spend
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_column
     fields:
@@ -1029,7 +1029,7 @@
     height: 14
   - title: Top Landing Pages by Spend
     name: Top Landing Pages by Spend
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -1129,7 +1129,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: campaign.name
@@ -1139,7 +1139,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: ad_group.ad_group_name
@@ -1149,7 +1149,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: fact.period
@@ -1159,7 +1159,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: fact.date_period_latest

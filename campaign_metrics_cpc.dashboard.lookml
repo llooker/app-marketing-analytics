@@ -4,7 +4,7 @@
   elements:
   - title: Cost Per Click To Date
     name: Cost Per Click To Date
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_column
     fields:
@@ -144,7 +144,7 @@
     height: 10
   - title: Cost Per Click by Device
     name: Cost Per Click by Device
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group
     type: looker_bar
     fields:
@@ -224,7 +224,7 @@
     height: 4
   - title: Cost Per Click by Bid Strategy
     name: Cost Per Click by Bid Strategy
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_keyword
     type: looker_bar
     fields:
@@ -304,7 +304,7 @@
     height: 4
   - title: Cost Per Click by Day of Week
     name: Cost Per Click by Day of Week
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -429,7 +429,7 @@
     height: 7
   - title: Cost Per Click by Hour of Day
     name: Cost Per Click by Hour of Day
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
@@ -552,7 +552,7 @@
     height: 7
   - title: Cost Per Click by Day of Week and Hour of Day
     name: Cost Per Click by Day of Week and Hour of Day
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group_hour
     type: table
     fields:
@@ -671,7 +671,7 @@
     height: 14
   - title: Cost Per Click by Network
     name: Cost Per Click by Network
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group
     type: looker_bar
     fields:
@@ -752,7 +752,7 @@
     height: 4
   - title: Ad Group Cost Per Click Change
     name: Ad Group Cost Per Click Change
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -849,7 +849,7 @@
     height: 10
   - title: Keyword Cost Per Click Change
     name: Keyword Cost Per Click Change
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -948,7 +948,7 @@
     height: 10
   - title: Ad Cost Per Click Change
     name: Ad Cost Per Click Change
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -1060,7 +1060,7 @@
     height: 10
   - title: Cost Per Click By State
     name: Cost Per Click By State
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_geo
     type: looker_map
     fields:
@@ -1121,7 +1121,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: campaign.name
@@ -1131,7 +1131,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: ad_group.ad_group_name
@@ -1141,7 +1141,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: fact.period
@@ -1151,7 +1151,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: fact.date_period_latest

@@ -5,7 +5,7 @@
   elements:
   - title: Click Through Rate By Age
     name: Click Through Rate By Age
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -81,7 +81,7 @@
     height: 6
   - title: Click Through Rate To Date
     name: Click Through Rate To Date
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -240,7 +240,7 @@
     height: 11
   - title: Click Through Rate By Country
     name: Click Through Rate By Country
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
@@ -337,7 +337,7 @@
     height: 12
   - title: Click Through Rate by Gender
     name: Click Through Rate by Gender
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -415,7 +415,7 @@
     height: 5
   - title: Click Through Rate By Device
     name: Click Through Rate By Device
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -493,7 +493,7 @@
     height: 5
   - title: Click Through Rate By Platform
     name: Click Through Rate By Platform
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -571,7 +571,7 @@
     height: 5
   - title: Click Through Rate By Demographics
     name: Click Through Rate By Demographics
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: table
     fields:
@@ -674,7 +674,7 @@
     height: 6
   - title: Click Through Rate By Day of Week
     name: Click Through Rate By Day of Week
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -752,7 +752,7 @@
     height: 6
   - title: Ad Click Through Rate Change
     name: Ad Click Through Rate Change
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_bar
     fields:
@@ -850,7 +850,7 @@
     height: 6
   - title: Adset Click Through Rate Change
     name: Adset Click Through Rate Change
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_bar
     fields:

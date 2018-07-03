@@ -5,7 +5,7 @@
   elements:
   - title: Conversions By Gender
     name: Conversions By Gender
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -83,7 +83,7 @@
     height: 5
   - title: Conversions By Age
     name: Conversions By Age
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -159,7 +159,7 @@
     height: 6
   - title: Conversions By Day Of Week
     name: Conversions By Day Of Week
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -237,7 +237,7 @@
     height: 6
   - title: Conversions By Device
     name: Conversions By Device
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -315,7 +315,7 @@
     height: 5
   - title: Conversions By Platform
     name: Conversions By Platform
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -393,7 +393,7 @@
     height: 5
   - title: Conversions To Date
     name: Conversions To Date
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -552,7 +552,7 @@
     height: 11
   - title: Conversions By Country
     name: Conversions By Country
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
@@ -649,7 +649,7 @@
     height: 12
   - title: Top Ads By Conversions
     name: Top Ads By Conversions
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -728,7 +728,7 @@
     height: 6
   - title: Conversions By Demographics
     name: Conversions By Demographics
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: table
     fields:

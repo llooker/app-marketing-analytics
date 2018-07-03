@@ -14,7 +14,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     listens_to_filters: []
     field: campaign.name
@@ -24,7 +24,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     listens_to_filters: []
     field: adset.name
@@ -34,7 +34,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     listens_to_filters: []
     field: fact.period
@@ -44,7 +44,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     listens_to_filters: []
     field: fact.date_period_latest

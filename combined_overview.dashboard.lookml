@@ -11,7 +11,7 @@
   elements:
   - title: Conversions
     name: Conversions
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: single_value
     fields:
@@ -133,7 +133,7 @@
     height: 3
   - title: Cost Per Conversion
     name: Cost Per Conversion
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: single_value
     fields:
@@ -255,7 +255,7 @@
     height: 3
   - title: Conversion Rate
     name: Conversion Rate
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: single_value
     fields:
@@ -377,7 +377,7 @@
     height: 3
   - title: Per Click
     name: Per Click
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: single_value
     fields:
@@ -498,7 +498,7 @@
     height: 3
   - title: Click Rate
     name: Click Rate
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: single_value
     fields:
@@ -620,7 +620,7 @@
     height: 3
   - title: Funnel
     name: Funnel
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: looker_column
     fields:
@@ -717,8 +717,8 @@
     height: 6
   - title: Channels
     name: Channels
-    model: marketing_analytics
-    explore: combined_ad_group_date_fact
+    model: marketing
+    explore: combined_ad_impressions
     type: table
     fields:
     - fact.channel
@@ -779,8 +779,8 @@
     height: 6
   - title: Conversion Trend
     name: Conversion Trend
-    model: marketing_analytics
-    explore: combined_ad_group_date_fact
+    model: marketing
+    explore: combined_ad_impressions
     type: looker_area
     fields:
     - fact.date_period_dynamic_grain
@@ -934,7 +934,7 @@
     height: 9
   - title: Click Trend
     name: Click Trend
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: looker_line
     fields:
@@ -1087,7 +1087,7 @@
     height: 6
   - title: Spend
     name: Spend
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: single_value
     fields:
@@ -1210,7 +1210,7 @@
     height: 3
   - title: Spend To Date
     name: Spend To Date
-    model: marketing_analytics
+    model: marketing
     explore: combined_ad_group_date_fact
     type: looker_area
     fields:
@@ -1402,7 +1402,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     field: fact.period
   - name: Period Latest
@@ -1411,6 +1411,6 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     field: fact.date_period_latest

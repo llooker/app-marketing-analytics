@@ -11,7 +11,7 @@
   elements:
   - title: Funnel
     name: Funnel
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_column
     fields:
@@ -112,7 +112,7 @@
     height: 6
   - title: Conversion Trend
     name: Conversion Trend
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_area
     fields:
@@ -268,7 +268,7 @@
     height: 10
   - title: Spend To Date
     name: Spend To Date
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_area
     fields:
@@ -454,7 +454,7 @@
     height: 10
   - title: Click Trend
     name: Click Trend
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_line
     fields:
@@ -608,7 +608,7 @@
     height: 6
   - title: Campaigns
     name: Campaigns
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: table
     fields:
@@ -670,7 +670,7 @@
     height: 6
   - title: Spend
     name: Spend
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: single_value
     fields:
@@ -797,7 +797,7 @@
     height: 3
   - title: Conversions
     name: Conversions
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: single_value
     fields:
@@ -923,7 +923,7 @@
     height: 3
   - title: Cost Per Conversion
     name: Cost Per Conversion
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: single_value
     fields:
@@ -1049,7 +1049,7 @@
     height: 3
   - title: Conversion Rate
     name: Conversion Rate
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: single_value
     fields:
@@ -1175,7 +1175,7 @@
     height: 3
   - title: Click Rate
     name: Click Rate
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: single_value
     fields:
@@ -1302,7 +1302,7 @@
     height: 3
   - title: Per Click
     name: Per Click
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: single_value
     fields:
@@ -1433,7 +1433,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: fact.period
@@ -1443,7 +1443,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: fact.date_period_latest
@@ -1453,7 +1453,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: campaign.name

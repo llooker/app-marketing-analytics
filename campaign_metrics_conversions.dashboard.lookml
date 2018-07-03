@@ -4,7 +4,7 @@
   elements:
   - title: Conversions To Date
     name: Conversions To Date
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_column
     fields:
@@ -144,7 +144,7 @@
     height: 11
   - title: Conversions by Device
     name: Conversions by Device
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group
     type: looker_bar
     fields:
@@ -244,7 +244,7 @@
     height: 6
   - title: Conversions by Network
     name: Conversions by Network
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group
     type: looker_bar
     fields:
@@ -325,7 +325,7 @@
     height: 6
   - title: Conversions by Bid Strategy
     name: Conversions by Bid Strategy
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_keyword
     type: looker_bar
     fields:
@@ -424,7 +424,7 @@
     height: 6
   - title: Conversions by Day of Week
     name: Conversions by Day of Week
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -549,7 +549,7 @@
     height: 7
   - title: Conversions by Day of Week and Hour of Day
     name: Conversions by Day of Week and Hour of Day
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group_hour
     type: table
     fields:
@@ -670,7 +670,7 @@
     height: 14
   - title: Conversions by Hour of Day
     name: Conversions by Hour of Day
-    model: marketing_analytics
+    model: marketing
     explore: ad_impressions_ad_group_hour
     type: looker_column
     fields:
@@ -793,7 +793,7 @@
     height: 7
   - title: Top Ads by Conversions
     name: Top Ads by Conversions
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -890,7 +890,7 @@
     height: 7
   - title: Top Landing Pages by Conversions
     name: Top Landing Pages by Conversions
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_bar
     fields:
@@ -986,7 +986,7 @@
     height: 7
   - title: Top Keywords by Conversions
     name: Top Keywords by Conversions
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     type: looker_column
     fields:
@@ -1087,7 +1087,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: campaign.name
@@ -1097,7 +1097,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: ad_group.ad_group_name
@@ -1107,7 +1107,7 @@
     default_value: 28 day
     allow_multiple_values: true
     required: true
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: fact.period
@@ -1117,7 +1117,7 @@
     default_value: 'Yes'
     allow_multiple_values: true
     required: false
-    model: marketing_analytics
+    model: marketing
     explore: period_fact
     listens_to_filters: []
     field: fact.date_period_latest

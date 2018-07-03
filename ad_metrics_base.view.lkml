@@ -96,8 +96,8 @@ view: ad_metrics_base {
 
   dimension: value_per_cost {
     hidden: yes
-    label: "ROAS"
-    description: "Return on Ad Spend."
+    label: "CTRD"
+    description: "Cost to raise a dollar (CTRD): 1x donation revenue campaigns / spend from department"
     type: number
     sql: ${conversionvalue}*1.0 / NULLIF(${cost},0) ;;
     value_format_name: percent_0
@@ -172,11 +172,13 @@ view: ad_metrics_base {
   }
 
   measure: average_value_per_cost {
-    label: "ROAS"
-    description: "Average Return on Ad Spend."
+    label: "CTRD"
+    description: "Cost to raise a dollar (CTRD): Donation Revenue from Campaigns / Spend from Department"
+#     label: "ROAS"
+#     description: "Average Return on Ad Spend."
     type: number
     sql: ${total_conversionvalue}*1.0 / NULLIF(${total_cost},0) ;;
-    value_format_name: percent_0
+    value_format_name: decimal_2
   }
 
   measure: average_conversion_rate {

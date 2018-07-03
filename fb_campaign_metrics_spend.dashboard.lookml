@@ -5,7 +5,7 @@
   elements:
   - title: Spend By Day of Week
     name: Spend By Day of Week
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -82,7 +82,7 @@
     height: 5
   - title: Top Ads by Spend
     name: Top Ads by Spend
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -160,7 +160,7 @@
     height: 6
   - title: Spend By Device
     name: Spend By Device
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -237,7 +237,7 @@
     height: 5
   - title: Spend By Platform
     name: Spend By Platform
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -314,7 +314,7 @@
     height: 5
   - title: Spend By Gender
     name: Spend By Gender
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -392,7 +392,7 @@
     height: 5
   - title: Spend To Date
     name: Spend To Date
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_area
     fields:
@@ -462,7 +462,7 @@
     height: 10
   - title: Spend By Age
     name: Spend By Age
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -538,7 +538,7 @@
     height: 5
   - title: Spend By Demographics
     name: Spend By Demographics
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: table
     fields:

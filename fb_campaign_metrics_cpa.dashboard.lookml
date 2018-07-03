@@ -5,7 +5,7 @@
   elements:
   - title: Cost Per Conversion To Date
     name: Cost Per Conversion To Date
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_column
     fields:
@@ -164,7 +164,7 @@
     height: 11
   - title: Cost Per Conversion By Age
     name: Cost Per Conversion By Age
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -240,7 +240,7 @@
     height: 6
   - title: Cost Per Conversion By Country
     name: Cost Per Conversion By Country
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_geo
     type: looker_geo_choropleth
     fields:
@@ -337,7 +337,7 @@
     height: 13
   - title: Cost Per Conversion By Gender
     name: Cost Per Conversion By Gender
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: looker_bar
     fields:
@@ -415,7 +415,7 @@
     height: 6
   - title: Cost Per Conversion By Demographics
     name: Cost Per Conversion By Demographics
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_age_and_gender
     type: table
     fields:
@@ -518,7 +518,7 @@
     height: 6
   - title: Cost Per Conversion By Device
     name: Cost Per Conversion By Device
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -596,7 +596,7 @@
     height: 5
   - title: Cost Per Conversion By Platform
     name: Cost Per Conversion By Platform
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions_platform_and_device
     type: looker_bar
     fields:
@@ -674,7 +674,7 @@
     height: 5
   - title: Cost Per Conversion By Day Of Week
     name: Cost Per Conversion By Day Of Week
-    model: marketing_analytics
+    model: marketing
     explore: fb_ad_impressions
     type: looker_bar
     fields:
@@ -752,7 +752,7 @@
     height: 6
   - title: Adset Cost Per Conversion Change
     name: Adset Cost Per Conversion Change
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_bar
     fields:
@@ -852,7 +852,7 @@
     height: 6
   - title: Ad Cost Per Conversion Change
     name: Ad Cost Per Conversion Change
-    model: marketing_analytics
+    model: marketing
     explore: fb_period_fact
     type: looker_bar
     fields:

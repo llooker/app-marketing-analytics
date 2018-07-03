@@ -50,6 +50,13 @@ view: google_adwords_ad_impressions {
       column: clicks { field: fact.total_clicks }
       column: conversions { field: fact.total_conversions }
       column: conversionvalue { field: fact.total_conversionvalue }
+      derived_column: department {
+        sql:  CASE WHEN campaign_name like '%Sponsor%' THEN 'Spon'
+             WHEN campaign_name like '%Gift Catalog%' THEN 'Gift Cat'
+             WHEN campaign_name like '%Emergency%' OR campaign_name like '% Charity & Donations%' OR campaign_name like '%Children Charity%' OR campaign_name like '%Coping with Crisis%' OR campaign_name like '%Girls%' OR campaign_name like '%Giving Tuesday%' OR campaign_name like '%Honor & Memorial%' OR campaign_name like '%Red Nose Day%' OR campaign_name like '%Save the Children - Brand%'  OR campaign_name like '% Search & Rescue - Display%' OR campaign_name like  '%SOWM%' OR campaign_name like '%Where We Work - Africa%' OR campaign_name like  '%South Sudan - Display%'  OR campaign_name like '%Syria - Native%' OR campaign_name like '%Syria - Display%' OR campaign_name like '%Retargeting Display%' OR campaign_name like '%2X Match - gmail%'  OR campaign_name like '%gp - Ramadan%' THEN 'Web'
+             ELSE 'Other'
+             END  ;;
+      }
     }
   }
 }
@@ -79,13 +86,22 @@ view: facebook_ad_impressions {
       column: clicks { field: fact.total_clicks }
       column: conversions { field: fact.total_conversions }
       column: conversionvalue { field: fact.total_conversionvalue }
+      derived_column: department {
+        sql: CASE WHEN campaign_name LIKE '%spon%' THEN 'Sponsorhip'
+             WHEN campaign_name LIKE '%Gift Cat%' OR campaign_name LIKE '%GC%' THEN 'Gift Cat'
+             WHEN campaign_name LIKE '%RD%' THEN 'RD'
+             WHEN campaign_name LIKE '%DM%' OR campaign_name LIKE '%Ramadan%' THEN 'Web'
+             WHEN campaign_name LIKE '%P2P%' THEN 'P2P'
+             ELSE 'Other'
+             END;;
+      }
     }
   }
 }
 
 explore: combined_ad_impressions {
   persist_with: ama_etl_datagroup
-  hidden: yes
+  # hidden: yes
   from: combined_ad_impressions
   view_name: fact
 }
@@ -108,7 +124,8 @@ view: combined_ad_impressions {
           google_adwords_ad_impressions.Cost AS cost,
           google_adwords_ad_impressions.Conversions AS conversions,
           google_adwords_ad_impressions.Clicks AS clicks,
-          google_adwords_ad_impressions.ConversionValue AS conversionvalue
+          google_adwords_ad_impressions.ConversionValue AS conversionvalue,
+          google_adwords_ad_impressions.department AS department
        FROM ${google_adwords_ad_impressions.SQL_TABLE_NAME} as google_adwords_ad_impressions
        UNION ALL
        SELECT
@@ -124,8 +141,10 @@ view: combined_ad_impressions {
           facebook_ad_impressions.Cost AS cost,
           facebook_ad_impressions.Conversions AS conversions,
           facebook_ad_impressions.Clicks AS clicks,
-          facebook_ad_impressions.ConversionValue AS conversionvalue
+          facebook_ad_impressions.ConversionValue AS conversionvalue,
+          facebook_ad_impressions.department AS department
        FROM ${facebook_ad_impressions.SQL_TABLE_NAME} as facebook_ad_impressions ;;
   }
   dimension: channel {}
+  dimension: department {}
 }
