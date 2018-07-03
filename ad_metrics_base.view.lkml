@@ -179,6 +179,7 @@ view: ad_metrics_base {
     type: number
     sql: ${total_conversionvalue}*1.0 / NULLIF(${total_cost},0) ;;
     value_format_name: decimal_2
+    drill_fields: [fact_department, total_conversionvalue, total_cost]
   }
 
   measure: average_conversion_rate {
@@ -230,6 +231,7 @@ view: ad_metrics_base {
     type: sum
     sql: ${conversionvalue} ;;
     value_format_name: usd_0
+    drill_fields: [fact.date_date, campaign.name, total_cost]
   }
 
   measure: total_cost {
